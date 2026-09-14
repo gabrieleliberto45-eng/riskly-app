@@ -637,8 +637,38 @@
   .jseg button.on[data-d="short"]{background:rgba(239,68,68,.15);color:var(--down)}
   .jmsg{font-size:.8rem;color:var(--up);min-height:18px;margin-top:11px;font-family:'JetBrains Mono',monospace}
 
+  /* ---- screenshot ---- */
+  .jshot{margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+  .jshot > label{display:block;color:var(--dim2);font-size:.75rem;margin-bottom:10px}
+  .jdrop{border:1.5px dashed var(--line-hi);border-radius:16px;padding:24px 18px;text-align:center;
+         cursor:pointer;transition:border-color .2s,background .2s;background:rgba(0,0,0,.16)}
+  .jdrop:hover,.jdrop.drag{border-color:var(--accent);background:rgba(34,197,94,.06)}
+  .jdrop.bloccato{border-style:solid;border-color:var(--line);background:rgba(0,0,0,.22);opacity:.82}
+  .jdrop.bloccato:hover{border-color:var(--accent-2);background:rgba(14,165,233,.06);opacity:1}
+  .jdrop .ic{font-size:1.5rem;line-height:1;margin-bottom:8px;opacity:.75}
+  .jdrop .t1{font-size:.86rem;color:var(--text);margin-bottom:3px}
+  .jdrop .t2{font-size:.74rem;color:var(--dim2)}
+  .jshot-prev{position:relative;display:inline-block;margin-top:12px}
+  .jshot-prev img{max-width:230px;max-height:140px;border-radius:12px;border:1px solid var(--line-hi);display:block}
+  .jshot-x{position:absolute;top:-8px;right:-8px;width:24px;height:24px;border-radius:99px;
+           background:var(--down);color:#fff;border:none;cursor:pointer;font-size:.8rem;line-height:1}
+  .jshot-up{font-size:.76rem;color:var(--dim2);margin-top:8px;font-family:'JetBrains Mono',monospace}
+
+  .jthumb{width:36px;height:26px;object-fit:cover;border-radius:6px;border:1px solid var(--line-hi);
+          cursor:zoom-in;display:block;transition:transform .18s}
+  .jthumb:hover{transform:scale(1.08);border-color:var(--accent)}
+  .jthumb-no{color:var(--dim-2);font-size:.9em}
+
+  .jlightbox{position:fixed;inset:0;background:rgba(4,8,12,.93);backdrop-filter:blur(6px);
+             z-index:400;display:none;align-items:center;justify-content:center;padding:28px}
+  .jlightbox.on{display:flex}
+  .jlightbox img{max-width:96vw;max-height:88vh;border-radius:14px;border:1px solid var(--line-hi)}
+  .jlb-x{position:absolute;top:20px;right:22px;width:42px;height:42px;border-radius:99px;
+         background:var(--panel);border:1px solid var(--line-hi);color:var(--text);
+         font-size:1.1rem;cursor:pointer}
+
   .jt-scroll{overflow-x:auto;margin:0 -20px;padding:0 20px}
-  .jt-scroll table{width:100%;border-collapse:collapse;font-size:.83rem;min-width:600px}
+  .jt-scroll table{width:100%;border-collapse:collapse;font-size:.83rem;min-width:680px}
   .jt-scroll th{text-align:left;color:var(--dim2);font-weight:500;font-size:.71rem;
                 padding:0 12px 11px;border-bottom:1px solid var(--line)}
   .jt-scroll td{padding:12px;border-bottom:1px solid rgba(255,255,255,.045);
@@ -1020,6 +1050,7 @@ body{padding-top:0}
         <div class="jactions">
           <button class="btn" onclick="j_loadDemo()">Dati demo</button>
           <button class="btn" onclick="j_exportData()">Esporta</button>
+          <button class="btn" onclick="j_exportCSV()">CSV</button>
           <button class="btn" onclick="document.getElementById('imp').click()">Importa</button>
           <input type="file" id="imp" accept=".json" hidden onchange="j_importData(event)">
           <button class="btn" onclick="j_clearAll()">Svuota</button>
@@ -1113,6 +1144,18 @@ body{padding-top:0}
             <textarea id="f-nota" rows="2" placeholder="Perché sei entrato? Cosa hai visto sul grafico?"></textarea>
           </div>
 
+          <div class="jshot">
+            <label>Screenshot del grafico <span style="color:var(--dim2)">(facoltativo)</span></label>
+            <div class="jdrop" id="jdrop" onclick="document.getElementById('f-shot').click()">
+              <div class="ic">🖼</div>
+              <div class="t1">Tocca per scegliere un'immagine</div>
+              <div class="t2">oppure trascinala qui · PNG o JPG, max 5 MB</div>
+            </div>
+            <input type="file" id="f-shot" accept="image/*" hidden onchange="j_shotScelto(event)">
+            <div id="jshotPrev"></div>
+            <div class="jshot-up" id="jshotStato"></div>
+          </div>
+
           <div style="display:flex;gap:12px;align-items:center;margin-top:16px;flex-wrap:wrap">
             <button type="submit" class="btn pri">Salva operazione</button>
             <div class="jmsg" id="msg"></div>
@@ -1125,7 +1168,7 @@ body{padding-top:0}
         <div class="jcard-head"><h3>Operazioni</h3><span class="jmeta" id="cnt"></span></div>
         <div class="jt-scroll">
           <table>
-            <thead><tr><th>Data</th><th>Simbolo</th><th>Dir.</th><th>P&L</th><th>R</th><th>Stato</th><th>Strategia</th><th></th></tr></thead>
+            <thead><tr><th>Data</th><th>Simbolo</th><th>Dir.</th><th>P&L</th><th>R</th><th>Stato</th><th>Strategia</th><th>Screen</th><th></th></tr></thead>
             <tbody id="tbl"></tbody>
           </table>
         </div>
@@ -1145,6 +1188,12 @@ body{padding-top:0}
     </div>
   </section>
   </section>
+</div>
+
+<!-- ═══════════ VISUALIZZATORE SCREENSHOT ═══════════ -->
+<div class="jlightbox" id="jlightbox" onclick="j_chiudiShot()">
+  <button class="jlb-x" onclick="j_chiudiShot()" aria-label="Chiudi">✕</button>
+  <img id="jlbImg" alt="Screenshot dell'operazione">
 </div>
 
 <!-- ═══════════ ACCESSO ═══════════ -->
@@ -1381,7 +1430,8 @@ async function caricaOperazioni(){
     risk: Number(r.rischio || 0),
     strategy: r.strategia || '',
     emo: r.emozione || 'lucido',
-    nota: r.nota || ''
+    nota: r.nota || '',
+    shot: r.screenshot || ''
   }));
 }
 
@@ -1398,7 +1448,8 @@ async function salvaOperazione(t){
     rischio:   t.risk,
     strategia: t.strategy,
     emozione:  t.emo,
-    nota:      t.nota
+    nota:      t.nota,
+    screenshot: t.shot || null
   }).select().single();
 
   if(error){ console.error(error); return null; }
@@ -1414,6 +1465,168 @@ async function svuotaOperazioni(){
   if(!sb || !utente) return;
   await sb.from('operazioni').delete().eq('utente', utente.id);
 }
+
+
+/* ---------- Piano e permessi ---------- */
+
+const LIMITE_SHOT = { prova: 10, base: 0, pro: 100, premium: Infinity };
+
+/* il piano davvero attivo: se la prova è scaduta, decade */
+function pianoAttivo(){
+  if(!utente) return 'demo';
+  const p = profilo ? (profilo.piano || 'prova') : 'prova';
+  if(p === 'prova' && profilo && profilo.scadenza){
+    if(new Date(profilo.scadenza) < new Date()) return 'scaduto';
+  }
+  return p;
+}
+
+function limiteShot(){
+  const p = pianoAttivo();
+  if(p === 'demo') return 0;
+  return LIMITE_SHOT[p] !== undefined ? LIMITE_SHOT[p] : 0;
+}
+
+function shotUsati(){
+  return j_trades.filter(t => t.shot).length;
+}
+
+function puoUsareShot(){
+  return shotUsati() < limiteShot();
+}
+
+/* mostra o blocca l'area screenshot in base al piano */
+function aggiornaAreaShot(){
+  const zona = document.getElementById('jdrop');
+  const wrap = document.querySelector('.jshot');
+  if(!zona || !wrap) return;
+
+  const p = pianoAttivo(), lim = limiteShot(), usati = shotUsati();
+  const eti = wrap.querySelector('label');
+
+  if(lim === 0){
+    zona.classList.add('bloccato');
+    zona.onclick = () => location.href = 'https://riskly.trade#prezzi';
+    zona.innerHTML =
+      `<div class="ic">🔒</div>
+       <div class="t1">Screenshot disponibili dal piano Pro</div>
+       <div class="t2">Tocca per vedere i piani</div>`;
+    if(eti) eti.innerHTML = 'Screenshot del grafico';
+    return;
+  }
+
+  if(usati >= lim){
+    zona.classList.add('bloccato');
+    zona.onclick = () => location.href = 'https://riskly.trade#prezzi';
+    zona.innerHTML =
+      `<div class="ic">🔒</div>
+       <div class="t1">Hai usato tutti i ${lim} screenshot del tuo piano</div>
+       <div class="t2">Tocca per passare a un piano superiore</div>`;
+    return;
+  }
+
+  zona.classList.remove('bloccato');
+  zona.onclick = () => document.getElementById('f-shot').click();
+  zona.innerHTML =
+    `<div class="ic">🖼</div>
+     <div class="t1">Tocca per scegliere un'immagine</div>
+     <div class="t2">oppure trascinala qui · PNG o JPG, max 5 MB</div>`;
+
+  if(eti){
+    const resto = (lim === Infinity) ? 'illimitati' : `${lim - usati} rimasti`;
+    eti.innerHTML = `Screenshot del grafico <span style="color:var(--dim2)">(${resto})</span>`;
+  }
+}
+
+
+/* ---------- Screenshot ---------- */
+
+const SHOT_BUCKET = 'screenshot';
+let j_shotFile = null;      /* file scelto, non ancora caricato */
+let j_shotAnteprima = null; /* dataURL per l'anteprima */
+
+function j_shotScelto(e){
+  const f = e.target.files && e.target.files[0];
+  if(f) j_shotCarica(f);
+  e.target.value = '';
+}
+
+function j_shotCarica(f){
+  if(!puoUsareShot()){
+    j_shotStato('Il tuo piano non permette altri screenshot.', true);
+    return;
+  }
+  if(!f.type.startsWith('image/')){
+    j_shotStato('Serve un file immagine.', true); return;
+  }
+  if(f.size > 5 * 1024 * 1024){
+    j_shotStato('Immagine troppo grande: massimo 5 MB.', true); return;
+  }
+  j_shotFile = f;
+  const lettore = new FileReader();
+  lettore.onload = () => {
+    j_shotAnteprima = lettore.result;
+    document.getElementById('jshotPrev').innerHTML =
+      `<div class="jshot-prev">
+         <img src="${j_shotAnteprima}" alt="Anteprima">
+         <button type="button" class="jshot-x" onclick="j_shotRimuovi()" title="Rimuovi">✕</button>
+       </div>`;
+    j_shotStato(utente ? 'Verrà caricato al salvataggio.' : 'In modalità demo resta solo in questa sessione.');
+  };
+  lettore.readAsDataURL(f);
+}
+
+function j_shotRimuovi(){
+  j_shotFile = null; j_shotAnteprima = null;
+  document.getElementById('jshotPrev').innerHTML = '';
+  j_shotStato('');
+}
+
+function j_shotStato(testo, errore){
+  const e = document.getElementById('jshotStato');
+  if(!e) return;
+  e.textContent = testo || '';
+  e.style.color = errore ? 'var(--down)' : 'var(--dim2)';
+}
+
+/* carica il file su Supabase Storage e restituisce l'URL pubblico */
+async function j_shotSuServer(file){
+  if(!sb || !utente || !file) return null;
+  const est = (file.name.split('.').pop() || 'png').toLowerCase();
+  const percorso = `${utente.id}/${Date.now()}-${Math.random().toString(36).slice(2,8)}.${est}`;
+
+  const { error } = await sb.storage.from(SHOT_BUCKET)
+    .upload(percorso, file, { cacheControl: '3600', upsert: false });
+
+  if(error){ console.error(error); return null; }
+
+  const { data } = sb.storage.from(SHOT_BUCKET).getPublicUrl(percorso);
+  return data ? data.publicUrl : null;
+}
+
+function j_apriShot(url){
+  document.getElementById('jlbImg').src = url;
+  document.getElementById('jlightbox').classList.add('on');
+}
+function j_chiudiShot(){
+  document.getElementById('jlightbox').classList.remove('on');
+  document.getElementById('jlbImg').src = '';
+}
+document.addEventListener('keydown', e => { if(e.key === 'Escape') j_chiudiShot(); });
+
+/* trascinamento sull'area */
+(function(){
+  const zona = document.getElementById('jdrop');
+  if(!zona) return;
+  ['dragenter','dragover'].forEach(ev =>
+    zona.addEventListener(ev, e => { e.preventDefault(); zona.classList.add('drag'); }));
+  ['dragleave','drop'].forEach(ev =>
+    zona.addEventListener(ev, e => { e.preventDefault(); zona.classList.remove('drag'); }));
+  zona.addEventListener('drop', e => {
+    const f = e.dataTransfer.files && e.dataTransfer.files[0];
+    if(f) j_shotCarica(f);
+  });
+})();
 
 
 /* ═══ JOURNAL ═══ */
@@ -1567,7 +1780,7 @@ function j_renderSym(){
 function j_renderTable(){
   const tb=document.getElementById('tbl');
   document.getElementById('cnt').textContent = j_trades.length?`${j_trades.length} totali`:'';
-  if(!j_trades.length){ tb.innerHTML=`<tr><td colspan="8"><div class="empty"><strong>Ancora nessuna operazione</strong>Le operazioni che aggiungi compaiono qui.</div></td></tr>`; return; }
+  if(!j_trades.length){ tb.innerHTML=`<tr><td colspan="9"><div class="empty"><strong>Ancora nessuna operazione</strong>Le operazioni che aggiungi compaiono qui.</div></td></tr>`; return; }
   const mx=Math.max(...j_trades.map(t=>Math.abs(t.pnl)),1);
   tb.innerHTML=[...j_trades].sort((a,b)=>b.date.localeCompare(a.date)).map(t=>{
     const r=t.risk>0?(t.pnl/t.risk>=0?'+':'')+(t.pnl/t.risk).toFixed(2)+'R':'—';
@@ -1580,6 +1793,7 @@ function j_renderTable(){
       <td class="${t.risk>0?j_cl(t.pnl):''}" style="${t.risk>0?'':'color:var(--dim-2)'}">${r}</td>
       <td><span class="pill emo" style="color:${j_emoInfo(t.emo||'lucido').col}">${j_emoInfo(t.emo||'lucido').nome}</span></td>
       <td class="strat" title="${(t.nota||'').replace(/"/g,'&quot;')}">${t.strategy||'—'}${t.nota?' <span style="color:var(--dim2)">·</span>':''}</td>
+      <td>${t.shot?`<img class="jthumb" src="${t.shot}" alt="Screenshot ${t.symbol}" onclick="j_apriShot('${t.shot}')">`:'<span class="jthumb-no">—</span>'}</td>
       <td style="text-align:right"><button class="del" onclick="j_removeTrade('${t.id}')" title="Elimina">✕</button></td>
     </tr>`;
   }).join('');
@@ -1604,6 +1818,7 @@ function j_renderStrat(){
 
 function j_renderAll(){
   if(typeof aggiornaBanner === 'function') aggiornaBanner();
+  if(typeof aggiornaAreaShot === 'function') aggiornaAreaShot();
   j_renderKPIs();
   j_renderCalendario();
   j_renderEquity();
@@ -1866,13 +2081,30 @@ function j_addTrade(e){
     risk:parseFloat(document.getElementById('f-risk').value)||0,
     strategy:document.getElementById('f-strat').value.trim(),
     emo: j_emozione,
-    nota:document.getElementById('f-nota').value.trim()
+    nota:document.getElementById('f-nota').value.trim(),
+    shot: j_shotAnteprima || ''
   };
+
+  const fileDaCaricare = j_shotFile;
+
   if(utente){
-    salvaOperazione(t).then(id => { if(id) t.id = id; });
+    (async () => {
+      if(fileDaCaricare){
+        j_shotStato('Caricamento screenshot…');
+        const url = await j_shotSuServer(fileDaCaricare);
+        if(url){ t.shot = url; j_shotStato(''); }
+        else { j_shotStato('Screenshot non caricato, operazione salvata comunque.', true); }
+      }
+      const id = await salvaOperazione(t);
+      if(id) t.id = id;
+      j_renderAll();
+    })();
   }
+
   j_trades.push(t);
   ['f-symbol','f-pnl','f-risk','f-strat','f-nota'].forEach(i=>document.getElementById(i).value='');
+  j_shotFile = null; j_shotAnteprima = null;
+  document.getElementById('jshotPrev').innerHTML = '';
   j_flash(`${t.symbol} salvato · ${j_fmt(t.pnl)}`);
   j_renderAll();
 }
@@ -1896,6 +2128,40 @@ function j_exportData(){
   const b=new Blob([JSON.stringify(j_trades,null,2)],{type:'application/json'});
   const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download='j_trades.json'; a.click();
   j_flash('Esportato in j_trades.json');
+}
+
+/* esporta in CSV: si apre in Excel o Fogli Google */
+function j_exportCSV(){
+  if(!j_trades.length){ j_flash('Non ci sono operazioni da esportare.'); return; }
+
+  const intestazioni = ['Data','Ora','Simbolo','Direzione','P&L','Rischio','R','Strategia','Stato','Nota','Screenshot'];
+
+  const campo = v => {
+    const s = (v === null || v === undefined) ? '' : String(v);
+    return /[";\n]/.test(s) ? '"' + s.replace(/"/g,'""') + '"' : s;
+  };
+
+  const righe = [...j_trades]
+    .sort((a,b) => a.date.localeCompare(b.date))
+    .map(t => [
+      t.date, t.ora || '', t.symbol, t.dir === 'long' ? 'Long' : 'Short',
+      t.pnl.toFixed(2).replace('.', ','),
+      t.risk ? t.risk.toFixed(2).replace('.', ',') : '',
+      t.risk > 0 ? (t.pnl / t.risk).toFixed(2).replace('.', ',') : '',
+      t.strategy || '',
+      j_emoInfo(t.emo || 'lucido').nome,
+      t.nota || '',
+      (t.shot && t.shot.startsWith('http')) ? t.shot : ''
+    ].map(campo).join(';'));
+
+  /* BOM: così Excel legge bene gli accenti */
+  const csv = '\uFEFF' + [intestazioni.join(';'), ...righe].join('\r\n');
+  const b = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(b);
+  a.download = `riskly-operazioni-${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+  j_flash(`${j_trades.length} operazioni esportate in CSV.`);
 }
 function j_importData(ev){
   const f=ev.target.files[0]; if(!f) return;
@@ -2030,6 +2296,7 @@ function aggiornaBanner(){
 
 function avviaJournal(){
   aggiornaBanner();
+  aggiornaAreaShot();
   const d = document.getElementById('f-date');
   if(d && !d.value) d.value = new Date().toISOString().slice(0,10);
   j_renderSceltaEmo();
@@ -2077,3 +2344,4 @@ if(sb){
 </script>
 </body>
 </html>
+
