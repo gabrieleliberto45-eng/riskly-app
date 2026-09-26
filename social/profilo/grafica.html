@@ -1,0 +1,36 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0A0E14;font-family:'Instrument Sans',sans-serif;color:#E6EDF3}
+.avatar{width:800px;height:800px;position:relative;overflow:hidden;display:grid;place-items:center;
+  background:radial-gradient(520px 420px at 75% 15%,rgba(34,197,94,.28),transparent 65%),radial-gradient(520px 420px at 20% 85%,rgba(14,165,233,.22),transparent 65%),#0A0E14}
+.banner{width:2560px;height:1440px;position:relative;overflow:hidden;display:grid;place-items:center;
+  background:radial-gradient(1100px 700px at 78% 20%,rgba(34,197,94,.20),transparent 62%),radial-gradient(1000px 650px at 18% 80%,rgba(14,165,233,.16),transparent 64%),#0A0E14}
+.griglia{position:absolute;inset:0;opacity:.08;background-image:linear-gradient(#1E2A3A 2px,transparent 2px),linear-gradient(90deg,#1E2A3A 2px,transparent 2px);background-size:80px 80px}
+.sicura{position:relative;width:1546px;height:423px;display:flex;align-items:center;justify-content:space-between;gap:60px}
+.marca{display:flex;align-items:center;gap:34px;font-weight:700;font-size:150px;letter-spacing:-.04em}
+.claim{font-family:'Instrument Serif',serif;font-size:74px;line-height:1.08;text-align:right}
+.claim em{font-style:italic;background:linear-gradient(135deg,#22C55E,#0EA5E9);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sotto{white-space:nowrap;font-family:'JetBrains Mono',monospace;font-size:26px;color:#8B98A9;margin-top:22px;letter-spacing:.04em}
+</style></head><body>
+<div class="avatar" id="avatar"><div class="griglia"></div>
+  <svg width="520" height="520" viewBox="0 0 44 44" fill="none" style="position:relative">
+    <defs><linearGradient id="g" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#22C55E"/><stop offset="1" stop-color="#0EA5E9"/></linearGradient></defs>
+    <path d="M9 31 L17 19.5 L23.5 25 L35 11" stroke="url(#g)" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M9 36 H35" stroke="#8B98A9" stroke-width="2.8" stroke-linecap="round"/>
+  </svg>
+</div>
+<div class="banner" id="banner"><div class="griglia"></div>
+  <div class="sicura">
+    <div class="marca">
+      <svg width="170" height="170" viewBox="0 0 44 44" fill="none"><defs><linearGradient id="g2" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#22C55E"/><stop offset="1" stop-color="#0EA5E9"/></linearGradient></defs><path d="M9 31 L17 19.5 L23.5 25 L35 11" stroke="url(#g2)" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 36 H35" stroke="#8B98A9" stroke-width="2.8" stroke-linecap="round"/></svg>
+      Riskly
+    </div>
+    <div>
+      <div class="claim">Il mercato non lo controlli.<br><em>Tutto il resto sì.</em></div>
+      <div class="sotto" style="text-align:right">BOT PER MT4 E MT5 · RISKLY.TRADE</div>
+    </div>
+  </div>
+</div>
+</body></html>
