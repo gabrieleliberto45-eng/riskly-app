@@ -1,0 +1,9 @@
+{
+  "scene": [
+    {"tipo":"hook","dur":3.4,"kicker":"SERIE DI PERDITE","testo":["Hai una strategia","che vince <em>1 volta su 2.</em>","Quante perdite di fila ti aspetti?"]},
+    {"tipo":"numero","dur":3.6,"valore":81,"suffisso":"%","kicker":"SU 100 OPERAZIONI","etichetta":"la probabilità di vedere almeno 5 perdite di fila."},
+    {"tipo":"barre","dur":5.6,"titolo":"Winrate 50%, 100 operazioni: probabilità di una serie di…","righe":[["5+","81%",81],["6+","55%",54.8],["8+","17%",16.9]]},
+    {"tipo":"frase","dur":4.2,"testo":["Non è sfortuna.","È statistica.","<em>Preparati prima.</em>"],"nota":"Il rischio per operazione decide se una serie normale diventa un disastro."},
+    {"tipo":"chiusura","dur":3.6}
+  ]
+}

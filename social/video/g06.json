@@ -1,0 +1,9 @@
+{
+  "scene": [
+    {"tipo":"hook","dur":3.4,"kicker":"PROP FIRM","testo":["La challenge","non si perde al 5%.","Si perde <em>al 4,9%.</em>"]},
+    {"tipo":"frase","dur":4,"testo":["Slippage, commissioni,","un gap in apertura:","<em>l'ultimo 1% non è tuo.</em>"]},
+    {"tipo":"conto","dur":6,"titolo":"Esempio: conto da 100.000 $","righe":[["Limite giornaliero (5%)","−5.000 $","down"],["Il tuo stop giornaliero","−4.000 $"],["Margine di sicurezza","1.000 $","up"]],"nota":"Ti fermi tu, prima che ti fermi il regolamento."},
+    {"tipo":"frase","dur":3.8,"testo":["Controlla sempre","le regole della <em>tua</em> prop.","Cambiano spesso."]},
+    {"tipo":"chiusura","dur":3.6,"cta":"Tracker challenge gratis · link in bio"}
+  ]
+}

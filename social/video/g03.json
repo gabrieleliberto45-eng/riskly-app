@@ -1,0 +1,9 @@
+{
+  "scene": [
+    {"tipo":"hook","dur":3.4,"kicker":"RISCHIO PER OPERAZIONE","testo":["10 perdite di fila.","Quanto resta","<em>del tuo conto?</em>"]},
+    {"tipo":"barre","dur":6,"titolo":"Drawdown dopo 10 perdite consecutive, rischiando per operazione…","righe":[["1%","−9,6%",9.6],["2%","−18,3%",18.3],["5%","−40,1%",40.1]]},
+    {"tipo":"numero","dur":3.6,"valore":40.1,"decimali":1,"prefisso":"−","suffisso":"%","rosso":true,"etichetta":"A 5% per operazione, e poi serve +67% solo per tornare in pari."},
+    {"tipo":"frase","dur":4,"testo":["Non puoi scegliere","quando arriva la serie.","Puoi scegliere <em>quanto rischi.</em>"]},
+    {"tipo":"chiusura","dur":3.6}
+  ]
+}

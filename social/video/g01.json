@@ -1,0 +1,9 @@
+{
+  "scene": [
+    {"tipo":"hook","dur":3.4,"kicker":"LA MATEMATICA DEL DRAWDOWN","testo":["Perdi il 50%.","Quanto devi fare","per <em>tornare in pari?</em>"]},
+    {"tipo":"numero","dur":3.4,"valore":100,"prefisso":"+","suffisso":"%","etichetta":"Non il 50%. Il doppio del conto che ti è rimasto."},
+    {"tipo":"barre","dur":6.2,"titolo":"Perdita subita → guadagno che serve per recuperarla","righe":[["−10%","+11%",11.1],["−20%","+25%",25],["−30%","+43%",42.9],["−50%","+100%",100],["−70%","+233%",233.3]]},
+    {"tipo":"frase","dur":4,"testo":["Più scendi,","più la risalita","diventa <em>ripida.</em>"],"nota":"Per questo il limite si mette prima di perdere, non dopo."},
+    {"tipo":"chiusura","dur":3.6,"cta":"Calcolatore drawdown gratis · link in bio"}
+  ]
+}

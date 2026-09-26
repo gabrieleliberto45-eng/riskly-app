@@ -1,0 +1,9 @@
+{
+  "scene": [
+    {"tipo":"hook","dur":3.2,"kicker":"POSITION SIZING","testo":["Il lotto","non si sceglie","<em>a sensazione.</em>"]},
+    {"tipo":"lista","dur":6.4,"titolo":"Tre numeri, sempre prima di entrare:","voci":[["Quanto rischi","es. 1% del conto"],["Dove metti lo stop","la distanza in pip"],["Quanto vale un pip","per lotto, sul tuo strumento"]],"passo":1.1},
+    {"tipo":"conto","dur":6,"titolo":"Esempio su EURUSD","righe":[["Conto","10.000 $"],["Rischio 1%","100 $","down"],["Stop loss","20 pip"],["Valore pip (1 lotto)","10 $"],["Lotti","0,50","up"]],"nota":"100 $ ÷ (20 pip × 10 $) = 0,50 lotti"},
+    {"tipo":"frase","dur":3.8,"testo":["Stop più largo?","<em>Lotto più piccolo.</em>","Il rischio resta lo stesso."]},
+    {"tipo":"chiusura","dur":3.6,"cta":"Calcolatore lotti gratis · link in bio"}
+  ]
+}

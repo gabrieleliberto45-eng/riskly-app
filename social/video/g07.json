@@ -1,0 +1,9 @@
+{
+  "scene": [
+    {"tipo":"hook","dur":3.4,"kicker":"IL JOURNAL","testo":["Vinci di più","dopo una vincita","o <em>dopo una perdita?</em>"]},
+    {"tipo":"frase","dur":4,"testo":["Quasi nessuno","sa rispondere.","<em>I tuoi numeri sì.</em>"]},
+    {"tipo":"lista","dur":6.6,"titolo":"Cosa ti dice un journal fatto bene:","voci":[["Il winrate dopo una perdita","se crolla, serve una pausa"],["Le ore in cui perdi","e quelle in cui non dovresti operare"],["Come ti sentivi","e quanto ti è costato"]],"passo":1.1},
+    {"tipo":"frase","dur":3.6,"testo":["Non devi prevedere il mercato.","Devi <em>conoscere te stesso.</em>"]},
+    {"tipo":"chiusura","dur":3.6,"cta":"Journal gratis, senza registrazione · link in bio"}
+  ]
+}

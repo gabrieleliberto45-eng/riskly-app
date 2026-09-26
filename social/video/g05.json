@@ -1,0 +1,9 @@
+{
+  "scene": [
+    {"tipo":"hook","dur":3.4,"kicker":"REVENGE TRADING","testo":["Due perdite di fila.","E adesso <em>vuoi recuperare.</em>"]},
+    {"tipo":"frase","dur":4,"testo":["È il momento in cui","il lotto raddoppia","e lo stop <em>sparisce.</em>"],"nota":"Non è mancanza di strategia. È come funziona il cervello sotto stress."},
+    {"tipo":"lista","dur":7,"titolo":"Tre regole da scrivere a mente fredda:","voci":[["Pausa dopo ogni perdita","anche solo 15 minuti"],["Stop dopo N perdite di fila","il numero lo decidi prima"],["Lotto fisso","mai aumentarlo per recuperare"]],"passo":1.2},
+    {"tipo":"frase","dur":3.8,"testo":["Se da solo non ci riesci,","falle rispettare","<em>a un software.</em>"],"nota":"RiskGuard, dal 23 ottobre."},
+    {"tipo":"chiusura","dur":3.6,"cta":"Lista d'attesa · link in bio"}
+  ]
+}
