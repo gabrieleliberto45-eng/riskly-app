@@ -4407,10 +4407,25 @@ setInterval(aggiornaCountdown, 1000);
 
 
 /* il pulsante del prodotto cambia in base a VENDITA_ATTIVA */
-function azioneProdotto(nome){
+/* prezzi di lancio, usati per registrare l'ordine prima del pagamento */
+const PREZZO_LANCIO = { 'RiskGuard':99, 'TradeManager':99, 'ScaleIn':129, 'Riskly Pro':249, 'Videocorso':199 };
+
+async function azioneProdotto(nome){
   if(VENDITA_ATTIVA && STRIPE[nome]){
     if(!utente){ apriAccesso('registrati'); return; }
-    window.open(STRIPE[nome], '_blank', 'noopener');
+    /* l'ordine entra subito in "Gestione" come da confermare: quando vedi il pagamento su Stripe
+       (stessa email, stesso codice cliente) lo confermi e il cliente vede il gruppo Telegram */
+    if(sb){
+      const { error } = await sb.from('acquisti').insert({
+        utente: utente.id, prodotto: nome, prezzo: PREZZO_LANCIO[nome] || null, stato: 'in_attesa'
+      });
+      if(error) console.error('Ordine non registrato:', error);
+    }
+    const link = STRIPE[nome]
+      + (STRIPE[nome].includes('?') ? '&' : '?')
+      + 'prefilled_email=' + encodeURIComponent(utente.email || '')
+      + '&client_reference_id=' + encodeURIComponent(utente.id);
+    window.location.href = link;   /* stessa scheda: i browser dentro TikTok e Instagram bloccano le finestre nuove */
     return;
   }
   apriModulo('attesa', nome, 0);
@@ -4680,7 +4695,7 @@ async function gsPiano(id, piano){
 }
 
 
-function inviaRichiesta(e){
+async function inviaRichiesta(e){
   e.preventDefault();
 
   const nome  = document.getElementById('m-nome').value.trim();
@@ -4717,11 +4732,21 @@ function inviaRichiesta(e){
 
   const testo = righe.join('\n');
 
-  /* la lista d'attesa viene registrata nel database */
+  /* la lista d'attesa si registra nel database e basta: niente email da mandare a mano,
+     che dal browser di TikTok o Instagram spesso non si apre e fa pensare che l'iscrizione sia fallita */
   if(attesa && sb){
-    sb.from('lista_attesa').insert({
+    const bottone = document.getElementById('mod-invia');
+    const testoBottone = bottone.textContent;
+    bottone.disabled = true; bottone.textContent = 'Un attimo…';
+    const { error } = await sb.from('lista_attesa').insert({
       email, nome: nome || null, prodotto: modProdotto, conto: conto || null
-    }).then(({ error }) => { if(error) console.error('Iscrizione non registrata:', error); });
+    });
+    bottone.disabled = false; bottone.textContent = testoBottone;
+    if(!error){
+      mostraFatto(true, email);
+      return;
+    }
+    console.error('Iscrizione non registrata:', error);   // se il database non risponde, resta la via dell'email
   }
 
   /* l'acquisto viene registrato nell'area clienti */
@@ -4736,14 +4761,31 @@ function inviaRichiesta(e){
   }
 
   document.getElementById('mod-testo').value = testo;
-  document.getElementById('mod-form').style.display = 'none';
-  document.getElementById('mod-fatto').classList.add('on');
+  mostraFatto(false);
 
   const link = 'mailto:info@riskly.trade'
              + '?subject=' + encodeURIComponent(oggetto)
              + '&body='    + encodeURIComponent(testo);
 
   setTimeout(()=>{ window.location.href = link; }, 400);
+}
+
+/* conferma finale: iscritto in lista (iscritto = true) oppure email da inviare */
+function mostraFatto(iscritto, email){
+  document.getElementById('mod-fatto-titolo').textContent =
+    iscritto ? 'Sei nella lista ✓' : 'Si apre il tuo programma di posta';
+  const p = document.getElementById('mod-fatto-testo');
+  if(iscritto){
+    p.textContent = 'Ti scriviamo a ' + email + ' il giorno del lancio, il 23 ottobre. '
+      + 'Se sei tra i primi 10, il prezzo di lancio resta tuo per sempre. Nessun pagamento adesso.';
+  }else{
+    p.innerHTML = 'Il messaggio è già compilato: devi solo premere invia. Se non si apre nulla, '
+      + 'copia il testo qui sotto e mandalo a <b>info@riskly.trade</b>.';
+  }
+  document.getElementById('mod-testo').style.display = iscritto ? 'none' : '';
+  document.getElementById('mod-copia').style.display = iscritto ? 'none' : '';
+  document.getElementById('mod-form').style.display = 'none';
+  document.getElementById('mod-fatto').classList.add('on');
 }
 
 function copiaTesto(){
@@ -5279,8 +5321,8 @@ calcPos(); calcRuin(); calcProp(); calcBE(); calcComp(); setCiclo('a');
           <path d="M7.5 12.5l3 3 6-6.5" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
-      <h3>Si apre il tuo programma di posta</h3>
-      <p>Il messaggio è già compilato: devi solo premere invia. Se non si apre nulla,
+      <h3 id="mod-fatto-titolo">Si apre il tuo programma di posta</h3>
+      <p id="mod-fatto-testo">Il messaggio è già compilato: devi solo premere invia. Se non si apre nulla,
          copia il testo qui sotto e mandalo a <b>info@riskly.trade</b>.</p>
       <textarea id="mod-testo" rows="9" readonly onclick="this.select()"></textarea>
       <p style="font-size:.82rem;color:var(--dim);margin-top:14px">
@@ -5289,7 +5331,7 @@ calcPos(); calcRuin(); calcProp(); calcBE(); calcComp(); setCiclo('a');
         è lì che avvisiamo per primi.
       </p>
       <div class="mod-azioni">
-        <button class="btn" onclick="copiaTesto()">Copia il testo</button>
+        <button class="btn" id="mod-copia" onclick="copiaTesto()">Copia il testo</button>
         <button class="btn pri" onclick="chiudiModulo()">Chiudi</button>
       </div>
       <div class="mod-copiato" id="mod-copiato"></div>
