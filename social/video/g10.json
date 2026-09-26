@@ -1,0 +1,6 @@
+{"scene":[
+ {"tipo":"hook","dur":3.4,"kicker":"WINRATE","testo":["Vinci 1 volta su 3.","E sei <em>in pari.</em>"],"nota":"Se ogni vincita vale il doppio di ogni perdita."},
+ {"tipo":"barre","dur":6.6,"titolo":"Winrate minimo per andare in pari, secondo il rapporto rischio/rendimento","righe":[["0,5R","67%",66.7],["1R","50%",50],["2R","33%",33.3],["3R","25%",25]]},
+ {"tipo":"frase","dur":4.4,"testo":["Il winrate da solo","<em>non dice niente.</em>","Conta quanto vinci quando vinci."],"nota":"Senza contare costi e commissioni."},
+ {"tipo":"chiusura","dur":3.4}
+]}

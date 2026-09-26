@@ -1,0 +1,6 @@
+{"scene":[
+ {"tipo":"hook","dur":3.4,"kicker":"WEEKEND","testo":["Il mercato è chiuso.","È il momento","<em>più utile della settimana.</em>"]},
+ {"tipo":"lista","dur":7,"titolo":"20 minuti, tre domande:","passo":1.2,"voci":[["Quali trade erano fuori dal piano?","annotali, senza giudicarti"],["Quando hai perso di più?","ora, giorno, stato d'animo"],["Una regola per la prossima settimana","una sola, scritta"]]},
+ {"tipo":"frase","dur":3.8,"testo":["I numeri non mentono.","<em>La memoria sì.</em>"],"nota":"Salvalo per stasera 📌"},
+ {"tipo":"chiusura","dur":3.4,"cta":"Journal gratis · link in bio"}
+]}

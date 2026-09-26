@@ -1,0 +1,7 @@
+{"scene":[
+ {"tipo":"hook","dur":3.2,"kicker":"RISKLY · DAL 23 OTTOBRE","testo":["Un bot","che non apre","<em>mai un'operazione.</em>"]},
+ {"tipo":"frase","dur":3.8,"testo":["Non ti dice","quando entrare.","<em>Ti dice quando smettere.</em>"]},
+ {"tipo":"lista","dur":6.6,"titolo":"Cosa fa, invece:","passo":1.1,"voci":[["Ti ferma dopo N perdite di fila","il numero lo scegli tu"],["Blocca la perdita giornaliera","con un margine di sicurezza"],["Rende obbligatorio lo stop loss","nessuna operazione senza"]]},
+ {"tipo":"frase","dur":3.6,"testo":["Il mercato non lo controlli.","<em>Tutto il resto sì.</em>"]},
+ {"tipo":"chiusura","dur":3.4,"cta":"Lista d'attesa · link in bio"}
+]}

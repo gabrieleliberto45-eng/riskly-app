@@ -1,0 +1,9 @@
+{"scene":[
+ {"tipo":"hook","dur":2.8,"kicker":"LA GIORNATA DI UN TRADER","testo":["Una giornata","di trading,","<em>in 4 frasi.</em>"]},
+ {"tipo":"frase","dur":2.8,"kicker":"ORE 09:00","testo":["\"Oggi solo","<em>setup puliti.</em>\""]},
+ {"tipo":"frase","dur":2.8,"kicker":"ORE 11:30","testo":["\"Questo è","<em>quasi</em> un setup.\""]},
+ {"tipo":"frase","dur":2.8,"kicker":"ORE 14:45","testo":["\"Recupero","e poi <em>chiudo.</em>\""]},
+ {"tipo":"frase","dur":2.8,"kicker":"ORE 17:00","testo":["\"Da domani","<em>faccio sul serio.</em>\""]},
+ {"tipo":"frase","dur":4.2,"testo":["La strategia era giusta.","Mancava qualcuno","che ti <em>fermasse.</em>"],"nota":"Ti è mai successo? 👇"},
+ {"tipo":"chiusura","dur":3.4,"cta":"RiskGuard dal 23 ottobre · link in bio"}
+]}

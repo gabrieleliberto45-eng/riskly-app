@@ -16,37 +16,25 @@ Su YouTube Shorts: `#shorts #trading #gestionedelrischio`
 
 ---
 
-## Settimana 1 · la matematica del rischio (video pronti in `video/`)
+## Settimana 1 · programmata su TikTok (video g08–g14)
 
-### Dom 27/9 · `g01` Drawdown: la risalita è più ripida della discesa
-- **Titolo YouTube:** Perdi il 50%: quanto devi guadagnare per tornare in pari? #shorts
-- **Didascalia:** Perdi il 50% e pensi che basti fare +50%. No: serve +100%. Più scendi, più la risalita diventa ripida. Per questo il limite si mette prima di perdere, non dopo. Il calcolatore del drawdown è gratis sul sito, link in bio. Contenuto educativo, non è consulenza finanziaria.
+I primi 7 video (g01–g07, in `video/scartati/`) ripetevano temi già pubblicati sul profilo e sono stati sostituiti.
+Dal profilo: rendono di più i contenuti in cui il trader si riconosce e quelli contro i "guru"
+(1.000+ visualizzazioni) rispetto ai tutorial puri (200–300). Temi GIÀ TRATTATI, da non ripetere:
+drawdown e recupero, calcolo dei lotti, formula del rischio per trade, revenge trading, challenge prop firm,
+rischio per operazione, simulazioni di conti / ordine dei risultati, bias e journal, segnali venduti,
+tipi di trader nei gruppi Telegram, crolli storici, checklist prima del trade, 500 € vs 5.000 €,
+"raddoppio e recupero", break-even (in bozza), "3 numeri a memoria", "quanto perdo se va male", "decidi la perdita prima".
 
-### Lun 28/9 · `g02` Le serie di perdite sono normali
-- **Titolo YouTube:** Winrate 50%: quante perdite di fila devi aspettarti? #shorts
-- **Didascalia:** Con una strategia che vince 1 volta su 2, in 100 operazioni c'è l'81% di probabilità di vedere almeno 5 perdite di fila. Non è sfortuna, è statistica. La domanda giusta non è "se" arriverà la serie, ma quanto ti costerà. Contenuto educativo, non è consulenza finanziaria.
-
-### Mar 29/9 · `g03` Quanto rischi per operazione
-- **Titolo YouTube:** 10 perdite di fila: 1%, 2% o 5% di rischio? #shorts
-- **Didascalia:** 10 perdite di fila: all'1% per operazione perdi il 9,6% del conto, al 5% il 40,1%, e poi ti serve +67% solo per tornare in pari. La serie non la scegli. Il rischio sì. Contenuto educativo, non è consulenza finanziaria.
-
-### Mer 30/9 · `g04` Il lotto non si sceglie a sensazione
-- **Titolo YouTube:** Come calcolare i lotti in 3 numeri (position sizing) #shorts
-- **Didascalia:** Rischio, distanza dello stop, valore del pip. Con questi tre numeri il lotto si calcola, non si indovina. Esempio: conto 10.000 $, rischio 1%, stop 20 pip su EURUSD → 0,50 lotti. Il calcolatore lotti è gratis sul sito, link in bio. Contenuto educativo, non è consulenza finanziaria.
-
-### Gio 1/10 · `g05` Revenge trading
-- **Titolo YouTube:** Revenge trading: 3 regole da scrivere a mente fredda #shorts
-- **Didascalia:** Dopo due perdite il lotto raddoppia e lo stop sparisce. Non è mancanza di strategia, è come funziona il cervello sotto stress. Tre regole: pausa dopo ogni perdita, stop dopo N perdite di fila, lotto fisso. RiskGuard le fa rispettare per te, dal 23 ottobre: lista d'attesa in bio. Contenuto educativo, non è consulenza finanziaria.
-
-### Ven 2/10 · `g06` Prop firm: l'ultimo 1% non è tuo
-- **Titolo YouTube:** Prop firm: perché fermarti al 4% e non al 5% #shorts
-- **Didascalia:** La challenge non si perde al 5%, si perde al 4,9%: slippage, commissioni, un gap in apertura. Mettiti uno stop giornaliero con un margine di sicurezza e fermati tu, prima del regolamento. Controlla sempre le regole aggiornate della tua prop. Contenuto educativo, non è consulenza finanziaria.
-
-### Sab 3/10 · `g07` Il journal: vinci di più dopo una vincita o dopo una perdita?
-- **Titolo YouTube:** La domanda che quasi nessun trader si fa #shorts
-- **Didascalia:** Vinci di più dopo una vincita o dopo una perdita? Quasi nessuno lo sa. Un journal fatto bene te lo dice, insieme alle ore in cui perdi e a quanto ti costa operare nervoso. Il journal di Riskly è gratis e senza registrazione, link in bio. Contenuto educativo, non è consulenza finanziaria.
-
----
+| Data | Ora | Video | Tema |
+|---|---|---|---|
+| Dom 27/9 | 10:00 | g08 | Frasi che ogni trader ha detto almeno una volta |
+| Lun 28/9 | 18:00 | g09 | Il corso da 997 € in 20 secondi |
+| Mar 29/9 | 18:00 | g10 | Winrate minimo per andare in pari (0,5R–3R) |
+| Mer 30/9 | 18:00 | g11 | La giornata di un trader in 4 frasi |
+| Gio 1/10 | 18:00 | g12 | Overtrading: 1.400 $ di commissioni al mese |
+| Ven 2/10 | 18:00 | g13 | Un bot che non apre mai un'operazione (RiskGuard) |
+| Sab 3/10 | 10:00 | g14 | Weekend: 20 minuti, tre domande |
 
 ## Settimana 2 · disciplina e regole (video da generare)
 

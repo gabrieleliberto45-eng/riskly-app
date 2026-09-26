@@ -1,0 +1,6 @@
+{"scene":[
+ {"tipo":"hook","dur":3.2,"kicker":"SII ONESTO","testo":["Frasi che","ogni trader","ha detto almeno","<em>una volta.</em>"]},
+ {"tipo":"lista","dur":7.6,"titolo":"Quante ne hai dette?","passo":1.1,"voci":[["\"Solo questo e poi chiudo.\"","non era l'ultimo"],["\"Lo stop lo metto dopo.\"","non l'ha messo"],["\"Stavolta è diverso.\"","non lo era"],["\"Se chiudevo prima…\"","il journal lo sapeva"]]},
+ {"tipo":"frase","dur":4.2,"testo":["Non sei l'unico.","Per questo le regole","si scrivono <em>prima.</em>"],"nota":"Scrivi nei commenti quella che dici più spesso 👇"},
+ {"tipo":"chiusura","dur":3.4}
+]}

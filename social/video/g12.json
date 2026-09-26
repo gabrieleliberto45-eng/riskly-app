@@ -1,0 +1,7 @@
+{"scene":[
+ {"tipo":"hook","dur":3.4,"kicker":"OVERTRADING","testo":["10 operazioni al giorno.","Quanto ti costano","<em>prima di iniziare?</em>"]},
+ {"tipo":"conto","dur":6.4,"titolo":"Esempio: 7 $ di commissione per lotto (apertura + chiusura)","righe":[["Operazioni al giorno","10"],["Lotti per operazione","1"],["Giorni di borsa al mese","20"],["Commissioni al mese","1.400 $","down"]]},
+ {"tipo":"numero","dur":3.8,"kicker":"SU UN CONTO DA 10.000 $","valore":14,"suffisso":"%","rosso":true,"etichetta":"del conto va in commissioni ogni mese. Prima di spread e perdite."},
+ {"tipo":"frase","dur":3.8,"testo":["Meno operazioni,","<em>scelte meglio.</em>"],"nota":"Il broker guadagna comunque. Tu no."},
+ {"tipo":"chiusura","dur":3.4}
+]}
