@@ -1,0 +1,7 @@
+{"subito":true,"loop":true,"scene":[
+ {"tipo":"hook","dur":2.6,"kicker":"LEVA 1:500","testo":["La leva alta","<em>non è il problema.</em>"]},
+ {"tipo":"conto","dur":5.6,"titolo":"1 lotto su EURUSD = 100.000 € di mercato","righe":[["Margine con leva 1:30","3.333 €"],["Margine con leva 1:500","200 €"],["Perdita con stop a 20 pip","circa 200 $ in entrambi i casi","down"]],"nota":"Il margine cambia. Il rischio no."},
+ {"tipo":"frase","dur":3.8,"testo":["La leva decide","quanto <em>puoi</em> aprire.","Il lotto decide quanto <em>rischi.</em>"]},
+ {"tipo":"frase","dur":3.2,"testo":["Il rischio lo controlli tu,","o lo controlla <em>RiskGuard.</em>"],"nota":"Riskly · dal 23 ottobre · riskly.trade/yt"},
+ {"tipo":"frase","dur":1.8,"testo":["Per questo…"]}
+]}

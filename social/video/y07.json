@@ -1,0 +1,6 @@
+{"subito":true,"loop":true,"scene":[
+ {"tipo":"hook","dur":2.6,"kicker":"STOP LOSS MENTALE","testo":["Lo stop mentale","funziona sempre.","<em>Tranne quando serve.</em>"]},
+ {"tipo":"lista","dur":6,"titolo":"Cosa succede davvero:","passo":1.1,"voci":[["Il prezzo tocca il tuo livello","\"aspetto un attimo\""],["Scende ancora","\"ormai torna su\""],["Chiudi al triplo della perdita","o non chiudi affatto"]]},
+ {"tipo":"frase","dur":3.4,"testo":["Uno stop vero","si mette <em>prima</em> di entrare."],"nota":"RiskGuard non ti fa aprire senza · dal 23 ottobre"},
+ {"tipo":"frase","dur":1.8,"testo":["Perché…"]}
+]}

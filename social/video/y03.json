@@ -1,0 +1,7 @@
+{"subito":true,"loop":true,"scene":[
+ {"tipo":"hook","dur":2.6,"kicker":"CONTO DA 100 $","testo":["Con 100 $","<em>non puoi</em> rischiare l'1%."]},
+ {"tipo":"conto","dur":5.8,"titolo":"EURUSD, stop loss a 20 pip","righe":[["Lotto minimo","0,01"],["Valore del pip a 0,01","0,10 $"],["Perdita se tocca lo stop","2 $"],["Sul conto da 100 $","2%","down"]],"nota":"Già il lotto più piccolo rischia il doppio della regola."},
+ {"tipo":"conto","dur":4.4,"titolo":"Con 1.000 $ invece","righe":[["Rischio 1%","10 $"],["Lotto giusto","0,05","up"]]},
+ {"tipo":"frase","dur":3,"testo":["Il lotto si calcola,","<em>non si sceglie.</em>"],"nota":"Calcolatore gratis · riskly.trade/yt"},
+ {"tipo":"frase","dur":1.6,"testo":["Quindi…"]}
+]}

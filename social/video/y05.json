@@ -1,0 +1,6 @@
+{"subito":true,"loop":true,"scene":[
+ {"tipo":"hook","dur":2.4,"kicker":"TRAILING STOP","testo":["Il trailing stop","<em>in 15 secondi.</em>"]},
+ {"tipo":"conto","dur":6,"titolo":"Long su EURUSD, trailing di 20 pip","righe":[["Entrata","1.1000"],["Il prezzo sale fino a","1.1050"],["Lo stop lo segue a","1.1030","up"],["Se torna giù, chiudi a","+30 pip","up"]],"nota":"Lo stop sale con il prezzo. Non scende mai."},
+ {"tipo":"frase","dur":3.6,"testo":["A mano te lo dimentichi.","<em>TradeManager</em> lo sposta da solo."],"nota":"Riskly · dal 23 ottobre · riskly.trade/yt"},
+ {"tipo":"frase","dur":1.8,"testo":["Riguardalo:"]}
+]}

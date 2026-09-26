@@ -1,0 +1,7 @@
+{"subito":true,"loop":true,"scene":[
+ {"tipo":"hook","dur":2.6,"kicker":"EXPERT ADVISOR","testo":["Un EA","che <em>non fa trading.</em>"]},
+ {"tipo":"frase","dur":3.6,"testo":["Un Expert Advisor è un programma","dentro MetaTrader","che esegue <em>regole</em> al posto tuo."]},
+ {"tipo":"frase","dur":3.4,"testo":["Quasi tutti","servono ad <em>aprire</em> operazioni.","Il nostro serve a <em>fermarti.</em>"]},
+ {"tipo":"lista","dur":5.4,"titolo":"RiskGuard, su MT4 e MT5:","passo":1,"voci":[["Stop dopo N perdite di fila",""],["Limite di perdita giornaliero",""],["Stop loss obbligatorio",""]]},
+ {"tipo":"frase","dur":2.2,"testo":["Dal 23 ottobre.","È ancora…"],"nota":"riskly.trade/yt"}
+]}

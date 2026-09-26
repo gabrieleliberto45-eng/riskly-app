@@ -1,0 +1,52 @@
+{
+ "subito": true,
+ "loop": true,
+ "scene": [
+  {
+   "tipo": "numero",
+   "dur": 3.2,
+   "kicker": "ANALISI ESMA · AUTORITÀ UE",
+   "valore": 89,
+   "suffisso": "%",
+   "rosso": true,
+   "etichetta": "Tra il 74% e l'89% dei conti retail su CFD perde soldi."
+  },
+  {
+   "tipo": "lista",
+   "dur": 6.4,
+   "titolo": "Tre errori che trovi in quasi ogni conto bruciato:",
+   "passo": 1.1,
+   "voci": [
+    [
+     "Rischio troppo alto per operazione",
+     "il 5% invece dell'1%"
+    ],
+    [
+     "Nessuno stop loss",
+     "\"lo metto dopo\""
+    ],
+    [
+     "Nessun limite giornaliero",
+     "si continua a perdere per recuperare"
+    ]
+   ]
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.4,
+   "testo": [
+    "RiskGuard li blocca",
+    "<em>tutti e tre.</em>"
+   ],
+   "nota": "Riskly · dal 23 ottobre · riskly.trade/yt"
+  },
+  {
+   "tipo": "frase",
+   "dur": 2.2,
+   "testo": [
+    "Altrimenti",
+    "finisci anche tu nell'…"
+   ]
+  }
+ ]
+}

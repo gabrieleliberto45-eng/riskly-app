@@ -49,7 +49,10 @@ function trovaFfmpeg(){
     /* musica: entra morbida, esce con una dissolvenza di 1,5 s, volume uniformato per i social (−14 LUFS) */
     const ingressoAudio = musica ? ['-i', musica] : ['-f', 'lavfi', '-i', 'anullsrc=r=44100:cl=stereo'];
     const filtroAudio = musica
-      ? ['-af', `afade=t=in:d=0.4,afade=t=out:st=${(durata - 1.5).toFixed(2)}:d=1.5,loudnorm=I=-14:TP=-1.5:LRA=7`]
+      ? ['-af', spec.loop
+          /* video "loop": musica piena fino alla fine, così il riavvio non ha un buco di silenzio */
+          ? `afade=t=out:st=${(durata - 0.25).toFixed(2)}:d=0.25,loudnorm=I=-14:TP=-1.5:LRA=7`
+          : `afade=t=in:d=0.4,afade=t=out:st=${(durata - 1.5).toFixed(2)}:d=1.5,loudnorm=I=-14:TP=-1.5:LRA=7`]
       : [];
     const ff = spawn(ffmpeg, ['-y', '-loglevel', 'error',
       '-f', 'image2pipe', '-framerate', String(FPS), '-c:v', 'mjpeg', '-i', '-',
@@ -68,7 +71,7 @@ function trovaFfmpeg(){
     await fine;
 
     /* copertina: il gancio iniziale già tutto visibile */
-    await page.evaluate(t => window.disegna(t), Math.min(spec.copertina ?? 2.6, durata - .1));
+    await page.evaluate(t => window.disegna(t), Math.min(spec.copertina ?? (spec.subito ? 0.5 : 2.6), durata - .1));
     await page.screenshot({ path: path.join(CARTELLA, id + '-copertina.jpg'), type:'jpeg', quality:90 });
     console.log(`${id}: ${durata.toFixed(1)}s, ${frame} frame, musica ${musica ? path.basename(musica) : 'nessuna'} → ${path.relative(process.cwd(), mp4)}`);
   }

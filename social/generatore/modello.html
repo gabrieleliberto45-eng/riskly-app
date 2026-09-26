@@ -145,6 +145,8 @@ window.prepara = function(spec){
   const box = document.getElementById('scene');
   box.innerHTML = spec.scene.map((s,i) =>
     `<div class="scena ${s.tipo === 'chiusura' ? 'chiusura' : ''}" id="sc${i}">${costruisci(s)}</div>`).join('');
+  /* "subito": la prima scena è già tutta visibile dal primo fotogramma (YouTube Shorts: chi scorre decide in 1-2 s) */
+  if(spec.subito) document.querySelectorAll('#sc0 .el').forEach(el => { el.dataset.d = '-2'; });
   spec.scene.forEach(s => { INIZI.push(TOTALE); TOTALE += s.dur; });
   return TOTALE;
 };
@@ -156,7 +158,8 @@ window.disegna = function(t){
     const lt = t - INIZI[i];
     const dentro = lt >= 0 && lt < s.dur;
     const ultima = i === SPEC.scene.length - 1;
-    const uscita = ultima ? 1 : clamp((s.dur - lt) / .3);
+    /* in un video "loop" l'ultima scena sfuma verso l'inizio, così il riavvio non si nota */
+    const uscita = ultima ? (SPEC.loop ? clamp((s.dur - lt) / .25) : 1) : clamp((s.dur - lt) / .3);
     sc.style.opacity = dentro ? uscita : 0;
     if(!dentro) return;
     sc.querySelectorAll('.el').forEach(el => {

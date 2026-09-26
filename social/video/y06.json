@@ -1,0 +1,7 @@
+{"subito":true,"loop":true,"scene":[
+ {"tipo":"hook","dur":2.6,"kicker":"EURUSD","testo":["Quanto vale","<em>un pip?</em>"]},
+ {"tipo":"barre","dur":5.6,"titolo":"Valore di 1 pip su EURUSD, per lotto","righe":[["1","10 $",100],["0,1","1 $",10],["0,01","0,10 $",1]]},
+ {"tipo":"frase","dur":3.8,"testo":["Stop a 30 pip con 0,5 lotti?","<em>150 $</em> a rischio."],"nota":"Su altri strumenti cambia: controlla sempre sul tuo broker."},
+ {"tipo":"frase","dur":3,"testo":["Il calcolo lo fa","<em>RiskGuard</em>, prima di entrare."],"nota":"Riskly · riskly.trade/yt"},
+ {"tipo":"frase","dur":1.6,"testo":["Allora…"]}
+]}

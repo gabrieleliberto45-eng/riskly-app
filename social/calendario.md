@@ -37,6 +37,23 @@ tipi di trader nei gruppi Telegram, crolli storici, checklist prima del trade, 5
 | Ven 2/10 | 18:00 | g13 | Un bot che non apre mai un'operazione (RiskGuard) |
 | Sab 3/10 | 10:00 | g14 | Weekend: 20 minuti, tre domande |
 
+## YouTube Shorts · contenuti diversi, pensati per YouTube (video y01–y07, ore 16:00)
+
+Su YouTube Shorts conta soprattutto quanto del video viene visto (circa 70%+), quanti scorrono via nei primi 2 secondi
+e le ripetizioni (ogni loop conta come visualizzazione). Quindi: testo già visibile dal primo fotogramma (`"subito": true`),
+15–18 secondi, nessuna scheda finale col logo, ultima frase che si ricollega all'inizio (`"loop": true`), un bot citato in ogni video.
+Picco del pubblico YouTube: 16:00 tutti i giorni.
+
+| Data | Video | Tema | Bot |
+|---|---|---|---|
+| Dom 27/9 | y01 | Tra il 74% e l'89% dei conti retail su CFD perde (analisi ESMA) | RiskGuard |
+| Lun 28/9 | y02 | Leva 1:500: il margine cambia, il rischio no | RiskGuard |
+| Mar 29/9 | y03 | Con 100 $ non puoi rischiare l'1% (lotto minimo) | calcolatore |
+| Mer 30/9 | y04 | Un Expert Advisor che non fa trading | RiskGuard |
+| Gio 1/10 | y05 | Trailing stop in 15 secondi | TradeManager |
+| Ven 2/10 | y06 | Quanto vale un pip su EURUSD | RiskGuard |
+| Sab 3/10 | y07 | Lo stop loss mentale | RiskGuard |
+
 ## Settimana 2 · disciplina e regole (video da generare)
 
 | Data | Tema | Gancio |
