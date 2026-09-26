@@ -87,8 +87,6 @@
 <script>
   const SB_URL = 'https://swlztverwfgdgchgpudt.supabase.co';
   const SB_KEY = 'sb_publishable_j9bujIvCEz6x21yYoCODPw_lIZCJrIR';
-  /* link di invito del gruppo clienti Telegram: incollalo qui */
-  const TG_CLIENTI = 'https://t.me/+yAuV4Et4fe4xODU8';
 
   let sb = null;
   try{ if(window.supabase) sb = window.supabase.createClient(SB_URL, SB_KEY); }
@@ -116,12 +114,25 @@
     document.getElementById('lista').style.display = 'none';
   }
 
-  function sblocca(){
+  /* il link del gruppo arriva dal server, e solo a chi ha un acquisto attivo:
+     nel codice della pagina non c'è, quindi non si trova con "visualizza sorgente" */
+  async function sblocca(){
     document.getElementById('gate').style.display = 'none';
     document.getElementById('lista').style.display = 'block';
-    document.getElementById('tg-box').innerHTML = TG_CLIENTI
-      ? '<a class="btn-link" href="' + TG_CLIENTI + '" target="_blank" rel="noopener">Entra nel gruppo Telegram</a>'
-      : '<div class="sub" style="margin:0;color:var(--text)">Il link del gruppo è in arrivo: ti scriviamo noi all\'email dell\'acquisto.</div>';
+    const box = document.getElementById('tg-box');
+    let link = '';
+    try{
+      const { data, error } = await sb.rpc('link_gruppo_clienti');
+      if(!error && typeof data === 'string' && data.startsWith('https://t.me/')) link = data;
+    }catch(e){}
+    if(link){
+      const a = document.createElement('a');
+      a.className = 'btn-link'; a.href = link; a.target = '_blank'; a.rel = 'noopener';
+      a.textContent = 'Entra nel gruppo Telegram';
+      box.replaceChildren(a);
+    }else{
+      box.innerHTML = '<div class="sub" style="margin:0;color:var(--text)">Il link del gruppo è in arrivo: ti scriviamo noi all\'email dell\'acquisto.</div>';
+    }
   }
 
   async function verifica(){

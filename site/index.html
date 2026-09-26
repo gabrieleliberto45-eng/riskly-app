@@ -961,6 +961,17 @@
     .tabs::-webkit-scrollbar{display:none}
     .tabs button{padding:9px 15px;font-size:.84rem}
     section{padding:64px 0}
+    /* le schede scorrono: la sfumatura a destra fa capire che ce ne sono altre */
+    .tabs{-webkit-mask-image:linear-gradient(to right,#000 82%,transparent);mask-image:linear-gradient(to right,#000 82%,transparent)}
+    .tabs.fine{-webkit-mask-image:none;mask-image:none}
+  }
+
+  @media(max-width:560px){
+    /* logo e pulsanti sulla stessa riga, schede sotto */
+    .brand{font-size:1.08rem;gap:8px}
+    .brand svg{width:28px;height:28px}
+    .nav-azioni{gap:12px}
+    .nav-azioni .btn{padding:9px 15px;font-size:.8rem;box-shadow:none}
   }
 
   :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
@@ -1139,7 +1150,7 @@
 <div class="lancio-bar z">
   <div class="wrap">
     <span><b>IN ARRIVO</b> — bot e journal sono in fase di test finale</span>
-    <span class="rest">Ultimi 10 posti a −50% a vita</span>
+    <span class="rest">Prezzo di lancio bloccato a vita per i primi 10</span>
   </div>
 </div>
 
@@ -1181,7 +1192,7 @@
       <h1>Il mercato non lo controlli.<br><span class="gr">Tutto il resto sì.</span></h1>
       <p class="h-lead">Quanto rischiare, quando fermarti, come gestire una posizione aperta, cosa dicono davvero i tuoi numeri. Il trading si decide qui, non nella previsione del prossimo movimento.</p>
       <div class="h-cta">
-        <button class="btn pri lg" onclick="apriModulo('attesa','tutti i prodotti',0)">Blocca il posto a −50%</button>
+        <button class="btn pri lg" onclick="apriModulo('attesa','tutti i prodotti',0)">Blocca il prezzo di lancio</button>
         <button class="btn lg" onclick="go('app')">Prova il journal</button>
       </div>
       <div class="h-fine">Quattro software per MT4 e MT5 · Calcolatori e journal gratuiti, senza registrazione</div>
@@ -1204,9 +1215,7 @@
           <div class="cd-box"><div class="cd-n">00</div><div class="cd-l">sec</div></div>
         </div>
         <div class="cd-sotto">
-          50% di sconto a vita sui prezzi di lancio.
-          <button class="nav-link" onclick="apriModulo('attesa','tutti i prodotti',0)"
-            style="color:var(--accent);text-decoration:underline;font-size:.86rem">Disponibile dal 23 ottobre · blocca il posto</button>
+          Ai primi 10 iscritti il prezzo di lancio resta bloccato a vita.
           <span style="color:var(--dim2)">·</span>
           <a href="https://t.me/+mlCyBs21_7A3ZDg0" target="_blank" rel="noopener"
             style="color:var(--accent);text-decoration:underline;font-size:.86rem">Canale Telegram</a>
@@ -1512,7 +1521,7 @@
         <div class="top">
           <div>
             <h3>Non sono ancora in vendita</h3>
-            <p>Stiamo completando i test su conto demo. Iscriviti alla lista d'attesa: i primi 10 avranno il 50% di sconto, bloccato per sempre. Nessun pagamento adesso.</p>
+            <p>Stiamo completando i test su conto demo. Iscriviti alla lista d'attesa: i primi 10 avranno il prezzo di lancio, bloccato per sempre. Nessun pagamento adesso.</p>
           </div>
           <div class="contatore">
             <div class="n" id="cnt-posti">10</div>
@@ -1667,8 +1676,8 @@
             <li>Stop loss obbligatorio</li>
             <li>Chiusura automatica al target</li>
           </ul>
-          <div class="price"><s>€198</s>€99</div>
-          <div class="price-off">prezzo pieno dal 23 ottobre · oggi −50% a vita</div>
+          <div class="price">€99</div>
+          <div class="price-off">prezzo di lancio · dal 23 ottobre €198</div>
           <div class="plabel">una tantum · 2 conti · aggiornamenti inclusi</div>
           <button class="btn pri wide" style="margin-top:8px" data-prodotto="RiskGuard" onclick="azioneProdotto('RiskGuard')">Disponibile dal 23 ottobre · blocca il posto</button>
         </div>
@@ -1695,8 +1704,8 @@
             <li>Filtri per simbolo e magic number</li>
             <li>Slippage massimo configurabile</li>
           </ul>
-          <div class="price"><s>€198</s>€99</div>
-          <div class="price-off">prezzo pieno dal 23 ottobre · oggi −50% a vita</div>
+          <div class="price">€99</div>
+          <div class="price-off">prezzo di lancio · dal 23 ottobre €198</div>
           <div class="plabel">una tantum · 2 conti · aggiornamenti inclusi</div>
           <button class="btn pri wide" style="margin-top:8px" data-prodotto="TradeManager" onclick="azioneProdotto('TradeManager')">Disponibile dal 23 ottobre · blocca il posto</button>
         </div>
@@ -1724,8 +1733,8 @@
             <li>Stop loss automatico in pip se manca sull'originale</li>
             <li>Blocco se il rischio totale è eccessivo</li>
           </ul>
-          <div class="price"><s>€258</s>€129</div>
-          <div class="price-off">prezzo pieno dal 23 ottobre · oggi −50% a vita</div>
+          <div class="price">€129</div>
+          <div class="price-off">prezzo di lancio · dal 23 ottobre €258</div>
           <div class="plabel">una tantum · 2 conti · aggiornamenti inclusi</div>
           <button class="btn pri wide" style="margin-top:8px" data-prodotto="ScaleIn" onclick="azioneProdotto('ScaleIn')">Disponibile dal 23 ottobre · blocca il posto</button>
         </div>
@@ -1754,8 +1763,8 @@
             <li>Controllo dei parametri all'avvio</li>
             <li style="color:var(--up)">50% di sconto sul videocorso</li>
           </ul>
-          <div class="price"><s>€498</s>€249</div>
-          <div class="price-off">prezzo pieno dal 23 ottobre · oggi −50% a vita</div>
+          <div class="price">€249</div>
+          <div class="price-off">prezzo di lancio · dal 23 ottobre €498</div>
           <div class="plabel">una tantum · 3 conti · aggiornamenti a vita</div>
           <button class="btn pri wide" style="margin-top:8px" data-prodotto="Riskly Pro" onclick="azioneProdotto('Riskly Pro')">Disponibile dal 23 ottobre · blocca il posto</button>
         </div>
@@ -1790,8 +1799,8 @@
               <tr><td class="lbl">MetaTrader 5</td><td class="c yes">✓</td><td class="c yes">✓</td><td class="c yes">✓</td><td class="c yes">✓</td></tr>
               <tr><td class="lbl">MetaTrader 4</td><td class="c yes">✓</td><td class="c yes">✓</td><td class="c yes">✓</td><td class="c yes">✓</td></tr>
               <tr><td class="lbl">Conti per licenza</td><td class="c">2</td><td class="c">2</td><td class="c">2</td><td class="c yes">3</td></tr>
-              <tr><td class="lbl">Listino</td><td class="c mono" style="color:var(--dim2)"><s>€198</s></td><td class="c mono" style="color:var(--dim2)"><s>€198</s></td><td class="c mono" style="color:var(--dim2)"><s>€258</s></td><td class="c mono" style="color:var(--dim2)"><s>€498</s></td></tr>
-              <tr><td class="lbl">Lancio · ultimi 10</td><td class="c mono yes">€99</td><td class="c mono yes">€99</td><td class="c mono yes">€129</td><td class="c mono yes">€249</td></tr>
+              <tr><td class="lbl">Dopo il lancio</td><td class="c mono" style="color:var(--dim2)">€198</td><td class="c mono" style="color:var(--dim2)">€198</td><td class="c mono" style="color:var(--dim2)">€258</td><td class="c mono" style="color:var(--dim2)">€498</td></tr>
+              <tr><td class="lbl">Lancio · primi 10</td><td class="c mono yes">€99</td><td class="c mono yes">€99</td><td class="c mono yes">€129</td><td class="c mono yes">€249</td></tr>
             </tbody>
           </table>
         </div>
@@ -1948,8 +1957,8 @@
       <div class="lancio-box">
         <div class="top">
           <div>
-            <h3>Prezzo di lancio: −50% a vita</h3>
-            <p>Riservato a chi si iscrive prima del lancio, su tutti i prodotti. Il prezzo resta bloccato anche sugli aggiornamenti futuri.</p>
+            <h3>Prezzo di lancio, bloccato a vita</h3>
+            <p>Riservato ai primi 10 iscritti prima del lancio, su tutti i prodotti. Il prezzo resta bloccato anche sugli aggiornamenti futuri.</p>
           </div>
           <div class="contatore">
             <div class="n" id="cnt-posti2">10</div>
@@ -1973,7 +1982,7 @@
           <div class="cd-box"><div class="cd-n">00</div><div class="cd-l">min</div></div>
           <div class="cd-box"><div class="cd-n">00</div><div class="cd-l">sec</div></div>
         </div>
-        <div class="cd-sotto">Prezzi di lancio: metà del listino, bloccati a vita.</div>
+        <div class="cd-sotto">Prezzi di lancio bloccati a vita per i primi 10 iscritti.</div>
       </div>
 
       <!-- BOT -->
@@ -1983,26 +1992,26 @@
           <div class="tg">CONSIGLIATO PER INIZIARE</div>
           <h4>RiskGuard</h4><div class="pl">PROTEZIONE DEL CONTO</div>
           <p>Limite giornaliero con margine, drawdown massimo, pausa dopo una perdita, stop dopo N perdite di fila.</p>
-          <div class="pr2"><s style="color:var(--dim2)">€198</s> <b style="font-size:1.15rem">€99</b> · 2 conti · una tantum</div>
+          <div class="pr2"><b style="font-size:1.15rem">€99</b> <span style="color:var(--dim2)">(poi €198)</span> · 2 conti · una tantum</div>
           <button class="btn pri wide" data-prodotto="RiskGuard" onclick="azioneProdotto('RiskGuard')">Disponibile dal 23 ottobre · blocca il posto</button>
         </div>
         <div class="pz">
           <h4>TradeManager</h4><div class="pl">GESTIONE POSIZIONI</div>
           <p>Stop loss e take profit automatici se mancano, break-even e trailing stop. Tutto in pip.</p>
-          <div class="pr2"><s style="color:var(--dim2)">€198</s> <b style="font-size:1.15rem">€99</b> · 2 conti · una tantum</div>
+          <div class="pr2"><b style="font-size:1.15rem">€99</b> <span style="color:var(--dim2)">(poi €198)</span> · 2 conti · una tantum</div>
           <button class="btn wide" data-prodotto="TradeManager" onclick="azioneProdotto('TradeManager')">Disponibile dal 23 ottobre · blocca il posto</button>
         </div>
         <div class="pz">
           <h4>ScaleIn</h4><div class="pl">SCAGLIONAMENTO</div>
           <p>Apri una posizione a mano, lui la divide in più uscite in pip, con un limite sul rischio totale.</p>
-          <div class="pr2"><s style="color:var(--dim2)">€258</s> <b style="font-size:1.15rem">€129</b> · 2 conti · una tantum</div>
+          <div class="pr2"><b style="font-size:1.15rem">€129</b> <span style="color:var(--dim2)">(poi €258)</span> · 2 conti · una tantum</div>
           <button class="btn wide" data-prodotto="ScaleIn" onclick="azioneProdotto('ScaleIn')">Disponibile dal 23 ottobre · blocca il posto</button>
         </div>
         <div class="pz">
           <div class="tg">TUTTI E TRE</div>
           <h4>Riskly Pro</h4><div class="pl">I TRE MODULI INSIEME</div>
           <p>Rischio calcolato sull'insieme delle posizioni, non su ognuna da sola. Costa meno dei tre separati.<br><span style="color:var(--up)">Include il 50% di sconto sul videocorso.</span></p>
-          <div class="pr2"><s style="color:var(--dim2)">€498</s> <b style="font-size:1.15rem">€249</b> · 3 conti · una tantum</div>
+          <div class="pr2"><b style="font-size:1.15rem">€249</b> <span style="color:var(--dim2)">(poi €498)</span> · 3 conti · una tantum</div>
           <button class="btn wide" data-prodotto="Riskly Pro" onclick="azioneProdotto('Riskly Pro')">Disponibile dal 23 ottobre · blocca il posto</button>
         </div>
       </div>
@@ -2025,8 +2034,8 @@
       <div class="plans">
         <div class="plan">
           <div class="nm">Base</div>
-          <div class="pr" id="pr-base"><s>58€</s>29€ <small>/anno</small></div>
-          <div class="save" id="sv-base">−50% a vita</div>
+          <div class="pr" id="pr-base">29€ <small>/anno</small></div>
+          <div class="save" id="sv-base">prezzo di lancio · poi 58€</div>
           <div class="ds">Il diario e le metriche essenziali, per iniziare sul serio.</div>
           <ul>
             <li class="inc">Journal, operazioni illimitate</li>
@@ -2041,8 +2050,8 @@
         <div class="plan hi">
           <div class="tagline">Consigliato</div>
           <div class="nm">Pro</div>
-          <div class="pr" id="pr-pro"><s>128€</s>64€ <small>/anno</small></div>
-          <div class="save" id="sv-pro">−50% a vita</div>
+          <div class="pr" id="pr-pro">64€ <small>/anno</small></div>
+          <div class="save" id="sv-pro">prezzo di lancio · poi 128€</div>
           <div class="ds">Analytics complete e tracker prop firm.</div>
           <ul>
             <li class="inc">Tutto del piano Base</li>
@@ -2058,8 +2067,8 @@
 
         <div class="plan">
           <div class="nm">Premium</div>
-          <div class="pr" id="pr-prem"><s>228€</s>114€ <small>/anno</small></div>
-          <div class="save" id="sv-prem">−50% a vita</div>
+          <div class="pr" id="pr-prem">114€ <small>/anno</small></div>
+          <div class="save" id="sv-prem">prezzo di lancio · poi 228€</div>
           <div class="ds">Tutto, senza limiti, con priorità sul supporto.</div>
           <ul>
             <li class="inc">Tutto del piano Pro</li>
@@ -2076,7 +2085,7 @@
         <a onclick="go('app')" style="color:var(--accent);cursor:pointer;text-decoration:underline">Prova la demo</a>.</p>
 
       <!-- CORSO -->
-      <div class="pz-sez"><h3>Videocorso</h3><span>30 LEZIONI · 8 MODULI · <s style="opacity:.6">€398</s> €199</span></div>
+      <div class="pz-sez"><h3>Videocorso</h3><span>30 LEZIONI · 8 MODULI · €199 AL LANCIO · POI €398</span></div>
       <div class="pz-corso">
         <div>
           <h4 style="font-size:1.08rem;font-weight:600;margin-bottom:6px">Gestione del rischio, dalla teoria alla regola</h4>
@@ -2160,7 +2169,7 @@
           <p style="color:var(--dim2);font-size:.82rem">Dati raccolti dai regolamenti pubblici a settembre 2026. I regolamenti cambiano spesso: <b>controlla sempre le condizioni aggiornate della tua prop prima di acquistare</b>, e in caso di dubbio scrivi al loro supporto chiedendo se sono ammessi gli EA di sola gestione del rischio. Se la risposta è no e hai già comprato, ti rimborsiamo.</p></details>
 
         <details><summary>Quanto costeranno?</summary>
-          <p>I software si pagano <b>una volta sola</b>, non sono un abbonamento: la licenza resta tua, aggiornamenti inclusi. Prezzi di lancio: RiskGuard e TradeManager <b>99 €</b>, ScaleIn <b>129 €</b>, Riskly Pro <b>249 €</b>, videocorso <b>199 €</b>. Sono la metà del listino, e restano bloccati a vita per chi si iscrive prima del lancio, aggiornamenti inclusi. Il journal è a parte, da 29 € l'anno, con 7 giorni di prova gratuita. Chi acquista un software ha il 50% di sconto sul videocorso.</p></details>
+          <p>I software si pagano <b>una volta sola</b>, non sono un abbonamento: la licenza resta tua, aggiornamenti inclusi. Prezzi di lancio: RiskGuard e TradeManager <b>99 €</b>, ScaleIn <b>129 €</b>, Riskly Pro <b>249 €</b>, videocorso <b>199 €</b>. Dopo il lancio i prezzi saranno 198 €, 198 €, 258 € e 498 €: per i primi 10 iscritti quelli di lancio restano bloccati a vita, aggiornamenti inclusi. Il journal è a parte, da 29 € l'anno, con 7 giorni di prova gratuita. Chi acquista un software ha il 50% di sconto sul videocorso.</p></details>
 
         <details><summary>Se non funziona sul mio conto, mi rimborsate?</summary>
           <p>Sì. Se il software non parte o non funziona sul tuo broker e non riusciamo a risolvere, ti rimborsiamo. Non rimborsiamo invece i risultati di mercato: nessun software può garantirli, e chi lo promette ti sta mentendo. Per il journal ci sono 7 giorni di prova gratuita senza carta di credito, così provi prima di pagare.</p></details>
@@ -2391,8 +2400,8 @@
       <div class="plans" style="margin-top:8px">
         <div class="plan">
           <div class="nm">Base</div>
-          <div class="pr"><s>58€</s>29€ <small>/anno</small></div>
-          <div class="save">−50% a vita</div>
+          <div class="pr">29€ <small>/anno</small></div>
+          <div class="save">prezzo di lancio · poi 58€</div>
           <div class="ds">Il diario e le metriche essenziali, per iniziare sul serio.</div>
           <ul>
             <li class="inc">Journal, operazioni illimitate</li>
@@ -2407,8 +2416,8 @@
         <div class="plan hi">
           <div class="tagline">Consigliato</div>
           <div class="nm">Pro</div>
-          <div class="pr"><s>128€</s>64€ <small>/anno</small></div>
-          <div class="save">−50% a vita</div>
+          <div class="pr">64€ <small>/anno</small></div>
+          <div class="save">prezzo di lancio · poi 128€</div>
           <div class="ds">Analytics complete e tracker prop firm.</div>
           <ul>
             <li class="inc">Tutto del piano Base</li>
@@ -2424,8 +2433,8 @@
 
         <div class="plan">
           <div class="nm">Premium</div>
-          <div class="pr"><s>228€</s>114€ <small>/anno</small></div>
-          <div class="save">−50% a vita</div>
+          <div class="pr">114€ <small>/anno</small></div>
+          <div class="save">prezzo di lancio · poi 228€</div>
           <div class="ds">Tutto, senza limiti, con priorità sul supporto.</div>
           <ul>
             <li class="inc">Tutto del piano Pro</li>
@@ -2797,6 +2806,11 @@
 </div>
 
 <script>
+/* testo sicuro da inserire nell'HTML: i dati degli utenti non diventano mai codice */
+function esc(v){
+  return String(v ?? '').replace(/[&<>"'`]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;','`':'&#96;'}[c]));
+}
+
 /* ═══ SIMULAZIONI BOT ═══ */
 /* ═══════════ GENERAZIONE PREZZI ═══════════ */
 function candele(seed, n, base, vol, drift){
@@ -3399,7 +3413,7 @@ function j_renderSym(){
   let o='';
   top.forEach(([s,v],i)=>{
     const y=i*rowH+10, w=Math.abs(v)/mA*(W-lblW-46);
-    o+=`<text x="0" y="${y+11}" class="axis-lbl" fill="#7C879E">${s}</text>`;
+    o+=`<text x="0" y="${y+11}" class="axis-lbl" fill="#7C879E">${esc(s)}</text>`;
     o+=`<rect x="${lblW}" y="${y+1}" width="${Math.max(w,2)}" height="13" rx="3.5" fill="${v>=0?'#22C55E':'#EF4444'}" opacity=".8"/>`;
     o+=`<text x="${lblW+Math.max(w,2)+6}" y="${y+11.5}" class="axis-lbl" fill="${v>=0?'#22C55E':'#EF4444'}">${v>=0?'+':'−'}${Math.abs(v).toFixed(0)}</text>`;
   });
@@ -3415,14 +3429,14 @@ function j_renderTable(){
     const r=t.risk>0?(t.pnl/t.risk>=0?'+':'')+(t.pnl/t.risk).toFixed(2)+'R':'—';
     const w=Math.abs(t.pnl)/mx*100;
     return `<tr>
-      <td style="color:var(--dim)">${t.date.slice(5)}${t.ora?' <span style="color:var(--dim2);font-size:.9em">'+t.ora+'</span>':''}</td>
-      <td>${t.symbol}</td>
-      <td><span class="pill ${t.dir}">${t.dir==='long'?'Long':'Short'}</span></td>
+      <td style="color:var(--dim)">${esc(String(t.date).slice(5))}${t.ora?' <span style="color:var(--dim2);font-size:.9em">'+esc(t.ora)+'</span>':''}</td>
+      <td>${esc(t.symbol)}</td>
+      <td><span class="pill ${t.dir==='long'?'long':'short'}">${t.dir==='long'?'Long':'Short'}</span></td>
       <td class="bar-cell ${j_cl(t.pnl)}"><span class="bar-fill" style="width:${w}%;background:${t.pnl>=0?'#22C55E':'#EF4444'}"></span><span style="position:relative">${j_fmt(t.pnl)}</span></td>
       <td class="${t.risk>0?j_cl(t.pnl):''}" style="${t.risk>0?'':'color:var(--dim-2)'}">${r}</td>
       <td><span class="pill emo" style="color:${j_emoInfo(t.emo||'lucido').col}">${j_emoInfo(t.emo||'lucido').nome}</span></td>
-      <td class="strat" title="${(t.nota||'').replace(/"/g,'&quot;')}">${t.strategy||'—'}${t.nota?' <span style="color:var(--dim2)">·</span>':''}</td>
-      <td style="text-align:right"><button class="del" onclick="j_removeTrade('${t.id}')" title="Elimina">✕</button></td>
+      <td class="strat" title="${esc(t.nota)}">${esc(t.strategy||'—')}${t.nota?' <span style="color:var(--dim2)">·</span>':''}</td>
+      <td style="text-align:right"><button class="del" onclick="j_removeTrade('${esc(t.id)}')" title="Elimina">✕</button></td>
     </tr>`;
   }).join('');
 }
@@ -3435,7 +3449,7 @@ function j_renderStrat(){
   tb.innerHTML=keys.map(k=>{
     const m=j_metrics(g[k]), pf=m.pf===Infinity?'∞':m.pf.toFixed(2);
     return `<tr>
-      <td class="strat" style="color:var(--text)">${k}</td>
+      <td class="strat" style="color:var(--text)">${esc(k)}</td>
       <td style="color:var(--dim)">${m.n}</td>
       <td class="${m.winrate>=50?'up':'down'}">${m.winrate.toFixed(0)}%</td>
       <td class="${j_cl(m.net)}">${j_fmt(m.net)}</td>
@@ -3736,7 +3750,11 @@ function j_importData(ev){
   r.onload=()=>{ try{
       const d=JSON.parse(r.result);
       if(!Array.isArray(d)) throw 0;
-      j_trades=d.map(t=>({...t,id:t.id||Math.random().toString(36).slice(2,10)}));
+      /* i numeri tornano numeri e i testi restano testi, anche se il file è stato modificato a mano */
+      j_trades=d.filter(t=>t&&typeof t==='object').map(t=>({...t,
+        id:String(t.id||Math.random().toString(36).slice(2,10)),
+        date:String(t.date||''), pnl:+t.pnl||0, risk:+t.risk||0,
+        dir:t.dir==='short'?'short':'long'}));
       j_renderAll(); j_flash(`${j_trades.length} operazioni importate.`);
     }catch{ j_flash('File non valido: serve un JSON con una lista di operazioni.'); } };
   r.readAsText(f); ev.target.value='';
@@ -3920,7 +3938,7 @@ function apriModulo(tipo, prodotto, prezzo){
     : prodotto + ' — 7 giorni';
 
   document.getElementById('mod-sotto').textContent =
-    (attesa && prezzo === 0) ? 'Bot e journal sono in fase di test finale. Lasciaci il contatto: sarai tra i primi a saperlo e bloccherai il 50% di sconto a vita.'
+    (attesa && prezzo === 0) ? 'Bot e journal sono in fase di test finale. Lasciaci il contatto: sarai tra i primi a saperlo e, se sei tra i primi 10, bloccherai il prezzo di lancio a vita.'
     : attesa ? 'Non è ancora in vendita: stiamo completando i test. Lasciaci il contatto e sarai tra i primi ad averlo, al prezzo di lancio.'
     : acquisto ? 'Ti mandiamo le istruzioni di pagamento. A conferma ricevuta entri nel gruppo Telegram dei clienti e ricevi i file.'
     : 'Sette giorni su conto demo, senza carta di credito. Ti mandiamo file, licenza e guida.';
@@ -3939,7 +3957,7 @@ function apriModulo(tipo, prodotto, prezzo){
   if(acquisto){
     nota.style.display = 'block';
     nota.innerHTML = utente
-      ? `Ordine collegato al tuo account <b>${utente.email}</b>. Lo ritrovi in "Il mio account".`
+      ? `Ordine collegato al tuo account <b>${esc(utente.email)}</b>. Lo ritrovi in "Il mio account".`
       : `Per acquistare serve un account Riskly.
          <button type="button" onclick="chiudiModulo(); apriAccesso('registrati')"
            style="background:none;border:none;color:var(--accent);font-weight:600;font-family:inherit;font-size:.82rem;cursor:pointer;text-decoration:underline;padding:0">Registrati o accedi</button>,
@@ -3980,24 +3998,22 @@ function apriModulo(tipo, prodotto, prezzo){
 
   // riepilogo
   const rg = document.getElementById('mod-riepilogo');
+  const dopoLancio = PREZZO_DOPO_LANCIO[prodotto];
   if(attesa && prezzo > 0){
-    const listino = {89:199, 64:149, 99:229, 199:449, 29:69, 114:249, 49:99}[prezzo] || prezzo*2;
     rg.innerHTML = `
-      <div class="rg-riga"><span>${prodotto}</span><b>in arrivo</b></div>
-      <div class="rg-riga"><span>Prezzo di listino</span><b style="text-decoration:line-through;color:var(--dim2)">€${listino}</b></div>
-      <div class="rg-riga rg-tot"><span>Prezzo riservato · ultimi 10</span><b>€${prezzo}</b></div>`;
+      <div class="rg-riga"><span>${esc(prodotto)}</span><b>in arrivo</b></div>
+      ${dopoLancio ? `<div class="rg-riga"><span>Prezzo dopo il lancio</span><b style="color:var(--dim2)">€${dopoLancio}</b></div>` : ''}
+      <div class="rg-riga rg-tot"><span>Prezzo di lancio · primi 10</span><b>€${prezzo}</b></div>`;
     rg.style.display = 'block';
   } else if(attesa){
     rg.innerHTML = `
       <div class="rg-riga"><span>Bot per MT4 e MT5</span><b>in arrivo</b></div>
       <div class="rg-riga"><span>Journal con account</span><b>in arrivo</b></div>
-      <div class="rg-riga rg-tot"><span>Sconto riservato · ultimi 10</span><b>−50% a vita</b></div>`;
+      <div class="rg-riga rg-tot"><span>Primi 10 iscritti</span><b>prezzo di lancio a vita</b></div>`;
     rg.style.display = 'block';
   } else if(acquisto){
-    const listino = {89:199, 64:149, 99:229, 199:449, 29:69, 114:249, 49:99}[prezzo] || prezzo*2;
     rg.innerHTML = `
-      <div class="rg-riga"><span>${prodotto}</span><b style="text-decoration:line-through;color:var(--dim2)">€${listino}</b></div>
-      <div class="rg-riga"><span>Sconto lancio −50%</span><b class="up">−€${listino - prezzo}</b></div>
+      <div class="rg-riga"><span>${esc(prodotto)}</span><b>prezzo di lancio</b></div>
       <div class="rg-riga rg-tot"><span>${journal ? 'Primo anno' : 'Totale'}</span><b>€${prezzo}</b></div>`;
     rg.style.display = 'block';
   } else {
@@ -4028,6 +4044,9 @@ document.addEventListener('keydown', e=>{
    ACCOUNT CLIENTE
    ═══════════════════════════════════════ */
 
+/* prezzi dopo il lancio, mostrati accanto a quelli di lancio (tienili allineati alle schede) */
+const PREZZO_DOPO_LANCIO = { 'RiskGuard':198, 'TradeManager':198, 'ScaleIn':258, 'Riskly Pro':498, 'Videocorso':398 };
+
 /* ═══ CONFIGURAZIONE VENDITA ═══
    Quando hai Partita IVA e i link Stripe pronti:
    1. incolla i link qui sotto  2. metti VENDITA_ATTIVA = true  3. ricarica il sito su Netlify */
@@ -4041,8 +4060,8 @@ const STRIPE = {
   'Videocorso':   ''
 };
 
-/* link di invito del gruppo Telegram riservato ai clienti */
-const TG_CLIENTI = 'https://t.me/+yAuV4Et4fe4xODU8';
+/* il link del gruppo Telegram dei clienti non sta più qui: lo consegna Supabase
+   solo a chi ha un acquisto attivo, nella pagina download.html (vedi supabase/sicurezza.sql nel repository) */
 
 /* tempo di consegna dichiarato al cliente */
 const CONSEGNA = 'entro 24 ore lavorative';
@@ -4288,14 +4307,12 @@ function disegnaAccount(){
       const data = a.creato ? new Date(a.creato).toLocaleDateString('it-IT') : '';
       return `<div class="acq">
           <div>
-            <div class="acq-nome">${a.prodotto}</div>
-            <div class="acq-meta">${data}${a.prezzo ? ' · €' + a.prezzo : ''}</div>
+            <div class="acq-nome">${esc(a.prodotto)}</div>
+            <div class="acq-meta">${data}${a.prezzo ? ' · €' + esc(a.prezzo) : ''}</div>
           </div>
           <div style="display:flex;align-items:center;gap:11px">
-            <span class="acq-stato ${attivo?'attivo':'attesa'}">${NOMI_STATO[a.stato] || a.stato}</span>
-            ${attivo ? (TG_CLIENTI
-                 ? `<a class="btn pri" href="${TG_CLIENTI}" target="_blank" rel="noopener">Gruppo clienti</a>`
-                 : `<a class="btn pri" href="download.html">Area clienti</a>`) : ''}
+            <span class="acq-stato ${attivo?'attivo':'attesa'}">${NOMI_STATO[a.stato] || esc(a.stato)}</span>
+            ${attivo ? `<a class="btn pri" href="download.html">Area clienti</a>` : ''}
           </div>
         </div>`;
     }).join('');
@@ -4563,12 +4580,12 @@ function gsDisegnaOrdini(){
     const att = o.stato === 'attivo';
     return `<div class="gs-riga">
       <div style="flex:1;min-width:180px">
-        <div class="m">${o.prodotto}${o.prezzo ? ' · €'+o.prezzo : ''}</div>
-        <div class="d">${gsData(o.creato)}${o.conto ? ' · conto '+o.conto : ''}</div>
+        <div class="m">${esc(o.prodotto)}${o.prezzo ? ' · €'+esc(o.prezzo) : ''}</div>
+        <div class="d">${gsData(o.creato)}${o.conto ? ' · conto '+esc(o.conto) : ''}</div>
       </div>
       <div style="display:flex;align-items:center;gap:10px">
         <span class="acq-stato ${att?'attivo':'attesa'}">${att?'attivo':'da confermare'}</span>
-        <button class="btn ${att?'':'pri'}" onclick="gsStato('${o.id}','${att?'in_attesa':'attivo'}')">${att?'Annulla':'Conferma'}</button>
+        <button class="btn ${att?'':'pri'}" onclick="gsStato('${esc(o.id)}','${att?'in_attesa':'attivo'}')">${att?'Annulla':'Conferma'}</button>
       </div>
     </div>`;
   }).join('');
@@ -4586,10 +4603,10 @@ function gsDisegnaAttesa(){
   if(!gsAttesa.length){ box.innerHTML = '<div class="gs-vuoto">Ancora nessuna iscrizione.</div>'; return; }
   box.innerHTML = gsAttesa.map(v => `<div class="gs-riga">
       <div style="flex:1;min-width:180px">
-        <div class="m">${v.email}</div>
-        <div class="d">${gsData(v.creato)}${v.nome ? ' · '+v.nome : ''}${v.prodotto ? ' · '+v.prodotto : ''}</div>
+        <div class="m">${esc(v.email)}</div>
+        <div class="d">${gsData(v.creato)}${v.nome ? ' · '+esc(v.nome) : ''}${v.prodotto ? ' · '+esc(v.prodotto) : ''}</div>
       </div>
-      <a class="btn" href="mailto:${v.email}">Scrivi</a>
+      <a class="btn" href="mailto:${esc(v.email)}">Scrivi</a>
     </div>`).join('');
 }
 
@@ -4635,7 +4652,7 @@ function gsDisegnaVisite(){
   const ordinate = Object.entries(conteggio).sort((a,b) => b[1]-a[1]);
   const box = document.getElementById('gs-fonti');
   box.innerHTML = ordinate.length
-    ? ordinate.map(([f,n]) => `<div class="gs-fonte"><span>${f}</span><b>${n}</b></div>`).join('')
+    ? ordinate.map(([f,n]) => `<div class="gs-fonte"><span>${esc(f)}</span><b>${n}</b></div>`).join('')
     : '<div class="gs-vuoto">Ancora nessuna visita registrata.</div>';
 }
 
@@ -4646,11 +4663,11 @@ function gsDisegnaUtenti(){
   if(!gsUtenti.length){ box.innerHTML = '<div class="gs-vuoto">Nessun account.</div>'; return; }
   box.innerHTML = gsUtenti.map(u => `<div class="gs-riga">
       <div style="flex:1;min-width:180px">
-        <div class="m">${u.nome || 'Senza nome'}</div>
+        <div class="m">${esc(u.nome || 'Senza nome')}</div>
         <div class="d">${u.scadenza ? 'scadenza ' + new Date(u.scadenza).toLocaleDateString('it-IT') : ''}</div>
       </div>
       <div style="display:flex;gap:6px;flex-wrap:wrap">
-        ${GS_PIANI.map(p => `<button class="btn ${u.piano===p?'pri':''}" onclick="gsPiano('${u.id}','${p}')">${p}</button>`).join('')}
+        ${GS_PIANI.map(p => `<button class="btn ${u.piano===p?'pri':''}" onclick="gsPiano('${esc(u.id)}','${p}')">${p}</button>`).join('')}
       </div>
     </div>`).join('');
 }
@@ -4840,6 +4857,16 @@ function aggiornaLancio(){
 const SCHEDA = {home:0, bot:1, calc:2, app:3, corso:4, journal:5, metodo:6, faq:7,
                 privacy:-1, termini:-1, account:-1, gestione:-1};
 
+/* toglie la sfumatura delle schede quando sei arrivato in fondo */
+(function(){
+  const riga = document.querySelector('.tabs');
+  if(!riga) return;
+  const aggiorna = () => riga.classList.toggle('fine', riga.scrollLeft + riga.clientWidth >= riga.scrollWidth - 4);
+  riga.addEventListener('scroll', aggiorna, { passive:true });
+  window.addEventListener('resize', aggiorna);
+  aggiorna();
+})();
+
 function go(id, btn, idx){
   if(id === 'gestione' && !isAdmin()) id = 'home';
   const pagine = document.querySelectorAll('.page');
@@ -4861,7 +4888,13 @@ function go(id, btn, idx){
           : (SCHEDA[id] !== undefined ? SCHEDA[id] : 0);
   if(i >= 0){                       // le pagine legali non hanno scheda
     const target = btn || tabs[i];
-    if(target) target.classList.add('on');
+    if(target){
+      target.classList.add('on');
+      /* su mobile porta in vista la scheda attiva */
+      const riga = target.parentElement;
+      if(riga && riga.scrollWidth > riga.clientWidth)
+        riga.scrollTo({ left: target.offsetLeft - riga.clientWidth/2 + target.offsetWidth/2, behavior:'smooth' });
+    }
   }
   window.scrollTo({top:0,behavior:'smooth'});
   if(id === 'bot' && typeof avviaSimulazioni === 'function') avviaSimulazioni();
@@ -4871,12 +4904,12 @@ function go(id, btn, idx){
 
 /* ---------- Prezzi journal ---------- */
 const PREZZI = {
-  m: {base:'<s>5,98€</s>2,99€ <small>/mese</small>', pro:'<s>12,98€</s>6,49€ <small>/mese</small>', prem:'<s>22,98€</s>11,49€ <small>/mese</small>',
-      sv:['−50% a vita','−50% a vita','−50% a vita']},
-  a: {base:'<s>58€</s>29€ <small>/anno</small>',     pro:'<s>128€</s>64€ <small>/anno</small>',      prem:'<s>228€</s>114€ <small>/anno</small>',
-      sv:['−50% a vita','−50% a vita','−50% a vita']},
-  l: {base:'<s>178€</s>89€ <small>una tantum</small>', pro:'<s>348€</s>174€ <small>una tantum</small>', prem:'<s>548€</s>274€ <small>una tantum</small>',
-      sv:['nessun rinnovo','nessun rinnovo','nessun rinnovo']}
+  m: {base:'2,99€ <small>/mese</small>', pro:'6,49€ <small>/mese</small>', prem:'11,49€ <small>/mese</small>',
+      sv:['prezzo di lancio · poi 5,98€','prezzo di lancio · poi 12,98€','prezzo di lancio · poi 22,98€']},
+  a: {base:'29€ <small>/anno</small>',     pro:'64€ <small>/anno</small>',      prem:'114€ <small>/anno</small>',
+      sv:['prezzo di lancio · poi 58€','prezzo di lancio · poi 128€','prezzo di lancio · poi 228€']},
+  l: {base:'89€ <small>una tantum</small>', pro:'174€ <small>una tantum</small>', prem:'274€ <small>una tantum</small>',
+      sv:['nessun rinnovo · poi 178€','nessun rinnovo · poi 348€','nessun rinnovo · poi 548€']}
 };
 
 function setCiclo(c){
