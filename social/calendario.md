@@ -1,7 +1,10 @@
 # Calendario social Riskly · 27 settembre → 23 ottobre (lancio)
 
 Un video verticale al giorno, lo stesso su **TikTok**, **Instagram Reels** e **YouTube Shorts**.
-Orario consigliato: **18:30** (fino a quando le statistiche non suggeriscono di meglio).
+Orari (dati Metricool sul pubblico TikTok in Italia): **18:00 dal lunedì al venerdì, 10:00 sabato e domenica**.
+Si aggiornano ogni settimana in base ai risultati dei video già pubblicati.
+
+Stato: TikTok collegato a Metricool (@riskly63), settimana 1 programmata. Instagram e YouTube da collegare in Metricool.
 
 Regole per tutti i contenuti:
 - niente segnali, niente setup, niente promesse di guadagno;
