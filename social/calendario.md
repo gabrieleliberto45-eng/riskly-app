@@ -9,7 +9,7 @@ Stato: TikTok collegato a Metricool (@riskly63), settimana 1 programmata. Instag
 Regole per tutti i contenuti:
 - niente segnali, niente setup, niente promesse di guadagno;
 - ogni didascalia chiude con: *Contenuto educativo, non è consulenza finanziaria.*;
-- i video sono muti: su TikTok e Instagram aggiungi un audio di tendenza a volume basso quando pubblichi dall'app (con la pubblicazione automatica restano muti).
+- i video hanno una base lo-fi originale (social/generatore/musica.py): niente diritti di terzi, quindi va bene anche per un account di brand;
 
 Hashtag base (Instagram e TikTok, massimo 5): `#trading #gestionedelrischio #forex #tradingitalia #propfirm`
 Su YouTube Shorts: `#shorts #trading #gestionedelrischio`
