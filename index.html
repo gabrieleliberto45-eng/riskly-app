@@ -1064,6 +1064,50 @@ body{padding-top:0}
   .jsett span{display:none}
   .jfiltri select{flex:1 1 40%}
 }
+
+/* ── BOT: stato dal telefono e collegamento ── */
+.jbot{margin-bottom:16px}
+.jbot-griglia{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.jbot-card{background:rgba(0,0,0,.22);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.jbot-card.ok{border-color:rgba(34,197,94,.35)}
+.jbot-card.pausa{border-color:rgba(245,158,11,.5)}
+.jbot-card.bloccato{border-color:rgba(239,68,68,.6);background:rgba(239,68,68,.07)}
+.jbot-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px 8px;margin-bottom:10px}
+.jbot-nome{font-weight:600;font-size:.95rem}
+.jbot-nome small{color:var(--dim2);font-weight:400;font-size:.75rem;margin-left:6px}
+.jbot-stato{font-size:.68rem;padding:3px 9px;border-radius:20px;
+  font-family:'JetBrains Mono','SF Mono',Menlo,monospace}
+.jbot-stato.ok{background:rgba(34,197,94,.13);color:var(--up)}
+.jbot-stato.pausa{background:rgba(245,158,11,.14);color:var(--gold)}
+.jbot-stato.bloccato{background:rgba(239,68,68,.16);color:var(--down)}
+.jbot-stato.offline{background:rgba(255,255,255,.06);color:var(--dim)}
+.jbot-riga{display:flex;justify-content:space-between;gap:10px;font-size:.82rem;padding:3px 0;color:var(--dim)}
+.jbot-riga b{color:var(--text);font-weight:400;font-family:'JetBrains Mono','SF Mono',Menlo,monospace;text-align:right}
+.jbot-barra{height:5px;background:rgba(255,255,255,.08);border-radius:99px;overflow:hidden;margin:2px 0 8px}
+.jbot-barra i{display:block;height:100%;border-radius:99px}
+.jbot-motivo{font-size:.8rem;color:var(--down);margin-top:8px}
+.jbot-news{font-size:.78rem;color:var(--gold);margin-top:6px}
+.jbot-agg{font-size:.68rem;color:var(--dim2);margin-top:10px;font-family:'JetBrains Mono','SF Mono',Menlo,monospace}
+.pill.bot{background:rgba(59,130,246,.14);color:#7FB0FF;margin-left:6px;font-size:.6rem;padding:2px 7px}
+.mod-box.largo{max-width:560px}
+.jchiave{display:flex;gap:8px}
+.jchiave input{font-family:'JetBrains Mono','SF Mono',Menlo,monospace;font-size:.76rem;min-width:0}
+.jchiave .btn{flex-shrink:0}
+@media(max-width:520px){
+  .jchiave{flex-wrap:wrap}
+  .jchiave input{flex:1 1 100%}
+  .jchiave .btn{flex:1}
+}
+.jspunta{display:flex;gap:10px;align-items:flex-start;font-size:.85rem;color:var(--dim);margin:10px 0;cursor:pointer}
+.jspunta input{width:17px;height:17px;min-width:17px;padding:0;margin:2px 0 0;accent-color:var(--accent);flex:0 0 17px}
+.jspunta b{color:var(--text);font-weight:500}
+.jbot-passi{font-size:.82rem;color:var(--dim);line-height:1.65;padding-left:18px;margin:6px 0 18px}
+.jbot-passi code{font-family:'JetBrains Mono','SF Mono',Menlo,monospace;font-size:.74rem;
+  background:rgba(255,255,255,.06);padding:1px 5px;border-radius:5px;word-break:break-all}
+.jbot-sez{font-size:.72rem;color:var(--accent);font-family:'JetBrains Mono','SF Mono',Menlo,monospace;
+  letter-spacing:.06em;margin:22px 0 10px}
+.jbot-avviso{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);border-radius:12px;
+  padding:12px 14px;font-size:.82rem;color:var(--dim);margin-bottom:14px}
 </style>
 </head>
 <body>
@@ -1113,6 +1157,12 @@ body{padding-top:0}
         <button class="btn pri" type="button">Vedi i piani</button>
       </div>
 
+      <!-- stato dei bot di MetaTrader: si aggiorna da solo, anche dal telefono -->
+      <div class="jcard jbot" id="jbot" hidden>
+        <div class="jcard-head"><h3>I tuoi bot</h3><span class="jmeta" id="jbotAgg"></span></div>
+        <div class="jbot-griglia" id="jbotGriglia"></div>
+      </div>
+
       <div class="jtoolbar">
         <div>
           <h2 style="font-size:1.7rem">Il tuo diario</h2>
@@ -1120,6 +1170,7 @@ body{padding-top:0}
         </div>
         <div class="jactions">
           <button class="btn" id="btnDemo" onclick="j_anteprima()">Guarda un esempio</button>
+          <button class="btn" onclick="b_apri()">Bot</button>
           <button class="btn" onclick="j_exportData()">Esporta</button>
           <button class="btn" onclick="j_exportCSV()">CSV</button>
           <button class="btn" onclick="document.getElementById('imp').click()">Importa</button>
@@ -1283,6 +1334,65 @@ body{padding-top:0}
 <div class="jlightbox" id="jlightbox" onclick="j_chiudiShot()">
   <button class="jlb-x" onclick="j_chiudiShot()" aria-label="Chiudi">✕</button>
   <img id="jlbImg" alt="Screenshot dell'operazione">
+</div>
+
+<!-- ═══════════ BOT ═══════════ -->
+<div class="modale" id="modBot" onclick="if(event.target===this) b_chiudi()">
+  <div class="mod-box largo">
+    <button class="mod-x" onclick="b_chiudi()" aria-label="Chiudi">✕</button>
+
+    <div class="mod-head">
+      <div class="mod-kicker">BOT DI METATRADER</div>
+      <h3>Collega i tuoi bot</h3>
+      <p>RisklyPro e RiskGuard scrivono qui le operazioni chiuse e ti mostrano il loro stato, anche dal telefono.</p>
+    </div>
+
+    <div class="jbot-avviso" id="bSql" hidden>
+      Il collegamento dei bot non è ancora attivo sul server: va eseguito una volta il file
+      <code>supabase/bot.sql</code> nel SQL Editor di Supabase.
+    </div>
+
+    <div class="jbot-sez">1 · LA TUA CHIAVE</div>
+    <div class="mod-campo">
+      <div class="jchiave">
+        <input type="password" id="bChiave" readonly placeholder="Nessuna chiave: generala" aria-label="Chiave bot">
+        <button type="button" class="btn" id="bMostra" onclick="b_mostra()">Mostra</button>
+        <button type="button" class="btn" onclick="b_copia()">Copia</button>
+      </div>
+      <div class="mod-aiuto">È come una password: non condividerla. Se la rigeneri, quella vecchia smette di funzionare.</div>
+      <div style="margin-top:10px"><button type="button" class="btn" id="bGenera" onclick="b_generaChiave()">Genera la chiave</button></div>
+    </div>
+
+    <div class="jbot-sez">2 · NEL BOT</div>
+    <ol class="jbot-passi">
+      <li>In MetaTrader: <b>Strumenti → Opzioni → Consulenti Esperti</b>, spunta <b>Consenti WebRequest</b> e aggiungi <code>https://swlztverwfgdgchgpudt.supabase.co</code></li>
+      <li>Metti il bot sul grafico e incolla la chiave nel parametro <code>InpChiaveJournal</code></li>
+      <li>Nel pannello del bot compare <b>Journal collegato</b>: da quel momento le operazioni chiuse arrivano qui da sole</li>
+    </ol>
+
+    <div class="jbot-sez">3 · COSA ARRIVA NEL JOURNAL</div>
+    <form id="bImp" onsubmit="b_salvaImp(event)">
+      <label class="jspunta"><input type="checkbox" id="bImporta"> <span><b>Importa le operazioni</b><br>Se lo togli, il bot continua a proteggerti ma non scrive più qui.</span></label>
+      <label class="jspunta"><input type="checkbox" id="bUniti"> <span><b>Scaglioni come un'operazione sola</b><br>La posizione aperta a mano e i suoi scaglioni diventano una riga, con il risultato complessivo.</span></label>
+      <label class="jspunta"><input type="checkbox" id="bNota"> <span><b>Nota automatica</b><br>Lotti, pip e orari di apertura e chiusura scritti nella nota.</span></label>
+
+      <div class="mod-campo" style="margin-top:16px">
+        <label for="bStrategia">Strategia da assegnare</label>
+        <input type="text" id="bStrategia" maxlength="60" placeholder="vuota = la scegli tu dopo">
+      </div>
+      <div class="mod-campo">
+        <label for="bEmozione">Stato d'animo da assegnare</label>
+        <select id="bEmozione"></select>
+      </div>
+      <div class="mod-campo">
+        <label for="bSimboli">Solo questi simboli</label>
+        <input type="text" id="bSimboli" maxlength="200" placeholder="vuoto = tutti · es. EURUSD, XAUUSD">
+      </div>
+      <div class="mod-aiuto" style="margin-bottom:14px">Valgono per le prossime operazioni. Quelle già arrivate le modifichi o le cancelli dall'elenco come tutte le altre: una volta cancellata, un'operazione non torna più.</div>
+
+      <button type="submit" class="btn pri wide" id="bSalva">Salva le impostazioni</button>
+    </form>
+  </div>
 </div>
 
 <!-- ═══════════ ACCESSO ═══════════ -->
@@ -1489,9 +1599,11 @@ async function _caricaSessione(){
     const { data: p } = await sb.from('profili').select('*').eq('id', utente.id).single();
     profilo = p || null;
     await caricaOperazioni();
+    b_avvia();
   } else {
     profilo = null;
     j_trades = [];
+    b_ferma();
   }
 
   aggiornaBarra();
@@ -1549,7 +1661,8 @@ function daRiga(r){
     emo: r.emozione || 'lucido',
     nota: r.nota || '',
     shot: r.screenshot || '',
-    shotUrl: ''
+    shotUrl: '',
+    fonte: r.fonte || 'manuale'
   };
 }
 
@@ -2178,7 +2291,7 @@ function j_renderTable(list){
     const img = t.shotUrl || (t.shot && t.shot.startsWith('data:') ? t.shot : '');
     return `<tr>
       <td style="color:var(--dim)">${j_dataBreve(t.date)}${t.ora?' <span style="color:var(--dim2);font-size:.9em">'+esc(t.ora)+'</span>':''}</td>
-      <td>${esc(t.symbol)}</td>
+      <td>${esc(t.symbol)}${t.fonte==='bot'?'<span class="pill bot" title="Arrivata dal bot di MetaTrader">BOT</span>':''}</td>
       <td><span class="pill ${t.dir}">${t.dir==='long'?'Long':'Short'}</span></td>
       <td class="bar-cell ${j_cl(t.pnl)}"><span class="bar-fill" style="width:${w}%;background:${t.pnl>=0?'#22C55E':'#EF4444'}"></span><span style="position:relative">${j_fmt(t.pnl)}</span></td>
       <td class="${t.risk>0?j_cl(t.pnl):''}" style="${t.risk>0?'':'color:var(--dim2)'}">${r}</td>
@@ -3161,6 +3274,209 @@ function avviaJournal(){
     j_meseSuUltimo(j_trades);
   }
   j_renderAll();
+}
+
+
+/* ═══════════════ BOT DI METATRADER ═══════════════ */
+
+const B_PREDEF = { importa:true, scaglioni_uniti:true, nota_auto:true, strategia:'', emozione:'lucido', simboli:'' };
+let b_chiave = '', b_stati = [], b_timer = null;
+
+/* la tabella o la funzione non esistono: bot.sql non è ancora stato eseguito */
+function b_sqlMancante(err){
+  return !!err && (['42P01','42883','PGRST202','PGRST205'].includes(err.code) ||
+                   /does not exist|could not find/i.test(err.message || ''));
+}
+
+function b_avvia(){
+  b_ferma();
+  b_caricaStato();
+  b_timer = setInterval(() => { if(document.visibilityState === 'visible') b_caricaStato(); }, 20000);
+}
+
+function b_ferma(){
+  clearInterval(b_timer);
+  b_timer = null;
+  b_stati = [];
+  b_renderStato();
+}
+
+/* tornando sulla pagina (per esempio dal telefono) aggiorno subito */
+document.addEventListener('visibilitychange', () => {
+  if(document.visibilityState === 'visible' && utente && b_timer) b_caricaStato();
+});
+
+async function b_caricaStato(){
+  if(!sb || !utente) return;
+  const { data, error } = await sb.from('bot_stato').select('*')
+    .eq('utente', utente.id).order('aggiornato', { ascending: false });
+  if(error){
+    if(!b_sqlMancante(error)) console.error(error);
+    b_stati = [];
+  } else {
+    b_stati = data || [];
+  }
+  b_renderStato();
+}
+
+function b_quandoFa(iso){
+  const min = Math.floor((Date.now() - new Date(iso).getTime()) / 60000);
+  if(min < 1) return 'adesso';
+  if(min < 60) return `${min} min fa`;
+  const ore = Math.floor(min / 60);
+  if(ore < 24) return `${ore} h fa`;
+  return new Date(iso).toLocaleDateString('it-IT', { day:'numeric', month:'short' });
+}
+
+function b_soldi(v, valuta){
+  const n = Number(v) || 0;
+  return (n > 0 ? '+' : '') + n.toFixed(2) + ' ' + esc(valuta || '');
+}
+
+function b_renderStato(){
+  const box = document.getElementById('jbot');
+  if(!box) return;
+  if(!b_stati.length){ box.hidden = true; return; }
+  box.hidden = false;
+
+  document.getElementById('jbotAgg').textContent = 'si aggiorna da solo';
+
+  document.getElementById('jbotGriglia').innerHTML = b_stati.map(s => {
+    const d = s.dati || {};
+    const minuti = (Date.now() - new Date(s.aggiornato).getTime()) / 60000;
+    const offline = minuti > 3;
+    let stato = ['ok','pausa','bloccato'].includes(d.stato) ? d.stato : 'ok';
+
+    let etichetta = { ok:'Operativo', pausa:'In pausa', bloccato:'Bloccato' }[stato];
+    if(stato === 'pausa' && d.pausa_fine) etichetta += ' fino alle ' + esc(d.pausa_fine);
+    let classeStato = stato;
+    if(offline){
+      // bloccato e fermo: e' MetaTrader chiuso dal blocco
+      etichetta   = stato === 'bloccato' ? 'Bloccato · MetaTrader chiuso' : 'Non in linea';
+      classeStato = stato === 'bloccato' ? 'bloccato' : 'offline';
+    }
+
+    const perdita = Math.max(Number(d.perdita_oggi) || 0, 0);
+    const limite  = Number(d.limite_perdita) || 0;
+    const quota   = limite > 0 ? Math.min(perdita / limite, 1) : 0;
+    const colore  = quota >= .8 ? 'var(--down)' : quota >= .5 ? 'var(--gold)' : 'var(--up)';
+
+    const conMax = (v, m) => (Number(m) > 0 ? `${Number(v) || 0} / ${Number(m)}` : `${Number(v) || 0}`);
+
+    return `<div class="jbot-card ${offline && stato !== 'bloccato' ? '' : stato}">
+      <div class="jbot-top">
+        <div class="jbot-nome">${esc(d.bot || s.bot)}<small>${esc(d.simbolo || '')}</small></div>
+        <span class="jbot-stato ${classeStato}">${etichetta}</span>
+      </div>
+      <div class="jbot-riga"><span>Perdita oggi</span><b>${perdita.toFixed(2)}%${limite > 0 ? ' / ' + limite.toFixed(1) + '%' : ''}</b></div>
+      ${limite > 0 ? `<div class="jbot-barra"><i style="width:${(quota * 100).toFixed(0)}%;background:${colore}"></i></div>` : ''}
+      <div class="jbot-riga"><span>Trade oggi</span><b>${conMax(d.trade_oggi, d.max_trade)}</b></div>
+      <div class="jbot-riga"><span>Perdite di fila</span><b>${conMax(d.perdite_fila, d.max_perdite)}</b></div>
+      <div class="jbot-riga"><span>Posizioni aperte</span><b>${Number(d.posizioni) || 0}${Number(d.posizioni) ? ' · ' + b_soldi(d.pnl_aperto, d.valuta) : ''}</b></div>
+      <div class="jbot-riga"><span>Saldo · equity</span><b>${(Number(d.saldo) || 0).toFixed(2)} · ${(Number(d.equity) || 0).toFixed(2)} ${esc(d.valuta || '')}</b></div>
+      ${stato === 'bloccato' && d.motivo ? `<div class="jbot-motivo">${esc(d.motivo)}</div>` : ''}
+      ${d.notizia ? `<div class="jbot-news">Notizia: ${esc(d.notizia)}</div>` : ''}
+      <div class="jbot-agg">Aggiornato ${b_quandoFa(s.aggiornato)} · conto ${esc(s.conto)}${d.piattaforma ? ' · ' + esc(d.piattaforma) : ''}</div>
+    </div>`;
+  }).join('');
+}
+
+/* ---------- Finestra di collegamento ---------- */
+
+async function b_apri(){
+  if(!sb || !utente) return;
+  document.getElementById('modBot').classList.add('on');
+
+  const sel = document.getElementById('bEmozione');
+  sel.innerHTML = EMOZIONI.map(e => `<option value="${e.id}">${esc(e.nome)}</option>`).join('');
+
+  const { data, error } = await sb.from('bot_chiavi').select('chiave, impostazioni')
+    .eq('utente', utente.id).maybeSingle();
+
+  document.getElementById('bSql').hidden = !b_sqlMancante(error);
+  if(error && !b_sqlMancante(error)){ console.error(error); j_flash('Non riesco a leggere il collegamento dei bot.', true); }
+
+  b_chiave = data ? data.chiave : '';
+  b_mostraImp(Object.assign({}, B_PREDEF, data ? data.impostazioni : {}));
+  b_renderChiave();
+}
+
+function b_chiudi(){
+  document.getElementById('modBot').classList.remove('on');
+}
+
+function b_renderChiave(){
+  const campo = document.getElementById('bChiave');
+  campo.value = b_chiave;
+  campo.type = 'password';
+  document.getElementById('bMostra').textContent = 'Mostra';
+  document.getElementById('bGenera').textContent = b_chiave ? 'Genera una nuova chiave' : 'Genera la chiave';
+  document.getElementById('bSalva').disabled = !b_chiave;
+}
+
+function b_mostra(){
+  const campo = document.getElementById('bChiave');
+  const nascosta = campo.type === 'password';
+  campo.type = nascosta ? 'text' : 'password';
+  document.getElementById('bMostra').textContent = nascosta ? 'Nascondi' : 'Mostra';
+}
+
+async function b_copia(){
+  if(!b_chiave){ j_flash('Prima genera la chiave.', true); return; }
+  try{
+    await navigator.clipboard.writeText(b_chiave);
+    j_flash('Chiave copiata: incollala nel bot.');
+  } catch(err){
+    const campo = document.getElementById('bChiave');
+    campo.type = 'text';
+    campo.select();
+    j_flash('Selezionata: copiala con Ctrl+C.');
+  }
+}
+
+async function b_generaChiave(){
+  if(b_chiave && !confirm('La chiave attuale smetterà di funzionare: dovrai incollare quella nuova in tutti i bot. Continuo?')) return;
+  const { data, error } = await sb.rpc('bot_nuova_chiave');
+  if(error){
+    document.getElementById('bSql').hidden = !b_sqlMancante(error);
+    if(!b_sqlMancante(error)){ console.error(error); j_flash('Non riesco a creare la chiave. Riprova.', true); }
+    return;
+  }
+  b_chiave = data;
+  b_renderChiave();
+  j_flash('Chiave pronta: copiala e incollala nel bot.');
+}
+
+function b_mostraImp(imp){
+  document.getElementById('bImporta').checked  = imp.importa !== false;
+  document.getElementById('bUniti').checked    = imp.scaglioni_uniti !== false;
+  document.getElementById('bNota').checked     = imp.nota_auto !== false;
+  document.getElementById('bStrategia').value  = imp.strategia || '';
+  document.getElementById('bEmozione').value   = EMOZIONI.some(e => e.id === imp.emozione) ? imp.emozione : 'lucido';
+  document.getElementById('bSimboli').value    = imp.simboli || '';
+}
+
+async function b_salvaImp(e){
+  e.preventDefault();
+  if(!b_chiave){ j_flash('Prima genera la chiave.', true); return; }
+
+  const simboli = document.getElementById('bSimboli').value
+    .split(',').map(x => x.trim().toUpperCase()).filter(Boolean).join(', ');
+
+  const imp = {
+    importa:         document.getElementById('bImporta').checked,
+    scaglioni_uniti: document.getElementById('bUniti').checked,
+    nota_auto:       document.getElementById('bNota').checked,
+    strategia:       document.getElementById('bStrategia').value.trim(),
+    emozione:        document.getElementById('bEmozione').value,
+    simboli
+  };
+
+  const { error } = await sb.from('bot_chiavi').update({ impostazioni: imp }).eq('utente', utente.id);
+  if(error){ console.error(error); j_flash('Impostazioni non salvate. Riprova.', true); return; }
+
+  document.getElementById('bSimboli').value = simboli;
+  j_flash('Impostazioni salvate: valgono per le prossime operazioni.');
 }
 
 
