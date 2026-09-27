@@ -657,7 +657,7 @@
   .jthumb{width:36px;height:26px;object-fit:cover;border-radius:6px;border:1px solid var(--line-hi);
           cursor:zoom-in;display:block;transition:transform .18s}
   .jthumb:hover{transform:scale(1.08);border-color:var(--accent)}
-  .jthumb-no{color:var(--dim-2);font-size:.9em}
+  .jthumb-no{color:var(--dim2);font-size:.9em}
 
   .jlightbox{position:fixed;inset:0;background:rgba(4,8,12,.93);backdrop-filter:blur(6px);
              z-index:400;display:none;align-items:center;justify-content:center;padding:28px}
@@ -993,6 +993,77 @@ body{padding-top:0}
 .benvenuto .nota{color:var(--dim2);font-size:.84rem;margin-top:26px}
 
 .app-corpo{padding:30px 0 70px}
+
+/* ── JOURNAL: filtri ── */
+.jfiltri{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.jfiltri .jseg{flex:0 0 auto}
+.jfiltri .jseg button{flex:0 0 auto;padding:8px 13px;font-size:.78rem}
+.jfiltri select,.jfiltri input{width:auto;min-width:0;padding:9px 14px;font-size:.78rem;border-radius:99px}
+.jfiltri select{flex:0 1 160px}
+.jfiltri input{flex:1 1 190px}
+.jchips{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+.jchips:empty{display:none}
+.jchip{display:inline-flex;align-items:center;gap:7px;padding:5px 8px 5px 12px;border-radius:99px;
+  background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);color:var(--text);font-size:.76rem}
+.jchip button{background:none;border:none;color:var(--dim);cursor:pointer;font-size:.8rem;padding:0 4px}
+.jchip button:hover{color:var(--down)}
+.jreset{background:none;border:none;color:var(--accent);font-family:inherit;font-size:.78rem;cursor:pointer;padding:4px}
+
+/* ── JOURNAL: spunti ── */
+.jspunti{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-bottom:14px}
+.jspunti:empty{display:none}
+.jspunti .jspunto{margin-bottom:0}
+.jspunto.avviso{background:linear-gradient(140deg,rgba(245,158,11,.08),var(--panel))}
+.jspunto.avviso .ico{background:rgba(245,158,11,.14);color:var(--gold)}
+
+/* ── JOURNAL: calendario con totale settimanale ── */
+.jcal-int,.jcal{grid-template-columns:repeat(7,minmax(0,1fr)) minmax(0,.9fr)}
+.jgiorno.cliccabile{cursor:pointer}
+.jgiorno.cliccabile:hover{border-color:var(--accent)}
+.jgiorno.sel{outline:2px solid var(--accent);outline-offset:1px}
+.jsett{min-width:0;overflow:hidden;border-radius:12px;border:1px dashed var(--line);display:flex;flex-direction:column;
+  justify-content:center;align-items:center;gap:2px;padding:4px;
+  font-family:'JetBrains Mono','SF Mono',Menlo,monospace;font-size:.6rem;color:var(--dim2)}
+.jsett b{font-weight:600;font-size:.72rem}
+.jsett.vuoto{border-style:none}
+
+/* ── JOURNAL: tabella e schede ── */
+.jcard-head-wrap{flex-wrap:wrap}
+.jtabs button{flex:0 0 auto;padding:7px 12px;font-size:.76rem}
+.jtabs{max-width:100%;overflow-x:auto;scrollbar-width:none}
+.jtabs::-webkit-scrollbar{display:none}
+.jnota-riga{font-size:.74rem;color:var(--dim2);max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.jazioni{text-align:right;white-space:nowrap}
+.del.mod:hover{background:rgba(34,197,94,.12);color:var(--up)}
+.jpiu{text-align:center;margin-top:14px}
+.jpiu:empty{display:none}
+.jaiuto{display:inline-grid;place-items:center;width:15px;height:15px;border-radius:99px;margin-left:4px;
+  border:1px solid var(--line);color:var(--dim2);font-size:.62rem;cursor:help;vertical-align:1px}
+.jkpi{cursor:pointer}
+.jkpi-info{display:none;color:var(--dim);font-size:.74rem;line-height:1.5;margin:4px 0 8px}
+.jkpi.aperto .jkpi-info{display:block}
+.jkpi.aperto .jkpi-spark{display:none}
+.jguida{text-align:left;max-width:520px;margin:14px auto;padding-left:20px;line-height:1.6;color:var(--dim)}
+.jguida li{margin-bottom:6px}
+.jguida b{color:var(--text);font-weight:600}
+.jvaluta{width:auto;padding:9px 12px;border-radius:99px;font-size:.8rem}
+.jform-modifica{border-color:rgba(34,197,94,.5)}
+@media(hover:none){ .del{opacity:.75} }
+
+/* ── JOURNAL: notifiche ── */
+.jtoast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,16px);opacity:0;pointer-events:none;
+  z-index:500;max-width:min(92vw,520px);padding:12px 18px;border-radius:14px;
+  background:var(--panel-hi);border:1px solid rgba(34,197,94,.45);color:var(--text);
+  font-size:.84rem;box-shadow:0 14px 40px rgba(0,0,0,.45);transition:opacity .2s,transform .2s}
+.jtoast.on{opacity:1;transform:translate(-50%,0)}
+.jtoast.err{border-color:rgba(239,68,68,.55)}
+
+@media(max-width:760px){
+  .jsett{font-size:.5rem;border-radius:9px}
+  .jsett b{font-size:.56rem}
+  .jsett span{display:none}
+  .jfiltri select{flex:1 1 40%}
+}
 </style>
 </head>
 <body>
@@ -1036,10 +1107,10 @@ body{padding-top:0}
 
       <div class="jbanner" id="jbanner">
         <div>
-          <div class="jb-t">Stai provando il journal con dati di esempio</div>
-          <div class="jb-s">Svuota e inserisci i tuoi trade, oppure importa un file. In questa demo i dati restano nel browser: con un account li ritrovi da qualsiasi dispositivo.</div>
+          <div class="jb-t"></div>
+          <div class="jb-s"></div>
         </div>
-        <button class="btn pri" onclick="go('journal')">Vedi i piani</button>
+        <button class="btn pri" type="button">Vedi i piani</button>
       </div>
 
       <div class="jtoolbar">
@@ -1048,17 +1119,36 @@ body{padding-top:0}
           <div class="jperiodo" id="period"></div>
         </div>
         <div class="jactions">
-          <button class="btn" onclick="j_loadDemo()">Dati demo</button>
+          <button class="btn" id="btnDemo" onclick="j_anteprima()">Guarda un esempio</button>
           <button class="btn" onclick="j_exportData()">Esporta</button>
           <button class="btn" onclick="j_exportCSV()">CSV</button>
           <button class="btn" onclick="document.getElementById('imp').click()">Importa</button>
-          <input type="file" id="imp" accept=".json" hidden onchange="j_importData(event)">
+          <input type="file" id="imp" accept=".json,.csv,.txt" hidden onchange="j_importData(event)">
           <button class="btn" onclick="j_clearAll()">Svuota</button>
+          <select id="fValuta" class="jvaluta" aria-label="Valuta del conto" onchange="j_setValuta(this.value)"></select>
         </div>
       </div>
 
+      <!-- filtri: valgono per metriche, grafici e tabelle -->
+      <div class="jfiltri">
+        <div class="jseg" id="fPeriodo"></div>
+        <select id="fSimbolo" aria-label="Simbolo" onchange="j_setFiltro('simbolo', this.value)"></select>
+        <select id="fStrategia" aria-label="Strategia" onchange="j_setFiltro('strategia', this.value)"></select>
+        <select id="fDir" aria-label="Direzione" onchange="j_setFiltro('dir', this.value)">
+          <option value="">Long e short</option>
+          <option value="long">Solo long</option>
+          <option value="short">Solo short</option>
+        </select>
+        <select id="fEmo" aria-label="Stato d'animo" onchange="j_setFiltro('emo', this.value)"></select>
+        <input type="search" id="fCerca" placeholder="Cerca simbolo, strategia, nota…" oninput="j_setFiltro('cerca', this.value)">
+      </div>
+      <div class="jchips" id="fChips"></div>
+
       <!-- metriche principali -->
       <div class="jkpis" id="kpis"></div>
+
+      <!-- quello che i dati dicono di te -->
+      <div class="jspunti" id="spunti"></div>
 
       <!-- calendario mensile -->
       <div class="jcard" style="margin-bottom:16px">
@@ -1094,7 +1184,7 @@ body{padding-top:0}
           <svg class="jchart" id="dowChart" viewBox="0 0 460 170"></svg>
         </div>
         <div class="jcard">
-          <div class="jcard-head"><h3>P&L per fascia oraria</h3></div>
+          <div class="jcard-head"><h3>P&L per fascia oraria</h3><span class="jmeta" id="oraMeta"></span></div>
           <svg class="jchart" id="oraChart" viewBox="0 0 240 170"></svg>
         </div>
       </div>
@@ -1111,27 +1201,24 @@ body{padding-top:0}
         </div>
       </div>
 
-      <!-- il pattern che conta -->
-      <div class="jcard jspunto" id="spunto"></div>
-
-      <!-- nuovo trade -->
+      <!-- nuovo trade / modifica -->
       <div class="jcard" id="add" style="margin-bottom:16px">
-        <div class="jcard-head"><h3>Nuova operazione</h3></div>
+        <div class="jcard-head"><h3 id="fTitolo">Nuova operazione</h3></div>
         <form onsubmit="j_addTrade(event)">
           <div class="jform">
             <div><label for="f-date">Data</label><input type="date" id="f-date" required></div>
             <div><label for="f-ora">Ora</label><input type="time" id="f-ora" value="09:00"></div>
-            <div><label for="f-symbol">Simbolo</label><input id="f-symbol" placeholder="EURUSD" required></div>
+            <div><label for="f-symbol">Simbolo</label><input id="f-symbol" placeholder="EURUSD" maxlength="24" list="f-simboli" required><datalist id="f-simboli"></datalist></div>
             <div>
               <label>Direzione</label>
-              <div class="jseg">
+              <div class="jseg" id="fDirSeg">
                 <button type="button" data-d="long" class="on" onclick="j_setDir('long')">Long</button>
                 <button type="button" data-d="short" onclick="j_setDir('short')">Short</button>
               </div>
             </div>
-            <div><label for="f-pnl">P&L (€)</label><input type="number" id="f-pnl" step="0.01" placeholder="125.50" required></div>
-            <div><label for="f-risk">Rischio (€)</label><input type="number" id="f-risk" step="0.01" placeholder="100"></div>
-            <div><label for="f-strat">Strategia</label><input id="f-strat" placeholder="Breakout"></div>
+            <div><label for="f-pnl">Risultato (<span class="jval">€</span>) <span class="jaiuto" title="Quanto hai guadagnato o perso. Per una perdita metti il meno davanti: -50">?</span></label><input type="number" id="f-pnl" step="0.01" placeholder="125.50 o -50" required></div>
+            <div><label for="f-risk">Rischio (<span class="jval">€</span>) <span class="jaiuto" title="Quanto avresti perso se fosse scattato lo stop loss. Serve a calcolare R: quante volte il rischio hai guadagnato.">?</span></label><input type="number" id="f-risk" step="0.01" min="0" placeholder="100"></div>
+            <div><label for="f-strat">Strategia</label><input id="f-strat" placeholder="Breakout" maxlength="60" list="f-strategie"><datalist id="f-strategie"></datalist></div>
           </div>
 
           <div class="jemo-scelta">
@@ -1141,24 +1228,20 @@ body{padding-top:0}
 
           <div class="jnota">
             <label for="f-nota">Nota <span style="color:var(--dim2)">(facoltativa)</span></label>
-            <textarea id="f-nota" rows="2" placeholder="Perché sei entrato? Cosa hai visto sul grafico?"></textarea>
+            <textarea id="f-nota" rows="2" maxlength="2000" placeholder="Perché sei entrato? Cosa hai visto sul grafico? Cosa rifaresti diversamente?"></textarea>
           </div>
 
           <div class="jshot">
             <label>Screenshot del grafico <span style="color:var(--dim2)">(facoltativo)</span></label>
-            <div class="jdrop" id="jdrop" onclick="document.getElementById('f-shot').click()">
-              <div class="ic">🖼</div>
-              <div class="t1">Tocca per scegliere un'immagine</div>
-              <div class="t2">oppure trascinala qui · PNG o JPG, max 5 MB</div>
-            </div>
+            <div class="jdrop" id="jdrop"></div>
             <input type="file" id="f-shot" accept="image/*" hidden onchange="j_shotScelto(event)">
             <div id="jshotPrev"></div>
             <div class="jshot-up" id="jshotStato"></div>
           </div>
 
           <div style="display:flex;gap:12px;align-items:center;margin-top:16px;flex-wrap:wrap">
-            <button type="submit" class="btn pri">Salva operazione</button>
-            <div class="jmsg" id="msg"></div>
+            <button type="submit" class="btn pri" id="fInvia">Salva operazione</button>
+            <button type="button" class="btn" id="fAnnulla" onclick="j_resetForm()" hidden>Annulla</button>
           </div>
         </form>
       </div>
@@ -1168,18 +1251,22 @@ body{padding-top:0}
         <div class="jcard-head"><h3>Operazioni</h3><span class="jmeta" id="cnt"></span></div>
         <div class="jt-scroll">
           <table>
-            <thead><tr><th>Data</th><th>Simbolo</th><th>Dir.</th><th>P&L</th><th>R</th><th>Stato</th><th>Strategia</th><th>Screen</th><th></th></tr></thead>
+            <thead><tr><th>Data</th><th>Simbolo</th><th>Dir.</th><th>P&L</th><th>R</th><th>Stato</th><th>Strategia · nota</th><th>Screen</th><th></th></tr></thead>
             <tbody id="tbl"></tbody>
           </table>
         </div>
+        <div class="jpiu" id="tblPiu"></div>
       </div>
 
-      <!-- strategie -->
+      <!-- performance raggruppate -->
       <div class="jcard" id="strat">
-        <div class="jcard-head"><h3>Performance per strategia</h3></div>
+        <div class="jcard-head jcard-head-wrap">
+          <h3>Performance per</h3>
+          <div class="jseg jtabs" id="gruppiTab"></div>
+        </div>
         <div class="jt-scroll">
           <table>
-            <thead><tr><th>Strategia</th><th>Trade</th><th>Winrate</th><th>P&L netto</th><th>Profit factor</th></tr></thead>
+            <thead><tr><th id="gruppoNome">Strategia</th><th>Trade</th><th>Winrate</th><th>P&L netto</th><th>Media</th><th>Profit factor</th></tr></thead>
             <tbody id="stbl"></tbody>
           </table>
         </div>
@@ -1189,6 +1276,8 @@ body{padding-top:0}
   </section>
   </section>
 </div>
+
+<div class="jtoast" id="jtoast" role="status" aria-live="polite"></div>
 
 <!-- ═══════════ VISUALIZZATORE SCREENSHOT ═══════════ -->
 <div class="jlightbox" id="jlightbox" onclick="j_chiudiShot()">
@@ -1364,13 +1453,37 @@ function traduciErrore(m){
   return 'Errore: ' + o;
 }
 
+/* ---------- Utilità ---------- */
+
+/* tutto quello che finisce dentro l'HTML passa da qui */
+const esc = v => String(v ?? '').replace(/[&<>"']/g,
+  c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+/* data di oggi nel fuso dell'utente (toISOString usa l'UTC e dopo mezzanotte sbaglia giorno) */
+function isoLocale(d = new Date()){
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+
+/* "2026-09-12" → data locale, senza lo slittamento di fuso di new Date(stringa) */
+function dataDa(iso){
+  const [y, m, g] = iso.split('-').map(Number);
+  return new Date(y, m - 1, g);
+}
+
+/* ordine cronologico vero: data e poi ora */
+const j_chiave = t => t.date + ' ' + (t.ora || '00:00');
+const j_ordina = list => [...list].sort((a, b) => j_chiave(a).localeCompare(j_chiave(b)));
+const j_nuovoId = () => 'tmp-' + Math.random().toString(36).slice(2, 10);
+
 /* ---------- Sessione ---------- */
 
-async function caricaSessione(){
-  if(!sb) return;
+let sessioneInCorso = null, sessioneDaRifare = false;
 
-  const { data } = await sb.auth.getSession();
-  utente = data.session ? data.session.user : null;
+async function _caricaSessione(){
+  if(sb){
+    const { data } = await sb.auth.getSession();
+    utente = data.session ? data.session.user : null;
+  }
 
   if(utente){
     const { data: p } = await sb.from('profili').select('*').eq('id', utente.id).single();
@@ -1378,10 +1491,23 @@ async function caricaSessione(){
     await caricaOperazioni();
   } else {
     profilo = null;
+    j_trades = [];
   }
 
   aggiornaBarra();
-  if(typeof j_renderAll === 'function') j_renderAll();
+  aggiornaVista();
+}
+
+/* una sola lettura alla volta: se ne arriva un'altra la rifaccio alla fine */
+function caricaSessione(){
+  if(sessioneInCorso){ sessioneDaRifare = true; return sessioneInCorso; }
+  sessioneInCorso = _caricaSessione()
+    .catch(err => console.error('Errore sessione:', err))
+    .finally(() => {
+      sessioneInCorso = null;
+      if(sessioneDaRifare){ sessioneDaRifare = false; caricaSessione(); }
+    });
+  return sessioneInCorso;
 }
 
 function aggiornaBarra(){
@@ -1391,7 +1517,7 @@ function aggiornaBarra(){
   if(utente){
     const nome = (profilo && profilo.nome) ? profilo.nome.split(' ')[0] : 'Ciao';
     c.innerHTML = `
-      <span class="acc-utente"><span class="nome">${nome}</span></span>
+      <span class="acc-utente"><span class="nome">${esc(nome)}</span></span>
       <a class="nav-link" href="https://riskly.trade">Vai al sito</a>
       <button class="nav-link" onclick="esci()">Esci</button>`;
   } else {
@@ -1404,66 +1530,121 @@ function aggiornaBarra(){
 async function esci(){
   if(sb) await sb.auth.signOut();
   utente = null; profilo = null;
-  j_trades = [];
-  aggiornaBarra();
-  if(typeof j_renderAll === 'function') j_renderAll();
+  j_trades = []; j_demo = null;
   location.href = 'https://riskly.trade';
 }
 
 /* ---------- Operazioni sul server ---------- */
 
-async function caricaOperazioni(){
-  if(!sb || !utente) return;
-
-  const { data, error } = await sb.from('operazioni')
-    .select('*').eq('utente', utente.id).order('data', { ascending: true });
-
-  if(error){ console.error(error); return; }
-
-  j_trades = (data || []).map(r => ({
-    id: r.id,
-    date: r.data,
-    ora: r.ora || '',
-    symbol: r.simbolo,
-    dir: r.direzione,
-    pnl: Number(r.pnl),
-    risk: Number(r.rischio || 0),
+function daRiga(r){
+  return {
+    id: String(r.id),
+    date: String(r.data).slice(0, 10),
+    ora: r.ora ? String(r.ora).slice(0, 5) : '',
+    symbol: r.simbolo || '',
+    dir: r.direzione === 'short' ? 'short' : 'long',
+    pnl: Number(r.pnl) || 0,
+    risk: Number(r.rischio) || 0,
     strategy: r.strategia || '',
     emo: r.emozione || 'lucido',
     nota: r.nota || '',
-    shot: r.screenshot || ''
-  }));
+    shot: r.screenshot || '',
+    shotUrl: ''
+  };
 }
 
-async function salvaOperazione(t){
-  if(!sb || !utente) return null;
+/* se nel database l'ora è obbligatoria, le operazioni senza ora vanno salvate con 00:00 */
+let j_oraObbligatoria = false;
+async function conOra(fn){
+  try{ return await fn(); }
+  catch(err){
+    if(!j_oraObbligatoria && err && err.code === '23502' && /ora/.test(err.message || '')){
+      j_oraObbligatoria = true;
+      return await fn();
+    }
+    throw err;
+  }
+}
 
-  const { data, error } = await sb.from('operazioni').insert({
+function aRiga(t){
+  return {
     utente:    utente.id,
     data:      t.date,
-    ora:       t.ora,
+    ora:       t.ora || (j_oraObbligatoria ? '00:00' : null),
     simbolo:   t.symbol,
     direzione: t.dir,
     pnl:       t.pnl,
-    rischio:   t.risk,
+    rischio:   t.risk || 0,
     strategia: t.strategy,
     emozione:  t.emo,
     nota:      t.nota,
     screenshot: t.shot || null
-  }).select().single();
+  };
+}
 
-  if(error){ console.error(error); return null; }
-  return data.id;
+/* Supabase restituisce al massimo 1000 righe per richiesta: leggo a pagine */
+async function caricaOperazioni(){
+  if(!sb || !utente) return;
+  const PAGINA = 1000;
+  let righe = [];
+  try{
+    for(let da = 0; ; da += PAGINA){
+      const { data, error } = await sb.from('operazioni').select('*')
+        .eq('utente', utente.id)
+        .order('data', { ascending: true })
+        .order('ora',  { ascending: true })
+        .range(da, da + PAGINA - 1);
+      if(error) throw error;
+      righe = righe.concat(data || []);
+      if(!data || data.length < PAGINA) break;
+    }
+  } catch(err){
+    console.error(err);
+    j_flash('Non riesco a caricare le tue operazioni. Ricarica la pagina.', true);
+    return;
+  }
+  j_trades = righe.map(daRiga);
+  await j_firmaShot(j_trades);
+}
+
+function salvaOperazione(t){
+  return conOra(async () => {
+    const { data, error } = await sb.from('operazioni').insert(aRiga(t)).select().single();
+    if(error) throw error;
+    return String(data.id);
+  });
+}
+
+function aggiornaOperazione(id, t){
+  return conOra(async () => {
+    const { error } = await sb.from('operazioni').update(aRiga(t)).eq('id', id).eq('utente', utente.id);
+    if(error) throw error;
+  });
 }
 
 async function eliminaOperazione(id){
-  if(!sb || !utente) return;
-  await sb.from('operazioni').delete().eq('id', id).eq('utente', utente.id);
+  const { error } = await sb.from('operazioni').delete().eq('id', id).eq('utente', utente.id);
+  if(error) throw error;
 }
 
 async function svuotaOperazioni(){
-  if(!sb || !utente) return;
-  await sb.from('operazioni').delete().eq('utente', utente.id);
+  const { error } = await sb.from('operazioni').delete().eq('utente', utente.id);
+  if(error) throw error;
+}
+
+/* import in blocchi, restituisce le righe create */
+async function inserisciOperazioni(list){
+  let create = [];
+  for(let i = 0; i < list.length; i += 500){
+    const blocco = list.slice(i, i + 500);
+    const data = await conOra(async () => {
+      const { data, error } = await sb.from('operazioni').insert(blocco.map(aRiga)).select();
+      if(error) throw error;
+      return data;
+    });
+    create = create.concat(data || []);
+  }
+  return create;
 }
 
 
@@ -1492,7 +1673,9 @@ function shotUsati(){
 }
 
 function puoUsareShot(){
-  return shotUsati() < limiteShot();
+  // sostituire lo screenshot di un'operazione che lo ha già non consuma quota
+  const inModifica = j_modificaId && j_trades.find(t => t.id === j_modificaId && t.shot);
+  return !!inModifica || shotUsati() < limiteShot();
 }
 
 /* mostra o blocca l'area screenshot in base al piano */
@@ -1501,7 +1684,7 @@ function aggiornaAreaShot(){
   const wrap = document.querySelector('.jshot');
   if(!zona || !wrap) return;
 
-  const p = pianoAttivo(), lim = limiteShot(), usati = shotUsati();
+  const lim = limiteShot(), usati = shotUsati();
   const eti = wrap.querySelector('label');
 
   if(lim === 0){
@@ -1515,7 +1698,7 @@ function aggiornaAreaShot(){
     return;
   }
 
-  if(usati >= lim){
+  if(!puoUsareShot()){
     zona.classList.add('bloccato');
     zona.onclick = () => location.href = 'https://riskly.trade#prezzi';
     zona.innerHTML =
@@ -1533,7 +1716,7 @@ function aggiornaAreaShot(){
      <div class="t2">oppure trascinala qui · PNG o JPG, max 5 MB</div>`;
 
   if(eti){
-    const resto = (lim === Infinity) ? 'illimitati' : `${lim - usati} rimasti`;
+    const resto = (lim === Infinity) ? 'illimitati' : `${Math.max(lim - usati, 0)} rimasti`;
     eti.innerHTML = `Screenshot del grafico <span style="color:var(--dim2)">(${resto})</span>`;
   }
 }
@@ -1544,6 +1727,7 @@ function aggiornaAreaShot(){
 const SHOT_BUCKET = 'screenshot';
 let j_shotFile = null;      /* file scelto, non ancora caricato */
 let j_shotAnteprima = null; /* dataURL per l'anteprima */
+let j_shotRimosso = false;  /* in modifica: l'utente ha tolto lo screenshot esistente */
 
 function j_shotScelto(e){
   const f = e.target.files && e.target.files[0];
@@ -1566,19 +1750,25 @@ function j_shotCarica(f){
   const lettore = new FileReader();
   lettore.onload = () => {
     j_shotAnteprima = lettore.result;
-    document.getElementById('jshotPrev').innerHTML =
-      `<div class="jshot-prev">
-         <img src="${j_shotAnteprima}" alt="Anteprima">
-         <button type="button" class="jshot-x" onclick="j_shotRimuovi()" title="Rimuovi">✕</button>
-       </div>`;
-    j_shotStato(utente ? 'Verrà caricato al salvataggio.' : 'In modalità demo resta solo in questa sessione.');
+    j_mostraAnteprima(j_shotAnteprima);
+    j_shotStato('Verrà caricato al salvataggio.');
   };
   lettore.readAsDataURL(f);
 }
 
+function j_mostraAnteprima(src){
+  document.getElementById('jshotPrev').innerHTML = src
+    ? `<div class="jshot-prev">
+         <img src="${esc(src)}" alt="Anteprima">
+         <button type="button" class="jshot-x" onclick="j_shotRimuovi()" title="Rimuovi">✕</button>
+       </div>`
+    : '';
+}
+
 function j_shotRimuovi(){
   j_shotFile = null; j_shotAnteprima = null;
-  document.getElementById('jshotPrev').innerHTML = '';
+  if(j_modificaId) j_shotRimosso = true;
+  j_mostraAnteprima('');
   j_shotStato('');
 }
 
@@ -1589,22 +1779,58 @@ function j_shotStato(testo, errore){
   e.style.color = errore ? 'var(--down)' : 'var(--dim2)';
 }
 
-/* carica il file su Supabase Storage e restituisce l'URL pubblico */
+/* il database conserva il percorso nel bucket; le vecchie righe hanno l'URL pubblico */
+function shotPercorso(v){
+  if(!v || v.startsWith('data:')) return '';
+  if(!v.startsWith('http')) return v;
+  const m = v.match(/\/object\/(?:public|sign)\/screenshot\/([^?]+)/);
+  return m ? decodeURIComponent(m[1]) : '';
+}
+
+/* carica il file su Supabase Storage e restituisce il percorso */
 async function j_shotSuServer(file){
   if(!sb || !utente || !file) return null;
-  const est = (file.name.split('.').pop() || 'png').toLowerCase();
+  const est = (file.name.split('.').pop() || 'png').toLowerCase().replace(/[^a-z0-9]/g, '') || 'png';
   const percorso = `${utente.id}/${Date.now()}-${Math.random().toString(36).slice(2,8)}.${est}`;
 
   const { error } = await sb.storage.from(SHOT_BUCKET)
-    .upload(percorso, file, { cacheControl: '3600', upsert: false });
+    .upload(percorso, file, { cacheControl: '3600', upsert: false, contentType: file.type });
 
   if(error){ console.error(error); return null; }
-
-  const { data } = sb.storage.from(SHOT_BUCKET).getPublicUrl(percorso);
-  return data ? data.publicUrl : null;
+  return percorso;
 }
 
-function j_apriShot(url){
+/* link temporanei: funzionano anche con il bucket privato */
+async function j_firmaShot(list){
+  if(!sb || !utente) return;
+  const conShot = list.filter(t => t.shot && !t.shot.startsWith('data:'));
+  const percorsi = [...new Set(conShot.map(t => shotPercorso(t.shot)).filter(Boolean))];
+  let mappa = {};
+  if(percorsi.length){
+    const { data, error } = await sb.storage.from(SHOT_BUCKET).createSignedUrls(percorsi, 60 * 60 * 12);
+    if(error) console.error(error);
+    (data || []).forEach(d => { if(d.signedUrl) mappa[d.path] = d.signedUrl; });
+  }
+  conShot.forEach(t => {
+    t.shotUrl = mappa[shotPercorso(t.shot)] || (t.shot.startsWith('http') ? t.shot : '');
+  });
+}
+
+/* cancella dallo Storage i file che nessuna operazione usa più */
+async function rimuoviShot(valori){
+  if(!sb || !utente) return;
+  const inUso = new Set(j_trades.map(t => shotPercorso(t.shot)));
+  const percorsi = [...new Set(valori.map(shotPercorso))]
+    .filter(p => p && p.startsWith(utente.id + '/') && !inUso.has(p));
+  if(!percorsi.length) return;
+  const { error } = await sb.storage.from(SHOT_BUCKET).remove(percorsi);
+  if(error) console.error(error);
+}
+
+function j_apriShot(id){
+  const t = j_lista().find(x => x.id === id);
+  const url = t && (t.shotUrl || (t.shot.startsWith('data:') ? t.shot : ''));
+  if(!url) return;
   document.getElementById('jlbImg').src = url;
   document.getElementById('jlightbox').classList.add('on');
 }
@@ -1624,7 +1850,7 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape') j_chiudiShot(
     zona.addEventListener(ev, e => { e.preventDefault(); zona.classList.remove('drag'); }));
   zona.addEventListener('drop', e => {
     const f = e.dataTransfer.files && e.dataTransfer.files[0];
-    if(f) j_shotCarica(f);
+    if(f && !zona.classList.contains('bloccato')) j_shotCarica(f);
   });
 })();
 
@@ -1632,57 +1858,198 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape') j_chiudiShot(
 /* ═══ JOURNAL ═══ */
 
 let j_trades = [];
+let j_demo = null;          /* dati di esempio: non toccano mai quelli veri */
 let j_dir = 'long';
+let j_modificaId = null;    /* id dell'operazione in modifica */
+let j_salvando = false;
+let j_pagina = 1;
+const PER_PAGINA = 25;
 
-const j_fmt = v => (v>=0?'+':'−')+'€'+Math.abs(v).toFixed(2);
+const j_lista = () => j_demo || j_trades;
+
+/* valuta del conto: la sceglie l'utente, resta salvata in questo browser */
+const VALUTE = ['€','$','£','CHF'];
+let j_valuta = '€';
+try{ const v = localStorage.getItem('riskly-valuta'); if(VALUTE.includes(v)) j_valuta = v; }catch{}
+const j_soldi = (v, dec = 0) => j_valuta === 'CHF' ? Math.abs(v).toFixed(dec) + ' CHF' : j_valuta + Math.abs(v).toFixed(dec);
+const j_fmt = v => (v>=0?'+':'−') + j_soldi(v, 2);
+const j_fmtBreve = v => (v>=0?'':'−') + j_soldi(v);
+
+function j_setValuta(v){
+  if(!VALUTE.includes(v)) return;
+  j_valuta = v;
+  try{ localStorage.setItem('riskly-valuta', v); }catch{}
+  j_renderAll();
+}
 const j_cl  = v => v>0?'up':(v<0?'down':'neu');
+const j_dataBreve = iso => { const [y,m,g] = iso.split('-'); return `${g}/${m}/${y.slice(2)}`; };
 
 function j_metrics(list){
   if(!list.length) return null;
   const W = list.filter(t=>t.pnl>0), L = list.filter(t=>t.pnl<0);
   const gp = W.reduce((s,t)=>s+t.pnl,0), gl = Math.abs(L.reduce((s,t)=>s+t.pnl,0));
   const net = gp-gl;
-  const sorted = [...list].sort((a,b)=>a.date.localeCompare(b.date));
+  const sorted = j_ordina(list);
   let eq=0,peak=0,maxDD=0; const curve=[];
   sorted.forEach(t=>{eq+=t.pnl;curve.push(eq);if(eq>peak)peak=eq;maxDD=Math.max(maxDD,peak-eq);});
   let cw=0,cls_=0,mw=0,ml=0;
   sorted.forEach(t=>{ if(t.pnl>0){cw++;cls_=0;mw=Math.max(mw,cw);} else if(t.pnl<0){cls_++;cw=0;ml=Math.max(ml,cls_);} });
   const wr = list.filter(t=>t.risk>0);
+  const giorni = {};
+  list.forEach(t => giorni[t.date] = (giorni[t.date] || 0) + t.pnl);
+  const gv = Object.values(giorni);
+  const best = sorted.reduce((a,t)=>t.pnl>a.pnl?t:a, sorted[0]);
+  const worst = sorted.reduce((a,t)=>t.pnl<a.pnl?t:a, sorted[0]);
+  const avgW = W.length?gp/W.length:0, avgL = L.length?gl/L.length:0;
   return {
     n:list.length, w:W.length, l:L.length, net,
     winrate:W.length/list.length*100,
     pf: gl===0 ? (gp>0?Infinity:0) : gp/gl,
-    avgW: W.length?gp/W.length:0, avgL: L.length?gl/L.length:0,
-    exp: net/list.length, maxDD, mw, ml, curve, sorted,
+    avgW, avgL, payoff: avgL ? avgW/avgL : null,
+    exp: net/list.length, maxDD, mw, ml, curve, sorted, best, worst,
+    giorni: gv.length, giorniPos: gv.filter(v=>v>0).length,
     avgR: wr.length ? wr.reduce((s,t)=>s+t.pnl/t.risk,0)/wr.length : null
   };
 }
 
-function j_renderKPIs(){
-  const m = j_metrics(j_trades), el = document.getElementById('kpis');
-  document.getElementById('period').textContent = m ? `${m.sorted[0].date}  —  ${m.sorted.at(-1).date}` : '';
+/* ---------- Filtri ---------- */
+
+const PERIODI = [['tutto','Tutto'],['7','7g'],['30','30g'],['90','90g'],['mese','Mese'],['anno','Anno']];
+const FILTRO_VUOTO = { periodo:'tutto', simbolo:'', strategia:'', dir:'', emo:'', giorno:'', cerca:'' };
+let j_filtro = { ...FILTRO_VUOTO };
+const SENZA_STRATEGIA = '__nessuna';
+
+function j_inizioPeriodo(p){
+  const oggi = new Date();
+  if(p === 'mese') return isoLocale(new Date(oggi.getFullYear(), oggi.getMonth(), 1));
+  if(p === 'anno') return isoLocale(new Date(oggi.getFullYear(), 0, 1));
+  if(/^\d+$/.test(p)){
+    const d = new Date(oggi.getFullYear(), oggi.getMonth(), oggi.getDate() - Number(p) + 1);
+    return isoLocale(d);
+  }
+  return '';
+}
+
+/* opz.senzaData: ignora periodo e giorno (serve al calendario) */
+function j_filtrati(opz = {}){
+  const f = j_filtro;
+  const da = opz.senzaData ? '' : j_inizioPeriodo(f.periodo);
+  const q = f.cerca.trim().toLowerCase();
+  return j_lista().filter(t =>
+    (!da || t.date >= da) &&
+    (opz.senzaData || !f.giorno || t.date === f.giorno) &&
+    (!f.simbolo || t.symbol === f.simbolo) &&
+    (!f.strategia || (f.strategia === SENZA_STRATEGIA ? !t.strategy : t.strategy === f.strategia)) &&
+    (!f.dir || t.dir === f.dir) &&
+    (!f.emo || (t.emo || 'lucido') === f.emo) &&
+    (!q || `${t.symbol} ${t.strategy} ${t.nota}`.toLowerCase().includes(q))
+  );
+}
+
+function j_filtriAttivi(){
+  return Object.keys(FILTRO_VUOTO).some(k => j_filtro[k] !== FILTRO_VUOTO[k]);
+}
+
+function j_setFiltro(k, v){
+  j_filtro[k] = v;
+  j_pagina = 1;
+  j_renderAll();
+}
+
+function j_azzeraFiltri(){
+  j_filtro = { ...FILTRO_VUOTO };
+  document.getElementById('fCerca').value = '';
+  j_pagina = 1;
+  j_renderAll();
+}
+
+function j_opzioni(sel, testoTutti, valori){
+  const el = document.getElementById(sel);
+  if(!el) return;
+  const attuale = j_filtro[{fSimbolo:'simbolo', fStrategia:'strategia', fEmo:'emo'}[sel]];
+  el.innerHTML = `<option value="">${testoTutti}</option>` +
+    valori.map(([v, t]) => `<option value="${esc(v)}"${v === attuale ? ' selected' : ''}>${esc(t)}</option>`).join('');
+}
+
+function j_renderFiltri(){
+  document.querySelector('.jfiltri').style.display = j_lista().length ? '' : 'none';
+  document.getElementById('fPeriodo').innerHTML = PERIODI.map(([v, t]) =>
+    `<button type="button" class="${j_filtro.periodo === v ? 'on' : ''}" onclick="j_setFiltro('periodo','${v}')">${t}</button>`
+  ).join('');
+
+  const lista = j_lista();
+  const simboli = [...new Set(lista.map(t => t.symbol))].sort();
+  const strategie = [...new Set(lista.map(t => t.strategy).filter(Boolean))].sort();
+  const senza = lista.some(t => !t.strategy);
+
+  j_opzioni('fSimbolo', 'Tutti i simboli', simboli.map(s => [s, s]));
+  j_opzioni('fStrategia', 'Tutte le strategie',
+    strategie.map(s => [s, s]).concat(senza ? [[SENZA_STRATEGIA, 'Senza strategia']] : []));
+  j_opzioni('fEmo', "Ogni stato d'animo", EMOZIONI.map(e => [e.id, e.nome]));
+  document.getElementById('fDir').value = j_filtro.dir;
+
+  // suggerimenti nel modulo
+  document.getElementById('f-simboli').innerHTML = simboli.map(s => `<option value="${esc(s)}">`).join('');
+  document.getElementById('f-strategie').innerHTML = strategie.map(s => `<option value="${esc(s)}">`).join('');
+
+  const chips = [];
+  if(j_filtro.giorno){
+    const d = dataDa(j_filtro.giorno);
+    chips.push(`<span class="jchip">Giorno ${d.getDate()} ${MESI[d.getMonth()].toLowerCase()}
+      <button type="button" onclick="j_setFiltro('giorno','')" aria-label="Togli filtro giorno">✕</button></span>`);
+  }
+  if(j_filtriAttivi()) chips.push(`<button type="button" class="jreset" onclick="j_azzeraFiltri()">Azzera filtri</button>`);
+  document.getElementById('fChips').innerHTML = chips.join('');
+}
+
+/* ---------- Metriche ---------- */
+
+function j_renderKPIs(list){
+  const m = j_metrics(list), el = document.getElementById('kpis');
+  document.getElementById('period').textContent = m
+    ? `${j_dataBreve(m.sorted[0].date)}  —  ${j_dataBreve(m.sorted.at(-1).date)}` : '';
+
   if(!m){
-    el.innerHTML = `<div class="jcard" style="grid-column:1/-1"><div class="empty"><strong>Nessun trade registrato</strong>Aggiungi la tua prima operazione o carica i dati demo per vedere le metriche.</div></div>`;
+    el.innerHTML = j_lista().length
+      ? `<div class="jcard" style="grid-column:1/-1"><div class="empty"><strong>Nessuna operazione con questi filtri</strong>
+           <button class="btn" style="margin-top:14px" onclick="j_azzeraFiltri()">Azzera filtri</button></div></div>`
+      : `<div class="jcard" style="grid-column:1/-1"><div class="empty"><strong>Nessun trade registrato</strong>
+           <ol class="jguida">
+             <li><b>Registra ogni operazione</b> appena la chiudi: simbolo, risultato e come ti sentivi. Bastano 20 secondi.</li>
+             <li><b>Indica il rischio</b> (quanto avresti perso allo stop): così vedi se rispetti i tuoi stop.</li>
+             <li><b>Dopo 10 operazioni</b> Riskly ti mostra gli errori che si ripetono e dove guadagni davvero.</li>
+           </ol>
+           Hai già uno storico? Importa il file CSV del tuo broker o di MetaTrader con "Importa".
+           <div style="margin-top:14px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+             <a class="btn pri" href="#add">Aggiungi un'operazione</a>
+             <button class="btn" onclick="j_anteprima()">Guarda un esempio</button>
+           </div></div></div>`;
     return;
   }
+
   const pf = m.pf===Infinity?'∞':m.pf.toFixed(2);
   const spark = j_sparkline(m.curve, m.net>=0);
 
   const items = [
-    {l:'P&L netto', v:j_fmt(m.net), c:j_cl(m.net), s:`${m.n} operazioni`, hero:true, spark},
-    {l:'Winrate', v:m.winrate.toFixed(1)+'%', c:m.winrate>=50?'up':'down', s:`${m.w}V · ${m.l}P`},
-    {l:'Profit factor', v:pf, c:m.pf>=1?'up':'down', s:'profitti / perdite'},
-    {l:'Drawdown max', v:'€'+m.maxDD.toFixed(0), c:'down', s:'dal picco'},
-    {l:'Aspettativa', v:j_fmt(m.exp), c:j_cl(m.exp), s:'per trade'},
-    {l:'Vincita media', v:'€'+m.avgW.toFixed(0), c:'up', s:''},
-    {l:'Perdita media', v:'€'+m.avgL.toFixed(0), c:'down', s:''},
-    {l:'Serie max', v:`${m.mw} / ${m.ml}`, c:'neu', s:'vincite / perdite'},
+    {l:'P&L netto', v:j_fmt(m.net), c:j_cl(m.net), s:`${m.n} operazioni`, hero:true, spark,
+      i:'Il risultato totale: tutti i guadagni meno tutte le perdite.'},
+    {l:'Winrate', v:m.winrate.toFixed(1)+'%', c:m.winrate>=50?'up':'down', s:`${m.w}V · ${m.l}P`, i:'La percentuale di operazioni chiuse in guadagno. Da sola non basta: puoi vincere spesso e perdere comunque, se le perdite sono grandi.'},
+    {l:'Profit factor', v:pf, c:m.pf>=1?'up':'down', s:'profitti / perdite', i:'Quanto guadagni per ogni 1 che perdi. Sopra 1 sei in utile, sopra 1,5 è un buon risultato, sotto 1 stai perdendo.'},
+    {l:'Aspettativa', v:j_fmt(m.exp), c:j_cl(m.exp), s:'per trade', i:'Quanto guadagni o perdi in media a ogni operazione. Se è positiva, continuando così nel tempo sei in utile.'},
+    {l:'Drawdown max', v:j_soldi(m.maxDD), c:'down', s:'dal picco', i:'La discesa più grande dal punto più alto raggiunto. Ti dice quanto hai dovuto sopportare nel momento peggiore.'},
+    {l:'Payoff', v:m.payoff===null?'∞':m.payoff.toFixed(2), c:(m.payoff===null||m.payoff>=1)?'up':'down',
+      s:`${j_soldi(m.avgW)} medio / ${j_soldi(m.avgL)} medio`, i:'Vincita media divisa per perdita media. Sopra 1 le tue vincite sono più grandi delle perdite.'},
+    {l:'Miglior trade', v:j_fmt(m.best.pnl), c:j_cl(m.best.pnl), s:`${esc(m.best.symbol)} · ${j_dataBreve(m.best.date)}`, i:'L\'operazione con il guadagno più alto nel periodo.'},
+    {l:'Peggior trade', v:j_fmt(m.worst.pnl), c:j_cl(m.worst.pnl), s:`${esc(m.worst.symbol)} · ${j_dataBreve(m.worst.date)}`, i:'L\'operazione con la perdita più grande. Se è molto più grande delle altre, forse lo stop non è stato rispettato.'},
+    {l:'Giorni positivi', v:`${m.giorniPos}/${m.giorni}`, c:m.giorniPos*2>=m.giorni?'up':'down', s:`${Math.round(m.giorniPos/m.giorni*100)}% dei giorni`, i:'Quanti giorni di trading hai chiuso in guadagno, sul totale dei giorni in cui hai operato.'},
+    {l:'Serie max', v:`${m.mw} / ${m.ml}`, c:'neu', s:'vincite / perdite', i:'Il numero più lungo di vincite di fila e di perdite di fila. Prepararti alle serie negative ti aiuta a non perdere la calma.'},
   ];
-  if(m.avgR!==null) items.push({l:'R medio', v:(m.avgR>=0?'+':'')+m.avgR.toFixed(2)+'R', c:j_cl(m.avgR), s:'rischio/rendimento'});
+  if(m.avgR!==null) items.push({l:'R medio', v:(m.avgR>=0?'+':'')+m.avgR.toFixed(2)+'R', c:j_cl(m.avgR), s:'rischio/rendimento', i:'Quante volte il rischio guadagni in media. +1R vuol dire che guadagni quanto rischiavi. Compare solo se indichi il rischio.'});
 
   el.innerHTML = items.map(i=>`
-    <div class="jkpi${i.hero?' hero':''}">
-      <div class="jkpi-label">${i.l}</div>
+    <div class="jkpi${i.hero?' hero':''}" onclick="this.classList.toggle('aperto')" title="${esc(i.i||'')}">
+      <div class="jkpi-label">${i.l}${i.i?' <span class="jaiuto">?</span>':''}</div>
+      ${i.i?`<div class="jkpi-info">${esc(i.i)}</div>`:''}
       <div class="jkpi-val ${i.c}">${i.v}</div>
       ${i.s?`<div class="jkpi-sub">${i.s}</div>`:''}
       ${i.spark||''}
@@ -1696,8 +2063,8 @@ function j_sparkline(curve, pos){
   return `<svg class="jkpi-spark" viewBox="0 0 70 30"><polyline points="${pts}" fill="none" stroke="${pos?'#22C55E':'#EF4444'}" stroke-width="1.5"/></svg>`;
 }
 
-function j_renderEquity(){
-  const svg=document.getElementById('eqChart'), m=j_metrics(j_trades);
+function j_renderEquity(list){
+  const svg=document.getElementById('eqChart'), m=j_metrics(list);
   if(!m){svg.innerHTML='';document.getElementById('eqMeta').textContent='';return;}
   const c=[0,...m.curve], mn=Math.min(...c), mx=Math.max(...c), rg=(mx-mn)||1;
   const W=460,H=170,P=10;
@@ -1716,12 +2083,14 @@ function j_renderEquity(){
     <polyline points="${pts}" fill="none" stroke="${col}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
     <circle cx="${X(c.length-1)}" cy="${Y(c.at(-1))}" r="3.5" fill="${col}"/>
     <circle cx="${X(c.length-1)}" cy="${Y(c.at(-1))}" r="7" fill="${col}" opacity=".2"/>
-    <text x="2" y="10" class="axis-lbl">€${mx.toFixed(0)}</text>
-    <text x="2" y="${H+4}" class="axis-lbl">€${mn.toFixed(0)}</text>`;
+    <text x="2" y="10" class="axis-lbl">${j_fmtBreve(mx)}</text>
+    <text x="2" y="${H+4}" class="axis-lbl">${j_fmtBreve(mn)}</text>
+    <text x="${P}" y="${H+18}" class="axis-lbl">${j_dataBreve(m.sorted[0].date)}</text>
+    <text x="${W-P}" y="${H+18}" text-anchor="end" class="axis-lbl">${j_dataBreve(m.sorted.at(-1).date)}</text>`;
 }
 
-function j_renderDist(){
-  const svg=document.getElementById('distChart'), m=j_metrics(j_trades);
+function j_renderDist(list){
+  const svg=document.getElementById('distChart'), m=j_metrics(list);
   if(!m){svg.innerHTML='';return;}
   const W=240,H=170,cx=W/2,cy=78,r=54,st=16;
   const wr=m.winrate/100;
@@ -1729,22 +2098,28 @@ function j_renderDist(){
   const x1=cx+r*Math.cos(-Math.PI/2), y1=cy+r*Math.sin(-Math.PI/2);
   const x2=cx+r*Math.cos(ang), y2=cy+r*Math.sin(ang);
   const large = wr>0.5?1:0;
+  const arco = wr>=1
+    ? `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#22C55E" stroke-width="${st}"/>`
+    : (wr>0?`<path d="M ${x1} ${y1} A ${r} ${r} 0 ${large} 1 ${x2} ${y2}" fill="none" stroke="#22C55E" stroke-width="${st}" stroke-linecap="butt"/>`:'');
   svg.innerHTML=`
     <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#EF4444" stroke-width="${st}" opacity=".85"/>
-    ${wr>0?`<path d="M ${x1} ${y1} A ${r} ${r} 0 ${large} 1 ${x2} ${y2}" fill="none" stroke="#22C55E" stroke-width="${st}" stroke-linecap="butt"/>`:''}
+    ${arco}
     <text x="${cx}" y="${cy-2}" text-anchor="middle" fill="#F2F4F8" font-size="21" font-family="JetBrains Mono, monospace">${m.winrate.toFixed(0)}%</text>
     <text x="${cx}" y="${cy+15}" text-anchor="middle" fill="#59637A" font-size="9.5" font-family="Instrument Sans, sans-serif">winrate</text>
-    <circle cx="${cx-46}" cy="${H-20}" r="4" fill="#22C55E"/>
-    <text x="${cx-37}" y="${H-16.5}" fill="#7C879E" font-size="10" font-family="JetBrains Mono, monospace">${m.w} vinti</text>
-    <circle cx="${cx+12}" cy="${H-20}" r="4" fill="#EF4444"/>
-    <text x="${cx+21}" y="${H-16.5}" fill="#7C879E" font-size="10" font-family="JetBrains Mono, monospace">${m.l} persi</text>`;
+    <text x="${cx-10}" y="${H-16.5}" text-anchor="end" fill="#7C879E" font-size="10" font-family="JetBrains Mono, monospace">${m.w} vinti</text>
+    <circle cx="${cx-10-(String(m.w).length+6)*6.1-8}" cy="${H-20}" r="4" fill="#22C55E"/>
+    <circle cx="${cx+14}" cy="${H-20}" r="4" fill="#EF4444"/>
+    <text x="${cx+23}" y="${H-16.5}" fill="#7C879E" font-size="10" font-family="JetBrains Mono, monospace">${m.l} persi</text>`;
 }
 
-function j_renderDOW(){
+const GIORNI = ['Lun','Mar','Mer','Gio','Ven','Sab','Dom'];
+const j_giornoSett = t => (dataDa(t.date).getDay() + 6) % 7;
+
+function j_renderDOW(list){
   const svg=document.getElementById('dowChart');
-  if(!j_trades.length){svg.innerHTML='';return;}
-  const names=['Lun','Mar','Mer','Gio','Ven','Sab','Dom'], sums=Array(7).fill(0);
-  j_trades.forEach(t=>{const d=new Date(t.date+'T12:00:00').getDay();sums[(d+6)%7]+=t.pnl;});
+  if(!list.length){svg.innerHTML='';return;}
+  const sums=Array(7).fill(0);
+  list.forEach(t=>{sums[j_giornoSett(t)]+=t.pnl;});
   const active = sums.slice(0,5).concat(sums[5]||sums[6]?sums.slice(5):[]);
   const n=active.length, mA=Math.max(...active.map(Math.abs),1);
   const W=460,H=150,mid=H/2,gap=14,bw=(W-gap*(n+1))/n;
@@ -1754,106 +2129,169 @@ function j_renderDOW(){
   active.forEach((v,i)=>{
     const x=gap+i*(bw+gap), h=Math.max(Math.abs(v)/mA*(mid-26),v?3:0), y=v>=0?mid-h:mid;
     o+=`<rect x="${x}" y="${y}" width="${bw}" height="${h}" rx="4" fill="url(#${v>=0?'gu':'gd'})"/>`;
-    o+=`<text x="${x+bw/2}" y="${v>=0?mid+14:mid-6}" text-anchor="middle" class="axis-lbl">${names[i]}</text>`;
+    o+=`<text x="${x+bw/2}" y="${v>=0?mid+14:mid-6}" text-anchor="middle" class="axis-lbl">${GIORNI[i]}</text>`;
     if(v) o+=`<text x="${x+bw/2}" y="${v>=0?y-5:y+h+12}" text-anchor="middle" class="axis-lbl" fill="${v>=0?'#22C55E':'#EF4444'}">${v>=0?'+':'−'}${Math.abs(v).toFixed(0)}</text>`;
   });
   svg.innerHTML=o;
 }
 
-function j_renderSym(){
+function j_renderSym(list){
   const svg=document.getElementById('symChart');
-  if(!j_trades.length){svg.innerHTML='';return;}
-  const g={}; j_trades.forEach(t=>g[t.symbol]=(g[t.symbol]||0)+t.pnl);
+  if(!list.length){svg.innerHTML='';return;}
+  const g={}; list.forEach(t=>g[t.symbol]=(g[t.symbol]||0)+t.pnl);
   const top=Object.entries(g).sort((a,b)=>Math.abs(b[1])-Math.abs(a[1])).slice(0,5);
   const mA=Math.max(...top.map(([,v])=>Math.abs(v)),1);
   const W=240,rowH=30,lblW=62;
   let o='';
   top.forEach(([s,v],i)=>{
     const y=i*rowH+10, w=Math.abs(v)/mA*(W-lblW-46);
-    o+=`<text x="0" y="${y+11}" class="axis-lbl" fill="#7C879E">${s}</text>`;
+    o+=`<text x="0" y="${y+11}" class="axis-lbl" fill="#7C879E">${esc(s.slice(0,9))}</text>`;
     o+=`<rect x="${lblW}" y="${y+1}" width="${Math.max(w,2)}" height="13" rx="3.5" fill="${v>=0?'#22C55E':'#EF4444'}" opacity=".8"/>`;
     o+=`<text x="${lblW+Math.max(w,2)+6}" y="${y+11.5}" class="axis-lbl" fill="${v>=0?'#22C55E':'#EF4444'}">${v>=0?'+':'−'}${Math.abs(v).toFixed(0)}</text>`;
   });
   svg.innerHTML=o;
 }
 
-function j_renderTable(){
-  const tb=document.getElementById('tbl');
-  document.getElementById('cnt').textContent = j_trades.length?`${j_trades.length} totali`:'';
-  if(!j_trades.length){ tb.innerHTML=`<tr><td colspan="9"><div class="empty"><strong>Ancora nessuna operazione</strong>Le operazioni che aggiungi compaiono qui.</div></td></tr>`; return; }
-  const mx=Math.max(...j_trades.map(t=>Math.abs(t.pnl)),1);
-  tb.innerHTML=[...j_trades].sort((a,b)=>b.date.localeCompare(a.date)).map(t=>{
+function j_renderTable(list){
+  const tb=document.getElementById('tbl'), piu=document.getElementById('tblPiu');
+  const tot = j_lista().length;
+  document.getElementById('cnt').textContent = list.length === tot
+    ? (tot ? `${tot} totali` : '')
+    : `${list.length} di ${tot}`;
+
+  if(!list.length){
+    tb.innerHTML=`<tr><td colspan="9"><div class="empty"><strong>${tot?'Nessuna operazione con questi filtri':'Ancora nessuna operazione'}</strong>${tot?'':'Le operazioni che aggiungi compaiono qui.'}</div></td></tr>`;
+    piu.innerHTML='';
+    return;
+  }
+
+  const ordinati = j_ordina(list).reverse();
+  const visibili = ordinati.slice(0, j_pagina * PER_PAGINA);
+  const mx=Math.max(...list.map(t=>Math.abs(t.pnl)),1);
+  const bloccato = !!j_demo;
+
+  tb.innerHTML=visibili.map(t=>{
     const r=t.risk>0?(t.pnl/t.risk>=0?'+':'')+(t.pnl/t.risk).toFixed(2)+'R':'—';
     const w=Math.abs(t.pnl)/mx*100;
+    const emo=j_emoInfo(t.emo||'lucido');
+    const id=esc(t.id);
+    const img = t.shotUrl || (t.shot && t.shot.startsWith('data:') ? t.shot : '');
     return `<tr>
-      <td style="color:var(--dim)">${t.date.slice(5)}${t.ora?' <span style="color:var(--dim2);font-size:.9em">'+t.ora+'</span>':''}</td>
-      <td>${t.symbol}</td>
+      <td style="color:var(--dim)">${j_dataBreve(t.date)}${t.ora?' <span style="color:var(--dim2);font-size:.9em">'+esc(t.ora)+'</span>':''}</td>
+      <td>${esc(t.symbol)}</td>
       <td><span class="pill ${t.dir}">${t.dir==='long'?'Long':'Short'}</span></td>
       <td class="bar-cell ${j_cl(t.pnl)}"><span class="bar-fill" style="width:${w}%;background:${t.pnl>=0?'#22C55E':'#EF4444'}"></span><span style="position:relative">${j_fmt(t.pnl)}</span></td>
-      <td class="${t.risk>0?j_cl(t.pnl):''}" style="${t.risk>0?'':'color:var(--dim-2)'}">${r}</td>
-      <td><span class="pill emo" style="color:${j_emoInfo(t.emo||'lucido').col}">${j_emoInfo(t.emo||'lucido').nome}</span></td>
-      <td class="strat" title="${(t.nota||'').replace(/"/g,'&quot;')}">${t.strategy||'—'}${t.nota?' <span style="color:var(--dim2)">·</span>':''}</td>
-      <td>${t.shot?`<img class="jthumb" src="${t.shot}" alt="Screenshot ${t.symbol}" onclick="j_apriShot('${t.shot}')">`:'<span class="jthumb-no">—</span>'}</td>
-      <td style="text-align:right"><button class="del" onclick="j_removeTrade('${t.id}')" title="Elimina">✕</button></td>
+      <td class="${t.risk>0?j_cl(t.pnl):''}" style="${t.risk>0?'':'color:var(--dim2)'}">${r}</td>
+      <td><span class="pill emo" style="color:${emo.col}">${emo.nome}</span></td>
+      <td class="strat" title="${esc(t.nota)}">${esc(t.strategy)||'—'}${t.nota?`<div class="jnota-riga">${esc(t.nota)}</div>`:''}</td>
+      <td>${img?`<img class="jthumb" src="${esc(img)}" alt="Screenshot ${esc(t.symbol)}" loading="lazy" onclick="j_apriShot('${id}')">`:'<span class="jthumb-no">—</span>'}</td>
+      <td class="jazioni">${bloccato?'':`<button class="del mod" onclick="j_modifica('${id}')" title="Modifica" aria-label="Modifica">✎</button><button class="del" onclick="j_removeTrade('${id}')" title="Elimina" aria-label="Elimina">✕</button>`}</td>
     </tr>`;
   }).join('');
+
+  const resto = ordinati.length - visibili.length;
+  piu.innerHTML = resto > 0
+    ? `<button class="btn" onclick="j_pagina++;j_renderTable(j_filtrati())">Mostra altre ${Math.min(resto, PER_PAGINA)} (${resto} rimaste)</button>`
+    : '';
 }
 
-function j_renderStrat(){
+/* ---------- Performance raggruppate ---------- */
+
+const GRUPPI = {
+  strategia: {nome:'Strategia',      k:t=>t.strategy||'Senza strategia'},
+  simbolo:   {nome:'Simbolo',        k:t=>t.symbol},
+  dir:       {nome:'Direzione',      k:t=>t.dir==='long'?'Long':'Short'},
+  emo:       {nome:"Stato d'animo",  k:t=>j_emoInfo(t.emo||'lucido').nome},
+  giorno:    {nome:'Giorno',         k:t=>GIORNI[j_giornoSett(t)]},
+  ora:       {nome:'Fascia oraria',  k:t=>{ const f=j_fascia(t); return f?f.et:'Senza orario'; }}
+};
+let j_gruppo = 'strategia';
+
+function j_setGruppo(g){ j_gruppo = g; j_renderGruppi(j_filtrati()); }
+
+function j_renderGruppi(list){
+  document.getElementById('gruppiTab').innerHTML = Object.entries(GRUPPI).map(([k,g]) =>
+    `<button type="button" class="${k===j_gruppo?'on':''}" onclick="j_setGruppo('${k}')">${g.nome}</button>`
+  ).join('');
+  document.getElementById('gruppoNome').textContent = GRUPPI[j_gruppo].nome;
+
   const tb=document.getElementById('stbl'), g={};
-  j_trades.forEach(t=>{const k=t.strategy||'Senza strategia';(g[k]||=[]).push(t);});
-  const keys=Object.keys(g);
-  if(!keys.length){ tb.innerHTML=`<tr><td colspan="5"><div class="empty">Aggiungi una strategia ai tuoi trade per confrontarne le performance.</div></td></tr>`; return; }
-  tb.innerHTML=keys.map(k=>{
-    const m=j_metrics(g[k]), pf=m.pf===Infinity?'∞':m.pf.toFixed(2);
+  list.forEach(t=>{ const k=GRUPPI[j_gruppo].k(t); (g[k]||=[]).push(t); });
+  const righe = Object.entries(g).map(([k,l]) => [k, j_metrics(l)]).sort((a,b)=>b[1].net-a[1].net);
+  if(!righe.length){ tb.innerHTML=`<tr><td colspan="6"><div class="empty">Aggiungi operazioni per confrontarne le performance.</div></td></tr>`; return; }
+  tb.innerHTML=righe.map(([k,m])=>{
+    const pf=m.pf===Infinity?'∞':m.pf.toFixed(2);
     return `<tr>
-      <td class="strat" style="color:var(--text)">${k}</td>
+      <td class="strat" style="color:var(--text)">${esc(k)}</td>
       <td style="color:var(--dim)">${m.n}</td>
       <td class="${m.winrate>=50?'up':'down'}">${m.winrate.toFixed(0)}%</td>
       <td class="${j_cl(m.net)}">${j_fmt(m.net)}</td>
+      <td class="${j_cl(m.exp)}">${j_fmt(m.exp)}</td>
       <td class="${m.pf>=1?'up':'down'}">${pf}</td>
     </tr>`;
   }).join('');
 }
 
+function j_renderToolbar(){
+  const sv = document.getElementById('fValuta');
+  if(sv) sv.innerHTML = VALUTE.map(v => `<option value="${v}"${v===j_valuta?' selected':''}>${v}</option>`).join('');
+  document.querySelectorAll('.jval').forEach(e => e.textContent = j_valuta);
+  const b = document.getElementById('btnDemo');
+  if(!b) return;
+  b.hidden = !j_demo && j_trades.length > 0;
+  b.textContent = j_demo ? 'Torna ai tuoi dati' : 'Guarda un esempio';
+}
+
 function j_renderAll(){
   if(typeof aggiornaBanner === 'function') aggiornaBanner();
   if(typeof aggiornaAreaShot === 'function') aggiornaAreaShot();
-  j_renderKPIs();
+  j_renderToolbar();
+  j_renderFiltri();
+  const list = j_filtrati();
+  j_renderKPIs(list);
+  j_renderSpunti(list);
   j_renderCalendario();
-  j_renderEquity();
-  j_renderDist();
-  j_renderDOW();
-  j_renderOra();
-  j_renderEmozioni();
-  j_renderSym();
-  j_renderSpunto();
-  j_renderTable();
-  j_renderStrat();
+  j_renderEquity(list);
+  j_renderDist(list);
+  j_renderDOW(list);
+  j_renderOra(list);
+  j_renderEmozioni(list);
+  j_renderSym(list);
+  j_renderTable(list);
+  j_renderGruppi(list);
 }
 
 /* ---------- P&L per fascia oraria ---------- */
 const FASCE = [
-  {et:'08-10', da:8,  a:10},
+  {et:'0-8',   da:0,  a:8},
+  {et:'8-10',  da:8,  a:10},
   {et:'10-12', da:10, a:12},
   {et:'12-14', da:12, a:14},
   {et:'14-16', da:14, a:16},
   {et:'16-18', da:16, a:18},
-  {et:'18-22', da:18, a:22}
+  {et:'18-22', da:18, a:22},
+  {et:'22-24', da:22, a:24}
 ];
 
-function j_renderOra(){
+function j_fascia(t){
+  if(!t.ora) return null;
+  const o = parseInt(t.ora.split(':')[0], 10);
+  return FASCE.find(f => o >= f.da && o < f.a) || null;
+}
+
+function j_renderOra(list){
   const svg = document.getElementById('oraChart');
   if(!svg) return;
 
-  const W = 240, H = 170, P = 26;
+  const senzaOra = list.filter(t => !t.ora).length;
+  document.getElementById('oraMeta').textContent = senzaOra ? `${senzaOra} senza orario` : '';
+  if(!list.length){ svg.innerHTML=''; return; }
+
+  const W = 240, H = 170, P = 6;
 
   const somme = FASCE.map(f => {
     let v = 0;
-    j_trades.forEach(t => {
-      const o = t.ora ? parseInt(t.ora.split(':')[0]) : 9;
-      if(o >= f.da && o < f.a) v += t.pnl;
-    });
+    list.forEach(t => { if(j_fascia(t) === f) v += t.pnl; });
     return v;
   });
 
@@ -1874,52 +2312,122 @@ function j_renderOra(){
       o += `<rect x="${x}" y="${y}" width="${w}" height="${Math.max(h,1.5)}" rx="3" fill="${col}" opacity=".85"/>`;
     }
 
-    o += `<text x="${x + w/2}" y="${H-8}" text-anchor="middle" fill="#5D6B7D" font-size="8"
+    o += `<text x="${x + w/2}" y="${H-8}" text-anchor="middle" fill="#5D6B7D" font-size="7.5"
            font-family="JetBrains Mono, monospace">${FASCE[i].et}</text>`;
   });
 
   svg.innerHTML = o;
 }
 
-/* ---------- Lo spunto: il pattern che conta ---------- */
-function j_renderSpunto(){
-  const c = document.getElementById('spunto');
-  if(!c) return;
+/* ---------- Gli spunti: i pattern che contano ---------- */
 
-  if(j_trades.length < 12){ c.classList.add('nascosto'); return; }
-  c.classList.remove('nascosto');
+function j_spunti(list){
+  const out = [];
+  if(list.length < 10) return out;
+  const ord = j_ordina(list);
 
-  // confronto il rendimento dopo una vincita e dopo una perdita
-  const ord = [...j_trades].sort((a,b) => new Date(a.date) - new Date(b.date));
+  // 1. il risultato precedente ti condiziona?
   let dopoV = {n:0, v:0}, dopoP = {n:0, v:0};
-
   for(let i = 1; i < ord.length; i++){
     const prec = ord[i-1].pnl, cur = ord[i].pnl > 0;
     if(prec > 0){ dopoV.n++; if(cur) dopoV.v++; }
     else if(prec < 0){ dopoP.n++; if(cur) dopoP.v++; }
   }
-
-  if(dopoV.n < 4 || dopoP.n < 4){ c.classList.add('nascosto'); return; }
-
-  const wrV = Math.round(dopoV.v / dopoV.n * 100);
-  const wrP = Math.round(dopoP.v / dopoP.n * 100);
-  const delta = wrV - wrP;
-
-  let titolo, testo;
-
-  if(delta >= 8){
-    titolo = `Dopo una perdita il tuo winrate scende di ${delta} punti`;
-    testo = `Quando l'operazione precedente era in profitto vinci il ${wrV}% delle volte. Quando era in perdita, solo il ${wrP}%. È il momento in cui una pausa obbligatoria ti farebbe risparmiare di più.`;
-  } else if(delta <= -8){
-    titolo = `Dopo una perdita rendi meglio, non peggio`;
-    testo = `Vinci il ${wrP}% dopo una perdita contro il ${wrV}% dopo una vincita. Controcorrente rispetto alla media: forse è dopo i successi che abbassi la guardia.`;
-  } else {
-    titolo = 'Il risultato precedente non ti condiziona';
-    testo = `Vinci il ${wrV}% dopo una vincita e il ${wrP}% dopo una perdita. La differenza è minima: stai mantenendo lo stesso criterio a prescindere da com'è andata prima. Non è comune.`;
+  if(dopoV.n >= 4 && dopoP.n >= 4){
+    const wrV = Math.round(dopoV.v / dopoV.n * 100);
+    const wrP = Math.round(dopoP.v / dopoP.n * 100);
+    const delta = wrV - wrP;
+    if(delta >= 8) out.push({tipo:'avviso', peso:delta,
+      titolo:`Dopo una perdita il tuo winrate scende di ${delta} punti`,
+      testo:`Quando l'operazione precedente era in profitto vinci il ${wrV}% delle volte. Quando era in perdita, solo il ${wrP}%. È il momento in cui una pausa obbligatoria ti farebbe risparmiare di più.`});
+    else if(delta <= -8) out.push({tipo:'neutro', peso:5,
+      titolo:'Dopo una perdita rendi meglio, non peggio',
+      testo:`Vinci il ${wrP}% dopo una perdita contro il ${wrV}% dopo una vincita. Controcorrente rispetto alla media: forse è dopo i successi che abbassi la guardia.`});
+    else out.push({tipo:'buono', peso:1,
+      titolo:'Il risultato precedente non ti condiziona',
+      testo:`Vinci il ${wrV}% dopo una vincita e il ${wrP}% dopo una perdita. Stai mantenendo lo stesso criterio a prescindere da com'è andata prima. Non è comune.`});
   }
 
-  c.innerHTML = `<span class="ico">↯</span>
-    <div><h4>${titolo}</h4><p>${testo}</p></div>`;
+  // 2. stop rispettati?
+  const conRischio = list.filter(t => t.risk > 0 && t.pnl < 0);
+  const oltre = conRischio.filter(t => -t.pnl > t.risk * 1.1);
+  if(oltre.length >= 2){
+    const extra = oltre.reduce((s,t) => s + (-t.pnl - t.risk), 0);
+    out.push({tipo:'avviso', peso:20 + oltre.length,
+      titolo:`In ${oltre.length} operazioni hai perso più del rischio previsto`,
+      testo:`Oltre lo stop hai lasciato ${j_soldi(extra)} in più (${Math.round(oltre.length/conRischio.length*100)}% delle perdite con rischio indicato). Lo stop si decide prima di entrare, non si sposta.`});
+  } else if(conRischio.length >= 5){
+    out.push({tipo:'buono', peso:3,
+      titolo:'Rispetti i tuoi stop',
+      testo:`In ${conRischio.length} perdite con rischio indicato non sei mai andato oltre il previsto. È la base di tutto il resto.`});
+  }
+
+  // 3. lo stato d'animo che ti costa di più
+  const perEmo = {};
+  list.forEach(t => { const e = t.emo || 'lucido'; (perEmo[e] ||= []).push(t); });
+  const emoPeggiore = Object.entries(perEmo)
+    .filter(([,l]) => l.length >= 3)
+    .map(([e,l]) => [e, j_metrics(l)])
+    .filter(([,m]) => m.net < 0)
+    .sort((a,b) => a[1].net - b[1].net)[0];
+  if(emoPeggiore){
+    const [e, m] = emoPeggiore;
+    out.push({tipo:'avviso', peso:Math.abs(m.net)/10,
+      titolo:`Quando sei "${j_emoInfo(e).nome.toLowerCase()}" perdi`,
+      testo:`${m.n} operazioni, winrate ${m.winrate.toFixed(0)}%, risultato ${j_fmt(m.net)}. Se riconosci quello stato, la migliore operazione è non aprirne.`});
+  }
+
+  // 4. overtrading: i giorni con tante operazioni
+  const perGiorno = {};
+  list.forEach(t => (perGiorno[t.date] ||= []).push(t));
+  const giorni = Object.values(perGiorno);
+  const pieni = giorni.filter(g => g.length >= 4), normali = giorni.filter(g => g.length < 4);
+  if(pieni.length >= 3 && normali.length >= 3){
+    const media = gg => { const l = gg.flat(); return l.reduce((s,t)=>s+t.pnl,0) / l.length; };
+    const mP = media(pieni), mN = media(normali);
+    if(mP < mN && mP < 0) out.push({tipo:'avviso', peso:15,
+      titolo:'Nei giorni con 4 o più operazioni rendi peggio',
+      testo:`In media ${j_fmt(mP)} a operazione contro ${j_fmt(mN)} nei giorni più tranquilli. Un limite di operazioni al giorno potrebbe proteggerti.`});
+  }
+
+  // 5. strategie: la peggiore e la migliore
+  const perStrat = {};
+  list.forEach(t => { if(t.strategy) (perStrat[t.strategy] ||= []).push(t); });
+  const strat = Object.entries(perStrat).filter(([,l]) => l.length >= 5).map(([s,l]) => [s, j_metrics(l)]);
+  const peggiore = strat.filter(([,m]) => m.net < 0).sort((a,b) => a[1].net - b[1].net)[0];
+  const migliore = strat.filter(([,m]) => m.net > 0 && m.pf >= 1.3).sort((a,b) => b[1].net - a[1].net)[0];
+  if(peggiore) out.push({tipo:'avviso', peso:Math.abs(peggiore[1].net)/10,
+    titolo:`${peggiore[0]} ti fa perdere soldi`,
+    testo:`${peggiore[1].n} operazioni, profit factor ${peggiore[1].pf.toFixed(2)}, ${j_fmt(peggiore[1].net)} in totale. Rivedi le regole o mettila in pausa.`});
+  if(migliore) out.push({tipo:'buono', peso:4,
+    titolo:`${migliore[0]} è il tuo punto forte`,
+    testo:`${migliore[1].n} operazioni, winrate ${migliore[1].winrate.toFixed(0)}%, profit factor ${migliore[1].pf===Infinity?'∞':migliore[1].pf.toFixed(2)}: ${j_fmt(migliore[1].net)}.`});
+
+  // 6. la fascia oraria che ti costa
+  const perFascia = {};
+  list.forEach(t => { const f = j_fascia(t); if(f) (perFascia[f.et] ||= []).push(t); });
+  const fasciaPeggiore = Object.entries(perFascia)
+    .filter(([,l]) => l.length >= 4)
+    .map(([f,l]) => [f, j_metrics(l)])
+    .filter(([,m]) => m.net < 0)
+    .sort((a,b) => a[1].net - b[1].net)[0];
+  if(fasciaPeggiore) out.push({tipo:'avviso', peso:Math.abs(fasciaPeggiore[1].net)/12,
+    titolo:`Tra le ${fasciaPeggiore[0].replace('-', ' e le ')} perdi`,
+    testo:`${fasciaPeggiore[1].n} operazioni in quella fascia, ${j_fmt(fasciaPeggiore[1].net)}. Prova a non operare in quell'orario per qualche settimana e confronta.`});
+
+  // prima gli avvisi che pesano di più, poi il resto
+  const ordine = {avviso:0, neutro:1, buono:2};
+  return out.sort((a,b) => ordine[a.tipo] - ordine[b.tipo] || b.peso - a.peso).slice(0, 4);
+}
+
+function j_renderSpunti(list){
+  const c = document.getElementById('spunti');
+  if(!c) return;
+  c.innerHTML = j_spunti(list).map(s => `
+    <div class="jcard jspunto ${s.tipo}">
+      <span class="ico">${s.tipo === 'avviso' ? '↯' : (s.tipo === 'buono' ? '✓' : '↻')}</span>
+      <div><h4>${esc(s.titolo)}</h4><p>${esc(s.testo)}</p></div>
+    </div>`).join('');
 }
 
 /* ---------- Calendario ---------- */
@@ -1933,6 +2441,24 @@ function j_meseSposta(n){
   j_renderCalendario();
 }
 
+/* se il mese corrente è vuoto, apro quello dell'ultima operazione */
+function j_meseSuUltimo(list){
+  const oggi = new Date();
+  const prefisso = isoLocale(oggi).slice(0, 7);
+  if(!list.length || list.some(t => t.date.startsWith(prefisso))){
+    j_mese = new Date(oggi.getFullYear(), oggi.getMonth(), 1);
+    return;
+  }
+  const ultima = dataDa(j_ordina(list).at(-1).date);
+  j_mese = new Date(ultima.getFullYear(), ultima.getMonth(), 1);
+}
+
+function j_selGiorno(iso){
+  j_filtro.giorno = (j_filtro.giorno === iso) ? '' : iso;
+  j_pagina = 1;
+  j_renderAll();
+}
+
 function j_renderCalendario(){
   const griglia = document.getElementById('calendario');
   const intest  = document.getElementById('calIntestazione');
@@ -1943,14 +2469,14 @@ function j_renderCalendario(){
   const anno = j_mese.getFullYear(), mese = j_mese.getMonth();
   titolo.textContent = MESI[mese] + ' ' + anno;
 
-  intest.innerHTML = ['L','M','M','G','V','S','D'].map(g => `<span>${g}</span>`).join('');
+  intest.innerHTML = ['L','M','M','G','V','S','D','SETT'].map(g => `<span>${g}</span>`).join('');
 
-  // raggruppo i trade per giorno
+  // raggruppo i trade per giorno (i filtri valgono, il periodo no)
+  const prefisso = `${anno}-${String(mese+1).padStart(2,'0')}-`;
   const perGiorno = {};
-  j_trades.forEach(t => {
-    const d = new Date(t.date);
-    if(d.getFullYear() !== anno || d.getMonth() !== mese) return;
-    const g = d.getDate();
+  j_filtrati({ senzaData: true }).forEach(t => {
+    if(!t.date.startsWith(prefisso)) return;
+    const g = Number(t.date.slice(8, 10));
     if(!perGiorno[g]) perGiorno[g] = {pnl:0, n:0};
     perGiorno[g].pnl += t.pnl;
     perGiorno[g].n++;
@@ -1962,26 +2488,43 @@ function j_renderCalendario(){
   if(offset < 0) offset = 6;
 
   const giorni = new Date(anno, mese + 1, 0).getDate();
-  const oggi = new Date();
+  const oggi = isoLocale();
 
-  let celle = '';
-  for(let i = 0; i < offset; i++) celle += '<div class="jgiorno vuoto"></div>';
+  const celle = [];
+  const settimane = [];     // [pnl, n] di ogni riga
+  let sett = {pnl:0, n:0};
+
+  for(let i = 0; i < offset; i++) celle.push('<div class="jgiorno vuoto"></div>');
 
   for(let g = 1; g <= giorni; g++){
     const d = perGiorno[g];
-    const eOggi = (oggi.getFullYear() === anno && oggi.getMonth() === mese && oggi.getDate() === g);
+    const iso = prefisso + String(g).padStart(2,'0');
 
     let cl = 'jgiorno';
-    if(eOggi) cl += ' oggi';
-    if(d) cl += d.pnl >= 0 ? ' su' : ' giu';
+    if(iso === oggi) cl += ' oggi';
+    if(d) cl += (d.pnl >= 0 ? ' su' : ' giu') + ' cliccabile';
+    if(j_filtro.giorno === iso) cl += ' sel';
 
     const valore = d ? `<span class="v">${d.pnl >= 0 ? '+' : '−'}${Math.abs(Math.round(d.pnl))}</span>` : '';
     const quanti = (d && d.n > 1) ? `<span class="q">${d.n}</span>` : '';
+    const click  = d ? ` onclick="j_selGiorno('${iso}')" role="button" tabindex="0" title="Mostra solo il ${g}"` : '';
 
-    celle += `<div class="${cl}"><span class="n">${g}</span>${valore}${quanti}</div>`;
+    celle.push(`<div class="${cl}"${click}><span class="n">${g}</span>${valore}${quanti}</div>`);
+    if(d){ sett.pnl += d.pnl; sett.n += d.n; }
+    if(celle.length % 7 === 0){ settimane.push(sett); sett = {pnl:0, n:0}; }
   }
+  while(celle.length % 7 !== 0) celle.push('<div class="jgiorno vuoto"></div>');
+  if(settimane.length < celle.length / 7) settimane.push(sett);
 
-  griglia.innerHTML = celle;
+  let html = '';
+  for(let r = 0; r < celle.length / 7; r++){
+    html += celle.slice(r * 7, r * 7 + 7).join('');
+    const s = settimane[r];
+    html += s.n
+      ? `<div class="jsett"><b class="${s.pnl>=0?'up':'down'}">${s.pnl>=0?'+':'−'}${Math.abs(Math.round(s.pnl))}</b><span>${s.n} op.</span></div>`
+      : '<div class="jsett vuoto"></div>';
+  }
+  griglia.innerHTML = html;
 
   // riepilogo del mese
   const valori = Object.values(perGiorno);
@@ -1994,9 +2537,17 @@ function j_renderCalendario(){
     ? `<span>Totale mese <b class="${tot>=0?'up':'down'}">${j_fmt(tot)}</b></span>
        <span>Giorni positivi <b class="up">${verdi}</b></span>
        <span>Giorni negativi <b class="down">${rossi}</b></span>
-       <span>Operazioni <b>${op}</b></span>`
+       <span>Operazioni <b>${op}</b></span>
+       <span style="color:var(--dim2)">Tocca un giorno per vederne solo le operazioni</span>`
     : '<span style="color:var(--dim2)">Nessuna operazione in questo mese</span>';
 }
+
+/* invio e spazio sulle celle del calendario */
+document.addEventListener('keydown', e => {
+  if((e.key === 'Enter' || e.key === ' ') && e.target.classList && e.target.classList.contains('cliccabile')){
+    e.preventDefault(); e.target.click();
+  }
+});
 
 /* ---------- Emozioni ---------- */
 const EMOZIONI = [
@@ -2029,12 +2580,12 @@ function j_setEmo(id){
 }
 
 /* riepilogo: quanto rende ogni stato d'animo */
-function j_renderEmozioni(){
+function j_renderEmozioni(list){
   const c = document.getElementById('emoStat');
   if(!c) return;
 
   const gruppi = {};
-  j_trades.forEach(t => {
+  list.forEach(t => {
     const e = t.emo || 'lucido';
     if(!gruppi[e]) gruppi[e] = {n:0, v:0, pnl:0};
     gruppi[e].n++;
@@ -2064,86 +2615,225 @@ function j_renderEmozioni(){
   }).join('');
 }
 
+/* ---------- Modulo: nuova operazione e modifica ---------- */
+
 function j_setDir(d){
   j_dir=d;
-  document.querySelectorAll('.jseg button').forEach(b=>b.classList.toggle('on',b.dataset.d===d));
+  document.querySelectorAll('#fDirSeg button').forEach(b=>b.classList.toggle('on',b.dataset.d===d));
 }
 
-function j_addTrade(e){
+function j_bloccatoDemo(){
+  if(!j_demo) return false;
+  j_flash("Stai guardando un esempio: torna ai tuoi dati per modificarli.", true);
+  return true;
+}
+
+function j_resetForm(){
+  j_modificaId = null;
+  j_shotFile = null; j_shotAnteprima = null; j_shotRimosso = false;
+  ['f-symbol','f-pnl','f-risk','f-strat','f-nota'].forEach(i=>document.getElementById(i).value='');
+  document.getElementById('f-date').value = isoLocale();
+  j_setDir('long');
+  j_setEmo('lucido');
+  j_mostraAnteprima('');
+  j_shotStato('');
+  document.getElementById('fTitolo').textContent = 'Nuova operazione';
+  document.getElementById('fInvia').textContent = 'Salva operazione';
+  document.getElementById('fAnnulla').hidden = true;
+  document.getElementById('add').classList.remove('jform-modifica');
+  aggiornaAreaShot();
+}
+
+function j_modifica(id){
+  if(j_bloccatoDemo()) return;
+  const t = j_trades.find(x => x.id === id);
+  if(!t) return;
+  j_resetForm();
+  j_modificaId = id;
+  document.getElementById('f-date').value = t.date;
+  document.getElementById('f-ora').value = t.ora || '';
+  document.getElementById('f-symbol').value = t.symbol;
+  document.getElementById('f-pnl').value = t.pnl;
+  document.getElementById('f-risk').value = t.risk || '';
+  document.getElementById('f-strat').value = t.strategy;
+  document.getElementById('f-nota').value = t.nota;
+  j_setDir(t.dir);
+  j_setEmo(t.emo || 'lucido');
+  j_mostraAnteprima(t.shotUrl || '');
+  document.getElementById('fTitolo').textContent = `Modifica ${t.symbol} del ${j_dataBreve(t.date)}`;
+  document.getElementById('fInvia').textContent = 'Salva modifiche';
+  document.getElementById('fAnnulla').hidden = false;
+  const box = document.getElementById('add');
+  box.classList.add('jform-modifica');
+  aggiornaAreaShot();
+  box.scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+async function j_addTrade(e){
   e.preventDefault();
-  const t={
-    id:Math.random().toString(36).slice(2,10),
-    date:document.getElementById('f-date').value,
-    ora:document.getElementById('f-ora').value||'09:00',
-    symbol:document.getElementById('f-symbol').value.toUpperCase().trim(),
+  if(j_bloccatoDemo() || j_salvando) return;
+  if(!utente){ apriAccesso('accedi'); return; }
+
+  const pnl = parseFloat(document.getElementById('f-pnl').value);
+  const risk = parseFloat(document.getElementById('f-risk').value) || 0;
+  const t = {
+    id: j_modificaId || j_nuovoId(),
+    date: document.getElementById('f-date').value,
+    ora: document.getElementById('f-ora').value || '',
+    symbol: document.getElementById('f-symbol').value.toUpperCase().trim(),
     dir: j_dir,
-    pnl:parseFloat(document.getElementById('f-pnl').value),
-    risk:parseFloat(document.getElementById('f-risk').value)||0,
-    strategy:document.getElementById('f-strat').value.trim(),
+    pnl: Math.round(pnl * 100) / 100,
+    risk: Math.max(risk, 0),
+    strategy: document.getElementById('f-strat').value.trim(),
     emo: j_emozione,
-    nota:document.getElementById('f-nota').value.trim(),
-    shot: j_shotAnteprima || ''
+    nota: document.getElementById('f-nota').value.trim(),
+    shot: '', shotUrl: ''
   };
-
-  const fileDaCaricare = j_shotFile;
-
-  if(utente){
-    (async () => {
-      if(fileDaCaricare){
-        j_shotStato('Caricamento screenshot…');
-        const url = await j_shotSuServer(fileDaCaricare);
-        if(url){ t.shot = url; j_shotStato(''); }
-        else { j_shotStato('Screenshot non caricato, operazione salvata comunque.', true); }
-      }
-      const id = await salvaOperazione(t);
-      if(id) t.id = id;
-      j_renderAll();
-    })();
+  if(!t.date || !t.symbol || !Number.isFinite(pnl)){
+    j_flash('Servono almeno data, simbolo e P&L.', true); return;
   }
 
-  j_trades.push(t);
-  ['f-symbol','f-pnl','f-risk','f-strat','f-nota'].forEach(i=>document.getElementById(i).value='');
-  j_shotFile = null; j_shotAnteprima = null;
-  document.getElementById('jshotPrev').innerHTML = '';
-  j_flash(`${t.symbol} salvato · ${j_fmt(t.pnl)}`);
-  j_renderAll();
+  const vecchio = j_modificaId ? j_trades.find(x => x.id === j_modificaId) : null;
+  if(j_modificaId && !vecchio){ j_resetForm(); return; }
+
+  const bottone = document.getElementById('fInvia');
+  const testo = bottone.textContent;
+  j_salvando = true;
+  bottone.disabled = true;
+  bottone.textContent = 'Salvataggio…';
+
+  let daRimuovere = null, avvisoShot = '';
+  try{
+    t.shot = vecchio ? vecchio.shot : '';
+    t.shotUrl = vecchio ? vecchio.shotUrl : '';
+
+    if(j_shotFile){
+      j_shotStato('Caricamento screenshot…');
+      const percorso = await j_shotSuServer(j_shotFile);
+      if(percorso){
+        if(t.shot) daRimuovere = t.shot;
+        t.shot = percorso;
+        t.shotUrl = j_shotAnteprima;
+      } else {
+        avvisoShot = ' Lo screenshot non è stato caricato: riprova modificando l\'operazione.';
+      }
+    } else if(vecchio && j_shotRimosso && t.shot){
+      daRimuovere = t.shot;
+      t.shot = ''; t.shotUrl = '';
+    }
+
+    if(vecchio){
+      await aggiornaOperazione(vecchio.id, t);
+      j_trades = j_trades.map(x => x.id === vecchio.id ? t : x);
+    } else {
+      t.id = await salvaOperazione(t);
+      j_trades.push(t);
+    }
+    if(daRimuovere) rimuoviShot([daRimuovere]);
+    if(t.shot && t.shotUrl && t.shotUrl.startsWith('data:')) j_firmaShot([t]).then(() => j_renderTable(j_filtrati()));
+
+    const ora = document.getElementById('f-ora').value;
+    j_resetForm();
+    document.getElementById('f-ora').value = ora;
+    j_flash(`${t.symbol} ${vecchio ? 'aggiornato' : 'salvato'} · ${j_fmt(t.pnl)}.${avvisoShot}`, !!avvisoShot);
+    j_renderAll();
+  } catch(err){
+    console.error(err);
+    // lo screenshot appena caricato non serve più
+    if(t.shot && (!vecchio || t.shot !== vecchio.shot)) rimuoviShot([t.shot]);
+    j_shotStato('');
+    j_flash('Operazione non salvata. ' + traduciErrore(err.message || String(err)), true);
+  } finally {
+    j_salvando = false;
+    bottone.disabled = false;
+    if(bottone.textContent === 'Salvataggio…') bottone.textContent = testo;
+  }
 }
 
-function j_removeTrade(id){
-  if(utente) eliminaOperazione(id);
-  j_trades = j_trades.filter(t => t.id !== id);
+async function j_removeTrade(id){
+  if(j_bloccatoDemo()) return;
+  const t = j_trades.find(x => x.id === id);
+  if(!t) return;
+  if(!confirm(`Eliminare ${t.symbol} del ${j_dataBreve(t.date)} (${j_fmt(t.pnl)})?`)) return;
+  try{
+    await eliminaOperazione(id);
+  } catch(err){
+    console.error(err);
+    j_flash('Eliminazione non riuscita. ' + traduciErrore(err.message || String(err)), true);
+    return;
+  }
+  j_trades = j_trades.filter(x => x.id !== id);
+  if(j_modificaId === id) j_resetForm();
+  rimuoviShot([t.shot]);
   j_renderAll();
+  j_flash(`${t.symbol} eliminato.`);
 }
-function j_clearAll(){
-  if(!j_trades.length) return;
-  if(!confirm('Eliminare tutte le operazioni?')) return;
-  if(utente) svuotaOperazioni();
+
+async function j_clearAll(){
+  if(j_bloccatoDemo() || !j_trades.length) return;
+  const n = j_trades.length;
+  const risposta = prompt(`Stai per eliminare definitivamente tutte le ${n} operazioni e i loro screenshot.\n` +
+    `Ti consigliamo di scaricare prima una copia con "Esporta".\n\nPer confermare scrivi ELIMINA`);
+  if(risposta === null) return;
+  if(risposta.trim().toUpperCase() !== 'ELIMINA'){ j_flash('Eliminazione annullata.'); return; }
+
+  const shot = j_trades.map(t => t.shot).filter(Boolean);
+  try{
+    await svuotaOperazioni();
+  } catch(err){
+    console.error(err);
+    j_flash('Eliminazione non riuscita. ' + traduciErrore(err.message || String(err)), true);
+    return;
+  }
   j_trades = [];
-  j_renderAll();
-  j_flash('Dati eliminati.');
+  j_resetForm();
+  j_azzeraFiltri();
+  rimuoviShot(shot);
+  j_flash(`${n} operazioni eliminate.`);
 }
-function j_flash(t){ const m=document.getElementById('msg'); m.textContent=t; setTimeout(()=>m.textContent='',2800); }
+
+let j_flashTimer = null;
+function j_flash(t, errore){
+  const m = document.getElementById('jtoast');
+  if(!m) return;
+  m.textContent = t;
+  m.classList.toggle('err', !!errore);
+  m.classList.add('on');
+  clearTimeout(j_flashTimer);
+  j_flashTimer = setTimeout(() => m.classList.remove('on'), errore ? 6000 : 3000);
+}
+
+/* ---------- Esporta ---------- */
+
+function j_scarica(contenuto, tipo, nome){
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([contenuto], { type: tipo }));
+  a.download = nome;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
 
 function j_exportData(){
-  const b=new Blob([JSON.stringify(j_trades,null,2)],{type:'application/json'});
-  const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download='j_trades.json'; a.click();
-  j_flash('Esportato in j_trades.json');
+  const list = j_lista();
+  if(!list.length){ j_flash('Non ci sono operazioni da esportare.'); return; }
+  const pulite = j_ordina(list).map(({shotUrl, ...t}) => ({ ...t, shot: (t.shot || '').startsWith('data:') ? '' : t.shot }));
+  j_scarica(JSON.stringify(pulite, null, 2), 'application/json', `riskly-operazioni-${isoLocale()}.json`);
+  j_flash(`${list.length} operazioni esportate in JSON.`);
 }
 
 /* esporta in CSV: si apre in Excel o Fogli Google */
 function j_exportCSV(){
-  if(!j_trades.length){ j_flash('Non ci sono operazioni da esportare.'); return; }
+  const list = j_lista();
+  if(!list.length){ j_flash('Non ci sono operazioni da esportare.'); return; }
 
   const intestazioni = ['Data','Ora','Simbolo','Direzione','P&L','Rischio','R','Strategia','Stato','Nota','Screenshot'];
 
   const campo = v => {
     const s = (v === null || v === undefined) ? '' : String(v);
-    return /[";\n]/.test(s) ? '"' + s.replace(/"/g,'""') + '"' : s;
+    return /[";\r\n]/.test(s) ? '"' + s.replace(/"/g,'""') + '"' : s;
   };
 
-  const righe = [...j_trades]
-    .sort((a,b) => a.date.localeCompare(b.date))
-    .map(t => [
+  const righe = j_ordina(list).map(t => [
       t.date, t.ora || '', t.symbol, t.dir === 'long' ? 'Long' : 'Short',
       t.pnl.toFixed(2).replace('.', ','),
       t.risk ? t.risk.toFixed(2).replace('.', ',') : '',
@@ -2151,31 +2841,185 @@ function j_exportCSV(){
       t.strategy || '',
       j_emoInfo(t.emo || 'lucido').nome,
       t.nota || '',
-      (t.shot && t.shot.startsWith('http')) ? t.shot : ''
+      t.shot ? 'sì' : ''
     ].map(campo).join(';'));
 
   /* BOM: così Excel legge bene gli accenti */
-  const csv = '\uFEFF' + [intestazioni.join(';'), ...righe].join('\r\n');
-  const b = new Blob([csv], { type: 'text/csv;charset=utf-8' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(b);
-  a.download = `riskly-operazioni-${new Date().toISOString().slice(0,10)}.csv`;
-  a.click();
-  j_flash(`${j_trades.length} operazioni esportate in CSV.`);
-}
-function j_importData(ev){
-  const f=ev.target.files[0]; if(!f) return;
-  const r=new FileReader();
-  r.onload=()=>{ try{
-      const d=JSON.parse(r.result);
-      if(!Array.isArray(d)) throw 0;
-      j_trades=d.map(t=>({...t,id:t.id||Math.random().toString(36).slice(2,10)}));
-      j_renderAll(); j_flash(`${j_trades.length} operazioni importate.`);
-    }catch{ j_flash('File non valido: serve un JSON con una lista di operazioni.'); } };
-  r.readAsText(f); ev.target.value='';
+  const csv = '﻿' + [intestazioni.join(';'), ...righe].join('\r\n');
+  j_scarica(csv, 'text/csv;charset=utf-8', `riskly-operazioni-${isoLocale()}.csv`);
+  j_flash(`${list.length} operazioni esportate in CSV.`);
 }
 
-function j_loadDemo(){
+/* ---------- Importa: JSON di Riskly o CSV (anche da broker e MetaTrader) ---------- */
+
+function j_numero(v){
+  if(typeof v === 'number') return v;
+  let s = String(v ?? '').replace(/[\s€$£]|CHF|EUR|USD|GBP/gi, '').replace(/[−–]/g, '-');
+  if(!s) return NaN;
+  if(/^\(.*\)$/.test(s)) s = '-' + s.slice(1, -1);
+  const c = s.lastIndexOf(','), p = s.lastIndexOf('.');
+  if(c > -1 && p > -1) s = c > p ? s.replace(/\./g, '').replace(',', '.') : s.replace(/,/g, '');
+  else if(c > -1) s = s.replace(',', '.');
+  return Number(s);
+}
+
+/* accetta 2026-09-12, 2026.09.12 14:30, 12/09/2026, 12.09.2026 14:30 */
+function j_leggiData(v){
+  const s = String(v ?? '').trim();
+  let y, mo, d, h, mi;
+  let m = s.match(/^(\d{4})[-./](\d{1,2})[-./](\d{1,2})(?:[ T,]+(\d{1,2}):(\d{2}))?/);
+  if(m) [, y, mo, d, h, mi] = m;
+  else {
+    m = s.match(/^(\d{1,2})[-./](\d{1,2})[-./](\d{4})(?:[ T,]+(\d{1,2}):(\d{2}))?/);
+    if(!m) return null;
+    [, d, mo, y, h, mi] = m;
+  }
+  const dt = new Date(+y, +mo - 1, +d);
+  if(dt.getMonth() !== +mo - 1 || dt.getDate() !== +d) return null;
+  return { date: isoLocale(dt), ora: h ? h.padStart(2, '0') + ':' + mi : '' };
+}
+
+function j_normalizza(o){
+  if(!o || typeof o !== 'object') return null;
+  const quando = j_leggiData(o.date ?? o.data);
+  if(!quando) return null;
+  const symbol = String(o.symbol ?? o.simbolo ?? '').toUpperCase().trim().slice(0, 24);
+  const pnl = j_numero(o.pnl ?? o['p&l']);
+  if(!symbol || !Number.isFinite(pnl)) return null;
+
+  const dirS = String(o.dir ?? o.direzione ?? '').toLowerCase();
+  const emoS = String(o.emo ?? o.emozione ?? o.stato ?? '').toLowerCase().trim();
+  const emo = (EMOZIONI.find(e => e.id === emoS || e.nome.toLowerCase() === emoS) || EMOZIONI[0]).id;
+  const oraM = String(o.ora ?? '').trim().match(/^(\d{1,2}):(\d{2})/);
+  const shot = typeof o.shot === 'string' &&
+    (o.shot.startsWith('https://') || (utente && o.shot.startsWith(utente.id + '/'))) ? o.shot : '';
+
+  return {
+    id: j_nuovoId(),
+    date: quando.date,
+    ora: oraM ? oraM[1].padStart(2, '0') + ':' + oraM[2] : quando.ora,
+    symbol,
+    dir: /short|sell|vend/.test(dirS) ? 'short' : 'long',
+    pnl: Math.round(pnl * 100) / 100,
+    risk: Math.max(0, j_numero(o.risk ?? o.rischio) || 0),
+    strategy: String(o.strategy ?? o.strategia ?? '').trim().slice(0, 60),
+    emo,
+    nota: String(o.nota ?? o.note ?? '').trim().slice(0, 2000),
+    shot, shotUrl: ''
+  };
+}
+
+function j_righeCSV(testo){
+  testo = testo.replace(/^﻿/, '');
+  const prima = testo.split(/\r?\n/)[0];
+  const sep = [';', '\t', ','].sort((a, b) => prima.split(b).length - prima.split(a).length)[0];
+  const righe = [];
+  let riga = [], campo = '', virgolette = false;
+  for(let i = 0; i < testo.length; i++){
+    const ch = testo[i];
+    if(virgolette){
+      if(ch === '"'){ if(testo[i+1] === '"'){ campo += '"'; i++; } else virgolette = false; }
+      else campo += ch;
+    }
+    else if(ch === '"') virgolette = true;
+    else if(ch === sep){ riga.push(campo); campo = ''; }
+    else if(ch === '\n' || ch === '\r'){
+      if(ch === '\r' && testo[i+1] === '\n') i++;
+      riga.push(campo); righe.push(riga); riga = []; campo = '';
+    }
+    else campo += ch;
+  }
+  if(campo || riga.length){ riga.push(campo); righe.push(riga); }
+  return righe.filter(r => r.some(c => c.trim()));
+}
+
+const COLONNE = {
+  date:     ['data','date','giorno','datetime','open time','opentime','time','data apertura','close time','data chiusura'],
+  ora:      ['ora','orario','hour'],
+  symbol:   ['simbolo','symbol','strumento','instrument','ticker','asset','pair','mercato','market'],
+  dir:      ['direzione','direction','side','type','tipo','lato'],
+  pnl:      ['p&l','pnl','p/l','profit','profitto','risultato','net profit','netto','p&l netto','profit/loss','guadagno','net p&l'],
+  risk:     ['rischio','risk'],
+  strategy: ['strategia','strategy','setup'],
+  emo:      ['stato','emozione','emotion','mood'],
+  nota:     ['nota','note','notes','commento','comment']
+};
+
+function j_daCSV(testo){
+  const righe = j_righeCSV(testo);
+  if(righe.length < 2) return [];
+  const testa = righe[0].map(h => h.trim().toLowerCase());
+  const indice = {};
+  for(const [campo, nomi] of Object.entries(COLONNE)){
+    const i = testa.findIndex(h => nomi.includes(h));
+    if(i > -1) indice[campo] = i;
+  }
+  if(indice.date === undefined || indice.symbol === undefined || indice.pnl === undefined) return null;
+  return righe.slice(1).map(r => {
+    const o = {};
+    for(const [campo, i] of Object.entries(indice)) o[campo] = r[i];
+    return o;
+  });
+}
+
+const j_impronta = t => `${t.date}|${t.ora || ''}|${t.symbol}|${Number(t.pnl).toFixed(2)}`;
+
+function j_importData(ev){
+  const f = ev.target.files[0];
+  ev.target.value = '';
+  if(!f || j_bloccatoDemo()) return;
+  const r = new FileReader();
+  r.onload = () => {
+    let grezze;
+    const testo = String(r.result);
+    if(testo.trim().startsWith('[')){
+      try{ grezze = JSON.parse(testo); } catch{ grezze = null; }
+    } else {
+      grezze = j_daCSV(testo);
+    }
+    if(!Array.isArray(grezze)){
+      j_flash('File non riconosciuto: serve il JSON di Riskly o un CSV con almeno data, simbolo e P&L.', true);
+      return;
+    }
+    const valide = grezze.map(j_normalizza).filter(Boolean);
+    j_importa(valide, grezze.length - valide.length);
+  };
+  r.readAsText(f);
+}
+
+async function j_importa(lista, scartate){
+  const presenti = new Set(j_trades.map(j_impronta));
+  const nuove = [];
+  lista.forEach(t => { const k = j_impronta(t); if(!presenti.has(k)){ presenti.add(k); nuove.push(t); } });
+  const doppie = lista.length - nuove.length;
+
+  if(!nuove.length){
+    j_flash(lista.length ? 'Nessuna operazione nuova: erano già tutte nel journal.' : 'Nel file non ho trovato operazioni valide.', true);
+    return;
+  }
+  const note = [doppie ? `${doppie} già presenti verranno saltate` : '', scartate ? `${scartate} righe non valide verranno ignorate` : '']
+    .filter(Boolean).join(', ');
+  if(!confirm(`Importare ${nuove.length} operazioni?${note ? '\n(' + note + ')' : ''}`)) return;
+
+  j_flash('Importazione in corso…');
+  try{
+    const righe = await inserisciOperazioni(nuove);
+    j_trades = j_trades.concat(righe.map(daRiga));
+    await j_firmaShot(j_trades);
+    j_meseSuUltimo(j_trades);
+    j_renderAll();
+    j_flash(`${righe.length} operazioni importate.`);
+  } catch(err){
+    console.error(err);
+    await caricaOperazioni();   // riallineo con quello che è davvero sul server
+    j_renderAll();
+    j_flash('Importazione non completata. ' + traduciErrore(err.message || String(err)), true);
+  }
+}
+
+/* ---------- Esempio ---------- */
+
+function j_generaDemo(){
   const sym = ['EURUSD','GBPUSD','XAUUSD','US30','NAS100'];
 
   // ogni strategia ha un profilo diverso: cosi' il confronto dice qualcosa
@@ -2218,9 +3062,11 @@ function j_loadDemo(){
 
     const win = Math.random() < wr;
 
+    // con la rivalsa capita di andare oltre lo stop
+    const oltreStop = perditeDiFila >= 2 && Math.random() < .4;
     const pnl = win
       ? risk * s.rr * (0.75 + Math.random()*0.5)
-      : -risk * (0.7 + Math.random()*0.35);
+      : -risk * (oltreStop ? 1.3 + Math.random()*0.4 : 0.7 + Math.random()*0.3);
 
     // l'emozione segue quello che è successo prima: dopo due perdite arriva la rivalsa
     let emo;
@@ -2243,8 +3089,8 @@ function j_loadDemo(){
     perditeDiFila = win ? 0 : perditeDiFila + 1;
 
     out.push({
-      id: Math.random().toString(36).slice(2,10),
-      date: d.toISOString().slice(0,10),
+      id: 'demo-' + i,
+      date: isoLocale(d),
       ora: String(ora).padStart(2,'0') + ':' + (Math.random()<.5?'00':'30'),
       symbol: sym[Math.floor(Math.random()*sym.length)],
       dir: Math.random() < 0.55 ? 'long' : 'short',
@@ -2252,23 +3098,31 @@ function j_loadDemo(){
       risk,
       strategy: s.nome,
       emo,
-      nota: el[Math.floor(Math.random()*el.length)]
+      nota: el[Math.floor(Math.random()*el.length)],
+      shot: '', shotUrl: ''
     });
   }
+  return out;
+}
 
-  j_trades = out;
-  if(out.length){
-    const ultima = new Date(out[out.length-1].date);
-    j_mese = new Date(ultima.getFullYear(), ultima.getMonth(), 1);
-  }
+/* entra o esce dall'esempio: i dati veri restano intatti */
+function j_anteprima(){
+  j_demo = j_demo ? null : j_generaDemo();
+  j_filtro = { ...FILTRO_VUOTO };
+  document.getElementById('fCerca').value = '';
+  j_pagina = 1;
+  if(j_modificaId) j_resetForm();
+  j_meseSuUltimo(j_lista());
   j_renderAll();
-  j_flash(out.length + ' operazioni di esempio caricate.');
+  if(j_demo){
+    j_flash(`${j_demo.length} operazioni di esempio. Le tue non vengono toccate.`);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 }
 
 
+/* ---------- Banner e avvio ---------- */
 
-
-/* avvio del journal quando si apre la sezione */
 let journalAvviato = false;
 
 function aggiornaBanner(){
@@ -2276,41 +3130,38 @@ function aggiornaBanner(){
   if(!b) return;
   const t = b.querySelector('.jb-t'), p = b.querySelector('.jb-s'), btn = b.querySelector('.btn');
 
-  if(utente){
-    const piano = profilo ? profilo.piano : 'prova';
-    const nomi = {prova:'Prova gratuita', base:'Piano Base', pro:'Piano Pro', premium:'Piano Premium'};
-    let scad = '';
-    if(profilo && profilo.scadenza){
-      const g = Math.ceil((new Date(profilo.scadenza) - new Date()) / 86400000);
-      if(piano === 'prova') scad = g > 0 ? ` · ${g} giorni rimasti` : ' · scaduta';
-    }
-    t.textContent = (nomi[piano] || piano) + scad;
-    p.textContent = 'Le tue operazioni sono salvate: le ritrovi da qualsiasi dispositivo.';
-    if(btn){ btn.textContent = 'Vedi i piani'; btn.onclick = () => location.href='https://riskly.trade#prezzi'; }
-  } else {
-    t.textContent = 'Stai provando il journal con dati di esempio';
-    p.textContent = 'Registrati per salvare le tue operazioni e ritrovarle da qualsiasi dispositivo.';
-    if(btn){ btn.textContent = 'Crea un account'; btn.onclick = () => apriAccesso('registrati'); }
+  if(j_demo){
+    t.textContent = 'Stai guardando dati di esempio';
+    p.textContent = 'Esplora metriche, calendario e spunti. Le tue operazioni non vengono toccate.';
+    btn.textContent = 'Torna ai tuoi dati';
+    btn.onclick = j_anteprima;
+    return;
   }
+
+  const piano = pianoAttivo();
+  const nomi = {prova:'Prova gratuita', base:'Piano Base', pro:'Piano Pro', premium:'Piano Premium', scaduto:'Prova gratuita scaduta'};
+  let scad = '';
+  if(piano === 'prova' && profilo && profilo.scadenza){
+    const g = Math.ceil((new Date(profilo.scadenza) - new Date()) / 86400000);
+    scad = ` · ${g} ${g === 1 ? 'giorno rimasto' : 'giorni rimasti'}`;
+  }
+  t.textContent = (nomi[piano] || piano) + scad;
+  p.textContent = piano === 'scaduto'
+    ? 'Scegli un piano per continuare a usare tutte le funzioni. Le tue operazioni restano salvate.'
+    : 'Le tue operazioni sono salvate: le ritrovi da qualsiasi dispositivo.';
+  btn.textContent = piano === 'scaduto' ? 'Scegli un piano' : 'Vedi i piani';
+  btn.onclick = () => location.href = 'https://riskly.trade#prezzi';
 }
 
 function avviaJournal(){
-  aggiornaBanner();
-  aggiornaAreaShot();
-  const d = document.getElementById('f-date');
-  if(d && !d.value) d.value = new Date().toISOString().slice(0,10);
   j_renderSceltaEmo();
-
-  // se sei connesso mostro i tuoi dati, altrimenti la demo
   if(!journalAvviato){
     journalAvviato = true;
-    if(!utente && j_trades.length === 0){ j_loadDemo(); return; }
+    j_resetForm();
+    j_meseSuUltimo(j_trades);
   }
-
   j_renderAll();
 }
-
-
 
 
 /* ---------- Schermata di benvenuto ---------- */
@@ -2323,21 +3174,18 @@ function aggiornaVista(){
   benv.style.display = dentro ? 'none' : 'flex';
   app.style.display  = dentro ? 'block' : 'none';
 
-  if(dentro && typeof avviaJournal === 'function') avviaJournal();
+  if(dentro) avviaJournal();
 }
-
-/* aggiorno la vista a ogni cambio di sessione */
-const _caricaOriginale = caricaSessione;
-caricaSessione = async function(){
-  await _caricaOriginale();
-  aggiornaVista();
-};
 
 caricaSessione();
 
 if(sb){
-  sb.auth.onAuthStateChange((e) => {
-    if(e === 'SIGNED_IN' || e === 'SIGNED_OUT') caricaSessione();
+  // l'evento arriva anche quando si torna sulla scheda: ricarico solo se cambia utente.
+  // setTimeout: dentro questa callback non si devono attendere altre chiamate a Supabase
+  sb.auth.onAuthStateChange((evento, sessione) => {
+    if(evento === 'INITIAL_SESSION') return;
+    const id = sessione ? sessione.user.id : null;
+    if(id !== (utente ? utente.id : null)) setTimeout(caricaSessione, 0);
   });
 }
 
