@@ -1,6 +1,54 @@
-{"scene":[
- {"tipo":"hook","dur":3.2,"kicker":"IL CORSO DA 997 €","testo":["Il corso di trading","da 997 €,","<em>in 20 secondi.</em>"]},
- {"tipo":"lista","dur":6.8,"titolo":"Le regole che contano davvero:","passo":0.95,"voci":[["Rischia l'1% per operazione",""],["Metti lo stop prima di entrare",""],["Fermati dopo 3 perdite di fila",""],["Scrivi ogni trade nel journal",""]]},
- {"tipo":"frase","dur":4.4,"testo":["Prezzo: <em>0 €.</em>","Il difficile non è saperle.","È rispettarle."],"nota":"Quale fai più fatica a rispettare? 👇"},
- {"tipo":"chiusura","dur":3.4,"cta":"Strumenti gratis · link in bio"}
-]}
+{
+ "subito": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 3.2,
+   "kicker": "IL CORSO DA 997 €",
+   "testo": [
+    "Il corso di trading",
+    "da 997 €,",
+    "<em>in 20 secondi.</em>"
+   ]
+  },
+  {
+   "tipo": "lista",
+   "dur": 6.8,
+   "titolo": "Le regole che contano davvero:",
+   "passo": 0.95,
+   "voci": [
+    [
+     "Rischia l'1% per operazione",
+     ""
+    ],
+    [
+     "Metti lo stop prima di entrare",
+     ""
+    ],
+    [
+     "Fermati dopo 3 perdite di fila",
+     ""
+    ],
+    [
+     "Scrivi ogni trade nel journal",
+     ""
+    ]
+   ]
+  },
+  {
+   "tipo": "frase",
+   "dur": 4.4,
+   "testo": [
+    "Prezzo: <em>0 €.</em>",
+    "Il difficile non è saperle.",
+    "È rispettarle."
+   ],
+   "nota": "Quale fai più fatica a rispettare? 👇"
+  },
+  {
+   "tipo": "chiusura",
+   "dur": 3.4,
+   "cta": "Strumenti gratis · link in bio"
+  }
+ ]
+}

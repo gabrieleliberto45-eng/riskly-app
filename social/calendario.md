@@ -4,6 +4,8 @@ Un video verticale al giorno, lo stesso su **TikTok**, **Instagram Reels** e **Y
 Orari (dati Metricool sul pubblico TikTok in Italia): **18:00 dal lunedì al venerdì, 10:00 sabato e domenica**.
 Si aggiornano ogni settimana in base ai risultati dei video già pubblicati.
 
+Tutti i video partono con il titolo già visibile (`"subito": true`): TikTok usa il primo fotogramma come copertina.
+
 Stato: collegati TikTok (@riskly63) e Instagram (@riskly.trade), settimana 1 programmata su entrambi. YouTube da collegare.
 Instagram: picco alle 10:00 tutti i giorni (Reel alle 10:00, copertina a 2,6 s). TikTok: 18:00 nei feriali, 10:00 nel weekend.
 
