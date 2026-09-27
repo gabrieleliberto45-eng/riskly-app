@@ -1,16 +1,43 @@
--- Riskly: collegamento tra i bot di MetaTrader e il journal.
--- Da eseguire una volta nel SQL Editor di Supabase (Dashboard → SQL Editor → New query),
--- dopo sicurezza.sql. Si può rieseguire senza danni.
---
--- Come funziona
---   · Nel journal ognuno genera la sua "chiave bot" e la incolla nel bot.
---   · Il bot non ha la password dell'utente: chiama le funzioni qui sotto con la chiave,
---     e le funzioni scrivono solo nel conto di chi possiede quella chiave.
---   · Le operazioni arrivate dal bot sono normali righe di "operazioni": si modificano e
---     si cancellano dal journal come tutte le altre. Una volta cancellata, un'operazione
---     non viene reimportata (bot_ricevute ricorda cosa è già arrivato).
---   · Il bot manda anche il suo stato (perdita di oggi, blocco…): il journal lo mostra,
---     così lo vedi dal telefono.
+-- Riskly: da eseguire UNA volta nel SQL Editor di Supabase (tutto insieme).
+-- 1) pannello Gestione dell'admin  2) collegamento tra bot e journal.
+-- Si può rieseguire senza danni.
+
+create or replace function public.e_admin() returns boolean
+  language sql stable security definer set search_path = public
+as $$
+  select lower(coalesce(auth.jwt() ->> 'email', '')) = 'gabrieleliberto1212@gmail.com'
+$$;
+
+-- l'admin vede e modifica tutti i profili
+drop policy if exists "profili: admin legge tutti" on public.profili;
+create policy "profili: admin legge tutti" on public.profili
+  for select to authenticated
+  using (public.e_admin());
+
+drop policy if exists "profili: admin modifica tutti" on public.profili;
+create policy "profili: admin modifica tutti" on public.profili
+  for update to authenticated
+  using (public.e_admin())
+  with check (public.e_admin());
+
+-- il permesso di modifica torna com'era; piano e scadenza li protegge il controllo qui sotto
+grant update on public.profili to authenticated;
+
+create or replace function public.proteggi_piano() returns trigger
+  language plpgsql security definer set search_path = public
+as $$
+begin
+  if (new.piano is distinct from old.piano or new.scadenza is distinct from old.scadenza)
+     and auth.role() = 'authenticated' and not public.e_admin() then
+    raise exception 'Solo l''amministratore può cambiare piano e scadenza';
+  end if;
+  return new;
+end
+$$;
+
+drop trigger if exists proteggi_piano on public.profili;
+create trigger proteggi_piano before update on public.profili
+  for each row execute function public.proteggi_piano();
 
 
 -- 1. Operazioni: da dove arrivano ---------------------------------------------------
