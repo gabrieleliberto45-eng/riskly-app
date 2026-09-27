@@ -26,14 +26,51 @@ create policy "profili: lettura del proprio" on public.profili
   for select to authenticated
   using (auth.uid() = id);
 
--- l'utente può cambiare solo il nome; piano e scadenza li aggiorna il pagamento (service role)
 drop policy if exists "profili: modifica del proprio" on public.profili;
 create policy "profili: modifica del proprio" on public.profili
   for update to authenticated
   using (auth.uid() = id)
   with check (auth.uid() = id);
-revoke update on public.profili from authenticated, anon;
-grant update (nome) on public.profili to authenticated;
+
+-- l'amministratore (pannello "Gestione" del sito) vede e modifica tutti i profili;
+-- piano e scadenza li può cambiare solo lui (o il pagamento, con la service role)
+create or replace function public.e_admin() returns boolean
+  language sql stable security definer set search_path = public
+as $$
+  select lower(coalesce(auth.jwt() ->> 'email', '')) = 'gabrieleliberto1212@gmail.com'
+$$;
+
+-- l'admin vede e modifica tutti i profili
+drop policy if exists "profili: admin legge tutti" on public.profili;
+create policy "profili: admin legge tutti" on public.profili
+  for select to authenticated
+  using (public.e_admin());
+
+drop policy if exists "profili: admin modifica tutti" on public.profili;
+create policy "profili: admin modifica tutti" on public.profili
+  for update to authenticated
+  using (public.e_admin())
+  with check (public.e_admin());
+
+-- il permesso di modifica torna com'era; piano e scadenza li protegge il controllo qui sotto
+grant update on public.profili to authenticated;
+
+create or replace function public.proteggi_piano() returns trigger
+  language plpgsql security definer set search_path = public
+as $$
+begin
+  if (new.piano is distinct from old.piano or new.scadenza is distinct from old.scadenza)
+     and auth.role() = 'authenticated' and not public.e_admin() then
+    raise exception 'Solo l''amministratore può cambiare piano e scadenza';
+  end if;
+  return new;
+end
+$$;
+
+drop trigger if exists proteggi_piano on public.profili;
+create trigger proteggi_piano before update on public.profili
+  for each row execute function public.proteggi_piano();
+
 
 
 -- 3. Screenshot: bucket privato, ognuno vede solo la propria cartella --------------
