@@ -1481,7 +1481,7 @@
       <div class="sez-titolo pagina">
         <span class="sez-num">BOT</span>
         <h2>Quattro software di gestione.<br><em>Nessun segnale.</em></h2>
-        <p class="lead">Non decidono cosa comprare e non aprono operazioni per conto loro. Proteggono il conto, gestiscono le posizioni che hai già aperto, e fanno rispettare le regole che hai deciso quando eri lucido — anche quando non lo sei più.</p>
+        <p class="lead">Non decidono cosa comprare e non aprono operazioni per conto loro. Proteggono il conto, gestiscono le posizioni che hai già aperto, e fanno rispettare le regole che hai deciso quando eri lucido — anche quando non lo sei più. E ogni operazione finisce da sola nel tuo journal.</p>
         <div class="plats" style="margin-top:18px">
           <span class="plat on">
             <svg width="13" height="13" viewBox="0 0 32 32" fill="none"><rect x="7" y="17" width="4" height="8" rx="1.4" fill="currentColor"/><rect x="14" y="11" width="4" height="14" rx="1.4" fill="currentColor"/><rect x="21" y="6" width="4" height="19" rx="1.4" fill="currentColor"/></svg>
@@ -1494,27 +1494,79 @@
         </div>
       </div>
 
+      <!-- ══ COSA FACCIAMO ══ -->
+      <div class="card" style="margin-bottom:16px">
+        <div class="card-head"><h3>Cosa facciamo noi</h3><span class="meta">tre pezzi che lavorano insieme</span></div>
+        <div class="tools">
+          <div>
+            <h3 style="font-family:'Instrument Sans',-apple-system,system-ui,sans-serif;font-size:.92rem;font-weight:600;margin-bottom:6px">Le regole le decidi tu</h3>
+            <p style="color:var(--dim);font-size:.85rem">Quanto puoi perdere oggi, quante operazioni, quante perdite di fila, quanto rischiare per trade. Le scegli a mente fredda, una volta sola. Noi non ti diciamo cosa comprare.</p>
+          </div>
+          <div>
+            <h3 style="font-family:'Instrument Sans',-apple-system,system-ui,sans-serif;font-size:.92rem;font-weight:600;margin-bottom:6px">I bot le fanno rispettare</h3>
+            <p style="color:var(--dim);font-size:.85rem">Dentro MetaTrader, in tempo reale: stop automatico, lotto giusto, pausa dopo una perdita. Quando superi un limite il blocco è vero: MetaTrader si chiude fino a mezzanotte.</p>
+          </div>
+          <div>
+            <h3 style="font-family:'Instrument Sans',-apple-system,system-ui,sans-serif;font-size:.92rem;font-weight:600;margin-bottom:6px">Il journal ti mostra il perché</h3>
+            <p style="color:var(--dim);font-size:.85rem">Le operazioni chiuse arrivano da sole nel journal, con rischio, R e pip. Lì aggiungi note e stato d'animo, e scopri quali abitudini ti costano. Dal telefono vedi anche lo stato dei bot.</p>
+          </div>
+        </div>
+      </div>
+
       <div class="diff">
         <div class="altri">
-          <h4>COSA FANNO GLI ALTRI</h4>
+          <h4>COSA FANNO DI SOLITO GLI ALTRI</h4>
           <ul>
             <li>Bloccano quando l'equity è già scesa del 4%</li>
-            <li>Reagiscono ai soldi persi, quando il danno è fatto</li>
-            <li>Nessun controllo su quante volte rientri</li>
-            <li>Un bot per il rischio, un altro per la gestione, che non si parlano</li>
-            <li>Il rischio è calcolato una posizione alla volta</li>
+            <li>Il "blocco" chiude le posizioni, ma puoi riaprire subito e pagare di nuovo lo spread</li>
+            <li>Lotto troppo grande: chiudono tutto oppure si limitano ad avvisarti</li>
+            <li>Un bot per il rischio, un altro per la gestione, un journal a parte da compilare a mano</li>
+            <li>Il pannello si vede solo sul computer</li>
           </ul>
         </div>
         <div class="noi">
           <h4>COSA FA RISKLY IN PIÙ</h4>
           <ul>
             <li>Ti ferma dopo N perdite di fila, non al −4%<small>Il numero lo scegli tu: di serie sono 3. Pausa obbligatoria dopo ogni perdita e stop della giornata. Interviene sul comportamento, non sul saldo.</small></li>
-            <li>Chiude il trade aperto durante la pausa<small>Se rientri prima che siano passati i minuti che hai deciso, la posizione viene chiusa. Non è un avviso: è un blocco.</small></li>
-            <li>Rischio calcolato sull'insieme<small>Somma il rischio di tutte le posizioni aperte prima di aprirne altre. Se il totale supera la soglia, non ne apre nessuna.</small></li>
-            <li>Scaglionamento da ordine manuale<small>Apri una posizione, il bot ne apre altre con TP in pip (es. 20, 40, 60). Niente chiusure parziali a mano.</small></li>
-            <li>Collegato al journal<small>Le operazioni diventano metriche: scopri se dopo una perdita il tuo winrate crolla davvero.</small></li>
+            <li>Il blocco chiude MetaTrader<small>Nessun EA può impedire a MetaTrader di mandare un ordine manuale. Per questo, quando scatta un limite, Riskly chiude le posizioni e poi chiude MetaTrader: se lo riapri prima di mezzanotte si richiude subito. E riavviare non serve: il blocco resta.</small></li>
+            <li>Riduce il lotto invece di chiudere<small>Se apri troppo grande, chiude solo la parte in eccesso: l'operazione resta aperta con il rischio che hai deciso. Con i pulsanti BUY e SELL di Riskly Pro il lotto giusto è calcolato prima di entrare.</small></li>
+            <li>Rischio calcolato sull'insieme<small>Somma il rischio della posizione e dei suoi scaglioni prima di aprirli. Se il totale supera la soglia, non ne apre nessuno. Niente aperture con lo spread troppo largo o vicino alle notizie importanti.</small></li>
+            <li>Journal automatico, anche dal telefono<small>Le operazioni chiuse arrivano da sole nel journal e le modifichi come vuoi. Lo stato dei bot (perdita di oggi, pausa, blocco) lo vedi dal telefono, dove l'app MetaTrader non mostra i pannelli.</small></li>
           </ul>
         </div>
+      </div>
+
+      <!-- ══ RISKLY E GLI ALTRI ══ -->
+      <div class="card" style="margin-bottom:16px">
+        <div class="card-head"><h3>Riskly e gli altri</h3><span class="meta">confronto per tipo di strumento</span></div>
+        <div class="t-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Cosa conta</th>
+                <th class="c">Bot che fanno trading<br><span style="font-weight:400;color:var(--dim2);font-size:.72rem">segnali, griglie, martingala</span></th>
+                <th class="c">Gestori di rischio tipici</th>
+                <th class="c" style="color:#2EE06C">Riskly</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="lbl">Decide quando entrare</td><td class="c">sì, al posto tuo</td><td class="c yes">no</td><td class="c yes">no, decidi tu</td></tr>
+              <tr><td class="lbl">Promette rendimenti</td><td class="c">spesso</td><td class="c yes">no</td><td class="c yes">mai</td></tr>
+              <tr><td class="lbl">Limite di perdita giornaliera</td><td class="c no">raro</td><td class="c yes">✓</td><td class="c yes">✓</td></tr>
+              <tr><td class="lbl" style="color:var(--up)">Pausa dopo una perdita e stop dopo N perdite di fila</td><td class="c no">—</td><td class="c no">raro</td><td class="c yes">✓</td></tr>
+              <tr><td class="lbl" style="color:var(--up)">Blocco che chiude MetaTrader fino a mezzanotte</td><td class="c no">—</td><td class="c no">di solito no</td><td class="c yes">✓</td></tr>
+              <tr><td class="lbl">Blocco che resta anche se riavvii</td><td class="c no">—</td><td class="c no">non sempre</td><td class="c yes">✓</td></tr>
+              <tr><td class="lbl" style="color:var(--up)">Lotto troppo grande: riduce solo l'eccesso</td><td class="c no">—</td><td class="c no">di solito chiude o avvisa</td><td class="c yes">✓</td></tr>
+              <tr><td class="lbl">Lotto calcolato dal rischio con un clic</td><td class="c no">—</td><td class="c no">alcuni</td><td class="c yes">✓ Riskly Pro</td></tr>
+              <tr><td class="lbl">Niente aperture con spread largo o vicino alle notizie</td><td class="c no">varia</td><td class="c no">raro</td><td class="c yes">✓ Riskly Pro</td></tr>
+              <tr><td class="lbl" style="color:var(--up)">Operazioni nel journal in automatico</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">✓</td></tr>
+              <tr><td class="lbl">Stato dei bot dal telefono</td><td class="c no">raro</td><td class="c no">raro</td><td class="c yes">✓ dal journal</td></tr>
+              <tr><td class="lbl">Tutto in pip, niente formule</td><td class="c no">varia</td><td class="c no">varia</td><td class="c yes">✓</td></tr>
+              <tr><td class="lbl">Come si paga</td><td class="c">spesso abbonamento</td><td class="c">varia</td><td class="c yes">una volta sola</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="color:var(--dim2);font-size:.76rem;margin-top:12px;line-height:1.6">Confronto tra tipi di strumento, basato su come funzionano di solito: ogni prodotto è diverso e non ci riferiamo a nessuno in particolare. Prima di scegliere, qualsiasi strumento, provalo su un conto demo.</p>
       </div>
 
       <div class="lancio-box">
@@ -1667,14 +1719,16 @@
               MT4
             </span>
           </div>
-          <p class="sub">Ti ferma dopo N perdite consecutive — il numero lo imposti tu — quando il conto è ancora sano. E rispetta i limiti della tua prop firm con un margine di sicurezza.</p>
+          <p class="sub">Ti ferma dopo N perdite consecutive — il numero lo imposti tu — quando il conto è ancora sano. E quando ti blocca, chiude anche MetaTrader fino a mezzanotte.</p>
           <ul>
             <li>Pausa obbligatoria dopo una perdita</li>
             <li>Blocco dopo N perdite consecutive</li>
-            <li>Limite di perdita giornaliera con margine di sicurezza</li>
-            <li>Limite di drawdown totale</li>
+            <li>Limite di perdita e di operazioni giornaliere</li>
+            <li>Blocco che chiude MetaTrader e resta dopo un riavvio</li>
+            <li>Riduce il lotto se rischi più del limite</li>
             <li>Stop loss obbligatorio</li>
             <li>Chiusura automatica al target</li>
+            <li>Operazioni nel journal e stato sul telefono</li>
           </ul>
           <div class="price">€99</div>
           <div class="price-off">prezzo di lancio · dal 23 ottobre €198</div>
@@ -1698,7 +1752,7 @@
           </div>
           <p class="sub">Gestisce le posizioni aperte al posto tuo: stop loss, break-even e trailing stop. Tutto in pip, nessuna formula da ricordare.</p>
           <ul>
-            <li>Stop loss e take profit automatici in pip, se mancano</li>
+            <li>Stop loss e take profit automatici in pip, se mancano: mai una posizione senza stop</li>
             <li>Break-even automatico dopo N pip, con margine</li>
             <li>Trailing stop in pip: avvio, distanza e passo</li>
             <li>Filtri per simbolo e magic number</li>
@@ -1732,6 +1786,7 @@
             <li>Ingressi a mercato o con ordini pendenti</li>
             <li>Stop loss automatico in pip se manca sull'originale</li>
             <li>Blocco se il rischio totale è eccessivo</li>
+            <li>Pendenti cancellati da soli se l'originale si chiude</li>
           </ul>
           <div class="price">€129</div>
           <div class="price-off">prezzo di lancio · dal 23 ottobre €258</div>
@@ -1759,8 +1814,10 @@
             <li>Tutto di TradeManager</li>
             <li>Tutto di ScaleIn</li>
             <li>Rischio calcolato sull'insieme delle posizioni</li>
+            <li>Pulsanti BUY e SELL con il lotto già calcolato</li>
+            <li>Niente aperture con spread largo o vicino alle notizie</li>
+            <li>Operazioni nel journal e stato sul telefono</li>
             <li>Pannello unico con barre di avanzamento</li>
-            <li>Controllo dei parametri all'avvio</li>
             <li style="color:var(--up)">50% di sconto sul videocorso</li>
           </ul>
           <div class="price">€249</div>
@@ -1788,7 +1845,8 @@
               <tr><td class="lbl" style="color:var(--up)">Pausa dopo una perdita</td><td class="c yes">✓</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">✓</td></tr>
               <tr><td class="lbl" style="color:var(--up)">Blocco dopo N perdite consecutive</td><td class="c yes">✓</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">✓</td></tr>
               <tr><td class="lbl">Limite perdita giornaliera</td><td class="c yes">✓</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">✓</td></tr>
-              <tr><td class="lbl">Limite drawdown totale</td><td class="c yes">✓</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">✓</td></tr>
+              <tr><td class="lbl" style="color:var(--up)">Blocco che chiude MetaTrader</td><td class="c yes">✓</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">✓</td></tr>
+              <tr><td class="lbl">Riduzione del lotto troppo grande</td><td class="c yes">✓</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">✓</td></tr>
               <tr><td class="lbl">Blocco anti-revenge</td><td class="c yes">✓</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">✓</td></tr>
               <tr><td class="lbl">Stop loss automatico</td><td class="c no">—</td><td class="c yes">✓</td><td class="c yes">✓</td><td class="c yes">✓</td></tr>
               <tr><td class="lbl">Break-even</td><td class="c no">—</td><td class="c yes">✓</td><td class="c no">—</td><td class="c yes">✓</td></tr>
@@ -1796,6 +1854,10 @@
               <tr><td class="lbl">Scaglionamento posizioni</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">✓</td><td class="c yes">✓</td></tr>
               <tr><td class="lbl">TP scaglionati in pip</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">✓</td><td class="c yes">✓</td></tr>
               <tr><td class="lbl">Rischio calcolato sul totale</td><td class="c no">—</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">✓</td></tr>
+              <tr><td class="lbl">Pulsanti con lotto calcolato</td><td class="c no">—</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">✓</td></tr>
+              <tr><td class="lbl">Filtro spread e notizie</td><td class="c no">—</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">✓</td></tr>
+              <tr><td class="lbl" style="color:var(--up)">Operazioni nel journal in automatico</td><td class="c yes">✓</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">✓</td></tr>
+              <tr><td class="lbl">Stato dei bot dal telefono</td><td class="c yes">✓</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">✓</td></tr>
               <tr><td class="lbl">MetaTrader 5</td><td class="c yes">✓</td><td class="c yes">✓</td><td class="c yes">✓</td><td class="c yes">✓</td></tr>
               <tr><td class="lbl">MetaTrader 4</td><td class="c yes">✓</td><td class="c yes">✓</td><td class="c yes">✓</td><td class="c yes">✓</td></tr>
               <tr><td class="lbl">Conti per licenza</td><td class="c">2</td><td class="c">2</td><td class="c">2</td><td class="c yes">3</td></tr>
@@ -2189,23 +2251,29 @@
         <details><summary>Vendete segnali o consigli su cosa comprare?</summary>
           <p>No, e non è previsto. Tutti gli strumenti riguardano la gestione del rischio, la disciplina e l'analisi dei tuoi risultati. Le decisioni operative restano tue.</p></details>
 
+        <details><summary>Vedo il pannello dei bot anche dal telefono?</summary>
+          <p>Non nell'app MetaTrader: sul telefono gli Expert Advisor non girano e l'app non mostra quello che disegnano sul grafico, per nessun bot. Per questo RiskGuard e Riskly Pro mandano il loro stato al journal: aprilo dal telefono e trovi il riquadro "I tuoi bot" con la perdita di oggi, le operazioni, le perdite di fila, la pausa e il blocco, aggiornato da solo.</p></details>
+
+        <details><summary>Posso aprire operazioni durante un blocco?</summary>
+          <p>Da MetaTrader sul computer no: quando scatta un limite il bot chiude le posizioni e poi chiude MetaTrader, e se lo riapri prima di mezzanotte si richiude subito. Nessun EA può impedire un ordine già partito, per questo togliamo proprio il terminale da cui partirebbe. Dall'app sul telefono invece si può ancora aprire: l'operazione viene chiusa appena riapri MetaTrader sul computer, ma lo spread lo paghi. Se vuoi un blocco totale, non tenere l'app di trading sul telefono.</p></details>
+
         <details><summary>I bot funzionano su MT4 o su MT5?</summary>
-          <p>Entrambe. Ogni bot esiste sia per MetaTrader 4 che per MetaTrader 5, e la licenza copre tutte e due le piattaforme: se cambi versione non paghi nulla in più.</p></details>
+          <p>Entrambe. Ogni bot esiste sia per MetaTrader 4 che per MetaTrader 5, e la licenza copre tutte e due le piattaforme: se cambi versione non paghi nulla in più. L'unica differenza: il filtro notizie di Riskly Pro c'è solo su MT5, perché MetaTrader 4 non ha il calendario economico.</p></details>
 
         <details><summary>Cosa fa Riskly che gli altri bot di gestione rischio non fanno?</summary>
-          <p>Il blocco al raggiungimento del limite di perdita ce l'hanno quasi tutti: è lo standard della categoria. Quello che cambia è <b>quando</b> interviene. Gli altri aspettano che l'equity scenda sotto una soglia, cioè che i soldi siano già persi. Riskly ti ferma prima, sul comportamento: pausa obbligatoria dopo ogni perdita e stop dopo N perdite consecutive, anche se il conto è ancora perfettamente sano. Se apri una posizione durante la pausa, viene chiusa — non è un avviso, è un blocco. In più il rischio è calcolato sull'insieme delle posizioni aperte invece che su ciascuna separatamente.</p></details>
+          <p>Il blocco al raggiungimento del limite di perdita ce l'hanno quasi tutti: è lo standard della categoria. Quello che cambia è <b>quando</b> interviene. Gli altri aspettano che l'equity scenda sotto una soglia, cioè che i soldi siano già persi. Riskly ti ferma prima, sul comportamento: pausa obbligatoria dopo ogni perdita e stop dopo N perdite consecutive, anche se il conto è ancora perfettamente sano. Se apri una posizione durante la pausa, viene chiusa — non è un avviso, è un blocco. In più il rischio è calcolato sull'insieme delle posizioni aperte invece che su ciascuna separatamente. Quando scatta un blocco, Riskly chiude anche MetaTrader fino a mezzanotte, così non puoi rientrare e pagare di nuovo lo spread; se apri un lotto troppo grande, toglie solo la parte in eccesso invece di chiudere tutto; e ogni operazione chiusa arriva da sola nel tuo journal.</p></details>
 
         <details><summary>I bot vanno bene per le challenge delle prop firm?</summary>
-          <p>Sì, RiskGuard e Riskly Pro nascono proprio per quello: imposti i limiti della tua prop firm con un margine di sicurezza e il bot blocca l'operatività prima della violazione. Verifica però il regolamento della tua prop firm, perché alcune limitano l'uso di Expert Advisor.</p></details>
+          <p>Sì, RiskGuard e Riskly Pro aiutano proprio lì: imposti una perdita giornaliera un po' più bassa di quella della tua prop e il bot blocca l'operatività, chiudendo anche MetaTrader, prima della violazione. I limiti dei bot sono tutti giornalieri: il drawdown massimo complessivo della challenge tienilo d'occhio a parte, per esempio con il tracker nei calcolatori. Verifica anche il regolamento della tua prop firm, perché alcune limitano l'uso di Expert Advisor.</p></details>
 
         <details><summary>Come funziona la prova gratuita?</summary>
           <p>Sette giorni su conto demo, senza carta di credito. Ti inviamo il file e una licenza a scadenza legata al numero di conto. Serve a vederlo lavorare su qualche operazione prima di decidere.</p></details>
 
         <details><summary>Il bot apre operazioni da solo?</summary>
-          <p>No. RiskGuard e TradeManager agiscono solo su posizioni che hai già aperto tu. ScaleIn apre posizioni aggiuntive, ma solo dopo che tu hai aperto la prima manualmente, e con i parametri che hai impostato.</p></details>
+          <p>No. RiskGuard e TradeManager agiscono solo su posizioni che hai già aperto tu. ScaleIn apre posizioni aggiuntive, ma solo dopo che tu hai aperto la prima manualmente, e con i parametri che hai impostato. Riskly Pro ha i pulsanti BUY e SELL, che aprono solo quando li premi tu, con il lotto calcolato sul rischio che hai scelto.</p></details>
 
         <details><summary>Posso usare più bot insieme?</summary>
-          <p>Sì, usano magic number distinti e non entrano in conflitto. Detto questo, se ti servono più moduli, Riskly Pro costa meno della somma e i moduli comunicano tra loro: il rischio viene calcolato sull'insieme delle posizioni, non su ciascuna separatamente.</p></details>
+          <p>Sì, purché non facciano la stessa cosa sulle stesse posizioni: RiskGuard insieme a TradeManager o a ScaleIn va benissimo, mentre Riskly Pro contiene già tutti e tre e non va affiancato agli altri sullo stesso simbolo. Se ti servono più moduli, Riskly Pro costa meno della somma e i moduli comunicano tra loro: il rischio viene calcolato sull'insieme delle posizioni, non su ciascuna separatamente.</p></details>
 
         <details><summary>Come funziona la prova del journal?</summary>
           <p>Sette giorni con tutte le funzioni del piano che scegli, senza carta di credito. Alla scadenza decidi se attivare l'abbonamento: se non lo fai, i tuoi dati restano salvati e puoi esportarli quando vuoi.</p></details>
@@ -2214,7 +2282,7 @@
           <p>Sì, quando vuoi, dalle impostazioni dell'account. L'abbonamento resta attivo fino alla scadenza del periodo già pagato e puoi esportare i tuoi dati in qualsiasi momento.</p></details>
 
         <details><summary>I miei dati sono al sicuro?</summary>
-          <p>I calcolatori girano interamente nel tuo browser, senza inviare nulla. I dati del journal sono legati al tuo account, non vengono condivisi né venduti. I bot funzionano in locale su MetaTrader e non trasmettono le tue operazioni.</p></details>
+          <p>I calcolatori girano interamente nel tuo browser, senza inviare nulla. I dati del journal sono legati al tuo account, non vengono condivisi né venduti. I bot funzionano in locale su MetaTrader e non trasmettono nulla, a meno che tu non li colleghi al tuo journal: in quel caso mandano solo al tuo account le operazioni chiuse e il loro stato, con una chiave che generi e puoi cambiare quando vuoi.</p></details>
 
         <details><summary>Riskly ha accesso ai miei fondi?</summary>
           <p>No, mai. Il journal legge soltanto lo storico delle operazioni in sola lettura. I bot girano in locale sulla tua installazione di MetaTrader, sul tuo computer: agiscono su stop loss e take profit delle posizioni, ma non possono effettuare prelievi, trasferimenti o accedere al tuo denaro. Non chiediamo mai le credenziali di accesso al conto reale, solo il numero identificativo per la licenza.</p></details>
@@ -2223,7 +2291,7 @@
           <p>Sì, praticamente tutte. Il journal accede in sola lettura allo storico e non interferisce con l'operatività, quindi non viola i regolamenti. Per i bot il discorso è diverso: alcune prop firm limitano o vietano gli Expert Advisor, quindi verifica il regolamento della tua prima dell'acquisto.</p></details>
 
         <details><summary>Quali broker e prop firm sono supportati?</summary>
-          <p>Il journal accetta inserimento manuale e import CSV da qualsiasi broker, quindi funziona con tutti i broker e le prop firm. La sincronizzazione automatica con MetaTrader non è ancora disponibile: quando arriverà sarà inclusa nei piani, senza costi aggiuntivi. I bot funzionano su qualunque installazione MT4 o MT5.</p></details>
+          <p>Il journal accetta inserimento manuale e import CSV da qualsiasi broker, quindi funziona con tutti i broker e le prop firm. Chi usa RiskGuard o Riskly Pro può collegarli al journal: le operazioni chiuse arrivano da sole, e nel journal scegli cosa importare. I bot funzionano su qualunque installazione MT4 o MT5.</p></details>
 
         <details><summary>Posso importare le operazioni passate?</summary>
           <p>Sì. Puoi esportare lo storico da MetaTrader in CSV e caricarlo: le metriche vengono ricalcolate su tutto lo storico, così parti già con dati reali invece che da zero.</p></details>
