@@ -1037,6 +1037,16 @@ body{padding-top:0}
 .del.mod:hover{background:rgba(34,197,94,.12);color:var(--up)}
 .jpiu{text-align:center;margin-top:14px}
 .jpiu:empty{display:none}
+.jaiuto{display:inline-grid;place-items:center;width:15px;height:15px;border-radius:99px;margin-left:4px;
+  border:1px solid var(--line);color:var(--dim2);font-size:.62rem;cursor:help;vertical-align:1px}
+.jkpi{cursor:pointer}
+.jkpi-info{display:none;color:var(--dim);font-size:.74rem;line-height:1.5;margin:4px 0 8px}
+.jkpi.aperto .jkpi-info{display:block}
+.jkpi.aperto .jkpi-spark{display:none}
+.jguida{text-align:left;max-width:520px;margin:14px auto;padding-left:20px;line-height:1.6;color:var(--dim)}
+.jguida li{margin-bottom:6px}
+.jguida b{color:var(--text);font-weight:600}
+.jvaluta{width:auto;padding:9px 12px;border-radius:99px;font-size:.8rem}
 .jform-modifica{border-color:rgba(34,197,94,.5)}
 @media(hover:none){ .del{opacity:.75} }
 
@@ -1115,6 +1125,7 @@ body{padding-top:0}
           <button class="btn" onclick="document.getElementById('imp').click()">Importa</button>
           <input type="file" id="imp" accept=".json,.csv,.txt" hidden onchange="j_importData(event)">
           <button class="btn" onclick="j_clearAll()">Svuota</button>
+          <select id="fValuta" class="jvaluta" aria-label="Valuta del conto" onchange="j_setValuta(this.value)"></select>
         </div>
       </div>
 
@@ -1205,8 +1216,8 @@ body{padding-top:0}
                 <button type="button" data-d="short" onclick="j_setDir('short')">Short</button>
               </div>
             </div>
-            <div><label for="f-pnl">P&L (€)</label><input type="number" id="f-pnl" step="0.01" placeholder="125.50" required></div>
-            <div><label for="f-risk">Rischio (€)</label><input type="number" id="f-risk" step="0.01" min="0" placeholder="100"></div>
+            <div><label for="f-pnl">Risultato (<span class="jval">€</span>) <span class="jaiuto" title="Quanto hai guadagnato o perso. Per una perdita metti il meno davanti: -50">?</span></label><input type="number" id="f-pnl" step="0.01" placeholder="125.50 o -50" required></div>
+            <div><label for="f-risk">Rischio (<span class="jval">€</span>) <span class="jaiuto" title="Quanto avresti perso se fosse scattato lo stop loss. Serve a calcolare R: quante volte il rischio hai guadagnato.">?</span></label><input type="number" id="f-risk" step="0.01" min="0" placeholder="100"></div>
             <div><label for="f-strat">Strategia</label><input id="f-strat" placeholder="Breakout" maxlength="60" list="f-strategie"><datalist id="f-strategie"></datalist></div>
           </div>
 
@@ -1542,11 +1553,24 @@ function daRiga(r){
   };
 }
 
+/* se nel database l'ora è obbligatoria, le operazioni senza ora vanno salvate con 00:00 */
+let j_oraObbligatoria = false;
+async function conOra(fn){
+  try{ return await fn(); }
+  catch(err){
+    if(!j_oraObbligatoria && err && err.code === '23502' && /ora/.test(err.message || '')){
+      j_oraObbligatoria = true;
+      return await fn();
+    }
+    throw err;
+  }
+}
+
 function aRiga(t){
   return {
     utente:    utente.id,
     data:      t.date,
-    ora:       t.ora || null,
+    ora:       t.ora || (j_oraObbligatoria ? '00:00' : null),
     simbolo:   t.symbol,
     direzione: t.dir,
     pnl:       t.pnl,
@@ -1583,15 +1607,19 @@ async function caricaOperazioni(){
   await j_firmaShot(j_trades);
 }
 
-async function salvaOperazione(t){
-  const { data, error } = await sb.from('operazioni').insert(aRiga(t)).select().single();
-  if(error) throw error;
-  return String(data.id);
+function salvaOperazione(t){
+  return conOra(async () => {
+    const { data, error } = await sb.from('operazioni').insert(aRiga(t)).select().single();
+    if(error) throw error;
+    return String(data.id);
+  });
 }
 
-async function aggiornaOperazione(id, t){
-  const { error } = await sb.from('operazioni').update(aRiga(t)).eq('id', id).eq('utente', utente.id);
-  if(error) throw error;
+function aggiornaOperazione(id, t){
+  return conOra(async () => {
+    const { error } = await sb.from('operazioni').update(aRiga(t)).eq('id', id).eq('utente', utente.id);
+    if(error) throw error;
+  });
 }
 
 async function eliminaOperazione(id){
@@ -1608,9 +1636,12 @@ async function svuotaOperazioni(){
 async function inserisciOperazioni(list){
   let create = [];
   for(let i = 0; i < list.length; i += 500){
-    const { data, error } = await sb.from('operazioni')
-      .insert(list.slice(i, i + 500).map(aRiga)).select();
-    if(error) throw error;
+    const blocco = list.slice(i, i + 500);
+    const data = await conOra(async () => {
+      const { data, error } = await sb.from('operazioni').insert(blocco.map(aRiga)).select();
+      if(error) throw error;
+      return data;
+    });
     create = create.concat(data || []);
   }
   return create;
@@ -1836,8 +1867,20 @@ const PER_PAGINA = 25;
 
 const j_lista = () => j_demo || j_trades;
 
-const j_fmt = v => (v>=0?'+':'−')+'€'+Math.abs(v).toFixed(2);
-const j_fmtBreve = v => (v>=0?'':'−')+'€'+Math.abs(v).toFixed(0);
+/* valuta del conto: la sceglie l'utente, resta salvata in questo browser */
+const VALUTE = ['€','$','£','CHF'];
+let j_valuta = '€';
+try{ const v = localStorage.getItem('riskly-valuta'); if(VALUTE.includes(v)) j_valuta = v; }catch{}
+const j_soldi = (v, dec = 0) => j_valuta === 'CHF' ? Math.abs(v).toFixed(dec) + ' CHF' : j_valuta + Math.abs(v).toFixed(dec);
+const j_fmt = v => (v>=0?'+':'−') + j_soldi(v, 2);
+const j_fmtBreve = v => (v>=0?'':'−') + j_soldi(v);
+
+function j_setValuta(v){
+  if(!VALUTE.includes(v)) return;
+  j_valuta = v;
+  try{ localStorage.setItem('riskly-valuta', v); }catch{}
+  j_renderAll();
+}
 const j_cl  = v => v>0?'up':(v<0?'down':'neu');
 const j_dataBreve = iso => { const [y,m,g] = iso.split('-'); return `${g}/${m}/${y.slice(2)}`; };
 
@@ -1929,6 +1972,7 @@ function j_opzioni(sel, testoTutti, valori){
 }
 
 function j_renderFiltri(){
+  document.querySelector('.jfiltri').style.display = j_lista().length ? '' : 'none';
   document.getElementById('fPeriodo').innerHTML = PERIODI.map(([v, t]) =>
     `<button type="button" class="${j_filtro.periodo === v ? 'on' : ''}" onclick="j_setFiltro('periodo','${v}')">${t}</button>`
   ).join('');
@@ -1970,7 +2014,12 @@ function j_renderKPIs(list){
       ? `<div class="jcard" style="grid-column:1/-1"><div class="empty"><strong>Nessuna operazione con questi filtri</strong>
            <button class="btn" style="margin-top:14px" onclick="j_azzeraFiltri()">Azzera filtri</button></div></div>`
       : `<div class="jcard" style="grid-column:1/-1"><div class="empty"><strong>Nessun trade registrato</strong>
-           Aggiungi la tua prima operazione qui sotto, oppure importa un file JSON o CSV dal tuo broker.
+           <ol class="jguida">
+             <li><b>Registra ogni operazione</b> appena la chiudi: simbolo, risultato e come ti sentivi. Bastano 20 secondi.</li>
+             <li><b>Indica il rischio</b> (quanto avresti perso allo stop): così vedi se rispetti i tuoi stop.</li>
+             <li><b>Dopo 10 operazioni</b> Riskly ti mostra gli errori che si ripetono e dove guadagni davvero.</li>
+           </ol>
+           Hai già uno storico? Importa il file CSV del tuo broker o di MetaTrader con "Importa".
            <div style="margin-top:14px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
              <a class="btn pri" href="#add">Aggiungi un'operazione</a>
              <button class="btn" onclick="j_anteprima()">Guarda un esempio</button>
@@ -1982,23 +2031,25 @@ function j_renderKPIs(list){
   const spark = j_sparkline(m.curve, m.net>=0);
 
   const items = [
-    {l:'P&L netto', v:j_fmt(m.net), c:j_cl(m.net), s:`${m.n} operazioni`, hero:true, spark},
-    {l:'Winrate', v:m.winrate.toFixed(1)+'%', c:m.winrate>=50?'up':'down', s:`${m.w}V · ${m.l}P`},
-    {l:'Profit factor', v:pf, c:m.pf>=1?'up':'down', s:'profitti / perdite'},
-    {l:'Aspettativa', v:j_fmt(m.exp), c:j_cl(m.exp), s:'per trade'},
-    {l:'Drawdown max', v:'€'+m.maxDD.toFixed(0), c:'down', s:'dal picco'},
+    {l:'P&L netto', v:j_fmt(m.net), c:j_cl(m.net), s:`${m.n} operazioni`, hero:true, spark,
+      i:'Il risultato totale: tutti i guadagni meno tutte le perdite.'},
+    {l:'Winrate', v:m.winrate.toFixed(1)+'%', c:m.winrate>=50?'up':'down', s:`${m.w}V · ${m.l}P`, i:'La percentuale di operazioni chiuse in guadagno. Da sola non basta: puoi vincere spesso e perdere comunque, se le perdite sono grandi.'},
+    {l:'Profit factor', v:pf, c:m.pf>=1?'up':'down', s:'profitti / perdite', i:'Quanto guadagni per ogni 1 che perdi. Sopra 1 sei in utile, sopra 1,5 è un buon risultato, sotto 1 stai perdendo.'},
+    {l:'Aspettativa', v:j_fmt(m.exp), c:j_cl(m.exp), s:'per trade', i:'Quanto guadagni o perdi in media a ogni operazione. Se è positiva, continuando così nel tempo sei in utile.'},
+    {l:'Drawdown max', v:j_soldi(m.maxDD), c:'down', s:'dal picco', i:'La discesa più grande dal punto più alto raggiunto. Ti dice quanto hai dovuto sopportare nel momento peggiore.'},
     {l:'Payoff', v:m.payoff===null?'∞':m.payoff.toFixed(2), c:(m.payoff===null||m.payoff>=1)?'up':'down',
-      s:`€${m.avgW.toFixed(0)} medio / €${m.avgL.toFixed(0)} medio`},
-    {l:'Miglior trade', v:j_fmt(m.best.pnl), c:j_cl(m.best.pnl), s:`${esc(m.best.symbol)} · ${j_dataBreve(m.best.date)}`},
-    {l:'Peggior trade', v:j_fmt(m.worst.pnl), c:j_cl(m.worst.pnl), s:`${esc(m.worst.symbol)} · ${j_dataBreve(m.worst.date)}`},
-    {l:'Giorni positivi', v:`${m.giorniPos}/${m.giorni}`, c:m.giorniPos*2>=m.giorni?'up':'down', s:`${Math.round(m.giorniPos/m.giorni*100)}% dei giorni`},
-    {l:'Serie max', v:`${m.mw} / ${m.ml}`, c:'neu', s:'vincite / perdite'},
+      s:`${j_soldi(m.avgW)} medio / ${j_soldi(m.avgL)} medio`, i:'Vincita media divisa per perdita media. Sopra 1 le tue vincite sono più grandi delle perdite.'},
+    {l:'Miglior trade', v:j_fmt(m.best.pnl), c:j_cl(m.best.pnl), s:`${esc(m.best.symbol)} · ${j_dataBreve(m.best.date)}`, i:'L\'operazione con il guadagno più alto nel periodo.'},
+    {l:'Peggior trade', v:j_fmt(m.worst.pnl), c:j_cl(m.worst.pnl), s:`${esc(m.worst.symbol)} · ${j_dataBreve(m.worst.date)}`, i:'L\'operazione con la perdita più grande. Se è molto più grande delle altre, forse lo stop non è stato rispettato.'},
+    {l:'Giorni positivi', v:`${m.giorniPos}/${m.giorni}`, c:m.giorniPos*2>=m.giorni?'up':'down', s:`${Math.round(m.giorniPos/m.giorni*100)}% dei giorni`, i:'Quanti giorni di trading hai chiuso in guadagno, sul totale dei giorni in cui hai operato.'},
+    {l:'Serie max', v:`${m.mw} / ${m.ml}`, c:'neu', s:'vincite / perdite', i:'Il numero più lungo di vincite di fila e di perdite di fila. Prepararti alle serie negative ti aiuta a non perdere la calma.'},
   ];
-  if(m.avgR!==null) items.push({l:'R medio', v:(m.avgR>=0?'+':'')+m.avgR.toFixed(2)+'R', c:j_cl(m.avgR), s:'rischio/rendimento'});
+  if(m.avgR!==null) items.push({l:'R medio', v:(m.avgR>=0?'+':'')+m.avgR.toFixed(2)+'R', c:j_cl(m.avgR), s:'rischio/rendimento', i:'Quante volte il rischio guadagni in media. +1R vuol dire che guadagni quanto rischiavi. Compare solo se indichi il rischio.'});
 
   el.innerHTML = items.map(i=>`
-    <div class="jkpi${i.hero?' hero':''}">
-      <div class="jkpi-label">${i.l}</div>
+    <div class="jkpi${i.hero?' hero':''}" onclick="this.classList.toggle('aperto')" title="${esc(i.i||'')}">
+      <div class="jkpi-label">${i.l}${i.i?' <span class="jaiuto">?</span>':''}</div>
+      ${i.i?`<div class="jkpi-info">${esc(i.i)}</div>`:''}
       <div class="jkpi-val ${i.c}">${i.v}</div>
       ${i.s?`<div class="jkpi-sub">${i.s}</div>`:''}
       ${i.spark||''}
@@ -2182,6 +2233,9 @@ function j_renderGruppi(list){
 }
 
 function j_renderToolbar(){
+  const sv = document.getElementById('fValuta');
+  if(sv) sv.innerHTML = VALUTE.map(v => `<option value="${v}"${v===j_valuta?' selected':''}>${v}</option>`).join('');
+  document.querySelectorAll('.jval').forEach(e => e.textContent = j_valuta);
   const b = document.getElementById('btnDemo');
   if(!b) return;
   b.hidden = !j_demo && j_trades.length > 0;
@@ -2301,7 +2355,7 @@ function j_spunti(list){
     const extra = oltre.reduce((s,t) => s + (-t.pnl - t.risk), 0);
     out.push({tipo:'avviso', peso:20 + oltre.length,
       titolo:`In ${oltre.length} operazioni hai perso più del rischio previsto`,
-      testo:`Oltre lo stop hai lasciato €${extra.toFixed(0)} in più (${Math.round(oltre.length/conRischio.length*100)}% delle perdite con rischio indicato). Lo stop si decide prima di entrare, non si sposta.`});
+      testo:`Oltre lo stop hai lasciato ${j_soldi(extra)} in più (${Math.round(oltre.length/conRischio.length*100)}% delle perdite con rischio indicato). Lo stop si decide prima di entrare, non si sposta.`});
   } else if(conRischio.length >= 5){
     out.push({tipo:'buono', peso:3,
       titolo:'Rispetti i tuoi stop',
@@ -2800,7 +2854,7 @@ function j_exportCSV(){
 
 function j_numero(v){
   if(typeof v === 'number') return v;
-  let s = String(v ?? '').replace(/[\s€$£]/g, '').replace(/[−–]/g, '-');
+  let s = String(v ?? '').replace(/[\s€$£]|CHF|EUR|USD|GBP/gi, '').replace(/[−–]/g, '-');
   if(!s) return NaN;
   if(/^\(.*\)$/.test(s)) s = '-' + s.slice(1, -1);
   const c = s.lastIndexOf(','), p = s.lastIndexOf('.');
