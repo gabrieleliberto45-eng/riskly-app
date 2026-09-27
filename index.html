@@ -63,7 +63,7 @@
   .nav-link{background:none;border:none;color:var(--dim);font-family:inherit;font-size:.84rem;
     cursor:pointer;padding:6px 0;transition:color .15s;white-space:nowrap}
   .nav-link:hover{color:var(--accent)}
-  @media(max-width:900px){ .nav-link{display:none} }
+  @media(max-width:900px){ .nav-link{display:none} .nav-link.nav-esci{display:inline-block} }
 
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;
     font-family:inherit;font-size:.92rem;font-weight:600;padding:15px 30px;border-radius:99px;
@@ -1519,7 +1519,7 @@ function aggiornaBarra(){
     c.innerHTML = `
       <span class="acc-utente"><span class="nome">${esc(nome)}</span></span>
       <a class="nav-link" href="https://riskly.trade">Vai al sito</a>
-      <button class="nav-link" onclick="esci()">Esci</button>`;
+      <button class="nav-link nav-esci" onclick="esci()">Esci</button>`;
   } else {
     c.innerHTML = `
       <a class="nav-link" href="https://riskly.trade">Vai al sito</a>
