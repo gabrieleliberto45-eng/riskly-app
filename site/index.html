@@ -9,6 +9,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Riskly — Software per la gestione del rischio nel trading</title>
 <meta name="description" content="Software di gestione del rischio per il trading: journal, calcolatori e bot per MetaTrader. Strumenti per proteggere il conto e rispettare le tue regole. Nessun segnale.">
+<link rel="canonical" href="https://riskly.trade/">
+<!-- anteprima quando il link viene condiviso (WhatsApp, Telegram, Instagram, Facebook, X) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Riskly">
+<meta property="og:locale" content="it_IT">
+<meta property="og:url" content="https://riskly.trade/">
+<meta property="og:title" content="Riskly — Il mercato non lo controlli. Tutto il resto sì.">
+<meta property="og:description" content="Bot per MT4 e MT5 che ti fermano prima dei danni. Calcolatori e journal gratis. Nessun segnale, nessuna promessa di guadagno.">
+<meta property="og:image" content="https://riskly.trade/anteprima.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Riskly — Il mercato non lo controlli. Tutto il resto sì.">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'><rect width='44' height='44' rx='10' fill='%230A0E14'/><path d='M10 30 L17 20 L23 25 L34 12' stroke='%2322C55E' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round' fill='none'/><path d='M10 34.5 H34' stroke='%238B98A9' stroke-width='3.6' stroke-linecap='round'/></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -2876,6 +2889,8 @@
           <a href="mailto:info@riskly.trade">info@riskly.trade</a>
           <a href="https://instagram.com/riskly.trade" target="_blank" rel="noopener">@riskly.trade</a>
           <a href="https://t.me/+mlCyBs21_7A3ZDg0" target="_blank" rel="noopener">Canale Telegram</a>
+          <a href="https://www.tiktok.com/@riskly63" target="_blank" rel="noopener">TikTok</a>
+          <a href="https://www.youtube.com/channel/UC5bU0GH2tU4WDhNDtx-4iOQ" target="_blank" rel="noopener">YouTube</a>
         </div>
       </div>
 
@@ -5002,7 +5017,9 @@ vtAvvia();
 
 /* ---------- Offerta lancio ---------- */
 const POSTI_TOTALI = 10;
-const POSTI_USATI  = 0;   // ← aggiorna questo numero a ogni vendita
+/* i posti usati si contano da soli dagli ordini confermati (funzione posti_venduti su Supabase);
+   questo numero serve solo se il conteggio automatico non risponde */
+let POSTI_USATI  = 0;
 
 const POSTI_SOGLIA = 1;   /* la barra compare dalla prima vendita */
 
@@ -5343,6 +5360,18 @@ const set=(id,t)=>document.getElementById(id).textContent=t;
 preparaComparsa();
 aggiornaProgresso();
 aggiornaLancio();
+
+/* conteggio automatico: quanti ordini confermati ci sono (solo il numero, nessun dato dei clienti) */
+(async function(){
+  if(!sb) return;
+  try{
+    const { data, error } = await sb.rpc('posti_venduti');
+    if(!error && Number.isFinite(Number(data))){
+      POSTI_USATI = Math.max(POSTI_USATI, Number(data));
+      aggiornaLancio();
+    }
+  }catch(e){}
+})();
 calcPos(); calcRuin(); calcProp(); calcBE(); calcComp(); setCiclo('a');
 </script>
 
