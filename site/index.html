@@ -42,7 +42,7 @@
     --accent-2:#0EA5E9;        /* azzurro, per le sfumature */
     --accent-soft:rgba(34,197,94,.1);
     --accent-hi:#2EE06C;
-    --grad:linear-gradient(135deg,#22C55E,#0EA5E9);
+    --grad:linear-gradient(180deg,#F1F5F9,#D5DDE6);   /* grafite: pulsanti principali chiari su fondo scuro */
     --gold:#F59E0B;
     --r:14px;
   }
@@ -51,8 +51,8 @@
        line-height:1.6;-webkit-font-smoothing:antialiased;font-feature-settings:'ss01','cv01'}
   body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
     background:
-      radial-gradient(760px 480px at 72% 6%, rgba(34,197,94,.12), transparent 62%),
-      radial-gradient(640px 420px at 18% 74%, rgba(14,165,233,.09), transparent 64%)}
+      radial-gradient(760px 480px at 72% 6%, rgba(148,163,184,.07), transparent 62%),
+      radial-gradient(640px 420px at 18% 74%, rgba(34,197,94,.04), transparent 64%)}
   .z{position:relative;z-index:1}
   a{color:inherit;text-decoration:none}
   .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
@@ -74,7 +74,7 @@
     transition:.18s;white-space:nowrap}
   .tabs button:hover{color:var(--text);background:rgba(255,255,255,.05)}
   .tabs button.on{color:#08110c;font-weight:600;background:var(--grad);
-    box-shadow:0 2px 14px rgba(34,197,94,.3)}
+    box-shadow:0 2px 12px rgba(0,0,0,.35)}
 
   .nav-azioni{display:flex;align-items:center;gap:16px}
   .nav-link{background:none;border:none;color:var(--dim);font-family:inherit;font-size:.84rem;
@@ -89,8 +89,8 @@
     letter-spacing:.01em}
   .btn:hover{border-color:rgba(34,197,94,.5);color:var(--text);background:rgba(34,197,94,.08)}
   .btn.pri{background:var(--grad);border-color:transparent;color:#04121C;font-weight:700;
-    box-shadow:0 4px 18px rgba(34,197,94,.22)}
-  .btn.pri:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(34,197,94,.36);filter:brightness(1.06)}
+    box-shadow:0 4px 18px rgba(0,0,0,.3)}
+  .btn.pri:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,.4);filter:brightness(1.04)}
   .btn.lg{padding:18px 38px;font-size:1rem}
   .btn.wide{width:100%}
   .btn:active{transform:translateY(1px)}
@@ -360,8 +360,7 @@
     background:var(--accent);animation:battito 2s infinite}
   @keyframes battito{0%,100%{opacity:1}50%{opacity:.3}}
   .hero-new h1{font-size:3.5rem;margin-bottom:28px;letter-spacing:-.035em;line-height:1.08}
-  .hero-new h1 .gr{background:var(--grad);-webkit-background-clip:text;background-clip:text;
-    color:transparent}
+  .hero-new h1 .gr{color:var(--accent)}
   .h-lead{color:var(--dim);font-size:1.12rem;max-width:50ch;margin:0 auto 40px;line-height:1.75}
   .h-cta{display:flex;gap:13px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
   .h-fine{color:var(--dim2);font-size:.85rem}
@@ -1003,6 +1002,36 @@
   .bot-rimando b{display:block;font-size:1rem;margin-bottom:4px}
   .bot-rimando span{color:var(--dim);font-size:.84rem;line-height:1.5}
   @media(max-width:620px){.bot-rimandi{grid-template-columns:1fr}.bot-nav{top:calc(8px + env(safe-area-inset-top))}.bot-nav button{padding:8px 11px;font-size:.8rem;white-space:nowrap}}
+
+
+  /* ═══ BARRA IN BASSO (solo telefono) ═══ */
+  .sbarra,.saltro{display:none}
+  @media(max-width:760px){
+    .tabs{display:none!important}
+    body{padding-bottom:calc(96px + env(safe-area-inset-bottom))}
+    #tornaSu{bottom:calc(98px + env(safe-area-inset-bottom))}
+    .sbarra{display:grid;grid-template-columns:1fr 1fr 76px 1fr 1fr;align-items:center;position:fixed;z-index:75;
+      left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom));height:68px;padding:0 6px;
+      background:rgba(15,22,32,.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+      border:1px solid var(--line);border-radius:24px;box-shadow:0 10px 30px rgba(0,0,0,.45)}
+    .sbarra button{background:none;border:none;font-family:inherit;color:#6B788A;cursor:pointer;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;height:56px;
+      border-radius:16px;font-size:.66rem;font-weight:500;letter-spacing:.01em;-webkit-tap-highlight-color:transparent}
+    .sbarra button svg{width:22px;height:22px}
+    .sbarra button.on{color:var(--text);background:rgba(255,255,255,.06)}
+    .sbarra .sb-piu{width:60px;height:60px;border-radius:50%;margin:-30px auto 0;padding:0;gap:0;
+      background:#E6EDF3;color:#0A0E14;box-shadow:0 8px 22px rgba(0,0,0,.5),0 0 0 5px var(--bg)}
+    .sbarra .sb-piu.on{background:#fff;color:#0A0E14}
+    .sbarra .sb-piu svg{width:26px;height:26px}
+    .saltro.on{display:block;position:fixed;inset:0;z-index:74;background:rgba(4,8,12,.6);backdrop-filter:blur(4px)}
+    .saltro-box{position:absolute;left:12px;right:12px;bottom:calc(88px + env(safe-area-inset-bottom));
+      background:#0F1620;border:1px solid var(--line);border-radius:22px;padding:8px;animation:fade .18s ease}
+    .saltro-box button{display:flex;align-items:center;gap:14px;width:100%;background:none;border:none;
+      color:var(--text);font-family:inherit;font-size:.95rem;padding:14px 14px;border-radius:14px;cursor:pointer;text-align:left}
+    .saltro-box button:active,.saltro-box button.on{background:rgba(255,255,255,.06)}
+    .saltro-box svg{width:20px;height:20px;color:#8B98A9;flex-shrink:0}
+    .saltro-box hr{border:none;border-top:1px solid var(--line);margin:6px 8px}
+  }
 
   /* il riquadro "Powered by Netlify" che Netlify aggiunge al sito pubblicato copre i contenuti sul telefono */
   #nl-badge-frame{display:none!important}
@@ -5120,6 +5149,7 @@ function go(id, btn, idx){
         riga.scrollTo({ left: target.offsetLeft - riga.clientWidth/2 + target.offsetWidth/2, behavior:'smooth' });
     }
   }
+  if(typeof segnaBarra === 'function') segnaBarra(id);
   window.scrollTo({top:0,behavior:'smooth'});
   if(id === 'bot' && typeof avviaSimulazioni === 'function') avviaSimulazioni();
   if(typeof preparaComparsa === 'function') setTimeout(preparaComparsa, 60);
@@ -5538,6 +5568,43 @@ calcPos(); calcRuin(); calcProp(); calcBE(); calcComp(); setCiclo('a');
 
 
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cf51a7ed50e145f9b3eeed28a64ed18e"}'></script><!-- End Cloudflare Web Analytics -->
+
+<!-- barra in basso (solo telefono) -->
+<div class="sbarra" id="sbarra" aria-label="Navigazione">
+  <button data-p="home" class="on" onclick="go('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20h14V9.5"/><path d="M10 20v-5h4v5"/></svg>Home</button>
+  <button data-p="bot" onclick="go('bot')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="7" width="14" height="12" rx="3"/><path d="M12 7V4"/><circle cx="12" cy="3.5" r=".8"/><path d="M9.5 12v1.5M14.5 12v1.5"/><path d="M2.5 12v3M21.5 12v3"/></svg>Bot</button>
+  <button data-p="app" class="sb-piu" onclick="go('app')" aria-label="Journal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5"/><path d="M4 19h16"/><path d="m7 15 4-4 3 3 5-6"/></svg></button>
+  <button data-p="journal" onclick="go('journal')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8Z"/><circle cx="7.5" cy="7.5" r="1.3"/></svg>Prezzi</button>
+  <button data-p="altro" onclick="apriAltro()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="19" cy="12" r="1.3"/></svg>Altro</button>
+</div>
+<div class="saltro" id="saltro" onclick="if(event.target===this)chiudiAltro()">
+  <div class="saltro-box">
+    <button data-p="calc" onclick="chiudiAltro();go('calc')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8.5 7h7"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01M8.5 15h.01M12 15h.01M15.5 15h.01M8.5 18h.01M12 18h.01M15.5 18h.01"/></svg>Calcolatori</button>
+    <button data-p="corso" onclick="chiudiAltro();go('corso')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="13" rx="2.5"/><path d="m10 9 5 2.5-5 2.5Z"/></svg>Corso</button>
+    <button data-p="metodo" onclick="chiudiAltro();go('metodo')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v5c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6Z"/><path d="m9 12 2 2 4-4"/></svg>Metodo</button>
+    <button data-p="faq" onclick="chiudiAltro();go('faq')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.4"/><path d="M12 17h.01"/></svg>FAQ</button>
+    <hr>
+    <button id="sa-accedi" onclick="chiudiAltro();document.getElementById('nav-accedi').click()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span>Accedi</span></button>
+    <button id="sa-gestione" data-p="gestione" style="display:none" onclick="chiudiAltro();go('gestione')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Gestione</button>
+    <button onclick="location.href='https://app.riskly.trade'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6"/><path d="M20 4 11 13"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>Il mio journal</button>
+  </div>
+</div>
+<script>
+const PAGINE_ALTRO = ['calc','corso','metodo','faq','gestione'];
+function segnaBarra(id){
+  document.querySelectorAll('#sbarra button').forEach(b=>
+    b.classList.toggle('on', b.dataset.p === id || (b.dataset.p === 'altro' && PAGINE_ALTRO.includes(id))));
+  document.querySelectorAll('#saltro button[data-p]').forEach(b=>b.classList.toggle('on', b.dataset.p === id));
+}
+function apriAltro(){
+  const acc = document.getElementById('nav-accedi'), g = document.getElementById('nav-gestione');
+  document.querySelector('#sa-accedi span').textContent = acc ? acc.textContent.trim() : 'Accedi';
+  document.getElementById('sa-gestione').style.display = (g && g.style.display !== 'none') ? '' : 'none';
+  document.getElementById('saltro').classList.add('on');
+}
+function chiudiAltro(){ document.getElementById('saltro').classList.remove('on'); }
+document.addEventListener('keydown', e=>{ if(e.key === 'Escape') chiudiAltro(); });
+</script>
 </body>
 </html>
 
