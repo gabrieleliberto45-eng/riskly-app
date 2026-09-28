@@ -1,13 +1,18 @@
 # Calendario social Riskly · 27 settembre → 23 ottobre (lancio)
 
-Un video verticale al giorno, lo stesso su **TikTok**, **Instagram Reels** e **YouTube Shorts**.
-Orari (dati Metricool sul pubblico TikTok in Italia): **18:00 dal lunedì al venerdì, 10:00 sabato e domenica**.
-Si aggiornano ogni settimana in base ai risultati dei video già pubblicati.
+**Due post al giorno per rete** (dal 29 settembre): uno di **trading** e uno di **finanza**, sempre collegati a Riskly.
+Colori dei video: quelli del sito (nero e lime, sfumature), già nel modello `social/generatore/modello.html`.
+
+| Serie | TikTok | Instagram Reel | YouTube Shorts |
+|---|---|---|---|
+| Trading (gNN · yNN) | 18:00 feriali, 10:00 weekend | 10:00 | 16:00 |
+| Finanza (fNN · zNN) | 12:00 feriali, 18:00 weekend | 18:00 | 10:00 |
+
+Orari da Metricool (getBestTimeToPostByNetwork), aggiornati ogni settimana in base ai risultati.
 
 Tutti i video partono con il titolo già visibile (`"subito": true`): TikTok usa il primo fotogramma come copertina.
 
-Stato: collegati TikTok (@riskly63) e Instagram (@riskly.trade), settimana 1 programmata su entrambi. YouTube da collegare.
-Instagram: picco alle 10:00 tutti i giorni (Reel alle 10:00, copertina a 2,6 s). TikTok: 18:00 nei feriali, 10:00 nel weekend.
+Stato: collegati TikTok (@riskly63), Instagram (@riskly.trade) e YouTube; settimana 1 programmata su tutti e tre, due post al giorno.
 
 Regole per tutti i contenuti:
 - niente segnali, niente setup, niente promesse di guadagno;
@@ -55,6 +60,19 @@ Picco del pubblico YouTube: 16:00 tutti i giorni.
 | Gio 1/10 | y05 | Trailing stop in 15 secondi | TradeManager |
 | Ven 2/10 | y06 | Quanto vale un pip su EURUSD | RiskGuard |
 | Sab 3/10 | y07 | Lo stop loss mentale | RiskGuard |
+
+## Settimana 1 · serie finanza (dal 29/9)
+
+| Data | TikTok / IG | Tema | YouTube | Tema |
+|---|---|---|---|---|
+| Mar 29/9 | f01 | Inflazione: 10.000 € fermi valgono 7.441 € tra 10 anni | z01 | Lo spread (bid/ask) · Riskly Pro |
+| Mer 30/9 | f02 | Regola del 72 e il "10% al mese" | z02 | Interesse composto: 1.000 € al 10% per 30 anni |
+| Gio 1/10 | f03 | Prima del trading: fondo di emergenza | z03 | Stop out e livello di margine · RiskGuard |
+| Ven 2/10 | f05 | NFP del primo venerdì · Riskly Pro filtro notizie | z04 | Lo swap overnight |
+| Sab 3/10 | f04 | Correlazione: tre operazioni, un solo rischio · Riskly Pro | z05 | Sessioni di mercato in orario italiano · RiskGuard |
+
+Temi di FINANZA GIÀ TRATTATI, da non ripetere: inflazione, regola del 72, fondo di emergenza, correlazione tra coppie,
+NFP e calendario economico, spread, interesse composto, stop out/margine, swap, sessioni di mercato.
 
 ## Settimana 2 · disciplina e regole (video da generare)
 
