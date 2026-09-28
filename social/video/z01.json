@@ -1,0 +1,56 @@
+{
+ "subito": true,
+ "loop": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 2.6,
+   "kicker": "SPREAD",
+   "testo": [
+    "Perdi soldi",
+    "<em>appena entri.</em>"
+   ]
+  },
+  {
+   "tipo": "conto",
+   "dur": 5.6,
+   "titolo": "EURUSD, 1 lotto",
+   "righe": [
+    [
+     "Prezzo per vendere (bid)",
+     "1.08500"
+    ],
+    [
+     "Prezzo per comprare (ask)",
+     "1.08512"
+    ],
+    [
+     "Spread",
+     "1,2 pip"
+    ],
+    [
+     "Costo all'apertura",
+     "12 $",
+     "down"
+    ]
+   ]
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.6,
+   "testo": [
+    "Durante le notizie",
+    "lo spread può",
+    "<em>moltiplicarsi.</em>"
+   ],
+   "nota": "Riskly Pro non apre con spread largo · riskly.trade/yt"
+  },
+  {
+   "tipo": "frase",
+   "dur": 1.6,
+   "testo": [
+    "Per questo…"
+   ]
+  }
+ ]
+}

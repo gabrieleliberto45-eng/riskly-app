@@ -1,0 +1,56 @@
+{
+ "subito": true,
+ "loop": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 2.6,
+   "kicker": "SESSIONI DI MERCATO",
+   "testo": [
+    "A che ora",
+    "<em>si muove</em> il forex?"
+   ]
+  },
+  {
+   "tipo": "conto",
+   "dur": 6,
+   "titolo": "Orari italiani, indicativi",
+   "righe": [
+    [
+     "Asia (Tokyo)",
+     "~1:00 – 10:00"
+    ],
+    [
+     "Londra",
+     "~9:00 – 18:00"
+    ],
+    [
+     "New York",
+     "~14:00 – 23:00"
+    ],
+    [
+     "Più volumi",
+     "14:00 – 18:00",
+     "up"
+    ]
+   ]
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.4,
+   "testo": [
+    "Più movimento",
+    "vuol dire anche",
+    "<em>più rischio.</em>"
+   ],
+   "nota": "RiskGuard: limite di operazioni al giorno · riskly.trade/yt"
+  },
+  {
+   "tipo": "frase",
+   "dur": 1.6,
+   "testo": [
+    "Ricapitolando:"
+   ]
+  }
+ ]
+}

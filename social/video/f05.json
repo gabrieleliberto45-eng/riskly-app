@@ -1,0 +1,50 @@
+{
+ "subito": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 3.4,
+   "kicker": "FINANZA · CALENDARIO",
+   "testo": [
+    "Il primo venerdì del mese,",
+    "alle 14:30,",
+    "<em>il mercato impazzisce.</em>"
+   ]
+  },
+  {
+   "tipo": "lista",
+   "dur": 6.2,
+   "titolo": "NFP: il dato sul lavoro negli USA",
+   "voci": [
+    [
+     "Lo spread si allarga",
+     "anche di molte volte"
+    ],
+    [
+     "Lo stop può scattare peggio",
+     "slippage"
+    ],
+    [
+     "Il prezzo va su e giù",
+     "in pochi secondi"
+    ]
+   ],
+   "passo": 1.1
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.8,
+   "testo": [
+    "Se non sai cosa esce oggi,",
+    "<em>stai giocando al buio.</em>"
+   ],
+   "nota": "Controlla il calendario economico prima di aprire."
+  },
+  {
+   "tipo": "chiusura",
+   "dur": 3.4,
+   "claim": "Riskly Pro non apre<br><em>vicino alle notizie</em>.",
+   "cta": "Dal 23 ottobre · link in bio"
+  }
+ ]
+}

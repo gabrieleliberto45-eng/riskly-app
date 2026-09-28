@@ -1,0 +1,57 @@
+{
+ "subito": true,
+ "loop": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 2.6,
+   "kicker": "STOP OUT",
+   "testo": [
+    "Il broker",
+    "<em>chiude al posto tuo.</em>"
+   ]
+  },
+  {
+   "tipo": "conto",
+   "dur": 6,
+   "titolo": "Livello di margine = equity ÷ margine usato",
+   "righe": [
+    [
+     "Margine usato",
+     "500 $"
+    ],
+    [
+     "Equity che scende a",
+     "250 $"
+    ],
+    [
+     "Livello di margine",
+     "50%",
+     "down"
+    ],
+    [
+     "Con molti broker",
+     "stop out",
+     "down"
+    ]
+   ],
+   "nota": "La soglia cambia da broker a broker."
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.6,
+   "testo": [
+    "Fermati prima,",
+    "<em>con una regola tua.</em>"
+   ],
+   "nota": "RiskGuard: limite di perdita giornaliero · riskly.trade/yt"
+  },
+  {
+   "tipo": "frase",
+   "dur": 1.6,
+   "testo": [
+    "Altrimenti…"
+   ]
+  }
+ ]
+}

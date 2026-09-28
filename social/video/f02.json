@@ -1,0 +1,51 @@
+{
+ "subito": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 3.4,
+   "kicker": "FINANZA · REGOLA DEL 72",
+   "testo": [
+    "In quanti anni",
+    "<em>raddoppiano</em>",
+    "i tuoi soldi?"
+   ]
+  },
+  {
+   "tipo": "conto",
+   "dur": 5.6,
+   "titolo": "72 diviso il rendimento annuo",
+   "righe": [
+    [
+     "Al 3% l'anno",
+     "24 anni"
+    ],
+    [
+     "Al 6% l'anno",
+     "12 anni"
+    ],
+    [
+     "Al 12% l'anno",
+     "6 anni",
+     "up"
+    ]
+   ]
+  },
+  {
+   "tipo": "numero",
+   "dur": 4.2,
+   "kicker": "E IL 10% AL MESE?",
+   "valore": 970000,
+   "prefisso": "",
+   "suffisso": " €",
+   "rosso": true,
+   "etichetta": "È quanto diventerebbero 10.000 € in 4 anni. Chi te lo promette, mente."
+  },
+  {
+   "tipo": "chiusura",
+   "dur": 3.4,
+   "claim": "Nessuna promessa.<br>Solo <em>regole</em>.",
+   "cta": "Guida gratis · link in bio"
+  }
+ ]
+}

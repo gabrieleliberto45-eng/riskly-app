@@ -1,0 +1,54 @@
+{
+ "subito": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 3.4,
+   "kicker": "FINANZA · CORRELAZIONE",
+   "testo": [
+    "Tre operazioni.",
+    "<em>Un solo rischio.</em>"
+   ]
+  },
+  {
+   "tipo": "conto",
+   "dur": 5.8,
+   "titolo": "Long su tre coppie, 1% di rischio ciascuna",
+   "righe": [
+    [
+     "EURUSD long",
+     "1%"
+    ],
+    [
+     "GBPUSD long",
+     "1%"
+    ],
+    [
+     "AUDUSD long",
+     "1%"
+    ],
+    [
+     "Scommessa vera: dollaro giù",
+     "3%",
+     "down"
+    ]
+   ],
+   "nota": "Se il dollaro sale, perdono tutte insieme."
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.8,
+   "testo": [
+    "Diversificare non è",
+    "<em>aprire di più.</em>"
+   ],
+   "nota": "È non puntare tre volte sulla stessa idea."
+  },
+  {
+   "tipo": "chiusura",
+   "dur": 3.4,
+   "claim": "Riskly Pro calcola il rischio<br><em>sull'insieme</em>, non su ognuna.",
+   "cta": "Dal 23 ottobre · link in bio"
+  }
+ ]
+}

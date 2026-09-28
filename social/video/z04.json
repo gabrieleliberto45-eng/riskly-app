@@ -1,0 +1,51 @@
+{
+ "subito": true,
+ "loop": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 2.6,
+   "kicker": "SWAP",
+   "testo": [
+    "Tenere aperto",
+    "<em>di notte</em> costa."
+   ]
+  },
+  {
+   "tipo": "lista",
+   "dur": 6,
+   "titolo": "Lo swap in 3 punti",
+   "voci": [
+    [
+     "Si paga o si incassa",
+     "dipende dai tassi delle due valute"
+    ],
+    [
+     "Scatta a mezzanotte del broker",
+     "ogni notte che resti dentro"
+    ],
+    [
+     "Di solito il mercoledì è triplo",
+     "copre il weekend"
+    ]
+   ],
+   "passo": 1.1
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.4,
+   "testo": [
+    "Guardalo prima,",
+    "<em>non sull'estratto conto.</em>"
+   ],
+   "nota": "Calcolatori gratis · riskly.trade/yt"
+  },
+  {
+   "tipo": "frase",
+   "dur": 1.6,
+   "testo": [
+    "Quindi…"
+   ]
+  }
+ ]
+}

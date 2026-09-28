@@ -1,0 +1,48 @@
+{
+ "subito": true,
+ "loop": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 2.6,
+   "kicker": "INTERESSE COMPOSTO",
+   "testo": [
+    "1.000 € al 10%.",
+    "<em>30 anni.</em>"
+   ]
+  },
+  {
+   "tipo": "conto",
+   "dur": 5.6,
+   "titolo": "Dopo 30 anni",
+   "righe": [
+    [
+     "Interesse semplice",
+     "4.000 €"
+    ],
+    [
+     "Interesse composto",
+     "17.449 €",
+     "up"
+    ]
+   ],
+   "nota": "Gli interessi fanno interessi."
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.6,
+   "testo": [
+    "Vale anche",
+    "<em>per le perdite.</em>"
+   ],
+   "nota": "Calcolatore gratis · riskly.trade/yt"
+  },
+  {
+   "tipo": "frase",
+   "dur": 1.6,
+   "testo": [
+    "Rifacciamo il conto:"
+   ]
+  }
+ ]
+}

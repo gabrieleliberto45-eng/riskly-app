@@ -1,0 +1,63 @@
+{
+ "subito": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 3.4,
+   "kicker": "FINANZA · PRIMA DI INIZIARE",
+   "testo": [
+    "Prima del trading",
+    "ti serve",
+    "<em>un'altra cosa.</em>"
+   ]
+  },
+  {
+   "tipo": "lista",
+   "dur": 6.4,
+   "titolo": "L'ordine giusto",
+   "voci": [
+    [
+     "Fondo di emergenza",
+     "3–6 mesi di spese, fermi e liquidi"
+    ],
+    [
+     "Niente debiti costosi",
+     "carte revolving, prestiti al 15%"
+    ],
+    [
+     "Poi il trading",
+     "solo con soldi che puoi perdere"
+    ]
+   ],
+   "passo": 1.1
+  },
+  {
+   "tipo": "conto",
+   "dur": 4.4,
+   "titolo": "Esempio: spese di 1.500 € al mese",
+   "righe": [
+    [
+     "Fondo di emergenza",
+     "4.500 – 9.000 €"
+    ],
+    [
+     "Capitale per il trading",
+     "quello che resta"
+    ]
+   ]
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.2,
+   "testo": [
+    "E anche quello,",
+    "<em>1% alla volta.</em>"
+   ]
+  },
+  {
+   "tipo": "chiusura",
+   "dur": 3.2,
+   "cta": "Guida gratis · link in bio"
+  }
+ ]
+}

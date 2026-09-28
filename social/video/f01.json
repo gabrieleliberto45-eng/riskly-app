@@ -1,0 +1,52 @@
+{
+ "subito": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 3.4,
+   "kicker": "FINANZA · INFLAZIONE",
+   "testo": [
+    "10.000 € fermi sul conto.",
+    "Tra 10 anni",
+    "<em>quanto valgono?</em>"
+   ]
+  },
+  {
+   "tipo": "conto",
+   "dur": 5.6,
+   "titolo": "Inflazione media del 3% l'anno",
+   "righe": [
+    [
+     "Oggi",
+     "10.000 €"
+    ],
+    [
+     "Tra 5 anni",
+     "8.626 €",
+     "down"
+    ],
+    [
+     "Tra 10 anni",
+     "7.441 €",
+     "down"
+    ]
+   ],
+   "nota": "Stessi euro, meno cose da comprare."
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.8,
+   "testo": [
+    "Anche non fare niente",
+    "<em>è un rischio.</em>"
+   ],
+   "nota": "La differenza è sapere quanto rischi, sempre."
+  },
+  {
+   "tipo": "chiusura",
+   "dur": 3.4,
+   "claim": "Il rischio non si evita.<br>Si <em>misura</em>.",
+   "cta": "Guida gratis · link in bio"
+  }
+ ]
+}
