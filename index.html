@@ -1163,6 +1163,54 @@ body{padding-top:0}
   nav{background:linear-gradient(180deg,rgba(14,17,15,.94),rgba(11,13,12,.86))}
   /* il riquadro "Powered by Netlify" copriva la barra in basso */
   #nl-badge-frame{display:none!important}
+
+  /* modulo: simboli e strategie salvati, € o %, calendario e orologio leggibili */
+  .jform input[type=date],.jform input[type=time]{color-scheme:dark}
+  .jform input::-webkit-calendar-picker-indicator{opacity:1;cursor:pointer;padding:4px;border-radius:6px;background-color:rgba(182,216,79,.14)}
+  /* ordine dei campi: data e ora, simbolo, direzione, risultato e rischio, saldo, strategia */
+  .jform{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .jform input{min-width:0}
+  .jform{align-items:start}
+  .jform input[type=date],.jform input[type=time]{padding-left:12px;padding-right:10px}
+  .jform>div:has(#fDirSeg),#f-saldo-box{grid-column:1/-1}
+  .junita-riga label{white-space:nowrap}
+  @media(min-width:900px){.jform{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .jform>div:has(#fDirSeg){grid-column:auto}.jform .jcampo-lista{grid-column:span 2}.jform #f-saldo-box{grid-column:span 2}}
+  .jcampo-lista{grid-column:1/-1}
+  .jcon-salva{display:flex;gap:8px}
+  .jcon-salva input{flex:1;min-width:0}
+  .jsalva{flex-shrink:0;background:rgba(182,216,79,.1);border:1px solid rgba(182,216,79,.35);color:var(--accent);
+    font-family:inherit;font-size:.8rem;font-weight:600;padding:0 14px;border-radius:12px;cursor:pointer}
+  .jchips-scelta{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+  .jchips-scelta:empty{display:none}
+  .jscelta{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.04);border:1px solid var(--line);
+    color:var(--text);font-family:'JetBrains Mono','SF Mono',Menlo,monospace;font-size:.76rem;padding:7px 12px;border-radius:99px;cursor:pointer}
+  .jscelta:hover{border-color:rgba(182,216,79,.45)}
+  .jscelta.on{background:var(--grad);color:#0B0D0C;border-color:transparent}
+  .jscelta .x{opacity:.55;font-size:.9em;padding:0 2px}
+  .jscelta .x:hover{opacity:1}
+  .jscelta .pin{color:var(--accent);font-size:.8em}
+  .jscelta.on .pin{color:#0B0D0C}
+  .junita-riga{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px}
+  .junita-riga label{margin:0}
+  .junita{display:flex;background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:99px;padding:2px}
+  .junita button{background:none;border:none;color:var(--dim);font-family:inherit;font-size:.72rem;font-weight:600;
+    padding:3px 10px;border-radius:99px;cursor:pointer}
+  .junita button.on{background:var(--grad);color:#0B0D0C}
+  .jconv{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--dim2);margin-top:5px;min-height:1em}
+
+  /* saldo del conto */
+  .jconto{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:16px;padding:20px 24px}
+  .jconto-l{font-size:.74rem;color:var(--dim2);letter-spacing:.04em}
+  .jconto-v{font-family:'JetBrains Mono','SF Mono',Menlo,monospace;font-size:1.9rem;line-height:1.2;margin:4px 0 3px;color:var(--text)}
+  .jconto-v.vuoto{font-family:inherit;font-size:1.05rem;color:var(--dim)}
+  .jconto-s{font-family:'JetBrains Mono','SF Mono',Menlo,monospace;font-size:.76rem;color:var(--dim2)}
+  .jconto-s .up{color:var(--up)} .jconto-s .down{color:var(--down)}
+  .jconto-form{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .jconto-form input{width:210px;padding:12px 14px}
+  .jconto [hidden]{display:none!important}
+  .jconto-form .btn,.jconto>.btn{padding:11px 20px}
+  @media(max-width:760px){.jconto{padding:18px}.jconto-form,.jconto-form input{width:100%}.jconto-form input{flex:1 1 100%}}
 </style>
 </head>
 <body>
@@ -1216,6 +1264,21 @@ body{padding-top:0}
       <div class="jcard jbot" id="jbot" hidden>
         <div class="jcard-head"><h3>I tuoi bot</h3><span class="jmeta" id="jbotAgg"></span></div>
         <div class="jbot-griglia" id="jbotGriglia"></div>
+      </div>
+
+      <!-- saldo del conto: iniziale + risultato di tutte le operazioni -->
+      <div class="jcard jconto" id="jconto">
+        <div class="jconto-sx">
+          <div class="jconto-l">Saldo del conto</div>
+          <div class="jconto-v" id="contoSaldo">—</div>
+          <div class="jconto-s" id="contoSub"></div>
+        </div>
+        <form class="jconto-form" id="contoForm" onsubmit="j_salvaSaldoIniziale(event)" hidden>
+          <input type="number" id="contoIniziale" step="0.01" min="0" placeholder="Saldo iniziale, es. 10000" aria-label="Saldo iniziale del conto">
+          <button type="submit" class="btn pri">Salva</button>
+          <button type="button" class="btn" id="contoAnnulla" onclick="j_renderConto()">Annulla</button>
+        </form>
+        <button type="button" class="btn" id="contoModifica" onclick="j_apriConto()">Modifica</button>
       </div>
 
       <div class="jtoolbar">
@@ -1319,7 +1382,13 @@ body{padding-top:0}
           <div class="jform">
             <div><label for="f-date">Data</label><input type="date" id="f-date" required></div>
             <div><label for="f-ora">Ora</label><input type="time" id="f-ora" value="09:00"></div>
-            <div><label for="f-symbol">Simbolo</label><input id="f-symbol" placeholder="EURUSD" maxlength="24" list="f-simboli" required><datalist id="f-simboli"></datalist></div>
+            <div class="jcampo-lista">
+              <label for="f-symbol">Simbolo</label>
+              <div class="jcon-salva"><input id="f-symbol" placeholder="EURUSD" maxlength="24" list="f-simboli" required autocomplete="off" oninput="j_aggiornaSalva('simboli')">
+                <button type="button" class="jsalva" id="salva-simboli" onclick="j_salvaVoce('simboli')" hidden>☆ Salva</button></div>
+              <datalist id="f-simboli"></datalist>
+              <div class="jchips-scelta" id="chips-simboli"></div>
+            </div>
             <div>
               <label>Direzione</label>
               <div class="jseg" id="fDirSeg">
@@ -1327,9 +1396,29 @@ body{padding-top:0}
                 <button type="button" data-d="short" onclick="j_setDir('short')">Short</button>
               </div>
             </div>
-            <div><label for="f-pnl">Risultato (<span class="jval">€</span>) <span class="jaiuto" title="Quanto hai guadagnato o perso. Per una perdita metti il meno davanti: -50">?</span></label><input type="number" id="f-pnl" step="0.01" placeholder="125.50 o -50" required></div>
-            <div><label for="f-risk">Rischio (<span class="jval">€</span>) <span class="jaiuto" title="Quanto avresti perso se fosse scattato lo stop loss. Serve a calcolare R: quante volte il rischio hai guadagnato.">?</span></label><input type="number" id="f-risk" step="0.01" min="0" placeholder="100"></div>
-            <div><label for="f-strat">Strategia</label><input id="f-strat" placeholder="Breakout" maxlength="60" list="f-strategie"><datalist id="f-strategie"></datalist></div>
+            <div>
+              <div class="junita-riga"><label for="f-pnl">Risultato <span class="jaiuto" title="Quanto hai guadagnato o perso, in soldi o in percentuale del conto. Per una perdita metti il meno davanti: -50">?</span></label>
+                <div class="junita" data-campo="pnl"><button type="button" class="on jval" data-u="val" onclick="j_setUnita('pnl','val')">€</button><button type="button" data-u="pct" onclick="j_setUnita('pnl','pct')">%</button></div></div>
+              <input type="number" id="f-pnl" step="0.01" placeholder="125.50 o -50" required oninput="j_aggiornaConversione()">
+              <div class="jconv" id="conv-pnl"></div>
+            </div>
+            <div>
+              <div class="junita-riga"><label for="f-risk">Rischio <span class="jaiuto" title="Quanto avresti perso se fosse scattato lo stop loss, in soldi o in percentuale del conto. Serve a calcolare R: quante volte il rischio hai guadagnato.">?</span></label>
+                <div class="junita" data-campo="risk"><button type="button" class="on jval" data-u="val" onclick="j_setUnita('risk','val')">€</button><button type="button" data-u="pct" onclick="j_setUnita('risk','pct')">%</button></div></div>
+              <input type="number" id="f-risk" step="0.01" min="0" placeholder="100" oninput="j_aggiornaConversione()">
+              <div class="jconv" id="conv-risk"></div>
+            </div>
+            <div id="f-saldo-box" hidden>
+              <label for="f-saldo">Saldo del conto (<span class="jval">€</span>) <span class="jaiuto" title="Serve per trasformare la percentuale in soldi. Lo ricordiamo per le prossime operazioni.">?</span></label>
+              <input type="number" id="f-saldo" step="0.01" min="0" placeholder="10000" oninput="j_aggiornaConversione()">
+            </div>
+            <div class="jcampo-lista">
+              <label for="f-strat">Strategia</label>
+              <div class="jcon-salva"><input id="f-strat" placeholder="Breakout" maxlength="60" list="f-strategie" autocomplete="off" oninput="j_aggiornaSalva('strategie')">
+                <button type="button" class="jsalva" id="salva-strategie" onclick="j_salvaVoce('strategie')" hidden>☆ Salva</button></div>
+              <datalist id="f-strategie"></datalist>
+              <div class="jchips-scelta" id="chips-strategie"></div>
+            </div>
           </div>
 
           <div class="jemo-scelta">
@@ -2164,6 +2253,7 @@ function j_renderFiltri(){
   // suggerimenti nel modulo
   document.getElementById('f-simboli').innerHTML = simboli.map(s => `<option value="${esc(s)}">`).join('');
   document.getElementById('f-strategie').innerHTML = strategie.map(s => `<option value="${esc(s)}">`).join('');
+  j_renderScelte();
 
   const chips = [];
   if(j_filtro.giorno){
@@ -2421,6 +2511,7 @@ function j_renderAll(){
   j_renderToolbar();
   j_renderFiltri();
   const list = j_filtrati();
+  j_renderConto();
   j_renderKPIs(list);
   j_renderSpunti(list);
   j_renderCalendario();
@@ -2805,6 +2896,8 @@ function j_resetForm(){
   j_modificaId = null;
   j_shotFile = null; j_shotAnteprima = null; j_shotRimosso = false;
   ['f-symbol','f-pnl','f-risk','f-strat','f-nota'].forEach(i=>document.getElementById(i).value='');
+  j_setUnita('pnl', j_unitaPreferita('pnl'), true); j_setUnita('risk', j_unitaPreferita('risk'), true);
+  j_renderScelte();
   document.getElementById('f-date').value = isoLocale();
   j_setDir('long');
   j_setEmo('lucido');
@@ -2818,6 +2911,177 @@ function j_resetForm(){
   /* sul telefono, finita una modifica si torna all'elenco delle operazioni */
   if(eraModifica && window.jVista && document.body.dataset.vista === 'nuova') jVista('operazioni');
   aggiornaAreaShot();
+}
+
+/* ---------- Saldo del conto ---------- */
+/* il saldo iniziale sta nel profilo di accesso (vale su tutti i dispositivi);
+   il saldo attuale = iniziale + risultato di tutte le operazioni */
+function j_saldoIniziale(){
+  if(j_demo) return 10000;
+  const m = (utente && utente.user_metadata) || {};
+  let v = Number(m.saldo_iniziale) || 0;
+  if(!v){ try{ v = parseFloat(localStorage.getItem('riskly-saldo-iniziale')) || 0; }catch{} }
+  return v > 0 ? v : 0;
+}
+function j_saldoAttuale(){
+  const iniz = j_saldoIniziale();
+  if(!iniz) return 0;
+  return Math.round((iniz + j_lista().reduce((a, t) => a + (Number(t.pnl) || 0), 0)) * 100) / 100;
+}
+function j_renderConto(){
+  const box = document.getElementById('jconto');
+  if(!box) return;
+  const iniz = j_saldoIniziale();
+  const v = document.getElementById('contoSaldo'), sub = document.getElementById('contoSub');
+  document.getElementById('contoForm').hidden = true;
+  const mod = document.getElementById('contoModifica');
+  mod.hidden = false;
+  if(!iniz){
+    v.className = 'jconto-v vuoto';
+    v.textContent = 'Scrivi quanto c\'era sul conto all\'inizio';
+    sub.textContent = 'Poi si aggiorna da solo con ogni operazione vinta o persa.';
+    mod.textContent = 'Imposta il saldo iniziale';
+    mod.classList.add('pri');
+    return;
+  }
+  const att = j_saldoAttuale(), diff = att - iniz, pct = diff / iniz * 100;
+  v.className = 'jconto-v';
+  v.textContent = j_soldi(att, 2).replace(/^([^\d]*)/, att < 0 ? '−$1' : '$1');
+  const cl = diff >= 0 ? 'up' : 'down';
+  sub.innerHTML = `Iniziale ${esc(j_soldi(iniz, 2))} · <span class="${cl}">${esc(j_fmt(diff))} (${diff >= 0 ? '+' : '−'}${Math.abs(pct).toFixed(2)}%)</span>`;
+  mod.textContent = 'Modifica';
+  mod.classList.remove('pri');
+}
+function j_apriConto(){
+  if(j_bloccatoDemo()) return;
+  document.getElementById('contoModifica').hidden = true;
+  const f = document.getElementById('contoForm');
+  f.hidden = false;
+  const inp = document.getElementById('contoIniziale');
+  inp.value = j_saldoIniziale() || '';
+  inp.focus();
+}
+async function j_salvaSaldoIniziale(e){
+  e.preventDefault();
+  const v = Math.round((parseFloat(document.getElementById('contoIniziale').value) || 0) * 100) / 100;
+  if(v < 0){ j_flash('Il saldo non può essere negativo.', true); return; }
+  try{ localStorage.setItem('riskly-saldo-iniziale', String(v)); }catch{}
+  if(sb && utente){
+    try{
+      const { data, error } = await sb.auth.updateUser({ data: { saldo_iniziale: v } });
+      if(error) throw error;
+      if(data && data.user) utente = data.user;
+      else utente.user_metadata = Object.assign({}, utente.user_metadata, { saldo_iniziale: v });
+    }catch(err){
+      j_flash('Saldo salvato solo su questo dispositivo: ' + traduciErrore(err.message || String(err)), true);
+    }
+  }
+  j_renderConto();
+  if(v) j_flash('Saldo iniziale salvato: ora il saldo si aggiorna da solo.');
+}
+
+/* ---------- Simboli e strategie salvati ---------- */
+/* i preferiti restano su questo dispositivo; quelli già usati nelle operazioni compaiono ovunque */
+const J_SALVATI = { simboli:'riskly-simboli-salvati', strategie:'riskly-strategie-salvate' };
+const J_CAMPO = { simboli:'f-symbol', strategie:'f-strat' };
+function j_salvati(tipo){
+  try{ const v = JSON.parse(localStorage.getItem(J_SALVATI[tipo]) || '[]'); return Array.isArray(v) ? v.filter(x => typeof x === 'string') : []; }
+  catch{ return []; }
+}
+function j_scriviSalvati(tipo, lista){
+  try{ localStorage.setItem(J_SALVATI[tipo], JSON.stringify(lista.slice(0, 40))); }catch{}
+}
+function j_normVoce(tipo, v){
+  v = String(v || '').trim();
+  return tipo === 'simboli' ? v.toUpperCase() : v;
+}
+function j_usati(tipo){
+  const conta = new Map();
+  (j_trades || []).forEach(t => {
+    const v = tipo === 'simboli' ? t.symbol : t.strategy;
+    if(v) conta.set(v, (conta.get(v) || 0) + 1);
+  });
+  return [...conta.entries()].sort((a, b) => b[1] - a[1]).map(e => e[0]);
+}
+function j_renderScelte(){
+  ['simboli','strategie'].forEach(tipo => {
+    const box = document.getElementById('chips-' + tipo);
+    if(!box) return;
+    const salvati = j_salvati(tipo);
+    const usati = j_usati(tipo).filter(v => !salvati.includes(v)).slice(0, 8);
+    const attuale = j_normVoce(tipo, document.getElementById(J_CAMPO[tipo]).value);
+    box.innerHTML =
+      salvati.map(v => `<button type="button" class="jscelta${v === attuale ? ' on' : ''}" data-v="${esc(v)}"><span class="pin">★</span>${esc(v)}<span class="x" data-togli="1" title="Togli dai salvati">✕</span></button>`).join('') +
+      usati.map(v => `<button type="button" class="jscelta${v === attuale ? ' on' : ''}" data-v="${esc(v)}">${esc(v)}</button>`).join('');
+    box.onclick = e => {
+      const b = e.target.closest('.jscelta'); if(!b) return;
+      const v = b.dataset.v;
+      if(e.target.dataset.togli){
+        j_scriviSalvati(tipo, j_salvati(tipo).filter(x => x !== v));
+      }else{
+        document.getElementById(J_CAMPO[tipo]).value = v;
+      }
+      j_renderScelte();
+    };
+    j_aggiornaSalva(tipo, true);
+  });
+}
+function j_aggiornaSalva(tipo, senzaChips){
+  const v = j_normVoce(tipo, document.getElementById(J_CAMPO[tipo]).value);
+  const btn = document.getElementById('salva-' + tipo);
+  if(btn) btn.hidden = !v || j_salvati(tipo).includes(v);
+  if(!senzaChips){
+    document.querySelectorAll('#chips-' + tipo + ' .jscelta').forEach(b => b.classList.toggle('on', b.dataset.v === v));
+  }
+}
+function j_salvaVoce(tipo){
+  const v = j_normVoce(tipo, document.getElementById(J_CAMPO[tipo]).value);
+  if(!v) return;
+  const lista = j_salvati(tipo).filter(x => x !== v);
+  lista.unshift(v);
+  j_scriviSalvati(tipo, lista);
+  j_renderScelte();
+  j_flash(`${tipo === 'simboli' ? 'Simbolo' : 'Strategia'} "${v}" salvat${tipo === 'simboli' ? 'o' : 'a'}: la ritrovi qui sotto.`);
+}
+
+/* ---------- Risultato e rischio in soldi o in % del conto ---------- */
+const j_unita = { pnl:'val', risk:'val' };
+/* l'ultima scelta (€ o %) resta per le operazioni successive */
+function j_unitaPreferita(campo){
+  try{ return localStorage.getItem('riskly-unita-' + campo) === 'pct' ? 'pct' : 'val'; }catch{ return 'val'; }
+}
+function j_setUnita(campo, u, senzaRicordare){
+  j_unita[campo] = u;
+  if(!senzaRicordare){ try{ localStorage.setItem('riskly-unita-' + campo, u); }catch{} }
+  document.querySelectorAll(`.junita[data-campo="${campo}"] button`).forEach(b => b.classList.toggle('on', b.dataset.u === u));
+  const inp = document.getElementById(campo === 'pnl' ? 'f-pnl' : 'f-risk');
+  inp.placeholder = u === 'pct' ? (campo === 'pnl' ? '1.5 o -1' : '1') : (campo === 'pnl' ? '125.50 o -50' : '100');
+  const serve = j_unita.pnl === 'pct' || j_unita.risk === 'pct';
+  const box = document.getElementById('f-saldo-box');
+  box.hidden = !serve;
+  const saldo = document.getElementById('f-saldo');
+  if(serve && j_saldoAttuale() > 0) saldo.value = j_saldoAttuale();
+  else if(serve && !saldo.value){
+    let v = 0;
+    try{ v = parseFloat(localStorage.getItem('riskly-saldo')) || 0; }catch{}
+    if(!v && typeof b_stati !== 'undefined' && b_stati.length) v = Number((b_stati[0].dati || {}).saldo) || 0;
+    if(v > 0) saldo.value = Math.round(v * 100) / 100;
+  }
+  j_aggiornaConversione();
+}
+function j_saldo(){ return parseFloat(document.getElementById('f-saldo').value) || 0; }
+function j_inSoldi(campo){
+  const v = parseFloat(document.getElementById(campo === 'pnl' ? 'f-pnl' : 'f-risk').value);
+  if(!Number.isFinite(v)) return NaN;
+  return j_unita[campo] === 'pct' ? Math.round(v / 100 * j_saldo() * 100) / 100 : v;
+}
+function j_aggiornaConversione(){
+  ['pnl','risk'].forEach(campo => {
+    const el = document.getElementById('conv-' + campo);
+    if(!el) return;
+    const soldi = j_inSoldi(campo);
+    el.textContent = (j_unita[campo] === 'pct' && Number.isFinite(soldi) && j_saldo() > 0) ? '= ' + (campo === 'pnl' ? j_fmt(soldi) : j_soldi(soldi, 2)) : '';
+  });
 }
 
 /* porta al modulo "Nuova operazione" (sul telefono è una scheda della barra in basso) */
@@ -2838,6 +3102,8 @@ function j_modifica(id){
   document.getElementById('f-pnl').value = t.pnl;
   document.getElementById('f-risk').value = t.risk || '';
   document.getElementById('f-strat').value = t.strategy;
+  j_setUnita('pnl','val',true); j_setUnita('risk','val',true);
+  j_renderScelte();
   document.getElementById('f-nota').value = t.nota;
   j_setDir(t.dir);
   j_setEmo(t.emo || 'lucido');
@@ -2857,8 +3123,15 @@ async function j_addTrade(e){
   if(j_bloccatoDemo() || j_salvando) return;
   if(!utente){ apriAccesso('accedi'); return; }
 
-  const pnl = parseFloat(document.getElementById('f-pnl').value);
-  const risk = parseFloat(document.getElementById('f-risk').value) || 0;
+  if((j_unita.pnl === 'pct' || j_unita.risk === 'pct') && !(j_saldo() > 0)){
+    j_flash('Per usare la percentuale scrivi il saldo del conto.', true);
+    document.getElementById('f-saldo').focus(); return;
+  }
+  const pnl = j_inSoldi('pnl');
+  const risk = j_inSoldi('risk') || 0;
+  if(j_unita.pnl === 'pct' || j_unita.risk === 'pct'){
+    try{ localStorage.setItem('riskly-saldo', String(j_saldo())); }catch{}
+  }
   const t = {
     id: j_modificaId || j_nuovoId(),
     date: document.getElementById('f-date').value,
