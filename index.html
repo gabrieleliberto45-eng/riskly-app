@@ -31,7 +31,7 @@
     --accent-2:#0EA5E9;        /* azzurro, per le sfumature */
     --accent-soft:rgba(34,197,94,.1);
     --accent-hi:#2EE06C;
-    --grad:linear-gradient(135deg,#22C55E,#0EA5E9);
+    --grad:linear-gradient(180deg,#F1F5F9,#D5DDE6);   /* grafite: pulsanti principali chiari su fondo scuro */
     --gold:#F59E0B;
     --r:14px;
   }
@@ -40,8 +40,8 @@
        line-height:1.6;-webkit-font-smoothing:antialiased;font-feature-settings:'ss01','cv01'}
   body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
     background:
-      radial-gradient(760px 480px at 72% 6%, rgba(34,197,94,.12), transparent 62%),
-      radial-gradient(640px 420px at 18% 74%, rgba(14,165,233,.09), transparent 64%)}
+      radial-gradient(760px 480px at 72% 6%, rgba(148,163,184,.07), transparent 62%),
+      radial-gradient(640px 420px at 18% 74%, rgba(34,197,94,.04), transparent 64%)}
   .z{position:relative;z-index:1}
   a{color:inherit;text-decoration:none}
   .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
@@ -75,8 +75,8 @@
     letter-spacing:.01em}
   .btn:hover{border-color:rgba(34,197,94,.5);color:var(--text);background:rgba(34,197,94,.08)}
   .btn.pri{background:var(--grad);border-color:transparent;color:#04121C;font-weight:700;
-    box-shadow:0 4px 18px rgba(34,197,94,.22)}
-  .btn.pri:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(34,197,94,.36);filter:brightness(1.06)}
+    box-shadow:0 4px 18px rgba(0,0,0,.3)}
+  .btn.pri:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,.4);filter:brightness(1.04)}
   .btn.lg{padding:18px 38px;font-size:1rem}
   .btn.wide{width:100%}
   .btn:active{transform:translateY(1px)}
@@ -332,8 +332,7 @@
     background:var(--accent);animation:battito 2s infinite}
   @keyframes battito{0%,100%{opacity:1}50%{opacity:.3}}
   .hero-new h1{font-size:3.5rem;margin-bottom:28px;letter-spacing:-.035em;line-height:1.08}
-  .hero-new h1 .gr{background:var(--grad);-webkit-background-clip:text;background-clip:text;
-    color:transparent}
+  .hero-new h1 .gr{color:var(--accent)}
   .h-lead{color:var(--dim);font-size:1.12rem;max-width:50ch;margin:0 auto 40px;line-height:1.75}
   .h-cta{display:flex;gap:13px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
   .h-fine{color:var(--dim2);font-size:.85rem}
@@ -1111,6 +1110,42 @@ body{padding-top:0}
   letter-spacing:.06em;margin:22px 0 10px}
 .jbot-avviso{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);border-radius:12px;
   padding:12px 14px;font-size:.82rem;color:var(--dim);margin-bottom:14px}
+
+  /* "⋯ Altro": esporta, importa, svuota */
+  .jaltro{position:relative}
+  .jaltro-menu{display:none;position:absolute;right:0;top:calc(100% + 6px);z-index:40;min-width:220px;
+    background:#0F1620;border:1px solid var(--line);border-radius:14px;padding:6px;box-shadow:0 14px 34px rgba(0,0,0,.45)}
+  .jaltro.on .jaltro-menu{display:block}
+  @media(max-width:760px){.jaltro-menu{right:auto;left:0}}
+  .jaltro-menu button{display:block;width:100%;text-align:left;background:none;border:none;color:var(--text);
+    font-family:inherit;font-size:.88rem;padding:11px 12px;border-radius:10px;cursor:pointer}
+  .jaltro-menu button:hover{background:rgba(255,255,255,.06)}
+  .jaltro-menu button.rosso{color:var(--down)}
+  .jbarra{display:none}
+  /* barra di navigazione in basso (solo telefono) */
+@media (max-width:760px){
+  body[data-vista] #appJournal [data-vista]{display:none}
+  body[data-vista="panoramica"] #appJournal [data-vista="panoramica"],
+  body[data-vista="calendario"] #appJournal [data-vista="calendario"],
+  body[data-vista="statistiche"] #appJournal [data-vista="statistiche"],
+  body[data-vista="nuova"] #appJournal [data-vista="nuova"],
+  body[data-vista="operazioni"] #appJournal [data-vista="operazioni"]{display:revert}
+  #appJournal{padding-bottom:110px}
+  .jtoast{bottom:calc(96px + env(safe-area-inset-bottom))}
+  #tornaSu{bottom:calc(96px + env(safe-area-inset-bottom))}
+  .jbarra{position:fixed;top:auto;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:80;
+    display:grid;grid-template-columns:1fr 1fr 76px 1fr 1fr;align-items:center;height:68px;padding:0 6px;
+    background:rgba(15,22,32,.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    border:1px solid #1E2A3A;border-radius:24px;box-shadow:0 12px 40px rgba(0,0,0,.45)}
+  .jbarra button{background:none;border:none;color:#6B788A;font-family:inherit;font-size:10.5px;font-weight:500;
+    display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 0;border-radius:16px;cursor:pointer}
+  .jbarra button svg{width:22px;height:22px}
+  .jbarra button.on{color:#E6EDF3;background:rgba(255,255,255,.06)}
+  .jbarra .jb-piu{justify-self:center;width:60px;height:60px;border-radius:50%;margin-top:-30px;padding:0;justify-content:center;
+    background:#E6EDF3;color:#0A0E14;box-shadow:0 0 0 6px #0A0E14, 0 8px 24px rgba(0,0,0,.5)}
+  .jbarra .jb-piu svg{width:26px;height:26px}
+  .jbarra .jb-piu.on{background:#E6EDF3;color:#0A0E14}
+}
 </style>
 </head>
 <body>
@@ -1174,11 +1209,16 @@ body{padding-top:0}
         <div class="jactions">
           <button class="btn" id="btnDemo" onclick="j_anteprima()">Guarda un esempio</button>
           <button class="btn" onclick="b_apri()">Bot</button>
-          <button class="btn" onclick="j_exportData()">Esporta</button>
-          <button class="btn" onclick="j_exportCSV()">CSV</button>
-          <button class="btn" onclick="document.getElementById('imp').click()">Importa</button>
+          <div class="jaltro" id="jaltro">
+            <button class="btn" type="button" aria-haspopup="true" onclick="event.stopPropagation();this.parentElement.classList.toggle('on')">⋯ Altro</button>
+            <div class="jaltro-menu" onclick="this.parentElement.classList.remove('on')">
+              <button type="button" onclick="j_exportData()">Esporta copia (JSON)</button>
+              <button type="button" onclick="j_exportCSV()">Esporta in CSV</button>
+              <button type="button" onclick="document.getElementById('imp').click()">Importa</button>
+              <button type="button" class="rosso" onclick="j_clearAll()">Svuota il journal</button>
+            </div>
+          </div>
           <input type="file" id="imp" accept=".json,.csv,.txt" hidden onchange="j_importData(event)">
-          <button class="btn" onclick="j_clearAll()">Svuota</button>
           <select id="fValuta" class="jvaluta" aria-label="Valuta del conto" onchange="j_setValuta(this.value)"></select>
         </div>
       </div>
@@ -3508,6 +3548,42 @@ if(sb){
   });
 }
 
+/* barra di navigazione in basso per il journal (solo telefono) */
+(function(){
+  const VISTE = [
+    { id:'panoramica', nome:'Panoramica', icona:'<path d="M4 11l8-7 8 7v9a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/>' },
+    { id:'calendario', nome:'Calendario', icona:'<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/>' },
+    { id:'nuova',      nome:'',           icona:'<path d="M12 5v14M5 12h14"/>' },
+    { id:'statistiche',nome:'Statistiche',icona:'<path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/>' },
+    { id:'operazioni', nome:'Operazioni', icona:'<path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/>' },
+  ];
+  const wrap = document.querySelector('#appJournal .app-corpo .wrap');
+  if(!wrap) return;
+  const dove = el => {
+    if(!el.matches) return 'panoramica';
+    if(el.querySelector('#calendario')) return 'calendario';
+    if(el.classList.contains('jgrid')) return 'statistiche';
+    if(el.id === 'add') return 'nuova';
+    if(el.id === 'trades' || el.id === 'strat') return 'operazioni';
+    return 'panoramica';
+  };
+  [...wrap.children].forEach(el => el.dataset.vista = dove(el));
+  const barra = document.createElement('div');
+  barra.className = 'jbarra';
+  barra.innerHTML = VISTE.map(v => `<button data-v="${v.id}" class="${v.id==='nuova'?'jb-piu':''}" aria-label="${v.nome||'Nuova operazione'}">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${v.id==='nuova'?2.4:1.8}" stroke-linecap="round" stroke-linejoin="round">${v.icona}</svg>
+      ${v.nome?`<span>${v.nome}</span>`:''}</button>`).join('');
+  document.getElementById('appJournal').appendChild(barra);
+  window.jVista = function(id){
+    document.body.dataset.vista = id;
+    barra.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.v === id));
+    window.scrollTo(0,0);
+  };
+  barra.addEventListener('click', e => { const b = e.target.closest('button'); if(b) jVista(b.dataset.v); });
+  jVista('panoramica');
+})();
+
+document.addEventListener('click', () => { const m = document.getElementById('jaltro'); if(m) m.classList.remove('on'); });
 </script>
 </body>
 </html>
