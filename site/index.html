@@ -974,6 +974,23 @@
     .nav-azioni .btn{padding:9px 15px;font-size:.8rem;box-shadow:none}
   }
 
+
+  /* ═══ BOT: sotto-pagine ═══ */
+  .bot-nav{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:0 auto 28px;position:sticky;top:76px;z-index:20;
+    background:rgba(10,14,20,.92);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:100px;padding:5px;width:max-content;max-width:100%}
+  .bot-nav button{background:none;border:none;color:var(--dim);font-family:inherit;font-size:.88rem;font-weight:500;
+    padding:9px 16px;border-radius:100px;cursor:pointer}
+  .bot-nav button.on{background:var(--grad);color:#08110c;font-weight:600}
+  .bot-pannello{display:none}
+  .bot-pannello.on{display:block}
+  .bot-rimandi{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:22px 0}
+  .bot-rimando{text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px 20px;
+    color:var(--text);font-family:inherit;cursor:pointer}
+  .bot-rimando:hover{border-color:var(--accent)}
+  .bot-rimando b{display:block;font-size:1rem;margin-bottom:4px}
+  .bot-rimando span{color:var(--dim);font-size:.84rem;line-height:1.5}
+  @media(max-width:620px){.bot-rimandi{grid-template-columns:1fr}.bot-nav{top:118px}.bot-nav button{padding:8px 11px;font-size:.8rem;white-space:nowrap}}
+
   :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   /* ═══ AREA CLIENTI ═══ */
   .acc-testa{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;
@@ -1197,57 +1214,6 @@
       </div>
       <div class="h-fine">Quattro software per MT4 e MT5 · Calcolatori e journal gratuiti, senza registrazione</div>
 
-      <div class="cap-slim">
-        <div class="t"><b>Guida gratuita: le 7 regole di rischio</b><span>Una guida breve in PDF, subito scaricabile. Niente strategie, niente promesse.</span></div>
-        <form onsubmit="iscrivi(event,'mail0','capmsg0')">
-          <input type="email" id="mail0" placeholder="La tua email" required>
-          <button class="btn pri" type="submit">Ricevi la guida</button>
-        </form>
-        <div class="cap-msg" id="capmsg0"></div>
-      </div>
-
-      <div class="cd-fascia" style="margin-top:38px">
-        <div class="cd-kick">I bot escono tra</div>
-        <div class="cd-riga" id="cd-home">
-          <div class="cd-box"><div class="cd-n">28</div><div class="cd-l">giorni</div></div>
-          <div class="cd-box"><div class="cd-n">00</div><div class="cd-l">ore</div></div>
-          <div class="cd-box"><div class="cd-n">00</div><div class="cd-l">min</div></div>
-          <div class="cd-box"><div class="cd-n">00</div><div class="cd-l">sec</div></div>
-        </div>
-        <div class="cd-sotto">
-          Ai primi 10 iscritti il prezzo di lancio resta bloccato a vita.
-          <span style="color:var(--dim2)">·</span>
-          <a href="https://t.me/+mlCyBs21_7A3ZDg0" target="_blank" rel="noopener"
-            style="color:var(--accent);text-decoration:underline;font-size:.86rem">Canale Telegram</a>
-        </div>
-        <div class="badge-sic">
-          <span><b>Nessuna carta</b> richiesta ora</span>
-          <span><b>7 giorni</b> di prova sul journal</span>
-          <span>Si paga <b>una volta sola</b></span>
-          <span><b>Zero email</b> indesiderate</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CHI SONO -->
-  <section class="sez">
-    <div class="wrap" style="max-width:860px">
-      <div class="chi">
-        <div class="foto">GL</div>
-        <div>
-          <h3>Chi c'è dietro Riskly</h3>
-          <p>Sono <b style="color:var(--text)">Gabriele Liberto</b>, trader e sviluppatore. Riskly non nasce a tavolino: nasce da un problema mio e di molti colleghi con cui lavoro ogni giorno.</p>
-          <p>Nel trading il mercato non lo controlli, il rischio sì — ed è l'unica variabile che quasi nessuno gestisce con regole scritte. Sapevo cosa mi serviva per fermarmi al momento giusto, e sapevo scriverlo. Così l'ho costruito.</p>
-          <p>Non vendo segnali e non prometto rendimenti: nessuno può garantirli, e chi lo fa ti sta mentendo. Quello che trovi qui sono strumenti che eseguono le regole che hai deciso a mente fredda, quando eri lucido.</p>
-          <p>I bot sono in test su conto demo MT5. Pubblico gli screenshot datati sul canale Telegram: preferisco mostrare una prova piccola e vera che una ricostruzione grafica.</p>
-          <div class="firma">Gabriele Liberto · ditta individuale · P. IVA 04948840162</div>
-          <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
-            <a class="btn" href="https://t.me/+mlCyBs21_7A3ZDg0" target="_blank" rel="noopener">Canale Telegram</a>
-            <a class="btn" href="mailto:info@riskly.trade">Scrivimi</a>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -1347,6 +1313,21 @@
       <span class="f-voce">Conti prop firm</span>
     </div>
   </div>
+
+  <!-- GUIDA (spostata dal titolo) -->
+  <section class="sez" style="padding-top:8px;padding-bottom:8px">
+    <div class="wrap">
+      <div class="cap-slim">
+        <div class="t"><b>Guida gratuita: le 7 regole di rischio</b><span>Una guida breve in PDF, subito scaricabile. Niente strategie, niente promesse.</span></div>
+        <form onsubmit="iscrivi(event,'mail0','capmsg0')">
+          <input type="email" id="mail0" placeholder="La tua email" required>
+          <button class="btn pri" type="submit">Ricevi la guida</button>
+        </form>
+        <div class="cap-msg" id="capmsg0"></div>
+      </div>
+
+    </div>
+  </section>
 
   <!-- I TRE PRODOTTI -->
   <section>
@@ -1458,6 +1439,54 @@
     </div>
   </section>
 
+  <!-- CHI SONO -->
+  <section class="sez">
+    <div class="wrap" style="max-width:860px">
+      <div class="chi">
+        <div class="foto">GL</div>
+        <div>
+          <h3>Chi c'è dietro Riskly</h3>
+          <p>Sono <b style="color:var(--text)">Gabriele Liberto</b>, trader e sviluppatore. Riskly non nasce a tavolino: nasce da un problema mio e di molti colleghi con cui lavoro ogni giorno.</p>
+          <p>Nel trading il mercato non lo controlli, il rischio sì — ed è l'unica variabile che quasi nessuno gestisce con regole scritte. Sapevo cosa mi serviva per fermarmi al momento giusto, e sapevo scriverlo. Così l'ho costruito.</p>
+          <p>Non vendo segnali e non prometto rendimenti: nessuno può garantirli, e chi lo fa ti sta mentendo. Quello che trovi qui sono strumenti che eseguono le regole che hai deciso a mente fredda, quando eri lucido.</p>
+          <p>I bot sono in test su conto demo MT5. Pubblico gli screenshot datati sul canale Telegram: preferisco mostrare una prova piccola e vera che una ricostruzione grafica.</p>
+          <div class="firma">Gabriele Liberto · ditta individuale · P. IVA 04948840162</div>
+          <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn" href="https://t.me/+mlCyBs21_7A3ZDg0" target="_blank" rel="noopener">Canale Telegram</a>
+            <a class="btn" href="mailto:info@riskly.trade">Scrivimi</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LANCIO (spostato dal titolo) -->
+  <section class="sez">
+    <div class="wrap">
+      <div class="cd-fascia">
+        <div class="cd-kick">I bot escono tra</div>
+        <div class="cd-riga" id="cd-home">
+          <div class="cd-box"><div class="cd-n">28</div><div class="cd-l">giorni</div></div>
+          <div class="cd-box"><div class="cd-n">00</div><div class="cd-l">ore</div></div>
+          <div class="cd-box"><div class="cd-n">00</div><div class="cd-l">min</div></div>
+          <div class="cd-box"><div class="cd-n">00</div><div class="cd-l">sec</div></div>
+        </div>
+        <div class="cd-sotto">
+          Ai primi 10 iscritti il prezzo di lancio resta bloccato a vita.
+          <span style="color:var(--dim2)">·</span>
+          <a href="https://t.me/+mlCyBs21_7A3ZDg0" target="_blank" rel="noopener"
+            style="color:var(--accent);text-decoration:underline;font-size:.86rem">Canale Telegram</a>
+        </div>
+        <div class="badge-sic">
+          <span><b>Nessuna carta</b> richiesta ora</span>
+          <span><b>7 giorni</b> di prova sul journal</span>
+          <span>Si paga <b>una volta sola</b></span>
+          <span><b>Zero email</b> indesiderate</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- RACCOLTA EMAIL -->
   <section>
     <div class="wrap">
@@ -1494,81 +1523,14 @@
         </div>
       </div>
 
-      <!-- ══ COSA FACCIAMO ══ -->
-      <div class="card" style="margin-bottom:16px">
-        <div class="card-head"><h3>Cosa facciamo noi</h3><span class="meta">tre pezzi che lavorano insieme</span></div>
-        <div class="tools">
-          <div>
-            <h3 style="font-family:'Instrument Sans',-apple-system,system-ui,sans-serif;font-size:.92rem;font-weight:600;margin-bottom:6px">Le regole le decidi tu</h3>
-            <p style="color:var(--dim);font-size:.85rem">Quanto puoi perdere oggi, quante operazioni, quante perdite di fila, quanto rischiare per trade. Le scegli a mente fredda, una volta sola. Noi non ti diciamo cosa comprare.</p>
-          </div>
-          <div>
-            <h3 style="font-family:'Instrument Sans',-apple-system,system-ui,sans-serif;font-size:.92rem;font-weight:600;margin-bottom:6px">I bot le fanno rispettare</h3>
-            <p style="color:var(--dim);font-size:.85rem">Dentro MetaTrader, in tempo reale: stop automatico, lotto giusto, pausa dopo una perdita. Quando superi un limite il blocco è vero: MetaTrader si chiude fino a mezzanotte.</p>
-          </div>
-          <div>
-            <h3 style="font-family:'Instrument Sans',-apple-system,system-ui,sans-serif;font-size:.92rem;font-weight:600;margin-bottom:6px">Il journal ti mostra il perché</h3>
-            <p style="color:var(--dim);font-size:.85rem">Le operazioni chiuse arrivano da sole nel journal, con rischio, R e pip. Lì aggiungi note e stato d'animo, e scopri quali abitudini ti costano. Dal telefono vedi anche lo stato dei bot.</p>
-          </div>
-        </div>
+      <!-- sotto-pagine dei bot: una cosa per volta -->
+      <div class="bot-nav" role="tablist">
+        <button class="on" data-bt="scegli" onclick="botTab('scegli')">I bot</button>
+        <button data-bt="come" onclick="botTab('come')">Come funzionano</button>
+        <button data-bt="confronti" onclick="botTab('confronti')">Confronti</button>
       </div>
 
-      <div class="diff">
-        <div class="altri">
-          <h4>COSA FANNO DI SOLITO GLI ALTRI</h4>
-          <ul>
-            <li>Bloccano quando l'equity è già scesa del 4%</li>
-            <li>Il "blocco" chiude le posizioni, ma puoi riaprire subito e pagare di nuovo lo spread</li>
-            <li>Lotto troppo grande: chiudono tutto oppure si limitano ad avvisarti</li>
-            <li>Un bot per il rischio, un altro per la gestione, un journal a parte da compilare a mano</li>
-            <li>Il pannello si vede solo sul computer</li>
-          </ul>
-        </div>
-        <div class="noi">
-          <h4>COSA FA RISKLY IN PIÙ</h4>
-          <ul>
-            <li>Ti ferma dopo N perdite di fila, non al −4%<small>Il numero lo scegli tu: di serie sono 3. Pausa obbligatoria dopo ogni perdita e stop della giornata. Interviene sul comportamento, non sul saldo.</small></li>
-            <li>Il blocco chiude MetaTrader<small>Nessun EA può impedire a MetaTrader di mandare un ordine manuale. Per questo, quando scatta un limite, Riskly chiude le posizioni e poi chiude MetaTrader: se lo riapri prima di mezzanotte si richiude subito. E riavviare non serve: il blocco resta.</small></li>
-            <li>Riduce il lotto invece di chiudere<small>Se apri troppo grande, chiude solo la parte in eccesso: l'operazione resta aperta con il rischio che hai deciso. Con i pulsanti BUY e SELL di Riskly Pro il lotto giusto è calcolato prima di entrare.</small></li>
-            <li>Rischio calcolato sull'insieme<small>Somma il rischio della posizione e dei suoi scaglioni prima di aprirli. Se il totale supera la soglia, non ne apre nessuno. Niente aperture con lo spread troppo largo o vicino alle notizie importanti.</small></li>
-            <li>Journal automatico, anche dal telefono<small>Le operazioni chiuse arrivano da sole nel journal e le modifichi come vuoi. Lo stato dei bot (perdita di oggi, pausa, blocco) lo vedi dal telefono, dove l'app MetaTrader non mostra i pannelli.</small></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- ══ RISKLY E GLI ALTRI ══ -->
-      <div class="card" style="margin-bottom:16px">
-        <div class="card-head"><h3>Riskly e gli altri</h3><span class="meta">confronto per tipo di strumento</span></div>
-        <div class="t-scroll">
-          <table>
-            <thead>
-              <tr>
-                <th>Cosa conta</th>
-                <th class="c" style="color:#2EE06C">Riskly</th>
-                <th class="c">Bot che fanno trading<br><span style="font-weight:400;color:var(--dim2);font-size:.72rem">segnali, griglie, martingala</span></th>
-                <th class="c">Gestori di rischio tipici</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td class="lbl">Decide quando entrare</td><td class="c yes">no, decidi tu</td><td class="c">sì, al posto tuo</td><td class="c yes">no</td></tr>
-              <tr><td class="lbl">Promette rendimenti</td><td class="c yes">mai</td><td class="c">spesso</td><td class="c yes">no</td></tr>
-              <tr><td class="lbl">Limite di perdita giornaliera</td><td class="c yes">✓</td><td class="c no">raro</td><td class="c yes">✓</td></tr>
-              <tr><td class="lbl" style="color:var(--up)">Pausa dopo una perdita e stop dopo N perdite di fila</td><td class="c yes">✓</td><td class="c no">—</td><td class="c no">raro</td></tr>
-              <tr><td class="lbl" style="color:var(--up)">Blocco che chiude MetaTrader fino a mezzanotte</td><td class="c yes">✓</td><td class="c no">—</td><td class="c no">di solito no</td></tr>
-              <tr><td class="lbl">Blocco che resta anche se riavvii</td><td class="c yes">✓</td><td class="c no">—</td><td class="c no">non sempre</td></tr>
-              <tr><td class="lbl" style="color:var(--up)">Lotto troppo grande: riduce solo l'eccesso</td><td class="c yes">✓</td><td class="c no">—</td><td class="c no">di solito chiude o avvisa</td></tr>
-              <tr><td class="lbl">Lotto calcolato dal rischio con un clic</td><td class="c yes">✓ Riskly Pro</td><td class="c no">—</td><td class="c no">alcuni</td></tr>
-              <tr><td class="lbl">Niente aperture con spread largo o vicino alle notizie</td><td class="c yes">✓ Riskly Pro</td><td class="c no">varia</td><td class="c no">raro</td></tr>
-              <tr><td class="lbl" style="color:var(--up)">Operazioni nel journal in automatico</td><td class="c yes">✓</td><td class="c no">—</td><td class="c no">—</td></tr>
-              <tr><td class="lbl">Stato dei bot dal telefono</td><td class="c yes">✓ dal journal</td><td class="c no">raro</td><td class="c no">raro</td></tr>
-              <tr><td class="lbl">Tutto in pip, niente formule</td><td class="c yes">✓</td><td class="c no">varia</td><td class="c no">varia</td></tr>
-              <tr><td class="lbl">Come si paga</td><td class="c yes">una volta sola</td><td class="c">spesso abbonamento</td><td class="c">varia</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p style="color:var(--dim2);font-size:.76rem;margin-top:12px;line-height:1.6">Confronto tra tipi di strumento, basato su come funzionano di solito: ogni prodotto è diverso e non ci riferiamo a nessuno in particolare. Prima di scegliere, qualsiasi strumento, provalo su un conto demo.</p>
-      </div>
-
+      <div class="bot-pannello on" id="bt-scegli">
       <div class="lancio-box">
         <div class="top">
           <div>
@@ -1588,121 +1550,6 @@
           </div>
         </div>
       </div>
-
-      <!-- ══ SIMULAZIONI ══ -->
-      <div style="margin-bottom:38px">
-        <div class="sim">
-          <div class="sim-head">
-            <h3>RiskGuard — la giornata che si consuma</h3>
-            <p>Le barre si riempiono trade dopo trade. Alla terza perdita consecutiva il bot chiude tutto e sospende l'operatività, prima che il limite venga davvero violato.</p>
-          </div>
-          <div class="mt">
-            <div class="mt-bar">
-              <span class="dot" style="background:#FF5F57"></span>
-              <span class="dot" style="background:#FEBC2E"></span>
-              <span class="dot" style="background:#28C840"></span>
-              <span class="mt-title">EURUSD,M15 — Conto demo — MetaTrader 5</span>
-              <span class="mt-live"><i></i>LIVE</span>
-            </div>
-            <div class="mt-body">
-              <svg id="chartRG" viewBox="0 0 800 300"></svg>
-              <div class="ea tr" id="panelRG"></div>
-              <div class="evt" id="evRG"></div>
-            </div>
-          </div>
-          <div class="sim-ctrl">
-            <div class="sim-prog"><i id="progRG"></i></div>
-            <span class="sim-fase" id="faseRG">inizio giornata</span>
-          </div>
-        </div>
-
-        <div class="sim">
-          <div class="sim-head">
-            <h3>TradeManager — lo stop che si sposta</h3>
-            <p>La linea rossa si alza da sola: prima al break-even, poi in trailing dietro al prezzo. Tu non tocchi nulla.</p>
-          </div>
-          <div class="mt">
-            <div class="mt-bar">
-              <span class="dot" style="background:#FF5F57"></span>
-              <span class="dot" style="background:#FEBC2E"></span>
-              <span class="dot" style="background:#28C840"></span>
-              <span class="mt-title">XAUUSD,M5 — Conto demo — MetaTrader 5</span>
-              <span class="mt-live"><i></i>LIVE</span>
-            </div>
-            <div class="mt-body">
-              <svg id="chartTM" viewBox="0 0 800 300"></svg>
-              <div class="ea tl" id="panelTM"></div>
-              <div class="evt" id="evTM"></div>
-            </div>
-          </div>
-          <div class="sim-ctrl">
-            <div class="sim-prog"><i id="progTM"></i></div>
-            <span class="sim-fase" id="faseTM">posizione aperta</span>
-          </div>
-        </div>
-
-        <div class="sim">
-          <div class="sim-head">
-            <h3>ScaleIn — una posizione diventa quattro</h3>
-            <p>Apri il primo ordine a mano. In meno di un secondo il bot replica la posizione e assegna a ciascuna un take profit diverso.</p>
-          </div>
-          <div class="mt">
-            <div class="mt-bar">
-              <span class="dot" style="background:#FF5F57"></span>
-              <span class="dot" style="background:#FEBC2E"></span>
-              <span class="dot" style="background:#28C840"></span>
-              <span class="mt-title">GBPUSD,M15 — Conto demo — MetaTrader 5</span>
-              <span class="mt-live"><i></i>LIVE</span>
-            </div>
-            <div class="mt-body">
-              <svg id="chartSI" viewBox="0 0 800 320"></svg>
-              <div class="ea bl" id="panelSI"></div>
-              <div class="evt" id="evSI"></div>
-            </div>
-          </div>
-          <div class="sim-ctrl">
-            <div class="sim-prog"><i id="progSI"></i></div>
-            <span class="sim-fase" id="faseSI">ordine manuale</span>
-          </div>
-        </div>
-
-        <p style="color:var(--dim2);font-size:.76rem;margin-top:14px;line-height:1.6;max-width:70ch">
-          Ricostruzioni grafiche a scopo illustrativo, non registrazioni di operazioni reali e non rappresentative di risultati ottenibili.
-        </p>
-
-      <div class="prova">
-        <div class="k">TEST IN CORSO · CONTO DEMO MT5</div>
-        <p>Le animazioni qui sopra sono ricostruzioni. I test veri li pubblichiamo sul
-        <a href="https://t.me/+mlCyBs21_7A3ZDg0" target="_blank" rel="noopener">canale Telegram</a>:
-        screenshot datati di MetaTrader, non mockup. Se una funzione non regge il test, lo scriviamo lì.</p>
-      </div>
-
-      <div class="prova" style="background:rgba(34,197,94,.06);border-color:rgba(34,197,94,.3);margin-top:18px">
-        <div class="k" style="color:var(--up)">COMPATIBILITÀ CON LE PROP FIRM</div>
-        <p style="margin-bottom:12px">I nostri software <b style="color:var(--text)">non aprono operazioni</b>: gestiscono il rischio di quelle che apri tu. È la categoria di strumenti che le prop firm ammettono più facilmente.</p>
-        <div class="prop-wrap"><table class="prop-tab">
-          <tr><th>Prop firm</th><th>Expert Advisor</th><th>Note</th></tr>
-          <tr><td>FTMO</td><td class="si">consentiti</td><td>Vietati HFT e bot oltre 2.000 richieste al server al giorno. I nostri sono a frequenza bassissima.</td></tr>
-          <tr><td>FundedNext</td><td class="si">consentiti</td><td>Stessa modalità dalla challenge al conto finanziato. Nelle competizioni a premi solo trading manuale.</td></tr>
-          <tr><td>The5ers</td><td class="si">consentiti</td><td>Vietati HFT, tick scalping e sfruttamento del rollover notturno.</td></tr>
-          <tr><td>Funding Pips</td><td class="si">consentiti</td><td>Rientrano tra gli strumenti di gestione del rischio.</td></tr>
-        </table></div>
-        <p style="color:var(--dim2);font-size:.8rem;margin-top:12px">Regolamenti pubblici, rilevati a settembre 2026. Controlla sempre le condizioni aggiornate della tua prop: se non ammette questi strumenti e hai già acquistato, ti rimborsiamo.</p>
-      </div>
-
-
-      <div class="cap-slim">
-        <div class="t"><b>Prima di scegliere un software, leggi le regole</b><span>Le 7 regole di rischio in PDF, gratis. Ti serviranno comunque, anche senza i nostri bot.</span></div>
-        <form onsubmit="iscrivi(event,'mail3','capmsg3')">
-          <input type="email" id="mail3" placeholder="La tua email" required>
-          <button class="btn pri" type="submit">Ricevi la guida</button>
-        </form>
-        <div class="cap-msg" id="capmsg3"></div>
-      </div>
-
-      </div>
-
-      
 
       <div class="bots">
         <!-- RISKGUARD -->
@@ -1827,6 +1674,157 @@
         </div>
       </div>
 
+      <!-- LICENZA -->
+      <div class="card" style="margin-top:14px">
+        <div class="card-head"><h3>Come funziona la licenza</h3></div>
+        <div class="tools">
+          <div>
+            <h3 style="font-family:'Instrument Sans',-apple-system,system-ui,sans-serif;font-size:.92rem;font-weight:600;margin-bottom:6px">Legata al conto</h3>
+            <p style="color:var(--dim);font-size:.85rem">La licenza è associata ai numeri di conto MetaTrader che ci comunichi, su MT4 o MT5. Puoi cambiarli scrivendo a supporto.</p>
+          </div>
+          <div>
+            <h3 style="font-family:'Instrument Sans',-apple-system,system-ui,sans-serif;font-size:.92rem;font-weight:600;margin-bottom:6px">Aggiornamenti inclusi</h3>
+            <p style="color:var(--dim);font-size:.85rem">Ogni miglioramento e correzione è compreso nel prezzo. La licenza vale sia per la versione MT4 che per quella MT5.</p>
+          </div>
+          <div>
+            <h3 style="font-family:'Instrument Sans',-apple-system,system-ui,sans-serif;font-size:.92rem;font-weight:600;margin-bottom:6px">Prova su demo</h3>
+            <p style="color:var(--dim);font-size:.85rem">Sette giorni su conto demo, senza carta di credito. Serve a vedere il bot lavorare prima di decidere.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bot-rimandi">
+      <button class="bot-rimando" onclick="botTab('come')"><b>Come funzionano →</b><span>Le simulazioni passo passo e i test su conto demo.</span></button>
+      <button class="bot-rimando" onclick="botTab('confronti')"><b>Confronti →</b><span>Quale bot fa per te, Riskly e gli altri, prop firm.</span></button>
+      </div>
+
+      <div class="cap-slim">
+        <div class="t"><b>Prima di scegliere un software, leggi le regole</b><span>Le 7 regole di rischio in PDF, gratis. Ti serviranno comunque, anche senza i nostri bot.</span></div>
+        <form onsubmit="iscrivi(event,'mail3','capmsg3')">
+          <input type="email" id="mail3" placeholder="La tua email" required>
+          <button class="btn pri" type="submit">Ricevi la guida</button>
+        </form>
+        <div class="cap-msg" id="capmsg3"></div>
+      </div>
+
+      
+
+      
+
+      </div>
+
+      <div class="bot-pannello" id="bt-come">
+      <!-- ══ COSA FACCIAMO ══ -->
+      <div class="card" style="margin-bottom:16px">
+        <div class="card-head"><h3>Cosa facciamo noi</h3><span class="meta">tre pezzi che lavorano insieme</span></div>
+        <div class="tools">
+          <div>
+            <h3 style="font-family:'Instrument Sans',-apple-system,system-ui,sans-serif;font-size:.92rem;font-weight:600;margin-bottom:6px">Le regole le decidi tu</h3>
+            <p style="color:var(--dim);font-size:.85rem">Quanto puoi perdere oggi, quante operazioni, quante perdite di fila, quanto rischiare per trade. Le scegli a mente fredda, una volta sola. Noi non ti diciamo cosa comprare.</p>
+          </div>
+          <div>
+            <h3 style="font-family:'Instrument Sans',-apple-system,system-ui,sans-serif;font-size:.92rem;font-weight:600;margin-bottom:6px">I bot le fanno rispettare</h3>
+            <p style="color:var(--dim);font-size:.85rem">Dentro MetaTrader, in tempo reale: stop automatico, lotto giusto, pausa dopo una perdita. Quando superi un limite il blocco è vero: MetaTrader si chiude fino a mezzanotte.</p>
+          </div>
+          <div>
+            <h3 style="font-family:'Instrument Sans',-apple-system,system-ui,sans-serif;font-size:.92rem;font-weight:600;margin-bottom:6px">Il journal ti mostra il perché</h3>
+            <p style="color:var(--dim);font-size:.85rem">Le operazioni chiuse arrivano da sole nel journal, con rischio, R e pip. Lì aggiungi note e stato d'animo, e scopri quali abitudini ti costano. Dal telefono vedi anche lo stato dei bot.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ SIMULAZIONI ══ -->
+      <div style="margin-bottom:38px">
+        <div class="sim">
+          <div class="sim-head">
+            <h3>RiskGuard — la giornata che si consuma</h3>
+            <p>Le barre si riempiono trade dopo trade. Alla terza perdita consecutiva il bot chiude tutto e sospende l'operatività, prima che il limite venga davvero violato.</p>
+          </div>
+          <div class="mt">
+            <div class="mt-bar">
+              <span class="dot" style="background:#FF5F57"></span>
+              <span class="dot" style="background:#FEBC2E"></span>
+              <span class="dot" style="background:#28C840"></span>
+              <span class="mt-title">EURUSD,M15 — Conto demo — MetaTrader 5</span>
+              <span class="mt-live"><i></i>LIVE</span>
+            </div>
+            <div class="mt-body">
+              <svg id="chartRG" viewBox="0 0 800 300"></svg>
+              <div class="ea tr" id="panelRG"></div>
+              <div class="evt" id="evRG"></div>
+            </div>
+          </div>
+          <div class="sim-ctrl">
+            <div class="sim-prog"><i id="progRG"></i></div>
+            <span class="sim-fase" id="faseRG">inizio giornata</span>
+          </div>
+        </div>
+
+        <div class="sim">
+          <div class="sim-head">
+            <h3>TradeManager — lo stop che si sposta</h3>
+            <p>La linea rossa si alza da sola: prima al break-even, poi in trailing dietro al prezzo. Tu non tocchi nulla.</p>
+          </div>
+          <div class="mt">
+            <div class="mt-bar">
+              <span class="dot" style="background:#FF5F57"></span>
+              <span class="dot" style="background:#FEBC2E"></span>
+              <span class="dot" style="background:#28C840"></span>
+              <span class="mt-title">XAUUSD,M5 — Conto demo — MetaTrader 5</span>
+              <span class="mt-live"><i></i>LIVE</span>
+            </div>
+            <div class="mt-body">
+              <svg id="chartTM" viewBox="0 0 800 300"></svg>
+              <div class="ea tl" id="panelTM"></div>
+              <div class="evt" id="evTM"></div>
+            </div>
+          </div>
+          <div class="sim-ctrl">
+            <div class="sim-prog"><i id="progTM"></i></div>
+            <span class="sim-fase" id="faseTM">posizione aperta</span>
+          </div>
+        </div>
+
+        <div class="sim">
+          <div class="sim-head">
+            <h3>ScaleIn — una posizione diventa quattro</h3>
+            <p>Apri il primo ordine a mano. In meno di un secondo il bot replica la posizione e assegna a ciascuna un take profit diverso.</p>
+          </div>
+          <div class="mt">
+            <div class="mt-bar">
+              <span class="dot" style="background:#FF5F57"></span>
+              <span class="dot" style="background:#FEBC2E"></span>
+              <span class="dot" style="background:#28C840"></span>
+              <span class="mt-title">GBPUSD,M15 — Conto demo — MetaTrader 5</span>
+              <span class="mt-live"><i></i>LIVE</span>
+            </div>
+            <div class="mt-body">
+              <svg id="chartSI" viewBox="0 0 800 320"></svg>
+              <div class="ea bl" id="panelSI"></div>
+              <div class="evt" id="evSI"></div>
+            </div>
+          </div>
+          <div class="sim-ctrl">
+            <div class="sim-prog"><i id="progSI"></i></div>
+            <span class="sim-fase" id="faseSI">ordine manuale</span>
+          </div>
+        </div>
+
+        <p style="color:var(--dim2);font-size:.76rem;margin-top:14px;line-height:1.6;max-width:70ch">
+          Ricostruzioni grafiche a scopo illustrativo, non registrazioni di operazioni reali e non rappresentative di risultati ottenibili.
+        </p>
+
+      <div class="prova">
+        <div class="k">TEST IN CORSO · CONTO DEMO MT5</div>
+        <p>Le animazioni qui sopra sono ricostruzioni. I test veri li pubblichiamo sul
+        <a href="https://t.me/+mlCyBs21_7A3ZDg0" target="_blank" rel="noopener">canale Telegram</a>:
+        screenshot datati di MetaTrader, non mockup. Se una funzione non regge il test, lo scriviamo lì.</p>
+      </div>
+
+      </div>
+      </div>
+
+      <div class="bot-pannello" id="bt-confronti">
       <!-- CONFRONTO -->
       <div class="card" style="margin-top:24px">
         <div class="card-head"><h3>Confronto</h3><span class="meta">quale fa al caso tuo</span></div>
@@ -1868,23 +1866,76 @@
         </div>
       </div>
 
-      <!-- LICENZA -->
-      <div class="card" style="margin-top:14px">
-        <div class="card-head"><h3>Come funziona la licenza</h3></div>
-        <div class="tools">
-          <div>
-            <h3 style="font-family:'Instrument Sans',-apple-system,system-ui,sans-serif;font-size:.92rem;font-weight:600;margin-bottom:6px">Legata al conto</h3>
-            <p style="color:var(--dim);font-size:.85rem">La licenza è associata ai numeri di conto MetaTrader che ci comunichi, su MT4 o MT5. Puoi cambiarli scrivendo a supporto.</p>
-          </div>
-          <div>
-            <h3 style="font-family:'Instrument Sans',-apple-system,system-ui,sans-serif;font-size:.92rem;font-weight:600;margin-bottom:6px">Aggiornamenti inclusi</h3>
-            <p style="color:var(--dim);font-size:.85rem">Ogni miglioramento e correzione è compreso nel prezzo. La licenza vale sia per la versione MT4 che per quella MT5.</p>
-          </div>
-          <div>
-            <h3 style="font-family:'Instrument Sans',-apple-system,system-ui,sans-serif;font-size:.92rem;font-weight:600;margin-bottom:6px">Prova su demo</h3>
-            <p style="color:var(--dim);font-size:.85rem">Sette giorni su conto demo, senza carta di credito. Serve a vedere il bot lavorare prima di decidere.</p>
-          </div>
+      <div class="diff">
+        <div class="altri">
+          <h4>COSA FANNO DI SOLITO GLI ALTRI</h4>
+          <ul>
+            <li>Bloccano quando l'equity è già scesa del 4%</li>
+            <li>Il "blocco" chiude le posizioni, ma puoi riaprire subito e pagare di nuovo lo spread</li>
+            <li>Lotto troppo grande: chiudono tutto oppure si limitano ad avvisarti</li>
+            <li>Un bot per il rischio, un altro per la gestione, un journal a parte da compilare a mano</li>
+            <li>Il pannello si vede solo sul computer</li>
+          </ul>
         </div>
+        <div class="noi">
+          <h4>COSA FA RISKLY IN PIÙ</h4>
+          <ul>
+            <li>Ti ferma dopo N perdite di fila, non al −4%<small>Il numero lo scegli tu: di serie sono 3. Pausa obbligatoria dopo ogni perdita e stop della giornata. Interviene sul comportamento, non sul saldo.</small></li>
+            <li>Il blocco chiude MetaTrader<small>Nessun EA può impedire a MetaTrader di mandare un ordine manuale. Per questo, quando scatta un limite, Riskly chiude le posizioni e poi chiude MetaTrader: se lo riapri prima di mezzanotte si richiude subito. E riavviare non serve: il blocco resta.</small></li>
+            <li>Riduce il lotto invece di chiudere<small>Se apri troppo grande, chiude solo la parte in eccesso: l'operazione resta aperta con il rischio che hai deciso. Con i pulsanti BUY e SELL di Riskly Pro il lotto giusto è calcolato prima di entrare.</small></li>
+            <li>Rischio calcolato sull'insieme<small>Somma il rischio della posizione e dei suoi scaglioni prima di aprirli. Se il totale supera la soglia, non ne apre nessuno. Niente aperture con lo spread troppo largo o vicino alle notizie importanti.</small></li>
+            <li>Journal automatico, anche dal telefono<small>Le operazioni chiuse arrivano da sole nel journal e le modifichi come vuoi. Lo stato dei bot (perdita di oggi, pausa, blocco) lo vedi dal telefono, dove l'app MetaTrader non mostra i pannelli.</small></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ══ RISKLY E GLI ALTRI ══ -->
+      <div class="card" style="margin-bottom:16px">
+        <div class="card-head"><h3>Riskly e gli altri</h3><span class="meta">confronto per tipo di strumento</span></div>
+        <div class="t-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Cosa conta</th>
+                <th class="c" style="color:#2EE06C">Riskly</th>
+                <th class="c">Bot che fanno trading<br><span style="font-weight:400;color:var(--dim2);font-size:.72rem">segnali, griglie, martingala</span></th>
+                <th class="c">Gestori di rischio tipici</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="lbl">Decide quando entrare</td><td class="c yes">no, decidi tu</td><td class="c">sì, al posto tuo</td><td class="c yes">no</td></tr>
+              <tr><td class="lbl">Promette rendimenti</td><td class="c yes">mai</td><td class="c">spesso</td><td class="c yes">no</td></tr>
+              <tr><td class="lbl">Limite di perdita giornaliera</td><td class="c yes">✓</td><td class="c no">raro</td><td class="c yes">✓</td></tr>
+              <tr><td class="lbl" style="color:var(--up)">Pausa dopo una perdita e stop dopo N perdite di fila</td><td class="c yes">✓</td><td class="c no">—</td><td class="c no">raro</td></tr>
+              <tr><td class="lbl" style="color:var(--up)">Blocco che chiude MetaTrader fino a mezzanotte</td><td class="c yes">✓</td><td class="c no">—</td><td class="c no">di solito no</td></tr>
+              <tr><td class="lbl">Blocco che resta anche se riavvii</td><td class="c yes">✓</td><td class="c no">—</td><td class="c no">non sempre</td></tr>
+              <tr><td class="lbl" style="color:var(--up)">Lotto troppo grande: riduce solo l'eccesso</td><td class="c yes">✓</td><td class="c no">—</td><td class="c no">di solito chiude o avvisa</td></tr>
+              <tr><td class="lbl">Lotto calcolato dal rischio con un clic</td><td class="c yes">✓ Riskly Pro</td><td class="c no">—</td><td class="c no">alcuni</td></tr>
+              <tr><td class="lbl">Niente aperture con spread largo o vicino alle notizie</td><td class="c yes">✓ Riskly Pro</td><td class="c no">varia</td><td class="c no">raro</td></tr>
+              <tr><td class="lbl" style="color:var(--up)">Operazioni nel journal in automatico</td><td class="c yes">✓</td><td class="c no">—</td><td class="c no">—</td></tr>
+              <tr><td class="lbl">Stato dei bot dal telefono</td><td class="c yes">✓ dal journal</td><td class="c no">raro</td><td class="c no">raro</td></tr>
+              <tr><td class="lbl">Tutto in pip, niente formule</td><td class="c yes">✓</td><td class="c no">varia</td><td class="c no">varia</td></tr>
+              <tr><td class="lbl">Come si paga</td><td class="c yes">una volta sola</td><td class="c">spesso abbonamento</td><td class="c">varia</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="color:var(--dim2);font-size:.76rem;margin-top:12px;line-height:1.6">Confronto tra tipi di strumento, basato su come funzionano di solito: ogni prodotto è diverso e non ci riferiamo a nessuno in particolare. Prima di scegliere, qualsiasi strumento, provalo su un conto demo.</p>
+      </div>
+
+      <div class="prova" style="background:rgba(34,197,94,.06);border-color:rgba(34,197,94,.3);margin-top:18px">
+        <div class="k" style="color:var(--up)">COMPATIBILITÀ CON LE PROP FIRM</div>
+        <p style="margin-bottom:12px">I nostri software <b style="color:var(--text)">non aprono operazioni</b>: gestiscono il rischio di quelle che apri tu. È la categoria di strumenti che le prop firm ammettono più facilmente.</p>
+        <div class="prop-wrap"><table class="prop-tab">
+          <tr><th>Prop firm</th><th>Expert Advisor</th><th>Note</th></tr>
+          <tr><td>FTMO</td><td class="si">consentiti</td><td>Vietati HFT e bot oltre 2.000 richieste al server al giorno. I nostri sono a frequenza bassissima.</td></tr>
+          <tr><td>FundedNext</td><td class="si">consentiti</td><td>Stessa modalità dalla challenge al conto finanziato. Nelle competizioni a premi solo trading manuale.</td></tr>
+          <tr><td>The5ers</td><td class="si">consentiti</td><td>Vietati HFT, tick scalping e sfruttamento del rollover notturno.</td></tr>
+          <tr><td>Funding Pips</td><td class="si">consentiti</td><td>Rientrano tra gli strumenti di gestione del rischio.</td></tr>
+        </table></div>
+        <p style="color:var(--dim2);font-size:.8rem;margin-top:12px">Regolamenti pubblici, rilevati a settembre 2026. Controlla sempre le condizioni aggiornate della tua prop: se non ammette questi strumenti e hai già acquistato, ti rimborsiamo.</p>
+      </div>
+
+
       </div>
 
       <p class="disc" style="margin-top:26px">I bot non forniscono segnali né raccomandazioni di investimento e non aprono operazioni in autonomia: agiscono solo su posizioni che hai già aperto tu. Vanno testati su conto demo prima dell'uso reale. Alcune prop firm limitano l'uso di Expert Advisor: verifica il regolamento della tua. Il trading comporta il rischio di perdere il capitale investito.</p>
@@ -3317,6 +3368,16 @@ function controllaSimulazioni(){
 
 /* controllo periodico: gestisce fine ciclo, scroll e cambio pagina */
 setInterval(controllaSimulazioni, 1000);
+
+/* sotto-pagine della pagina Bot */
+function botTab(nome){
+  document.querySelectorAll('.bot-pannello').forEach(x => x.classList.toggle('on', x.id === 'bt-' + nome));
+  document.querySelectorAll('.bot-nav button').forEach(b => b.classList.toggle('on', b.dataset.bt === nome));
+  const nav = document.querySelector('.bot-nav');
+  if(nav) window.scrollTo({ top: Math.max(0, nav.getBoundingClientRect().top + window.scrollY - 140), behavior:'smooth' });
+  if(nome === 'come' && typeof avviaSimulazioni === 'function') avviaSimulazioni();
+  if(typeof preparaComparsa === 'function') setTimeout(preparaComparsa, 60);
+}
 
 function avviaSimulazioni(){
   setTimeout(controllaSimulazioni, 300);
