@@ -32,7 +32,7 @@ Così lo apri con un tocco, a schermo intero, come un'app. Ci vuole meno di un m
 
 💡 DA SAPERE
 
-• Resti collegato: la prossima volta che lo apri sei già dentro.
+• La prima volta che lo apri dall'icona potrebbe chiederti di nuovo email e password (su iPhone l'icona non condivide l'accesso con Safari). Dopo resti collegato.
 • Se hai collegato RiskGuard o Riskly Pro, dalla Home vedi anche lo stato dei bot (perdita di oggi, pausa, blocco), che l'app MetaTrader sul telefono non mostra.
 • Le operazioni chiuse arrivano da sole: dal telefono puoi aggiungere note e stato d'animo.
 
