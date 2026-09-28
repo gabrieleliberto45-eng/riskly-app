@@ -9,10 +9,9 @@ TikTok / Instagram / YouTube → link in bio **riskly.trade/tt** (o /ig, /yt: co
 ## Da fare prima del 23 ottobre
 
 - [ ] **Link in bio**: `riskly.trade/tt` su TikTok, `riskly.trade/ig` su Instagram, `riskly.trade/yt` su YouTube.
-- [ ] **Stripe**: crea un Payment Link per RiskGuard (99 €), TradeManager (99 €), ScaleIn (129 €), Riskly Pro (249 €), Videocorso (199 €).
-      In ogni link: "Dopo il pagamento" → reindirizza a `https://riskly.trade/download.html`.
-- [ ] Incolla i link in `site/index.html` (costante `STRIPE`) e metti `VENDITA_ATTIVA = true` **la mattina del 23**, poi ripubblica il sito.
-- [ ] Prova un acquisto vero da 1 € (link di test) fino all'area clienti, poi rimborsalo.
+- [x] **Stripe**: account attivato, prodotti e link di pagamento creati (vedi `stripe-link.json`), dopo il pagamento si torna a `download.html`.
+- [x] Link inseriti in `site/index.html` (costante `STRIPE`). Resta da mettere `VENDITA_ATTIVA = true` **la mattina del 23** e ripubblicare.
+- [ ] Prova un pagamento vero da 1 € con il link di prova (in `stripe-link.json`, voce PROVA), poi rimborsalo da Stripe e archivia il link.
 - [ ] Dal 23 ottobre, i "10 posti" vanno aggiornati a mano (`POSTI_USATI` in index.html) a ogni vendita.
 
 ## Come confermare un ordine

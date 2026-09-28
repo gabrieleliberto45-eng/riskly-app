@@ -4202,11 +4202,11 @@ const PREZZO_DOPO_LANCIO = { 'RiskGuard':198, 'TradeManager':198, 'ScaleIn':258,
 const VENDITA_ATTIVA = false;
 
 const STRIPE = {
-  'RiskGuard':    '',
-  'TradeManager': '',
-  'ScaleIn':      '',
-  'Riskly Pro':   '',
-  'Videocorso':   ''
+  'RiskGuard':    'https://buy.stripe.com/28EbJ00QW4Ebe7L1fcdnW00',
+  'TradeManager': 'https://buy.stripe.com/3cIaEW9ns6Mj2p36zwdnW01',
+  'ScaleIn':      'https://buy.stripe.com/dRm9AS8jo1rZ0gV5vsdnW02',
+  'Riskly Pro':   'https://buy.stripe.com/6oU5kC9ns0nVe7L6zwdnW03',
+  'Videocorso':   ''          /* il corso è ancora in preparazione */
 };
 
 /* il link del gruppo Telegram dei clienti non sta più qui: lo consegna Supabase
@@ -4495,9 +4495,9 @@ function disegnaAccount(){
 }
 
 /* avvio */
+aggiornaPulsantiProdotto();   /* le scritte dei pulsanti non dipendono dal database */
 if(sb){
   caricaAccount();
-  aggiornaPulsantiProdotto();
   sb.auth.onAuthStateChange((ev) => {
     if(ev === 'PASSWORD_RECOVERY'){ apriAccesso('nuova'); return; }
     if(ev === 'SIGNED_IN' || ev === 'SIGNED_OUT') caricaAccount();
