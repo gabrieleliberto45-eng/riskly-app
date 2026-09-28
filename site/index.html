@@ -1544,25 +1544,25 @@
             <thead>
               <tr>
                 <th>Cosa conta</th>
+                <th class="c" style="color:#2EE06C">Riskly</th>
                 <th class="c">Bot che fanno trading<br><span style="font-weight:400;color:var(--dim2);font-size:.72rem">segnali, griglie, martingala</span></th>
                 <th class="c">Gestori di rischio tipici</th>
-                <th class="c" style="color:#2EE06C">Riskly</th>
               </tr>
             </thead>
             <tbody>
-              <tr><td class="lbl">Decide quando entrare</td><td class="c">sì, al posto tuo</td><td class="c yes">no</td><td class="c yes">no, decidi tu</td></tr>
-              <tr><td class="lbl">Promette rendimenti</td><td class="c">spesso</td><td class="c yes">no</td><td class="c yes">mai</td></tr>
-              <tr><td class="lbl">Limite di perdita giornaliera</td><td class="c no">raro</td><td class="c yes">✓</td><td class="c yes">✓</td></tr>
-              <tr><td class="lbl" style="color:var(--up)">Pausa dopo una perdita e stop dopo N perdite di fila</td><td class="c no">—</td><td class="c no">raro</td><td class="c yes">✓</td></tr>
-              <tr><td class="lbl" style="color:var(--up)">Blocco che chiude MetaTrader fino a mezzanotte</td><td class="c no">—</td><td class="c no">di solito no</td><td class="c yes">✓</td></tr>
-              <tr><td class="lbl">Blocco che resta anche se riavvii</td><td class="c no">—</td><td class="c no">non sempre</td><td class="c yes">✓</td></tr>
-              <tr><td class="lbl" style="color:var(--up)">Lotto troppo grande: riduce solo l'eccesso</td><td class="c no">—</td><td class="c no">di solito chiude o avvisa</td><td class="c yes">✓</td></tr>
-              <tr><td class="lbl">Lotto calcolato dal rischio con un clic</td><td class="c no">—</td><td class="c no">alcuni</td><td class="c yes">✓ Riskly Pro</td></tr>
-              <tr><td class="lbl">Niente aperture con spread largo o vicino alle notizie</td><td class="c no">varia</td><td class="c no">raro</td><td class="c yes">✓ Riskly Pro</td></tr>
-              <tr><td class="lbl" style="color:var(--up)">Operazioni nel journal in automatico</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">✓</td></tr>
-              <tr><td class="lbl">Stato dei bot dal telefono</td><td class="c no">raro</td><td class="c no">raro</td><td class="c yes">✓ dal journal</td></tr>
-              <tr><td class="lbl">Tutto in pip, niente formule</td><td class="c no">varia</td><td class="c no">varia</td><td class="c yes">✓</td></tr>
-              <tr><td class="lbl">Come si paga</td><td class="c">spesso abbonamento</td><td class="c">varia</td><td class="c yes">una volta sola</td></tr>
+              <tr><td class="lbl">Decide quando entrare</td><td class="c yes">no, decidi tu</td><td class="c">sì, al posto tuo</td><td class="c yes">no</td></tr>
+              <tr><td class="lbl">Promette rendimenti</td><td class="c yes">mai</td><td class="c">spesso</td><td class="c yes">no</td></tr>
+              <tr><td class="lbl">Limite di perdita giornaliera</td><td class="c yes">✓</td><td class="c no">raro</td><td class="c yes">✓</td></tr>
+              <tr><td class="lbl" style="color:var(--up)">Pausa dopo una perdita e stop dopo N perdite di fila</td><td class="c yes">✓</td><td class="c no">—</td><td class="c no">raro</td></tr>
+              <tr><td class="lbl" style="color:var(--up)">Blocco che chiude MetaTrader fino a mezzanotte</td><td class="c yes">✓</td><td class="c no">—</td><td class="c no">di solito no</td></tr>
+              <tr><td class="lbl">Blocco che resta anche se riavvii</td><td class="c yes">✓</td><td class="c no">—</td><td class="c no">non sempre</td></tr>
+              <tr><td class="lbl" style="color:var(--up)">Lotto troppo grande: riduce solo l'eccesso</td><td class="c yes">✓</td><td class="c no">—</td><td class="c no">di solito chiude o avvisa</td></tr>
+              <tr><td class="lbl">Lotto calcolato dal rischio con un clic</td><td class="c yes">✓ Riskly Pro</td><td class="c no">—</td><td class="c no">alcuni</td></tr>
+              <tr><td class="lbl">Niente aperture con spread largo o vicino alle notizie</td><td class="c yes">✓ Riskly Pro</td><td class="c no">varia</td><td class="c no">raro</td></tr>
+              <tr><td class="lbl" style="color:var(--up)">Operazioni nel journal in automatico</td><td class="c yes">✓</td><td class="c no">—</td><td class="c no">—</td></tr>
+              <tr><td class="lbl">Stato dei bot dal telefono</td><td class="c yes">✓ dal journal</td><td class="c no">raro</td><td class="c no">raro</td></tr>
+              <tr><td class="lbl">Tutto in pip, niente formule</td><td class="c yes">✓</td><td class="c no">varia</td><td class="c no">varia</td></tr>
+              <tr><td class="lbl">Come si paga</td><td class="c yes">una volta sola</td><td class="c">spesso abbonamento</td><td class="c">varia</td></tr>
             </tbody>
           </table>
         </div>
@@ -2087,7 +2087,7 @@
 
       <!-- JOURNAL -->
       <div class="pz-sez"><h3>Journal</h3><span>7 GIORNI DI PROVA · SENZA CARTA</span></div>
-      <div style="display:flex;gap:8px;justify-content:center;margin-bottom:22px">
+      <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:22px">
         <button class="btn" id="bt-m" onclick="setCiclo('m')">Mensile</button>
         <button class="btn pri" id="bt-a" onclick="setCiclo('a')">Annuale</button>
         <button class="btn" id="bt-l" onclick="setCiclo('l')">Lifetime</button>
@@ -2723,7 +2723,7 @@
       <p><b>Se usi il journal in versione dimostrativa</b>: le operazioni che inserisci restano nel tuo browser e non vengono trasmesse. Con un account, invece, i dati sono conservati per permetterti di ritrovarli da qualsiasi dispositivo.</p>
 
       <h3>Gli Expert Advisor</h3>
-      <p>I bot funzionano in locale sulla tua installazione di MetaTrader. Non trasmettono le tue operazioni, i tuoi saldi o le tue strategie. Nella versione con licenza verificata online, l'unica informazione inviata è il numero di conto, necessario a controllare che la licenza sia valida, insieme al nome del broker per finalità di sicurezza.</p>
+      <p>I bot funzionano in locale sulla tua installazione di MetaTrader. Se non li colleghi al journal, non trasmettono le tue operazioni, i tuoi saldi o le tue strategie. Se scegli di collegare RiskGuard o Riskly Pro al journal, il bot invia al tuo account le operazioni chiuse e il suo stato (per esempio la perdita del giorno, la pausa o il blocco), solo per mostrarteli nel journal: puoi scollegarlo quando vuoi. Nella versione con licenza verificata online, l'unica informazione inviata è il numero di conto, necessario a controllare che la licenza sia valida, insieme al nome del broker per finalità di sicurezza.</p>
       <p>Non chiediamo mai le credenziali di accesso al tuo conto di trading e non ne abbiamo bisogno.</p>
 
       <h3>Perché trattiamo i dati</h3>
@@ -2764,7 +2764,7 @@
       <p>Gli strumenti Riskly aiutano a gestire il rischio, ma non lo eliminano e non garantiscono alcun risultato economico.</p>
 
       <h3>Gli Expert Advisor</h3>
-      <p>I nostri bot agiscono su posizioni reali: modificano stop loss e take profit, effettuano chiusure parziali e possono chiudere tutte le posizioni aperte al raggiungimento dei limiti che hai impostato.</p>
+      <p>I nostri bot agiscono su posizioni reali: modificano stop loss e take profit, effettuano chiusure parziali e possono chiudere tutte le posizioni aperte e chiudere il terminale MetaTrader fino a mezzanotte al raggiungimento dei limiti che hai impostato.</p>
       <p><b>Sei tenuto a testarli su conto demo prima dell'uso su conto reale.</b> Non rispondiamo di perdite derivanti da configurazioni errate, malfunzionamenti della piattaforma, interruzioni di connessione, disservizi del broker, slippage o condizioni di mercato anomale.</p>
       <p>Alcune prop firm limitano o vietano l'uso di Expert Advisor: verificare il regolamento della propria è responsabilità dell'utente.</p>
 
