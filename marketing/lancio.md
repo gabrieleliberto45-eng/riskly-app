@@ -11,7 +11,7 @@ TikTok / Instagram / YouTube → link in bio **riskly.trade/tt** (o /ig, /yt: co
 - [ ] **Link in bio**: `riskly.trade/tt` su TikTok, `riskly.trade/ig` su Instagram, `riskly.trade/yt` su YouTube.
 - [x] **Stripe**: account attivato, prodotti e link di pagamento creati (vedi `stripe-link.json`), dopo il pagamento si torna a `download.html`.
 - [x] Link inseriti in `site/index.html` (costante `STRIPE`). Resta da mettere `VENDITA_ATTIVA = true` **la mattina del 23** e ripubblicare.
-- [ ] Prova un pagamento vero da 1 € con il link di prova (in `stripe-link.json`, voce PROVA), poi rimborsalo da Stripe e archivia il link.
+- [x] Pagamento di prova da 1 € fatto, rimborsato e link di prova archiviato: il ritorno all'area clienti funziona.
 - [ ] I "10 posti" si contano da soli dagli ordini confermati: serve eseguire una volta `supabase/posti.sql` su Supabase.
 
 - [ ] **Portale clienti Stripe** (per annullare gli abbonamenti al journal, come promettono i termini): Stripe → Impostazioni → Billing → Portale clienti → attiva e copia il link, poi mettilo nella pagina account del sito.
