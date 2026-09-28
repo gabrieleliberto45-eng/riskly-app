@@ -989,7 +989,7 @@
   .bot-rimando:hover{border-color:var(--accent)}
   .bot-rimando b{display:block;font-size:1rem;margin-bottom:4px}
   .bot-rimando span{color:var(--dim);font-size:.84rem;line-height:1.5}
-  @media(max-width:620px){.bot-rimandi{grid-template-columns:1fr}.bot-nav{top:118px}.bot-nav button{padding:8px 11px;font-size:.8rem;white-space:nowrap}}
+  @media(max-width:620px){.bot-rimandi{grid-template-columns:1fr}.bot-nav{top:calc(8px + env(safe-area-inset-top))}.bot-nav button{padding:8px 11px;font-size:.8rem;white-space:nowrap}}
 
   :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   /* ═══ AREA CLIENTI ═══ */
@@ -3374,7 +3374,10 @@ function botTab(nome){
   document.querySelectorAll('.bot-pannello').forEach(x => x.classList.toggle('on', x.id === 'bt-' + nome));
   document.querySelectorAll('.bot-nav button').forEach(b => b.classList.toggle('on', b.dataset.bt === nome));
   const nav = document.querySelector('.bot-nav');
-  if(nav) window.scrollTo({ top: Math.max(0, nav.getBoundingClientRect().top + window.scrollY - 140), behavior:'smooth' });
+  /* il menu principale resta in alto solo sui computer: sul telefono scorre via */
+  const menu = document.querySelector('nav');
+  const sopra = (menu && getComputedStyle(menu).position === 'sticky') ? menu.offsetHeight + 16 : 16;
+  if(nav) window.scrollTo({ top: Math.max(0, nav.getBoundingClientRect().top + window.scrollY - sopra), behavior:'smooth' });
   if(nome === 'come' && typeof avviaSimulazioni === 'function') avviaSimulazioni();
   if(typeof preparaComparsa === 'function') setTimeout(preparaComparsa, 60);
 }
