@@ -991,6 +991,8 @@
   .bot-rimando span{color:var(--dim);font-size:.84rem;line-height:1.5}
   @media(max-width:620px){.bot-rimandi{grid-template-columns:1fr}.bot-nav{top:calc(8px + env(safe-area-inset-top))}.bot-nav button{padding:8px 11px;font-size:.8rem;white-space:nowrap}}
 
+  /* il riquadro "Powered by Netlify" che Netlify aggiunge al sito pubblicato copre i contenuti sul telefono */
+  #nl-badge-frame{display:none!important}
   :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   /* ═══ AREA CLIENTI ═══ */
   .acc-testa{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;

@@ -5,5 +5,3 @@
 /yt   /?da=youtube     200
 /bio  /?da=bio         200
 
-# niente riquadro "Powered by Netlify" sul sito pubblico
-/.netlify/scripts/hud  /vuoto.js  200!
