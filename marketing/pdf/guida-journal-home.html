@@ -1,0 +1,87 @@
+<!DOCTYPE html><html lang="it"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+@page{size:A4;margin:0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:210mm;background:#0A0E14;color:#E6EDF3;font-family:'Instrument Sans',sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.pag{width:210mm;min-height:297mm;padding:16mm 16mm 12mm;position:relative;overflow:hidden;
+  background:radial-gradient(420px 320px at 85% 0%,rgba(34,197,94,.16),transparent 65%),radial-gradient(420px 320px at 0% 100%,rgba(14,165,233,.12),transparent 65%),#0A0E14}
+.testa{display:flex;align-items:center;justify-content:space-between;margin-bottom:12mm}
+.marca{display:flex;align-items:center;gap:10px;font-weight:700;font-size:20px;letter-spacing:-.02em}
+.sito{font-family:'JetBrains Mono',monospace;font-size:11px;color:#8B98A9}
+.kicker{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:11px;letter-spacing:.1em;color:#22C55E;margin-bottom:10px}
+h1{font-family:'Instrument Serif',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.01em;margin-bottom:10px}
+h1 em{font-style:italic;color:#22C55E}
+.lead{color:#8B98A9;font-size:13.5px;line-height:1.55;max-width:150mm;margin-bottom:10mm}
+.colonne{display:grid;grid-template-columns:1fr 1fr;gap:6mm;margin-bottom:8mm}
+.box{background:rgba(19,28,40,.9);border:1px solid #1E2A3A;border-radius:14px;padding:7mm 6mm}
+.box h2{font-size:17px;font-weight:700;margin-bottom:2px;display:flex;align-items:center;gap:8px}
+.box .sub{font-family:'JetBrains Mono',monospace;font-size:10px;color:#5D6B7D;margin-bottom:5mm;letter-spacing:.04em}
+ol{list-style:none;counter-reset:n}
+ol li{counter-increment:n;position:relative;padding-left:30px;font-size:12.5px;line-height:1.5;margin-bottom:4mm}
+ol li::before{content:counter(n);position:absolute;left:0;top:-1px;width:21px;height:21px;border-radius:50%;
+  background:linear-gradient(135deg,#22C55E,#0EA5E9);color:#08110c;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;display:grid;place-items:center}
+b{color:#fff;font-weight:600}
+.url{font-family:'JetBrains Mono',monospace;color:#22C55E}
+.ok{margin-top:2mm;padding:3mm 4mm;border-radius:10px;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.3);font-size:12px;color:#CFE9D8}
+.nota{margin-top:3mm;font-size:11px;color:#8B98A9;line-height:1.5}
+.icona{display:inline-block;width:15px;height:17px;vertical-align:-3px;margin:0 2px}
+.sapere{background:rgba(19,28,40,.9);border:1px solid #1E2A3A;border-radius:14px;padding:6mm;margin-bottom:6mm}
+.sapere h3{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;color:#22C55E;margin-bottom:4mm}
+.sapere ul{list-style:none}
+.sapere li{font-size:12px;line-height:1.55;color:#C9D3DE;padding-left:16px;position:relative;margin-bottom:2.5mm}
+.sapere li::before{content:"";position:absolute;left:2px;top:7px;width:6px;height:6px;border-radius:50%;background:#22C55E}
+.aiuto{margin-bottom:10mm;display:flex;justify-content:space-between;align-items:center;font-size:11.5px;color:#8B98A9;border-top:1px solid #1E2A3A;padding-top:5mm}
+.aiuto b{color:#E6EDF3}
+.piede{position:absolute;left:16mm;right:16mm;bottom:9mm;font-family:'JetBrains Mono',monospace;font-size:9px;color:#5D6B7D;display:flex;justify-content:space-between}
+</style></head><body><div class="pag">
+<div class="testa">
+  <div class="marca"><svg width="30" height="30" viewBox="0 0 44 44" fill="none"><defs><linearGradient id="g" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#22C55E"/><stop offset="1" stop-color="#0EA5E9"/></linearGradient></defs><path d="M9 31 L17 19.5 L23.5 25 L35 11" stroke="url(#g)" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 36 H35" stroke="#8B98A9" stroke-width="2.8" stroke-linecap="round"/></svg>Riskly</div>
+  <div class="sito">app.riskly.trade</div>
+</div>
+
+<div class="kicker">GUIDA · MENO DI UN MINUTO</div>
+<h1>Il journal Riskly<br><em>sulla schermata Home</em></h1>
+<p class="lead">Così lo apri con un tocco, a schermo intero, come un'app: niente da scaricare dagli store.</p>
+
+<div class="colonne">
+  <div class="box">
+    <h2>iPhone</h2><div class="sub">SAFARI</div>
+    <ol>
+      <li>Apri <b>Safari</b> e vai su <span class="url">app.riskly.trade</span></li>
+      <li>Accedi con <b>email e password</b> del tuo account Riskly</li>
+      <li>Tocca il tasto <b>Condividi</b>
+        <svg class="icona" viewBox="0 0 24 28" fill="none"><path d="M12 2v15M7 7l5-5 5 5" stroke="#E6EDF3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 12H3v14h18V12h-2" stroke="#E6EDF3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        in basso al centro</li>
+      <li>Scorri e tocca <b>“Aggiungi alla schermata Home”</b></li>
+      <li>Lascia il nome “Riskly” e tocca <b>Aggiungi</b> in alto a destra</li>
+    </ol>
+    <div class="ok">Fatto: l'icona Riskly è tra le tue app.</div>
+    <p class="nota">Con Chrome su iPhone funziona uguale: tasto Condividi in alto a destra → “Aggiungi alla schermata Home”.</p>
+  </div>
+  <div class="box">
+    <h2>Android</h2><div class="sub">CHROME</div>
+    <ol>
+      <li>Apri <b>Chrome</b> e vai su <span class="url">app.riskly.trade</span></li>
+      <li>Accedi con <b>email e password</b> del tuo account Riskly</li>
+      <li>Tocca i <b>tre puntini ⋮</b> in alto a destra</li>
+      <li>Tocca <b>“Installa app”</b> oppure <b>“Aggiungi a schermata Home”</b></li>
+      <li>Conferma con <b>Installa</b> / <b>Aggiungi</b></li>
+    </ol>
+    <div class="ok">Fatto: l'icona Riskly compare nella schermata Home.</div>
+  </div>
+</div>
+
+<div class="sapere">
+  <h3>DA SAPERE</h3>
+  <ul>
+    <li>La prima volta che lo apri dall'icona potrebbe chiederti di nuovo email e password (su iPhone l'icona non condivide l'accesso con Safari). Dopo resti collegato.</li>
+    <li>Se hai collegato RiskGuard o Riskly Pro, dalla Home vedi anche lo stato dei bot (perdita di oggi, pausa, blocco), che l'app MetaTrader sul telefono non mostra.</li>
+    <li>Le operazioni chiuse arrivano da sole: dal telefono puoi aggiungere note e stato d'animo.</li>
+    <li>Non trovi “Aggiungi alla schermata Home”? Controlla di essere in Safari (iPhone) o Chrome (Android) e non dentro Telegram: tieni premuto il link e scegli “Apri in Safari” / “Apri in Chrome”.</li>
+  </ul>
+</div>
+
+<div class="aiuto"><span>Problemi? Scrivi nel <b>gruppo clienti su Telegram</b> o a <b>supporto@riskly.trade</b></span></div>
+<div class="piede"><span>Riskly · Gabriele Liberto · P. IVA 04948840162</span><span>riskly.trade</span></div>
+</div></body></html>
