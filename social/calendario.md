@@ -61,6 +61,16 @@ Picco del pubblico YouTube: 16:00 tutti i giorni.
 | Ven 2/10 | y06 | Quanto vale un pip su EURUSD | RiskGuard |
 | Sab 3/10 | y07 | Lo stop loss mentale | RiskGuard |
 
+## Cosa funziona (ricerca del 28/9, da rifare ogni mese)
+
+- **Primi 1,5–2 secondi**: se su YouTube più del 70% scorre via subito, il gancio è da rifare. Testo già visibile dal primo fotogramma (`subito`).
+- **YouTube Shorts**: sotto i 30 s serve circa il 65% di visione media per essere spinti; le ripetizioni contano come visualizzazioni, quindi finale che si ricollega all'inizio (`loop`).
+- **Instagram**: dopo tempo di visione e completamento conta soprattutto quante volte il Reel viene **inviato in DM** (pesa più dei like), poi i salvataggi. Didascalie con "Mandalo a chi…" o "Salvalo". I contenuti originali sono premiati, i ripost penalizzati: i nostri video sono generati da noi, niente watermark.
+- **Finanza**: rendono di più spiegazioni rapide, sfatare miti e "cosa avrei voluto sapere prima" rispetto ai contenuti promozionali. Durata con più interazioni: circa 20–35 s.
+- **Musica**: 11 basi originali in 5 stili (lo-fi, trap, deep house, cinematico, pluck), scelte in base alla serie: video vicini e dello stesso giorno hanno basi diverse.
+
+Fonti: vidiq.com/blog/post/youtube-shorts-algorithm, shortimize.com/blog/youtube-shorts-retention-rate, sproutsocial.com/insights/instagram-algorithm, creatorlanehq.com/blog/instagram-sends-per-reach-2026, fullyvested.com/insights/tik-tok-for-finance-brands, kapwing.com (statistiche short-form 2026).
+
 ## Settimana 1 · serie finanza (dal 29/9)
 
 | Data | TikTok / IG | Tema | YouTube | Tema |
