@@ -1131,7 +1131,9 @@ body{padding-top:0}
   body[data-vista="statistiche"] #appJournal [data-vista="statistiche"],
   body[data-vista="nuova"] #appJournal [data-vista="nuova"],
   body[data-vista="operazioni"] #appJournal [data-vista="operazioni"]{display:revert}
-  #appJournal{padding-bottom:110px}
+  #appJournal{padding-bottom:100px}
+  .app-corpo{padding:0}
+  .app-corpo>section{padding:18px 0 20px}
   .jtoast{bottom:calc(96px + env(safe-area-inset-bottom))}
   #tornaSu{bottom:calc(96px + env(safe-area-inset-bottom))}
   .jbarra{position:fixed;top:auto;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:80;
@@ -1153,6 +1155,8 @@ body{padding-top:0}
     background:linear-gradient(160deg,rgba(182,216,79,.06) 0%,rgba(255,255,255,.012) 38%,transparent 70%),var(--panel)}
   .hero-new h1 .gr{background:linear-gradient(100deg,#D2E97A,#9FCB47 55%,#6FBF5A);-webkit-background-clip:text;background-clip:text;color:transparent}
   nav{background:linear-gradient(180deg,rgba(14,17,15,.94),rgba(11,13,12,.86))}
+  /* il riquadro "Powered by Netlify" copriva la barra in basso */
+  #nl-badge-frame{display:none!important}
 </style>
 </head>
 <body>
@@ -2182,9 +2186,9 @@ function j_renderKPIs(list){
              <li><b>Indica il rischio</b> (quanto avresti perso allo stop): così vedi se rispetti i tuoi stop.</li>
              <li><b>Dopo 10 operazioni</b> Riskly ti mostra gli errori che si ripetono e dove guadagni davvero.</li>
            </ol>
-           Hai già uno storico? Importa il file CSV del tuo broker o di MetaTrader con "Importa".
+           Hai già uno storico? Importa il file CSV del tuo broker o di MetaTrader da "⋯ Altro" → "Importa".
            <div style="margin-top:14px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-             <a class="btn pri" href="#add">Aggiungi un'operazione</a>
+             <button class="btn pri" onclick="j_vaiNuova()">Aggiungi un'operazione</button>
              <button class="btn" onclick="j_anteprima()">Guarda un esempio</button>
            </div></div></div>`;
     return;
@@ -2803,8 +2807,18 @@ function j_resetForm(){
   document.getElementById('fTitolo').textContent = 'Nuova operazione';
   document.getElementById('fInvia').textContent = 'Salva operazione';
   document.getElementById('fAnnulla').hidden = true;
+  const eraModifica = document.getElementById('add').classList.contains('jform-modifica');
   document.getElementById('add').classList.remove('jform-modifica');
+  /* sul telefono, finita una modifica si torna all'elenco delle operazioni */
+  if(eraModifica && window.jVista && document.body.dataset.vista === 'nuova') jVista('operazioni');
   aggiornaAreaShot();
+}
+
+/* porta al modulo "Nuova operazione" (sul telefono è una scheda della barra in basso) */
+function j_vaiNuova(){
+  if(window.jVista) jVista('nuova');
+  if(!matchMedia('(max-width:760px)').matches)   // sul telefono la scheda parte già dall'inizio del modulo
+    document.getElementById('add').scrollIntoView({ behavior:'smooth', block:'start' });
 }
 
 function j_modifica(id){
@@ -2829,7 +2843,8 @@ function j_modifica(id){
   const box = document.getElementById('add');
   box.classList.add('jform-modifica');
   aggiornaAreaShot();
-  box.scrollIntoView({ behavior:'smooth', block:'start' });
+  if(window.jVista) jVista('nuova');
+  if(!matchMedia('(max-width:760px)').matches) box.scrollIntoView({ behavior:'smooth', block:'start' });
 }
 
 async function j_addTrade(e){
