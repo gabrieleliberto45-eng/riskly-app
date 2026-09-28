@@ -2172,7 +2172,7 @@
             <li class="inc">Tutti i calcolatori</li>
             <li class="inc">2 conti</li>
           </ul>
-          <button class="btn wide" onclick="apriModulo('attesa','Journal Base',0)">Disponibile dal 23 ottobre · blocca il posto</button>
+          <button class="btn wide" data-journal="Base" onclick="azioneJournal(this)">Disponibile dal 23 ottobre · blocca il posto</button>
         </div>
 
         <div class="plan hi">
@@ -2190,7 +2190,7 @@
             <li class="inc">Import ed export CSV</li>
             <li class="inc">5 conti</li>
           </ul>
-          <button class="btn pri wide" onclick="apriModulo('attesa','Journal Pro',0)">Disponibile dal 23 ottobre · blocca il posto</button>
+          <button class="btn pri wide" data-journal="Pro" onclick="azioneJournal(this)">Disponibile dal 23 ottobre · blocca il posto</button>
         </div>
 
         <div class="plan">
@@ -2205,7 +2205,7 @@
             <li class="inc">Supporto prioritario</li>
             <li class="inc">Sconto 30% sui bot</li>
           </ul>
-          <button class="btn wide" onclick="apriModulo('attesa','Journal Premium',0)">Disponibile dal 23 ottobre · blocca il posto</button>
+          <button class="btn wide" data-journal="Premium" onclick="azioneJournal(this)">Disponibile dal 23 ottobre · blocca il posto</button>
         </div>
       </div>
 
@@ -2544,7 +2544,7 @@
             <li class="inc">Tutti i calcolatori</li>
             <li class="inc">2 conti</li>
           </ul>
-          <button class="btn wide" onclick="apriModulo('attesa','Journal Base',0)">Disponibile dal 23 ottobre · blocca il posto</button>
+          <button class="btn wide" data-journal="Base" data-ciclo="a" onclick="azioneJournal(this)">Disponibile dal 23 ottobre · blocca il posto</button>
         </div>
 
         <div class="plan hi">
@@ -2562,7 +2562,7 @@
             <li class="inc">Import ed export CSV</li>
             <li class="inc">5 conti</li>
           </ul>
-          <button class="btn pri wide" onclick="apriModulo('attesa','Journal Pro',0)">Disponibile dal 23 ottobre · blocca il posto</button>
+          <button class="btn pri wide" data-journal="Pro" data-ciclo="a" onclick="azioneJournal(this)">Disponibile dal 23 ottobre · blocca il posto</button>
         </div>
 
         <div class="plan">
@@ -2577,7 +2577,7 @@
             <li class="inc">Supporto prioritario</li>
             <li class="inc">Sconto 30% sui bot</li>
           </ul>
-          <button class="btn wide" onclick="apriModulo('attesa','Journal Premium',0)">Disponibile dal 23 ottobre · blocca il posto</button>
+          <button class="btn wide" data-journal="Premium" data-ciclo="a" onclick="azioneJournal(this)">Disponibile dal 23 ottobre · blocca il posto</button>
         </div>
       </div>
 
@@ -4209,6 +4209,16 @@ const STRIPE = {
   'Videocorso':   ''          /* il corso è ancora in preparazione */
 };
 
+/* piani del journal su Stripe: mensile (m) e annuale (a) sono abbonamenti, a vita (l) è un pagamento unico */
+const STRIPE_JOURNAL = {
+  'Base': { m:'https://buy.stripe.com/7sYfZggPU8UraVzga6dnW05', a:'https://buy.stripe.com/3cIfZg6bg6MjfbP6zwdnW06', l:'https://buy.stripe.com/dRm28qarw8Ur7Jnf62dnW07' },
+  'Pro': { m:'https://buy.stripe.com/8x28wO7fkeeLaVz7DAdnW08', a:'https://buy.stripe.com/dRm9AS0QW1rZ4xb3nkdnW09', l:'https://buy.stripe.com/dRm00i0QWeeL6FjbTQdnW0a' },
+  'Premium': { m:'https://buy.stripe.com/cNi00i6bggmT0gV2jgdnW0b', a:'https://buy.stripe.com/14A6oG2Z4eeLfbPaPMdnW0c', l:'https://buy.stripe.com/dRmfZgdDI2w35Bfe1YdnW0d' },
+};
+/* prezzi di lancio del journal, per registrare l'ordine: mensile, annuale, a vita */
+const PREZZO_JOURNAL = { Base:{m:2.99,a:29,l:89}, Pro:{m:6.49,a:64,l:174}, Premium:{m:11.49,a:114,l:274} };
+const NOME_CICLO = { m:'mensile', a:'annuale', l:'a vita' };
+
 /* il link del gruppo Telegram dei clienti non sta più qui: lo consegna Supabase
    solo a chi ha un acquisto attivo, nella pagina download.html (vedi supabase/sicurezza.sql nel repository) */
 
@@ -4580,6 +4590,24 @@ async function azioneProdotto(nome){
   apriModulo('attesa', nome, 0);
 }
 
+/* pulsanti dei piani del journal: stesso percorso dei bot, con il ciclo scelto */
+async function azioneJournal(btn){
+  const piano = btn.dataset.journal;
+  const ciclo = btn.dataset.ciclo || cicloJournal;
+  const link  = (STRIPE_JOURNAL[piano] || {})[ciclo];
+  if(!(VENDITA_ATTIVA && link)){ apriModulo('attesa', 'Journal ' + piano, 0); return; }
+  if(!utente){ apriAccesso('registrati'); return; }
+  const prodotto = 'Journal ' + piano + ' ' + NOME_CICLO[ciclo];
+  if(sb){
+    const { error } = await sb.from('acquisti').insert({
+      utente: utente.id, prodotto, prezzo: PREZZO_JOURNAL[piano][ciclo], stato: 'in_attesa'
+    });
+    if(error) console.error('Ordine non registrato:', error);
+  }
+  window.location.href = link + '?prefilled_email=' + encodeURIComponent(utente.email || '')
+                       + '&client_reference_id=' + encodeURIComponent(utente.id);
+}
+
 function etichettaProdotto(nome){
   return (VENDITA_ATTIVA && STRIPE[nome]) ? 'Acquista' : 'Disponibile dal 23 ottobre · blocca il posto';
 }
@@ -4588,6 +4616,9 @@ function etichettaProdotto(nome){
 function aggiornaPulsantiProdotto(){
   document.querySelectorAll('[data-prodotto]').forEach(b => {
     b.textContent = etichettaProdotto(b.dataset.prodotto);
+  });
+  document.querySelectorAll('[data-journal]').forEach(b => {
+    if(VENDITA_ATTIVA) b.textContent = 'Attiva il piano';
   });
 }
 
@@ -5105,7 +5136,10 @@ const PREZZI = {
       sv:['nessun rinnovo · poi 178€','nessun rinnovo · poi 348€','nessun rinnovo · poi 548€']}
 };
 
+let cicloJournal = 'a';   /* ciclo scelto nella pagina Prezzi */
+
 function setCiclo(c){
+  cicloJournal = c;
   const p = PREZZI[c];
   document.getElementById('pr-base').innerHTML = p.base;
   document.getElementById('pr-pro').innerHTML  = p.pro;

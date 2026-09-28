@@ -14,6 +14,15 @@ TikTok / Instagram / YouTube → link in bio **riskly.trade/tt** (o /ig, /yt: co
 - [ ] Prova un pagamento vero da 1 € con il link di prova (in `stripe-link.json`, voce PROVA), poi rimborsalo da Stripe e archivia il link.
 - [ ] I "10 posti" si contano da soli dagli ordini confermati: serve eseguire una volta `supabase/posti.sql` su Supabase.
 
+- [ ] **Portale clienti Stripe** (per annullare gli abbonamenti al journal, come promettono i termini): Stripe → Impostazioni → Billing → Portale clienti → attiva e copia il link, poi mettilo nella pagina account del sito.
+- [ ] Videocorso: prodotto e link già creati su Stripe (`stripe-link.json`), da collegare al sito quando il corso è pronto.
+
+## Journal: attivare un piano pagato
+
+1. Il cliente sceglie il piano: l'ordine compare in **Gestione → Ordini** (es. "Journal Pro mensile").
+2. Quando vedi il pagamento su Stripe, in Gestione premi **Conferma** e, in **Account e piani journal**, imposta il piano del cliente (base / pro / premium).
+3. Abbonamenti annullati o non rinnovati: Stripe te lo segnala; rimetti il piano a "prova" in Gestione.
+
 ## Come confermare un ordine
 
 1. Il cliente clicca "Acquista": l'ordine compare in **Gestione → Ordini** come "da confermare".

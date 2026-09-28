@@ -28,5 +28,27 @@
   "prezzo": "price_1UKhOzC4UovOoFaVASukH2Gz",
   "link": "https://buy.stripe.com/00w28q8jo6Mj5Bf6zwdnW04",
   "link_id": "plink_1UKhP0C4UovOoFaVkl8RXPXH"
+ },
+ "Journal": {
+  "Base": {
+   "m": "https://buy.stripe.com/7sYfZggPU8UraVzga6dnW05",
+   "a": "https://buy.stripe.com/3cIfZg6bg6MjfbP6zwdnW06",
+   "l": "https://buy.stripe.com/dRm28qarw8Ur7Jnf62dnW07"
+  },
+  "Pro": {
+   "m": "https://buy.stripe.com/8x28wO7fkeeLaVz7DAdnW08",
+   "a": "https://buy.stripe.com/dRm9AS0QW1rZ4xb3nkdnW09",
+   "l": "https://buy.stripe.com/dRm00i0QWeeL6FjbTQdnW0a"
+  },
+  "Premium": {
+   "m": "https://buy.stripe.com/cNi00i6bggmT0gV2jgdnW0b",
+   "a": "https://buy.stripe.com/14A6oG2Z4eeLfbPaPMdnW0c",
+   "l": "https://buy.stripe.com/dRmfZgdDI2w35Bfe1YdnW0d"
+  }
+ },
+ "Videocorso": {
+  "prodotto": "prod_VLOFtIAEXIGZf2",
+  "link": "https://buy.stripe.com/14A9ASarw4Ebe7L2jgdnW0e",
+  "nota": "non collegato al sito finché il corso non è pronto"
  }
 }
