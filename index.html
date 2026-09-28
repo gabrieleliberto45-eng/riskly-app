@@ -584,32 +584,6 @@
   .jspunto p{color:var(--dim);font-size:.85rem;line-height:1.6}
   .jspunto.nascosto{display:none}
 
-  /* ── CORRELAZIONI ── */
-  .jcorr-stat{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:18px}
-  .jcorr-stat > div{background:rgba(0,0,0,.22);border:1px solid var(--line);border-radius:14px;padding:13px 15px}
-  .jcorr-stat .et{color:var(--dim2);font-size:.72rem;margin-bottom:6px}
-  .jcorr-stat .v{font-family:'JetBrains Mono','SF Mono',Menlo,monospace;font-size:1.15rem}
-  .jcorr-stat .s{color:var(--dim2);font-size:.7rem;margin-top:4px;font-family:'JetBrains Mono','SF Mono',Menlo,monospace}
-  .jcorr-stat .v.gold{color:var(--gold)}
-  .jcorr-sez{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:22px;align-items:start}
-  .jcorr-sez h4{font-size:.78rem;color:var(--dim2);font-weight:500;margin-bottom:8px}
-  .jcorr-riga{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.045);font-size:.84rem}
-  .jcorr-riga:last-child{border:none}
-  .jcorr-riga .cp{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .jcorr-riga .cp i{font-style:normal;color:var(--dim2);font-size:.74rem}
-  .jcorr-riga .nr{font-family:'JetBrains Mono','SF Mono',Menlo,monospace;font-size:.8rem;text-align:right;min-width:70px}
-  .jcorr-tag{font-size:.66rem;padding:3px 8px;border-radius:99px;white-space:nowrap;border:1px solid}
-  .jcorr-tag.somma{color:var(--gold);border-color:rgba(245,158,11,.35)}
-  .jcorr-tag.annulla{color:var(--accent-2);border-color:rgba(14,165,233,.35)}
-  .jcorr-mat{display:grid;gap:4px;font-family:'JetBrains Mono','SF Mono',Menlo,monospace;font-size:.7rem}
-  .jcorr-mat span{display:grid;place-items:center;height:34px;border-radius:8px;color:var(--dim2);overflow:hidden;min-width:0}
-  .jcorr-mat .cella{background:rgba(255,255,255,.035);color:var(--text)}
-  .jcorr-mat .cella.nd{color:var(--dim2)}
-  .jcorr-mat .etr{justify-items:start;padding-right:4px}
-  .jcorr-leg{color:var(--dim2);font-size:.7rem;margin-top:10px;line-height:1.5}
-  @media(max-width:900px){ .jcorr-sez{grid-template-columns:minmax(0,1fr)} }
-  @media(max-width:560px){ .jcorr-riga{flex-wrap:wrap;row-gap:4px} .jcorr-riga .cp{flex-basis:100%;order:-1;white-space:normal} }
-
   /* stato nella tabella */
   .pill.emo{background:rgba(255,255,255,.06);color:var(--dim)}
 
@@ -1276,15 +1250,6 @@ body{padding-top:0}
           <div class="jcard-head"><h3>Top simboli</h3></div>
           <svg class="jchart" id="symChart" viewBox="0 0 240 190"></svg>
         </div>
-      </div>
-
-      <!-- correlazioni: rischio sommato su strumenti che si muovono insieme -->
-      <div class="jcard" id="corr" style="margin-bottom:16px">
-        <div class="jcard-head">
-          <h3>Correlazioni <span class="jaiuto" title="Due operazioni sono correlate quando dipendono dalla stessa valuta o dallo stesso mercato. Esempio: long EURUSD e long GBPUSD sono entrambe short dollaro, quindi se il dollaro sale perdi due volte.">?</span></h3>
-          <span class="jmeta">stesso giorno, strumenti diversi</span>
-        </div>
-        <div id="corrCorpo"></div>
       </div>
 
       <!-- nuovo trade / modifica -->
@@ -2405,7 +2370,6 @@ function j_renderAll(){
   j_renderOra(list);
   j_renderEmozioni(list);
   j_renderSym(list);
-  j_renderCorrelazioni(list);
   j_renderTable(list);
   j_renderGruppi(list);
 }
@@ -2466,152 +2430,6 @@ function j_renderOra(list){
   });
 
   svg.innerHTML = o;
-}
-
-/* ---------- Correlazioni: quando due operazioni sono lo stesso rischio ---------- */
-
-/* mercati che si muovono insieme: il simbolo diventa un'esposizione unica */
-const MERCATI = [
-  [/^(US30|DJ30|DJI|WS30|USA30|DOW|US100|NAS|USTEC|NDX|US500|SPX|SP500|USA500)/, 'azionario USA'],
-  [/^(GER|DE30|DE40|DAX|EU50|EUSTX|STOXX|FRA40|FR40|UK100|FTSE|ESP35|IT40|ITA40)/, 'azionario Europa'],
-  [/^(JP225|JPN225|NIK|NI225)/, 'azionario Giappone'],
-  [/^(BTC|ETH|SOL|XRP|LTC|ADA|DOGE)/, 'cripto'],
-  [/^(USOIL|UKOIL|WTI|BRENT|XTI|XBR|OIL)/, 'petrolio']
-];
-const VALUTE_FX = ['USD','EUR','GBP','JPY','CHF','AUD','NZD','CAD','SEK','NOK','SGD','HKD','MXN','ZAR','TRY','PLN'];
-const METALLI = ['XAU','XAG','XPT','XPD'];
-
-/* long EURUSD = +EUR −USD: ogni operazione è un insieme di scommesse su valute o mercati */
-function j_esposizione(t){
-  const s = String(t.symbol || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
-  const verso = t.dir === 'short' ? -1 : 1;
-  const m = MERCATI.find(([re]) => re.test(s));
-  if(m) return {[m[1]]: verso};
-  const b = s.slice(0,3), q = s.slice(3,6);
-  const nota = c => VALUTE_FX.includes(c) || METALLI.includes(c);
-  if(!nota(b) || !nota(q)) return {[s]: verso};
-  const k = c => METALLI.includes(c) ? 'metalli' : c;   // oro e argento vanno a braccetto
-  const e = {};
-  e[k(b)] = (e[k(b)] || 0) + verso;
-  e[k(q)] = (e[k(q)] || 0) - verso;
-  return e;
-}
-
-/* >0 le due operazioni si sommano, <0 si compensano, 0 non c'entrano */
-function j_legame(a, b){
-  const ea = j_esposizione(a), eb = j_esposizione(b);
-  return Object.keys(ea).reduce((s, k) => s + ea[k] * (eb[k] || 0), 0);
-}
-
-/* il fattore comune, per spiegare il perché: "short USD", "long azionario USA" */
-function j_fattoreComune(a, b){
-  const ea = j_esposizione(a), eb = j_esposizione(b);
-  const k = Object.keys(ea).find(k => eb[k] && ea[k] * eb[k] > 0);
-  return k ? `${ea[k] > 0 ? 'long' : 'short'} ${k}` : '';
-}
-
-function j_correlazioni(list){
-  const perGiorno = {};
-  list.forEach(t => (perGiorno[t.date] ||= []).push(t));
-  const coppie = {};
-  const giorni = { somma:[], annulla:[], altri:[] };
-
-  Object.entries(perGiorno).forEach(([data, ops]) => {
-    let somma = false, annulla = false;
-    for(let i = 0; i < ops.length; i++) for(let j = i+1; j < ops.length; j++){
-      const a = ops[i], b = ops[j];
-      if(a.symbol.toUpperCase() === b.symbol.toUpperCase()) continue;
-      const l = j_legame(a, b);
-      if(!l) continue;
-      const [x, y] = [a, b].sort((p, q) => (p.symbol + p.dir).localeCompare(q.symbol + q.dir));
-      const chiave = `${x.symbol} ${x.dir}|${y.symbol} ${y.dir}`;
-      const c = coppie[chiave] ||= { a:`${x.symbol} ${x.dir}`, b:`${y.symbol} ${y.dir}`,
-        tipo: l > 0 ? 'somma' : 'annulla', fattore: j_fattoreComune(x, y), n:0, pnl:0 };
-      c.n++; c.pnl += a.pnl + b.pnl;
-      if(l > 0) somma = true; else annulla = true;
-    }
-    const tot = ops.reduce((s, t) => s + t.pnl, 0);
-    if(somma) giorni.somma.push(tot);
-    else if(annulla) giorni.annulla.push(tot);
-    else giorni.altri.push(tot);
-  });
-
-  // quanto i risultati dei simboli si muovono insieme, sui giorni in cui li hai operati entrambi:
-  // restano solo i simboli con almeno un confronto misurabile, al massimo cinque
-  const serie = {};
-  list.forEach(t => { const d = serie[t.symbol] ||= {}; d[t.date] = (d[t.date] || 0) + t.pnl; });
-  const confronto = (a, b) => {
-    const comuni = Object.keys(serie[a]).filter(d => d in serie[b]);
-    return { r: comuni.length >= 4 ? j_pearson(comuni.map(d => serie[a][d]), comuni.map(d => serie[b][d])) : null, n:comuni.length };
-  };
-  const tutti = Object.keys(serie).sort((a, b) => Object.keys(serie[b]).length - Object.keys(serie[a]).length).slice(0, 12);
-  const simboli = tutti.filter(a => tutti.some(b => b !== a && confronto(a, b).r !== null)).slice(0, 5);
-  const matrice = simboli.map(a => simboli.map(b => a === b ? { r:1, n:Object.keys(serie[a]).length } : confronto(a, b)));
-
-  return { giorni, coppie:Object.values(coppie).sort((a, b) => b.n - a.n || a.pnl - b.pnl), simboli, matrice,
-           nGiorni:Object.keys(perGiorno).length };
-}
-
-function j_pearson(x, y){
-  const n = x.length, mx = x.reduce((s,v)=>s+v,0)/n, my = y.reduce((s,v)=>s+v,0)/n;
-  let sxy = 0, sxx = 0, syy = 0;
-  for(let i = 0; i < n; i++){ const dx = x[i]-mx, dy = y[i]-my; sxy += dx*dy; sxx += dx*dx; syy += dy*dy; }
-  return sxx && syy ? sxy / Math.sqrt(sxx * syy) : null;
-}
-
-const j_media = v => v.length ? v.reduce((s, x) => s + x, 0) / v.length : 0;
-
-function j_renderCorrelazioni(list){
-  const c = document.getElementById('corrCorpo');
-  if(!c) return;
-  if(new Set(list.map(t => t.symbol.toUpperCase())).size < 2){
-    c.innerHTML = '<div class="empty"><strong>Servono almeno due simboli diversi</strong>Quando operi più strumenti qui vedi se stai prendendo due volte lo stesso rischio.</div>';
-    return;
-  }
-  const k = j_correlazioni(list);
-  const { somma, annulla, altri } = k.giorni;
-  const mS = j_media(somma), mA = j_media(altri);
-
-  let o = `<div class="jcorr-stat">
-    <div><div class="et">Giorni con rischio sommato</div>
-      <div class="v${somma.length ? ' gold' : ''}">${somma.length} <small style="font-size:.75rem;color:var(--dim2)">su ${k.nGiorni}</small></div>
-      <div class="s">${Math.round(somma.length / k.nGiorni * 100)}% dei giorni operati</div></div>
-    <div><div class="et">Media in quei giorni</div>
-      <div class="v ${somma.length ? j_cl(mS) : ''}">${somma.length ? j_fmt(mS) : '—'}</div>
-      <div class="s">risultato del giorno</div></div>
-    <div><div class="et">Media negli altri giorni</div>
-      <div class="v ${altri.length ? j_cl(mA) : ''}">${altri.length ? j_fmt(mA) : '—'}</div>
-      <div class="s">${annulla.length ? `${annulla.length} giorni con posizioni opposte` : 'senza posizioni correlate'}</div></div>
-  </div>`;
-
-  const righe = k.coppie.slice(0, 5).map(p => `<div class="jcorr-riga">
-      <span class="jcorr-tag ${p.tipo}">${p.tipo === 'somma' ? 'si sommano' : 'si annullano'}</span>
-      <span class="cp" title="${esc(p.fattore)}">${esc(p.a)} + ${esc(p.b)}${p.fattore ? ` <i>· ${esc(p.fattore)}</i>` : ''}</span>
-      <span class="nr" style="color:var(--dim2);min-width:34px">${p.n}×</span>
-      <span class="nr ${j_cl(p.pnl)}">${j_fmt(p.pnl)}</span>
-    </div>`).join('');
-
-  const n = k.simboli.length;
-  let mat = `<div class="jcorr-mat" style="grid-template-columns:62px repeat(${n},1fr)"><span></span>`;
-  k.simboli.forEach(s => mat += `<span title="${esc(s)}">${esc(s.slice(0,6))}</span>`);
-  k.matrice.forEach((riga, i) => {
-    mat += `<span class="etr" title="${esc(k.simboli[i])}">${esc(k.simboli[i].slice(0,8))}</span>`;
-    riga.forEach(({r, n: nc}, j) => {
-      if(i === j){ mat += `<span class="cella nd">·</span>`; return; }
-      if(r === null){ mat += `<span class="cella nd" title="${nc} giorni in comune: ne servono almeno 4">—</span>`; return; }
-      const col = r >= 0 ? '245,158,11' : '14,165,233';
-      mat += `<span class="cella" style="background:rgba(${col},${(0.08 + Math.abs(r) * .5).toFixed(2)})" title="${nc} giorni in comune">${r >= 0 ? '+' : '−'}${Math.abs(r).toFixed(2)}</span>`;
-    });
-  });
-  mat += '</div>';
-
-  o += `<div class="jcorr-sez">
-    <div><h4>Le coppie che apri insieme</h4>${righe || '<div class="jcorr-leg">Nessuna coppia correlata nello stesso giorno. Il rischio di ogni operazione resta davvero separato.</div>'}</div>
-    <div><h4>Quanto si muovono insieme i tuoi risultati</h4>${n >= 2 ? `${mat}
-      <div class="jcorr-leg"><b style="color:var(--gold)">+1</b> vincono e perdono insieme · <b style="color:var(--accent-2)">−1</b> uno compensa l'altro · — meno di 4 giorni in comune</div>`
-      : '<div class="jcorr-leg">Servono almeno 4 giorni in cui hai operato gli stessi due simboli per misurare quanto i loro risultati si muovono insieme.</div>'}</div>
-  </div>`;
-  c.innerHTML = o;
 }
 
 /* ---------- Gli spunti: i pattern che contano ---------- */
@@ -2709,20 +2527,6 @@ function j_spunti(list){
   if(fasciaPeggiore) out.push({tipo:'avviso', peso:Math.abs(fasciaPeggiore[1].net)/12,
     titolo:`Tra le ${fasciaPeggiore[0].replace('-', ' e le ')} perdi`,
     testo:`${fasciaPeggiore[1].n} operazioni in quella fascia, ${j_fmt(fasciaPeggiore[1].net)}. Prova a non operare in quell'orario per qualche settimana e confronta.`});
-
-  // 7. posizioni correlate nello stesso giorno: lo stesso rischio preso due volte
-  const corr = j_correlazioni(list);
-  const { somma, annulla, altri } = corr.giorni;
-  if(somma.length >= 3 && altri.length >= 3){
-    const mS = j_media(somma), mA = j_media(altri);
-    const coppia = corr.coppie.find(p => p.tipo === 'somma');
-    if(mS < mA && mS < 0) out.push({tipo:'avviso', peso:12 + somma.length,
-      titolo:`Nei giorni con posizioni correlate perdi`,
-      testo:`In ${somma.length} giorni hai aperto strumenti che dipendono dalla stessa cosa${coppia ? ` (il più frequente: ${coppia.a} + ${coppia.b})` : ''}. Media ${j_fmt(mS)} al giorno contro ${j_fmt(mA)} negli altri. Il rischio reale era il doppio di quello che vedevi: dimezza le size o scegline una.`});
-  }
-  if(annulla.length >= 3) out.push({tipo:'neutro', peso:6,
-    titolo:`In ${annulla.length} giorni hai aperto posizioni che si annullano`,
-    testo:`Strumenti opposti sulla stessa valuta si compensano: paghi spread e commissioni due volte per un'esposizione quasi nulla. Se è una copertura voluta va bene, altrimenti è indecisione.`});
 
   // prima gli avvisi che pesano di più, poi il resto
   const ordine = {avviso:0, neutro:1, buono:2};
@@ -3328,9 +3132,6 @@ async function j_importa(lista, scartate){
 
 /* ---------- Esempio ---------- */
 
-/* nell'esempio: coppie che espongono allo stesso rischio con la stessa direzione */
-const GEMELLI = { EURUSD:'GBPUSD', GBPUSD:'EURUSD', US30:'NAS100', NAS100:'US30', XAUUSD:'EURUSD' };
-
 function j_generaDemo(){
   const sym = ['EURUSD','GBPUSD','XAUUSD','US30','NAS100'];
 
@@ -3413,21 +3214,6 @@ function j_generaDemo(){
       nota: el[Math.floor(Math.random()*el.length)],
       shot: '', shotUrl: ''
     });
-
-    // a volte si apre anche lo strumento "gemello": stesso rischio, di solito stesso esito
-    const base = out[out.length - 1];
-    const gemello = GEMELLI[base.symbol];
-    if(gemello && Math.random() < .22){
-      const stessoEsito = Math.random() < (win ? .65 : .85);
-      const vince = stessoEsito ? win : !win;
-      out.push({ ...base,
-        id: 'demo-' + i + 'b',
-        ora: String(Math.min(ora + 1, 23)).padStart(2,'0') + ':' + (Math.random()<.5?'00':'30'),
-        symbol: gemello,
-        pnl: Math.round((vince ? risk * s.rr * (0.6 + Math.random()*0.5) : -risk * (0.7 + Math.random()*0.3))*100)/100,
-        nota: 'Stessa idea, su un altro strumento.'
-      });
-    }
   }
   return out;
 }
