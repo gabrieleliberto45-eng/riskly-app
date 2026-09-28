@@ -290,6 +290,9 @@
   .prod-riga.rivela,.card.rivela,.bot.rivela,.plan.rivela,.corso.rivela,.mom.rivela{
     transform:translateY(26px)}
   .sez-titolo.rivela{transform:translateY(20px)}
+  /* dopo la comparsa nessun riquadro deve restare spostato (prima .card.rivela vinceva su .rivela.vista e li lasciava 26px più in basso, sopra il riquadro successivo) */
+  .rivela.rivela.vista{opacity:1;transform:none}
+  .card + .diff{margin-top:16px}
 
   /* ── PROGRESSO LETTURA ── */
   #progressoLettura{position:fixed;top:0;left:0;height:3px;width:0;z-index:80;
@@ -1243,6 +1246,8 @@
   .bot-nav button:hover{background:rgba(255,255,255,.06)}
   .bot-nav button.on{color:#0B0D0C}
   @media(max-width:620px){.bot-nav{width:100%;flex-wrap:nowrap}.bot-nav button{flex:1;justify-content:center;flex-direction:column;gap:4px;padding:9px 6px;font-size:.8rem}}
+  /* il sotto-menu dei bot non segue più lo scorrimento: copriva le scritte */
+  .bot-nav{position:relative!important;top:auto!important}
 </style>
 </head>
 <body>
