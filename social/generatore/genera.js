@@ -11,12 +11,22 @@ const CARTELLA = path.join(__dirname, '..', 'video');
 const MODELLO = 'file://' + path.join(__dirname, 'modello.html');
 const MUSICA = path.join(__dirname, 'musica');   // basi originali create da musica.py
 
-/* base del video: "musica" nel json (a, b, c), altrimenti a rotazione sul numero del video */
+/* base del video: "musica" nel json (a…k), altrimenti scelta dal nome del video.
+   Il nome intero (serie + numero) decide la base, così video vicini e video dello stesso giorno
+   (g10, f02, y03, z02…) hanno quasi sempre basi diverse; le serie hanno stili adatti al tono. */
+const STILI_SERIE = {
+  g: ['d', 'e', 'a', 'h', 'b', 'i', 'c'],        // trading: trap, lo-fi, cinematico
+  y: ['i', 'd', 'f', 'e', 'h', 'g', 'a'],        // YouTube trading: più ritmo
+  f: ['j', 'f', 'k', 'g', 'b', 'j', 'h'],        // finanza: pluck, house, lo-fi
+  z: ['k', 'g', 'c', 'j', 'f', 'i', 'a'],        // YouTube finanza
+};
 function sceltaMusica(id, spec){
   const basi = fs.existsSync(MUSICA) ? fs.readdirSync(MUSICA).filter(f => f.endsWith('.m4a')).sort() : [];
   if(!basi.length) return null;
   if(spec.musica && basi.includes(spec.musica + '.m4a')) return path.join(MUSICA, spec.musica + '.m4a');
   const n = parseInt(id.replace(/\D/g, ''), 10) || 0;
+  const giro = (STILI_SERIE[id[0]] || []).filter(b => basi.includes(b + '.m4a'));
+  if(giro.length) return path.join(MUSICA, giro[n % giro.length] + '.m4a');
   return path.join(MUSICA, basi[n % basi.length]);
 }
 
