@@ -1198,6 +1198,19 @@ body{padding-top:0}
     padding:3px 10px;border-radius:99px;cursor:pointer}
   .junita button.on{background:var(--grad);color:#0B0D0C}
   .jconv{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--dim2);margin-top:5px;min-height:1em}
+
+  /* saldo del conto */
+  .jconto{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:16px;padding:20px 24px}
+  .jconto-l{font-size:.74rem;color:var(--dim2);letter-spacing:.04em}
+  .jconto-v{font-family:'JetBrains Mono','SF Mono',Menlo,monospace;font-size:1.9rem;line-height:1.2;margin:4px 0 3px;color:var(--text)}
+  .jconto-v.vuoto{font-family:inherit;font-size:1.05rem;color:var(--dim)}
+  .jconto-s{font-family:'JetBrains Mono','SF Mono',Menlo,monospace;font-size:.76rem;color:var(--dim2)}
+  .jconto-s .up{color:var(--up)} .jconto-s .down{color:var(--down)}
+  .jconto-form{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .jconto-form input{width:210px;padding:12px 14px}
+  .jconto [hidden]{display:none!important}
+  .jconto-form .btn,.jconto>.btn{padding:11px 20px}
+  @media(max-width:760px){.jconto{padding:18px}.jconto-form,.jconto-form input{width:100%}.jconto-form input{flex:1 1 100%}}
 </style>
 </head>
 <body>
@@ -1251,6 +1264,21 @@ body{padding-top:0}
       <div class="jcard jbot" id="jbot" hidden>
         <div class="jcard-head"><h3>I tuoi bot</h3><span class="jmeta" id="jbotAgg"></span></div>
         <div class="jbot-griglia" id="jbotGriglia"></div>
+      </div>
+
+      <!-- saldo del conto: iniziale + risultato di tutte le operazioni -->
+      <div class="jcard jconto" id="jconto">
+        <div class="jconto-sx">
+          <div class="jconto-l">Saldo del conto</div>
+          <div class="jconto-v" id="contoSaldo">—</div>
+          <div class="jconto-s" id="contoSub"></div>
+        </div>
+        <form class="jconto-form" id="contoForm" onsubmit="j_salvaSaldoIniziale(event)" hidden>
+          <input type="number" id="contoIniziale" step="0.01" min="0" placeholder="Saldo iniziale, es. 10000" aria-label="Saldo iniziale del conto">
+          <button type="submit" class="btn pri">Salva</button>
+          <button type="button" class="btn" id="contoAnnulla" onclick="j_renderConto()">Annulla</button>
+        </form>
+        <button type="button" class="btn" id="contoModifica" onclick="j_apriConto()">Modifica</button>
       </div>
 
       <div class="jtoolbar">
@@ -2483,6 +2511,7 @@ function j_renderAll(){
   j_renderToolbar();
   j_renderFiltri();
   const list = j_filtrati();
+  j_renderConto();
   j_renderKPIs(list);
   j_renderSpunti(list);
   j_renderCalendario();
@@ -2884,6 +2913,73 @@ function j_resetForm(){
   aggiornaAreaShot();
 }
 
+/* ---------- Saldo del conto ---------- */
+/* il saldo iniziale sta nel profilo di accesso (vale su tutti i dispositivi);
+   il saldo attuale = iniziale + risultato di tutte le operazioni */
+function j_saldoIniziale(){
+  if(j_demo) return 10000;
+  const m = (utente && utente.user_metadata) || {};
+  let v = Number(m.saldo_iniziale) || 0;
+  if(!v){ try{ v = parseFloat(localStorage.getItem('riskly-saldo-iniziale')) || 0; }catch{} }
+  return v > 0 ? v : 0;
+}
+function j_saldoAttuale(){
+  const iniz = j_saldoIniziale();
+  if(!iniz) return 0;
+  return Math.round((iniz + j_lista().reduce((a, t) => a + (Number(t.pnl) || 0), 0)) * 100) / 100;
+}
+function j_renderConto(){
+  const box = document.getElementById('jconto');
+  if(!box) return;
+  const iniz = j_saldoIniziale();
+  const v = document.getElementById('contoSaldo'), sub = document.getElementById('contoSub');
+  document.getElementById('contoForm').hidden = true;
+  const mod = document.getElementById('contoModifica');
+  mod.hidden = false;
+  if(!iniz){
+    v.className = 'jconto-v vuoto';
+    v.textContent = 'Scrivi quanto c\'era sul conto all\'inizio';
+    sub.textContent = 'Poi si aggiorna da solo con ogni operazione vinta o persa.';
+    mod.textContent = 'Imposta il saldo iniziale';
+    mod.classList.add('pri');
+    return;
+  }
+  const att = j_saldoAttuale(), diff = att - iniz, pct = diff / iniz * 100;
+  v.className = 'jconto-v';
+  v.textContent = j_soldi(att, 2).replace(/^([^\d]*)/, att < 0 ? '−$1' : '$1');
+  const cl = diff >= 0 ? 'up' : 'down';
+  sub.innerHTML = `Iniziale ${esc(j_soldi(iniz, 2))} · <span class="${cl}">${esc(j_fmt(diff))} (${diff >= 0 ? '+' : '−'}${Math.abs(pct).toFixed(2)}%)</span>`;
+  mod.textContent = 'Modifica';
+  mod.classList.remove('pri');
+}
+function j_apriConto(){
+  if(j_bloccatoDemo()) return;
+  document.getElementById('contoModifica').hidden = true;
+  const f = document.getElementById('contoForm');
+  f.hidden = false;
+  const inp = document.getElementById('contoIniziale');
+  inp.value = j_saldoIniziale() || '';
+  inp.focus();
+}
+async function j_salvaSaldoIniziale(e){
+  e.preventDefault();
+  const v = Math.round((parseFloat(document.getElementById('contoIniziale').value) || 0) * 100) / 100;
+  if(v < 0){ j_flash('Il saldo non può essere negativo.', true); return; }
+  try{ localStorage.setItem('riskly-saldo-iniziale', String(v)); }catch{}
+  if(sb && utente){
+    try{
+      const { data, error } = await sb.auth.updateUser({ data: { saldo_iniziale: v } });
+      if(error) throw error;
+      if(data && data.user) utente = data.user;
+      else utente.user_metadata = Object.assign({}, utente.user_metadata, { saldo_iniziale: v });
+    }catch(err){
+      j_flash('Saldo salvato solo su questo dispositivo: ' + traduciErrore(err.message || String(err)), true);
+    }
+  }
+  j_renderConto();
+  if(v) j_flash('Saldo iniziale salvato: ora il saldo si aggiorna da solo.');
+}
+
 /* ---------- Simboli e strategie salvati ---------- */
 /* i preferiti restano su questo dispositivo; quelli già usati nelle operazioni compaiono ovunque */
 const J_SALVATI = { simboli:'riskly-simboli-salvati', strategie:'riskly-strategie-salvate' };
@@ -2964,7 +3060,8 @@ function j_setUnita(campo, u, senzaRicordare){
   const box = document.getElementById('f-saldo-box');
   box.hidden = !serve;
   const saldo = document.getElementById('f-saldo');
-  if(serve && !saldo.value){
+  if(serve && j_saldoAttuale() > 0) saldo.value = j_saldoAttuale();
+  else if(serve && !saldo.value){
     let v = 0;
     try{ v = parseFloat(localStorage.getItem('riskly-saldo')) || 0; }catch{}
     if(!v && typeof b_stati !== 'undefined' && b_stati.length) v = Number((b_stati[0].dati || {}).saldo) || 0;
