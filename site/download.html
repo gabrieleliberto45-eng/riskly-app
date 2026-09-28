@@ -136,7 +136,12 @@
     }
   }
 
+  /* arrivo da Stripe dopo il pagamento (i link di pagamento aggiungono ?pagato=1) */
+  const PAGATO = new URLSearchParams(location.search).has('pagato');
+  const RICEVUTO = '<b style="color:var(--up)">Pagamento ricevuto, grazie!</b><br>';
+
   async function verifica(){
+    if(PAGATO) document.querySelector('#gate h1').textContent = 'Grazie per l\'acquisto';
     if(!sb){
       mostraGate('Connessione al server non riuscita. Ricarica la pagina.', '');
       return;
@@ -146,7 +151,10 @@
 
     if(!session){
       mostraGate(
-        'Per entrare nell\'area clienti accedi con l\'account usato per l\'acquisto.',
+        PAGATO
+          ? RICEVUTO + 'Per seguire il tuo ordine accedi con l\'account Riskly che hai usato per acquistare: '
+            + 'quando lo confermiamo, qui compare il pulsante per il gruppo clienti.'
+          : 'Per entrare nell\'area clienti accedi con l\'account usato per l\'acquisto.',
         '<a class="btn-link" href="index.html">Vai al sito e accedi</a>');
       return;
     }
@@ -161,8 +169,12 @@
 
     if(!data || !data.length){
       mostraGate(
-        'Il tuo account non ha ancora acquisti confermati.<br>' +
-        'Se hai appena pagato, l\'accesso si sblocca appena registriamo il pagamento.',
+        PAGATO
+          ? RICEVUTO + 'Stiamo confermando il tuo ordine: di solito in poche ore, al massimo entro 24 ore lavorative. '
+            + 'Appena è confermato, in questa pagina compare il pulsante per entrare nel gruppo clienti. '
+            + 'Ricevi la ricevuta di Stripe via email.'
+          : 'Il tuo account non ha ancora acquisti confermati.<br>' +
+            'Se hai appena pagato, l\'accesso si sblocca appena registriamo il pagamento.',
         '<a class="btn-link" href="index.html">Torna al sito</a>');
       return;
     }
