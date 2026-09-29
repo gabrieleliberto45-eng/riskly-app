@@ -1622,6 +1622,9 @@ body{padding-top:0}
         <span id="acc-alterna-testo">Hai già un account?</span>
         <button type="button" class="mod-collega" onclick="alternaAccesso()" id="acc-alterna">Accedi</button>
       </p>
+      <p class="mod-nota" id="acc-dimenticata" style="margin-top:4px">
+        <a class="mod-collega" href="https://riskly.trade/?recupero=1">Password dimenticata?</a>
+      </p>
     </form>
   </div>
 </div>
@@ -1678,6 +1681,7 @@ function aggiornaModaleAccesso(){
     : 'Accedi per ritrovare le tue operazioni.';
 
   document.getElementById('acc-campo-nome').style.display = nuovo ? 'block' : 'none';
+  const dim = document.getElementById('acc-dimenticata'); if(dim) dim.style.display = nuovo ? 'none' : 'block';
   document.getElementById('acc-campo-metodo').style.display = nuovo ? 'block' : 'none';
   const selM = document.getElementById('a-metodo');
   if(selM && !selM.options.length) selM.innerHTML = Object.entries(METODI).map(([k, m]) => `<option value="${k}">${m.nome}</option>`).join('');
