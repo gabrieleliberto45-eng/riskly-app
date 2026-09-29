@@ -1248,6 +1248,45 @@
   @media(max-width:620px){.bot-nav{width:100%;flex-wrap:nowrap}.bot-nav button{flex:1;justify-content:center;flex-direction:column;gap:4px;padding:9px 6px;font-size:.8rem}}
   /* il sotto-menu dei bot non segue più lo scorrimento: copriva le scritte */
   .bot-nav{position:relative!important;top:auto!important}
+
+  /* ═══ ASSISTENTE (domande frequenti in chat) ═══ */
+  #chatBtn{position:fixed;z-index:76;right:22px;bottom:22px;height:52px;padding:0 18px 0 14px;border-radius:99px;border:none;cursor:pointer;
+    display:flex;align-items:center;gap:9px;background:var(--grad);color:#0B0D0C;font-family:inherit;font-weight:700;font-size:.9rem;
+    box-shadow:0 8px 24px rgba(0,0,0,.45),0 0 22px rgba(182,216,79,.25)}
+  #chatBtn svg{width:22px;height:22px}
+  #chatBox{position:fixed;z-index:80;right:22px;bottom:86px;width:380px;max-width:calc(100vw - 24px);height:min(560px,calc(100vh - 120px));
+    display:none;flex-direction:column;background:#101311;border:1px solid var(--line);border-radius:22px;overflow:hidden;
+    box-shadow:0 20px 50px rgba(0,0,0,.6)}
+  #chatBox.on{display:flex}
+  .ch-top{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--line);
+    background:linear-gradient(160deg,rgba(182,216,79,.1),transparent 70%)}
+  .ch-top b{display:block;font-size:.95rem}
+  .ch-top small{color:var(--dim2);font-size:.72rem}
+  .ch-top button{margin-left:auto;background:none;border:none;color:var(--dim);font-size:1.3rem;cursor:pointer;padding:4px 8px}
+  .ch-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px}
+  .ch-m{flex-shrink:0;max-width:88%;padding:10px 13px;border-radius:16px;font-size:.86rem;line-height:1.55}
+  .ch-m.bot{background:#181d19;border:1px solid var(--line);border-bottom-left-radius:6px;color:var(--text)}
+  .ch-m.io{align-self:flex-end;background:var(--grad);color:#0B0D0C;border-bottom-right-radius:6px;font-weight:500}
+  .ch-m.bot p{margin:0 0 6px} .ch-m.bot p:last-child{margin:0}
+  .ch-m.bot a{color:var(--accent);text-decoration:underline}
+  .ch-m.bot{overflow-x:auto}
+  .ch-m.bot div{background:none!important;border:none!important;padding:0!important;margin:6px 0!important;box-shadow:none!important}
+  .ch-m.bot table{font-size:.72rem;border-collapse:collapse;margin:6px 0;width:100%}
+  .ch-m.bot td,.ch-m.bot th{border-top:1px solid var(--line);padding:4px;text-align:left;vertical-align:top}
+  .ch-chips{display:flex;flex-wrap:wrap;gap:6px;flex-shrink:0}
+  .ch-chips button{background:rgba(182,216,79,.08);border:1px solid rgba(182,216,79,.3);color:var(--text);font-family:inherit;
+    font-size:.76rem;padding:7px 11px;border-radius:99px;cursor:pointer;text-align:left}
+  .ch-chips button:hover{border-color:var(--accent)}
+  .ch-form{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}
+  .ch-form input{flex:1;min-width:0;padding:12px 14px;border-radius:14px;font-family:inherit;font-size:.9rem}
+  .ch-form button{border:none;border-radius:14px;padding:0 16px;background:var(--grad);color:#0B0D0C;font-weight:700;cursor:pointer;font-family:inherit}
+  @media(min-width:761px){#tornaSu{right:22px;bottom:86px}}
+  @media(max-width:760px){
+    #chatBtn{right:14px;bottom:calc(92px + env(safe-area-inset-bottom));height:46px;padding:0 13px}
+    #chatBtn span{display:none}
+    #tornaSu{bottom:calc(146px + env(safe-area-inset-bottom))!important}
+    #chatBox{right:12px;left:12px;width:auto;max-width:none;bottom:calc(88px + env(safe-area-inset-bottom));height:min(70vh,560px)}
+  }
 </style>
 </head>
 <body>
@@ -5661,6 +5700,174 @@ function apriAltro(){
 }
 function chiudiAltro(){ document.getElementById('saltro').classList.remove('on'); }
 document.addEventListener('keydown', e=>{ if(e.key === 'Escape') chiudiAltro(); });
+</script>
+
+<!-- assistente: risponde con le informazioni del sito (FAQ, prezzi, bot, journal) -->
+<button id="chatBtn" type="button" onclick="chatApri()" aria-label="Hai dubbi? Chiedi all'assistente">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"/><path d="M9 11h.01M12 11h.01M15 11h.01"/></svg>
+  <span>Hai dubbi?</span>
+</button>
+<div id="chatBox" role="dialog" aria-label="Assistente Riskly">
+  <div class="ch-top">
+    <svg width="28" height="28" viewBox="0 0 44 44" fill="none"><path d="M9 31 L17 19.5 L23.5 25 L35 11" stroke="#B6D84F" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 36 H35" stroke="#8B98A9" stroke-width="3" stroke-linecap="round"/></svg>
+    <div><b>Assistente Riskly</b><small>Risposte immediate su bot, journal e prezzi</small></div>
+    <button type="button" onclick="chatChiudi()" aria-label="Chiudi">×</button>
+  </div>
+  <div class="ch-msgs" id="chatMsgs"></div>
+  <form class="ch-form" onsubmit="chatInvia(event)">
+    <input id="chatIn" type="text" placeholder="Scrivi la tua domanda…" autocomplete="off" maxlength="300">
+    <button type="submit">Invia</button>
+  </form>
+</div>
+<script>
+/* ---------- Assistente: cerca la risposta tra FAQ e schede del sito ---------- */
+const CHAT_EXTRA = [
+  { q: 'Quanto costano i bot?', k: 'prezzo prezzi bot riskguard trademanager scalein riskly pro costano listino sconto lancio',
+    a: '<p>Si pagano <b>una volta sola</b>, niente abbonamento, aggiornamenti inclusi:</p><p><b>RiskGuard</b> 99 € · <b>TradeManager</b> 99 € · <b>ScaleIn</b> 129 € · <b>Riskly Pro</b> 249 €</p><p>Sono prezzi di lancio: dopo diventano 198 €, 198 €, 258 € e 498 €. Per i primi 10 restano bloccati a vita. Chi compra un bot ha il 50% di sconto sul videocorso.</p>',
+    azioni: [['Vedi i bot', "chatChiudi();go('bot')"]] },
+  { q: 'Quando escono i bot? Data di lancio', k: 'quando lancio data uscita escono esce esci disponibili 23 ottobre acquistare comprare',
+    a: '<p>I bot escono <b>giovedì 23 ottobre</b>. I primi 10 che acquistano tengono il prezzo di lancio per sempre, aggiornamenti compresi.</p><p>Iscriviti alla lista d\'attesa per essere avvisato per primo: nessun pagamento fino al lancio.</p>',
+    azioni: [['Iscriviti alla lista d\'attesa', "chatChiudi();apriModulo('attesa','tutti i prodotti',0)"]] },
+  { q: 'Che differenza c\'è tra i bot? Quale scegliere', k: 'differenza quale scegliere bot riskguard trademanager scalein riskly pro confronto consigli',
+    a: '<p><b>RiskGuard</b> (99 €): ti ferma. Pausa dopo una perdita, stop dopo N perdite di fila, limite di perdita giornaliero, stop loss obbligatorio.</p><p><b>TradeManager</b> (99 €): gestisce la posizione aperta. Stop loss e take profit automatici, break-even, trailing stop, tutto in pip.</p><p><b>ScaleIn</b> (129 €): replica la tua posizione in più scaglioni con take profit diversi.</p><p><b>Riskly Pro</b> (249 €): tutti e tre insieme, con il rischio calcolato sull\'insieme delle posizioni, pulsanti BUY/SELL con lotto già calcolato e filtro su spread e notizie.</p><p>Se il problema è fermarti: RiskGuard. Se è gestire le posizioni: TradeManager. Se vuoi tutto: Riskly Pro.</p>',
+    azioni: [['Vedi i bot', "chatChiudi();go('bot')"]] },
+  { q: 'Quanto costa il journal? Piani', k: 'journal diario prezzo costo piani base pro premium abbonamento mensile annuale vita',
+    a: '<p>Il journal ha 3 piani, con <b>7 giorni di prova gratis</b> senza carta:</p><p><b>Base</b>: 29 €/anno (2,99 €/mese, 89 € a vita)<br><b>Pro</b>: 64 €/anno (6,49 €/mese, 174 € a vita)<br><b>Premium</b>: 114 €/anno (11,49 €/mese, 274 € a vita)</p><p>Sono prezzi di lancio. Premium ha anche il 30% di sconto sui bot.</p>',
+    azioni: [['Vedi i piani', "chatChiudi();go('journal')"], ['Apri il journal', "location.href='https://app.riskly.trade'"]] },
+  { q: 'Quali calcolatori ci sono? Sono gratis?', k: 'calcolatori calcolatore gratis lotti lotto position size rovina tracker recupero composta',
+    a: '<p>Cinque calcolatori gratuiti, senza registrazione: <b>dimensione della posizione</b> (quanti lotti aprire), <b>rischio di rovina</b>, <b>tracker challenge prop firm</b>, <b>recupero dopo una perdita</b> e <b>crescita composta</b>.</p>',
+    azioni: [['Apri i calcolatori', "chatChiudi();go('calc')"]] },
+  { q: 'Come si paga? Pagamento sicuro', k: 'pagamento pagare carta stripe paypal sicuro ricevuta fattura account',
+    a: '<p>Si paga con carta tramite <b>Stripe</b>, su una pagina di pagamento sicura. Serve un account Riskly (gratis), così l\'acquisto resta collegato a te. La ricevuta arriva via email.</p>' },
+  { q: 'Journal adatto al mio metodo (ICT, volumetrica…)', k: 'ict smart money volumetrica order flow input conferma price action scalping metodo tipo journal personalizzato',
+    a: '<p>Sì: quando ti registri al journal scegli il tuo metodo (<b>ICT / Smart Money, volumetrica, input e conferma, price action, scalping</b> o generale). Il modulo delle operazioni aggiunge le voci del tuo metodo (es. kill zone, entrata su FVG) e le statistiche ti dicono quali funzionano davvero. Lo cambi quando vuoi.</p>',
+    azioni: [['Apri il journal', "location.href='https://app.riskly.trade'"]] },
+  { q: 'Come contattarvi? Assistenza', k: 'contatti contattare assistenza supporto email telegram parlare persona aiuto',
+    a: '<p>Scrivi a <a href="mailto:supporto@riskly.trade">supporto@riskly.trade</a> o sul <a href="https://t.me/+mlCyBs21_7A3ZDg0" target="_blank" rel="noopener">canale Telegram</a>. Rispondiamo di solito entro un giorno lavorativo.</p>' },
+  { q: 'Come si installa il bot?', k: 'installare installazione installo guida file ex4 ex5 metatrader cartella experts',
+    a: '<p>Dopo l\'acquisto entri nel gruppo Telegram dei clienti: lì trovi la guida passo passo e ricevi i file abilitati per il tuo conto. Ti aiutiamo noi se qualcosa non va. Prova sempre prima su conto demo.</p>' },
+  { q: 'Chi c\'è dietro Riskly?', k: 'chi siete chi è gabriele azienda società partita iva affidabile truffa',
+    a: '<p>Riskly è di <b>Gabriele Liberto</b> (ditta individuale, P. IVA 04948840162). Non vendiamo segnali né promettiamo guadagni: solo strumenti per gestire il rischio.</p>',
+    azioni: [['Il metodo', "chatChiudi();go('metodo')"]] },
+];
+
+const CHAT_STOP = new Set('fa fare tempo domani oggi ieri ciao salve buongiorno buonasera grazie ok va bene dimmi sapere vorrei il lo la i gli le un uno una di del della dei degli delle a al alla ai agli alle da dal dalla in nel nella nei con su sul sulla per tra fra e o ma se che chi cosa come quando dove perche perché non si mi ti ci vi è e ho hai ha abbiamo avete hanno sono sei siamo siete posso puoi può potete vorrei voglio è c anche ancora già più molto quale quali quanto quanti questo questa quello quella mio mia tuo tua vostro vostra'.split(' '));
+const CHAT_SIN = { costa: 'prezzo', costano: 'prezzo', costo: 'prezzo', prezzi: 'prezzo', soldi: 'prezzo', euro: 'prezzo',
+  prop: 'propfirm', ftmo: 'propfirm', fundednext: 'propfirm', challenge: 'propfirm', the5ers: 'propfirm',
+  rimborso: 'rimborsate', rimborsi: 'rimborsate', soddisfatto: 'rimborsate', diario: 'journal', app: 'journal',
+  ea: 'bot', expert: 'bot', advisor: 'bot', robot: 'bot', software: 'bot', mt4: 'metatrader', mt5: 'metatrader',
+  cellulare: 'telefono', smartphone: 'telefono', iphone: 'telefono', android: 'telefono', segnale: 'segnali', demo: 'prova', gratis: 'gratuita', gratuito: 'gratuita', licenza: 'conti' };
+const chatNorm = t => (t || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9 ]+/g, ' ');
+const chatRad = w => w.length > 5 ? w.slice(0, -2) : (w.length > 3 ? w.slice(0, -1) : w);
+function chatToken(t){
+  return chatNorm(t).split(/\s+/).filter(w => w && !CHAT_STOP.has(w)).map(w => chatRad(CHAT_SIN[w] || w));
+}
+let CHAT_KB = null, CHAT_IDF = {};
+function chatPrepara(){
+  if(CHAT_KB) return;
+  CHAT_KB = CHAT_EXTRA.map(e => ({ q: e.q, a: e.a, azioni: e.azioni || [], k: chatToken(e.k), t: chatToken(e.q), b: [] }));
+  /* parole chiave in più per alcune FAQ */
+  const EXTRA_K = {
+    'bot Riskly sulle prop firm': 'propfirm ftmo fundednext the5ers funding pips consentiti regolamento vietati ammessi',
+    'MT4 o su MT5': 'metatrader mt4 mt5 versione piattaforma usarlo',
+    'quanti conti': 'conti licenza account numero conto cambiare broker',
+    'rimborsate': 'rimborsate soldi indietro garanzia',
+  };
+  document.querySelectorAll('#faq details').forEach(d => {
+    const sm = d.querySelector('summary'); if(!sm) return;
+    const cl = d.cloneNode(true); cl.querySelector('summary').remove();
+    const q = sm.textContent.trim();
+    const ek = Object.entries(EXTRA_K).filter(([frammento]) => q.includes(frammento)).map(([, k]) => k).join(' ');
+    CHAT_KB.push({ q, a: cl.innerHTML, azioni: [], k: chatToken(ek), t: chatToken(q), b: chatToken(cl.textContent) });
+  });
+  const df = {};
+  CHAT_KB.forEach(e => new Set([...e.k, ...e.t, ...e.b]).forEach(w => df[w] = (df[w] || 0) + 1));
+  Object.keys(df).forEach(w => CHAT_IDF[w] = Math.log(1 + CHAT_KB.length / df[w]));
+}
+function chatCerca(domanda){
+  chatPrepara();
+  const q = [...new Set(chatToken(domanda))];
+  return CHAT_KB.map(e => {
+    let s = 0, forte = 0;
+    q.forEach(w => {
+      const idf = CHAT_IDF[w] || 0;
+      if(e.k.includes(w)){ s += 3 * idf; forte++; }
+      if(e.t.includes(w)){ s += 2.2 * idf; forte++; }
+      if(e.b.includes(w)) s += .6 * idf;
+    });
+    /* serve almeno una parola nel titolo o nelle parole chiave: il solo testo non basta */
+    return { e, s: forte ? s : 0 };
+  }).filter(x => x.s > 0).sort((a, b) => b.s - a.s);
+}
+
+const CHAT_INIZIO = ['Quando escono i bot?', 'Che differenza c\'è tra i bot?', 'Funzionano sulle prop firm?', 'Come ricevo i bot dopo l\'acquisto?', 'Quanto costa il journal?', 'Se non funziona mi rimborsate?'];
+function chatMsg(html, chi){
+  const box = document.getElementById('chatMsgs');
+  const m = document.createElement('div');
+  m.className = 'ch-m ' + chi;
+  if(chi === 'io') m.textContent = html; else m.innerHTML = html;
+  box.appendChild(m);
+  box.scrollTop = box.scrollHeight;
+  return m;
+}
+function chatChips(lista){
+  const box = document.getElementById('chatMsgs');
+  const c = document.createElement('div');
+  c.className = 'ch-chips';
+  lista.forEach(([testo, azione]) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.textContent = testo;
+    b.onclick = azione ? new Function(azione) : () => chatDomanda(testo);
+    c.appendChild(b);
+  });
+  box.appendChild(c);
+  box.scrollTop = box.scrollHeight;
+}
+function chatApri(){
+  const box = document.getElementById('chatBox');
+  box.classList.add('on');
+  if(!document.getElementById('chatMsgs').children.length){
+    chatMsg('<p>Ciao! Sono l\'assistente di Riskly. Chiedimi quello che vuoi su bot, journal, prezzi, prop firm o pagamenti.</p>', 'bot');
+    chatChips(CHAT_INIZIO.map(t => [t]));
+  }
+  setTimeout(() => document.getElementById('chatIn').focus(), 50);
+}
+function chatChiudi(){ document.getElementById('chatBox').classList.remove('on'); }
+function chatInvia(e){
+  e.preventDefault();
+  const inp = document.getElementById('chatIn');
+  const t = inp.value.trim(); if(!t) return;
+  inp.value = '';
+  chatDomanda(t);
+}
+function chatDomanda(t){
+  chatMsg(t, 'io');
+  const r = chatCerca(t);
+  setTimeout(() => {
+    if(/^\s*(ciao|salve|buongiorno|buonasera|hey|ehi)\b/i.test(t) && (!r.length || r[0].s < 3.5)){
+      chatMsg('<p>Ciao! Dimmi pure: bot, journal, prezzi, prop firm, pagamenti…</p>', 'bot');
+      chatChips(CHAT_INIZIO.map(x => [x]));
+      return;
+    }
+    if(/^\s*(grazie|ok|perfetto|ottimo)\b/i.test(t) && (!r.length || r[0].s < 3.5)){
+      chatMsg('<p>Prego! Se hai altre domande sono qui.</p>', 'bot');
+      return;
+    }
+    if(!r.length || r[0].s < 3.5){
+      chatMsg('<p>Non ho una risposta sicura a questa domanda. Scrivici a <a href="mailto:supporto@riskly.trade">supporto@riskly.trade</a> o sul <a href="https://t.me/+mlCyBs21_7A3ZDg0" target="_blank" rel="noopener">canale Telegram</a>: rispondiamo di solito entro un giorno lavorativo.</p>', 'bot');
+      chatChips(CHAT_INIZIO.slice(0, 4).map(x => [x]));
+      return;
+    }
+    const top = r[0].e;
+    const m = chatMsg(top.a, 'bot');
+    if(top.azioni.length) chatChips(top.azioni);
+    const altre = r.slice(1, 4).filter(x => x.s > r[0].s * .45).map(x => [x.e.q]);
+    if(altre.length){ chatMsg('<p style="color:var(--dim2);font-size:.78rem">Forse ti interessa anche:</p>', 'bot'); chatChips(altre); }
+    const box = document.getElementById('chatMsgs');
+    box.scrollTop = Math.max(0, m.offsetTop - box.offsetTop - 60);
+  }, 250);
+}
+document.addEventListener('keydown', e => { if(e.key === 'Escape') chatChiudi(); });
 </script>
 </body>
 </html>
