@@ -4627,6 +4627,8 @@ if(sb){
 
   /* se si arriva dal link dell'email, apre subito la scelta della nuova password */
   if(location.hash.includes('type=recovery')) apriAccesso('nuova');
+  /* dal journal: "Password dimenticata?" porta qui con ?recupero=1 */
+  else if(new URLSearchParams(location.search).has('recupero')) apriAccesso('recupero');
 }
 
 
