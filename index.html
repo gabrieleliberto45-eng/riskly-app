@@ -1212,6 +1212,31 @@ body{padding-top:0}
   .jconto [hidden]{display:none!important}
   .jconto-form .btn,.jconto>.btn{padding:11px 20px}
   @media(max-width:760px){.jconto{padding:18px}.jconto-form,.jconto-form input{width:100%}.jconto-form input{flex:1 1 100%}}
+
+  /* tipo di journal (metodo) */
+  .jmetodo-pill{background:rgba(182,216,79,.1);border:1px solid rgba(182,216,79,.35);color:var(--accent);font-family:inherit;
+    font-size:.74rem;font-weight:600;padding:5px 12px;border-radius:99px;cursor:pointer;white-space:nowrap}
+  .jmetodo-campi{margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+  .jmetodo-campi:empty{display:none}
+  .jmetodo-campi > .jm-tit{color:var(--dim2);font-size:.75rem;margin-bottom:12px}
+  .jm-campo{margin-bottom:12px}
+  .jm-campo > span{display:block;color:var(--dim);font-size:.78rem;margin-bottom:7px}
+  .jm-campo .jchips-scelta{margin-top:0}
+  .jdett-riga{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--accent);opacity:.85;margin-top:3px}
+  .jmetodo-ov{display:none;position:fixed;inset:0;z-index:95;background:rgba(4,8,6,.8);backdrop-filter:blur(6px);
+    align-items:center;justify-content:center;padding:16px}
+  .jmetodo-ov.on{display:flex}
+  .jmetodo-box{background:linear-gradient(160deg,rgba(182,216,79,.07),transparent 50%),#121614;border:1px solid var(--line);
+    border-radius:22px;padding:24px;max-width:520px;width:100%;max-height:90vh;overflow:auto}
+  .jmetodo-box h3{font-size:1.2rem;margin-bottom:6px}
+  .jmetodo-box p{color:var(--dim);font-size:.86rem;line-height:1.5;margin-bottom:14px}
+  .jmetodo-lista{display:grid;gap:8px}
+  .jmetodo-voce{text-align:left;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:14px;padding:13px 15px;
+    color:var(--text);font-family:inherit;cursor:pointer}
+  .jmetodo-voce:hover{border-color:rgba(182,216,79,.45)}
+  .jmetodo-voce.on{border-color:var(--accent);background:rgba(182,216,79,.08)}
+  .jmetodo-voce b{display:block;font-size:.95rem;margin-bottom:3px}
+  .jmetodo-voce span{color:var(--dim);font-size:.8rem;line-height:1.45}
 </style>
 </head>
 <body>
@@ -1296,6 +1321,7 @@ body{padding-top:0}
               <button type="button" onclick="j_exportData()">Esporta copia (JSON)</button>
               <button type="button" onclick="j_exportCSV()">Esporta in CSV</button>
               <button type="button" onclick="document.getElementById('imp').click()">Importa</button>
+              <button type="button" onclick="j_apriMetodi()">Tipo di journal (metodo)</button>
               <button type="button" class="rosso" onclick="j_clearAll()">Svuota il journal</button>
             </div>
           </div>
@@ -1378,7 +1404,7 @@ body{padding-top:0}
 
       <!-- nuovo trade / modifica -->
       <div class="jcard" id="add" style="margin-bottom:16px">
-        <div class="jcard-head"><h3 id="fTitolo">Nuova operazione</h3></div>
+        <div class="jcard-head"><h3 id="fTitolo">Nuova operazione</h3><button type="button" class="jmetodo-pill" id="fMetodoPill" onclick="j_apriMetodi()"></button></div>
         <form onsubmit="j_addTrade(event)">
           <div class="jform">
             <div><label for="f-date">Data</label><input type="date" id="f-date" required></div>
@@ -1421,6 +1447,8 @@ body{padding-top:0}
               <div class="jchips-scelta" id="chips-strategie"></div>
             </div>
           </div>
+
+          <div class="jmetodo-campi" id="fMetodo"></div>
 
           <div class="jemo-scelta">
             <label>Come ti sentivi quando l'hai aperta?</label>
@@ -1481,6 +1509,15 @@ body{padding-top:0}
 <div class="jtoast" id="jtoast" role="status" aria-live="polite"></div>
 
 <!-- ═══════════ VISUALIZZATORE SCREENSHOT ═══════════ -->
+<div class="jmetodo-ov" id="jmetodoOv" onclick="if(event.target===this)j_chiudiMetodi()">
+  <div class="jmetodo-box" role="dialog" aria-labelledby="jmetodoTit">
+    <h3 id="jmetodoTit">Che tipo di journal ti serve?</h3>
+    <p>Scegli come fai trading: il modulo delle operazioni aggiunge le voci del tuo metodo e le statistiche ti dicono quali funzionano davvero. Puoi cambiarlo quando vuoi da "⋯ Altro".</p>
+    <div class="jmetodo-lista" id="jmetodoLista"></div>
+    <button type="button" class="btn" style="margin-top:14px" onclick="j_chiudiMetodi()">Chiudi</button>
+  </div>
+</div>
+
 <div class="jlightbox" id="jlightbox" onclick="j_chiudiShot()">
   <button class="jlb-x" onclick="j_chiudiShot()" aria-label="Chiudi">✕</button>
   <img id="jlbImg" alt="Screenshot dell'operazione">
@@ -1562,6 +1599,11 @@ body{padding-top:0}
         <input type="text" id="a-nome" placeholder="Mario Rossi" autocomplete="name">
       </div>
 
+      <div class="mod-campo" id="acc-campo-metodo">
+        <label for="a-metodo">Come fai trading? <span style="color:var(--dim2)">(adatta il journal, lo cambi quando vuoi)</span></label>
+        <select id="a-metodo"></select>
+      </div>
+
       <div class="mod-campo">
         <label for="a-email">Email</label>
         <input type="email" id="a-email" required placeholder="mario@example.com" autocomplete="email">
@@ -1636,6 +1678,9 @@ function aggiornaModaleAccesso(){
     : 'Accedi per ritrovare le tue operazioni.';
 
   document.getElementById('acc-campo-nome').style.display = nuovo ? 'block' : 'none';
+  document.getElementById('acc-campo-metodo').style.display = nuovo ? 'block' : 'none';
+  const selM = document.getElementById('a-metodo');
+  if(selM && !selM.options.length) selM.innerHTML = Object.entries(METODI).map(([k, m]) => `<option value="${k}">${m.nome}</option>`).join('');
   document.getElementById('acc-invia').textContent = nuovo ? 'Crea account' : 'Accedi';
   document.getElementById('acc-alterna-testo').textContent = nuovo ? 'Hai già un account?' : 'Non hai un account?';
   document.getElementById('acc-alterna').textContent = nuovo ? 'Accedi' : 'Registrati';
@@ -1660,9 +1705,10 @@ async function inviaAccesso(e){
     if(accModo === 'registrati'){
       const { data, error } = await sb.auth.signUp({
         email, password: pass,
-        options: { data: { nome } }
+        options: { data: { nome, metodo: document.getElementById('a-metodo').value || 'generale' } }
       });
       if(error) throw error;
+      try{ localStorage.setItem('riskly-metodo', document.getElementById('a-metodo').value || 'generale'); localStorage.setItem('riskly-metodo-chiesto', '1'); }catch{}
 
       if(!data.session){
         mostraErrore('Ti abbiamo inviato una email di conferma. Aprila per completare.');
@@ -1809,7 +1855,8 @@ function daRiga(r){
     risk: Number(r.rischio) || 0,
     strategy: r.strategia || '',
     emo: r.emozione || 'lucido',
-    nota: r.nota || '',
+    nota: j_separaNota(r.nota).nota,
+    dettagli: j_separaNota(r.nota).dettagli,
     shot: r.screenshot || '',
     shotUrl: '',
     fonte: r.fonte || 'manuale'
@@ -1840,7 +1887,7 @@ function aRiga(t){
     rischio:   t.risk || 0,
     strategia: t.strategy,
     emozione:  t.emo,
-    nota:      t.nota,
+    nota:      j_uniscinota(t.nota, t.dettagli),
     screenshot: t.shot || null
   };
 }
@@ -2447,7 +2494,7 @@ function j_renderTable(list){
       <td class="bar-cell ${j_cl(t.pnl)}"><span class="bar-fill" style="width:${w}%;background:${t.pnl>=0?'#22C55E':'#EF4444'}"></span><span style="position:relative">${j_fmt(t.pnl)}</span></td>
       <td class="${t.risk>0?j_cl(t.pnl):''}" style="${t.risk>0?'':'color:var(--dim2)'}">${r}</td>
       <td><span class="pill emo" style="color:${emo.col}">${emo.nome}</span></td>
-      <td class="strat" title="${esc(t.nota)}">${esc(t.strategy)||'—'}${t.nota?`<div class="jnota-riga">${esc(t.nota)}</div>`:''}</td>
+      <td class="strat" title="${esc(t.nota)}">${esc(t.strategy)||'—'}${j_dettagliTesto(t)?`<div class="jdett-riga">${esc(j_dettagliTesto(t))}</div>`:''}${t.nota?`<div class="jnota-riga">${esc(t.nota)}</div>`:''}</td>
       <td>${img?`<img class="jthumb" src="${esc(img)}" alt="Screenshot ${esc(t.symbol)}" loading="lazy" onclick="j_apriShot('${id}')">`:'<span class="jthumb-no">—</span>'}</td>
       <td class="jazioni">${bloccato?'':`<button class="del mod" onclick="j_modifica('${id}')" title="Modifica" aria-label="Modifica">✎</button><button class="del" onclick="j_removeTrade('${id}')" title="Elimina" aria-label="Elimina">✕</button>`}</td>
     </tr>`;
@@ -2473,14 +2520,25 @@ let j_gruppo = 'strategia';
 
 function j_setGruppo(g){ j_gruppo = g; j_renderGruppi(j_filtrati()); }
 
+/* gruppi fissi + i campi del metodo scelto (es. kill zone, entrata su FVG…) */
+function j_gruppiAttivi(){
+  const out = Object.assign({}, GRUPPI);
+  (METODI[j_metodo()] || METODI.generale).campi.forEach(c => {
+    out['m_' + c.id] = { nome: c.nome, k: t => (t.dettagli || {})[c.id] || 'Non indicato' };
+  });
+  return out;
+}
+
 function j_renderGruppi(list){
-  document.getElementById('gruppiTab').innerHTML = Object.entries(GRUPPI).map(([k,g]) =>
+  const GR = j_gruppiAttivi();
+  if(!GR[j_gruppo]) j_gruppo = 'strategia';
+  document.getElementById('gruppiTab').innerHTML = Object.entries(GR).map(([k,g]) =>
     `<button type="button" class="${k===j_gruppo?'on':''}" onclick="j_setGruppo('${k}')">${g.nome}</button>`
   ).join('');
-  document.getElementById('gruppoNome').textContent = GRUPPI[j_gruppo].nome;
+  document.getElementById('gruppoNome').textContent = GR[j_gruppo].nome;
 
   const tb=document.getElementById('stbl'), g={};
-  list.forEach(t=>{ const k=GRUPPI[j_gruppo].k(t); (g[k]||=[]).push(t); });
+  list.forEach(t=>{ const k=GR[j_gruppo].k(t); (g[k]||=[]).push(t); });
   const righe = Object.entries(g).map(([k,l]) => [k, j_metrics(l)]).sort((a,b)=>b[1].net-a[1].net);
   if(!righe.length){ tb.innerHTML=`<tr><td colspan="6"><div class="empty">Aggiungi operazioni per confrontarne le performance.</div></td></tr>`; return; }
   tb.innerHTML=righe.map(([k,m])=>{
@@ -2510,6 +2568,7 @@ function j_renderAll(){
   if(typeof aggiornaBanner === 'function') aggiornaBanner();
   if(typeof aggiornaAreaShot === 'function') aggiornaAreaShot();
   j_renderToolbar();
+  j_renderCampiMetodo();
   j_renderFiltri();
   const list = j_filtrati();
   j_renderConto();
@@ -2899,6 +2958,7 @@ function j_resetForm(){
   ['f-symbol','f-pnl','f-risk','f-strat','f-nota'].forEach(i=>document.getElementById(i).value='');
   j_setUnita('pnl', j_unitaPreferita('pnl'), true); j_setUnita('risk', j_unitaPreferita('risk'), true);
   j_renderScelte();
+  j_dettagli = {}; j_renderCampiMetodo();
   document.getElementById('f-date').value = isoLocale();
   j_setDir('long');
   j_setEmo('lucido');
@@ -2912,6 +2972,140 @@ function j_resetForm(){
   /* sul telefono, finita una modifica si torna all'elenco delle operazioni */
   if(eraModifica && window.jVista && document.body.dataset.vista === 'nuova') jVista('operazioni');
   aggiornaAreaShot();
+}
+
+/* ---------- Tipo di journal: metodo di trading ---------- */
+/* Ogni metodo aggiunge al modulo alcune voci a scelta rapida; le statistiche raggruppate le usano. */
+const METODI = {
+  generale: { nome: 'Generale', desc: 'Il journal classico: simbolo, risultato, rischio, strategia e stato d\'animo.', campi: [] },
+  ict: { nome: 'ICT / Smart Money', desc: 'Kill zone, bias, liquidità presa, cambio di struttura ed entrata su FVG, order block, OTE.', campi: [
+    { id: 'killzone', nome: 'Kill zone', opzioni: ['Asia', 'Londra', 'New York AM', 'New York PM', 'Fuori kill zone'] },
+    { id: 'bias', nome: 'Bias del timeframe alto', opzioni: ['Rialzista', 'Ribassista', 'Neutro'] },
+    { id: 'liquidita', nome: 'Liquidità presa', opzioni: ['Buy side (BSL)', 'Sell side (SSL)', 'Nessuna'] },
+    { id: 'struttura', nome: 'Cambio di struttura (MSS/BOS)', opzioni: ['Sì', 'No'] },
+    { id: 'entrata', nome: 'Entrata su', opzioni: ['FVG', 'Order block', 'Breaker', 'OTE 62–79%', 'Altro'] },
+  ]},
+  volumetrica: { nome: 'Volumetrica / order flow', desc: 'Livelli del volume profile (POC, VAH, VAL, VWAP), segnali di order flow e delta.', campi: [
+    { id: 'livello', nome: 'Livello', opzioni: ['POC', 'VAH', 'VAL', 'HVN', 'LVN', 'VWAP', 'Naked POC'] },
+    { id: 'segnale', nome: 'Segnale', opzioni: ['Assorbimento', 'Delta divergente', 'Imbalance', 'Iceberg', 'Esaurimento'] },
+    { id: 'contesto', nome: 'Contesto', opzioni: ['Bilanciato', 'In tendenza', 'Apertura fuori value'] },
+    { id: 'delta', nome: 'Delta cumulativo', opzioni: ['A favore', 'Contro', 'Neutro'] },
+  ]},
+  conferma: { nome: 'Input e conferma', desc: 'Da dove parte l\'idea (input), cosa ti fa entrare (conferma) e se hai aspettato davvero la conferma.', campi: [
+    { id: 'input', nome: 'Input', opzioni: ['Livello chiave', 'Pattern', 'Rottura', 'Ritracciamento'] },
+    { id: 'tf_input', nome: 'Timeframe dell\'input', opzioni: ['M1', 'M5', 'M15', 'H1', 'H4', 'D1'] },
+    { id: 'conferma', nome: 'Conferma', opzioni: ['Candela di rifiuto', 'Rottura di struttura', 'Retest', 'Engulfing', 'Nessuna'] },
+    { id: 'tf_conferma', nome: 'Timeframe della conferma', opzioni: ['M1', 'M5', 'M15', 'H1', 'H4'] },
+    { id: 'rispettata', nome: 'Sei entrato solo dopo la conferma?', opzioni: ['Sì', 'No'] },
+  ]},
+  priceaction: { nome: 'Price action / supporti e resistenze', desc: 'Zona, pattern di candela e direzione rispetto al trend.', campi: [
+    { id: 'zona', nome: 'Zona', opzioni: ['Supporto', 'Resistenza', 'Trendline', 'Doppio massimo/minimo', 'Canale'] },
+    { id: 'pattern', nome: 'Pattern', opzioni: ['Pin bar', 'Engulfing', 'Inside bar', 'Rottura e retest', 'Nessuno'] },
+    { id: 'trend', nome: 'Rispetto al trend', opzioni: ['A favore', 'Contro', 'Laterale'] },
+  ]},
+  scalping: { nome: 'Scalping / news', desc: 'Sessione, notizie in uscita, spread al momento dell\'entrata e durata dell\'operazione.', campi: [
+    { id: 'sessione', nome: 'Sessione', opzioni: ['Asia', 'Londra', 'New York', 'Sovrapposizione Londra-NY'] },
+    { id: 'notizia', nome: 'Notizie vicine', opzioni: ['Nessuna', 'Entro 30 minuti', 'Entrata sulla notizia'] },
+    { id: 'spread', nome: 'Spread all\'entrata', opzioni: ['Normale', 'Largo'] },
+    { id: 'durata', nome: 'Durata', opzioni: ['Meno di 1 min', '1–5 min', '5–30 min', 'Oltre 30 min'] },
+  ]},
+};
+
+function j_metodo(){
+  const m = (utente && utente.user_metadata && utente.user_metadata.metodo) || (() => { try{ return localStorage.getItem('riskly-metodo'); }catch{ return null; } })();
+  return METODI[m] ? m : 'generale';
+}
+
+/* i dettagli del metodo stanno in fondo alla nota, in un blocco che l'app nasconde: niente modifiche al database */
+const J_DETT = /\n*⟦riskly:(\{[\s\S]*\})⟧\s*$/;
+function j_separaNota(n){
+  n = n || '';
+  const m = n.match(J_DETT);
+  if(!m) return { nota: n, dettagli: {} };
+  let d = {};
+  try{ d = JSON.parse(m[1]) || {}; }catch{}
+  return { nota: n.replace(J_DETT, ''), dettagli: d };
+}
+function j_uniscinota(nota, d){
+  const pulito = {};
+  Object.entries(d || {}).forEach(([k, v]) => { if(v !== '' && v !== null && v !== undefined) pulito[k] = String(v).slice(0, 60); });
+  if(!Object.keys(pulito).length) return nota || '';
+  return (nota ? nota + '\n\n' : '') + '⟦riskly:' + JSON.stringify(pulito) + '⟧';
+}
+
+let j_dettagli = {};
+function j_renderCampiMetodo(){
+  const box = document.getElementById('fMetodo');
+  const pill = document.getElementById('fMetodoPill');
+  const m = METODI[j_metodo()];
+  if(pill) pill.textContent = 'Journal: ' + m.nome + ' · cambia';
+  if(!box) return;
+  if(!m.campi.length){ box.innerHTML = ''; return; }
+  box.innerHTML = `<div class="jm-tit">Checklist ${esc(m.nome)} <span style="color:var(--dim2)">(facoltativa, un tocco per scegliere)</span></div>` +
+    m.campi.map(c => `<div class="jm-campo"><span>${esc(c.nome)}</span><div class="jchips-scelta">` +
+      c.opzioni.map(o => `<button type="button" class="jscelta${j_dettagli[c.id] === o ? ' on' : ''}" data-c="${esc(c.id)}" data-o="${esc(o)}">${esc(o)}</button>`).join('') +
+      `</div></div>`).join('');
+  box.onclick = e => {
+    const b = e.target.closest('.jscelta'); if(!b) return;
+    const c = b.dataset.c, o = b.dataset.o;
+    j_dettagli[c] = (j_dettagli[c] === o) ? '' : o;
+    j_renderCampiMetodo();
+  };
+}
+function j_dettagliDaSalvare(){
+  const out = {};
+  Object.entries(j_dettagli).forEach(([k, v]) => { if(v) out[k] = v; });
+  return out;
+}
+function j_dettagliTesto(t, conNomi){
+  const d = t.dettagli || {};
+  const campi = Object.values(METODI).flatMap(m => m.campi);
+  return Object.entries(d).filter(([, v]) => v).map(([k, v]) => {
+    const c = campi.find(x => x.id === k);
+    return conNomi && c ? c.nome + ': ' + v : v;
+  }).join(conNomi ? '; ' : ' · ');
+}
+function j_dettagliCasuali(){
+  const out = {};
+  (METODI[j_metodo()] || METODI.generale).campi.forEach(c => {
+    if(Math.random() < .85) out[c.id] = c.opzioni[Math.floor(Math.random() * c.opzioni.length)];
+  });
+  return out;
+}
+
+function j_apriMetodi(){
+  const att = j_metodo();
+  document.getElementById('jmetodoLista').innerHTML = Object.entries(METODI).map(([k, m]) =>
+    `<button type="button" class="jmetodo-voce${k === att ? ' on' : ''}" onclick="j_setMetodo('${k}')"><b>${esc(m.nome)}</b><span>${esc(m.desc)}</span></button>`).join('');
+  document.getElementById('jmetodoOv').classList.add('on');
+}
+function j_chiudiMetodi(){
+  document.getElementById('jmetodoOv').classList.remove('on');
+  try{ localStorage.setItem('riskly-metodo-chiesto', '1'); }catch{}
+}
+async function j_setMetodo(k){
+  if(!METODI[k]) return;
+  try{ localStorage.setItem('riskly-metodo', k); localStorage.setItem('riskly-metodo-chiesto', '1'); }catch{}
+  if(sb && utente){
+    try{
+      const { data, error } = await sb.auth.updateUser({ data: { metodo: k } });
+      if(error) throw error;
+      if(data && data.user) utente = data.user;
+      else utente.user_metadata = Object.assign({}, utente.user_metadata, { metodo: k });
+    }catch(err){ console.error(err); }
+  }
+  j_chiudiMetodi();
+  j_dettagli = {};
+  j_renderCampiMetodo();
+  j_renderAll();
+  j_flash('Journal impostato su ' + METODI[k].nome + '.');
+}
+function j_forseChiediMetodo(){
+  if(j_demo || !utente) return;
+  if(utente.user_metadata && utente.user_metadata.metodo) return;
+  let chiesto = false;
+  try{ chiesto = !!localStorage.getItem('riskly-metodo-chiesto'); }catch{}
+  if(!chiesto) j_apriMetodi();
 }
 
 /* ---------- Saldo del conto ---------- */
@@ -3105,6 +3299,7 @@ function j_modifica(id){
   document.getElementById('f-strat').value = t.strategy;
   j_setUnita('pnl','val',true); j_setUnita('risk','val',true);
   j_renderScelte();
+  j_dettagli = Object.assign({}, t.dettagli || {}); j_renderCampiMetodo();
   document.getElementById('f-nota').value = t.nota;
   j_setDir(t.dir);
   j_setEmo(t.emo || 'lucido');
@@ -3142,6 +3337,7 @@ async function j_addTrade(e){
     pnl: Math.round(pnl * 100) / 100,
     risk: Math.max(risk, 0),
     strategy: document.getElementById('f-strat').value.trim(),
+    dettagli: j_dettagliDaSalvare(),
     emo: j_emozione,
     nota: document.getElementById('f-nota').value.trim(),
     shot: '', shotUrl: ''
@@ -3283,7 +3479,7 @@ function j_exportCSV(){
   const list = j_lista();
   if(!list.length){ j_flash('Non ci sono operazioni da esportare.'); return; }
 
-  const intestazioni = ['Data','Ora','Simbolo','Direzione','P&L','Rischio','R','Strategia','Stato','Nota','Screenshot'];
+  const intestazioni = ['Data','Ora','Simbolo','Direzione','P&L','Rischio','R','Strategia','Stato','Nota','Dettagli metodo','Screenshot'];
 
   const campo = v => {
     const s = (v === null || v === undefined) ? '' : String(v);
@@ -3298,6 +3494,7 @@ function j_exportCSV(){
       t.strategy || '',
       j_emoInfo(t.emo || 'lucido').nome,
       t.nota || '',
+      j_dettagliTesto(t, true),
       t.shot ? 'sì' : ''
     ].map(campo).join(';'));
 
@@ -3362,6 +3559,7 @@ function j_normalizza(o){
     strategy: String(o.strategy ?? o.strategia ?? '').trim().slice(0, 60),
     emo,
     nota: String(o.nota ?? o.note ?? '').trim().slice(0, 2000),
+    dettagli: (o.dettagli && typeof o.dettagli === 'object' && !Array.isArray(o.dettagli)) ? o.dettagli : {},
     shot, shotUrl: ''
   };
 }
@@ -3556,6 +3754,7 @@ function j_generaDemo(){
       strategy: s.nome,
       emo,
       nota: el[Math.floor(Math.random()*el.length)],
+      dettagli: j_dettagliCasuali(),
       shot: '', shotUrl: ''
     });
   }
@@ -3835,6 +4034,7 @@ function aggiornaVista(){
   app.style.display  = dentro ? 'block' : 'none';
 
   if(dentro) avviaJournal();
+  if(dentro) setTimeout(j_forseChiediMetodo, 1200);
 }
 
 caricaSessione();
