@@ -1150,9 +1150,10 @@ body{padding-top:0}
   #appJournal{padding-bottom:100px}
   .app-corpo{padding:0}
   .app-corpo>section{padding:18px 0 20px}
-  .jtoast{bottom:calc(96px + env(safe-area-inset-bottom))}
-  #tornaSu{bottom:calc(96px + env(safe-area-inset-bottom))}
-  .jbarra{left:12px;right:12px;transform:none;width:auto;bottom:calc(12px + env(safe-area-inset-bottom));padding:0 6px;border-radius:24px}
+  html,body{overscroll-behavior-y:none}
+  .jtoast{bottom:calc(84px + max(8px, calc(env(safe-area-inset-bottom) - 18px)))}
+  #tornaSu{bottom:calc(84px + max(8px, calc(env(safe-area-inset-bottom) - 18px)))}
+  .jbarra{left:12px;right:12px;transform:none;width:auto;bottom:max(8px, calc(env(safe-area-inset-bottom) - 18px));padding:0 6px;border-radius:24px}
   .jbarra button{font-size:10.5px}
 }
 
