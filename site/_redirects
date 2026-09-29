@@ -1,3 +1,8 @@
+# pagina con tutti i link (social, Telegram, sito)
+/link    /link.html   200
+/links   /link.html   200
+/social  /link.html   200
+
 # link corti per i social: stessa home, provenienza tracciata
 /tt   /?da=tiktok      200
 /ig   /?da=instagram   200
