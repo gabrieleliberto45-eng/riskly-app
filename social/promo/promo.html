@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<!-- Video di presentazione di Riskly (1080×1920). Lo disegna rendi.js fotogramma per fotogramma:
+     window.prepara(dati) → durata, window.disegna(t). Tempi delle scene e sottotitoli da parole.json -->
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0B0D0C;--panel:#151916;--line:#252B26;--acc:#B6D84F;--text:#E6EDF3;--dim:#8B98A9;--dim2:#5D6B7D;
+    --up:#22C55E;--down:#EF4444;--grad:linear-gradient(120deg,#D2E97A 0%,#A9D14A 55%,#7DBE4A 100%)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1080px;height:1920px;overflow:hidden;background:var(--bg)}
+  body{font-family:'Instrument Sans',sans-serif;color:var(--text);position:relative}
+  .sfondo{position:absolute;inset:0;background:
+    radial-gradient(900px 700px at 82% 6%,rgba(182,216,79,.16),transparent 62%),
+    radial-gradient(800px 640px at 8% 80%,rgba(34,197,94,.08),transparent 64%)}
+  .griglia{position:absolute;inset:0;opacity:.06;background-size:90px 90px;
+    background-image:linear-gradient(#2a322b 2px,transparent 2px),linear-gradient(90deg,#2a322b 2px,transparent 2px)}
+  .rosso{position:absolute;inset:0;background:radial-gradient(900px 900px at 50% 40%,rgba(239,68,68,.22),transparent 65%);opacity:0}
+
+  .marchio{position:absolute;top:150px;left:90px;display:flex;align-items:center;gap:16px;font-weight:700;font-size:40px;letter-spacing:-.02em}
+  .marchio small{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:24px;color:var(--dim2);margin-left:8px}
+
+  .scena{position:absolute;inset:0;opacity:0}
+  .abs{position:absolute}
+  .el{opacity:0}
+  .serif{font-family:'Instrument Serif',serif;letter-spacing:-.02em;line-height:1.04}
+  .serif em{font-style:italic;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .mono{font-family:'JetBrains Mono',monospace}
+  .centro{left:0;right:0;text-align:center}
+
+  .card{background:linear-gradient(160deg,rgba(182,216,79,.07),transparent 60%),var(--panel);border:2px solid var(--line);border-radius:36px}
+  .chip{display:inline-flex;align-items:center;gap:14px;padding:18px 28px;border-radius:999px;font-size:34px;font-weight:600;
+    background:rgba(21,25,22,.92);border:2px solid var(--line);white-space:nowrap}
+  .chip.r{border-color:rgba(239,68,68,.55);color:#FCA5A5}
+  .chip.g{border-color:rgba(182,216,79,.6);color:var(--acc)}
+  .chip i{width:14px;height:14px;border-radius:50%;background:currentColor;display:block}
+
+  /* telefono con le schermate vere del sito */
+  .tel{position:absolute;width:540px;height:1060px;border-radius:70px;padding:16px;background:#050605;
+    border:3px solid #2b322c;box-shadow:0 40px 120px rgba(0,0,0,.6),0 0 0 10px rgba(182,216,79,.05)}
+  .tel .schermo{width:100%;height:100%;border-radius:56px;overflow:hidden;position:relative;background:var(--bg)}
+  .tel img{position:absolute;left:0;top:0;width:100%;display:block}
+  .tel .notch{position:absolute;top:30px;left:50%;width:150px;height:40px;margin-left:-75px;border-radius:30px;background:#050605;z-index:2}
+
+  /* sottotitoli parola per parola */
+  .sott{position:absolute;left:70px;right:70px;top:1395px;text-align:center;font-weight:700;font-size:66px;line-height:1.18;
+    letter-spacing:-.01em;text-shadow:0 4px 24px rgba(0,0,0,.9),0 0 3px rgba(0,0,0,.9)}
+  .sott span{display:inline-block;margin:0 .13em;transition:none}
+  .sott span.on{color:#0B0D0C;background:var(--grad);border-radius:14px;padding:0 .16em;margin:0 -.03em;text-shadow:none}
+
+  /* scena 4: i quattro bot */
+  .bot{position:absolute;left:90px;right:90px;height:150px;display:flex;align-items:center;gap:30px;padding:0 36px}
+  .bot .ic{width:88px;height:88px;border-radius:26px;display:grid;place-items:center;background:rgba(182,216,79,.1);flex-shrink:0}
+  .bot b{display:block;font-size:46px;letter-spacing:-.02em}
+  .bot span{display:block;font-size:29px;color:var(--dim);margin-top:4px}
+  .bot.on{border-color:rgba(182,216,79,.75);background:linear-gradient(120deg,rgba(182,216,79,.18),rgba(21,25,22,.95) 70%)}
+
+  .posti{display:flex;gap:14px;justify-content:center}
+  .posti i{width:44px;height:44px;border-radius:12px;border:2px solid rgba(182,216,79,.5);display:block}
+  .posti i.p{background:var(--grad);border-color:transparent}
+</style>
+</head>
+<body>
+<div class="sfondo"></div><div class="griglia"></div><div class="rosso" id="rosso"></div>
+
+<div class="marchio" id="marchio">
+  <svg width="54" height="54" viewBox="0 0 44 44" fill="none"><path d="M9 31 L17 19.5 L23.5 25 L35 11" stroke="#B6D84F" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 36 H35" stroke="#8B98A9" stroke-width="3.2" stroke-linecap="round"/></svg>
+  Riskly<small>riskly.trade</small>
+</div>
+
+<!-- 1 · il mercato -->
+<div class="scena" id="s1">
+  <canvas id="c1" class="abs" width="1080" height="820" style="left:0;top:520px"></canvas>
+  <div class="abs centro serif el" id="s1a" style="top:300px;font-size:104px">Il mercato<br>non lo controlli.</div>
+  <div class="abs centro serif el" id="s1b" style="top:1130px;font-size:104px"><em>Tutto il resto sì.</em></div>
+</div>
+
+<!-- 2 · la giornata storta -->
+<div class="scena" id="s2">
+  <div class="abs centro serif el" id="s2a" style="top:290px;font-size:86px">Non è la strategia.</div>
+  <div class="abs centro serif el" id="s2b" style="top:390px;font-size:86px"><span style="color:#F87171;font-style:italic">È la giornata storta.</span></div>
+  <div class="abs card" style="left:90px;right:90px;top:540px;height:520px;overflow:hidden">
+    <div class="abs mono" style="left:44px;top:36px;font-size:28px;color:var(--dim)">SALDO DEL CONTO</div>
+    <div class="abs mono" id="s2saldo" style="left:44px;top:80px;font-size:72px;font-weight:600">10.000 €</div>
+    <div class="abs mono" id="s2var" style="right:44px;top:96px;font-size:40px;font-weight:600;color:var(--up)">+0,0%</div>
+    <canvas id="c2" class="abs" width="900" height="330" style="left:0;top:180px"></canvas>
+  </div>
+  <div class="abs el" id="s2c1" style="left:90px;top:1100px"><span class="chip r"><i></i>3 perdite di fila</span></div>
+  <div class="abs el" id="s2c2" style="right:90px;top:1100px"><span class="chip r"><i></i>Lotto raddoppiato</span></div>
+  <div class="abs el" id="s2c3" style="left:0;right:0;top:1210px;text-align:center"><span class="chip r"><i></i>Limite giornaliero superato</span></div>
+</div>
+
+<!-- 3 · cos'è Riskly -->
+<div class="scena" id="s3">
+  <div class="abs el" id="s3logo" style="left:0;right:0;top:560px;text-align:center">
+    <svg width="300" height="300" viewBox="0 0 44 44" fill="none"><path id="s3l1" d="M9 31 L17 19.5 L23.5 25 L35 11" stroke="#B6D84F" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="40" stroke-dashoffset="40"/><path id="s3l2" d="M9 36 H35" stroke="#8B98A9" stroke-width="2.8" stroke-linecap="round" stroke-dasharray="26" stroke-dashoffset="26"/></svg>
+    <div class="serif" style="font-size:150px;margin-top:10px">Riskly</div>
+    <div style="font-size:40px;color:var(--dim);margin-top:14px">fa rispettare le tue regole</div>
+  </div>
+  <div class="tel el" id="s3tel" style="left:270px;top:300px"><div class="schermo"><div class="notch"></div><img id="s3img" src="bot.jpg"></div></div>
+  <div class="abs el" id="s3p1" style="left:60px;top:430px"><span class="chip g">MT4 · MT5</span></div>
+  <div class="abs el" id="s3p2" style="right:50px;top:700px"><span class="chip r">✕ Nessun segnale</span></div>
+  <div class="abs el" id="s3p3" style="left:40px;top:960px"><span class="chip r">✕ Non apre trade</span></div>
+  <div class="abs el" id="s3p4" style="right:50px;top:1180px"><span class="chip g">✓ Gestisce il rischio</span></div>
+</div>
+
+<!-- 4 · i quattro bot -->
+<div class="scena" id="s4">
+  <div class="abs card" style="left:90px;right:90px;top:270px;height:380px;overflow:hidden">
+    <canvas id="c4" class="abs" width="900" height="380" style="left:0;top:0"></canvas>
+  </div>
+  <div class="bot card el" id="b1" style="top:690px"><div class="ic"><svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#B6D84F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6Z"/></svg></div><div><b>RiskGuard</b><span>Ti ferma prima del limite</span></div></div>
+  <div class="bot card el" id="b2" style="top:850px"><div class="ic"><svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#B6D84F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 9 11l4 4 8-8"/><path d="M15 7h6v6"/></svg></div><div><b>TradeManager</b><span>Break-even e trailing stop</span></div></div>
+  <div class="bot card el" id="b3" style="top:1010px"><div class="ic"><svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#B6D84F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5Z"/><path d="m3 13 9 5 9-5"/></svg></div><div><b>ScaleIn</b><span>Più take profit, in automatico</span></div></div>
+  <div class="bot card el" id="b4" style="top:1170px"><div class="ic"><svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#B6D84F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div><div><b>Riskly Pro</b><span>Tutti e tre insieme</span></div></div>
+</div>
+
+<!-- 5 · il journal -->
+<div class="scena" id="s5">
+  <div class="tel el" id="s5tel" style="left:270px;top:290px"><div class="schermo"><div class="notch"></div><img id="s5img" src="journal.jpg"></div></div>
+  <div class="abs el" id="s5n" style="left:50px;top:330px"><span class="chip g"><i></i>Trade chiuso → journal</span></div>
+  <div class="abs el" id="s5k1" style="left:40px;top:640px"><span class="chip">Winrate</span></div>
+  <div class="abs el" id="s5k2" style="right:40px;top:800px"><span class="chip r">Drawdown</span></div>
+  <div class="abs el" id="s5k3" style="left:40px;top:1000px"><span class="chip">Orari in perdita</span></div>
+  <div class="abs el" id="s5k4" style="right:40px;top:1180px"><span class="chip g">Cosa funziona</span></div>
+</div>
+
+<!-- 6 · calcolatori -->
+<div class="scena" id="s6">
+  <div class="tel el" id="s6tel" style="left:270px;top:290px"><div class="schermo"><div class="notch"></div><img id="s6img" src="calc.jpg"></div></div>
+  <div class="abs el" id="s6a" style="left:40px;top:420px"><span class="chip g" style="font-size:44px;padding:22px 36px">5 calcolatori</span></div>
+  <div class="abs el" id="s6b" style="right:40px;top:1040px"><span class="chip" style="font-size:44px;padding:22px 36px;background:var(--grad);color:#0B0D0C;border-color:transparent">GRATIS</span></div>
+</div>
+
+<!-- 7 · lancio -->
+<div class="scena" id="s7">
+  <div class="abs centro el" id="s7a" style="top:330px">
+    <div class="mono" style="font-size:34px;color:var(--acc);letter-spacing:.12em">LANCIO</div>
+    <div class="serif" style="font-size:190px;margin-top:6px">23 <em>ottobre</em></div>
+  </div>
+  <div class="abs centro el" id="s7b" style="top:720px">
+    <div style="font-size:40px;color:var(--dim);margin-bottom:28px">I primi 10 bloccano il prezzo <b style="color:var(--text)">per sempre</b></div>
+    <div class="posti" id="s7posti"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  </div>
+  <div class="abs centro el" id="s7c" style="top:960px">
+    <div class="serif" style="font-size:130px"><em>riskly.trade</em></div>
+  </div>
+  <div class="abs centro el" id="s7d" style="top:1270px;font-size:26px;color:var(--dim2)">Contenuto educativo, non è consulenza finanziaria.</div>
+</div>
+
+<div class="sott" id="sott"></div>
+
+<script>
+const $ = id => document.getElementById(id);
+const cl = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const ease = x => 1 - Math.pow(1 - cl(x), 3);
+const easeIO = x => { x = cl(x); return x < .5 ? 4*x*x*x : 1 - Math.pow(-2*x + 2, 3) / 2; };
+const pr = (t, a, d = .45) => ease((t - a) / d);              // progresso 0→1 da a per d secondi
+const euro = n => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' €';
+
+let S = [];   // scene: {ini, fine, parole:[[a,b,testo]] in tempo assoluto}
+
+window.prepara = dati => {
+  /* "riskly punto trade" letto dalla voce, scritto come riskly.trade */
+  dati.parole.forEach(p => { for(let j = 0; j + 2 < p.length; j++) if(p[j][2].toLowerCase() === 'riskly' && p[j + 1][2] === 'punto'){
+    p.splice(j, 3, [p[j][0], p[j + 2][1], 'riskly.trade']); } });
+  let t = 0;
+  S = dati.parole.map((p, i) => {
+    const ultima = p[p.length - 1][1];
+    const dur = (i === dati.parole.length - 1) ? ultima + 2.6 : ultima + .55;
+    const sc = { ini:t, fine:t + dur, parole:p.map(w => [w[0] + t, w[1] + t, w[2]]) };
+    t += dur; return sc;
+  });
+  /* gruppi di sottotitoli: 3 parole (4 se brevi), si va a capo su pause lunghe */
+  window.GRUPPI = [];
+  S.forEach(sc => {
+    let g = [];
+    sc.parole.forEach((w, j) => {
+      const prec = sc.parole[j - 1];
+      const lettere = g.reduce((s, x) => s + x[2].length, 0);
+      if(g.length && (g.length >= 4 || lettere + w[2].length > 20 || (prec && w[0] - prec[1] > .28))){ GRUPPI.push(g); g = []; }
+      g.push(w);
+    });
+    if(g.length) GRUPPI.push(g);
+  });
+  return t;
+};
+
+/* ricerca del momento di una parola nella scena i (n-esima occorrenza) */
+const W = (i, testo, n = 1) => {
+  for(const w of S[i].parole) if(w[2].toLowerCase().startsWith(testo.toLowerCase()) && --n === 0) return w[0];
+  return S[i].ini;
+};
+const mostra = (id, p, dy = 40, sc = 1) => { const e = $(id); e.style.opacity = p; e.style.transform = `translateY(${(1 - p) * dy}px) scale(${sc + (1 - sc) * p})`; };
+
+/* ---------- disegni su canvas ---------- */
+function candele(ctx, w, h, t){
+  ctx.clearRect(0, 0, w, h);
+  const n = 26, bw = w / n;
+  let p = 100, pts = [];
+  for(let i = 0; i < n; i++){
+    const r = Math.sin(i * 12.9898) * 43758.5453; const rnd = r - Math.floor(r);
+    const drift = i < 7 ? .6 : i < 15 ? -2.4 : -4.6;
+    const o = p, c = p + drift + (rnd - .5) * 6;
+    pts.push([o, c, Math.max(o, c) + rnd * 2.5, Math.min(o, c) - (1 - rnd) * 2.5]); p = c;
+  }
+  const mx = 104, mn = Math.min(...pts.map(x => x[3])) - 2;
+  const Y = v => 30 + (mx - v) / (mx - mn) * (h - 60);
+  const vis = Math.floor(t * 11);
+  for(let i = 0; i < Math.min(n, vis); i++){
+    const [o, c, hi, lo] = pts[i]; const su = c >= o;
+    ctx.strokeStyle = ctx.fillStyle = su ? '#22C55E' : '#EF4444';
+    const x = i * bw + bw / 2;
+    ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(x, Y(hi)); ctx.lineTo(x, Y(lo)); ctx.stroke();
+    ctx.fillRect(x - bw * .32, Math.min(Y(o), Y(c)), bw * .64, Math.max(3, Math.abs(Y(o) - Y(c))));
+  }
+  return Y;
+}
+
+function equity(ctx, w, h, t, crollo){
+  ctx.clearRect(0, 0, w, h);
+  const pts = [];
+  for(let i = 0; i <= 60; i++){
+    let v = 10000 + i * 11 + Math.sin(i * .9) * 35;
+    if(i > 40) v -= Math.pow((i - 40) / 20, 1.4) * 1150;
+    pts.push(v);
+  }
+  const k = Math.floor(cl(t) * 40) + Math.floor(cl(crollo) * 20);
+  const Y = v => 20 + (10600 - v) / (10600 - 9100) * (h - 40), X = i => 30 + i / 60 * (w - 60);
+  ctx.lineWidth = 6; ctx.lineJoin = 'round';
+  ctx.beginPath();
+  for(let i = 0; i <= k; i++){ i ? ctx.lineTo(X(i), Y(pts[i])) : ctx.moveTo(X(i), Y(pts[i])); }
+  const g = ctx.createLinearGradient(0, 0, w, 0);
+  g.addColorStop(0, '#A9D14A'); g.addColorStop(.62, '#A9D14A'); g.addColorStop(.72, '#EF4444'); g.addColorStop(1, '#EF4444');
+  ctx.strokeStyle = g; ctx.stroke();
+  /* limite giornaliero */
+  ctx.setLineDash([14, 12]); ctx.strokeStyle = 'rgba(239,68,68,.55)'; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(30, Y(9500)); ctx.lineTo(w - 30, Y(9500)); ctx.stroke(); ctx.setLineDash([]);
+  ctx.fillStyle = 'rgba(239,68,68,.8)'; ctx.font = '600 24px "JetBrains Mono", monospace'; ctx.fillText('limite giornaliero', 36, Y(9500) - 12);
+  return pts[k];
+}
+
+/* scena 4: un grafico per il bot attivo */
+function botGrafico(ctx, w, h, quale, p){
+  ctx.clearRect(0, 0, w, h);
+  ctx.font = '600 26px "JetBrains Mono", monospace';
+  const riga = (y, col, tratt, testo) => {
+    ctx.setLineDash(tratt ? [12, 10] : []); ctx.strokeStyle = col; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.moveTo(40, y); ctx.lineTo(w - 40, y); ctx.stroke(); ctx.setLineDash([]);
+    if(testo){ ctx.fillStyle = col; ctx.fillText(testo, w - 40 - ctx.measureText(testo).width, y - 12); }
+  };
+  const linea = (f, fino, col) => {
+    ctx.strokeStyle = col; ctx.lineWidth = 6; ctx.lineJoin = 'round'; ctx.beginPath();
+    for(let i = 0; i <= 100 * fino; i++){ const x = 40 + i / 100 * (w - 80); i ? ctx.lineTo(x, f(i / 100)) : ctx.moveTo(x, f(i / 100)); }
+    ctx.stroke();
+  };
+  if(quale === 0){
+    /* RiskGuard: tre perdite, poi il blocco */
+    const f = x => 90 + x * 150 + Math.sin(x * 20) * 26;
+    riga(330, '#EF4444', true, 'limite prop firm');
+    linea(f, cl(p * 1.3) * .72, '#EF4444');
+    if(p > .6){
+      const q = ease((p - .6) / .25), x = 40 + .72 * (w - 80), y = f(.72);
+      ctx.fillStyle = `rgba(182,216,79,${q})`; ctx.beginPath(); ctx.roundRect(x - 44, y - 44, 88, 88, 22); ctx.fill();
+      ctx.strokeStyle = '#0B0D0C'; ctx.lineWidth = 6; ctx.beginPath(); ctx.roundRect(x - 18, y - 6, 36, 28, 5); ctx.stroke();
+      ctx.beginPath(); ctx.arc(x, y - 8, 12, Math.PI, 0); ctx.stroke();
+      ctx.fillStyle = `rgba(182,216,79,${q})`; ctx.font = '700 38px "Instrument Sans", sans-serif'; ctx.fillText('Giornata bloccata', 40, 60);
+    }
+  } else if(quale === 1){
+    /* TradeManager: lo stop sale a pareggio e poi segue */
+    const f = x => 300 - x * 220 + Math.sin(x * 14) * 22;
+    const fino = cl(p * 1.1);
+    riga(300, 'rgba(139,152,169,.7)', true, 'ingresso');
+    const stop = fino < .35 ? 370 : fino < .6 ? 300 : 300 - (fino - .6) / .4 * 150;
+    riga(stop, '#B6D84F', false, fino < .35 ? 'stop' : fino < .6 ? 'stop a pareggio' : 'trailing stop');
+    linea(f, fino, '#22C55E');
+  } else if(quale === 2){
+    /* ScaleIn: TP1, TP2, TP3 */
+    const f = x => 360 - x * 300 + Math.sin(x * 16) * 18;
+    const fino = cl(p * 1.1);
+    [['TP1', 250, .38], ['TP2', 170, .66], ['TP3', 95, .92]].forEach(([n, y, quando]) => {
+      riga(y, fino >= quando ? '#B6D84F' : 'rgba(182,216,79,.35)', true, (fino >= quando ? '✓ ' : '') + n);
+    });
+    linea(f, fino, '#22C55E');
+  } else {
+    /* Riskly Pro: tre icone che si uniscono */
+    const q = easeIO(p * 1.4), cx = w / 2, cy = h / 2;
+    [-1, 0, 1].forEach((k, j) => {
+      const x = cx + k * 260 * (1 - q), a = 1 - q * .4;
+      ctx.fillStyle = `rgba(182,216,79,${.12 + .1 * j})`; ctx.strokeStyle = `rgba(182,216,79,${a})`; ctx.lineWidth = 4;
+      ctx.beginPath(); ctx.roundRect(x - 80, cy - 80, 160, 160, 40); ctx.fill(); ctx.stroke();
+    });
+    ctx.fillStyle = '#E6EDF3'; ctx.font = '700 44px "Instrument Sans", sans-serif'; ctx.textAlign = 'center';
+    ctx.globalAlpha = q; ctx.fillText('Riskly Pro', cx, cy + 16); ctx.globalAlpha = 1; ctx.textAlign = 'left';
+  }
+}
+
+/* ---------- fotogramma ---------- */
+window.disegna = t => {
+  /* scene: dissolvenza in entrata e in uscita */
+  S.forEach((sc, i) => {
+    const e = $('s' + (i + 1));
+    const a = cl((t - sc.ini) / .35) * cl((sc.fine - t) / .3 + (i === S.length - 1 ? 1 : 0));
+    e.style.opacity = a;
+    e.style.transform = `scale(${1 + .03 * (1 - cl((t - sc.ini) / .6))})`;
+    e.style.display = a > 0 ? 'block' : 'none';
+  });
+  $('marchio').style.opacity = t < S[6].ini ? 1 : 1 - cl((t - S[6].ini) / .4);
+  $('rosso').style.opacity = 0;
+
+  /* 1 */
+  if(t < S[0].fine){
+    const Y = candele($('c1').getContext('2d'), 1080, 820, t - S[0].ini);
+    mostra('s1a', pr(t, W(0, 'Il')));
+    const tb = W(0, 'Tutto');
+    mostra('s1b', pr(t, tb), 40, .9);
+    $('c1').style.opacity = 1 - .55 * pr(t, tb);
+  }
+  /* 2 */
+  if(t >= S[1].ini && t < S[1].fine){
+    const t0 = S[1].ini, tc = W(1, 'Salta', 2), ts = W(1, 'smetti');
+    mostra('s2a', pr(t, W(1, 'strategia')));
+    mostra('s2b', pr(t, W(1, 'giornata')));
+    const v = equity($('c2').getContext('2d'), 900, 330, (t - t0) / (tc - t0), (t - tc) / (S[1].fine - tc - .8));
+    $('s2saldo').textContent = euro(v);
+    const perc = (v / 10000 - 1) * 100;
+    $('s2var').textContent = (perc >= 0 ? '+' : '−') + Math.abs(perc).toFixed(1).replace('.', ',') + '%';
+    $('s2var').style.color = perc >= 0 ? '#22C55E' : '#EF4444';
+    $('s2saldo').style.color = perc < -2 ? '#F87171' : '#E6EDF3';
+    mostra('s2c1', pr(t, tc + .5)); mostra('s2c2', pr(t, ts - .3)); mostra('s2c3', pr(t, W(1, 'regole') - .2));
+    $('rosso').style.opacity = .9 * pr(t, tc + .4, 1.2);
+  }
+  /* 3 */
+  if(t >= S[2].ini && t < S[2].fine){
+    const tq = W(2, 'Quattro');
+    const lp = pr(t, S[2].ini + .1, 1.1);
+    $('s3l1').style.strokeDashoffset = 40 * (1 - lp); $('s3l2').style.strokeDashoffset = 26 * (1 - pr(t, S[2].ini + .5, .8));
+    const out = pr(t, tq - .3, .4);
+    mostra('s3logo', pr(t, S[2].ini, .5) * (1 - out), 20);
+    mostra('s3tel', pr(t, tq - .1, .6), 120, .92);
+    $('s3img').style.transform = `translateY(${-cl((t - tq) / (S[2].fine - tq)) * 900}px)`;
+    mostra('s3p1', pr(t, W(2, 'MetaTrader')), 20, .8);
+    mostra('s3p2', pr(t, W(2, 'segnali') - .25), 20, .8);
+    mostra('s3p3', pr(t, W(2, 'aprono')), 20, .8);
+    mostra('s3p4', pr(t, W(2, 'gestiscono')), 20, .8);
+  }
+  /* 4 */
+  if(t >= S[3].ini && t < S[3].fine){
+    const tempi = [W(3, 'RiskGuard'), W(3, 'TradeManager'), W(3, 'ScaleIn'), W(3, 'Riskly')];
+    let att = 0; tempi.forEach((x, j) => { if(t >= x - .15) att = j; });
+    tempi.forEach((x, j) => {
+      mostra('b' + (j + 1), pr(t, j === 0 ? S[3].ini : x - .4), 60);
+      $('b' + (j + 1)).classList.toggle('on', j === att);
+    });
+    const fine = att < 3 ? tempi[att + 1] - .15 : S[3].fine;
+    botGrafico($('c4').getContext('2d'), 900, 380, att, (t - tempi[att]) / (fine - tempi[att] - .3));
+  }
+  /* 5 */
+  if(t >= S[4].ini && t < S[4].fine){
+    const d = S[4].fine - S[4].ini, q = (t - S[4].ini) / d;
+    mostra('s5tel', pr(t, S[4].ini, .6), 120, .92);
+    /* pan: numeri → calendario → grafici */
+    const tappe = [[0, 0], [.2, 0], [.42, 680], [.64, 1180], [.86, 2050], [1, 2250]];
+    let y = 0;
+    for(let j = 1; j < tappe.length; j++) if(q <= tappe[j][0]){ const [a, ya] = tappe[j - 1], [b, yb] = tappe[j]; y = ya + (yb - ya) * easeIO((q - a) / (b - a)); break; }
+    $('s5img').style.transform = `translateY(${-y}px)`;
+    mostra('s5n', pr(t, S[4].ini + .3), 20, .8);
+    mostra('s5k1', pr(t, W(4, 'winrate')), 20, .8);
+    mostra('s5k2', pr(t, W(4, 'drawdown')), 20, .8);
+    mostra('s5k3', pr(t, W(4, 'orari')), 20, .8);
+    mostra('s5k4', pr(t, W(4, 'funzionano')), 20, .8);
+  }
+  /* 6 */
+  if(t >= S[5].ini && t < S[5].fine){
+    mostra('s6tel', pr(t, S[5].ini, .5), 120, .92);
+    $('s6img').style.transform = `translateY(${-easeIO((t - S[5].ini) / (S[5].fine - S[5].ini)) * 700}px)`;
+    mostra('s6a', pr(t, W(5, 'cinque')), 20, .7);
+    mostra('s6b', pr(t, W(5, 'gratuiti')), 20, .6);
+  }
+  /* 7 */
+  if(t >= S[6].ini){
+    mostra('s7a', pr(t, S[6].ini + .05), 50, .9);
+    const tp = W(6, 'primi');
+    mostra('s7b', pr(t, tp - .2));
+    [...$('s7posti').children].forEach((e, j) => e.classList.toggle('p', t > tp + .1 + j * .09));
+    mostra('s7c', pr(t, W(6, 'riskly')), 40, .85);
+    mostra('s7d', pr(t, W(6, 'riskly') + .8));
+  }
+
+  /* sottotitoli */
+  let html = '';
+  for(const g of GRUPPI){
+    if(t >= g[0][0] - .05 && t < g[g.length - 1][1] + .25){
+      let k = -1; g.forEach((w, j) => { if(t >= w[0] - .03) k = j; });   // una sola parola evidenziata
+      html = g.map((w, j) => `<span class="${j === k && t < w[1] + .2 ? 'on' : ''}">${w[2]}</span>`).join(' ');
+      break;
+    }
+  }
+  $('sott').innerHTML = html;
+};
+</script>
+</body>
+</html>
