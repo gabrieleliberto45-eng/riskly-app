@@ -430,6 +430,37 @@
     background:none;border:none;color:var(--dim2);font-size:1rem;cursor:pointer;border-radius:7px}
   .mod-x:hover{background:var(--panel-hi);color:var(--text)}
 
+  /* ── SCHEDA DELL'OPERAZIONE ── */
+  #tbl tr.jclic{cursor:pointer}
+  #tbl tr.jclic:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+  .jop-box{max-width:600px;padding:26px 22px 22px}
+  .jop-top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-right:34px}
+  .jop-sim{font-size:1.45rem;font-weight:700;letter-spacing:-.01em}
+  .jop-quando{color:var(--dim);font-size:.85rem;margin-top:4px}
+  .jop-pnl{font-family:'JetBrains Mono',monospace;font-size:2rem;font-weight:600;margin:14px 0 2px}
+  .jop-pnl.up{color:#22C55E}.jop-pnl.down{color:#EF4444}
+  .jop-esito{display:inline-block;font-size:.72rem;letter-spacing:.06em;padding:3px 9px;border-radius:99px;border:1px solid var(--line-hi);color:var(--dim)}
+  .jop-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:16px 0 4px}
+  .jop-k{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:12px;padding:11px 12px;min-width:0}
+  .jop-k small{display:block;color:var(--dim2);font-size:.7rem;letter-spacing:.05em;text-transform:uppercase;margin-bottom:3px}
+  .jop-k b{display:block;font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:600;overflow-wrap:anywhere}
+  .jop-k b.up{color:#22C55E}.jop-k b.down{color:#EF4444}
+  .jop-sez{margin:20px 0 8px;font-size:.72rem;letter-spacing:.08em;color:var(--accent);font-weight:600}
+  .jop-riga{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px solid var(--line);font-size:.88rem}
+  .jop-riga:last-child{border-bottom:none}
+  .jop-riga.col{flex-direction:column;gap:3px}
+  .jop-riga.col b{text-align:left}
+  .jop-riga span{color:var(--dim)}
+  .jop-riga b{font-weight:500;text-align:right;overflow-wrap:anywhere}
+  .jop-riga b.up{color:#22C55E}.jop-riga b.down{color:#EF4444}
+  .jop-nota{white-space:pre-wrap;color:var(--text);font-size:.9rem;line-height:1.55;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+  .jop-shot{display:block;width:100%;max-height:260px;object-fit:cover;border-radius:12px;border:1px solid var(--line-hi);cursor:zoom-in}
+  .jop-azioni{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:20px}
+  .jop-azioni .btn{flex:0 0 auto}
+  .jop-azioni .sp{flex:1}
+  .jop-azioni .btn[disabled]{opacity:.35;pointer-events:none}
+  @media(max-width:520px){.jop-box{padding:22px 16px 18px}.jop-pnl{font-size:1.7rem}}
+
   .mod-head{margin-bottom:22px}
   .mod-kicker{color:var(--accent);font-size:.71rem;font-family:'JetBrains Mono','SF Mono',Menlo,monospace;
     letter-spacing:.08em;margin-bottom:8px}
@@ -1322,6 +1353,7 @@ body{padding-top:0}
               <button type="button" onclick="j_exportCSV()">Esporta in CSV</button>
               <button type="button" onclick="document.getElementById('imp').click()">Importa</button>
               <button type="button" onclick="j_apriMetodi()">Tipo di journal (metodo)</button>
+              <button type="button" onclick="j_apriPwd()">Cambia password</button>
               <button type="button" class="rosso" onclick="j_clearAll()">Svuota il journal</button>
             </div>
           </div>
@@ -1524,6 +1556,36 @@ body{padding-top:0}
 </div>
 
 <!-- ═══════════ BOT ═══════════ -->
+<div class="modale" id="modPwd" onclick="if(event.target===this) j_chiudiPwd()">
+  <div class="mod-box" style="max-width:420px">
+    <button class="mod-x" onclick="j_chiudiPwd()" aria-label="Chiudi">✕</button>
+    <div class="mod-head">
+      <div class="mod-kicker">ACCOUNT</div>
+      <h3>Cambia password</h3>
+      <p>Scegli una nuova password di almeno 6 caratteri. Vale anche per il sito riskly.trade.</p>
+    </div>
+    <form id="pwdForm" onsubmit="j_salvaPwd(event)">
+      <div class="mod-campo">
+        <label for="pwd1">Nuova password</label>
+        <input type="password" id="pwd1" required minlength="6" autocomplete="new-password">
+      </div>
+      <div class="mod-campo">
+        <label for="pwd2">Ripeti la nuova password</label>
+        <input type="password" id="pwd2" required minlength="6" autocomplete="new-password">
+      </div>
+      <div class="acc-errore" id="pwdErr"></div>
+      <button type="submit" class="btn pri wide lg" id="pwdInvia">Salva la password</button>
+    </form>
+  </div>
+</div>
+
+<div class="modale" id="modOp" onclick="if(event.target===this) j_chiudiOp()">
+  <div class="mod-box jop-box" role="dialog" aria-modal="true" aria-labelledby="opSim">
+    <button class="mod-x" onclick="j_chiudiOp()" aria-label="Chiudi">✕</button>
+    <div id="opCorpo"></div>
+  </div>
+</div>
+
 <div class="modale" id="modBot" onclick="if(event.target===this) b_chiudi()">
   <div class="mod-box largo">
     <button class="mod-x" onclick="b_chiudi()" aria-label="Chiudi">✕</button>
@@ -2491,7 +2553,7 @@ function j_renderTable(list){
     const emo=j_emoInfo(t.emo||'lucido');
     const id=esc(t.id);
     const img = t.shotUrl || (t.shot && t.shot.startsWith('data:') ? t.shot : '');
-    return `<tr>
+    return `<tr class="jclic" tabindex="0" role="button" aria-label="Apri la scheda di ${esc(t.symbol)} del ${j_dataBreve(t.date)}" onclick="j_clicRiga(event,'${id}')" onkeydown="if(event.key==='Enter'&&event.target===this)j_apriOp('${id}')">
       <td style="color:var(--dim)">${j_dataBreve(t.date)}${t.ora?' <span style="color:var(--dim2);font-size:.9em">'+esc(t.ora)+'</span>':''}</td>
       <td>${esc(t.symbol)}${t.fonte==='bot'?'<span class="pill bot" title="Arrivata dal bot di MetaTrader">BOT</span>':''}</td>
       <td><span class="pill ${t.dir}">${t.dir==='long'?'Long':'Short'}</span></td>
@@ -2509,6 +2571,175 @@ function j_renderTable(list){
     ? `<button class="btn" onclick="j_pagina++;j_renderTable(j_filtrati())">Mostra altre ${Math.min(resto, PER_PAGINA)} (${resto} rimaste)</button>`
     : '';
 }
+
+
+
+/* ---------- Cambio password ---------- */
+
+function j_apriPwd(){
+  if(!sb || !utente){ j_flash('Accedi per cambiare la password.', true); return; }
+  if(j_demo){ j_flash('Esci dalla demo per cambiare la password.', true); return; }
+  document.getElementById('pwdForm').reset();
+  document.getElementById('pwdErr').textContent = '';
+  document.getElementById('modPwd').classList.add('on');
+  setTimeout(() => document.getElementById('pwd1').focus(), 50);
+}
+function j_chiudiPwd(){ document.getElementById('modPwd').classList.remove('on'); }
+
+async function j_salvaPwd(e){
+  e.preventDefault();
+  const err = document.getElementById('pwdErr'), btn = document.getElementById('pwdInvia');
+  const a = document.getElementById('pwd1').value, b = document.getElementById('pwd2').value;
+  err.textContent = '';
+  if(a.length < 6){ err.textContent = 'La password deve avere almeno 6 caratteri.'; return; }
+  if(a !== b){ err.textContent = 'Le due password non coincidono.'; return; }
+  btn.disabled = true; const orig = btn.textContent; btn.textContent = 'Attendi…';
+  try{
+    const { error } = await sb.auth.updateUser({ password: a });
+    if(error) throw error;
+    j_chiudiPwd();
+    j_flash('Password cambiata.');
+  }catch(ex){
+    const t = String((ex && ex.message) || '').toLowerCase();
+    err.textContent = t.includes('different') || t.includes('same') ? 'La nuova password deve essere diversa da quella vecchia.'
+                    : t.includes('weak') ? 'Password troppo debole: aggiungi lettere e numeri.'
+                    : t.includes('session') || t.includes('jwt') ? 'Sessione scaduta: esci, accedi di nuovo e riprova.'
+                    : 'Non sono riuscito a cambiarla. Riprova.';
+  }
+  btn.disabled = false; btn.textContent = orig;
+}
+
+/* ---------- Scheda di una singola operazione ---------- */
+
+let j_opId = null;
+
+/* un tocco sulla riga apre la scheda, tranne sui pulsanti (modifica/elimina) e sullo screenshot */
+function j_clicRiga(ev, id){
+  if(ev.target.closest('.jazioni, .jthumb, button, a')) return;
+  j_apriOp(id);
+}
+
+function j_statGruppo(list, filtro){
+  const g = list.filter(filtro);
+  const n = g.length;
+  const vinte = g.filter(x => x.pnl > 0).length;
+  const tot = g.reduce((a, x) => a + (Number(x.pnl) || 0), 0);
+  return { n, vinte, wr: n ? Math.round(vinte / n * 100) : 0, tot, media: n ? tot / n : 0 };
+}
+const j_pct = v => (v >= 0 ? '+' : '−') + Math.abs(v).toFixed(2) + '%';
+
+function j_apriOp(id){
+  const lista = j_lista();
+  const t = lista.find(x => x.id === id);
+  if(!t) return;
+  j_opId = id;
+
+  const ord = j_ordina(lista);
+  const i = ord.findIndex(x => x.id === id);
+  const prima = ord.slice(0, i);
+  const iniz = j_saldoIniziale();
+  const saldoPrima = iniz ? iniz + prima.reduce((a, x) => a + (Number(x.pnl) || 0), 0) : 0;
+  const saldoDopo = saldoPrima ? saldoPrima + t.pnl : 0;
+
+  const R = t.risk > 0 ? t.pnl / t.risk : null;
+  const esito = t.pnl > 0 ? 'Vincente' : (t.pnl < 0 ? 'Perdente' : 'Pareggio');
+  const emo = j_emoInfo(t.emo || 'lucido');
+  const fascia = j_fascia(t);
+  const gg = GIORNI[j_giornoSett(t)];
+
+  /* serie: quante operazioni di fila con lo stesso esito, fino a questa */
+  let serie = 0;
+  const segno = Math.sign(t.pnl);
+  if(segno !== 0){
+    for(let k = i; k >= 0 && Math.sign(ord[k].pnl) === segno; k--) serie++;
+  }
+
+  const classifica = [...lista].sort((a, b) => b.pnl - a.pnl).findIndex(x => x.id === id) + 1;
+  const giorno = j_statGruppo(lista, x => x.date === t.date);
+
+  const gruppi = [];
+  gruppi.push([`Su ${t.symbol}`, j_statGruppo(lista, x => x.symbol === t.symbol)]);
+  if(t.strategy) gruppi.push([`Strategia «${t.strategy}»`, j_statGruppo(lista, x => x.strategy === t.strategy)]);
+  gruppi.push([t.dir === 'long' ? 'Operazioni long' : 'Operazioni short', j_statGruppo(lista, x => x.dir === t.dir)]);
+  gruppi.push([`Stato d'animo «${emo.nome}»`, j_statGruppo(lista, x => (x.emo || 'lucido') === (t.emo || 'lucido'))]);
+  if(fascia) gruppi.push([`Fascia ${fascia.et}`, j_statGruppo(lista, x => { const f = j_fascia(x); return f && f.et === fascia.et; })]);
+
+  const campi = Object.values(METODI).flatMap(m => m.campi);
+  const dett = Object.entries(t.dettagli || {}).filter(([, v]) => v).map(([k, v]) => {
+    const c = campi.find(x => x.id === k);
+    return [c ? c.nome : k, v];
+  });
+
+  const img = t.shotUrl || (t.shot && t.shot.startsWith('data:') ? t.shot : '');
+  const riga = (k, v, cl, col) => `<div class="jop-riga${col ? ' col' : ''}"><span>${k}</span><b class="${cl || ''}">${v}</b></div>`;
+  const kpi  = (k, v, cl) => `<div class="jop-k"><small>${k}</small><b class="${cl || ''}">${v}</b></div>`;
+
+  const prec = i > 0 ? ord[i - 1].id : '', succ = i < ord.length - 1 ? ord[i + 1].id : '';
+
+  document.getElementById('opCorpo').innerHTML = `
+    <div class="jop-top">
+      <div>
+        <div class="jop-sim" id="opSim">${esc(t.symbol)} <span class="pill ${t.dir}">${t.dir === 'long' ? 'Long' : 'Short'}</span>${t.fonte === 'bot' ? ' <span class="pill bot">BOT</span>' : ''}</div>
+        <div class="jop-quando">${gg} ${j_dataBreve(t.date)}${t.ora ? ' · ' + esc(t.ora) : ''} · operazione ${i + 1} di ${ord.length}</div>
+      </div>
+      <span class="jop-esito">${esito.toUpperCase()}</span>
+    </div>
+    <div class="jop-pnl ${j_cl(t.pnl)}">${j_fmt(t.pnl)}</div>
+
+    <div class="jop-grid">
+      ${kpi('Multiplo R', R === null ? '—' : (R >= 0 ? '+' : '−') + Math.abs(R).toFixed(2) + 'R', R === null ? '' : j_cl(R))}
+      ${kpi('Rischio', t.risk > 0 ? j_soldi(t.risk, 2) : '—')}
+      ${kpi('Sul saldo', saldoPrima ? j_pct(t.pnl / saldoPrima * 100) : '—', saldoPrima ? j_cl(t.pnl) : '')}
+      ${kpi('Saldo dopo', saldoDopo ? j_soldi(saldoDopo, 2) : '—')}
+      ${kpi('Stato d\'animo', `<span style="color:${emo.col}">${emo.nome}</span>`)}
+      ${kpi('Strategia', esc(t.strategy) || '—')}
+    </div>
+
+    <div class="jop-sez">IN QUESTA GIORNATA E NELLA SERIE</div>
+    ${riga('Giornata del ' + j_dataBreve(t.date), `${giorno.n} ${giorno.n === 1 ? 'operazione' : 'operazioni'} · ${j_fmt(giorno.tot)}`, j_cl(giorno.tot), true)}
+    ${riga('Serie', segno === 0 ? '—' : `${serie}ª ${segno > 0 ? 'vincita' : 'perdita'} di fila`, segno > 0 ? 'up' : (segno < 0 ? 'down' : ''))}
+    ${riga('Posizione per risultato', `${classifica}ª su ${lista.length}`)}
+
+    <div class="jop-sez">CONFRONTO CON LE TUE ALTRE OPERAZIONI</div>
+    ${gruppi.map(([nome, g]) =>
+      riga(esc(nome), `${g.n} op. · winrate ${g.wr}% · media ${j_fmt(g.media)}`, j_cl(g.media), true)).join('')}
+
+    ${dett.length ? `<div class="jop-sez">DETTAGLI DEL METODO</div>${dett.map(([k, v]) => riga(esc(k), esc(v))).join('')}` : ''}
+
+    ${t.nota ? `<div class="jop-sez">NOTA</div><div class="jop-nota">${esc(t.nota)}</div>` : ''}
+
+    ${img ? `<div class="jop-sez">SCREENSHOT</div><img class="jop-shot" src="${esc(img)}" alt="Screenshot ${esc(t.symbol)}" onclick="j_apriShot('${esc(t.id)}')">` : ''}
+
+    <div class="jop-azioni">
+      <button class="btn" onclick="j_apriOp('${esc(prec)}')" ${prec ? '' : 'disabled'} aria-label="Operazione precedente">←</button>
+      <button class="btn" onclick="j_apriOp('${esc(succ)}')" ${succ ? '' : 'disabled'} aria-label="Operazione successiva">→</button>
+      <span class="sp"></span>
+      ${j_demo ? '' : `<button class="btn" onclick="j_modificaDaScheda('${esc(t.id)}')">Modifica</button>
+      <button class="btn" onclick="j_eliminaDaScheda('${esc(t.id)}')" style="color:#EF4444">Elimina</button>`}
+    </div>`;
+  document.getElementById('modOp').classList.add('on');
+  document.getElementById('modOp').scrollTop = 0;
+}
+
+function j_chiudiOp(){
+  j_opId = null;
+  const m = document.getElementById('modOp');
+  if(m) m.classList.remove('on');
+}
+function j_modificaDaScheda(id){ j_chiudiOp(); j_modifica(id); }
+async function j_eliminaDaScheda(id){
+  const m = document.getElementById('modOp');
+  m.classList.remove('on');                       /* la richiesta di conferma resta visibile */
+  const prima = j_trades.length;
+  await j_removeTrade(id);
+  if(j_trades.length === prima) m.classList.add('on');   /* annullato: la scheda resta aperta */
+  else j_opId = null;
+}
+document.addEventListener('keydown', e => {
+  if(e.key !== 'Escape') return;
+  if(j_opId) j_chiudiOp();
+  j_chiudiPwd();
+});
 
 /* ---------- Performance raggruppate ---------- */
 
