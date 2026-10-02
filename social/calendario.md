@@ -84,17 +84,35 @@ Fonti: vidiq.com/blog/post/youtube-shorts-algorithm, shortimize.com/blog/youtube
 Temi di FINANZA GIÀ TRATTATI, da non ripetere: inflazione, regola del 72, fondo di emergenza, correlazione tra coppie,
 NFP e calendario economico, spread, interesse composto, stop out/margine, swap, sessioni di mercato.
 
-## Settimana 2 · disciplina e regole (video da generare)
+## Settimana 2 · 4–10 ottobre · PROGRAMMATA (28 video, 42 post)
 
-| Data | Tema | Gancio |
-|---|---|---|
-| Dom 4/10 | Regole scritte vs forza di volontà | "La disciplina non è forza di volontà. È una regola scritta prima." |
-| Lun 5/10 | Stop loss obbligatorio | "Senza stop loss non stai rischiando l'1%. Stai rischiando tutto." |
-| Mar 6/10 | Rischio/rendimento e winrate | "Con 2R ti basta vincere 1 volta su 3 per non perdere." |
-| Mer 7/10 | Overtrading | "Il trade peggiore della giornata è quasi sempre l'ultimo." |
-| Gio 8/10 | Limite di perdita giornaliero | "Decidi adesso quanto puoi perdere oggi. Dopo sarà troppo tardi." |
-| Ven 9/10 | Break-even: quando spostare lo stop | "Spostare lo stop a pareggio troppo presto ti costa più di quanto pensi." |
-| Sab 10/10 | Presentazione TradeManager | "Lo stop che si sposta da solo, secondo regole che hai deciso tu." |
+Orari invariati (TikTok trading 18:00 / weekend 10:00, finanza 12:00 / weekend 18:00; Instagram 10:00 e 18:00; YouTube y 16:00, z 10:00).
+Video: `g15–g21`, `f06–f12`, `y08–y14`, `z06–z12`. Raw GitHub fissato al commit 72fb974.
+
+| Data | Trading (g) | Finanza (f) | YouTube trading (y) | YouTube finanza (z) |
+|---|---|---|---|---|
+| Dom 4/10 | g15 Disciplina = regola scritta | f06 1,5% di costi in 30 anni | y08 Cos'è una prop firm | z06 Leva 1:30 |
+| Lun 5/10 | g16 Senza stop non rischi l'1% | f07 Capitale per vivere di trading | y09 MT4 o MT5 | z07 Cos'è un CFD |
+| Mar 6/10 | g17 Winrate 70% e conto in perdita | f08 100 €/mese per 20 anni | y10 Profit factor | z08 Tassi e valute |
+| Mer 7/10 | g18 Dopo una perdita (pausa) | f09 Broker: 4 controlli | y11 Slippage | z09 Stop e ATR |
+| Gio 8/10 | g19 Limite giornaliero vs prop firm | f10 10 perdite di fila (1/2/5%) | y12 Demo o reale | z10 Valute rifugio |
+| Ven 9/10 | g20 Break-even troppo presto | f11 Gap del weekend | y13 Balance ed equity | z11 ECN o standard |
+| Sab 10/10 | g21 Presentazione TradeManager | f12 Trader A o B? (commenti) | y14 Cosa scrivere nel journal | z12 Forex aperto 24 ore? |
+
+Temi GIÀ TRATTATI aggiunti (da non ripetere): disciplina e regole scritte, stop loss obbligatorio, aspettativa (winrate vs R), pausa dopo una perdita,
+limite giornaliero vs prop firm, break-even troppo presto, TradeManager; costi dei fondi, capitale per vivere di trading, PAC 100 €/mese,
+scelta del broker, serie di perdite (1/2/5%), gap del weekend, rendimento/drawdown; prop firm, MT4 vs MT5, profit factor, slippage,
+demo vs reale, balance/equity, journal, leva 1:30, CFD, tassi e valute, ATR, valute rifugio, ECN vs standard, orari del forex.
+
+## Lezioni dai numeri (analisi del 2/10)
+
+- **TikTok**: 6 video trading/finanza ≈ 250–330 visualizzazioni ciascuno (la finanza "inflazione" 327, "corso da 997 €" 316 con 8 like e 1 invio). Un video (g11) è rimasto a 6 visualizzazioni: TikTok non lo ha distribuito, non si sa perché. Commenti: 0 su tutti i video generati → da questa settimana CTA a scelta binaria (A o B, 1/2/3) e domande su cosa fa chi guarda.
+- **Instagram**: reach 10–20 per Reel; tempo di visione medio 3–8 secondi. I due post pubblicati a mano da Gabriele (screenshot reali: "Test finali", "Jurnal collegato") hanno avuto più like e più reach (28/19 e 21/12) dei video generati (10–14). → Più materiale reale (schermate dei bot, journal) nei video: serve da Gabriele, anche 1 al giorno.
+- **YouTube**: Metricool non restituisce ancora visualizzazioni né tempo di visione (campi vuoti): serve riguardare dopo 48 ore o da YouTube Studio.
+- **Cambi fatti**: gancio in 2,6–3 s con numero o domanda nella prima riga, video più corti (14–17 s), più tabelle e meno liste, titoli TikTok con la domanda, "Mandalo a chi…" su ogni Reel.
+- Video di presentazione (`social/promo/riskly-presentazione.mp4`, 67 s) pubblicato il 30/9: 251 visualizzazioni su TikTok, 14 su Instagram (tempo medio 4 s su 67): troppo lungo per i social, meglio tagli da 15 s con lo stesso materiale.
+
+Nota per la settimana 4: dal 25/10 l'Europa torna all'ora solare, gli USA il 1/11. Per una settimana i dati USA (NFP, CPI) escono alle 13:30 italiane invece che alle 14:30. Tema pronto per un video.
 
 ## Settimana 3 · prop firm e strumenti (video da generare)
 
