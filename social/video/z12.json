@@ -1,0 +1,53 @@
+{
+ "subito": true,
+ "loop": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 2.6,
+   "kicker": "FOREX 24 ORE",
+   "testo": [
+    "Il forex è aperto",
+    "24 ore su 24? <em>Quasi.</em>"
+   ]
+  },
+  {
+   "tipo": "conto",
+   "dur": 6.4,
+   "titolo": "Orari italiani, indicativi",
+   "righe": [
+    [
+     "Apre",
+     "domenica ~23:00"
+    ],
+    [
+     "Chiude",
+     "venerdì ~23:00"
+    ],
+    [
+     "Alla riapertura",
+     "spread larghi",
+     "down"
+    ]
+   ],
+   "nota": "Gli orari dipendono dal broker."
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.4,
+   "testo": [
+    "Il prezzo può riaprire",
+    "<em>lontano</em>",
+    "da dove ha chiuso."
+   ],
+   "nota": "Riskly Pro: filtro spread · riskly.trade/yt"
+  },
+  {
+   "tipo": "frase",
+   "dur": 1.8,
+   "testo": [
+    "La risposta:"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,56 @@
+{
+ "subito": true,
+ "loop": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 2.6,
+   "kicker": "STOP E ATR",
+   "testo": [
+    "Dove metti",
+    "lo <em>stop</em>?"
+   ]
+  },
+  {
+   "tipo": "conto",
+   "dur": 6.4,
+   "titolo": "Esempio con l'ATR (H1)",
+   "righe": [
+    [
+     "ATR",
+     "20 pip"
+    ],
+    [
+     "Stop = 1,5 × ATR",
+     "30 pip"
+    ],
+    [
+     "Rischio 1% su 10.000 $",
+     "100 $"
+    ],
+    [
+     "Lotti da aprire",
+     "0,33",
+     "up"
+    ]
+   ],
+   "nota": "1,5 × ATR è una regola comune, non una regola fissa."
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.4,
+   "testo": [
+    "Non a caso.",
+    "<em>Sulla volatilità.</em>"
+   ],
+   "nota": "Calcolatori gratis · riskly.trade/yt"
+  },
+  {
+   "tipo": "frase",
+   "dur": 1.8,
+   "testo": [
+    "Risposta breve:"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,53 @@
+{
+ "subito": true,
+ "loop": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 2.6,
+   "kicker": "SLIPPAGE",
+   "testo": [
+    "Stop a 1.0950.",
+    "Chiuso a <em>1.0942</em>."
+   ]
+  },
+  {
+   "tipo": "conto",
+   "dur": 6.2,
+   "titolo": "Slippage su EURUSD (long)",
+   "righe": [
+    [
+     "Stop impostato",
+     "1.0950"
+    ],
+    [
+     "Prezzo di uscita",
+     "1.0942",
+     "down"
+    ],
+    [
+     "Differenza",
+     "8 pip · 80 $",
+     "down"
+    ]
+   ],
+   "nota": "Per 1 lotto. Succede quando il prezzo salta."
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.6,
+   "testo": [
+    "Notizie e gap:",
+    "lo stop <em>non è</em> garantito."
+   ],
+   "nota": "Riskly Pro: filtro notizie e spread · riskly.trade/yt"
+  },
+  {
+   "tipo": "frase",
+   "dur": 1.8,
+   "testo": [
+    "Come è possibile?"
+   ]
+  }
+ ]
+}

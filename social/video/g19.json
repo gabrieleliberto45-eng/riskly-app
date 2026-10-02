@@ -1,0 +1,52 @@
+{
+ "subito": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 3,
+   "kicker": "PROP FIRM",
+   "testo": [
+    "La prop firm ti blocca a −5%.",
+    "Tu devi fermarti",
+    "<em>prima.</em>"
+   ]
+  },
+  {
+   "tipo": "conto",
+   "dur": 7,
+   "titolo": "Conto 100.000 $ · esempio",
+   "righe": [
+    [
+     "Prop firm (5%)",
+     "−5.000 $",
+     "down"
+    ],
+    [
+     "Tuo limite (2%)",
+     "−2.000 $"
+    ],
+    [
+     "Margine",
+     "3.000 $",
+     "up"
+    ]
+   ],
+   "nota": "Controlla il limite della tua prop firm."
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.6,
+   "testo": [
+    "Il tuo limite",
+    "deve scattare",
+    "<em>prima del loro.</em>"
+   ],
+   "nota": "RiskGuard blocca la giornata · dal 23 ottobre"
+  },
+  {
+   "tipo": "chiusura",
+   "dur": 3.2,
+   "cta": "Dal 23 ottobre · link in bio"
+  }
+ ]
+}

@@ -1,0 +1,51 @@
+{
+ "subito": true,
+ "loop": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 2.6,
+   "kicker": "CFD",
+   "testo": [
+    "Cos'è un",
+    "<em>CFD</em>?"
+   ]
+  },
+  {
+   "tipo": "lista",
+   "dur": 6.4,
+   "titolo": "Tre cose da sapere:",
+   "passo": 1.1,
+   "voci": [
+    [
+     "Contratto sulla differenza di prezzo",
+     "non possiedi l'attività"
+    ],
+    [
+     "Usi la leva",
+     "guadagni e perdite amplificati"
+    ],
+    [
+     "Ci sono costi",
+     "spread, swap, commissioni"
+    ]
+   ]
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.6,
+   "testo": [
+    "I broker UE devono dire",
+    "quanti conti <em>perdono</em>."
+   ],
+   "nota": "Controlla l'avviso di rischio · riskly.trade/yt"
+  },
+  {
+   "tipo": "frase",
+   "dur": 1.8,
+   "testo": [
+    "In breve:"
+   ]
+  }
+ ]
+}

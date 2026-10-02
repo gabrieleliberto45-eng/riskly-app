@@ -1,0 +1,51 @@
+{
+ "subito": true,
+ "loop": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 2.6,
+   "kicker": "TASSI E VALUTE",
+   "testo": [
+    "Perché i tassi",
+    "muovono le <em>valute</em>?"
+   ]
+  },
+  {
+   "tipo": "lista",
+   "dur": 6.4,
+   "titolo": "Il meccanismo:",
+   "passo": 1.1,
+   "voci": [
+    [
+     "Tassi più alti",
+     "rendimento maggiore"
+    ],
+    [
+     "Più capitali in entrata",
+     "più domanda per la valuta"
+    ],
+    [
+     "Ma conta l'attesa",
+     "il prezzo si muove sulla sorpresa"
+    ]
+   ]
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.6,
+   "testo": [
+    "Si muove sulla <em>sorpresa</em>,",
+    "non sul dato."
+   ],
+   "nota": "Riskly Pro: filtro notizie · riskly.trade/yt"
+  },
+  {
+   "tipo": "frase",
+   "dur": 1.8,
+   "testo": [
+    "Ecco perché:"
+   ]
+  }
+ ]
+}

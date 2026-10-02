@@ -1,0 +1,50 @@
+{
+ "subito": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 3,
+   "kicker": "DOPO UNA PERDITA",
+   "testo": [
+    "Dopo una perdita",
+    "il cervello vuole",
+    "<em>una cosa sola.</em>"
+   ]
+  },
+  {
+   "tipo": "lista",
+   "dur": 6.6,
+   "titolo": "Recuperare. Ecco cosa fai:",
+   "passo": 1.2,
+   "voci": [
+    [
+     "Aumenti il lotto",
+     "\"così rientro subito\""
+    ],
+    [
+     "Abbassi i criteri",
+     "\"è quasi un setup\""
+    ],
+    [
+     "Entri senza piano",
+     "\"tanto è solo un trade\""
+    ]
+   ]
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.6,
+   "testo": [
+    "Una pausa obbligatoria",
+    "dopo ogni perdita",
+    "<em>costa zero.</em>"
+   ],
+   "nota": "RiskGuard: pausa dopo una perdita · dal 23 ottobre"
+  },
+  {
+   "tipo": "chiusura",
+   "dur": 3.2,
+   "cta": "Dal 23 ottobre · link in bio"
+  }
+ ]
+}

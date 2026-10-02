@@ -1,0 +1,54 @@
+{
+ "subito": true,
+ "loop": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 2.6,
+   "kicker": "EQUITY",
+   "testo": [
+    "Balance 10.000 $.",
+    "<em>Equity 9.650 $.</em>"
+   ]
+  },
+  {
+   "tipo": "conto",
+   "dur": 6.2,
+   "titolo": "Qual è la differenza?",
+   "righe": [
+    [
+     "Balance",
+     "10.000 $"
+    ],
+    [
+     "Operazioni aperte",
+     "−350 $",
+     "down"
+    ],
+    [
+     "Equity",
+     "9.650 $",
+     "down"
+    ]
+   ],
+   "nota": "L'equity è quello che hai davvero adesso."
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.6,
+   "testo": [
+    "Guarda l'equity,",
+    "non solo il balance.",
+    "<em>Il rischio è lì.</em>"
+   ],
+   "nota": "Stato dei bot dal telefono · riskly.trade/yt"
+  },
+  {
+   "tipo": "frase",
+   "dur": 1.8,
+   "testo": [
+    "Spiegato così:"
+   ]
+  }
+ ]
+}

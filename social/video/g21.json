@@ -1,0 +1,50 @@
+{
+ "subito": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 3,
+   "kicker": "TRADEMANAGER",
+   "testo": [
+    "Lo stop che si sposta",
+    "<em>da solo.</em>",
+    "Secondo le tue regole."
+   ]
+  },
+  {
+   "tipo": "lista",
+   "dur": 6.8,
+   "titolo": "TradeManager, tutto in pip:",
+   "passo": 1.3,
+   "voci": [
+    [
+     "Stop loss e take profit automatici",
+     "se mancano nell'ordine"
+    ],
+    [
+     "Break-even automatico",
+     "dopo i pip che decidi tu"
+    ],
+    [
+     "Trailing stop",
+     "avvio, distanza e passo"
+    ]
+   ]
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.4,
+   "testo": [
+    "Tu decidi le regole.",
+    "Lui le <em>applica</em>.",
+    "Ogni volta."
+   ],
+   "nota": "MT4 e MT5 · non apre operazioni"
+  },
+  {
+   "tipo": "chiusura",
+   "dur": 3.4,
+   "cta": "Dal 23 ottobre · link in bio"
+  }
+ ]
+}

@@ -1,0 +1,51 @@
+{
+ "subito": true,
+ "loop": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 2.6,
+   "kicker": "VALUTE RIFUGIO",
+   "testo": [
+    "Quando c'è paura,",
+    "dove va il <em>denaro</em>?"
+   ]
+  },
+  {
+   "tipo": "lista",
+   "dur": 6.2,
+   "titolo": "Storicamente, tre rifugi:",
+   "passo": 1.1,
+   "voci": [
+    [
+     "Franco svizzero (CHF)",
+     "stabilità"
+    ],
+    [
+     "Yen giapponese (JPY)",
+     "tassi bassi"
+    ],
+    [
+     "Dollaro USA (USD)",
+     "liquidità"
+    ]
+   ]
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.6,
+   "testo": [
+    "Storicamente",
+    "non vuol dire <em>sempre</em>."
+   ],
+   "nota": "RiskGuard: limite giornaliero quando i mercati impazziscono · riskly.trade/yt"
+  },
+  {
+   "tipo": "frase",
+   "dur": 1.8,
+   "testo": [
+    "Domanda:"
+   ]
+  }
+ ]
+}

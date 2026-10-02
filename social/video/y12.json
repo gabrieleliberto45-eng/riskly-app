@@ -1,0 +1,52 @@
+{
+ "subito": true,
+ "loop": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 2.6,
+   "kicker": "DEMO O REALE?",
+   "testo": [
+    "Prima del reale,",
+    "<em>un mese in demo.</em>"
+   ]
+  },
+  {
+   "tipo": "lista",
+   "dur": 6.4,
+   "titolo": "Cosa ti dà la demo:",
+   "passo": 1.1,
+   "voci": [
+    [
+     "Impari la piattaforma",
+     "senza rischiare"
+    ],
+    [
+     "Provi le tue regole",
+     "con prezzi reali"
+    ],
+    [
+     "Ma non senti l'emozione",
+     "e gli spread possono cambiare"
+    ]
+   ]
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.6,
+   "testo": [
+    "La demo dice se la regola",
+    "funziona.",
+    "<em>Non se la rispetterai.</em>"
+   ],
+   "nota": "I bot Riskly sono in test su demo MT5 · riskly.trade/yt"
+  },
+  {
+   "tipo": "frase",
+   "dur": 1.8,
+   "testo": [
+    "Perché?"
+   ]
+  }
+ ]
+}

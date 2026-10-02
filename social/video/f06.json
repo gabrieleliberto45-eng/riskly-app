@@ -1,0 +1,52 @@
+{
+ "subito": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 3,
+   "kicker": "COSTI NASCOSTI",
+   "testo": [
+    "1,5% di costi l'anno",
+    "sembra niente.",
+    "<em>In 30 anni no.</em>"
+   ]
+  },
+  {
+   "tipo": "conto",
+   "dur": 7,
+   "titolo": "10.000 € · 30 anni · 6% lordo (ipotesi)",
+   "righe": [
+    [
+     "Costi 0,2% l'anno",
+     "≈ 54.271 €",
+     "up"
+    ],
+    [
+     "Costi 1,5% l'anno",
+     "≈ 37.453 €",
+     "down"
+    ],
+    [
+     "Differenza",
+     "−16.818 €",
+     "down"
+    ]
+   ],
+   "nota": "Stesso mercato, stessi soldi."
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.6,
+   "testo": [
+    "Il rendimento non lo controlli.",
+    "I costi <em>sì</em>."
+   ],
+   "nota": "Controlla sempre i costi, anche nel trading"
+  },
+  {
+   "tipo": "chiusura",
+   "dur": 3.2,
+   "cta": "Calcolatori gratis · link in bio"
+  }
+ ]
+}

@@ -1,0 +1,55 @@
+{
+ "subito": true,
+ "loop": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 2.6,
+   "kicker": "PROFIT FACTOR",
+   "testo": [
+    "Cos'è il",
+    "<em>profit factor</em>?"
+   ]
+  },
+  {
+   "tipo": "conto",
+   "dur": 6.2,
+   "titolo": "Esempio",
+   "righe": [
+    [
+     "Profitti lordi",
+     "3.200 $",
+     "up"
+    ],
+    [
+     "Perdite lorde",
+     "2.000 $",
+     "down"
+    ],
+    [
+     "Profit factor",
+     "1,6",
+     "up"
+    ]
+   ],
+   "nota": "Profitti lordi ÷ perdite lorde."
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.6,
+   "testo": [
+    "Sopra 1 guadagni",
+    "più di quanto perdi.",
+    "<em>Sotto 1, no.</em>"
+   ],
+   "nota": "Il journal Riskly lo calcola a ogni trade · riskly.trade/yt"
+  },
+  {
+   "tipo": "frase",
+   "dur": 1.8,
+   "testo": [
+    "In una riga:"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,52 @@
+{
+ "subito": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 3,
+   "kicker": "SERIE DI PERDITE",
+   "testo": [
+    "10 perdite di fila.",
+    "Quanto perdi?",
+    "<em>Dipende dal rischio.</em>"
+   ]
+  },
+  {
+   "tipo": "conto",
+   "dur": 7,
+   "titolo": "Dopo 10 perdite consecutive",
+   "righe": [
+    [
+     "Rischi 1% a trade",
+     "−9,6%",
+     "up"
+    ],
+    [
+     "Rischi 2% a trade",
+     "−18,3%"
+    ],
+    [
+     "Rischi 5% a trade",
+     "−40,1%",
+     "down"
+    ]
+   ],
+   "nota": "Il rischio per trade decide quanto sopravvivi."
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.6,
+   "testo": [
+    "Non puoi evitare",
+    "le serie di perdite.",
+    "<em>Puoi sopravvivere.</em>"
+   ],
+   "nota": "RiskGuard si ferma dopo N perdite di fila"
+  },
+  {
+   "tipo": "chiusura",
+   "dur": 3.2,
+   "cta": "Dal 23 ottobre · link in bio"
+  }
+ ]
+}

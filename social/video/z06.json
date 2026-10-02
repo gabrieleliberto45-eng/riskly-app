@@ -1,0 +1,59 @@
+{
+ "subito": true,
+ "loop": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 2.6,
+   "kicker": "LEVA 1:30",
+   "testo": [
+    "Leva 1:30:",
+    "1.000 € ne controllano",
+    "<em>30.000.</em>"
+   ]
+  },
+  {
+   "tipo": "conto",
+   "dur": 6.4,
+   "titolo": "Il mercato si muove dell'1%",
+   "righe": [
+    [
+     "Capitale",
+     "1.000 €"
+    ],
+    [
+     "Posizione controllata",
+     "30.000 €"
+    ],
+    [
+     "Mercato −1%",
+     "−300 €",
+     "down"
+    ],
+    [
+     "Sul tuo conto",
+     "−30%",
+     "down"
+    ]
+   ],
+   "nota": "1:30 è il massimo per i privati UE sulle coppie principali."
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.4,
+   "testo": [
+    "La leva non è il rischio.",
+    "Il rischio lo decide",
+    "<em>lo stop.</em>"
+   ],
+   "nota": "Riskly Pro calcola il lotto · riskly.trade/yt"
+  },
+  {
+   "tipo": "frase",
+   "dur": 1.8,
+   "testo": [
+    "Quindi:"
+   ]
+  }
+ ]
+}

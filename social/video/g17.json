@@ -1,0 +1,48 @@
+{
+ "subito": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 3,
+   "kicker": "WINRATE",
+   "testo": [
+    "Winrate 70%.",
+    "Conto in perdita.",
+    "<em>Com'è possibile?</em>"
+   ]
+  },
+  {
+   "tipo": "conto",
+   "dur": 7,
+   "titolo": "Winrate · vinci / perdi → per trade",
+   "righe": [
+    [
+     "70% · +50 $ / −150 $",
+     "−10 $",
+     "down"
+    ],
+    [
+     "40% · +200 $ / −100 $",
+     "+20 $",
+     "up"
+    ]
+   ],
+   "nota": "Esempio con numeri inventati, per capire."
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.6,
+   "testo": [
+    "Conta quanto vinci",
+    "quando vinci.",
+    "<em>E quanto perdi.</em>"
+   ],
+   "nota": "Il tuo journal lo calcola per te"
+  },
+  {
+   "tipo": "chiusura",
+   "dur": 3.2,
+   "cta": "Journal gratis · link in bio"
+  }
+ ]
+}

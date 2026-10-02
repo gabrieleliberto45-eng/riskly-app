@@ -1,0 +1,51 @@
+{
+ "subito": true,
+ "loop": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 2.6,
+   "kicker": "JOURNAL",
+   "testo": [
+    "Cosa scrivere",
+    "in un <em>journal</em>?"
+   ]
+  },
+  {
+   "tipo": "lista",
+   "dur": 6.4,
+   "titolo": "Tre cose per ogni trade:",
+   "passo": 1.1,
+   "voci": [
+    [
+     "Perché sei entrato",
+     "il setup, non l'impulso"
+    ],
+    [
+     "Come ti sentivi",
+     "calmo, di fretta, in rivalsa"
+    ],
+    [
+     "Cosa hai rispettato",
+     "del tuo piano"
+    ]
+   ]
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.4,
+   "testo": [
+    "Se non lo scrivi,",
+    "<em>non lo misuri</em>."
+   ],
+   "nota": "Journal Riskly · 5 calcolatori gratis · riskly.trade/yt"
+  },
+  {
+   "tipo": "frase",
+   "dur": 1.8,
+   "testo": [
+    "Ricapitolando:"
+   ]
+  }
+ ]
+}

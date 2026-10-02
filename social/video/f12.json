@@ -1,0 +1,48 @@
+{
+ "subito": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 3,
+   "kicker": "A O B?",
+   "testo": [
+    "Trader A: +20%,",
+    "drawdown −30%.",
+    "<em>Trader B: +12%, −6%.</em>"
+   ]
+  },
+  {
+   "tipo": "conto",
+   "dur": 7,
+   "titolo": "Rendimento diviso drawdown massimo",
+   "righe": [
+    [
+     "Trader A: 20% / 30%",
+     "0,67",
+     "down"
+    ],
+    [
+     "Trader B: 12% / 6%",
+     "2,00",
+     "up"
+    ]
+   ],
+   "nota": "Non è un consiglio: è un modo di confrontare."
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.8,
+   "testo": [
+    "Chi sceglieresti?",
+    "Scrivi <em>A</em> o <em>B</em>",
+    "nei commenti."
+   ],
+   "nota": "Il journal calcola drawdown e R per te"
+  },
+  {
+   "tipo": "chiusura",
+   "dur": 3.2,
+   "cta": "Journal gratis · link in bio"
+  }
+ ]
+}

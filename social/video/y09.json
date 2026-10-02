@@ -1,0 +1,57 @@
+{
+ "subito": true,
+ "loop": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 2.6,
+   "kicker": "MT4 O MT5?",
+   "testo": [
+    "MT4 o MT5:",
+    "<em>cosa cambia?</em>"
+   ]
+  },
+  {
+   "tipo": "conto",
+   "dur": 6.4,
+   "titolo": "Tre differenze",
+   "righe": [
+    [
+     "Timeframe",
+     "MT4: 9 · MT5: 21"
+    ],
+    [
+     "Ordini pendenti",
+     "MT4: 4 · MT5: 6"
+    ],
+    [
+     "Linguaggio degli EA",
+     "MQL4 · MQL5"
+    ],
+    [
+     "I bot Riskly",
+     "MT4 e MT5",
+     "up"
+    ]
+   ],
+   "nota": "Riskly Pro, RiskGuard, TradeManager, ScaleIn."
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.4,
+   "testo": [
+    "Qualunque tu usi,",
+    "il rischio",
+    "<em>si gestisce uguale.</em>"
+   ],
+   "nota": "riskly.trade/yt"
+  },
+  {
+   "tipo": "frase",
+   "dur": 1.8,
+   "testo": [
+    "Risposta breve:"
+   ]
+  }
+ ]
+}

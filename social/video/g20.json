@@ -1,0 +1,52 @@
+{
+ "subito": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 3,
+   "kicker": "BREAK-EVEN",
+   "testo": [
+    "Spostare lo stop",
+    "a pareggio troppo presto",
+    "<em>ha un costo.</em>"
+   ]
+  },
+  {
+   "tipo": "conto",
+   "dur": 7,
+   "titolo": "100 trade · 40 vincenti da +2R",
+   "righe": [
+    [
+     "Tutte le vincenti",
+     "+80R",
+     "up"
+    ],
+    [
+     "15 chiuse a pareggio",
+     "+50R"
+    ],
+    [
+     "Differenza",
+     "−30R",
+     "down"
+    ]
+   ],
+   "nota": "Esempio semplificato: il BE salva anche dei perdenti."
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.6,
+   "testo": [
+    "Non è giusto o sbagliato.",
+    "Va deciso <em>con una regola</em>,",
+    "non a sensazione."
+   ],
+   "nota": "TradeManager lo fa secondo le tue regole"
+  },
+  {
+   "tipo": "chiusura",
+   "dur": 3.2,
+   "cta": "Dal 23 ottobre · link in bio"
+  }
+ ]
+}

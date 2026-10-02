@@ -1,0 +1,54 @@
+{
+ "subito": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 3,
+   "kicker": "BROKER",
+   "testo": [
+    "Prima di dare",
+    "i tuoi soldi a un broker,",
+    "<em>4 controlli.</em>"
+   ]
+  },
+  {
+   "tipo": "lista",
+   "dur": 7,
+   "titolo": "Cosa verificare:",
+   "passo": 1.1,
+   "voci": [
+    [
+     "È regolamentato",
+     "autorità UE o equivalente"
+    ],
+    [
+     "Protezione dal saldo negativo",
+     "obbligatoria per i privati UE"
+    ],
+    [
+     "Fondi dei clienti separati",
+     "dai soldi del broker"
+    ],
+    [
+     "Costi chiari",
+     "spread, commissioni, swap"
+    ]
+   ]
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.4,
+   "testo": [
+    "Un broker è come",
+    "una <em>banca</em>.",
+    "Controllalo prima."
+   ],
+   "nota": "Mandalo a chi sta per aprire un conto"
+  },
+  {
+   "tipo": "chiusura",
+   "dur": 3.2,
+   "cta": "Calcolatori gratis · link in bio"
+  }
+ ]
+}

@@ -1,0 +1,50 @@
+{
+ "subito": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 3,
+   "kicker": "VIVERE DI TRADING",
+   "testo": [
+    "2.000 € al mese",
+    "di trading:",
+    "<em>quanto capitale serve?</em>"
+   ]
+  },
+  {
+   "tipo": "conto",
+   "dur": 7,
+   "titolo": "Capitale per 2.000 € al mese",
+   "righe": [
+    [
+     "Se rendi 5% al mese",
+     "40.000 €"
+    ],
+    [
+     "Se rendi 2% al mese",
+     "100.000 €"
+    ],
+    [
+     "Se rendi 1% al mese",
+     "200.000 €"
+    ]
+   ],
+   "nota": "Rendimenti non garantiti, prima di tasse e perdite."
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.8,
+   "testo": [
+    "Più il capitale è piccolo,",
+    "più <em>vorresti rischiare</em>.",
+    "E lì si brucia il conto."
+   ],
+   "nota": "Il rischio per operazione resta 1%"
+  },
+  {
+   "tipo": "chiusura",
+   "dur": 3.2,
+   "cta": "Calcolatori gratis · link in bio"
+  }
+ ]
+}

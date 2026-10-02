@@ -1,0 +1,50 @@
+{
+ "subito": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 3,
+   "kicker": "DISCIPLINA",
+   "testo": [
+    "La disciplina",
+    "non è forza di volontà.",
+    "<em>È una regola scritta.</em>"
+   ]
+  },
+  {
+   "tipo": "lista",
+   "dur": 6.6,
+   "titolo": "Decise prima, da lucido:",
+   "passo": 1.2,
+   "voci": [
+    [
+     "Massimo 2 operazioni al giorno",
+     "niente \"ancora una\""
+    ],
+    [
+     "Stop dopo 2 perdite di fila",
+     "si chiude il terminale"
+    ],
+    [
+     "Lo stop non si sposta mai più lontano",
+     "solo verso il pareggio"
+    ]
+   ]
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.6,
+   "testo": [
+    "La regola si decide",
+    "da <em>lucidi</em>.",
+    "Si rispetta da stanchi."
+   ],
+   "nota": "Salvalo per quando serve 📌"
+  },
+  {
+   "tipo": "chiusura",
+   "dur": 3.2,
+   "cta": "Journal gratis · link in bio"
+  }
+ ]
+}

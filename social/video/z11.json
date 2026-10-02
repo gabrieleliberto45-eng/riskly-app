@@ -1,0 +1,48 @@
+{
+ "subito": true,
+ "loop": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 2.6,
+   "kicker": "SPREAD O COMMISSIONE?",
+   "testo": [
+    "Spread basso",
+    "o <em>commissione</em>?"
+   ]
+  },
+  {
+   "tipo": "conto",
+   "dur": 6.4,
+   "titolo": "Costo per lotto su EURUSD (esempio)",
+   "righe": [
+    [
+     "Conto standard: 1,2 pip",
+     "12 $"
+    ],
+    [
+     "Conto ECN: 0,2 pip + 7 $",
+     "9 $",
+     "up"
+    ]
+   ],
+   "nota": "Valori d'esempio: guarda i tuoi."
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.4,
+   "testo": [
+    "Confronta il costo <em>totale</em>,",
+    "non solo lo spread."
+   ],
+   "nota": "Calcolatori gratis · riskly.trade/yt"
+  },
+  {
+   "tipo": "frase",
+   "dur": 1.8,
+   "testo": [
+    "Conviene?"
+   ]
+  }
+ ]
+}

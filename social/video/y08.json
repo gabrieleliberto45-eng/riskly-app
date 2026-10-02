@@ -1,0 +1,52 @@
+{
+ "subito": true,
+ "loop": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 2.6,
+   "kicker": "PROP FIRM",
+   "testo": [
+    "Cos'è una",
+    "<em>prop firm</em>?"
+   ]
+  },
+  {
+   "tipo": "lista",
+   "dur": 6.4,
+   "titolo": "In tre punti:",
+   "passo": 1.1,
+   "voci": [
+    [
+     "Paghi una quota",
+     "per fare la challenge"
+    ],
+    [
+     "Rispetti le regole",
+     "obiettivo e limiti di perdita"
+    ],
+    [
+     "Se passi: conto finanziato",
+     "profitti divisi come da regole"
+    ]
+   ]
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.6,
+   "testo": [
+    "Le regole cambiano",
+    "da società a società.",
+    "<em>Leggile prima.</em>"
+   ],
+   "nota": "RiskGuard: limite di perdita giornaliero · riskly.trade/yt"
+  },
+  {
+   "tipo": "frase",
+   "dur": 1.8,
+   "testo": [
+    "La domanda era:"
+   ]
+  }
+ ]
+}

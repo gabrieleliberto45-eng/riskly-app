@@ -1,0 +1,50 @@
+{
+ "subito": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 3,
+   "kicker": "WEEKEND",
+   "testo": [
+    "Venerdì sera",
+    "il mercato chiude.",
+    "<em>Il tuo stop no.</em>"
+   ]
+  },
+  {
+   "tipo": "lista",
+   "dur": 6.6,
+   "titolo": "Stop non è un muro:",
+   "passo": 1.2,
+   "voci": [
+    [
+     "Il mercato riapre lontano",
+     "è un gap"
+    ],
+    [
+     "Lo stop viene eseguito",
+     "al prezzo disponibile"
+    ],
+    [
+     "Perdi più del previsto",
+     "slippage"
+    ]
+   ]
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.6,
+   "testo": [
+    "Il rischio del gap",
+    "non lo elimini.",
+    "<em>Lo riduci col lotto.</em>"
+   ],
+   "nota": "Riskly Pro calcola il rischio su tutte le posizioni aperte"
+  },
+  {
+   "tipo": "chiusura",
+   "dur": 3.2,
+   "cta": "Dal 23 ottobre · link in bio"
+  }
+ ]
+}

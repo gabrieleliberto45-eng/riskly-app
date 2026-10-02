@@ -1,0 +1,52 @@
+{
+ "subito": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 3,
+   "kicker": "100 € AL MESE",
+   "testo": [
+    "100 € al mese",
+    "per 20 anni.",
+    "<em>Quanto diventano?</em>"
+   ]
+  },
+  {
+   "tipo": "conto",
+   "dur": 7,
+   "titolo": "Ipotesi: 5% annuo, nessun costo",
+   "righe": [
+    [
+     "Versati in 20 anni",
+     "24.000 €"
+    ],
+    [
+     "Valore finale",
+     "≈ 41.103 €",
+     "up"
+    ],
+    [
+     "Generati dal tempo",
+     "≈ 17.103 €",
+     "up"
+    ]
+   ],
+   "nota": "Non è una promessa: è matematica con un'ipotesi."
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.6,
+   "testo": [
+    "Il tempo lavora",
+    "per chi <em>non si ferma</em>.",
+    "Anche per chi non perde il conto."
+   ],
+   "nota": "Salvalo 📌"
+  },
+  {
+   "tipo": "chiusura",
+   "dur": 3.2,
+   "cta": "Calcolatori gratis · link in bio"
+  }
+ ]
+}
