@@ -249,27 +249,65 @@ Regola sulla scarsità: i posti a prezzo bloccato sono **davvero 10**, quindi pu
 - Chiusura: F2. Hashtag: #tradingitalia #metatrader5 #riskmanagement #propfirm #forex #gestionedelrischio
 
 **G22 · sab 24/10 · REEL · "Quale bot serve a te?"**
-- Hook: "Quale dei quattro serve a te? Tre domande."
-- Didascalia: Ti fai prendere dall'emozione dopo una perdita → RiskGuard. Vuoi che stop e break-even si gestiscano da soli → TradeManager. Vuoi uscire a scaglioni → ScaleIn. Vuoi tutto, con il rischio calcolato sull'insieme → Riskly Pro. Restano [X] posti a prezzo bloccato. Commenta LISTA.
-- Chiusura: F2
+- Hook A: "Quale dei quattro serve a te? Tre domande." · Hook B: "Non ti serve tutto. Ti serve quello giusto."
+- Didascalia: Tre domande, quattro risposte. Dopo una perdita fai scelte emotive? RiskGuard. Vuoi che stop e break-even si gestiscano da soli? TradeManager. Vuoi uscire a scaglioni? ScaleIn. Vuoi tutto, con il rischio calcolato sull'insieme delle posizioni? Riskly Pro. Nessuno dà segnali o apre operazioni al posto tuo. Prezzo di lancio bloccato per i primi 10: restano [X] posti (solo se il numero è reale). Commenta LISTA e ti mando il link. Mandalo a chi non sa da dove partire.
+- CTA: **LISTA** · Hashtag: #riskmanagement #metatrader5 #tradingitalia #propfirm #forex #gestionedelrischio #trader · Chiusura: F2
 
-**G23 · dom 25/10 · CAROSELLO · Ora legale e dati USA**
-- Slide: 1 *Questa settimana i dati USA escono un'ora prima.* · 2 *Dal 25/10 l'Europa passa all'ora solare. Gli USA solo dal 1/11.* · 3 *Per una settimana, un dato delle 8:30 a New York esce alle 13:30 in Italia.* · 4 *Controlla l'orario nel calendario economico, non a memoria.* · 5 *Riskly Pro ha un filtro notizie.*
-- Chiusura: F2
+**G23 · dom 25/10 · CAROSELLO (5 slide) · Ora legale e dati USA**
+- Slide: 1 *Questa settimana i dati USA escono un'ora prima.* · 2 *Dal 25/10 l'Europa passa all'ora solare. Gli USA solo dal 1/11.* · 3 *Per una settimana, un dato delle 8:30 a New York esce alle 13:30 in Italia (non alle 14:30).* · 4 *Controlla l'orario nel calendario economico, non a memoria.* · 5 *Riskly Pro ha un filtro notizie. Commenta CALCOLO.*
+- Didascalia: Dal 25 ottobre l'Europa torna all'ora solare, gli Stati Uniti solo dal 1° novembre. Per una settimana i dati americani delle 8:30 (ora di New York) escono alle 13:30 in Italia, non alle 14:30. Chi opera "a orologio" rischia di aprire un'ora dentro la notizia. Controlla sempre il calendario economico. Riskly Pro non apre operazioni vicino alle notizie. Salvalo 📌 e commenta CALCOLO per i calcolatori gratuiti.
+- CTA: **CALCOLO** · Hashtag: #calendarioeconomico #oralegale #nfp #forex #tradingitalia #riskmanagement · Chiusura: F2
 
-**G24 · lun 26/10 · IMMAGINE · "Mi avete chiesto tutti la stessa cosa"** → la domanda più frequente che ti scrivono davvero.
+**G24 · lun 26/10 · IMMAGINE · "Mi avete chiesto tutti la stessa cosa"**
+- Grafica: la domanda più frequente ricevuta davvero (in grande) + la risposta in due righe. [Scegli tu la domanda: non inventarla.]
+- Didascalia: La domanda che mi arriva di più: «[domanda reale]». Risposta breve: [risposta vera, senza promesse]. Se ne hai altre, scrivile nei commenti: rispondo a tutte, anche in privato. Se vuoi essere avvisato delle novità, commenta LISTA.
+- CTA: **LISTA** (o domanda nei commenti) · Hashtag: #tradingitalia #riskmanagement #metatrader5 #propfirm #forex #gestionedelrischio · Chiusura: F2
 
-**G25 · mar 27/10 · REEL · Dall'acquisto al bot attivo** → registra tu i passaggi reali; non indicare minuti che non hai misurato.
+**G25 · mar 27/10 · REEL · "Dall'acquisto al bot attivo"**
+- Hook A: "Dall'acquisto al bot attivo: ti faccio vedere ogni passaggio." · Hook B: "Se non hai mai installato un Expert Advisor, guardalo."
+- Didascalia: Ti mostro i passaggi reali, dall'acquisto al bot attivo su MetaTrader [metti i minuti solo se li hai cronometrati]. Alla fine, cosa controllare prima di lasciarlo girare su un conto reale: prima prova su demo. Commenta LISTA per il link. Mandalo a chi non ha mai installato un EA.
+- CTA: **LISTA** · Hashtag: #metatrader5 #metatrader4 #expertadvisor #tradingitalia #riskmanagement #forex · Chiusura: F2
 
-**G26 · mer 28/10 · CAROSELLO · Conto da 1.000 €** → 1% = 10 €, lotto minimo 0,01, perché il rischio si decide in euro.
+**G26 · mer 28/10 · CAROSELLO (6 slide) · Conto da 1.000 €**
+- Slide: 1 *Conto da 1.000 €: quanto rischi?* · 2 *L'1% sono 10 €.* · 3 *Lotto minimo: 0,01 → circa 0,10 $ a pip su EURUSD.* · 4 *Stop a 25 pip: 0,01 lotti rischiano circa 2,50 $; 0,04 lotti circa 10 $.* · 5 *Il rischio si decide in euro, poi si ricava il lotto.* · 6 *Il calcolatore lo fa per te. Commenta CALCOLO.*
+- Didascalia: Con un conto piccolo non si parte dal lotto: si parte dai soldi che sei disposto a perdere. 1% di 1.000 € sono 10 €. Con stop a 25 pip su EURUSD, 0,04 lotti rischiano circa 10 $ (calcolo indicativo, il cambio e il pip variano). Il lotto è la conseguenza, non il punto di partenza. Salvalo 📌 e commenta CALCOLO per i calcolatori gratuiti.
+- CTA: **CALCOLO** · Hashtag: #tradingitalia #gestionedelrischio #positionsizing #forex #riskmanagement #trader · Chiusura: F1
 
-**G27 · gio 29/10 · REEL · 5 miti sul rischio** (più lotto = più guadagno · lo stop si prende sempre · dopo 3 perdite devo recuperare · la leva è il rischio · con un bot sono al sicuro).
+**G27 · gio 29/10 · REEL · 5 miti sul rischio**
+- Hook A: "5 cose sul risk management che non sono vere." · Hook B: "Se ci credi, prima o poi te le fa pagare."
+- Didascalia: 1) "Più lotto, più guadagno": anche più perdita. 2) "Lo stop si prende sempre": con notizie e gap può scattare peggio. 3) "Dopo 3 perdite devo recuperare": recuperare aumenta il rischio. 4) "La leva è il rischio": lo decidono stop e lotto. 5) "Con un bot sono al sicuro": un bot applica le regole, non elimina le perdite. Quale credevi vera? Commenta GUIDA e ti mando le 7 regole di rischio in PDF.
+- CTA: **GUIDA** · Hashtag: #riskmanagement #tradingitalia #gestionedelrischio #forex #tradingpsychology #propfirm · Chiusura: F1
 
-**G28 · ven 30/10 · REEL · Cosa i miei bot non fanno** (non danno segnali · non aprono operazioni · non garantiscono guadagni · non eliminano le perdite · non ti proteggono se li disattivi). Questo è il Reel che risponde in anticipo agli scettici: tienilo in evidenza.
+**G28 · ven 30/10 · REEL · "Cosa i miei bot non fanno"**
+- Hook A: "Cosa i miei bot non fanno." · Hook B: "Prima di comprare, leggi cosa NON ottieni."
+- Didascalia: Non danno segnali. Non aprono operazioni. Non garantiscono guadagni. Non eliminano la possibilità di perdere. Non ti proteggono se li disattivi. Gestiscono il rischio delle operazioni che apri tu, secondo le regole che hai scelto. Se cerchi altro, meglio saperlo prima. Restano [X] posti a prezzo di lancio bloccato (solo se reale). Commenta LISTA.
+- CTA: **LISTA** · Hashtag: #riskmanagement #metatrader5 #tradingitalia #propfirm #forex #gestionedelrischio · Chiusura: F2
 
-**G29 · sab 31/10 · REEL · "Prima di usare un EA con una prop firm"** → controlla le regole EA della tua società; il bot non apre operazioni.
+**G29 · sab 31/10 · REEL · "Prop firm e Expert Advisor"**
+- Hook A: "Prima di usare un EA con una prop firm, controlla questa regola." · Hook B: "Un bot che non apre operazioni non basta: leggi il regolamento."
+- Didascalia: Ogni prop firm ha le sue regole sugli Expert Advisor, e cambiano nel tempo. I miei bot non aprono operazioni, ma la decisione è tua: leggi il regolamento della tua società prima di usarli e, se hai dubbi, chiedi al loro supporto. Commenta GUIDA e ti mando le 7 regole di rischio in PDF. Mandalo a chi sta facendo una challenge.
+- CTA: **GUIDA** · Hashtag: #propfirm #ftmo #fundednext #metatrader5 #tradingitalia #riskmanagement · Chiusura: F2
 
-**G30 · dom 1/11 · IMMAGINE · Recap della prima settimana** → numeri **veri** (iscritti, domande ricevute, bug corretti); se i posti sono finiti, dillo.
+**G30 · dom 1/11 · IMMAGINE · Recap della prima settimana**
+- Grafica: tre numeri **veri** (iscritti, domande ricevute, bug corretti) e una riga: *Cosa è andato bene. Cosa no.* Se i 10 posti sono finiti: *Posti a prezzo bloccato esauriti.*
+- Didascalia: Prima settimana. [N] persone iscritte, [N] domande ricevute, [N] bug corretti. Cosa è andato bene: [vero]. Cosa non è andato: [vero]. [Se esaurito:] I 10 posti a prezzo bloccato sono finiti: il prezzo di lancio è chiuso. Grazie a chi mi ha scritto. Se hai una domanda, commenta e ti rispondo.
+- CTA: domanda nei commenti (**LISTA** se i posti non sono finiti) · Hashtag: #tradingitalia #riskmanagement #metatrader5 #buildinpublic #gestionedelrischio #forex · Chiusura: F2
+
+### Hook alternativi (B) per i Reel dei giorni 1–21
+| Giorno | Hook A (nel piano) | Hook B |
+|---|---|---|
+| G1 | Quattro software. Nessuno ti dice cosa comprare. | Ti spiego perché i miei bot non fanno trading. |
+| G2 | Nessuno perde un conto per una previsione sbagliata. | Il conto non lo brucia la strategia. Lo bruciano questi tre comportamenti. |
+| G4 | Quante volte hai tolto lo stop "solo per stavolta"? | Lo stop che hai tolto ti è già costato più di quanto pensi. |
+| G5 | La perdita non è il problema. Il trade dopo, sì. | Dopo una perdita, il prossimo trade lo decide l'emozione. |
+| G8 | Un avviso lo ignori. Un blocco no. | Ho messo un blocco che non riesco a scavalcare da questo terminale. |
+| G9 | Dopo una perdita: chiudi tutto o riduci il lotto? | Ridurre il lotto o chiudere tutto: decidilo prima. |
+| G11 | Spostare lo stop a pareggio troppo presto ha un costo. | Il break-even non è gratis. |
+| G13 | Una posizione. Quattro uscite. | Chiudere a pezzi senza farlo a mano. |
+| G15 | Questo è il bug che mi ha fatto riscrivere una funzione. | Ti mostro un test, compresi i suoi limiti. |
+| G17 | Stop a 1.0950. Chiuso a 1.0942. | Perché il tuo stop ha chiuso peggio del previsto. |
+| G18 | Sai a che ora perdi di più? | A che ora perdi di più? Lo dicono i numeri. |
+| G21 | Da oggi ci sono. | Oggi i miei software sono disponibili. |
 
 ### Metriche da guardare ogni lunedì (per decidere cosa cambiare)
 1. **Invii in DM e salvataggi** per Reel (pesano più dei like).
