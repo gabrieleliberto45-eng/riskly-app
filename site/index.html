@@ -4379,6 +4379,8 @@ function apriAccesso(modo){
   aggiornaModoAccesso();
   const e = document.getElementById('acc-errore');
   e.textContent = ''; e.style.color = 'var(--down)';
+  document.getElementById('acc-pass').value = '';
+  document.getElementById('acc-pass2').value = '';
   document.getElementById('ovAccesso').classList.add('on');
   document.body.style.overflow = 'hidden';
 }
@@ -4416,6 +4418,10 @@ function aggiornaModoAccesso(){
   document.getElementById('acc-email').closest('.acc-campo').style.display = nuova ? 'none' : 'block';
   document.getElementById('acc-campo-pass').style.display = rec ? 'none' : 'block';
   document.getElementById('acc-pass').required = !rec;
+  /* i campi nascosti non devono essere obbligatori: il browser bloccherebbe l'invio senza dire niente */
+  document.getElementById('acc-email').required = !nuova;
+  document.getElementById('acc-campo-pass2').style.display = nuova ? 'block' : 'none';
+  document.getElementById('acc-pass2').required = nuova;
   document.getElementById('acc-lbl-pass').textContent = nuova ? 'Nuova password' : 'Password';
 
   const etichette = { entra:'Accedi', registrati:'Crea account',
@@ -4457,11 +4463,17 @@ async function inviaAccesso(e){
     }
 
     if(modoAccesso === 'nuova'){
+      const err = document.getElementById('acc-errore');
+      if(pass.length < 6){ err.textContent = 'La password deve avere almeno 6 caratteri.'; bottone.disabled = false; bottone.textContent = testoOrig; return; }
+      if(pass !== document.getElementById('acc-pass2').value){
+        err.textContent = 'Le due password non coincidono.'; bottone.disabled = false; bottone.textContent = testoOrig; return;
+      }
       const { error } = await sb.auth.updateUser({ password: pass });
       if(error) throw error;
-      chiudiAccesso();
+      err.style.color = 'var(--up)';
+      err.textContent = 'Password cambiata.';
       await caricaAccount();
-      go('account');
+      setTimeout(() => { chiudiAccesso(); go('account'); }, 1200);
       bottone.disabled = false; bottone.textContent = testoOrig;
       return;
     }
@@ -5544,6 +5556,10 @@ calcPos(); calcRuin(); calcProp(); calcBE(); calcComp(); setCiclo('a');
       <div class="acc-campo" id="acc-campo-pass">
         <label for="acc-pass" id="acc-lbl-pass">Password</label>
         <input type="password" id="acc-pass" required minlength="6" autocomplete="current-password">
+      </div>
+      <div class="acc-campo" id="acc-campo-pass2" style="display:none">
+        <label for="acc-pass2">Ripeti la nuova password</label>
+        <input type="password" id="acc-pass2" minlength="6" autocomplete="new-password">
       </div>
 
       <div class="acc-err" id="acc-errore"></div>
