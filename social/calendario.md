@@ -16,7 +16,12 @@ Stato: collegati TikTok (@riskly63), Instagram (@riskly.trade) e YouTube; settim
 
 Regole per tutti i contenuti:
 - niente segnali, niente setup, niente promesse di guadagno;
-- ogni didascalia chiude con: *Contenuto educativo, non è consulenza finanziaria.*;
+- ogni didascalia chiude con una di queste due formule (linee guida CONSOB/ESMA sui finfluencer, gennaio 2026: "non è consulenza" da solo non basta; per forex/CFD va ricordato che si può perdere tutto il capitale; se si promuove un prodotto proprio va dichiarato):
+  - **F1 (educativa):** *Contenuto educativo, non è consulenza finanziaria. Il trading con leva (forex, CFD) comporta un alto rischio: puoi perdere tutto il capitale.*
+  - **F2 (nomina Riskly, i bot, il journal o il sito):** *Comunicazione promozionale: Riskly è un mio prodotto.* + F1;
+- mai scrivere "compatibile con FTMO / FundedNext / The5ers / Funding Pips": scrivere "i bot non aprono operazioni, controlla le regole EA della tua prop firm";
+- niente "primo in Italia", "unico", "il migliore" né "sconto del 50%" (si dice "prezzo di lancio" e "prezzo dopo il lancio");
+- **Instagram dal 12/10: 1 Reel automatico al giorno** (non 2), per lasciare spazio ai contenuti registrati da Gabriele (`social/piano/`); i temi che registra lui si tolgono dalla serie automatica;
 - i video hanno una base lo-fi originale (social/generatore/musica.py): niente diritti di terzi, quindi va bene anche per un account di brand;
 
 Hashtag base (Instagram e TikTok, massimo 5): `#trading #gestionedelrischio #forex #tradingitalia #propfirm`
