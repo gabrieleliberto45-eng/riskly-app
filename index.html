@@ -1256,6 +1256,19 @@ body{padding-top:0}
   .jmetodo-campi{margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
   .jmetodo-campi:empty{display:none}
   .jmetodo-campi > .jm-tit{color:var(--dim2);font-size:.75rem;margin-bottom:12px}
+  /* ── SCAGLIONI (uscite a pezzi, es. con ScaleIn) ── */
+  .jscag{margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+  .jscag > .jm-tit{color:var(--dim2);font-size:.75rem;margin-bottom:10px}
+  .jscag-testa,.jscag-riga{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.5fr) minmax(0,.9fr) 34px;gap:8px;align-items:center}
+  .jscag-testa{color:var(--dim2);font-size:.7rem;letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px}
+  .jscag-riga{margin-bottom:8px}
+  .jscag-riga input,.jscag-riga select{padding:11px 10px;min-width:0;font-size:.82rem}
+  .jscag-x{background:none;border:1px solid var(--line);color:var(--dim2);border-radius:10px;height:40px;cursor:pointer;font-size:.9rem}
+  .jscag-x:hover{color:var(--down);border-color:rgba(239,68,68,.4)}
+  .jscag-piede{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:6px}
+  .jscag-tot{color:var(--dim);font-size:.82rem;font-family:'JetBrains Mono',monospace}
+  .jscag-riep{color:var(--accent)!important}
+  .jscag-tab td.s,.jscag-tab th.s{text-align:right}
   .jm-campo{margin-bottom:12px}
   .jm-campo > span{display:block;color:var(--dim);font-size:.78rem;margin-bottom:7px}
   .jm-campo .jchips-scelta{margin-top:0}
@@ -1440,6 +1453,17 @@ body{padding-top:0}
         </div>
       </div>
 
+      <!-- scaglioni -->
+      <div class="jcard" id="scagCard" style="margin-bottom:16px" hidden>
+        <div class="jcard-head"><h3>Scaglioni</h3><span class="jmeta" id="scagMeta"></span></div>
+        <div class="jt-scroll">
+          <table class="jscag-tab">
+            <thead><tr><th>Scaglione</th><th class="s">Profit</th><th class="s">Pareggio</th><th class="s">Stop</th><th class="s">Pip medi</th></tr></thead>
+            <tbody id="scagTbl"></tbody>
+          </table>
+        </div>
+      </div>
+
       <!-- nuovo trade / modifica -->
       <div class="jcard" id="add" style="margin-bottom:16px">
         <div class="jcard-head"><h3 id="fTitolo">Nuova operazione</h3><button type="button" class="jmetodo-pill" id="fMetodoPill" onclick="j_apriMetodi()"></button></div>
@@ -1487,6 +1511,8 @@ body{padding-top:0}
           </div>
 
           <div class="jmetodo-campi" id="fMetodo"></div>
+
+          <div class="jscag" id="fScag"></div>
 
           <div class="jemo-scelta">
             <label>Come ti sentivi quando l'hai aperta?</label>
@@ -2566,7 +2592,7 @@ function j_renderTable(list){
       <td class="bar-cell ${j_cl(t.pnl)}"><span class="bar-fill" style="width:${w}%;background:${t.pnl>=0?'#22C55E':'#EF4444'}"></span><span style="position:relative">${j_fmt(t.pnl)}</span></td>
       <td class="${t.risk>0?j_cl(t.pnl):''}" style="${t.risk>0?'':'color:var(--dim2)'}">${r}</td>
       <td><span class="pill emo" style="color:${emo.col}">${emo.nome}</span></td>
-      <td class="strat" title="${esc(t.nota)}">${esc(t.strategy)||'—'}${j_dettagliTesto(t)?`<div class="jdett-riga">${esc(j_dettagliTesto(t))}</div>`:''}${t.nota?`<div class="jnota-riga">${esc(t.nota)}</div>`:''}</td>
+      <td class="strat" title="${esc(t.nota)}">${esc(t.strategy)||'—'}${j_dettagliTesto(t)?`<div class="jdett-riga">${esc(j_dettagliTesto(t))}</div>`:''}${(t.dettagli||{}).scaglioni?`<div class="jdett-riga jscag-riep">${esc(j_scagRiassunto(j_scagParse(t.dettagli.scaglioni)))}</div>`:''}${t.nota?`<div class="jnota-riga">${esc(t.nota)}</div>`:''}</td>
       <td>${img?`<img class="jthumb" src="${esc(img)}" alt="Screenshot ${esc(t.symbol)}" loading="lazy" onclick="j_apriShot('${id}')">`:'<span class="jthumb-no">—</span>'}</td>
       <td class="jazioni">${bloccato?'':`<button class="del mod" onclick="j_modifica('${id}')" title="Modifica" aria-label="Modifica">✎</button><button class="del" onclick="j_removeTrade('${id}')" title="Elimina" aria-label="Elimina">✕</button>`}</td>
     </tr>`;
@@ -2671,7 +2697,8 @@ function j_apriOp(id){
   if(fascia) gruppi.push([`Fascia ${fascia.et}`, j_statGruppo(lista, x => { const f = j_fascia(x); return f && f.et === fascia.et; })]);
 
   const campi = Object.values(METODI).flatMap(m => m.campi);
-  const dett = Object.entries(t.dettagli || {}).filter(([, v]) => v).map(([k, v]) => {
+  const scag = j_scagParse((t.dettagli || {}).scaglioni);
+  const dett = Object.entries(t.dettagli || {}).filter(([k, v]) => v && k !== 'scaglioni').map(([k, v]) => {
     const c = campi.find(x => x.id === k);
     return [c ? c.nome : k, v];
   });
@@ -2700,6 +2727,10 @@ function j_apriOp(id){
       ${kpi('Stato d\'animo', `<span style="color:${emo.col}">${emo.nome}</span>`)}
       ${kpi('Strategia', esc(t.strategy) || '—')}
     </div>
+
+    ${scag.length ? `<div class="jop-sez">SCAGLIONI</div>${scag.map((x, k) =>
+        riga(`${k + 1}° · ${x.l.toFixed(2)} lotti`, J_ESITI[x.e].nome + j_scagPip(x) + (x.e === 'tp' || x.e === 'sl' ? ' pip' : ''), x.e === 'tp' ? 'up' : (x.e === 'sl' ? 'down' : ''))).join('')}
+      ${riga('Riepilogo', `${scag.length} scaglioni · ${j_scagLotti(scag).toFixed(2)} lotti · ${scag.filter(x => x.e === 'tp').length} profit · ${scag.filter(x => x.e === 'be').length} pareggio · ${scag.filter(x => x.e === 'sl').length} stop`, '', true)}` : ''}
 
     <div class="jop-sez">IN QUESTA GIORNATA E NELLA SERIE</div>
     ${riga('Giornata del ' + j_dataBreve(t.date), `${giorno.n} ${giorno.n === 1 ? 'operazione' : 'operazioni'} · ${j_fmt(giorno.tot)}`, j_cl(giorno.tot), true)}
@@ -2810,6 +2841,7 @@ function j_renderAll(){
   if(typeof aggiornaAreaShot === 'function') aggiornaAreaShot();
   j_renderToolbar();
   j_renderCampiMetodo();
+  const fs = document.getElementById('fScag'); if(fs && !fs.dataset.pronto) j_renderScag();
   j_renderFiltri();
   const list = j_filtrati();
   j_renderConto();
@@ -2821,6 +2853,7 @@ function j_renderAll(){
   j_renderDOW(list);
   j_renderOra(list);
   j_renderEmozioni(list);
+  j_renderScagStat(list);
   j_renderSym(list);
   j_renderTable(list);
   j_renderGruppi(list);
@@ -3199,7 +3232,7 @@ function j_resetForm(){
   ['f-symbol','f-pnl','f-risk','f-strat','f-nota'].forEach(i=>document.getElementById(i).value='');
   j_setUnita('pnl', j_unitaPreferita('pnl'), true); j_setUnita('risk', j_unitaPreferita('risk'), true);
   j_renderScelte();
-  j_dettagli = {}; j_renderCampiMetodo();
+  j_dettagli = {}; j_scag = []; j_renderCampiMetodo(); j_renderScag();
   document.getElementById('f-date').value = isoLocale();
   j_setDir('long');
   j_setEmo('lucido');
@@ -3269,9 +3302,136 @@ function j_separaNota(n){
 }
 function j_uniscinota(nota, d){
   const pulito = {};
-  Object.entries(d || {}).forEach(([k, v]) => { if(v !== '' && v !== null && v !== undefined) pulito[k] = String(v).slice(0, 60); });
+  Object.entries(d || {}).forEach(([k, v]) => { if(v !== '' && v !== null && v !== undefined) pulito[k] = String(v).slice(0, k === 'scaglioni' ? 400 : 60); });
   if(!Object.keys(pulito).length) return nota || '';
   return (nota ? nota + '\n\n' : '') + '⟦riskly:' + JSON.stringify(pulito) + '⟧';
+}
+
+
+/* ---------- Scaglioni: uscite a pezzi (ScaleIn) ----------
+   Ogni operazione può avere più scaglioni: lotti, come si è chiuso e pip.
+   Stanno nei dettagli, in una riga sola: "0.1:tp:10;0.1:tp:20;0.1:be:0;0.1:sl:-25" */
+
+const J_ESITI = {
+  tp:  { nome:'Profit',   sigla:'TP' },
+  be:  { nome:'Pareggio', sigla:'BE' },
+  sl:  { nome:'Stop',     sigla:'SL' },
+  man: { nome:'A mano',   sigla:'Manuale' }
+};
+const J_SCAG_MAX = 12;
+let j_scag = [];
+
+function j_scagParse(str){
+  return String(str || '').split(';').map(r => {
+    const [l, e, p] = r.split(':');
+    const lotti = parseFloat(l);
+    if(!(lotti > 0) || !J_ESITI[e]) return null;
+    const pip = (p === undefined || p === '') ? null : parseFloat(p);
+    return { l: lotti, e, p: Number.isFinite(pip) ? pip : null };
+  }).filter(Boolean);
+}
+/* i segni dei pip seguono l'esito: profit +, stop −, pareggio 0 */
+function j_scagPulito(arr){
+  return arr.filter(x => x.l > 0 && J_ESITI[x.e]).slice(0, J_SCAG_MAX).map(x => {
+    let p = Number.isFinite(x.p) ? x.p : null;
+    if(x.e === 'be') p = 0;
+    else if(p !== null && x.e === 'tp') p = Math.abs(p);
+    else if(p !== null && x.e === 'sl') p = -Math.abs(p);
+    return { l: Math.round(x.l * 100) / 100, e: x.e, p };
+  });
+}
+const j_scagStringa = arr => j_scagPulito(arr).map(x => `${x.l}:${x.e}:${x.p === null ? '' : x.p}`).join(';');
+const j_scagLotti = arr => arr.reduce((a, x) => a + (x.l || 0), 0);
+const j_scagPip = x => x.e === 'be' ? '' : (x.p === null ? '' : ' ' + (x.p > 0 ? '+' : (x.p < 0 ? '−' : '')) + Math.abs(x.p));
+function j_scagRiassunto(arr){
+  if(!arr.length) return '';
+  const n = arr.length;
+  return `${n} scaglion${n === 1 ? 'e' : 'i'} · ${j_scagLotti(arr).toFixed(2)} lotti — ` +
+         arr.map(x => J_ESITI[x.e].sigla + j_scagPip(x)).join(' · ');
+}
+
+function j_renderScag(){
+  const box = document.getElementById('fScag');
+  if(!box) return;
+  box.dataset.pronto = '1';
+  const totale = () => j_scag.length ? `${j_scag.length} ${j_scag.length === 1 ? 'scaglione' : 'scaglioni'} · ${j_scagLotti(j_scag).toFixed(2)} lotti` : '';
+  box.innerHTML = `
+    <div class="jm-tit">Scaglioni <span style="color:var(--dim2)">(facoltativo: se chiudi a pezzi)</span></div>
+    ${j_scag.length ? '<div class="jscag-testa"><span>Lotti</span><span>Chiusura</span><span>Pip</span><span></span></div>' : ''}
+    ${j_scag.map((x, i) => `<div class="jscag-riga" data-i="${i}">
+        <input type="number" class="sl" step="0.01" min="0.01" inputmode="decimal" value="${x.l || ''}" placeholder="0.10" aria-label="Lotti dello scaglione ${i + 1}">
+        <select class="se" aria-label="Come si è chiuso lo scaglione ${i + 1}">${Object.entries(J_ESITI).map(([k, v]) => `<option value="${k}"${x.e === k ? ' selected' : ''}>${v.nome}</option>`).join('')}</select>
+        <input type="number" class="sp" step="any" inputmode="decimal" value="${x.e === 'be' ? 0 : (x.p ?? '')}" placeholder="${x.e === 'sl' ? '−25' : '+10'}" ${x.e === 'be' ? 'disabled' : ''} aria-label="Pip dello scaglione ${i + 1}">
+        <button type="button" class="jscag-x" data-r="${i}" aria-label="Togli lo scaglione ${i + 1}">✕</button>
+      </div>`).join('')}
+    <div class="jscag-piede">
+      <button type="button" class="btn" data-add="1" ${j_scag.length >= J_SCAG_MAX ? 'disabled' : ''}>+ Scaglione</button>
+      <span class="jscag-tot" id="scagTot">${totale()}</span>
+    </div>`;
+
+  box.oninput = e => {
+    const r = e.target.closest('.jscag-riga'); if(!r) return;
+    const x = j_scag[+r.dataset.i]; if(!x) return;
+    if(e.target.classList.contains('sl')) x.l = parseFloat(e.target.value) || 0;
+    if(e.target.classList.contains('sp')) x.p = e.target.value === '' ? null : parseFloat(e.target.value);
+    document.getElementById('scagTot').textContent = totale();
+  };
+  box.onchange = e => {
+    const r = e.target.closest('.jscag-riga'); if(!r || !e.target.classList.contains('se')) return;
+    const x = j_scag[+r.dataset.i]; if(!x) return;
+    x.e = e.target.value;
+    if(x.e === 'be') x.p = 0;
+    else if(x.p === 0) x.p = null;
+    j_renderScag();
+  };
+  box.onclick = e => {
+    if(e.target.closest('[data-add]')){
+      if(j_scag.length >= J_SCAG_MAX) return;
+      const ultimo = j_scag[j_scag.length - 1];
+      j_scag.push({ l: ultimo ? ultimo.l : 0, e: 'tp', p: null });
+      j_renderScag();
+      const righe = box.querySelectorAll('.jscag-riga'); const nuova = righe[righe.length - 1];
+      if(nuova) nuova.querySelector('.sl').focus();
+      return;
+    }
+    const x = e.target.closest('[data-r]');
+    if(x){ j_scag.splice(+x.dataset.r, 1); j_renderScag(); }
+  };
+}
+
+/* statistiche: per ogni scaglione (1°, 2°, 3°…) come si chiude */
+function j_renderScagStat(list){
+  const card = document.getElementById('scagCard'); if(!card) return;
+  const op = list.map(t => j_scagParse((t.dettagli || {}).scaglioni)).filter(a => a.length);
+  card.hidden = !op.length;
+  if(!op.length) return;
+  const maxN = Math.max(...op.map(a => a.length));
+  const pct = (c, n) => n ? `${Math.round(c / n * 100)}% <span style="color:var(--dim2)">(${c})</span>` : '—';
+  const riga = (nome, legs) => {
+    const n = legs.length, c = e => legs.filter(x => x.e === e).length;
+    const tp = legs.filter(x => x.e === 'tp' && x.p !== null);
+    const medi = tp.length ? '+' + (tp.reduce((a, x) => a + x.p, 0) / tp.length).toFixed(1) : '—';
+    return `<tr><td>${nome} <span style="color:var(--dim2);font-size:.8em">· ${n} op.</span></td><td class="s up">${pct(c('tp'), n)}</td><td class="s">${pct(c('be'), n)}</td><td class="s down">${pct(c('sl'), n)}</td><td class="s">${medi}</td></tr>`;
+  };
+  let h = '';
+  for(let i = 0; i < maxN; i++) h += riga(`${i + 1}°`, op.map(a => a[i]).filter(Boolean));
+  h += riga('<b>Tutti</b>', op.flat());
+  document.getElementById('scagTbl').innerHTML = h;
+  const lotti = op.reduce((a, x) => a + j_scagLotti(x), 0) / op.length;
+  document.getElementById('scagMeta').textContent = `${op.length} operazioni · ${lotti.toFixed(2)} lotti in media`;
+}
+
+/* dati di esempio */
+function j_scagDemo(win){
+  if(Math.random() > .65) return {};
+  const n = 3 + Math.floor(Math.random() * 2), l = 0.1, legs = [];
+  for(let i = 0; i < n; i++){
+    let e, p;
+    if(win){ e = (i === n - 1 && Math.random() < .4) ? 'be' : 'tp'; p = e === 'be' ? 0 : 10 * (i + 1); }
+    else { e = (i === 0 && Math.random() < .3) ? 'tp' : (Math.random() < .25 ? 'be' : 'sl'); p = e === 'tp' ? 10 : (e === 'be' ? 0 : -25); }
+    legs.push({ l, e, p });
+  }
+  return { scaglioni: j_scagStringa(legs) };
 }
 
 let j_dettagli = {};
@@ -3299,15 +3459,19 @@ function j_renderCampiMetodo(){
 function j_dettagliDaSalvare(){
   const out = {};
   Object.entries(j_dettagli).forEach(([k, v]) => { if(v) out[k] = v; });
+  delete out.scaglioni;
+  const sc = j_scagStringa(j_scag);
+  if(sc) out.scaglioni = sc;
   return out;
 }
 function j_dettagliTesto(t, conNomi){
   const d = t.dettagli || {};
   const campi = Object.values(METODI).flatMap(m => m.campi);
   return Object.entries(d).filter(([, v]) => v).map(([k, v]) => {
+    if(k === 'scaglioni') return conNomi ? 'Scaglioni: ' + j_scagRiassunto(j_scagParse(v)) : '';   /* in tabella ha la sua riga */
     const c = campi.find(x => x.id === k);
     return conNomi && c ? c.nome + ': ' + v : v;
-  }).join(conNomi ? '; ' : ' · ');
+  }).filter(Boolean).join(conNomi ? '; ' : ' · ');
 }
 function j_dettagliCasuali(){
   const out = {};
@@ -3543,7 +3707,7 @@ function j_modifica(id){
   document.getElementById('f-strat').value = t.strategy;
   j_setUnita('pnl','val',true); j_setUnita('risk','val',true);
   j_renderScelte();
-  j_dettagli = Object.assign({}, t.dettagli || {}); j_renderCampiMetodo();
+  j_dettagli = Object.assign({}, t.dettagli || {}); j_scag = j_scagParse(j_dettagli.scaglioni); j_renderCampiMetodo(); j_renderScag();
   document.getElementById('f-nota').value = t.nota;
   j_setDir(t.dir);
   j_setEmo(t.emo || 'lucido');
@@ -3998,7 +4162,7 @@ function j_generaDemo(){
       strategy: s.nome,
       emo,
       nota: el[Math.floor(Math.random()*el.length)],
-      dettagli: j_dettagliCasuali(),
+      dettagli: Object.assign(j_dettagliCasuali(), j_scagDemo(win)),
       shot: '', shotUrl: ''
     });
   }
@@ -4308,6 +4472,7 @@ if(sb){
     if(!el.matches) return 'panoramica';
     if(el.querySelector('#calendario')) return 'calendario';
     if(el.classList.contains('jgrid')) return 'statistiche';
+    if(el.id === 'scagCard') return 'statistiche';
     if(el.id === 'add') return 'nuova';
     if(el.id === 'trades' || el.id === 'strat') return 'operazioni';
     return 'panoramica';
