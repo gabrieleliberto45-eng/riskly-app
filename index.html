@@ -1256,6 +1256,40 @@ body{padding-top:0}
   .jmetodo-campi{margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
   .jmetodo-campi:empty{display:none}
   .jmetodo-campi > .jm-tit{color:var(--dim2);font-size:.75rem;margin-bottom:12px}
+  /* gruppi del metodo (Input, Conferma, Contesto, Disciplina) e compilazione rapida degli scaglioni */
+  .jm-gruppo{background:rgba(255,255,255,.025);border:1px solid var(--line);border-radius:16px;padding:16px 16px 6px;margin-bottom:12px}
+  .jm-gtit{margin-bottom:12px}
+  .jm-gtit b{display:block;font-size:.95rem}
+  .jm-gtit span{display:block;color:var(--dim2);font-size:.75rem;margin-top:2px}
+  .jm-auto{font-style:normal;color:var(--dim2);font-size:.72rem;margin-left:6px}
+  .jscelta.jauto.on{background:rgba(182,216,79,.18);color:var(--accent);border-color:rgba(182,216,79,.45)}
+  .jrap{background:rgba(255,255,255,.025);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:14px}
+  .jrap label{display:block;color:var(--dim);font-size:.78rem;margin-bottom:6px}
+  .jrap-riga{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+  .jrap-riga input,.jrap-riga1 input{width:100%;min-width:0}
+  .jrap-riga1{margin:4px 0 12px}
+  .jrap-info{color:var(--dim2);font-size:.75rem;font-family:'JetBrains Mono',monospace;margin:8px 0 14px}
+  .jrap-griglia{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;margin-bottom:9px}
+  .jrap-k{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:12px;padding:9px 0 7px;color:var(--text);cursor:pointer;font-family:inherit}
+  .jrap-k b{display:block;font-size:.95rem}
+  .jrap-k small{display:block;color:var(--dim2);font-size:.62rem;margin-top:2px}
+  .jrap-k.on{background:rgba(182,216,79,.16);border-color:rgba(182,216,79,.6);color:var(--accent)}
+  .jrap-k:disabled{opacity:.35;cursor:default}
+  .jrap-corre{display:flex !important;gap:12px;align-items:center;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:12px;padding:12px;margin:4px 0 12px;cursor:pointer}
+  .jrap-corre input{width:20px;height:20px;accent-color:#B6D84F;flex:none}
+  .jrap-corre b{display:block;color:var(--text);font-size:.85rem;font-weight:600}
+  .jrap-corre small{display:block;color:var(--dim2);font-size:.72rem}
+  .jrap-seg{display:grid;grid-template-columns:1fr 1fr}
+  .jrap-mini{width:84px !important;padding:8px 10px !important}
+  .jscag-dett{display:flex;justify-content:space-between;align-items:baseline;color:var(--dim2);font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;margin:4px 0 8px}
+  .jstima{margin-top:12px}
+  .jstima:empty{display:none}
+  .jstima-r{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:10px 14px;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:12px;margin-bottom:6px}
+  .jstima-r span{color:var(--dim);font-size:.82rem}
+  .jstima-r small{color:var(--dim2)}
+  .jstima-r b{font-family:'JetBrains Mono',monospace;font-size:1rem;white-space:nowrap}
+  .jstima-usa{margin-top:4px}
+  @media(max-width:520px){.jrap-riga{grid-template-columns:1fr 1fr}.jrap-riga > div:first-child{grid-column:1/-1}}
   /* ── SCAGLIONI (uscite a pezzi, es. con ScaleIn) ── */
   .jscag{margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
   .jscag > .jm-tit{color:var(--dim2);font-size:.75rem;margin-bottom:10px}
@@ -1469,8 +1503,8 @@ body{padding-top:0}
         <div class="jcard-head"><h3 id="fTitolo">Nuova operazione</h3><button type="button" class="jmetodo-pill" id="fMetodoPill" onclick="j_apriMetodi()"></button></div>
         <form onsubmit="j_addTrade(event)">
           <div class="jform">
-            <div><label for="f-date">Data</label><input type="date" id="f-date" required></div>
-            <div><label for="f-ora">Ora</label><input type="time" id="f-ora" value="09:00"></div>
+            <div><label for="f-date">Data</label><input type="date" id="f-date" required onchange="j_aggiornaSessioni(true)"></div>
+            <div><label for="f-ora">Ora</label><input type="time" id="f-ora" value="09:00" onchange="j_aggiornaSessioni(true)"></div>
             <div class="jcampo-lista">
               <label for="f-symbol">Simbolo</label>
               <div class="jcon-salva"><input id="f-symbol" placeholder="EURUSD" maxlength="24" list="f-simboli" required autocomplete="off" oninput="j_aggiornaSalva('simboli')">
@@ -2796,7 +2830,7 @@ function j_setGruppo(g){ j_gruppo = g; j_renderGruppi(j_filtrati()); }
 function j_gruppiAttivi(){
   const out = Object.assign({}, GRUPPI);
   (METODI[j_metodo()] || METODI.generale).campi.forEach(c => {
-    out['m_' + c.id] = { nome: c.nome, k: t => (t.dettagli || {})[c.id] || 'Non indicato' };
+    out['m_' + c.id] = { nome: c.nome.replace(/ \(input\)$/, ''), k: t => c.multi ? (j_multi((t.dettagli || {})[c.id]).length ? j_multi((t.dettagli || {})[c.id]) : 'Non indicato') : ((t.dettagli || {})[c.id] || 'Non indicato') };
   });
   return out;
 }
@@ -2810,7 +2844,7 @@ function j_renderGruppi(list){
   document.getElementById('gruppoNome').textContent = GR[j_gruppo].nome;
 
   const tb=document.getElementById('stbl'), g={};
-  list.forEach(t=>{ const k=GR[j_gruppo].k(t); (g[k]||=[]).push(t); });
+  list.forEach(t=>{ [].concat(GR[j_gruppo].k(t)).forEach(k=>(g[k]||=[]).push(t)); });
   const righe = Object.entries(g).map(([k,l]) => [k, j_metrics(l)]).sort((a,b)=>b[1].net-a[1].net);
   if(!righe.length){ tb.innerHTML=`<tr><td colspan="6"><div class="empty">Aggiungi operazioni per confrontarne le performance.</div></td></tr>`; return; }
   tb.innerHTML=righe.map(([k,m])=>{
@@ -3232,7 +3266,7 @@ function j_resetForm(){
   ['f-symbol','f-pnl','f-risk','f-strat','f-nota'].forEach(i=>document.getElementById(i).value='');
   j_setUnita('pnl', j_unitaPreferita('pnl'), true); j_setUnita('risk', j_unitaPreferita('risk'), true);
   j_renderScelte();
-  j_dettagli = {}; j_scag = []; j_renderCampiMetodo(); j_renderScag();
+  j_dettagli = {}; j_scag = []; Object.assign(j_rap, { tot: '', k: 0, corre: false, correPip: '' }); j_renderCampiMetodo(); j_renderScag();
   document.getElementById('f-date').value = isoLocale();
   j_setDir('long');
   j_setEmo('lucido');
@@ -3250,6 +3284,27 @@ function j_resetForm(){
 
 /* ---------- Tipo di journal: metodo di trading ---------- */
 /* Ogni metodo aggiunge al modulo alcune voci a scelta rapida; le statistiche raggruppate le usano. */
+/* setup del metodo «Input e conferma» (stesse sigle del journal di partenza) */
+const J_SETUP_IC = ['P.B. KL', 'B.O. KL', 'Correlazioni', 'P.B. EMA200 + Alligator', 'B.O. EMA200 + Alligator', 'Pitch H1', 'Pitch M30', 'Fond. ordinari', 'Fond. straordinari'];
+const J_GRUPPI_CAMPI = {
+  input:      ['Input', 'Il setup che hai individuato sul grafico'],
+  conferma:   ['Conferma', 'Il segnale che ha confermato l\'ingresso'],
+  contesto:   ['Contesto', 'Sessioni di mercato aperte e notizie del giorno'],
+  disciplina: ['Disciplina', 'Come hai gestito l\'operazione'],
+};
+/* sessioni aperte all'ora del trade, ognuna nel suo fuso (l'ora legale la gestisce il browser) */
+const J_SESSIONI = [['Sydney', 'Australia/Sydney'], ['Tokyo', 'Asia/Tokyo'], ['Londra', 'Europe/London'], ['New York', 'America/New_York']];
+function j_sessioniAperte(data, ora){
+  if(!data) return [];
+  const d = new Date(`${data}T${ora || '09:00'}`);
+  if(isNaN(d)) return [];
+  return J_SESSIONI.filter(([, tz]) => {
+    const h = +new Intl.DateTimeFormat('en-GB', { timeZone: tz, hour: '2-digit', hour12: false }).format(d) % 24;
+    return h >= 8 && h < 17;
+  }).map(([n]) => n);
+}
+const j_multi = v => String(v || '').split(' + ').filter(Boolean);
+
 const METODI = {
   generale: { nome: 'Generale', desc: 'Il journal classico: simbolo, risultato, rischio, strategia e stato d\'animo.', campi: [] },
   ict: { nome: 'ICT / Smart Money', desc: 'Kill zone, bias, liquidità presa, cambio di struttura ed entrata su FVG, order block, OTE.', campi: [
@@ -3265,12 +3320,16 @@ const METODI = {
     { id: 'contesto', nome: 'Contesto', opzioni: ['Bilanciato', 'In tendenza', 'Apertura fuori value'] },
     { id: 'delta', nome: 'Delta cumulativo', opzioni: ['A favore', 'Contro', 'Neutro'] },
   ]},
-  conferma: { nome: 'Input e conferma', desc: 'Input e conferma tra key level (rottura o rimbalzo), EMA200 + Alligator, pitchfork, correlazioni e fondamentali, con timeframe e rispetto della conferma.', campi: [
-    { id: 'input', nome: 'Input', opzioni: ['Rottura key level', 'Rimbalzo key level', 'EMA200 + Alligator', 'Pitchfork', 'Correlazioni', 'Fondamentali ordinari', 'Fondamentali straordinari'] },
-    { id: 'tf_input', nome: 'Timeframe dell\'input', opzioni: ['M1', 'M5', 'M15', 'M30', 'H1', 'H4', 'D1'] },
-    { id: 'conferma', nome: 'Conferma', opzioni: ['Rottura key level', 'Rimbalzo key level', 'EMA200 + Alligator', 'Pitchfork', 'Correlazioni', 'Fondamentali ordinari', 'Fondamentali straordinari', 'Nessuna'] },
-    { id: 'tf_conferma', nome: 'Timeframe della conferma', opzioni: ['M1', 'M5', 'M15', 'M30', 'H1', 'H4'] },
-    { id: 'rispettata', nome: 'Sei entrato solo dopo la conferma?', opzioni: ['Sì', 'No'] },
+  conferma: { nome: 'Input e conferma', desc: 'Input e conferma (P.B./B.O. key level, EMA200 + Alligator, pitchfork, correlazioni, fondamentali), sessioni, news, disciplina e scaglioni rapidi come i bot.', campi: [
+    { id: 'input', nome: 'Cosa hai visto (input)', gruppo: 'input', multi: true, opzioni: J_SETUP_IC },
+    { id: 'tf_input', nome: 'Timeframe dell\'input', gruppo: 'input', opzioni: ['M1', 'M5', 'M15', 'M30', 'H1', 'H4', 'D1'] },
+    { id: 'conferma', nome: 'Qual è stata la conferma', gruppo: 'conferma', multi: true, opzioni: J_SETUP_IC.concat(['Nessuna']) },
+    { id: 'tf_conferma', nome: 'Timeframe della conferma', gruppo: 'conferma', opzioni: ['M1', 'M5', 'M15', 'M30', 'H1', 'H4'] },
+    { id: 'rispettata', nome: 'Sei entrato solo dopo la conferma?', gruppo: 'conferma', opzioni: ['Sì', 'No'] },
+    { id: 'sessioni', nome: 'Sessioni', gruppo: 'contesto', auto: true, multi: true, opzioni: ['Sydney', 'Tokyo', 'Londra', 'New York'] },
+    { id: 'news', nome: 'News del giorno', gruppo: 'contesto', opzioni: ['Nessuna rilevante', 'Dati USA (CPI, NFP, FOMC…)', 'Dati di altre valute', 'Discorso di banca centrale', 'Evento straordinario'] },
+    { id: 'piano', nome: 'Hai seguito il piano?', gruppo: 'disciplina', opzioni: ['Sì', 'No'] },
+    { id: 'emo_influito', nome: 'Le emozioni hanno influito sulla decisione?', gruppo: 'disciplina', opzioni: ['Sì', 'No'] },
   ]},
   priceaction: { nome: 'Price action / supporti e resistenze', desc: 'Zona, pattern di candela e direzione rispetto al trend.', campi: [
     { id: 'zona', nome: 'Zona', opzioni: ['Supporto', 'Resistenza', 'Trendline', 'Doppio massimo/minimo', 'Canale'] },
@@ -3302,7 +3361,7 @@ function j_separaNota(n){
 }
 function j_uniscinota(nota, d){
   const pulito = {};
-  Object.entries(d || {}).forEach(([k, v]) => { if(v !== '' && v !== null && v !== undefined) pulito[k] = String(v).slice(0, k === 'scaglioni' ? 400 : 60); });
+  Object.entries(d || {}).forEach(([k, v]) => { if(v !== '' && v !== null && v !== undefined) pulito[k] = String(v).slice(0, k === 'scaglioni' ? 400 : 200); });
   if(!Object.keys(pulito).length) return nota || '';
   return (nota ? nota + '\n\n' : '') + '⟦riskly:' + JSON.stringify(pulito) + '⟧';
 }
@@ -3350,13 +3409,140 @@ function j_scagRiassunto(arr){
          arr.map(x => J_ESITI[x.e].sigla + j_scagPip(x)).join(' · ');
 }
 
+/* compilazione rapida, come i bot a scaglioni: lotto totale diviso in N parti uguali,
+   le prime k chiuse in profitto a +passo, +2·passo…, le altre a pareggio o a stop, l'ultima eventualmente lasciata correre */
+let j_rap = Object.assign({ n: 10, passo: 10, stop: 20, resto: 'be', vpip: 10 }, (() => { try{ return JSON.parse(localStorage.getItem('riskly-scag-rapido')) || {}; }catch{ return {}; } })(),
+  { tot: '', k: 0, corre: false, correPip: '' });
+function j_rapPref(){ try{ localStorage.setItem('riskly-scag-rapido', JSON.stringify({ n: j_rap.n, passo: j_rap.passo, stop: j_rap.stop, resto: j_rap.resto, vpip: j_rap.vpip })); }catch{} }
+const j_rapN = () => Math.max(1, Math.min(J_SCAG_MAX, parseInt(j_rap.n) || 10));
+function j_rapLotti(){
+  const tot = Math.round((parseFloat(j_rap.tot) || 0) * 100), n = j_rapN();
+  if(tot < n) return null;                              /* servono almeno 0,01 lotti per scaglione */
+  const base = Math.floor(tot / n), resto = tot - base * n;
+  return Array.from({ length: n }, (_, i) => (base + (i < resto ? 1 : 0)) / 100);
+}
+function j_rapGenera(){
+  const lotti = j_rapLotti(); if(!lotti) return false;
+  const n = lotti.length, maxK = j_rap.corre ? n - 1 : n, k = Math.min(j_rap.k, maxK), passo = parseFloat(j_rap.passo) || 0;
+  j_scag = lotti.map((l, i) => {
+    if(i < k) return { l, e: 'tp', p: passo * (i + 1) };
+    if(j_rap.corre && i === n - 1){ const cp = parseFloat(j_rap.correPip); return { l, e: 'man', p: Number.isFinite(cp) ? cp : null }; }
+    return j_rap.resto === 'be' ? { l, e: 'be', p: 0 } : { l, e: 'sl', p: -Math.abs(parseFloat(j_rap.stop) || 0) };
+  });
+  return true;
+}
+/* risultato stimato: pip medi per lotto, in R rispetto allo stop, e in euro con il valore del pip */
+function j_scagStima(){
+  const L = j_scagLotti(j_scag); if(!(L > 0)) return null;
+  const lp = j_scag.reduce((a, x) => a + x.l * (x.p || 0), 0);
+  const stop = parseFloat(j_rap.stop) || 0, vp = parseFloat(j_rap.vpip) || 0;
+  return { pip: lp / L, r: stop > 0 ? lp / L / stop : null, eur: vp > 0 ? lp * vp : null, rischio: vp > 0 && stop > 0 ? L * stop * vp : null };
+}
+const j_segno = (v, d) => (v > 0 ? '+' : (v < 0 ? '−' : '')) + Math.abs(v).toFixed(d);
+
 function j_renderScag(){
   const box = document.getElementById('fScag');
   if(!box) return;
   box.dataset.pronto = '1';
-  const totale = () => j_scag.length ? `${j_scag.length} ${j_scag.length === 1 ? 'scaglione' : 'scaglioni'} · ${j_scagLotti(j_scag).toFixed(2)} lotti` : '';
+  const n = j_rapN(), maxK = j_rap.corre ? n - 1 : n, passo = parseFloat(j_rap.passo) || 0;
+  const lotti = j_rapLotti();
+  const rimasti = Math.max(0, n - Math.min(j_rap.k, maxK) - (j_rap.corre ? 1 : 0));
+  const chip = (attr, v, on, testo) => `<button type="button" class="jscelta${on ? ' on' : ''}" ${attr}="${v}">${testo}</button>`;
   box.innerHTML = `
-    <div class="jm-tit">Scaglioni <span style="color:var(--dim2)">(facoltativo: se chiudi a pezzi)</span></div>
+    <div class="jm-gtit"><b>Scaglioni</b><span>Facoltativo: se dividi la posizione in più parti (anche con i bot)</span></div>
+    <div class="jrap">
+      <div class="jrap-riga">
+        <div><label for="rp-tot">Lotto totale</label><input type="number" id="rp-tot" class="rp" data-k="tot" step="0.01" min="0.01" inputmode="decimal" placeholder="1.00" value="${esc(String(j_rap.tot))}"></div>
+        <div><label for="rp-n">Scaglioni</label><input type="number" id="rp-n" class="rp" data-k="n" step="1" min="1" max="${J_SCAG_MAX}" inputmode="numeric" value="${n}"></div>
+        <div><label for="rp-passo">TP ogni (pip)</label><input type="number" id="rp-passo" class="rp" data-k="passo" step="any" min="0" inputmode="decimal" value="${esc(String(j_rap.passo))}"></div>
+      </div>
+      <div class="jrap-info" id="rpInfo">${lotti ? `Ogni scaglione: ${lotti[0].toFixed(2)} lotti` : 'Ogni scaglione: — (inserisci il lotto totale)'}</div>
+      <div class="jm-campo"><span>Scaglioni chiusi in profitto</span>
+        <div class="jrap-griglia">${Array.from({ length: n }, (_, i) => `<button type="button" class="jrap-k${i < j_rap.k && i < maxK ? ' on' : ''}" data-rk="${i + 1}" ${i >= maxK ? 'disabled' : ''}><b>${i + 1}</b><small>${passo ? '+' + +(passo * (i + 1)).toFixed(1) + 'p' : ''}</small></button>`).join('')}</div>
+        <div class="jchips-scelta">${chip('data-rsh', 0, j_rap.k === 0, 'Nessuno')}${n > 5 ? chip('data-rsh', 5, j_rap.k === 5, 'Primi 5') : ''}${chip('data-rsh', maxK, j_rap.k >= maxK && maxK > 0, j_rap.corre ? `Tutti tranne l'ultimo` : `Tutti e ${n}`)}</div>
+      </div>
+      <label class="jrap-corre"><input type="checkbox" class="rp" data-k="corre" ${j_rap.corre ? 'checked' : ''}><span><b>Ultimo scaglione lasciato correre</b><small>Senza TP: chiuso a mano o dal trailing</small></span></label>
+      ${j_rap.corre ? `<div class="jrap-riga1"><label for="rp-cpip">Pip dell'ultimo scaglione alla chiusura</label><input type="number" id="rp-cpip" class="rp" data-k="correPip" step="any" inputmode="decimal" placeholder="+45 o −20" value="${esc(String(j_rap.correPip))}"></div>` : ''}
+      <div class="jm-campo"><span>Scaglioni rimanenti chiusi a <em class="jm-auto" id="rpRim">${rimasti} ${rimasti === 1 ? 'scaglione' : 'scaglioni'}</em></span>
+        <div class="jseg jrap-seg">${['be', 'sl'].map(r => `<button type="button" class="${j_rap.resto === r ? 'on' : ''}" data-rresto="${r}">${r === 'be' ? 'Break even (0 pip)' : 'Stop loss'}</button>`).join('')}</div></div>
+      <div class="jm-campo"><span>Stop loss impostato (pip)</span>
+        <div class="jchips-scelta">${[20, 30, 40, 50, 60].map(v => chip('data-rstop', v, +j_rap.stop === v, v)).join('')}<input type="number" class="rp jrap-mini" data-k="stop" step="any" min="0" inputmode="decimal" aria-label="Stop loss in pip" value="${esc(String(j_rap.stop))}"></div></div>
+      <div class="jm-campo"><span>Rischio per operazione <em class="jm-auto">va nel campo Rischio</em></span>
+        <div class="jchips-scelta">${[0.25, 0.5, 1].map(v => chip('data-rrisk', v, false, String(v).replace('.', ',') + '%')).join('')}</div></div>
+      <div class="jrap-riga1"><label for="rp-vpip">Valore del pip per lotto (€) <span class="jaiuto" title="Serve a stimare il risultato in euro. Su molti conti è circa 10 per un lotto standard: controllalo sul tuo strumento.">?</span></label><input type="number" id="rp-vpip" class="rp jrap-mini" data-k="vpip" step="any" min="0" inputmode="decimal" value="${esc(String(j_rap.vpip))}"></div>
+    </div>
+    <div class="jscag-dett"><span>Dettaglio scaglioni</span><span class="jscag-tot" id="scagTot"></span></div>
+    <div id="scagLista"></div>
+    <div class="jstima" id="scagStima"></div>`;
+  j_renderScagLista();
+
+  box.oninput = e => {
+    const t = e.target;
+    if(t.classList.contains('rp') && t.type !== 'checkbox'){
+      j_rap[t.dataset.k] = t.value; j_rapPref();
+      if(t.dataset.k === 'n'){ if(j_rapGenera()) j_renderScagLista(); return; }   /* la griglia si ridisegna all'uscita dal campo */
+      if(j_rapGenera()) j_renderScagLista(); else j_aggiornaStima();
+      const lotti = j_rapLotti();
+      document.getElementById('rpInfo').textContent = lotti ? `Ogni scaglione: ${lotti[0].toFixed(2)} lotti` + (lotti[0] !== lotti[lotti.length - 1] ? ` (alcuni ${lotti[lotti.length - 1].toFixed(2)})` : '') : 'Ogni scaglione: — (inserisci il lotto totale)';
+      return;
+    }
+    const r = t.closest('.jscag-riga'); if(!r) return;
+    const x = j_scag[+r.dataset.i]; if(!x) return;
+    if(t.classList.contains('sl')) x.l = parseFloat(t.value) || 0;
+    if(t.classList.contains('sp')) x.p = t.value === '' ? null : parseFloat(t.value);
+    j_aggiornaStima();
+  };
+  box.onchange = e => {
+    const t = e.target;
+    if(t.classList.contains('rp')){
+      if(t.type === 'checkbox'){ j_rap.corre = t.checked; j_rapGenera(); }
+      if(t.dataset.k === 'n' || t.dataset.k === 'passo' || t.type === 'checkbox') j_renderScag();
+      return;
+    }
+    const r = t.closest('.jscag-riga'); if(!r || !t.classList.contains('se')) return;
+    const x = j_scag[+r.dataset.i]; if(!x) return;
+    x.e = t.value;
+    if(x.e === 'be') x.p = 0;
+    else if(x.p === 0) x.p = null;
+    j_renderScagLista();
+  };
+  box.onclick = e => {
+    const d = e.target.closest('[data-rk],[data-rsh],[data-rresto],[data-rstop],[data-rrisk],[data-usa-stima],[data-add],[data-r]');
+    if(!d) return;
+    const ds = d.dataset;
+    if(ds.rk !== undefined){ const k = +ds.rk; j_rap.k = (j_rap.k === k) ? k - 1 : k; }
+    else if(ds.rsh !== undefined) j_rap.k = +ds.rsh;
+    else if(ds.rresto) { j_rap.resto = ds.rresto; j_rapPref(); }
+    else if(ds.rstop) { j_rap.stop = +ds.rstop; j_rapPref(); }
+    else if(ds.rrisk){
+      j_setUnita('risk', 'pct');
+      document.getElementById('f-risk').value = ds.rrisk; j_aggiornaConversione();
+      j_flash(`Rischio impostato a ${ds.rrisk.replace('.', ',')}% del conto.`); return;
+    }
+    else if(ds.usaStima !== undefined){
+      const st = j_scagStima(); if(!st || st.eur === null) return;
+      j_setUnita('pnl', 'val'); document.getElementById('f-pnl').value = st.eur.toFixed(2);
+      const rk = document.getElementById('f-risk');
+      if(!rk.value && st.rischio){ j_setUnita('risk', 'val'); rk.value = st.rischio.toFixed(2); }
+      j_aggiornaConversione(); j_flash('Risultato stimato inserito: controllalo prima di salvare.'); return;
+    }
+    else if(ds.add !== undefined){
+      if(j_scag.length >= J_SCAG_MAX) return;
+      const ultimo = j_scag[j_scag.length - 1];
+      j_scag.push({ l: ultimo ? ultimo.l : 0, e: 'tp', p: null });
+      j_renderScagLista();
+      const righe = box.querySelectorAll('.jscag-riga'); const nuova = righe[righe.length - 1];
+      if(nuova) nuova.querySelector('.sl').focus();
+      return;
+    }
+    else if(ds.r !== undefined){ j_scag.splice(+ds.r, 1); j_renderScagLista(); return; }
+    j_rapGenera();
+    j_renderScag();
+  };
+}
+function j_renderScagLista(){
+  const box = document.getElementById('scagLista'); if(!box) return;
+  box.innerHTML = `
     ${j_scag.length ? '<div class="jscag-testa"><span>Lotti</span><span>Chiusura</span><span>Pip</span><span></span></div>' : ''}
     ${j_scag.map((x, i) => `<div class="jscag-riga" data-i="${i}">
         <input type="number" class="sl" step="0.01" min="0.01" inputmode="decimal" value="${x.l || ''}" placeholder="0.10" aria-label="Lotti dello scaglione ${i + 1}">
@@ -3364,39 +3550,21 @@ function j_renderScag(){
         <input type="number" class="sp" step="any" inputmode="decimal" value="${x.e === 'be' ? 0 : (x.p ?? '')}" placeholder="${x.e === 'sl' ? '−25' : '+10'}" ${x.e === 'be' ? 'disabled' : ''} aria-label="Pip dello scaglione ${i + 1}">
         <button type="button" class="jscag-x" data-r="${i}" aria-label="Togli lo scaglione ${i + 1}">✕</button>
       </div>`).join('')}
-    <div class="jscag-piede">
-      <button type="button" class="btn" data-add="1" ${j_scag.length >= J_SCAG_MAX ? 'disabled' : ''}>+ Scaglione</button>
-      <span class="jscag-tot" id="scagTot">${totale()}</span>
-    </div>`;
-
-  box.oninput = e => {
-    const r = e.target.closest('.jscag-riga'); if(!r) return;
-    const x = j_scag[+r.dataset.i]; if(!x) return;
-    if(e.target.classList.contains('sl')) x.l = parseFloat(e.target.value) || 0;
-    if(e.target.classList.contains('sp')) x.p = e.target.value === '' ? null : parseFloat(e.target.value);
-    document.getElementById('scagTot').textContent = totale();
-  };
-  box.onchange = e => {
-    const r = e.target.closest('.jscag-riga'); if(!r || !e.target.classList.contains('se')) return;
-    const x = j_scag[+r.dataset.i]; if(!x) return;
-    x.e = e.target.value;
-    if(x.e === 'be') x.p = 0;
-    else if(x.p === 0) x.p = null;
-    j_renderScag();
-  };
-  box.onclick = e => {
-    if(e.target.closest('[data-add]')){
-      if(j_scag.length >= J_SCAG_MAX) return;
-      const ultimo = j_scag[j_scag.length - 1];
-      j_scag.push({ l: ultimo ? ultimo.l : 0, e: 'tp', p: null });
-      j_renderScag();
-      const righe = box.querySelectorAll('.jscag-riga'); const nuova = righe[righe.length - 1];
-      if(nuova) nuova.querySelector('.sl').focus();
-      return;
-    }
-    const x = e.target.closest('[data-r]');
-    if(x){ j_scag.splice(+x.dataset.r, 1); j_renderScag(); }
-  };
+    <div class="jscag-piede"><button type="button" class="btn" data-add="1" ${j_scag.length >= J_SCAG_MAX ? 'disabled' : ''}>+ Scaglione</button></div>`;
+  j_aggiornaStima();
+}
+function j_aggiornaStima(){
+  const tot = document.getElementById('scagTot'), box = document.getElementById('scagStima');
+  if(tot) tot.textContent = j_scag.length ? `${j_scag.length} ${j_scag.length === 1 ? 'scaglione' : 'scaglioni'} · ${j_scagLotti(j_scag).toFixed(2)} lotti` : '';
+  if(!box) return;
+  const st = j_scagStima();
+  if(!st){ box.innerHTML = ''; return; }
+  const cl = v => v > 0 ? 'up' : (v < 0 ? 'down' : '');
+  box.innerHTML = `
+    <div class="jstima-r"><span>Risultato stimato <small>(media per lotto)</small></span><b class="${cl(st.pip)}">${j_segno(st.pip, 1)} pip</b></div>
+    <div class="jstima-r"><span>In R <small>(rispetto allo stop di ${esc(String(j_rap.stop))} pip)</small></span><b class="${cl(st.pip)}">${st.r === null ? '—' : j_segno(st.r, 2) + 'R'}</b></div>
+    ${st.eur !== null ? `<div class="jstima-r"><span>In euro <small>(${esc(String(j_rap.vpip))} € a pip per lotto)</small></span><b class="${cl(st.eur)}">${j_segno(st.eur, 2)} €</b></div>
+    <button type="button" class="btn jstima-usa" data-usa-stima="1">Usa come risultato dell'operazione</button>` : ''}`;
 }
 
 /* statistiche: per ogni scaglione (1°, 2°, 3°…) come si chiude */
@@ -3445,20 +3613,49 @@ function j_renderCampiMetodo(){
   if(sb_) sb_.hidden = (j_metodo() === 'conferma');
   if(!box) return;
   if(!m.campi.length){ box.innerHTML = ''; return; }
-  box.innerHTML = `<div class="jm-tit">Checklist ${esc(m.nome)} <span style="color:var(--dim2)">(facoltativa, un tocco per scegliere)</span></div>` +
-    m.campi.map(c => `<div class="jm-campo"><span>${esc(c.nome)}</span><div class="jchips-scelta">` +
-      c.opzioni.map(o => `<button type="button" class="jscelta${j_dettagli[c.id] === o ? ' on' : ''}" data-c="${esc(c.id)}" data-o="${esc(o)}">${esc(o)}</button>`).join('') +
-      `</div></div>`).join('');
+  j_aggiornaSessioni(false);
+  const scelto = (c, o) => c.multi ? j_multi(j_dettagli[c.id]).includes(o) : j_dettagli[c.id] === o;
+  const campo = c => `<div class="jm-campo"><span>${esc(c.nome)}${c.auto ? ' <em class="jm-auto">dall\'orario del trade</em>' : (c.multi ? ' <em class="jm-auto">anche più di uno</em>' : '')}</span><div class="jchips-scelta">` +
+      c.opzioni.map(o => `<button type="button" class="jscelta${scelto(c, o) ? ' on' : ''}${c.auto ? ' jauto' : ''}" data-c="${esc(c.id)}" data-o="${esc(o)}">${esc(o)}</button>`).join('') +
+      `</div></div>`;
+  if(m.campi.some(c => c.gruppo)){
+    const gr = {};
+    m.campi.forEach(c => (gr[c.gruppo || 'altro'] ||= []).push(c));
+    box.innerHTML = Object.entries(gr).map(([g, cs]) => {
+      const [t, sub] = J_GRUPPI_CAMPI[g] || [g, ''];
+      return `<div class="jm-gruppo"><div class="jm-gtit"><b>${esc(t)}</b><span>${esc(sub)}</span></div>${cs.map(campo).join('')}</div>`;
+    }).join('');
+  } else {
+    box.innerHTML = `<div class="jm-tit">Checklist ${esc(m.nome)} <span style="color:var(--dim2)">(facoltativa, un tocco per scegliere)</span></div>` + m.campi.map(campo).join('');
+  }
   box.onclick = e => {
     const b = e.target.closest('.jscelta'); if(!b) return;
-    const c = b.dataset.c, o = b.dataset.o;
-    j_dettagli[c] = (j_dettagli[c] === o) ? '' : o;
+    const c = m.campi.find(x => x.id === b.dataset.c), o = b.dataset.o;
+    if(!c) return;
+    if(c.multi){
+      const v = j_multi(j_dettagli[c.id]);
+      const nuovo = v.includes(o) ? v.filter(x => x !== o) : v.concat(o);
+      j_dettagli[c.id] = c.opzioni.filter(x => nuovo.includes(x)).join(' + ');   /* sempre nello stesso ordine */
+      if(c.auto) j_dettagli._sessioniAMano = '1';
+    } else {
+      j_dettagli[c.id] = (j_dettagli[c.id] === o) ? '' : o;
+    }
     j_renderCampiMetodo();
   };
 }
+/* le sessioni si ricalcolano da data e ora, finché non le cambi a mano */
+function j_aggiornaSessioni(ridisegna){
+  const m = METODI[j_metodo()];
+  if(!m || !m.campi.some(c => c.id === 'sessioni') || j_dettagli._sessioniAMano) return;
+  const dt = document.getElementById('f-date'), or = document.getElementById('f-ora');
+  const v = j_sessioniAperte(dt && dt.value, or && or.value).join(' + ');
+  if(v === (j_dettagli.sessioni || '')) return;
+  j_dettagli.sessioni = v;
+  if(ridisegna) j_renderCampiMetodo();
+}
 function j_dettagliDaSalvare(){
   const out = {};
-  Object.entries(j_dettagli).forEach(([k, v]) => { if(v) out[k] = v; });
+  Object.entries(j_dettagli).forEach(([k, v]) => { if(v && k[0] !== '_') out[k] = v; });
   delete out.scaglioni;
   const sc = j_scagStringa(j_scag);
   if(sc) out.scaglioni = sc;
@@ -3476,7 +3673,8 @@ function j_dettagliTesto(t, conNomi){
 function j_dettagliCasuali(){
   const out = {};
   (METODI[j_metodo()] || METODI.generale).campi.forEach(c => {
-    if(Math.random() < .85) out[c.id] = c.opzioni[Math.floor(Math.random() * c.opzioni.length)];
+    if(c.auto || Math.random() >= .85) return;
+    out[c.id] = c.multi ? c.opzioni.filter(() => Math.random() < .3).join(' + ') || c.opzioni[0] : c.opzioni[Math.floor(Math.random() * c.opzioni.length)];
   });
   return out;
 }
@@ -3707,7 +3905,7 @@ function j_modifica(id){
   document.getElementById('f-strat').value = t.strategy;
   j_setUnita('pnl','val',true); j_setUnita('risk','val',true);
   j_renderScelte();
-  j_dettagli = Object.assign({}, t.dettagli || {}); j_scag = j_scagParse(j_dettagli.scaglioni); j_renderCampiMetodo(); j_renderScag();
+  j_dettagli = Object.assign({}, t.dettagli || {}); if(j_dettagli.sessioni) j_dettagli._sessioniAMano = '1'; j_scag = j_scagParse(j_dettagli.scaglioni); Object.assign(j_rap, { tot: j_scag.length ? j_scagLotti(j_scag).toFixed(2) : '', k: 0, corre: false, correPip: '' }); j_renderCampiMetodo(); j_renderScag();
   document.getElementById('f-nota').value = t.nota;
   j_setDir(t.dir);
   j_setEmo(t.emo || 'lucido');
