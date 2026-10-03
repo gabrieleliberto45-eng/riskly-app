@@ -8,9 +8,9 @@ Ordine di pubblicazione: per ogni modulo prima il messaggio di apertura, poi i v
 
 ```
 📚 CORSO DI GESTIONE DEL RISCHIO · RISKLY
-41 lezioni · 10 moduli · circa 1 ora e 53 minuti
+47 lezioni · 11 parti · circa 2 ore e 13 minuti
 
-▸ Introduzione · Prima di cominciare (1:48)
+▸ Introduzione · Prima di cominciare (1:55)
 ▸ Modulo 1 · Le basi (23:31)
 ▸ Modulo 2 · Misurare un sistema (14:39)
 ▸ Modulo 3 · Drawdown e perdite (13:23)
@@ -18,10 +18,11 @@ Ordine di pubblicazione: per ogni modulo prima il messaggio di apertura, poi i v
 ▸ Modulo 5 · Simulare (10:06)
 ▸ Modulo 6 · Disciplina (10:02)
 ▸ Modulo 7 · Prop firm (9:57)
-▸ Modulo 8 · Gestire la posizione (11:15)
-▸ Modulo 9 · Il tuo piano (5:25)
+▸ Modulo 8 · Gestire la posizione (11:19)
+▸ Modulo 9 · Tecniche avanzate (19:33)
+▸ Modulo 10 · Il tuo piano (5:25)
 
-Come usarlo: guarda una lezione alla volta, fai l'esercizio a metà (metti in pausa) e alla fine del modulo 9 scrivi il tuo piano su una pagina.
+Come usarlo: guarda una lezione alla volta, fai l'esercizio a metà (metti in pausa) e alla fine dell'ultimo modulo scrivi il tuo piano su una pagina.
 
 ⚠️ Contenuto educativo, non consulenza finanziaria. Il trading con leva comporta un rischio elevato: puoi perdere tutto il capitale. Gli strumenti Riskly citati sono prodotti miei.
 ```
@@ -35,14 +36,14 @@ Messaggio di apertura del modulo:
 ```
 ━━━━━━━━━━━━━━
 📂 INTRODUZIONE · PRIMA DI COMINCIARE
-1 lezione · 1:48
+1 lezione · 1:55
 ━━━━━━━━━━━━━━
 ```
 
 **0.0** — didascalia del video `0.0`:
 
 ```
-🎬 Lezione 0.0 · Benvenuto e come usare il corso  (1:48)
+🎬 Lezione 0.0 · Benvenuto e come usare il corso  (1:55)
 ```
 
 ## Modulo 1 · Le basi
@@ -503,7 +504,7 @@ Messaggio di apertura del modulo:
 ```
 ━━━━━━━━━━━━━━
 📂 MODULO 8 · GESTIRE LA POSIZIONE
-4 lezioni · 11:15
+4 lezioni · 11:19
 ━━━━━━━━━━━━━━
 ```
 
@@ -543,7 +544,7 @@ In breve:
 **8.4** — didascalia del video `8.4`:
 
 ```
-🎬 Lezione 8.4 · Automatizzare le regole  (2:59)
+🎬 Lezione 8.4 · Automatizzare le regole  (3:02)
 
 In breve:
 • Si automatizza l'esecuzione delle regole, non la decisione di entrare
@@ -551,21 +552,98 @@ In breve:
 • Automatizza il tuo punto debole
 ```
 
-## Modulo 9 · Il tuo piano
+## Modulo 9 · Tecniche avanzate
 
 Messaggio di apertura del modulo:
 
 ```
 ━━━━━━━━━━━━━━
-📂 MODULO 9 · IL TUO PIANO
-2 lezioni · 5:25
+📂 MODULO 9 · TECNICHE AVANZATE
+6 lezioni · 19:33
 ━━━━━━━━━━━━━━
 ```
 
 **9.1** — didascalia del video `9.1`:
 
 ```
-🎬 Lezione 9.1 · Scrivere il piano di gestione del rischio  (2:44)
+🎬 Lezione 9.1 · Il compounding  (3:14)
+
+In breve:
+• Il compounding fa lavorare i guadagni sui guadagni
+• Con il rischio in % funziona da solo
+• Le oscillazioni lo frenano: proteggi il conto dai grandi drawdown
+```
+
+**9.2** — didascalia del video `9.2`:
+
+```
+🎬 Lezione 9.2 · Il trailing stop loss in tutte le sue forme  (3:31)
+
+In breve:
+• Cinque tipi: distanza fissa, scatti, strutturale, ATR, temporale
+• Il trailing blocca guadagni senza indovinare il massimo
+• Sceglilo prima e misuralo nel journal
+```
+
+**9.3** — didascalia del video `9.3`:
+
+```
+🎬 Lezione 9.3 · Ingressi a scaglioni  (3:14)
+
+In breve:
+• Ingresso diviso su più livelli, con stop unico
+• Il rischio si calcola come se entrassero tutti
+• Pianificato prima: non è mediare in perdita
+```
+
+**9.4** — didascalia del video `9.4`:
+
+```
+🎬 Lezione 9.4 · Uscite a scaglioni e break-even sui restanti  (2:52)
+
+In breve:
+• Parti uguali, target vicini, break-even sul resto, ultima parte che corre
+• Calcola ogni scenario in pip ed euro
+• Target troppo vicini richiedono un win rate altissimo: misuralo
+```
+
+**9.5** — didascalia del video `9.5`:
+
+```
+🎬 Lezione 9.5 · Mitigare il rischio di un trade aperto  (3:21)
+
+In breve:
+• Mitigare = ridurre il rischio con una regola decisa prima
+• Chiusure parziali, pareggio, invalidazione, stop temporale, notizie
+• Allargare lo stop o mediare in perdita non è mitigare
+```
+
+**9.6** — didascalia del video `9.6`:
+
+```
+🎬 Lezione 9.6 · L'hedging  (3:22)
+
+In breve:
+• L'hedging congela un'esposizione: non cancella la perdita
+• Sullo stesso strumento equivale a chiudere, con più costi
+• Ha senso per portafogli e valute; verifica broker e prop firm
+```
+
+## Modulo 10 · Il tuo piano
+
+Messaggio di apertura del modulo:
+
+```
+━━━━━━━━━━━━━━
+📂 MODULO 10 · IL TUO PIANO
+2 lezioni · 5:25
+━━━━━━━━━━━━━━
+```
+
+**10.1** — didascalia del video `10.1`:
+
+```
+🎬 Lezione 10.1 · Scrivere il piano di gestione del rischio  (2:44)
 
 In breve:
 • Il piano sta in una pagina e ogni riga è un numero
@@ -573,8 +651,8 @@ In breve:
 • Verifica coerenza, stress test e giorno peggiore prima di firmare
 ```
 
-**9.2** — didascalia del video `9.2`:
+**10.2** — didascalia del video `10.2`:
 
 ```
-🎬 Lezione 9.2 · La revisione mensile e il punto di arrivo  (2:41)
+🎬 Lezione 10.2 · La revisione mensile e il punto di arrivo  (2:41)
 ```
