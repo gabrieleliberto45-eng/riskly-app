@@ -47,7 +47,22 @@ def passi(s):
     off = 1 if (n and len(v) == n + 1) else 0
     if n and len(v) not in (n, n + 1) and len(v) > n + 1: raise Exception(f"troppi passaggi voce: {s.get('titolo')} ({len(v)} vs {n})")
     return [(t, n if j == len(v) - 1 else max(0, min(n, j + 1 - off))) for j, t in enumerate(v)]
-def fname(t): return f"{QUI}/voce/{hashlib.md5((VOCE+RATE+t).encode()).hexdigest()[:16]}.mp3"
+ESPANDI = {'Riassumiamo.': 'Riassumiamo ora i punti principali di questa lezione.'}
+def testo_tts(t):
+    """Per la voce multilingue: evita frasi di 1-3 parole (la lingua viene riconosciuta male) unendole alla successiva."""
+    t = t.strip()
+    if t in ESPANDI: return ESPANDI[t]
+    fr = re.split(r'(?<=[.!?])\s+', t); out = []
+    i = 0
+    while i < len(fr):
+        f = fr[i]
+        while len(f.split()) <= 3 and f.endswith('.') and i + 1 < len(fr):
+            i += 1; nxt = fr[i]; f = f[:-1] + ', ' + nxt[0].lower() + nxt[1:] if not nxt.startswith(('L\'', 'E ')) else f[:-1] + ', ' + nxt
+        out.append(f); i += 1
+    if len(out) > 1 and len(out[-1].split()) <= 3 and out[-2].endswith('.'):
+        u = out.pop(); out[-1] = out[-1][:-1] + ', ' + u[0].lower() + u[1:]
+    return ' '.join(out)
+def fname(t): return f"{QUI}/voce/{hashlib.md5((VOCE+RATE+testo_tts(t)).encode()).hexdigest()[:16]}.mp3"
 def durata(f):
     r = subprocess.run([FF, '-i', f, '-f', 'null', '-'], capture_output=True, text=True).stderr
     m = re.findall(r'time=(\d+):(\d+):([\d.]+)', r)[-1]; return int(m[0]) * 3600 + int(m[1]) * 60 + float(m[2])
@@ -64,7 +79,7 @@ async def voce(L):
         async with sem:
             for tent in range(4):
                 try:
-                    c = edge_tts.Communicate(t, VOCE, rate=RATE); tmp = fname(t) + '.tmp'
+                    c = edge_tts.Communicate(testo_tts(t), VOCE, rate=RATE); tmp = fname(t) + '.tmp'
                     await c.save(tmp); os.replace(tmp, fname(t)); return
                 except Exception as e:
                     print('retry', tent, str(e)[:80]); await asyncio.sleep(2 * (tent + 1))
