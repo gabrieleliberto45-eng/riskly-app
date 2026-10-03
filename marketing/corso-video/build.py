@@ -9,7 +9,7 @@ if os.path.exists('/root/.ccr/ca-bundle.crt'): certifi.where = lambda: '/root/.c
 import edge_tts
 QUI = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, QUI + '/lezioni')
 FF = os.environ.get('FFMPEG') or subprocess.check_output(['python3', '-c', 'import imageio_ffmpeg as i;print(i.get_ffmpeg_exe())']).decode().strip()
-VOCE, RATE, PAUSA, PAUSA_SLIDE = 'it-IT-DiegoNeural', '-2%', 0.35, 0.55
+VOCE, RATE, PAUSA, PAUSA_SLIDE = os.environ.get('CORSO_VOCE', 'it-IT-DiegoNeural'), os.environ.get('CORSO_RATE', '-2%'), 0.35, 0.55
 def carica():
     L = []
     for f in sorted(glob.glob(f'{QUI}/lezioni/m*.py')):
@@ -115,6 +115,6 @@ if __name__ == '__main__':
     a = sys.argv[1:] or ['stat']; L = carica(); cmd = a[0]; ids = a[1:]
     if ids: L_sel = [l for l in L if l['id'] in ids]
     if cmd == 'stat': stat(L)
-    if cmd in ('voce', 'tutto'): asyncio.run(voce(L))
+    if cmd in ('voce', 'tutto'): asyncio.run(voce([l for l in L if not ids or l['id'] in ids]))
     if cmd in ('png', 'tutto'): png(L)
     if cmd in ('video', 'tutto'): video(L, ids)
