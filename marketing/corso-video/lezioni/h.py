@@ -15,3 +15,5 @@ def ES(domanda, dati, soluz, risultato, voce):
     return [dict(tipo='esempio', titolo='Prova tu · ' + domanda, righe=[[a, b] for a, b in dati], voce=[voce[0]], risultato=None, k=[n1]),
             dict(tipo='esempio', titolo='Soluzione', righe=[[a, b] for a, b in soluz], risultato=risultato, voce=[voce[1]], k=[n2])]
 def RIEP(punti, voce): return dict(tipo='punti', titolo='In breve', punti=punti, voce=voce)
+def D(titolo, diag, passi, voce, didascalia=None, k=None): return dict(tipo='disegno', titolo=titolo, diag=diag, passi=passi, voce=voce, didascalia=didascalia, k=k)
+def SC(titolo, img, punti, voce, k=None): return dict(tipo='schermata', titolo=titolo, img=img, punti=punti, voce=voce, k=k)

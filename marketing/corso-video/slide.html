@@ -47,6 +47,11 @@ td.ev{color:var(--acc)} td.rs{color:var(--red)}
 .cit em{color:var(--acc)}
 .avv{font-size:38px;line-height:1.45;color:var(--dim)}
 .avv em{color:var(--text);font-style:normal;font-weight:600}
+.el.old{opacity:.5}
+.sch{display:grid;grid-template-columns:520px 1fr;gap:70px;align-items:start}
+.sch .shot{border-radius:22px;border:2px solid var(--line);overflow:hidden;height:700px}
+.sch .shot img{width:100%;display:block}
+svg text{font-family:'Instrument Sans',sans-serif}
 .marchio{position:absolute;right:110px;bottom:34px;font-weight:700;font-size:22px;color:var(--dim)}
 </style></head>
 <body>
@@ -58,6 +63,105 @@ td.ev{color:var(--acc)} td.rs{color:var(--red)}
 const $ = (h) => { const d = document.createElement('div'); d.innerHTML = h; return d.firstElementChild; };
 const E = (t) => String(t).replace(/\*\*(.+?)\*\*/g,'<em>$1</em>');
 /* mostra(slide, passo, info): passo = quanti elementi sono visibili */
+
+/* ---------- disegni animati ---------- */
+function rng(seed){ return function(){ seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+const AC='#B6D84F', RD='#F0716B', BL='#6FB1E8', TX='#E6EDF3', DM='#8B98A9', LN='#2A312B';
+const T_ = (x,y,t,c,sz,an) => '<text x="'+x+'" y="'+y+'" fill="'+(c||TX)+'" font-size="'+(sz||28)+'" text-anchor="'+(an||'start')+'" font-weight="600">'+t+'</text>';
+const L_ = (x1,y1,x2,y2,c,w,d) => '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="'+c+'" stroke-width="'+(w||3)+'"'+(d?' stroke-dasharray="'+d+'"':'')+'/>';
+function candele(closes, x0, dx, Y, seed, forzaMin){
+  const r = rng(seed); let o = '';
+  closes.forEach((c,i) => { const op = i ? closes[i-1] : c; const hi = Math.max(op,c) + 0.00015 + r()*0.00025, lo = Math.min(op,c) - 0.00015 - r()*0.00025;
+    const x = x0 + i*dx, up = c >= op, col = up ? AC : RD; const l2 = (forzaMin && forzaMin[i]) ? forzaMin[i] : lo;
+    o += L_(x, Y(hi), x, Y(l2), col, 3) + '<rect x="'+(x-dx*0.32)+'" y="'+Y(Math.max(op,c))+'" width="'+(dx*0.64)+'" height="'+Math.max(3, Math.abs(Y(op)-Y(c)))+'" fill="'+col+'"/>'; });
+  return o;
+}
+function lineaPath(pts){ return pts.map((p,i) => (i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' '); }
+function interp(kp, n, seed, amp){ const r = rng(seed); const out = []; for(let i=0;i<n;i++){ let j=0; while(j<kp.length-2 && i>kp[j+1][0]) j++; const a=kp[j], b=kp[j+1]; const t=(i-a[0])/(b[0]-a[0]); out.push(a[1]+(b[1]-a[1])*t + (r()-.5)*amp); } return out; }
+
+const DIAG = {
+ /* grafico di un trade: minimo, ingresso, stop, target, esito */
+ trade(k, passi){
+   const W=1700,H=700, pmax=1.1062, pmin=1.0962, Y = p => 20 + (H-40)*(pmax-p)/(pmax-pmin), x0=70, dx=26;
+   const hist = interp([[0,1.1012],[8,1.0996],[14,1.1009],[20,1.0984],[26,1.0993],[32,1.0990],[39,1.1000]], 40, 11, 0.0003); hist[39]=1.1000;
+   const fut = interp([[0,1.1000],[5,1.1012],[10,1.1006],[16,1.1030],[22,1.1046]], 23, 5, 0.0003); fut[0]=1.1000; fut[22]=1.1047;
+   const fl = {}; fl[20] = 1.0980;
+   const ha = n => passi.indexOf(n) >= 0 && passi.indexOf(n) < k;
+   let o = '<svg viewBox="0 0 '+W+' '+H+'" width="100%">';
+   o += candele(hist, x0, dx, Y, 3, fl);
+   const xe = x0 + 39*dx;
+   if(ha('minimo')) o += L_(x0+17*dx, Y(1.0980), W-420, Y(1.0980), BL, 3, '10 8') + T_(x0, Y(1.0980)+36, 'Ultimo minimo 1,0980', BL, 28);
+   if(ha('ingresso')) o += L_(x0, Y(1.1000), W-420, Y(1.1000), TX, 3, '4 6') + '<circle cx="'+xe+'" cy="'+Y(1.1000)+'" r="11" fill="'+TX+'"/>' + T_(W-410, Y(1.1000)+10, 'Ingresso 1,1000', TX, 30);
+   if(ha('stop')) o += '<rect x="'+xe+'" y="'+Y(1.1000)+'" width="'+(W-420-xe)+'" height="'+(Y(1.0975)-Y(1.1000))+'" fill="'+RD+'" opacity=".18"/>' + L_(x0, Y(1.0975), W-420, Y(1.0975), RD, 4) + T_(W-410, Y(1.0975)+10, 'Stop 1,0975', RD, 30) + T_(W-410, Y(1.0975)+48, '−25 pip = −1 R', RD, 28);
+   if(ha('target')) o += '<rect x="'+xe+'" y="'+Y(1.1045)+'" width="'+(W-420-xe)+'" height="'+(Y(1.1000)-Y(1.1045))+'" fill="'+AC+'" opacity=".16"/>' + L_(x0, Y(1.1045), W-420, Y(1.1045), AC, 4) + T_(W-410, Y(1.1045)+10, 'Target 1,1045', AC, 30) + T_(W-410, Y(1.1045)+48, '+45 pip = +1,8 R', AC, 28);
+   if(ha('esito')) { o += candele(fut.slice(1), xe+dx, dx, Y, 9) ; o += '<circle cx="'+(xe+dx*22)+'" cy="'+Y(1.1045)+'" r="14" fill="none" stroke="'+AC+'" stroke-width="5"/>' ; }
+   return o + '</svg>';
+ },
+ /* curva del conto e drawdown */
+ equity(k, passi){
+   const W=1700,H=640, Y = v => 30 + (H-60)*(13000-v)/(13000-8800), X = i => 80 + i*(W-520)/40;
+   const e = interp([[0,10000],[8,10900],[18,12000],[26,10700],[34,9600],[40,10300]], 41, 4, 260); e[0]=10000; e[18]=12000; e[34]=9600;
+   const ha = n => passi.indexOf(n) < k && passi.indexOf(n) >= 0;
+   let o = '<svg viewBox="0 0 '+W+' '+H+'" width="100%">'; for(const v of [9000,10000,11000,12000,13000]) o += L_(80, Y(v), W-430, Y(v), LN, 2) + T_(76, Y(v)+8, (v/1000)+'k', DM, 22, 'end');
+   o += '<path d="'+lineaPath(e.map((v,i)=>[X(i),Y(v)]))+'" fill="none" stroke="'+AC+'" stroke-width="5" stroke-linejoin="round"/>';
+   if(ha('massimo')) o += '<circle cx="'+X(18)+'" cy="'+Y(12000)+'" r="13" fill="'+AC+'"/>' + L_(X(18), Y(12000), W-430, Y(12000), AC, 3, '8 8') + T_(W-420, Y(12000)+9, 'Massimo 12.000 €', AC, 28);
+   if(ha('minimo')) o += '<circle cx="'+X(34)+'" cy="'+Y(9600)+'" r="13" fill="'+RD+'"/>' + L_(X(34), Y(9600), W-430, Y(9600), RD, 3, '8 8') + T_(W-420, Y(9600)+9, 'Minimo 9.600 €', RD, 28);
+   if(ha('drawdown')) o += L_(W-120, Y(12000), W-120, Y(9600), TX, 4) + T_(W-100, (Y(12000)+Y(9600))/2+10, '−20%', RD, 44);
+   return o + '</svg>';
+ },
+ /* asimmetria del recupero */
+ barre(k, passi){
+   const W=1700,H=640, Y = v => H-60 - (H-140)*v/10000, bw=250;
+   const barre = [['Parti', 10000, TX, 0], ['Perdi il 50%', 5000, RD, 1], ['Guadagni il 50%', 7500, BL, 2], ['Per tornare a 10.000', 10000, AC, 3]];
+   let o = '<svg viewBox="0 0 '+W+' '+H+'" width="100%">' + L_(80, H-60, W-60, H-60, LN, 3);
+   barre.forEach((b,i) => { if(i < k){ const x = 130 + i*400; o += '<rect x="'+x+'" y="'+Y(b[1])+'" width="'+bw+'" height="'+(H-60-Y(b[1]))+'" rx="10" fill="'+b[2]+'" opacity="'+(i==3?0.35:0.9)+'"/>' + T_(x+bw/2, Y(b[1])-16, b[1].toLocaleString('it-IT')+' €', TX, 32, 'middle') + T_(x+bw/2, H-18, b[0], DM, 26, 'middle'); } });
+   if(k>=2) o += T_(130+400+bw/2, 265, '−50%', RD, 60, 'middle');
+   if(k>=3) o += T_(130+800+bw/2, 170, '+50%', BL, 60, 'middle');
+   if(k>=4) o += L_(130, Y(10000), W-60, Y(10000), AC, 3, '10 8') + T_(130+1200+bw/2, 420, '+100%', TX, 60, 'middle');
+   return o + '</svg>';
+ },
+ /* Monte Carlo che si riempie */
+ mc(k, passi){
+   const W=1700,H=640, N=400, T=200; const r = rng(77); const eq = [];
+   for(let p=0;p<N;p++){ let c=100; const a=[c]; for(let t=0;t<T;t++){ c *= 1 + 0.01*(r()<0.45?1.8:-1); a.push(c); } eq.push(a); }
+   const Y = v => 20 + (H-60)*(280-v)/(280-70), X = i => 80 + i*(W-200)/T;
+   let o = '<svg viewBox="0 0 '+W+' '+H+'" width="100%">'; for(const v of [100,150,200,250]) o += L_(80, Y(v), W-120, Y(v), LN, 2) + T_(70, Y(v)+8, v, DM, 22, 'end');
+   const nn = k<=0 ? 0 : (k==1?1:(k==2?6:60));
+   for(let p=0;p<nn;p++) o += '<path d="'+lineaPath(eq[p].map((v,i)=>[X(i),Y(v)]))+'" fill="none" stroke="'+(p==0?AC:DM)+'" stroke-width="'+(p==0?5:2)+'" opacity="'+(p==0?1:.45)+'"/>';
+   if(k>=4){ const q = (t,f) => { const col = eq.map(a=>a[t]).sort((a,b)=>a-b); return col[Math.floor(f*(N-1))]; }; const lo=[],hi=[],md=[]; for(let t=0;t<=T;t+=2){ lo.push([X(t),Y(q(t,.1))]); hi.push([X(t),Y(q(t,.9))]); md.push([X(t),Y(q(t,.5))]); }
+     o += '<path d="'+lineaPath(lo)+' '+hi.slice().reverse().map(p=>'L'+p[0]+' '+p[1]).join(' ')+' Z" fill="'+AC+'" opacity=".16"/><path d="'+lineaPath(md)+'" fill="none" stroke="'+AC+'" stroke-width="6"/><path d="'+lineaPath(lo)+'" fill="none" stroke="'+BL+'" stroke-width="3"/><path d="'+lineaPath(hi)+'" fill="none" stroke="'+BL+'" stroke-width="3"/>' + T_(W-110, Y(q(T,.5))-10, 'mediana', AC, 26, 'end') + T_(W-110, Y(q(T,.9))-10, '90° percentile', BL, 24, 'end') + T_(W-110, Y(q(T,.1))+30, '10° percentile', BL, 24, 'end'); }
+   return o + '</svg>';
+ },
+ /* trailing a scatti, in R */
+ trailing(k, passi){
+   const W=1700,H=680, Y = r => H-90 - (H-170)*(r+1.2)/4.7, X = t => 90 + t*(W-440)/46;
+   const pk = [[0,0],[6,-0.5],[10,1.05],[16,0.7],[20,2.05],[26,1.5],[30,3.05],[36,2.4],[41,2.0]];
+   const price = interp(pk, 42, 8, 0.12); price[0]=0;
+   const stops = [[0,-1],[10,0],[20,1],[30,2]];
+   const upto = [0,6,10,20,30,41][Math.min(k,5)];
+   let o = '<svg viewBox="0 0 '+W+' '+H+'" width="100%">'; for(const r of [-1,0,1,2,3]) o += L_(90, Y(r), W-340, Y(r), r==0?DM:LN, 2, r==0?'6 6':null) + T_(W-320, Y(r)+9, (r>0?'+':'')+r+' R'+(r==0?' (ingresso)':''), r==-1?RD:DM, 24);
+   o += '<path d="'+lineaPath(price.slice(0,upto+1).map((v,i)=>[X(i),Y(v)]))+'" fill="none" stroke="'+TX+'" stroke-width="5" stroke-linejoin="round"/>';
+   if(k>=1){ let lvl = -1, path = 'M'+X(0)+' '+Y(-1); const passa = Math.min(Math.max(k-1,0),3); for(let j=1;j<=passa;j++){ const xj = X(stops[j][0]); path += ' L'+xj+' '+Y(lvl); lvl = stops[j][1]; path += ' L'+xj+' '+Y(lvl); }
+     path += ' L'+X(upto)+' '+Y(lvl); o += '<path d="'+path+'" fill="none" stroke="'+RD+'" stroke-width="5"/>'; }
+   if(k>=5) o += '<circle cx="'+X(41)+'" cy="'+Y(2)+'" r="15" fill="'+AC+'"/>' + T_(X(41), Y(2)+62, 'Uscita +2 R', AC, 34, 'middle');
+   return o + '</svg>';
+ },
+ /* uscite a scaglioni sul grafico */
+ scaglioni(k, passi){
+   const W=1700,H=680, Y = r => H-90 - (H-170)*(r+1.3)/5, X = t => 90 + t*(W-540)/46;
+   const price = interp([[0,0],[6,-0.3],[12,1.1],[20,0.6],[26,2.1],[34,1.8],[42,3.1],[46,3.05]], 47, 3, 0.1); price[0]=0;
+   const lv = [['TP1  50% a +1 R',1,AC],['TP2  30% a +2 R',2,AC],['TP3  20% a +3 R',3,AC]];
+   const quando = [0, 12, 26, 42];
+   let o = '<svg viewBox="0 0 '+W+' '+H+'" width="100%">';
+   o += L_(90, Y(0), W-420, Y(0), DM, 2, '6 6') + T_(W-410, Y(0)+9, 'Ingresso', DM, 26) + L_(90, Y(-1), W-420, Y(-1), RD, 4) + T_(W-410, Y(-1)+9, 'Stop −1 R', RD, 26);
+   const upto = [0, 8, 14, 28, 46, 46][Math.min(k,5)];
+   o += '<path d="'+lineaPath(price.slice(0,upto+1).map((v,i)=>[X(i),Y(v)]))+'" fill="none" stroke="'+TX+'" stroke-width="5" stroke-linejoin="round"/>';
+   for(let i=0;i<3;i++){ if(k >= 1){ const hit = k >= 2 + i; o += L_(90, Y(lv[i][1]), W-420, Y(lv[i][1]), hit?AC:BL, 3, hit?null:'10 8') + T_(W-410, Y(lv[i][1])+9, lv[i][0], hit?AC:BL, 26); if(hit) o += '<circle cx="'+X(quando[i+1])+'" cy="'+Y(lv[i][1])+'" r="13" fill="'+AC+'"/>'; } }
+   if(k>=5) o += T_(W-410, Y(4)+10, '0,5·1 + 0,3·2 + 0,2·3', TX, 26) + T_(W-410, Y(4)+50, '= +1,7 R', AC, 40);
+   return o + '</svg>';
+ }
+};
+
 window.mostra = function(s, k, info){
   document.getElementById('mod').innerHTML = '<b>' + info.mod + '</b> ' + info.modTitolo;
   document.getElementById('lez').textContent = 'Lezione ' + info.lez + ' · ' + info.titolo;
@@ -98,10 +202,18 @@ window.mostra = function(s, k, info){
     if(s.testo){ const e = $('<div class="cit el" style="font-size:54px">' + E(s.testo) + '</div>'); a.appendChild(e); els.push(e); }
   } else if(t === 'citazione'){
     a.innerHTML = '<div style="display:flex;height:100%;align-items:center"><div class="cit el">' + E(s.testo) + '</div></div>'; els.push(a.firstElementChild.firstElementChild);
+  } else if(t === 'disegno'){
+    a.innerHTML = testa; const box = $('<div class="card" style="padding:26px 30px"></div>'); a.appendChild(box);
+    box.innerHTML = DIAG[s.diag](k, s.passi); box.querySelector('svg').style.height = '560px'; els = [];
+    if(s.didascalia){ const e = $('<div class="did">' + E(s.didascalia) + '</div>'); a.appendChild(e); }
+  } else if(t === 'schermata'){
+    a.innerHTML = testa; const g = $('<div class="sch"></div>'); a.appendChild(g);
+    g.appendChild($('<div class="shot"><img src="grafici/' + s.img + '"></div>')); const col = $('<div></div>'); g.appendChild(col);
+    (s.punti||[]).forEach(p => { const x = typeof p === 'string' ? [p,''] : p; const e = $('<div class="pt el"><i></i><div>' + E(x[0]) + (x[1] ? '<small>' + E(x[1]) + '</small>' : '') + '</div></div>'); col.appendChild(e); els.push(e); });
   } else if(t === 'avviso'){
     a.innerHTML = testa; const e = $('<div class="card avv el">' + s.testo.map(x => '<p style="margin-bottom:18px">' + E(x) + '</p>').join('') + '</div>'); a.appendChild(e); els.push(e);
   }
-  els.forEach((e, i) => { if(i < k) e.classList.add('on'); });
+  els.forEach((e, i) => { if(i < k) e.classList.add('on'); if(els.length > 1 && i < k - 1 && t !== 'tabella') e.classList.add('old'); });
   if(t === 'titolo' || t === 'citazione') els.forEach(e => e.classList.add('on'));
   window.nEl = els.length;
   return els.length;

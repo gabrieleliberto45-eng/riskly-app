@@ -17,6 +17,11 @@ def carica():
         L.append(m.LEZIONE)
     import extra
     for l in L:
+        for anc, sl in getattr(extra, 'INS', {}).get(l['id'], []):
+            idx = next((i for i, x in enumerate(l['slide']) if x.get('titolo') == anc), None)
+            assert idx is not None, ('ancora non trovata', l['id'], anc)
+            l['slide'].insert(idx + 1, sl)
+        l['slide'] = [x for x in l['slide'] if x.get('titolo') not in getattr(extra, 'DEL', {}).get(l['id'], [])]
         if l['id'] in extra.EXTRA: l['slide'] = l['slide'][:-1] + [x for e in extra.EXTRA[l['id']] for x in (e if isinstance(e, list) else [e])] + l['slide'][-1:]
     return L
 def n_el(s):
@@ -31,6 +36,8 @@ def n_el(s):
     if t == 'grafico': return 1 + (1 if s.get('didascalia') else 0)
     if t == 'numero': return 1 + (1 if s.get('testo') else 0)
     if t == 'avviso': return 1
+    if t == 'disegno': return len(s['passi'])
+    if t == 'schermata': return len(s['punti'])
     raise Exception('tipo? ' + t)
 def passi(s):
     n = n_el(s); v = s['voce']
