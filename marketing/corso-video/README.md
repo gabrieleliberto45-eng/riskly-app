@@ -1,6 +1,6 @@
 # Corso di gestione del rischio · video con voce sintetica
 
-41 lezioni in 10 moduli (introduzione + 9 moduli), slide in stile Riskly (1920×1080) con voce `it-IT-DiegoNeural` (edge-tts).
+47 lezioni in 11 parti (introduzione + 10 moduli, compreso il modulo 9 «Tecniche avanzate»: compounding, trailing, ingressi e uscite a scaglioni, mitigazione, hedging), slide in stile Riskly (1920×1080) con voce `it-IT-DiegoNeural` (edge-tts).
 Le lezioni sono file Python in `lezioni/` (testo parlato + contenuto di ogni slide, un passaggio di voce per ogni elemento che compare).
 
 ## Costruire i video
@@ -20,4 +20,4 @@ Per ricontrollare i numeri citati: `python3 sim_numeri.py`.
 ## Regole del corso
 - Ogni numero di simulazione viene da `sim_numeri.py` (sistema d'esempio: 45% di vincite, +1,8 R / −1 R, 200 trade, 40.000 percorsi).
 - Avviso «educativo, non consulenza» in apertura, in chiusura e nel piè di pagina di ogni slide.
-- I prodotti Riskly compaiono solo nelle lezioni 2.5, 5.2 e 8.4 e sono dichiarati come «miei prodotti».
+- I prodotti Riskly compaiono nelle lezioni 1.4, 2.5, 5.2, 8.4 e 9.4 e sono sempre dichiarati come «miei prodotti».

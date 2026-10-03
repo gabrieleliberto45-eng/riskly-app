@@ -12,7 +12,7 @@ FF = os.environ.get('FFMPEG') or subprocess.check_output(['python3', '-c', 'impo
 VOCE, RATE, PAUSA, PAUSA_SLIDE = os.environ.get('CORSO_VOCE', 'it-IT-DiegoNeural'), os.environ.get('CORSO_RATE', '-2%'), 0.35, 0.55
 def carica():
     L = []
-    for f in sorted(glob.glob(f'{QUI}/lezioni/m*.py')):
+    for f in sorted(glob.glob(f'{QUI}/lezioni/m*.py'), key=lambda p: tuple(int(x) for x in re.findall(r'\d+', os.path.basename(p)))):
         sp = importlib.util.spec_from_file_location('l', f); m = importlib.util.module_from_spec(sp); sp.loader.exec_module(m)
         L.append(m.LEZIONE)
     import extra

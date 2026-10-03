@@ -159,6 +159,30 @@ const DIAG = {
    for(let i=0;i<3;i++){ if(k >= 1){ const hit = k >= 2 + i; o += L_(90, Y(lv[i][1]), W-420, Y(lv[i][1]), hit?AC:BL, 3, hit?null:'10 8') + T_(W-410, Y(lv[i][1])+9, lv[i][0], hit?AC:BL, 26); if(hit) o += '<circle cx="'+X(quando[i+1])+'" cy="'+Y(lv[i][1])+'" r="13" fill="'+AC+'"/>'; } }
    if(k>=5) o += T_(W-410, Y(4)+10, '0,5·25 + 0,3·50 + 0,2·75', TX, 26) + T_(W-410, Y(4)+50, '= +42,5 pip', AC, 40);
    return o + '</svg>';
+ },
+ /* ingressi a scaglioni: tre ordini, stop comune, prezzo medio */
+ ingressi(k, passi){
+   const W=1700,H=680, pmax=1.1030, pmin=1.0945, Y = p => 30 + (H-60)*(pmax-p)/(pmax-pmin), x0=70, dx=18;
+   const hist = interp([[0,1.1022],[10,1.1012],[20,1.1004],[28,1.1001],[34,1.0991],[40,1.0982],[44,1.0979],[50,1.0995],[56,1.1015]], 57, 21, 0.00025);
+   const fino = [10, 28, 36, 44, 44, 56][Math.min(k,5)];
+   let o = '<svg viewBox="0 0 '+W+' '+H+'" width="100%">' + candele(hist.slice(0, fino+1), x0, dx, Y, 13);
+   const liv = [[1.1000,'Ingresso 1 · 1,1000 · 0,2 lotti · 40 pip'],[1.0990,'Ingresso 2 · 1,0990 · 0,2 lotti · 30 pip'],[1.0980,'Ingresso 3 · 1,0980 · 0,2 lotti · 20 pip']];
+   liv.forEach((l,i) => { if(k >= 1){ const preso = k >= 2 + i; o += L_(x0, Y(l[0]), W-560, Y(l[0]), preso?TX:BL, 3, preso?'4 6':'10 8') + T_(W-550, Y(l[0])+9, l[1], preso?TX:BL, 25); } });
+   if(k >= 1) o += L_(x0, Y(1.0960), W-560, Y(1.0960), RD, 4) + T_(W-550, Y(1.0960)+9, 'Stop comune 1,0960', RD, 26);
+   if(k >= 5) o += L_(x0, Y(1.0990), W-560, Y(1.0990), AC, 5) + T_(x0, Y(1.0990)-14, 'Prezzo medio 1,0990', AC, 28) + T_(x0+10, 60, 'Rischio totale: 0,2 × 10 € × (40 + 30 + 20) = 180 €', AC, 30);
+   return o + '</svg>';
+ },
+ /* hedging: la perdita viene congelata */
+ hedge(k, passi){
+   const W=1700,H=680, pmax=1.1030, pmin=1.0930, Y = p => 40 + (H-80)*(pmax-p)/(pmax-pmin), x0=70, dx=26;
+   const p = interp([[0,1.1000],[8,1.0992],[14,1.0980],[22,1.0960],[30,1.0985],[38,1.0950],[46,1.0975]], 47, 31, 0.0002); p[0]=1.1000; p[14]=1.0980;
+   const fino = [0, 14, 14, 46, 46][Math.min(k,4)];
+   let o = '<svg viewBox="0 0 '+W+' '+H+'" width="100%">' + candele(p.slice(0, fino+1), x0, dx, Y, 17);
+   if(k>=1) o += L_(x0, Y(1.1000), W-480, Y(1.1000), AC, 3, '4 6') + T_(W-470, Y(1.1000)+9, 'Buy 0,4 lotti a 1,1000', AC, 26);
+   if(k>=2) o += L_(x0+14*dx, Y(1.0980), W-480, Y(1.0980), RD, 3, '4 6') + T_(W-470, Y(1.0980)+9, 'Sell 0,4 lotti a 1,0980', RD, 26) + T_(x0+10, 30, 'Perdita al momento della copertura: −20 pip × 4 € = −80 €', TX, 28);
+   if(k>=3) o += T_(W-470, Y(1.0950)+9, 'Il prezzo si muove…', DM, 26);
+   if(k>=4) o += '<rect x="'+(W-480)+'" y="70" width="440" height="110" rx="14" fill="'+RD+'" opacity=".15"/>' + T_(W-460, 112, 'P/L fermo a −80 €', RD, 32) + T_(W-460, 152, '+ spread e swap', DM, 26);
+   return o + '</svg>';
  }
 };
 
@@ -213,7 +237,7 @@ window.mostra = function(s, k, info){
   } else if(t === 'avviso'){
     a.innerHTML = testa; const e = $('<div class="card avv el">' + s.testo.map(x => '<p style="margin-bottom:18px">' + E(x) + '</p>').join('') + '</div>'); a.appendChild(e); els.push(e);
   }
-  els.forEach((e, i) => { if(i < k) e.classList.add('on'); if(els.length > 1 && i < k - 1 && t !== 'tabella') e.classList.add('old'); });
+  els.forEach((e, i) => { if(i < k) e.classList.add('on'); if(els.length > 1 && i < k - 1 && ['punti','esempio','confronto','schermata'].includes(t)) e.classList.add('old'); });
   if(t === 'titolo' || t === 'citazione') els.forEach(e => e.classList.add('on'));
   window.nEl = els.length;
   return els.length;

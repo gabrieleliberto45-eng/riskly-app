@@ -60,4 +60,8 @@ rng3=np.random.default_rng(21); f,ax=plt.subplots(figsize=(14,6.8))
 for i in range(8):
     rr=np.where(rng3.random(100)<.45,1.8,-1.0); ax.plot(np.concatenate([[0],np.cumsum(rr)]),color=AC if i==0 else DM,alpha=1 if i==0 else .45,lw=3 if i==0 else 1.5)
 ax.axhline(0,color=RD,lw=1.5,ls='--'); ax.plot(np.arange(101)*.26,color=BL,lw=3,ls='--',label='Media attesa: +0,26 R a trade'); ax.legend(frameon=False,loc='upper left'); ax.set_xlabel('Operazioni'); ax.set_ylabel('Risultato cumulato (R)'); salva(f,'expectancy')
+# 11 compounding: lineare contro composto
+m=np.arange(0,37); f,ax=plt.subplots(figsize=(14,6.8)); ax.plot(m,10000+200*m,color=DM,lw=3,ls='--',label='Lineare: +200 € al mese'); ax.plot(m,10000*1.02**m,color=AC,lw=4,label='Composto: +2% al mese sul capitale corrente')
+for x in (12,24,36): ax.scatter([x],[10000*1.02**x],color=AC,s=110,zorder=5); ax.annotate(f'{10000*1.02**x:,.0f} €'.replace(',', '.'),(x,10000*1.02**x),textcoords='offset points',xytext=(-10,14),ha='right',fontsize=18,color=AC); ax.annotate(f'{10000+200*x:,.0f} €'.replace(',', '.'),(x,10000+200*x),textcoords='offset points',xytext=(-10,-30),ha='right',fontsize=17,color=DM)
+ax.legend(frameon=False,loc='upper left'); ax.set_xlabel('Mesi'); ax.set_ylabel('Capitale (€)'); salva(f,'compounding')
 print('ok')
