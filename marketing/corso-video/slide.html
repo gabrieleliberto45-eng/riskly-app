@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="it"><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0B0D0C;--panel:#151916;--line:#2A312B;--acc:#B6D84F;--text:#E6EDF3;--dim:#8B98A9;--red:#F0716B;--blu:#6FB1E8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:1920px;height:1080px;background:var(--bg);color:var(--text);font-family:'Instrument Sans',sans-serif;position:relative;overflow:hidden}
+.barra{position:absolute;left:0;top:0;height:8px;background:var(--acc)}
+.testa{position:absolute;left:110px;top:56px;right:110px;display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:24px;color:var(--dim);letter-spacing:.04em}
+.testa b{color:var(--acc);font-weight:600}
+.piede{position:absolute;left:110px;right:110px;bottom:40px;display:flex;justify-content:space-between;font-size:20px;color:#5D6B7D}
+.area{position:absolute;left:110px;right:110px;top:130px;bottom:90px}
+h1{font-family:'Instrument Serif',serif;font-weight:400;font-size:84px;line-height:1.05;letter-spacing:-.02em}
+h2{font-family:'Instrument Serif',serif;font-weight:400;font-size:70px;line-height:1.08;letter-spacing:-.02em;margin-bottom:46px}
+h2 em,h1 em{color:var(--acc);font-style:italic}
+.el{opacity:0;transform:translateY(14px);transition:none}
+.el.on{opacity:1;transform:none}
+.pt{display:flex;gap:26px;align-items:flex-start;font-size:46px;line-height:1.28;margin-bottom:30px}
+.pt i{flex:none;width:16px;height:16px;border-radius:50%;background:var(--acc);margin-top:24px}
+.pt small{display:block;font-size:30px;color:var(--dim);margin-top:6px;line-height:1.35}
+.card{background:var(--panel);border:2px solid var(--line);border-radius:26px;padding:34px 40px}
+.form{font-family:'JetBrains Mono',monospace;font-size:62px;color:var(--acc);text-align:center;padding:50px 40px;margin-bottom:34px;font-weight:600;line-height:1.3}
+.leg{display:flex;gap:22px;font-size:36px;margin-bottom:18px;align-items:baseline}
+.leg b{font-family:'JetBrains Mono',monospace;color:var(--acc);font-size:36px;min-width:150px}
+table{border-collapse:collapse;width:100%;font-size:38px}
+th{font-family:'JetBrains Mono',monospace;font-size:28px;color:var(--dim);text-align:right;padding:14px 22px;border-bottom:2px solid var(--line);font-weight:500;letter-spacing:.04em}
+td{padding:17px 22px;text-align:right;border-bottom:1px solid var(--line);font-family:'Instrument Sans',sans-serif;font-weight:500}
+td.n{font-family:'JetBrains Mono',monospace}
+table.fitta{font-size:31px} table.fitta td{padding:9px 22px} table.fitta th{padding:8px 22px;font-size:24px}
+th:first-child,td:first-child{text-align:left;font-family:'Instrument Sans',sans-serif}
+td.ev{color:var(--acc)} td.rs{color:var(--red)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.cols h3{font-size:40px;font-weight:600;margin-bottom:22px}
+.cols .card.a h3{color:var(--acc)} .cols .card.b h3{color:var(--red)}
+.riga{display:flex;justify-content:space-between;font-size:44px;padding:20px 0;border-bottom:1px solid var(--line)}
+.riga span:last-child{font-family:'JetBrains Mono',monospace;font-weight:600}
+.ris{margin-top:34px;font-size:54px;color:var(--acc);font-weight:600;font-family:'Instrument Serif',serif}
+.tit{display:flex;flex-direction:column;justify-content:center;height:100%}
+.tit .k{font-family:'JetBrains Mono',monospace;font-size:30px;color:var(--acc);letter-spacing:.14em;margin-bottom:34px}
+.tit h1{font-size:128px;max-width:1500px}
+.tit p{font-size:44px;color:var(--dim);margin-top:40px;max-width:1300px;line-height:1.35}
+.imgbox{display:flex;justify-content:center}
+.imgbox img{max-height:700px;max-width:1700px;border-radius:20px;border:2px solid var(--line)}
+.did{text-align:center;font-size:34px;color:var(--dim);margin-top:26px}
+.big{font-family:'Instrument Serif',serif;font-size:120px;color:var(--acc);text-align:center;line-height:1.1;margin:20px 0}
+.cit{font-family:'Instrument Serif',serif;font-size:76px;line-height:1.18;text-align:center;max-width:1500px;margin:0 auto}
+.cit em{color:var(--acc)}
+.avv{font-size:38px;line-height:1.45;color:var(--dim)}
+.avv em{color:var(--text);font-style:normal;font-weight:600}
+.marchio{position:absolute;right:110px;bottom:34px;font-weight:700;font-size:22px;color:var(--dim)}
+</style></head>
+<body>
+<div class="barra" id="barra"></div>
+<div class="testa"><span id="mod"></span><span id="lez"></span></div>
+<div class="area" id="area"></div>
+<div class="piede"><span>Contenuto educativo, non consulenza finanziaria. Il trading con leva può far perdere tutto il capitale.</span><span>riskly.trade</span></div>
+<script>
+const $ = (h) => { const d = document.createElement('div'); d.innerHTML = h; return d.firstElementChild; };
+const E = (t) => String(t).replace(/\*\*(.+?)\*\*/g,'<em>$1</em>');
+/* mostra(slide, passo, info): passo = quanti elementi sono visibili */
+window.mostra = function(s, k, info){
+  document.getElementById('mod').innerHTML = '<b>' + info.mod + '</b> ' + info.modTitolo;
+  document.getElementById('lez').textContent = 'Lezione ' + info.lez + ' · ' + info.titolo;
+  document.getElementById('barra').style.width = (info.pct * 100).toFixed(1) + '%';
+  const a = document.getElementById('area'); a.innerHTML = '';
+  const t = s.tipo;
+  let els = [];   // elementi rivelati uno a uno
+  let testa = s.titolo ? '<h2>' + E(s.titolo) + '</h2>' : '';
+  if(t === 'titolo'){
+    a.innerHTML = '<div class="tit"><div class="k">' + (s.kicker||'') + '</div><h1>' + E(s.titolo) + '</h1>' + (s.sotto ? '<p>' + E(s.sotto) + '</p>' : '') + '</div>';
+  } else if(t === 'punti'){
+    a.innerHTML = testa; (s.punti||[]).forEach(p => { const x = typeof p === 'string' ? [p,''] : p;
+      const e = $('<div class="pt el"><i></i><div>' + E(x[0]) + (x[1] ? '<small>' + E(x[1]) + '</small>' : '') + '</div></div>'); a.appendChild(e); els.push(e); });
+  } else if(t === 'formula'){
+    a.innerHTML = testa; const f = $('<div class="card form el">' + (s.formula||'') + '</div>'); a.appendChild(f); els.push(f);
+    (s.legenda||[]).forEach(l => { const e = $('<div class="leg el"><b>' + l[0] + '</b><span>' + E(l[1]) + '</span></div>'); a.appendChild(e); els.push(e); });
+  } else if(t === 'tabella'){
+    a.innerHTML = testa;
+    const tb = $('<div class="card"><table class="' + (s.righe.length > 6 ? 'fitta' : '') + '"><thead><tr>' + s.intest.map(h => '<th>' + h + '</th>').join('') + '</tr></thead><tbody></tbody></table></div>');
+    a.appendChild(tb); const body = tb.querySelector('tbody');
+    s.righe.forEach(r => { const tr = document.createElement('tr'); tr.className = 'el';
+      tr.innerHTML = r.map((c,i) => { let cl = /^[+−~×\d]/.test(String(c)) && String(c).length < 14 ? 'n ' : ''; if(typeof c === 'string' && c.startsWith('+')) cl += 'ev'; if(typeof c === 'string' && c.startsWith('−') && i) cl += 'rs'; return '<td class="' + cl + '">' + E(c) + '</td>'; }).join('');
+      body.appendChild(tr); els.push(tr); });
+    if(s.nota){ const n = $('<div class="did el">' + E(s.nota) + '</div>'); a.appendChild(n); els.push(n); }
+  } else if(t === 'esempio'){
+    a.innerHTML = testa; const c = $('<div class="card"></div>'); a.appendChild(c);
+    s.righe.forEach(r => { const e = $('<div class="riga el"><span>' + E(r[0]) + '</span><span>' + E(r[1]) + '</span></div>'); c.appendChild(e); els.push(e); });
+    if(s.risultato){ const e = $('<div class="ris el">' + E(s.risultato) + '</div>'); a.appendChild(e); els.push(e); }
+  } else if(t === 'confronto'){
+    a.innerHTML = testa; const g = $('<div class="cols"></div>'); a.appendChild(g);
+    [['a', s.sx], ['b', s.dx]].forEach(([c, d]) => { const col = $('<div class="card ' + c + ' el"><h3>' + E(d.t) + '</h3>' + d.punti.map(p => '<div class="riga"><span>' + E(p[0]) + '</span><span>' + E(p[1]||'') + '</span></div>').join('') + '</div>'); g.appendChild(col); els.push(col); });
+    if(s.risultato){ const e = $('<div class="ris el">' + E(s.risultato) + '</div>'); a.appendChild(e); els.push(e); }
+  } else if(t === 'grafico'){
+    a.innerHTML = testa; const b = $('<div class="imgbox el"><img src="grafici/' + s.img + '"></div>'); a.appendChild(b); els.push(b);
+    if(s.didascalia){ const e = $('<div class="did el">' + E(s.didascalia) + '</div>'); a.appendChild(e); els.push(e); }
+  } else if(t === 'numero'){
+    a.innerHTML = testa; const n = $('<div class="big el">' + E(s.numero) + '</div>'); a.appendChild(n); els.push(n);
+    if(s.testo){ const e = $('<div class="cit el" style="font-size:54px">' + E(s.testo) + '</div>'); a.appendChild(e); els.push(e); }
+  } else if(t === 'citazione'){
+    a.innerHTML = '<div style="display:flex;height:100%;align-items:center"><div class="cit el">' + E(s.testo) + '</div></div>'; els.push(a.firstElementChild.firstElementChild);
+  } else if(t === 'avviso'){
+    a.innerHTML = testa; const e = $('<div class="card avv el">' + s.testo.map(x => '<p style="margin-bottom:18px">' + E(x) + '</p>').join('') + '</div>'); a.appendChild(e); els.push(e);
+  }
+  els.forEach((e, i) => { if(i < k) e.classList.add('on'); });
+  if(t === 'titolo' || t === 'citazione') els.forEach(e => e.classList.add('on'));
+  window.nEl = els.length;
+  return els.length;
+};
+</script>
+</body></html>

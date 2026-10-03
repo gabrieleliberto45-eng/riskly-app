@@ -1,0 +1,13 @@
+from h import *
+LEZIONE = L('1.5', 'Modulo 1', 'Le basi', 'Il rapporto rischio/rendimento', [
+ T('LEZIONE 1.5', 'Rischio e **rendimento**', 'Quanto punti a guadagnare per ogni euro che rischi.', "Lezione uno punto cinque. Il rapporto rischio rendimento."),
+ F('Il rapporto RR', 'RR = Guadagno obiettivo ÷ Rischio', [('Guadagno', 'distanza tra ingresso e take profit'), ('Rischio', 'distanza tra ingresso e stop loss')],
+  ["Il rapporto rischio rendimento, in breve RR, dice quanto punti a guadagnare per ogni unità che rischi.", "Si calcola dividendo il guadagno obiettivo, cioè la distanza tra ingresso e take profit, per il rischio, cioè la distanza tra ingresso e stop loss.", "Se rischi venticinque pip per puntarne quarantacinque, il rapporto è uno virgola otto."]),
+ EX('Esempio', [['Ingresso', '1,1000'], ['Stop loss', '1,0975  (−25 pip)'], ['Take profit', '1,1045  (+45 pip)'], ['RR', '45 ÷ 25']], risultato='RR = 1,8', k=[1,2,3,5],
+  voce=["Un esempio. Entri a uno virgola uno zero zero zero.", "Lo stop è venticinque pip sotto.", "Il take profit è quarantacinque pip sopra.", "Il rapporto è quarantacinque diviso venticinque: uno virgola otto. Rischi uno per guadagnare uno virgola otto."]),
+ P('Non basta un RR alto', [('Un take profit lontano si raggiunge meno spesso', 'più è ambizioso, più scende la percentuale di trade vincenti'), ('Un RR basso richiede di vincere quasi sempre', 'con RR 0,5 serve vincere due volte su tre solo per pareggiare'), ('Conta il rapporto tra RR e win rate', 'li guardiamo insieme nella prossima lezione')],
+  ["Attenzione: un rapporto alto da solo non basta.", "Un take profit molto lontano si raggiunge meno spesso: più è ambizioso, più scende la percentuale di trade vincenti.", "All'opposto, con un RR basso devi vincere quasi sempre. Con RR zero virgola cinque serve vincere due volte su tre soltanto per pareggiare.", "Quello che conta è la combinazione tra RR e win rate, e la vediamo nella prossima lezione."]),
+ EX('Cinque operazioni, tutte con RR 1,8', [['Trade 1', 'vinto  +1,8 R'], ['Trade 2', 'perso  −1 R'], ['Trade 3', 'perso  −1 R'], ['Trade 4', 'vinto  +1,8 R'], ['Trade 5', 'perso  −1 R']], risultato='Totale: +0,6 R con 2 vinti su 5',
+  voce=["Cinque operazioni, tutte con RR uno virgola otto.", "La prima va a target: più uno virgola otto.", "La seconda allo stop: meno uno.", "La terza ancora stop.", "La quarta va a target.", "La quinta allo stop. Hai vinto solo due trade su cinque, il quaranta per cento.", "Eppure il totale è positivo: più zero virgola sei volte il rischio. È questo il potere di un buon rapporto."]),
+ Q('Non devi avere ragione spesso. Devi **guadagnare di più** quando ce l\'hai.', "Non devi avere ragione spesso. Devi guadagnare di più quando ce l'hai."),
+])

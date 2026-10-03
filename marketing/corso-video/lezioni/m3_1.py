@@ -1,0 +1,16 @@
+from h import *
+LEZIONE = L('3.1', 'Modulo 3', 'Drawdown e perdite', 'Che cos\'è il drawdown', [
+ T('LEZIONE 3.1', 'Il **drawdown**', 'La distanza tra il massimo del conto e il punto in cui sei adesso.', "Lezione tre punto uno. Che cos'è il drawdown."),
+ P('Definizione', [('Drawdown = calo dal massimo precedente', 'non dal capitale iniziale'), ('Si misura in percentuale', '(massimo − valore attuale) ÷ massimo'), ('Esiste il drawdown massimo', 'il peggiore calo di tutta la storia del conto')],
+  ["Il drawdown è il calo del conto rispetto al suo massimo precedente. Non rispetto al capitale iniziale.", "Si misura in percentuale: massimo meno valore attuale, diviso il massimo.", "Il drawdown massimo è il peggiore calo di tutta la storia del conto."]),
+ EX('Esempio', [['Capitale iniziale', '10.000 €'], ['Massimo raggiunto', '12.000 €'], ['Punto più basso dopo', '9.600 €'], ['Drawdown', '(12.000 − 9.600) ÷ 12.000']], risultato='Drawdown = 20%', k=[1,2,3,4,5],
+  voce=["Un esempio. Parti da diecimila euro.", "Il conto sale fino a dodicimila: questo è il tuo massimo.", "Poi scende fino a novemilaseicento.", "Il drawdown è dodicimila meno novemilaseicento, diviso dodicimila.", "Venti per cento. Nota: sei ancora sotto il massimo di duemilaquattrocento euro, anche se rispetto al capitale iniziale hai perso solo il quattro per cento."]),
+ P('Perché guardarlo', [('È la misura del dolore', 'quanto stai soffrendo rispetto al meglio che avevi'), ('È il parametro che le prop firm controllano', 'con limiti rigidi, come vedremo'), ('Decide se riesci a seguire il piano', 'un drawdown che non sopporti ti farà cambiare le regole')],
+  ["Perché è così importante?", "È la misura del dolore: quanto stai soffrendo rispetto al meglio che avevi.", "È il parametro che le prop firm controllano, con limiti rigidi, come vedremo nel modulo sette.", "E decide se riesci a seguire il piano. Un drawdown che non sopporti ti farà cambiare le regole nel momento peggiore."]),
+ TB('Le tre misure', ['Misura', 'Cosa dice'], [['Drawdown attuale', 'dove sei ora rispetto al massimo'], ['Drawdown massimo', 'il peggiore della storia'], ['Durata del drawdown', 'quanto tempo serve per tornare al massimo']],
+  ["Tre misure da monitorare. Il drawdown attuale: dove sei ora rispetto al massimo.", "Il drawdown massimo: il peggiore della storia.", "E la durata: quanto tempo serve per tornare al massimo. Spesso è la durata, più che la profondità, a rompere la disciplina di un trader."]),
+ *ES('drawdown', [['Massimo del conto', '15.000 €'], ['Valore attuale', '12.750 €']], [['Calo', '15.000 − 12.750 = 2.250 €'], ['Percentuale', '2.250 ÷ 15.000']], 'Drawdown = 15%',
+  ["Esercizio. Il massimo del tuo conto è quindicimila euro, adesso vale dodicimilasettecentocinquanta. Qual è il drawdown?", "Il calo è duemiladuecentocinquanta euro. Diviso quindicimila fa il quindici per cento."]),
+ RIEP(['Drawdown = calo percentuale dal massimo', 'Va monitorato: attuale, massimo e durata', 'Decide se riesci a seguire il piano e se superi i limiti delle prop'], ["Riassumiamo.", "Il drawdown è il calo percentuale dal massimo.", "Va monitorato in tre modi: attuale, massimo e durata.", "E decide se riesci a seguire il piano e se superi i limiti delle prop firm."]),
+ Q('Il drawdown non si **evita**. Si **dimensiona**.', "Il drawdown non si evita. Si dimensiona."),
+])

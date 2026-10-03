@@ -1,0 +1,40 @@
+# Slide aggiuntive inserite prima della citazione finale di alcune lezioni
+from h import *
+EXTRA = {}
+EXTRA['1.1'] = [
+ CF('Cinque perdite di fila', dict(t='Rischio 1%', punti=[['Dopo 5 perdite', '−4,9%'], ['Capitale da 10.000 €', '9.510 €']]), dict(t='Rischio 5%', punti=[['Dopo 5 perdite', '−22,6%'], ['Capitale da 10.000 €', '7.738 €']]),
+  ["Vediamo cosa significa nella pratica. Cinque perdite di fila sono normali in qualsiasi sistema.", "Con il rischio all'uno per cento, cinque perdite consecutive costano il 4,9 per cento: da diecimila euro scendi a 9.510. Si recupera senza drammi.", "Con il rischio al cinque per cento, le stesse cinque perdite costano il 22,6 per cento: da diecimila euro scendi a 7.738. Per tornare al punto di partenza serve un guadagno di quasi il 30 per cento.", "La serie di perdite è identica. Cambia solo quanto rischiavi. È la dimensione del rischio a trasformare una serie normale in un disastro."], 'Stessa serie di perdite: cambia solo il rischio.'),
+ ES('rischio 2%', [['Capitale', '20.000 €'], ['Rischio per trade', '2%'], ['Domanda 1', 'perdita massima su un trade?'], ['Domanda 2', 'capitale dopo 3 perdite di fila?']], [['Perdita sul trade', '2% di 20.000 = 400 €'], ['Dopo 3 perdite', '20.000 × 0,98³'], ['Capitale', '18.824 €']], 'Perdita totale: 1.176 € (5,9%, non 6%)',
+  ["Ora tocca a te. Metti in pausa il video, se vuoi. Hai ventimila euro e rischi il due per cento a operazione. Quanto perdi al massimo su un trade? E quanto ti resta dopo tre perdite di fila?", "La perdita massima su un trade è il due per cento di ventimila: quattrocento euro. Dopo tre perdite, il capitale è ventimila per zero virgola novantotto alla terza: diciottomilaottocentoventiquattro euro. Hai perso 1.176 euro, cioè il 5,9 per cento, non il 6: le perdite si compongono, ogni volta il due per cento si applica a un capitale più piccolo."]),
+ RIEP(['Il rischio per trade decide se sopravvivi e quanto soffri', 'Stessa strategia, rischio diverso: destini molto diversi', 'Tre numeri da scrivere: perdita massima, perdite di fila, punto di stop'],
+  ["Riassumiamo.", "Il rischio per trade decide se sopravvivi e quanto soffri.", "Con la stessa strategia, un rischio diverso porta a destini molto diversi.", "E ci servono tre numeri scritti: la perdita massima per operazione, quante perdite di fila reggi, e il punto in cui ti fermi."]),
+]
+EXTRA['1.2'] = [
+ TB('Il rischio in euro cambia con il capitale', ['Capitale', 'Rischio 1%'], [['10.000 €', '100 €'], ['12.000 € (dopo +20%)', '120 €'], ['8.000 € (dopo −20%)', '80 €']],
+  ["Una cosa importante: il rischio in percentuale resta fisso, ma in euro cambia con il capitale.", "Con diecimila euro, l'uno per cento è cento euro.", "Se il conto sale a dodicimila, l'uno per cento diventa centoventi euro: rischi di più in valore assoluto, ma lo stesso in proporzione.", "Se il conto scende a ottomila, diventa ottanta euro. Quando perdi, le posizioni si rimpiccioliscono da sole. È un freno automatico che protegge il capitale."], nota='Il rischio in % si adatta da solo: più piccolo quando perdi.'),
+ ES('rischio 0,5%', [['Capitale', '25.000 €'], ['Rischio per trade', '0,5%'], ['Domanda', 'quanto rischi in euro?']], [['Calcolo', '25.000 × 0,005']], 'Rischio = 125 €',
+  ["Un esercizio rapido. Hai venticinquemila euro e rischi mezzo per cento a operazione. Quanto rischi in euro?", "Venticinquemila per zero virgola zero zero cinque: centoventicinque euro."]),
+ RIEP(['Rischio = quanto perdi se il trade va male', 'Si esprime in percentuale e si decide prima di entrare', 'Il rischio in euro si adatta al capitale: scende quando perdi'],
+  ["Riassumiamo.", "Il rischio è quanto perdi se il trade va male.", "Si esprime in percentuale e si decide prima di entrare.", "E in euro si adatta al capitale: quando perdi, le posizioni si rimpiccioliscono da sole."]),
+]
+EXTRA['1.3'] = [
+ EX('Come si sceglie lo stop', [['Ingresso long', '1,1000'], ['Ultimo minimo rilevante', '1,0980'], ['Margine per il rumore', '5 pip'], ['Stop loss', '1,0975'], ['Distanza', '25 pip']], risultato='Stop deciso dal grafico, non dal portafoglio', k=[1,2,3,4,5,6],
+  voce=["Un esempio pratico. Vuoi comprare a uno virgola uno zero zero zero.", "L'ultimo minimo rilevante è a uno virgola nove otto zero: sotto quel livello l'idea di acquisto non vale più.", "Lasci un margine di cinque pip, perché il prezzo può sfiorare un livello senza romperlo.", "Lo stop va quindi a uno virgola zero nove sette cinque.", "Che significa venticinque pip di distanza.", "Notare l'ordine: lo stop è stato deciso guardando il grafico, non guardando quanto avresti voluto rischiare."]),
+ ES('stop e valore del pip', [['Rischio', '60 €'], ['Stop', '30 pip'], ['Domanda', 'quanto deve valere un pip?']], [['Valore del pip', '60 ÷ 30'], ['Pip da 2 € = lotto', '0,2']], 'Valore pip = 2 € → 0,2 lotti',
+  ["Esercizio. Vuoi rischiare sessanta euro con uno stop a trenta pip. Quanto deve valere un pip, perché la perdita massima sia sessanta euro?", "Sessanta diviso trenta: due euro a pip. Con circa dieci euro a pip per un lotto, significa zero virgola due lotti. Nella prossima lezione trasformiamo questo ragionamento in una formula."]),
+ RIEP(['Lo stop è il prezzo in cui l\'idea è sbagliata', 'Si sceglie dal grafico; il lotto si adatta al rischio', 'Si può stringere, mai allargare'], ["Riassumiamo.", "Lo stop è il prezzo in cui l'idea è sbagliata.", "Si sceglie dal grafico, e il lotto si adatta al rischio.", "Si può stringere, ma mai allargare."]),
+]
+EXTRA['1.4'] = [
+ EX('Secondo esempio', [['Capitale', '20.000 €'], ['Rischio per trade', '0,5% = 100 €'], ['Stop', '40 pip'], ['Lotti', '100 ÷ (40 × 10)']], risultato='= 0,25 lotti', k=[2,3,4,5],
+  voce=["Secondo esempio, con un conto più grande ma un rischio più piccolo.", "Capitale ventimila euro, rischio mezzo per cento: sempre cento euro.", "Stop a quaranta pip.", "Cento diviso quaranta per dieci: zero virgola venticinque lotti."]),
+ ES('calcola il lotto', [['Capitale', '5.000 €'], ['Rischio', '2%'], ['Stop', '20 pip'], ['Valore pip', '10 € per lotto']], [['Rischio in euro', '5.000 × 0,02 = 100 €'], ['Lotti', '100 ÷ (20 × 10)']], 'Lotti = 0,5',
+  ["Esercizio. Capitale cinquemila euro, rischio due per cento, stop a venti pip, valore del pip dieci euro per lotto. Quanti lotti?", "Il rischio in euro è cento. Cento diviso venti per dieci fa zero virgola cinque. Mezzo lotto."]),
+ RIEP(['Lotti = rischio in € ÷ (stop in pip × valore del pip)', 'Stop più largo → lotto più piccolo, rischio uguale', 'Arrotonda per difetto e controlla il valore del pip del tuo conto'], ["Riassumiamo.", "Lotti uguale rischio in euro diviso stop in pip per valore del pip.", "Uno stop più largo comporta un lotto più piccolo, a parità di rischio.", "E arrotonda sempre per difetto, controllando il valore del pip del tuo conto."]),
+]
+EXTRA['1.5'] = [
+ TB('Lo stesso RR, win rate diversi (10 trade)', ['RR', 'Vinti su 10', 'Risultato'], [['3', '3', '+2 R'], ['2', '4', '+2 R'], ['1', '5', '0 R']],
+  ["Vediamo come RR e percentuale di vittorie lavorano insieme, su dieci operazioni.", "Con RR tre, bastano tre vittorie su dieci: tre per tre fa nove, meno sette perdite, più due R.", "Con RR due, quattro vittorie su dieci: otto meno sei, più due R.", "Con RR uno, cinque su dieci ti portano a zero: sei in pareggio, prima dei costi."], nota='Prima dei costi di spread e commissioni.'),
+ ES('RR 2 e win rate 40%', [['RR', '2'], ['Operazioni', '10'], ['Vinte', '4 (40%)'], ['Domanda', 'risultato in R?']], [['4 vinte', '4 × 2 = +8 R'], ['6 perse', '6 × 1 = −6 R']], 'Totale: +2 R',
+  ["Esercizio. RR due, dieci operazioni, quattro vinte. Quanto fai in R?", "Quattro vinte per due: più otto R. Sei perse per uno: meno sei R. Totale: più due R."]),
+ RIEP(['RR = guadagno obiettivo ÷ rischio', 'Un RR alto da solo non basta: conta con il win rate', 'Si può guadagnare anche vincendo meno della metà delle volte'], ["Riassumiamo.", "RR è il guadagno obiettivo diviso il rischio.", "Un RR alto da solo non basta: conta in combinazione con il win rate.", "E si può guadagnare anche vincendo meno della metà delle volte."]),
+]
