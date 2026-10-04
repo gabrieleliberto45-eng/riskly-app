@@ -5,7 +5,13 @@ import os, sys, json, re, glob, time, subprocess, requests, build
 T = os.environ['TG_TOKEN']; API = f'https://api.telegram.org/bot{T}/'; STATO = build.QUI + '/out/telegram_stato.json'
 def call(m, files=None, **p):
     for t in range(6):
-        r = requests.post(API + m, data=p, files=files, timeout=600).json()
+        try:
+            if files:
+                for v in files.values():
+                    if hasattr(v[1], 'seek'): v[1].seek(0)
+            r = requests.post(API + m, data=p, files=files, timeout=600).json()
+        except requests.exceptions.RequestException as e:
+            print('rete, riprovo:', type(e).__name__, flush=True); time.sleep(5 * (t + 1)); continue
         if r.get('ok'): return r['result']
         ra = r.get('parameters', {}).get('retry_after')
         if ra: time.sleep(ra + 1); continue
