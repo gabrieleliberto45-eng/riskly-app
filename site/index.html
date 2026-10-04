@@ -1338,6 +1338,7 @@
       <div class="h-cta">
         <button class="btn pri lg" onclick="apriModulo('attesa','tutti i prodotti',0)">Blocca il prezzo dei bot</button>
         <button class="btn lg" onclick="go('app')">Prova il journal</button>
+        <button class="btn lg" onclick="go('corso')">Videocorso · 199 €</button>
       </div>
       <div class="h-fine"><b>Tutto è già disponibile</b> — journal, videocorso e calcolatori — <b>tranne i bot</b> per MT4 e MT5, che escono il 23 ottobre</div>
 
@@ -5719,7 +5720,7 @@ calcPos(); calcRuin(); calcProp(); calcBE(); calcComp(); setCiclo('a');
 <!-- barra in basso (solo telefono) -->
 <div class="sbarra" id="sbarra" aria-label="Navigazione">
   <button data-p="home" class="on" onclick="go('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20h14V9.5"/><path d="M10 20v-5h4v5"/></svg>Home</button>
-  <button data-p="bot" onclick="go('bot')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="7" width="14" height="12" rx="3"/><path d="M12 7V4"/><circle cx="12" cy="3.5" r=".8"/><path d="M9.5 12v1.5M14.5 12v1.5"/><path d="M2.5 12v3M21.5 12v3"/></svg>Bot</button>
+  <button data-p="corso" onclick="go('corso')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="13" rx="2.5"/><path d="m10 9 5 2.5-5 2.5Z"/></svg>Corso</button>
   <button data-p="app" class="sb-piu" onclick="go('app')" aria-label="Journal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5"/><path d="M4 19h16"/><path d="m7 15 4-4 3 3 5-6"/></svg></button>
   <button data-p="journal" onclick="go('journal')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8Z"/><circle cx="7.5" cy="7.5" r="1.3"/></svg>Prezzi</button>
   <button data-p="altro" onclick="apriAltro()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="19" cy="12" r="1.3"/></svg>Altro</button>
@@ -5727,7 +5728,7 @@ calcPos(); calcRuin(); calcProp(); calcBE(); calcComp(); setCiclo('a');
 <div class="saltro" id="saltro" onclick="if(event.target===this)chiudiAltro()">
   <div class="saltro-box">
     <button data-p="calc" onclick="chiudiAltro();go('calc')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8.5 7h7"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01M8.5 15h.01M12 15h.01M15.5 15h.01M8.5 18h.01M12 18h.01M15.5 18h.01"/></svg>Calcolatori</button>
-    <button data-p="corso" onclick="chiudiAltro();go('corso')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="13" rx="2.5"/><path d="m10 9 5 2.5-5 2.5Z"/></svg>Corso</button>
+    <button data-p="bot" onclick="chiudiAltro();go('bot')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="7" width="14" height="12" rx="3"/><path d="M12 7V4"/><circle cx="12" cy="3.5" r=".8"/><path d="M9.5 12v1.5M14.5 12v1.5"/><path d="M2.5 12v3M21.5 12v3"/></svg>Bot</button>
     <button data-p="metodo" onclick="chiudiAltro();go('metodo')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v5c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6Z"/><path d="m9 12 2 2 4-4"/></svg>Metodo</button>
     <button data-p="faq" onclick="chiudiAltro();go('faq')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.4"/><path d="M12 17h.01"/></svg>FAQ</button>
     <hr>
@@ -5737,7 +5738,7 @@ calcPos(); calcRuin(); calcProp(); calcBE(); calcComp(); setCiclo('a');
   </div>
 </div>
 <script>
-const PAGINE_ALTRO = ['calc','corso','metodo','faq','gestione'];
+const PAGINE_ALTRO = ['calc','bot','metodo','faq','gestione'];
 function segnaBarra(id){
   document.querySelectorAll('#dbarra button').forEach(b=>b.classList.toggle('on', b.dataset.p === id));
   document.querySelectorAll('#sbarra button').forEach(b=>
