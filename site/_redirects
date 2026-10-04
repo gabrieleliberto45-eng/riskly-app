@@ -10,3 +10,6 @@
 /yt   /?da=youtube     200
 /bio  /?da=bio         200
 
+
+# qualsiasi altro indirizzo (es. link delle email di conferma) apre il sito invece di "Page not found"
+/*    /index.html   200

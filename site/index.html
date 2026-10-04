@@ -4545,7 +4545,7 @@ async function inviaAccesso(e){
 
     if(modoAccesso === 'registrati'){
       const { data, error } = await sb.auth.signUp({
-        email, password: pass, options:{ data:{ nome: nome || email.split('@')[0] } }
+        email, password: pass, options:{ emailRedirectTo: location.origin + '/', data:{ nome: nome || email.split('@')[0] } }
       });
       if(error) throw error;
       if(!data.session){
