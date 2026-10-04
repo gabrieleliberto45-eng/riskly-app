@@ -1718,7 +1718,7 @@ body{padding-top:0}
     <div class="mod-head">
       <div class="mod-kicker" id="acc-kicker">REGISTRAZIONE</div>
       <h3 id="acc-titolo">Crea il tuo account</h3>
-      <p id="acc-sotto">Sette giorni di prova, senza carta di credito.</p>
+      <p id="acc-sotto">Crea l'account, poi scegli il piano su riskly.trade.</p>
     </div>
 
     <form id="acc-form" onsubmit="inviaAccesso(event)">
@@ -1805,7 +1805,7 @@ function aggiornaModaleAccesso(){
   document.getElementById('acc-kicker').textContent = nuovo ? 'REGISTRAZIONE' : 'ACCESSO';
   document.getElementById('acc-titolo').textContent = nuovo ? 'Crea il tuo account' : 'Bentornato';
   document.getElementById('acc-sotto').textContent  = nuovo
-    ? 'Sette giorni di prova, senza carta di credito.'
+    ? 'Crea l\'account, poi scegli il piano su riskly.trade.'
     : 'Accedi per ritrovare le tue operazioni.';
 
   document.getElementById('acc-campo-nome').style.display = nuovo ? 'block' : 'none';
@@ -2094,14 +2094,11 @@ async function inserisciOperazioni(list){
 
 const LIMITE_SHOT = { prova: 10, base: 0, pro: 100, premium: Infinity };
 
-/* il piano davvero attivo: se la prova è scaduta, decade */
+/* il piano davvero attivo: niente prova gratuita, senza un piano pagato non c'è piano */
 function pianoAttivo(){
   if(!utente) return 'demo';
   const p = profilo ? (profilo.piano || 'prova') : 'prova';
-  if(p === 'prova' && profilo && profilo.scadenza){
-    if(new Date(profilo.scadenza) < new Date()) return 'scaduto';
-  }
-  return p;
+  return p === 'prova' ? 'scaduto' : p;
 }
 
 function limiteShot(){
@@ -4401,12 +4398,8 @@ function aggiornaBanner(){
   }
 
   const piano = pianoAttivo();
-  const nomi = {prova:'Prova gratuita', base:'Piano Base', pro:'Piano Pro', premium:'Piano Premium', scaduto:'Prova gratuita scaduta'};
+  const nomi = {prova:'Prova gratuita', base:'Piano Base', pro:'Piano Pro', premium:'Piano Premium', scaduto:'Nessun piano attivo'};
   let scad = '';
-  if(piano === 'prova' && profilo && profilo.scadenza){
-    const g = Math.ceil((new Date(profilo.scadenza) - new Date()) / 86400000);
-    scad = ` · ${g} ${g === 1 ? 'giorno rimasto' : 'giorni rimasti'}`;
-  }
   t.textContent = (nomi[piano] || piano) + scad;
   p.textContent = piano === 'scaduto'
     ? 'Scegli un piano per continuare a usare tutte le funzioni. Le tue operazioni restano salvate.'
