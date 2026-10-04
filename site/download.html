@@ -66,8 +66,15 @@
 
   <div class="lista" id="lista">
     <h1>Area clienti</h1>
-    <p>Grazie per l'acquisto. I bot, la guida all'installazione e tutti gli aggiornamenti li trovi nel gruppo Telegram riservato ai clienti.</p>
+    <p id="lista-intro">Grazie per l'acquisto. I bot, la guida all'installazione e tutti gli aggiornamenti li trovi nel gruppo Telegram riservato ai clienti.</p>
 
+    <div class="grp" id="corso-box" style="border-color:rgba(182,216,79,.45);display:none">
+      <h3>Il tuo videocorso</h3>
+      <div class="sub">Il corso è in un gruppo Telegram privato, con una cartella per ogni modulo e le lezioni in ordine. Tocca il pulsante e chiedi di entrare: approviamo le richieste a mano, di solito in poche ore. L'accesso è a vita.</div>
+      <div id="corso-tg"></div>
+    </div>
+
+    <div id="bot-box">
     <div class="grp" style="border-color:rgba(182,216,79,.45)">
       <h3>1 · Entra nel gruppo clienti</h3>
       <div class="sub">Riservato a chi ha acquistato. Le richieste di accesso sono approvate a mano, di solito entro poche ore.</div>
@@ -82,6 +89,7 @@
     <div class="grp">
       <h3>3 · Installa e prova su demo</h3>
       <div class="sub" style="margin-bottom:0">Nel gruppo trovi la guida passo passo. Prova sempre su conto demo prima di usare il bot su un conto reale.</div>
+    </div>
     </div>
 
     <p class="note">Problemi? Scrivi a <b>supporto@riskly.trade</b>.</p>
@@ -123,23 +131,34 @@
 
   /* il link del gruppo arriva dal server, e solo a chi ha un acquisto attivo:
      nel codice della pagina non c'è, quindi non si trova con "visualizza sorgente" */
-  async function sblocca(){
-    document.getElementById('gate').style.display = 'none';
-    document.getElementById('lista').style.display = 'block';
-    const box = document.getElementById('tg-box');
-    let link = '';
+  async function linkDa(funzione){
     try{
-      const { data, error } = await sb.rpc('link_gruppo_clienti');
-      if(!error && typeof data === 'string' && data.startsWith('https://t.me/')) link = data;
+      const { data, error } = await sb.rpc(funzione);
+      if(!error && typeof data === 'string' && data.startsWith('https://t.me/')) return data;
     }catch(e){}
+    return '';
+  }
+  function pulsante(box, link, testo){
     if(link){
       const a = document.createElement('a');
       a.className = 'btn-link'; a.href = link; a.target = '_blank'; a.rel = 'noopener';
-      a.textContent = 'Entra nel gruppo Telegram';
+      a.textContent = testo;
       box.replaceChildren(a);
     }else{
-      box.innerHTML = '<div class="sub" style="margin:0;color:var(--text)">Il link del gruppo è in arrivo: ti scriviamo noi all\'email dell\'acquisto.</div>';
+      box.innerHTML = '<div class="sub" style="margin:0;color:var(--text)">Il link è in arrivo: ti scriviamo noi all\'email dell\'acquisto.</div>';
     }
+  }
+  /* prodotti attivi: il corso ha il suo gruppo, i bot il gruppo clienti */
+  async function sblocca(prodotti){
+    document.getElementById('gate').style.display = 'none';
+    document.getElementById('lista').style.display = 'block';
+    const haCorso = prodotti.some(p => /corso/i.test(p));
+    const haBot = prodotti.some(p => !/corso/i.test(p) && !/^journal/i.test(p));
+    document.getElementById('corso-box').style.display = haCorso ? 'block' : 'none';
+    document.getElementById('bot-box').style.display = haBot ? 'block' : 'none';
+    if(haCorso && !haBot) document.getElementById('lista-intro').textContent = 'Grazie per l\'acquisto. Qui sotto trovi l\'accesso al tuo videocorso.';
+    if(haCorso) pulsante(document.getElementById('corso-tg'), await linkDa('link_gruppo_corso'), 'Entra nel corso su Telegram');
+    if(haBot) pulsante(document.getElementById('tg-box'), await linkDa('link_gruppo_clienti'), 'Entra nel gruppo Telegram');
   }
 
   /* arrivo da Stripe dopo il pagamento (i link di pagamento aggiungono ?pagato=1) */
@@ -159,7 +178,7 @@
       mostraGate(
         PAGATO
           ? RICEVUTO + 'Per seguire il tuo ordine accedi con l\'account Riskly che hai usato per acquistare: '
-            + 'quando lo confermiamo, qui compare il pulsante per il gruppo clienti.'
+            + 'quando lo confermiamo, qui compare il pulsante per entrare nel gruppo Telegram.'
           : 'Per entrare nell\'area clienti accedi con l\'account usato per l\'acquisto.',
         '<a class="btn-link" href="index.html">Vai al sito e accedi</a>');
       return;
@@ -177,7 +196,7 @@
       mostraGate(
         PAGATO
           ? RICEVUTO + 'Stiamo confermando il tuo ordine: di solito in poche ore, al massimo entro 24 ore lavorative. '
-            + 'Appena è confermato, in questa pagina compare il pulsante per entrare nel gruppo clienti. '
+            + 'Appena è confermato, in questa pagina compare il pulsante per entrare nel gruppo Telegram. '
             + 'Ricevi la ricevuta di Stripe via email.'
           : 'Il tuo account non ha ancora acquisti confermati.<br>' +
             'Se hai appena pagato, l\'accesso si sblocca appena registriamo il pagamento.',
@@ -185,7 +204,7 @@
       return;
     }
 
-    sblocca();
+    sblocca(data.map(r => r.prodotto || ''));
   }
 
   verifica();
