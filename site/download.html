@@ -74,6 +74,18 @@
       <div id="corso-tg"></div>
     </div>
 
+    <div class="grp" id="journal-box" style="border-color:rgba(182,216,79,.45);display:none">
+      <h3>Il tuo journal</h3>
+      <div class="sub" id="journal-sub">Il piano è attivo sul tuo account: accedi al journal con la stessa email e lo trovi già sbloccato.</div>
+      <a class="btn-link" href="https://app.riskly.trade">Apri il journal</a>
+    </div>
+
+    <div class="grp" id="sconto-box" style="display:none">
+      <h3>50% di sconto sul videocorso</h3>
+      <div class="sub">Hai acquistato un software Riskly: con questo codice il videocorso costa la metà. Inseriscilo nella pagina di pagamento, alla voce "Aggiungi codice promozionale".</div>
+      <div id="sconto-codice" style="font-family:'JetBrains Mono',monospace;font-size:1.3rem;font-weight:700;color:var(--up);letter-spacing:.08em"></div>
+    </div>
+
     <div id="bot-box">
     <div class="grp" style="border-color:rgba(182,216,79,.45)">
       <h3>1 · Entra nel gruppo clienti</h3>
@@ -154,6 +166,18 @@
     document.getElementById('lista').style.display = 'block';
     const haCorso = prodotti.some(p => /corso/i.test(p));
     const haBot = prodotti.some(p => !/corso/i.test(p) && !/^journal/i.test(p));
+    const journal = prodotti.find(p => /^journal/i.test(p));
+    if(journal){
+      document.getElementById('journal-box').style.display = 'block';
+      document.getElementById('journal-sub').textContent = 'Il piano ' + journal.replace(/^journal\s+/i, '') + ' è attivo sul tuo account: accedi al journal con la stessa email e lo trovi già sbloccato.';
+    }
+    if(!haCorso && !haBot && journal) document.getElementById('lista-intro').textContent = 'Grazie per l\'acquisto. Il tuo piano del journal è attivo.';
+    if(haBot && !haCorso){
+      try{
+        const { data } = await sb.rpc('codice_sconto_corso');
+        if(data){ document.getElementById('sconto-codice').textContent = data; document.getElementById('sconto-box').style.display = 'block'; }
+      }catch(e){}
+    }
     document.getElementById('corso-box').style.display = haCorso ? 'block' : 'none';
     document.getElementById('bot-box').style.display = haBot ? 'block' : 'none';
     if(haCorso && !haBot) document.getElementById('lista-intro').textContent = 'Grazie per l\'acquisto. Qui sotto trovi l\'accesso al tuo videocorso.';
@@ -184,8 +208,14 @@
       return;
     }
 
-    const { data, error } = await sb.from('acquisti')
-      .select('prodotto,stato').eq('utente', session.user.id).eq('stato','attivo');
+    /* dopo il pagamento la conferma arriva da Stripe in pochi secondi: se non c'è ancora, riprova */
+    let data, error;
+    for(let i = 0; i < (PAGATO ? 10 : 1); i++){
+      if(i){ mostraGate(RICEVUTO + 'Sto attivando il tuo acquisto, un attimo…', ''); await new Promise(r => setTimeout(r, 3000)); }
+      ({ data, error } = await sb.from('acquisti')
+        .select('prodotto,stato').eq('utente', session.user.id).eq('stato','attivo'));
+      if(error || (data && data.length)) break;
+    }
 
     if(error){
       mostraGate('Non riesco a verificare i tuoi acquisti. Riprova tra poco.', '');

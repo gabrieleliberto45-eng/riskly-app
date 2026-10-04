@@ -4859,7 +4859,7 @@ function gsMonta(){
       <div class="gs-sez on" id="gs-ordini">
         <div class="acc-card">
           <h3>Ordini</h3>
-          <div class="sub">Quando ricevi il pagamento tocca "Conferma": al cliente si sblocca il gruppo Telegram.</div>
+          <div class="sub">I pagamenti Stripe si confermano da soli. "Conferma" serve solo se un ordine resta in attesa ma il pagamento c'è: sblocca il corso, i bot o il piano del journal.</div>
           <div id="gs-lista-ordini"><div class="gs-vuoto">Caricamento…</div></div>
         </div>
       </div>
@@ -5002,9 +5002,22 @@ function gsDisegnaOrdini(){
   }).join('');
 }
 
+/* "Journal Pro annuale" → "pro" */
+const gsPianoDi = prodotto => { const m = /^journal\s+(base|pro|premium)\b/i.exec(prodotto || ''); return m ? m[1].toLowerCase() : null; };
+
 async function gsStato(id, nuovo){
   const { error } = await sb.from('acquisti').update({ stato: nuovo }).eq('id', id);
   if(error){ gsFlash('Non sono riuscito a salvare: ' + error.message, true); return; }
+  /* ordine del journal: il piano si assegna (o si toglie) insieme all'ordine */
+  const o = gsOrdini.find(x => String(x.id) === String(id));
+  const piano = o && gsPianoDi(o.prodotto);
+  if(piano){
+    const nuovoPiano = nuovo === 'attivo' ? piano : 'prova';
+    const agg = nuovo === 'attivo' ? { piano: nuovoPiano } : { piano: nuovoPiano, scadenza: new Date().toISOString() };
+    const r = await sb.from('profili').update(agg).eq('id', o.utente);
+    if(r.error){ gsFlash('Ordine salvato, ma il piano non è stato aggiornato: ' + r.error.message, true); gsCarica(); return; }
+    if(nuovo === 'attivo'){ gsFlash('Ordine confermato: piano ' + piano + ' attivato sul journal.'); gsCarica(); return; }
+  }
   gsFlash(nuovo === 'attivo' ? 'Ordine confermato: il cliente vede il gruppo Telegram.'
         : nuovo === 'rifiutato' ? 'Ordine rifiutato.' : 'Ordine rimesso in attesa.');
   gsCarica();
