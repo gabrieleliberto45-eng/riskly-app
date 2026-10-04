@@ -11,5 +11,12 @@
 /bio  /?da=bio         200
 
 
+# pagina dopo il pagamento, anche se il link di Stripe è scritto in modo diverso
+/download        /download.html   200
+/download/       /download.html   200
+/area-clienti    /download.html   200
+/grazie          /download.html   200
+/success         /download.html   200
+
 # qualsiasi altro indirizzo (es. link delle email di conferma) apre il sito invece di "Page not found"
 /*    /index.html   200
