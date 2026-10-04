@@ -1293,7 +1293,7 @@
 
 <div class="lancio-bar z">
   <div class="wrap">
-    <span><b>IN ARRIVO</b> — bot e journal sono in fase di test finale</span>
+    <span><b>DISPONIBILE ORA</b> — journal, videocorso e calcolatori · solo i bot escono il 23 ottobre</span>
     <span class="rest">Prezzo di lancio bloccato a vita per i primi 10</span>
   </div>
 </div>
@@ -1336,10 +1336,10 @@
       <h1>Il mercato non lo controlli.<br><span class="gr">Tutto il resto sì.</span></h1>
       <p class="h-lead">Quanto rischiare, quando fermarti, come gestire una posizione aperta, cosa dicono davvero i tuoi numeri. Il trading si decide qui, non nella previsione del prossimo movimento.</p>
       <div class="h-cta">
-        <button class="btn pri lg" onclick="apriModulo('attesa','tutti i prodotti',0)">Blocca il prezzo di lancio</button>
+        <button class="btn pri lg" onclick="apriModulo('attesa','tutti i prodotti',0)">Blocca il prezzo dei bot</button>
         <button class="btn lg" onclick="go('app')">Prova il journal</button>
       </div>
-      <div class="h-fine">Quattro software per MT4 e MT5 · Calcolatori e journal gratuiti, senza registrazione</div>
+      <div class="h-fine"><b>Tutto è già disponibile</b> — journal, videocorso e calcolatori — <b>tranne i bot</b> per MT4 e MT5, che escono il 23 ottobre</div>
 
     </div>
   </section>
@@ -1521,7 +1521,7 @@
             <p>Winrate, profit factor, drawdown, performance per strategia e per orario. E i pattern che da solo non vedi, come il rendimento che cambia dopo una perdita.</p>
           </div>
           <div class="prod-a">
-            <span class="prod-tag libero">Provalo adesso</span>
+            <span class="prod-tag libero">Disponibile</span>
             <span class="prod-freccia">→</span>
           </div>
         </article>
@@ -2284,7 +2284,7 @@
             <li class="inc">Tutti i calcolatori</li>
             <li class="inc">2 conti</li>
           </ul>
-          <button class="btn wide" data-journal="Base" onclick="azioneJournal(this)">Disponibile dal 23 ottobre · blocca il posto</button>
+          <button class="btn wide" data-journal="Base" onclick="azioneJournal(this)">Attiva il piano</button>
         </div>
 
         <div class="plan hi">
@@ -2302,7 +2302,7 @@
             <li class="inc">Import ed export CSV</li>
             <li class="inc">5 conti</li>
           </ul>
-          <button class="btn pri wide" data-journal="Pro" onclick="azioneJournal(this)">Disponibile dal 23 ottobre · blocca il posto</button>
+          <button class="btn pri wide" data-journal="Pro" onclick="azioneJournal(this)">Attiva il piano</button>
         </div>
 
         <div class="plan">
@@ -2317,7 +2317,7 @@
             <li class="inc">Supporto prioritario</li>
             <li class="inc">Sconto 30% sui bot</li>
           </ul>
-          <button class="btn wide" data-journal="Premium" onclick="azioneJournal(this)">Disponibile dal 23 ottobre · blocca il posto</button>
+          <button class="btn wide" data-journal="Premium" onclick="azioneJournal(this)">Attiva il piano</button>
         </div>
       </div>
 
@@ -2658,7 +2658,7 @@
             <li class="inc">Tutti i calcolatori</li>
             <li class="inc">2 conti</li>
           </ul>
-          <button class="btn wide" data-journal="Base" data-ciclo="a" onclick="azioneJournal(this)">Disponibile dal 23 ottobre · blocca il posto</button>
+          <button class="btn wide" data-journal="Base" data-ciclo="a" onclick="azioneJournal(this)">Attiva il piano</button>
         </div>
 
         <div class="plan hi">
@@ -2676,7 +2676,7 @@
             <li class="inc">Import ed export CSV</li>
             <li class="inc">5 conti</li>
           </ul>
-          <button class="btn pri wide" data-journal="Pro" data-ciclo="a" onclick="azioneJournal(this)">Disponibile dal 23 ottobre · blocca il posto</button>
+          <button class="btn pri wide" data-journal="Pro" data-ciclo="a" onclick="azioneJournal(this)">Attiva il piano</button>
         </div>
 
         <div class="plan">
@@ -2691,7 +2691,7 @@
             <li class="inc">Supporto prioritario</li>
             <li class="inc">Sconto 30% sui bot</li>
           </ul>
-          <button class="btn wide" data-journal="Premium" data-ciclo="a" onclick="azioneJournal(this)">Disponibile dal 23 ottobre · blocca il posto</button>
+          <button class="btn wide" data-journal="Premium" data-ciclo="a" onclick="azioneJournal(this)">Attiva il piano</button>
         </div>
       </div>
 
@@ -4228,7 +4228,7 @@ function apriModulo(tipo, prodotto, prezzo){
     : prodotto + ' — 7 giorni';
 
   document.getElementById('mod-sotto').textContent =
-    (attesa && prezzo === 0) ? 'Bot e journal sono in fase di test finale. Lasciaci il contatto: sarai tra i primi a saperlo e, se sei tra i primi 10, bloccherai il prezzo di lancio a vita.'
+    (attesa && prezzo === 0) ? 'I bot sono in fase di test finale ed escono il 23 ottobre. Lasciaci il contatto: sarai tra i primi a saperlo e, se sei tra i primi 10, bloccherai il prezzo di lancio a vita.'
     : attesa ? 'Non è ancora in vendita: stiamo completando i test. Lasciaci il contatto e sarai tra i primi ad averlo, al prezzo di lancio.'
     : acquisto ? 'Ti mandiamo le istruzioni di pagamento. A conferma ricevuta entri nel gruppo Telegram dei clienti e ricevi i file.'
     : 'Sette giorni su conto demo, senza carta di credito. Ti mandiamo file, licenza e guida.';
@@ -4298,7 +4298,6 @@ function apriModulo(tipo, prodotto, prezzo){
   } else if(attesa){
     rg.innerHTML = `
       <div class="rg-riga"><span>Bot per MT4 e MT5</span><b>in arrivo</b></div>
-      <div class="rg-riga"><span>Journal con account</span><b>in arrivo</b></div>
       <div class="rg-riga rg-tot"><span>Primi 10 iscritti</span><b>prezzo di lancio a vita</b></div>`;
     rg.style.display = 'block';
   } else if(acquisto){
@@ -4343,6 +4342,8 @@ const PREZZO_DOPO_LANCIO = { 'RiskGuard':198, 'TradeManager':198, 'ScaleIn':258,
 const VENDITA_ATTIVA = false;
 /* prodotti già in vendita anche prima del lancio generale */
 const IN_VENDITA_ORA = ['Videocorso'];
+/* il journal è in vendita da subito: restano in attesa solo i bot */
+const JOURNAL_IN_VENDITA = true;
 const inVendita = nome => (VENDITA_ATTIVA || IN_VENDITA_ORA.includes(nome)) && !!STRIPE[nome];
 
 const STRIPE = {
@@ -4753,7 +4754,7 @@ async function azioneJournal(btn){
   const piano = btn.dataset.journal;
   const ciclo = btn.dataset.ciclo || cicloJournal;
   const link  = (STRIPE_JOURNAL[piano] || {})[ciclo];
-  if(!(VENDITA_ATTIVA && link)){ apriModulo('attesa', 'Journal ' + piano, 0); return; }
+  if(!(JOURNAL_IN_VENDITA && link)){ apriModulo('attesa', 'Journal ' + piano, 0); return; }
   if(!utente){ apriAccesso('registrati'); return; }
   const prodotto = 'Journal ' + piano + ' ' + NOME_CICLO[ciclo];
   if(sb){
@@ -4777,7 +4778,7 @@ function aggiornaPulsantiProdotto(){
     b.textContent = etichettaProdotto(b.dataset.prodotto);
   });
   document.querySelectorAll('[data-journal]').forEach(b => {
-    if(VENDITA_ATTIVA) b.textContent = 'Attiva il piano';
+    if(JOURNAL_IN_VENDITA) b.textContent = 'Attiva il piano';
   });
 }
 
