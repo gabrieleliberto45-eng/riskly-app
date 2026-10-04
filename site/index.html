@@ -1287,6 +1287,19 @@
     #tornaSu{bottom:calc(146px + env(safe-area-inset-bottom))!important}
     #chatBox{right:12px;left:12px;width:auto;max-width:none;bottom:calc(88px + env(safe-area-inset-bottom));height:min(70vh,560px)}
   }
+  .valore-corso{display:grid;grid-template-columns:220px 1fr;gap:26px;align-items:center;margin:22px 0 30px;
+    padding:24px;border:1px solid rgba(182,216,79,.3);border-radius:18px;background:rgba(182,216,79,.05)}
+  .vc-cifra{text-align:center}
+  .vc-k{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.14em;color:var(--dim)}
+  .vc-n{font-size:2.6rem;font-weight:700;color:var(--accent);line-height:1.1;margin:6px 0}
+  .vc-s{color:var(--dim);font-size:.85rem}
+  .vc-s b{color:var(--up)}
+  .vc-testo h3{font-size:1.1rem;margin-bottom:8px}
+  .vc-testo p{color:var(--dim);font-size:.92rem;line-height:1.65;margin-bottom:10px}
+  .vc-testo ul{margin:0;padding-left:18px;color:var(--dim);font-size:.9rem;line-height:1.6}
+  .vc-testo li{margin-bottom:6px}
+  .vc-testo li b{color:var(--text,#fff)}
+  @media(max-width:700px){.valore-corso{grid-template-columns:1fr;padding:18px}}
 </style>
 </head>
 <body>
@@ -1338,7 +1351,7 @@
       <div class="h-cta">
         <button class="btn pri lg" onclick="apriModulo('attesa','tutti i prodotti',0)">Blocca il prezzo dei bot</button>
         <button class="btn lg" onclick="go('app')">Prova il journal</button>
-        <button class="btn lg" onclick="go('corso')">Videocorso · 199 €</button>
+        <button class="btn lg" onclick="go('corso')">Scopri il videocorso</button>
       </div>
       <div class="h-fine"><b>Tutto è già disponibile</b> — journal, videocorso e calcolatori — <b>tranne i bot</b> per MT4 e MT5, che escono il 23 ottobre</div>
 
@@ -2725,6 +2738,23 @@
             <p>Pagamento unico, accesso a vita. Dopo l'acquisto entri nel gruppo Telegram del corso, con una cartella per ogni modulo e le lezioni in ordine. Prezzo di lancio 199 €, poi 398 €. Chi ha acquistato un software Riskly ha il <b>50% di sconto sul corso</b>.</p>
           </div>
           <button class="btn pri" data-prodotto="Videocorso" onclick="azioneProdotto('Videocorso')">Acquista il corso · 199 €</button>
+        </div>
+      </div>
+
+      <div class="valore-corso">
+        <div class="vc-cifra">
+          <div class="vc-k">VALORE REALE DI MERCATO</div>
+          <div class="vc-n">999 €</div>
+          <div class="vc-s">oggi al lancio <b>199 €</b></div>
+        </div>
+        <div class="vc-testo">
+          <h3>Quello che ti porti via vale molto più di tre ore di video</h3>
+          <p>Il valore reale di mercato di questo corso è di <b>999 €</b>: è quello che costa imparare le stesse cose tra percorsi a pagamento, consulenze individuali e, soprattutto, errori pagati sul conto. Il valore che ti trasmette è enorme, perché non riguarda un singolo trade ma <b>ogni operazione che farai da qui in avanti</b>.</p>
+          <ul>
+            <li><b>Un solo errore evitato lo ripaga.</b> Con 1.000 € sul conto, rischiare il 10% invece dell'1% vuol dire che quattro perdite di fila ti portano via un terzo del capitale. Sapere quanto rischiare prima di entrare vale più di qualsiasi segnale.</li>
+            <li><b>È un metodo, non un'informazione.</b> Position sizing, drawdown, Monte Carlo, regole delle prop firm, trailing, scaglioni e hedging: impari a costruire regole che reggono anche nei giorni peggiori.</li>
+            <li><b>Resta tuo per sempre.</b> Pagamento unico, accesso a vita alle lezioni e a ogni aggiornamento del corso.</li>
+          </ul>
         </div>
       </div>
 
