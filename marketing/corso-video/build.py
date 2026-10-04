@@ -23,6 +23,13 @@ def carica():
             l['slide'].insert(idx + 1, sl)
         l['slide'] = [x for x in l['slide'] if x.get('titolo') not in getattr(extra, 'DEL', {}).get(l['id'], [])]
         if l['id'] in extra.EXTRA: l['slide'] = l['slide'][:-1] + [x for e in extra.EXTRA[l['id']] for x in (e if isinstance(e, list) else [e])] + l['slide'][-1:]
+    for f in sorted(glob.glob(f'{QUI}/lezioni/parlato_*.py')):
+        sp = importlib.util.spec_from_file_location('p', f); m = importlib.util.module_from_spec(sp); sp.loader.exec_module(m)
+        for l in L:
+            for i, v in m.PARLATO.get(l['id'], {}).items():
+                s_ = l['slide'][i]
+                assert len(v) == len(s_['voce']), f"parlato {l['id']} slide {i}: {len(v)} passaggi invece di {len(s_['voce'])}"
+                s_['voce'] = v
     return L
 def n_el(s):
     t = s['tipo']
@@ -59,7 +66,7 @@ def testo_tts(t):
         while len(f.split()) <= 3 and f.endswith('.') and i + 1 < len(fr):
             i += 1; nxt = fr[i]; f = f[:-1] + ', ' + nxt[0].lower() + nxt[1:] if not nxt.startswith(('L\'', 'E ')) else f[:-1] + ', ' + nxt
         out.append(f); i += 1
-    if len(out) > 1 and len(out[-1].split()) <= 3 and out[-2].endswith('.'):
+    if len(out) > 1 and len(out[-1].split()) <= 3 and out[-2][-1:] in '.?!':
         u = out.pop(); out[-1] = out[-1][:-1] + ', ' + u[0].lower() + u[1:]
     return ' '.join(out)
 def fname(t): return f"{QUI}/voce/{hashlib.md5((VOCE+RATE+testo_tts(t)).encode()).hexdigest()[:16]}.mp3"
