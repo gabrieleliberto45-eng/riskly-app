@@ -1082,6 +1082,7 @@
     border-radius:100px;border:1px solid;white-space:nowrap}
   .acq-stato.attivo{color:var(--up);border-color:rgba(34,197,94,.4);background:rgba(34,197,94,.08)}
   .acq-stato.attesa{color:#F59E0B;border-color:rgba(245,158,11,.4);background:rgba(245,158,11,.08)}
+  .acq-stato.rifiutato{color:#EF4444;border-color:rgba(239,68,68,.4);background:rgba(239,68,68,.08)}
 
   .acc-vuoto{text-align:center;padding:34px 18px;color:var(--dim2)}
   .acc-vuoto strong{display:block;color:var(--text);font-size:1rem;margin-bottom:6px}
@@ -4632,7 +4633,7 @@ function aggiornaNavAccount(){
   }
 }
 
-const NOMI_STATO = { attivo:'attivo', in_attesa:'in attesa di pagamento' };
+const NOMI_STATO = { attivo:'attivo', in_attesa:'in attesa di pagamento', rifiutato:'annullato' };
 
 function disegnaAccount(){
   document.getElementById('acc-email-corrente').textContent = utente ? utente.email : '';
@@ -4947,8 +4948,13 @@ async function gsCarica(){
 
   gsOrdini = a.data || []; gsAttesa = l.data || []; gsUtenti = p.data || []; gsVisite = v.data || [];
 
+  /* nome ed email di chi ha ordinato (funzione ordini_clienti, supabase/ordini.sql) */
+  gsClienti = {};
+  const c = await sb.rpc('ordini_clienti');
+  if(!c.error) (c.data || []).forEach(x => gsClienti[x.id] = x);
+
   const settimana = gsVisite.filter(x => new Date(x.creato) > new Date(Date.now()-7*86400000)).length;
-  document.getElementById('gs-k1').textContent = gsOrdini.filter(o => o.stato !== 'attivo').length;
+  document.getElementById('gs-k1').textContent = gsOrdini.filter(o => o.stato === 'in_attesa').length;
   document.getElementById('gs-k2').textContent = gsOrdini.filter(o => o.stato === 'attivo').length;
   document.getElementById('gs-k3').textContent = gsAttesa.length;
   document.getElementById('gs-k4').textContent = settimana;
@@ -4959,19 +4965,38 @@ async function gsCarica(){
 const gsData = v => v ? new Date(v).toLocaleString('it-IT',
   {day:'2-digit',month:'2-digit',year:'2-digit',hour:'2-digit',minute:'2-digit'}) : '';
 
+let gsClienti = {};
+function gsCliente(o){
+  const c = gsClienti[String(o.id)] || {};
+  const u = gsUtenti.find(x => x.id === o.utente) || {};
+  const nome = c.nome || u.nome || '';
+  return { nome, email: c.email || '' };
+}
+
 function gsDisegnaOrdini(){
   const box = document.getElementById('gs-lista-ordini');
   if(!gsOrdini.length){ box.innerHTML = '<div class="gs-vuoto">Nessun ordine.</div>'; return; }
   box.innerHTML = gsOrdini.map(o => {
-    const att = o.stato === 'attivo';
+    const att = o.stato === 'attivo', rif = o.stato === 'rifiutato';
+    const cl = gsCliente(o);
+    const id = esc(o.id);
+    const azioni = att
+      ? `<button class="btn" onclick="gsStato('${id}','in_attesa')">Annulla</button>`
+      : rif
+      ? `<button class="btn" onclick="gsStato('${id}','in_attesa')">Ripristina</button>`
+      : `<button class="btn pri" onclick="gsStato('${id}','attivo')">Conferma</button>
+         <button class="btn" onclick="gsStato('${id}','rifiutato')">Rifiuta</button>`;
     return `<div class="gs-riga">
       <div style="flex:1;min-width:180px">
-        <div class="m">${esc(o.prodotto)}${o.prezzo ? ' · €'+esc(o.prezzo) : ''}</div>
+        <div class="m">${esc(cl.nome || cl.email || 'Cliente senza nome')}</div>
+        ${cl.email && cl.nome ? `<div class="d" style="margin-top:2px">${esc(cl.email)}</div>` : ''}
+        <div class="m" style="font-weight:500;margin-top:8px">${esc(o.prodotto)}${o.prezzo ? ' · €'+esc(o.prezzo) : ''}</div>
         <div class="d">${gsData(o.creato)}${o.conto ? ' · conto '+esc(o.conto) : ''}</div>
       </div>
-      <div style="display:flex;align-items:center;gap:10px">
-        <span class="acq-stato ${att?'attivo':'attesa'}">${att?'attivo':'da confermare'}</span>
-        <button class="btn ${att?'':'pri'}" onclick="gsStato('${esc(o.id)}','${att?'in_attesa':'attivo'}')">${att?'Annulla':'Conferma'}</button>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <span class="acq-stato ${att?'attivo':(rif?'rifiutato':'attesa')}">${att?'attivo':(rif?'rifiutato':'da confermare')}</span>
+        ${azioni}
+        <button class="btn" style="color:var(--down,#EF4444)" onclick="gsElimina('${id}')">Elimina</button>
       </div>
     </div>`;
   }).join('');
@@ -4980,7 +5005,18 @@ function gsDisegnaOrdini(){
 async function gsStato(id, nuovo){
   const { error } = await sb.from('acquisti').update({ stato: nuovo }).eq('id', id);
   if(error){ gsFlash('Non sono riuscito a salvare: ' + error.message, true); return; }
-  gsFlash(nuovo === 'attivo' ? 'Ordine confermato: il cliente vede il gruppo Telegram.' : 'Ordine rimesso in attesa.');
+  gsFlash(nuovo === 'attivo' ? 'Ordine confermato: il cliente vede il gruppo Telegram.'
+        : nuovo === 'rifiutato' ? 'Ordine rifiutato.' : 'Ordine rimesso in attesa.');
+  gsCarica();
+}
+
+async function gsElimina(id){
+  if(!confirm('Eliminare definitivamente questo ordine?')) return;
+  const { data, error } = await sb.from('acquisti').delete().eq('id', id).select('id');
+  if(error || !(data && data.length)){
+    gsFlash('Non sono riuscito a eliminarlo: esegui supabase/ordini.sql su Supabase.', true); return;
+  }
+  gsFlash('Ordine eliminato.');
   gsCarica();
 }
 
