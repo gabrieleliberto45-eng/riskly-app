@@ -5,7 +5,7 @@ if os.path.exists('/root/.ccr/ca-bundle.crt'): certifi.where = lambda: '/root/.c
 import edge_tts
 TESTI = json.load(open('testi.json'))
 async def una(id_):
-    c = edge_tts.Communicate(TESTI[id_], 'it-IT-GiuseppeMultilingualNeural', rate='+8%', boundary='WordBoundary')
+    c = edge_tts.Communicate(TESTI[id_], 'it-IT-GiuseppeMultilingualNeural', rate='-2%', boundary='WordBoundary')
     parole = []
     with open(f'voce/{id_}.mp3', 'wb') as f:
         async for ch in c.stream():

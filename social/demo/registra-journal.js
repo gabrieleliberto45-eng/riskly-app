@@ -22,7 +22,7 @@ const quando = w => (parole.find(p => p[2].toLowerCase().startsWith(w)) || [0])[
   await p.addStyleTag({ content: '*{transition:none!important;animation:none!important;scroll-behavior:auto!important}' });
 
   /* azioni: [tempo, funzione] */
-  const t = { scrivo: quando('scrivo'), lotti: quando('lotti'), stop: quando('stop'), tocco: quando('tocco'), quaranta: quando('quaranta'), rischio: quando('rischio'), dopo: quando('mese') - .4, sette: quando('sette') };
+  const t = { scrivo: quando('scrivo'), lotti: quando('lotti'), stop: quando('stop'), tocco: quando('tocco'), quaranta: quando('quaranta'), rischio: quando('rischio'), dopo: quando('settimana') - .4, sette: quando('provarlo') };
   const scriviA = async (sel, testo, t0, t1, tt) => {   /* digitazione progressiva */
     const n = Math.max(0, Math.min(testo.length, Math.floor((tt - t0) / Math.max(.05, (t1 - t0)) * testo.length + 1)));
     if(tt < t0) return;

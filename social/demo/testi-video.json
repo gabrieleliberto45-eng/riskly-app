@@ -3,6 +3,27 @@
   "pill": "JOURNAL RISKLY · DISPONIBILE ORA",
   "cta": "7 giorni gratis · link in bio",
   "musica": "e",
-  "titoli": [[0, "Il journal su Excel<br>lo <em>abbandoni</em>."], [3.2, "Guarda: <em>3 dati</em><br>e un tocco."], [9.0, "Rischio e risultato<br><em>li calcola lui</em>."], [12.4, "In che orario<br><em>perdi di più</em>?"], [15.3, "<em>7 giorni gratis</em>"]]
+  "titoli": [
+   [
+    "",
+    "Il journal su Excel<br>lo <em>abbandoni</em>."
+   ],
+   [
+    "faccio",
+    "Ti faccio <em>vedere</em>."
+   ],
+   [
+    "rischio",
+    "Rischio e risultato<br><em>li calcola lui</em>."
+   ],
+   [
+    "settimana",
+    "In che orario<br><em>perdi di più</em>?"
+   ],
+   [
+    "provarlo",
+    "<em>7 giorni gratis</em>"
+   ]
+  ]
  }
 }

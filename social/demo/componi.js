@@ -13,6 +13,8 @@ const musica = path.join(D, '..', 'generatore', 'musica', (cfg.musica || 'e') + 
 (async () => {
   const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 1080, height: 1920 } });
   await p.goto('file://' + path.join(D, 'modello.html')); await p.evaluate(() => document.fonts.ready);
+  const tw = w => w === '' ? 0 : ((parole.find(x => x[2].toLowerCase().startsWith(w)) || [0])[0]);
+  cfg.titoli = cfg.titoli.map(([k, h]) => [typeof k === 'string' ? tw(k) : k, h]);
   await p.evaluate(s => window.prepara(s), Object.assign({}, cfg, { parole, fine }));
   const out = path.join(D, '..', 'video', ID + '.mp4');
   const ff = spawn(ffmpeg, ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(FPS), '-c:v', 'mjpeg', '-i', '-',
