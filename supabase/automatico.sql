@@ -25,3 +25,6 @@ grant execute on function public.codice_sconto_corso() to authenticated;
 insert into public.impostazioni_private (chiave, valore)
 values ('codice_corso', 'SOFTWARE50')
 on conflict (chiave) do update set valore = excluded.valore;
+
+-- quando il cliente ha accettato termini e rinuncia al recesso (prima del pagamento)
+alter table public.acquisti add column if not exists termini_accettati timestamptz;

@@ -467,6 +467,11 @@
   .mod-x{position:absolute;top:14px;right:14px;width:30px;height:30px;padding:0;
     background:none;border:none;color:var(--dim2);font-size:1rem;cursor:pointer;border-radius:7px}
   .mod-x:hover{background:var(--panel-hi);color:var(--text)}
+  .tc-voce{display:flex;gap:12px;align-items:flex-start;color:var(--text);font-size:.86rem;line-height:1.55;
+    padding:12px;border:1px solid var(--line);border-radius:12px;margin-bottom:10px;cursor:pointer}
+  .tc-voce input{width:20px;height:20px;flex-shrink:0;margin-top:2px;padding:0;accent-color:#B6D84F}
+  .tc-voce a{color:var(--accent);text-decoration:underline}
+  #tc-ok:disabled{opacity:.35;cursor:not-allowed;box-shadow:none}
 
   .mod-head{margin-bottom:22px}
   .mod-kicker{color:var(--accent);font-size:.71rem;font-family:'JetBrains Mono','SF Mono',Menlo,monospace;
@@ -4793,23 +4798,45 @@ setInterval(aggiornaCountdown, 1000);
 /* prezzi di lancio, usati per registrare l'ordine prima del pagamento */
 const PREZZO_LANCIO = { 'RiskGuard':99, 'TradeManager':99, 'ScaleIn':129, 'Riskly Pro':249, 'Videocorso':199 };
 
-/* consenso espresso all'accesso immediato: senza, il recesso di 14 giorni resterebbe valido */
-function confermaAccesso(){
-  return confirm('Prima di procedere al pagamento:\n\n'
-    + '• chiedo che l\'accesso al prodotto digitale inizi subito dopo il pagamento;\n'
-    + '• so che in questo modo perdo il diritto di recesso di 14 giorni e che non sono previsti rimborsi.\n\n'
-    + 'Restano validi i diritti di garanzia previsti dalla legge. Premi OK per continuare.');
+/* termini e condizioni + consenso all'accesso immediato (senza, il recesso di 14 giorni resterebbe valido).
+   Restituisce la data dell'accettazione, o null se il cliente annulla. */
+function chiediTermini(prodotto){
+  return new Promise(ok => {
+    const ov = document.createElement('div');
+    ov.className = 'modale on'; ov.style.zIndex = 250;
+    ov.innerHTML = `<div class="mod-box" role="dialog" aria-modal="true" aria-labelledby="tc-tit">
+      <button class="mod-x" type="button" data-tc="no" aria-label="Chiudi">✕</button>
+      <div class="mod-kicker" style="font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.14em;color:var(--accent)">PRIMA DEL PAGAMENTO</div>
+      <h3 id="tc-tit" style="margin:6px 0 4px">${esc(prodotto)}</h3>
+      <p style="color:var(--dim);font-size:.86rem;margin-bottom:16px">Per continuare devi accettare entrambe le voci.</p>
+      <label class="tc-voce"><input type="checkbox" id="tc-1"><span>Ho letto e accetto i <a href="#termini" data-tc="leggi">Termini e condizioni</a> e l'informativa sui rischi del trading.</span></label>
+      <label class="tc-voce"><input type="checkbox" id="tc-2"><span>Chiedo che l'accesso al prodotto digitale inizi subito dopo il pagamento e so che così <b>perdo il diritto di recesso di 14 giorni</b>: non sono previsti rimborsi. Restano validi i diritti di garanzia previsti dalla legge.</span></label>
+      <button class="btn pri wide" type="button" id="tc-ok" disabled style="margin-top:16px">Continua al pagamento</button>
+    </div>`;
+    document.body.appendChild(ov);
+    const b = ov.querySelector('#tc-ok'), c1 = ov.querySelector('#tc-1'), c2 = ov.querySelector('#tc-2');
+    const aggiorna = () => { b.disabled = !(c1.checked && c2.checked); };
+    c1.onchange = c2.onchange = aggiorna;
+    const fine = v => { ov.remove(); ok(v); };
+    b.onclick = () => fine(new Date().toISOString());
+    ov.addEventListener('click', e => {
+      const t = e.target.closest('[data-tc]');
+      if(e.target === ov || (t && t.dataset.tc === 'no')){ fine(null); return; }
+      if(t && t.dataset.tc === 'leggi'){ e.preventDefault(); fine(null); go('termini'); }
+    });
+  });
 }
 
 async function azioneProdotto(nome){
   if(inVendita(nome)){
     if(!utente){ apriAccesso('registrati'); return; }
-    if(!confermaAccesso()) return;
+    const termini = await chiediTermini(nome);
+    if(!termini) return;
     /* l'ordine entra subito in "Gestione" come da confermare: quando vedi il pagamento su Stripe
        (stessa email, stesso codice cliente) lo confermi e il cliente vede il gruppo Telegram */
     if(sb){
       const { error } = await sb.from('acquisti').insert({
-        utente: utente.id, prodotto: nome, prezzo: PREZZO_LANCIO[nome] || null, stato: 'in_attesa'
+        utente: utente.id, prodotto: nome, prezzo: PREZZO_LANCIO[nome] || null, stato: 'in_attesa', termini_accettati: termini
       });
       if(error) console.error('Ordine non registrato:', error);
     }
@@ -4831,11 +4858,12 @@ async function azioneJournal(btn){
   const link  = (STRIPE_JOURNAL[piano] || {})[ciclo];
   if(!(JOURNAL_IN_VENDITA && link)){ apriModulo('attesa', 'Journal ' + piano, 0); return; }
   if(!utente){ apriAccesso('registrati'); return; }
-  if(!confermaAccesso()) return;
+  const termini = await chiediTermini('Journal ' + piano + ' ' + NOME_CICLO[ciclo]);
+  if(!termini) return;
   const prodotto = 'Journal ' + piano + ' ' + NOME_CICLO[ciclo];
   if(sb){
     const { error } = await sb.from('acquisti').insert({
-      utente: utente.id, prodotto, prezzo: PREZZO_JOURNAL[piano][ciclo], stato: 'in_attesa'
+      utente: utente.id, prodotto, prezzo: PREZZO_JOURNAL[piano][ciclo], stato: 'in_attesa', termini_accettati: termini
     });
     if(error) console.error('Ordine non registrato:', error);
   }
@@ -5036,7 +5064,7 @@ function gsDisegnaOrdini(){
         <div class="m">${esc(cl.nome || cl.email || 'Cliente senza nome')}</div>
         ${cl.email && cl.nome ? `<div class="d" style="margin-top:2px">${esc(cl.email)}</div>` : ''}
         <div class="m" style="font-weight:500;margin-top:8px">${esc(o.prodotto)}${o.prezzo ? ' · €'+esc(o.prezzo) : ''}</div>
-        <div class="d">${gsData(o.creato)}${o.conto ? ' · conto '+esc(o.conto) : ''}</div>
+        <div class="d">${gsData(o.creato)}${o.conto ? ' · conto '+esc(o.conto) : ''}${o.termini_accettati ? ' · termini accettati ✓' : ''}</div>
       </div>
       <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
         <span class="acq-stato ${att?'attivo':(rif?'rifiutato':'attesa')}">${att?'attivo':(rif?'rifiutato':'da confermare')}</span>
