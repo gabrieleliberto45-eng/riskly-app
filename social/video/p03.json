@@ -1,0 +1,69 @@
+{
+ "subito": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 3.2,
+   "kicker": "VIDEOCORSO RISKLY",
+   "testo": [
+    "Nessuno",
+    "ti ha mai spiegato",
+    "<em>quanto rischiare.</em>"
+   ]
+  },
+  {
+   "tipo": "numero",
+   "dur": 4.0,
+   "kicker": "CON 1.000 € E IL 10% A OPERAZIONE",
+   "valore": 344,
+   "prefisso": "",
+   "suffisso": " €",
+   "etichetta": "Perdi dopo sole 4 perdite di fila. Un terzo del conto.",
+   "rosso": true,
+   "decimali": 0
+  },
+  {
+   "tipo": "lista",
+   "dur": 6.8,
+   "titolo": "47 lezioni, dalle basi all'avanzato:",
+   "passo": 1.1,
+   "voci": [
+    [
+     "Position sizing e drawdown",
+     "in pip ed euro"
+    ],
+    [
+     "Monte Carlo e prop firm",
+     "le regole che fanno saltare il conto"
+    ],
+    [
+     "Trailing, scaglioni, hedging",
+     "con esempi passo passo"
+    ]
+   ]
+  },
+  {
+   "tipo": "conto",
+   "dur": 5.4,
+   "titolo": "Disponibile subito",
+   "righe": [
+    [
+     "Videocorso · 10 moduli",
+     "199 €",
+     "up"
+    ],
+    [
+     "Accesso",
+     "a vita, su Telegram"
+    ]
+   ],
+   "nota": "Niente segnali: solo la parte che nessuno insegna."
+  },
+  {
+   "tipo": "chiusura",
+   "dur": 3.4,
+   "cta": "Videocorso · link in bio",
+   "claim": "Il rischio non si evita.<br>Si <em>misura</em>."
+  }
+ ]
+}

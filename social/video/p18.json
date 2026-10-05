@@ -1,0 +1,52 @@
+{
+ "subito": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 3.2,
+   "kicker": "OGGI · 23 OTTOBRE",
+   "testo": [
+    "I bot Riskly",
+    "sono",
+    "<em>disponibili.</em>"
+   ]
+  },
+  {
+   "tipo": "lista",
+   "dur": 6.0,
+   "titolo": "Per MT4 e MT5:",
+   "passo": 0.9,
+   "voci": [
+    [
+     "RiskGuard · 99 €",
+     ""
+    ],
+    [
+     "TradeManager · 99 €",
+     ""
+    ],
+    [
+     "ScaleIn · 129 €",
+     ""
+    ],
+    [
+     "Riskly Pro · 249 €",
+     ""
+    ]
+   ]
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.6,
+   "testo": [
+    "Prezzo di lancio",
+    "<em>solo per i primi 10</em>."
+   ]
+  },
+  {
+   "tipo": "chiusura",
+   "dur": 3.4,
+   "cta": "Acquista · link in bio"
+  }
+ ]
+}

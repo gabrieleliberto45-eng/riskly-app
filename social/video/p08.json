@@ -1,0 +1,67 @@
+{
+ "subito": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 3.2,
+   "kicker": "PROP FIRM · CHALLENGE",
+   "testo": [
+    "−5% in un giorno.",
+    "<em>Challenge persa.</em>"
+   ],
+   "nota": "Basta un'operazione di troppo."
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.6,
+   "testo": [
+    "RiskGuard",
+    "ti ferma <em>prima</em>",
+    "del limite."
+   ],
+   "nota": "Con un margine di sicurezza che imposti tu."
+  },
+  {
+   "tipo": "lista",
+   "dur": 7.0,
+   "titolo": "Pensato per le challenge:",
+   "passo": 1.1,
+   "voci": [
+    [
+     "Limite di perdita giornaliera",
+     "con margine"
+    ],
+    [
+     "Massimo operazioni al giorno",
+     "niente overtrading"
+    ],
+    [
+     "Chiusura automatica al target",
+     "quando la fase è passata"
+    ]
+   ]
+  },
+  {
+   "tipo": "conto",
+   "dur": 4.6,
+   "titolo": "Prezzo di lancio",
+   "righe": [
+    [
+     "RiskGuard",
+     "99 €",
+     "up"
+    ],
+    [
+     "Una challenge da 100k",
+     "costa di più"
+    ]
+   ],
+   "nota": "Controlla sempre le regole EA della tua prop firm."
+  },
+  {
+   "tipo": "chiusura",
+   "dur": 3.4,
+   "cta": "Lista d'attesa · link in bio"
+  }
+ ]
+}

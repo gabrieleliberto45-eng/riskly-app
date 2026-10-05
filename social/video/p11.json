@@ -1,0 +1,63 @@
+{
+ "subito": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 3.2,
+   "kicker": "SCALEIN",
+   "testo": [
+    "5 take profit.",
+    "A mano o",
+    "<em>con un bot?</em>"
+   ]
+  },
+  {
+   "tipo": "conto",
+   "dur": 5.4,
+   "titolo": "Il tempo che ci metti",
+   "righe": [
+    [
+     "A mano · 5 ordini",
+     "~2 minuti",
+     "down"
+    ],
+    [
+     "Con ScaleIn · 1 click",
+     "1 secondo",
+     "up"
+    ]
+   ],
+   "nota": "Nel frattempo il prezzo si muove."
+  },
+  {
+   "tipo": "conto",
+   "dur": 4.2,
+   "titolo": "E il rischio?",
+   "righe": [
+    [
+     "A mano",
+     "lo calcoli tu"
+    ],
+    [
+     "ScaleIn",
+     "blocca se è troppo",
+     "up"
+    ]
+   ]
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.6,
+   "testo": [
+    "Prendi profitto a pezzi.",
+    "<em>Lascia correre il resto.</em>"
+   ]
+  },
+  {
+   "tipo": "chiusura",
+   "dur": 3.4,
+   "cta": "Lista d'attesa · link in bio",
+   "claim": "129 € per i primi 10.<br>Dal <em>23 ottobre</em>."
+  }
+ ]
+}

@@ -1,0 +1,70 @@
+{
+ "subito": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 3.2,
+   "kicker": "RISKLY PRO",
+   "testo": [
+    "3 posizioni all'1%.",
+    "Rischi l'1%?",
+    "<em>No: il 3%.</em>"
+   ]
+  },
+  {
+   "tipo": "conto",
+   "dur": 5.8,
+   "titolo": "Stesso conto, 3 operazioni",
+   "righe": [
+    [
+     "EURUSD",
+     "1%"
+    ],
+    [
+     "GBPUSD",
+     "1%"
+    ],
+    [
+     "XAUUSD",
+     "1%"
+    ],
+    [
+     "Rischio vero",
+     "3%",
+     "down"
+    ]
+   ],
+   "nota": "I bot normali le guardano una alla volta."
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.6,
+   "testo": [
+    "Riskly Pro calcola il rischio",
+    "<em>sull'insieme</em>",
+    "delle posizioni."
+   ]
+  },
+  {
+   "tipo": "conto",
+   "dur": 4.0,
+   "titolo": "Prezzo di lancio",
+   "righe": [
+    [
+     "Riskly Pro · 3 conti",
+     "249 €",
+     "up"
+    ],
+    [
+     "Dal 23 ottobre",
+     "498 €"
+    ]
+   ]
+  },
+  {
+   "tipo": "chiusura",
+   "dur": 3.4,
+   "cta": "Lista d'attesa · link in bio"
+  }
+ ]
+}

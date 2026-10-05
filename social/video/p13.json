@@ -1,0 +1,50 @@
+{
+ "subito": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 3.2,
+   "kicker": "JOURNAL · INPUT E CONFERMA",
+   "testo": [
+    "Il setup",
+    "funziona davvero?",
+    "<em>O ti piace e basta?</em>"
+   ]
+  },
+  {
+   "tipo": "lista",
+   "dur": 6.6,
+   "titolo": "Per ogni operazione segni:",
+   "passo": 1.1,
+   "voci": [
+    [
+     "Cosa hai visto",
+     "l'input, con screenshot"
+    ],
+    [
+     "Cosa ti ha fatto entrare",
+     "la conferma, con screenshot"
+    ],
+    [
+     "Sessione e news",
+     "in automatico dall'orario"
+    ]
+   ]
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.6,
+   "testo": [
+    "Dopo 30 operazioni",
+    "sai quale setup",
+    "<em>ti paga.</em>"
+   ],
+   "nota": "E quale ti costa."
+  },
+  {
+   "tipo": "chiusura",
+   "dur": 3.4,
+   "cta": "7 giorni gratis · link in bio"
+  }
+ ]
+}

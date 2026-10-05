@@ -153,3 +153,34 @@ node social/generatore/genera.js g08    # oppure senza argomenti: li rigenera tu
 
 Ogni video è un file `social/video/gNN.json` con le scene (tipi: `hook`, `frase`, `numero`, `barre`, `lista`, `conto`, `chiusura`).
 Il generatore crea `gNN.mp4` (1080×1920, 30 fps) e `gNN-copertina.jpg`.
+
+
+---
+
+## Reel prodotto · 1 al giorno dal 6 al 23 ottobre (video p01–p18, ore 13:00)
+
+Su Instagram (Reel), TikTok e YouTube Shorts, alle 13:00, un orario che non si sovrappone alla serie educativa.
+Dal primo secondo si parla del prodotto. Il gancio è un problema in cui il trader si riconosce, poi arriva il prodotto che lo risolve: specifiche, vantaggi, prezzo e invito all'azione.
+Si alternano i prodotti già acquistabili (journal, videocorso, calcolatori gratuiti), che portano vendite subito, e i bot, che servono a far crescere la lista d'attesa del 23. Gli ultimi giorni sono un conto alla rovescia.
+Le didascalie chiudono sempre con F2. Non si usano "unico", "il migliore" o "mai visto": al loro posto confronti concreti. Testi completi in `promo/prodotti-reel.json`.
+
+| Data | Video | Prodotto | Tema |
+|---|---|---|---|
+| 06/10 | p01 | RiskGuard | Il bot che ti spegne MetaTrader |
+| 07/10 | p02 | Journal | Il journal che fa i conti al posto tuo |
+| 08/10 | p03 | Videocorso | 3 ore che ti risparmiano anni |
+| 09/10 | p04 | ScaleIn | 1 click, 5 posizioni |
+| 10/10 | p05 | TradeManager | Break-even mentre dormi |
+| 11/10 | p06 | Riskly Pro | Il lotto giusto in un tocco |
+| 12/10 | p07 | Journal | Dopo una perdita cambi |
+| 13/10 | p08 | RiskGuard | La prop firm non perdona |
+| 14/10 | p09 | Calcolatori | Gratis, senza registrazione |
+| 15/10 | p10 | Videocorso | Il corso da 997 € |
+| 16/10 | p11 | ScaleIn | A mano vs bot |
+| 17/10 | p12 | Riskly Pro | Il rischio che non vedi |
+| 18/10 | p13 | Journal | Input e conferma |
+| 19/10 | p14 | Lancio | Tutti i bot in 15 secondi |
+| 20/10 | p15 | Lancio | Mancano 3 giorni |
+| 21/10 | p16 | Videocorso | Prima dei bot, il metodo |
+| 22/10 | p17 | Lancio | Domani |
+| 23/10 | p18 | Lancio | Oggi |

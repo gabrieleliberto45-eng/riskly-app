@@ -1,0 +1,53 @@
+{
+ "subito": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 3.2,
+   "kicker": "RISKLY · 23 OTTOBRE",
+   "testo": [
+    "4 bot.",
+    "<em>Nessuno apre</em>",
+    "un'operazione."
+   ]
+  },
+  {
+   "tipo": "lista",
+   "dur": 7.4,
+   "titolo": "Lavorano solo sulle tue:",
+   "passo": 1.0,
+   "voci": [
+    [
+     "RiskGuard · 99 €",
+     "ti ferma quando serve"
+    ],
+    [
+     "TradeManager · 99 €",
+     "break-even e trailing"
+    ],
+    [
+     "ScaleIn · 129 €",
+     "take profit scaglionati"
+    ],
+    [
+     "Riskly Pro · 249 €",
+     "tutto insieme"
+    ]
+   ]
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.6,
+   "testo": [
+    "Prezzo di lancio",
+    "<em>bloccato a vita</em>",
+    "per i primi 10."
+   ]
+  },
+  {
+   "tipo": "chiusura",
+   "dur": 3.4,
+   "cta": "Lista d'attesa · link in bio"
+  }
+ ]
+}

@@ -1,0 +1,65 @@
+{
+ "subito": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 3.2,
+   "kicker": "VIDEOCORSO RISKLY",
+   "testo": [
+    "Ti hanno venduto",
+    "un corso da 997 €",
+    "<em>con le strategie.</em>"
+   ]
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.6,
+   "testo": [
+    "Nessuno ti ha detto",
+    "<em>quanto rischiare</em>",
+    "su ognuna."
+   ]
+  },
+  {
+   "tipo": "lista",
+   "dur": 7.0,
+   "titolo": "Nel videocorso Riskly:",
+   "passo": 1.1,
+   "voci": [
+    [
+     "Quanto rischiare a operazione",
+     "con esempi in pip ed euro"
+    ],
+    [
+     "Perché la disciplina crolla",
+     "e come costruire regole"
+    ],
+    [
+     "Come si salta una prop firm",
+     "e come evitarlo"
+    ]
+   ]
+  },
+  {
+   "tipo": "conto",
+   "dur": 4.4,
+   "titolo": "Disponibile subito",
+   "righe": [
+    [
+     "47 lezioni · quasi 3 ore",
+     "199 €",
+     "up"
+    ],
+    [
+     "Valore stimato",
+     "999 €"
+    ]
+   ]
+  },
+  {
+   "tipo": "chiusura",
+   "dur": 3.4,
+   "cta": "Videocorso · link in bio"
+  }
+ ]
+}

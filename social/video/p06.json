@@ -1,0 +1,86 @@
+{
+ "subito": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 3.2,
+   "kicker": "RISKLY PRO · MT4 E MT5",
+   "testo": [
+    "Quanti lotti",
+    "devo aprire?",
+    "<em>Non te lo chiedi più.</em>"
+   ]
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.6,
+   "testo": [
+    "Pulsanti BUY e SELL",
+    "con il lotto",
+    "<em>già calcolato.</em>"
+   ],
+   "nota": "Sul rischio che hai scelto tu, in base allo stop."
+  },
+  {
+   "tipo": "lista",
+   "dur": 6.4,
+   "titolo": "Tre bot in uno:",
+   "passo": 1.1,
+   "voci": [
+    [
+     "RiskGuard",
+     "ti ferma quando serve"
+    ],
+    [
+     "TradeManager",
+     "break-even e trailing"
+    ],
+    [
+     "ScaleIn",
+     "take profit scaglionati"
+    ]
+   ]
+  },
+  {
+   "tipo": "lista",
+   "dur": 6.4,
+   "titolo": "E in più:",
+   "passo": 1.1,
+   "voci": [
+    [
+     "Rischio calcolato su tutte le posizioni",
+     "non una per volta"
+    ],
+    [
+     "Niente aperture con spread largo",
+     "o vicino alle notizie"
+    ],
+    [
+     "Videocorso al 50%",
+     "incluso"
+    ]
+   ]
+  },
+  {
+   "tipo": "conto",
+   "dur": 4.0,
+   "titolo": "Prezzo di lancio",
+   "righe": [
+    [
+     "Riskly Pro · una tantum",
+     "249 €",
+     "up"
+    ],
+    [
+     "Dal 23 ottobre",
+     "498 €"
+    ]
+   ]
+  },
+  {
+   "tipo": "chiusura",
+   "dur": 3.4,
+   "cta": "Lista d'attesa · link in bio"
+  }
+ ]
+}

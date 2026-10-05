@@ -1,0 +1,70 @@
+{
+ "subito": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 2.8,
+   "kicker": "JOURNAL RISKLY · DISPONIBILE ORA",
+   "testo": [
+    "Ancora il journal",
+    "su Excel?"
+   ]
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.6,
+   "testo": [
+    "Scrivi lotti e stop.",
+    "Tocca <em>com'è finita</em>."
+   ],
+   "nota": "Take profit, stop loss, break even o a scaglioni."
+  },
+  {
+   "tipo": "conto",
+   "dur": 5.4,
+   "titolo": "Il resto lo calcola lui",
+   "righe": [
+    [
+     "Rischio",
+     "15 € · 1,5%"
+    ],
+    [
+     "Risultato",
+     "+200 € · +40 pip",
+     "up"
+    ],
+    [
+     "Saldo",
+     "1.000 € → 1.200 €"
+    ]
+   ],
+   "nota": "Anche per l'oro: il valore del pip lo sa già."
+  },
+  {
+   "tipo": "lista",
+   "dur": 6.2,
+   "titolo": "E poi ti fa vedere:",
+   "passo": 1.0,
+   "voci": [
+    [
+     "In quale orario perdi di più",
+     ""
+    ],
+    [
+     "Quale setup funziona davvero",
+     ""
+    ],
+    [
+     "Come tradi dopo una perdita",
+     ""
+    ]
+   ]
+  },
+  {
+   "tipo": "chiusura",
+   "dur": 3.4,
+   "cta": "7 giorni gratis · link in bio",
+   "claim": "I tuoi numeri<br>dicono <em>chi sei</em>."
+  }
+ ]
+}

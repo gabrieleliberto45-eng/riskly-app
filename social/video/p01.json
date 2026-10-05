@@ -1,0 +1,67 @@
+{
+ "subito": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 3.2,
+   "kicker": "RISKGUARD · MT4 E MT5",
+   "testo": [
+    "3 perdite di fila.",
+    "Stai per aprire",
+    "<em>la quarta.</em>"
+   ]
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.6,
+   "testo": [
+    "RiskGuard",
+    "<em>chiude MetaTrader.</em>"
+   ],
+   "nota": "E resta bloccato fino a mezzanotte, anche se lo riavvii."
+  },
+  {
+   "tipo": "lista",
+   "dur": 7.0,
+   "titolo": "Le regole le decidi tu, a mente fredda:",
+   "passo": 1.1,
+   "voci": [
+    [
+     "Stop dopo N perdite di fila",
+     "il numero lo scegli tu"
+    ],
+    [
+     "Pausa obbligatoria dopo una perdita",
+     "niente vendetta sul mercato"
+    ],
+    [
+     "Limite di perdita giornaliera",
+     "prima che lo tocchi"
+    ]
+   ]
+  },
+  {
+   "tipo": "conto",
+   "dur": 5.4,
+   "titolo": "Prezzo di lancio",
+   "righe": [
+    [
+     "RiskGuard · una tantum",
+     "99 €",
+     "up"
+    ],
+    [
+     "Dal 23 ottobre",
+     "198 €"
+    ]
+   ],
+   "nota": "Solo per i primi 10 iscritti alla lista d'attesa."
+  },
+  {
+   "tipo": "chiusura",
+   "dur": 3.4,
+   "cta": "Lista d'attesa · link in bio",
+   "claim": "La regola la decidi <em>da lucido</em>.<br>Il bot la fa rispettare."
+  }
+ ]
+}

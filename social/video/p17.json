@@ -1,0 +1,41 @@
+{
+ "subito": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 3.2,
+   "kicker": "DOMANI · 23 OTTOBRE",
+   "testo": [
+    "Domani",
+    "escono",
+    "<em>i bot Riskly.</em>"
+   ]
+  },
+  {
+   "tipo": "lista",
+   "dur": 6.4,
+   "titolo": "Ultime ore per:",
+   "passo": 1.1,
+   "voci": [
+    [
+     "Bloccare il prezzo di lancio",
+     "a vita"
+    ],
+    [
+     "Essere tra i primi 10",
+     "avvisati per primi"
+    ],
+    [
+     "Iscriversi gratis",
+     "nessun pagamento adesso"
+    ]
+   ]
+  },
+  {
+   "tipo": "chiusura",
+   "dur": 3.4,
+   "cta": "Lista d'attesa · link in bio",
+   "claim": "Il mercato non lo controlli.<br><em>Tutto il resto sì.</em>"
+  }
+ ]
+}

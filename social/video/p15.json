@@ -1,0 +1,53 @@
+{
+ "subito": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 3.2,
+   "kicker": "−3 GIORNI",
+   "testo": [
+    "10 posti.",
+    "Prezzo di lancio",
+    "<em>bloccato a vita.</em>"
+   ]
+  },
+  {
+   "tipo": "conto",
+   "dur": 6.0,
+   "titolo": "Prezzo oggi vs dal 23",
+   "righe": [
+    [
+     "RiskGuard",
+     "99 € → 198 €"
+    ],
+    [
+     "TradeManager",
+     "99 € → 198 €"
+    ],
+    [
+     "ScaleIn",
+     "129 € → 258 €"
+    ],
+    [
+     "Riskly Pro",
+     "249 € → 498 €"
+    ]
+   ],
+   "nota": "I primi 10 tengono il prezzo anche sugli aggiornamenti."
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.6,
+   "testo": [
+    "Iscriverti",
+    "<em>non costa niente.</em>"
+   ],
+   "nota": "Nessun pagamento adesso."
+  },
+  {
+   "tipo": "chiusura",
+   "dur": 3.4,
+   "cta": "Lista d'attesa · link in bio"
+  }
+ ]
+}

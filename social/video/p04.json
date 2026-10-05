@@ -1,0 +1,80 @@
+{
+ "subito": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 3.2,
+   "kicker": "SCALEIN · MT4 E MT5",
+   "testo": [
+    "Apri 1 posizione.",
+    "Il bot ne apre",
+    "<em>altre 4.</em>"
+   ]
+  },
+  {
+   "tipo": "conto",
+   "dur": 5.8,
+   "titolo": "Ognuna con il suo take profit",
+   "righe": [
+    [
+     "1ª posizione",
+     "TP +20 pip",
+     "up"
+    ],
+    [
+     "2ª posizione",
+     "TP +40 pip",
+     "up"
+    ],
+    [
+     "3ª posizione",
+     "TP +60 pip",
+     "up"
+    ]
+   ],
+   "nota": "Prendi profitto a pezzi, il resto corre."
+  },
+  {
+   "tipo": "lista",
+   "dur": 7.0,
+   "titolo": "E pensa anche al rischio:",
+   "passo": 1.1,
+   "voci": [
+    [
+     "Stop loss automatico",
+     "se ti dimentichi di metterlo"
+    ],
+    [
+     "Blocco se il rischio totale è troppo",
+     "prima di aprire"
+    ],
+    [
+     "Pendenti cancellati da soli",
+     "se l'originale si chiude"
+    ]
+   ]
+  },
+  {
+   "tipo": "conto",
+   "dur": 4.2,
+   "titolo": "Prezzo di lancio",
+   "righe": [
+    [
+     "ScaleIn · una tantum",
+     "129 €",
+     "up"
+    ],
+    [
+     "Dal 23 ottobre",
+     "258 €"
+    ]
+   ]
+  },
+  {
+   "tipo": "chiusura",
+   "dur": 3.4,
+   "cta": "Lista d'attesa · link in bio",
+   "claim": "Scaglionare a mano<br>richiede minuti. <em>Lui un click.</em>"
+  }
+ ]
+}

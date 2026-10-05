@@ -1,0 +1,45 @@
+{
+ "subito": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 3.2,
+   "kicker": "VIDEOCORSO · DISPONIBILE ORA",
+   "testo": [
+    "Un bot",
+    "non ti salva",
+    "<em>da regole sbagliate.</em>"
+   ]
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.6,
+   "testo": [
+    "Prima impari",
+    "<em>quali regole darti</em>.",
+    "Poi il bot le fa rispettare."
+   ]
+  },
+  {
+   "tipo": "conto",
+   "dur": 5.2,
+   "titolo": "Il percorso",
+   "righe": [
+    [
+     "Oggi · videocorso",
+     "199 €",
+     "up"
+    ],
+    [
+     "Dal 23 · bot",
+     "50% sul corso per chi li compra"
+    ]
+   ]
+  },
+  {
+   "tipo": "chiusura",
+   "dur": 3.4,
+   "cta": "Videocorso · link in bio"
+  }
+ ]
+}

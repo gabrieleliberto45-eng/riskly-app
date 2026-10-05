@@ -1,0 +1,60 @@
+{
+ "subito": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 3.0,
+   "kicker": "CALCOLATORI RISKLY · GRATIS",
+   "testo": [
+    "Quanti lotti",
+    "con 10.000 €",
+    "e stop a 25 pip?"
+   ]
+  },
+  {
+   "tipo": "numero",
+   "dur": 4.0,
+   "kicker": "RISCHIO 1%",
+   "valore": 0.4,
+   "prefisso": "",
+   "suffisso": " lotti",
+   "etichetta": "Lo calcoli in 3 secondi. Gratis, senza registrazione.",
+   "rosso": false,
+   "decimali": 2
+  },
+  {
+   "tipo": "lista",
+   "dur": 7.0,
+   "titolo": "Cinque calcolatori, tutti in pip:",
+   "passo": 0.9,
+   "voci": [
+    [
+     "Dimensione della posizione",
+     ""
+    ],
+    [
+     "Rischio di rovina (Monte Carlo)",
+     ""
+    ],
+    [
+     "Tracker challenge prop firm",
+     ""
+    ],
+    [
+     "Recupero dopo una perdita",
+     ""
+    ],
+    [
+     "Crescita composta",
+     ""
+    ]
+   ]
+  },
+  {
+   "tipo": "chiusura",
+   "dur": 3.4,
+   "cta": "Calcolatori gratis · link in bio",
+   "claim": "Calcola <em>prima</em>,<br>non dopo."
+  }
+ ]
+}

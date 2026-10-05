@@ -1,0 +1,66 @@
+{
+ "subito": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 3.2,
+   "kicker": "TRADEMANAGER · MT4 E MT5",
+   "testo": [
+    "Era a +30 pip.",
+    "L'hai chiusa",
+    "<em>in perdita.</em>"
+   ]
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.6,
+   "testo": [
+    "TradeManager",
+    "la gestisce",
+    "<em>al posto tuo.</em>"
+   ]
+  },
+  {
+   "tipo": "lista",
+   "dur": 7.0,
+   "titolo": "Tutto in pip, niente formule:",
+   "passo": 1.1,
+   "voci": [
+    [
+     "Break-even dopo N pip",
+     "con un margine"
+    ],
+    [
+     "Trailing stop",
+     "avvio, distanza e passo"
+    ],
+    [
+     "Stop e take profit automatici",
+     "mai una posizione senza stop"
+    ]
+   ]
+  },
+  {
+   "tipo": "conto",
+   "dur": 4.2,
+   "titolo": "Prezzo di lancio",
+   "righe": [
+    [
+     "TradeManager · una tantum",
+     "99 €",
+     "up"
+    ],
+    [
+     "Dal 23 ottobre",
+     "198 €"
+    ]
+   ]
+  },
+  {
+   "tipo": "chiusura",
+   "dur": 3.4,
+   "cta": "Lista d'attesa · link in bio",
+   "claim": "Tu decidi l'ingresso.<br><em>Lui protegge il resto.</em>"
+  }
+ ]
+}

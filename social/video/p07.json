@@ -1,0 +1,67 @@
+{
+ "subito": true,
+ "scene": [
+  {
+   "tipo": "hook",
+   "dur": 3.2,
+   "kicker": "JOURNAL RISKLY",
+   "testo": [
+    "Dopo una perdita",
+    "tradi peggio.",
+    "<em>E non lo sai.</em>"
+   ]
+  },
+  {
+   "tipo": "conto",
+   "dur": 5.6,
+   "titolo": "Dai dati di un journal reale",
+   "righe": [
+    [
+     "Operazione dopo una vincita",
+     "winrate 54%",
+     "up"
+    ],
+    [
+     "Operazione dopo una perdita",
+     "winrate 38%",
+     "down"
+    ]
+   ],
+   "nota": "Esempio illustrativo: i tuoi numeri li vedi nel tuo journal."
+  },
+  {
+   "tipo": "frase",
+   "dur": 3.6,
+   "testo": [
+    "Il journal Riskly",
+    "te lo <em>mostra</em>.",
+    "Con i tuoi numeri."
+   ]
+  },
+  {
+   "tipo": "lista",
+   "dur": 6.4,
+   "titolo": "Ogni operazione in 30 secondi:",
+   "passo": 1.1,
+   "voci": [
+    [
+     "Lotti, stop, com'è finita",
+     "il resto lo calcola"
+    ],
+    [
+     "Screenshot dell'ingresso",
+     "e della conferma"
+    ],
+    [
+     "Si sincronizza da MetaTrader",
+     "se usi i bot"
+    ]
+   ]
+  },
+  {
+   "tipo": "chiusura",
+   "dur": 3.4,
+   "cta": "7 giorni gratis · link in bio"
+  }
+ ]
+}
