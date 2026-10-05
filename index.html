@@ -3464,9 +3464,9 @@ function j_vpipPer(sym){
   sym = j_simNorm(sym);
   const salvati = j_vpipSalvati();
   if(sym && salvati[sym] > 0) return salvati[sym];
-  /* oro: 1 pip = 1 $ di prezzo (es. 2650 → 2651); con 1 lotto (100 once) vale 100,
-     cioè 1 pip di XAU vale come 10 pip di EURUSD */
-  if(/XAU|GOLD/.test(sym)) return 100;
+  /* oro: 1 pip = 0,10 $ di prezzo (es. 2650,0 → 2650,1); con 1 lotto (100 once) vale 10,
+     come 1 pip di EURUSD. 1 $ di prezzo dell'oro sono quindi 10 pip */
+  if(/XAU|GOLD/.test(sym)) return 10;
   if(/JPY$/.test(sym)) return 6.5;
   return 10;
 }
@@ -3568,7 +3568,7 @@ function j_renderScag(senzaApplicare){
       <div class="jrap-riga">
         <div><label for="rp-stop">Stop loss (pip)</label><input type="number" id="rp-stop" class="rp" data-k="stop" step="any" min="0" inputmode="decimal" value="${esc(String(j_rap.stop))}"></div>
         <div><label for="rp-passo">TP ogni (pip) <span class="jaiuto" title="Distanza tra un take profit e il successivo: con 10, il 1° scaglione chiude a +10 pip, il 2° a +20, il 3° a +30…">?</span></label><input type="number" id="rp-passo" class="rp" data-k="passo" step="any" min="0" inputmode="decimal" value="${esc(String(j_rap.passo))}"></div>
-        <div><label for="rp-vpip">Valore pip a lotto <span class="jaiuto" title="Quanto vale 1 pip con 1 lotto, nella valuta del conto. Si propone il valore tipico del simbolo: 10 per EURUSD, GBPUSD e le altre coppie col dollaro; 100 per l'oro (XAU), dove 1 pip è 1 $ di prezzo e vale come 10 pip di EURUSD. Controllalo una volta su MetaTrader: se lo cambi lo ricordiamo per quel simbolo, su tutti i tuoi dispositivi.">?</span></label><input type="number" id="rp-vpip" step="any" min="0" inputmode="decimal" value="${j_vpipPer(j_simbolo())}"></div>
+        <div><label for="rp-vpip">Valore pip a lotto <span class="jaiuto" title="Quanto vale 1 pip con 1 lotto, nella valuta del conto. Si propone il valore tipico del simbolo: 10 per EURUSD, GBPUSD e le altre coppie col dollaro; 10 anche per l'oro (XAU), dove 1 pip è 0,10 $ di prezzo, quindi 1 $ di movimento sono 10 pip. Controllalo una volta su MetaTrader: se lo cambi lo ricordiamo per quel simbolo, su tutti i tuoi dispositivi.">?</span></label><input type="number" id="rp-vpip" step="any" min="0" inputmode="decimal" value="${j_vpipPer(j_simbolo())}"></div>
       </div>
       <div class="jrap-info" id="rpInfo">${lotti ? `${lotti[0].toFixed(2)} lotti a scaglione` : 'Inserisci il lotto totale'}</div>
       <div class="jm-campo"><span>Scaglioni chiusi in profitto</span>
@@ -3624,8 +3624,10 @@ function j_aggiornaStima(senzaApplicare){
     if(st.pct !== null && st.pct > 2) h += `<div class="jstima-nota" style="color:var(--down)">Attenzione: stai rischiando più del 2% del saldo.</div>`;
   }
   h += `<div class="jstima-r"><span>Risultato</span><b class="${cl(st.eur)}">${j_segno(st.eur, 2)} €</b></div>`;
-  if(st.saldo) h += `<div class="jstima-r"><span>Saldo dopo l'operazione <small>(prima ${j_soldi(st.saldo, 2)})</small></span><b>${j_soldi(st.saldo + st.eur, 2)}</b></div>`;
-  else h += `<div class="jstima-nota">Imposta il <b>saldo iniziale</b> in alto per vedere la percentuale di rischio e il saldo aggiornato.</div>`;
+  const conSegno = v => (v < 0 ? '−' : '') + j_soldi(v, 2);   /* j_soldi toglie il segno */
+  if(st.saldo) h += `<div class="jstima-r"><span>Saldo dopo l'operazione <small>(prima ${conSegno(st.saldo)})</small></span><b class="${st.saldo + st.eur < 0 ? 'down' : ''}">${conSegno(st.saldo + st.eur)}</b></div>`;
+  if(st.saldo < 0) h += `<div class="jstima-nota" style="color:var(--down)">Il saldo prima di questa operazione risulta <b>negativo</b> (${conSegno(st.saldo)}): le operazioni salvate hanno perso più del saldo iniziale. Controlla il <b>saldo iniziale</b> in alto o le operazioni registrate. Finché è negativo la percentuale di rischio non si può calcolare.</div>`;
+  else if(!st.saldo) h +=`<div class="jstima-nota">Imposta il <b>saldo iniziale</b> in alto per vedere la percentuale di rischio e il saldo aggiornato.</div>`;
   h += `<div class="jstima-nota">Il risultato è già scritto qui sotto.</div>`;
   if(!senzaApplicare) j_applicaStima();
   box.innerHTML = h;
