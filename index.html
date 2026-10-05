@@ -3448,9 +3448,26 @@ function j_scagRiassunto(arr){
 
 /* compilazione rapida, come i bot a scaglioni: lotto totale diviso in N parti uguali,
    le prime k chiuse in profitto a +passo, +2·passo…, le altre a pareggio o a stop, l'ultima eventualmente lasciata correre */
-let j_rap = Object.assign({ n: 10, passo: 10, stop: 20, resto: 'be', rischio: 1 }, (() => { try{ return JSON.parse(localStorage.getItem('riskly-scag-rapido')) || {}; }catch{ return {}; } })(),
+let j_rap = Object.assign({ n: 10, passo: 10, stop: 20, resto: 'be' }, (() => { try{ return JSON.parse(localStorage.getItem('riskly-scag-rapido')) || {}; }catch{ return {}; } })(),
   { tot: '', k: 0, corre: false, correPip: '' });
-function j_rapPref(){ try{ localStorage.setItem('riskly-scag-rapido', JSON.stringify({ n: j_rap.n, passo: j_rap.passo, stop: j_rap.stop, resto: j_rap.resto, rischio: j_rap.rischio })); }catch{} }
+function j_rapPref(){ try{ localStorage.setItem('riskly-scag-rapido', JSON.stringify({ n: j_rap.n, passo: j_rap.passo, stop: j_rap.stop, resto: j_rap.resto })); }catch{} }
+/* valore di 1 pip con 1 lotto, nella valuta del conto: dipende dal simbolo.
+   Si propone un valore tipico e, se lo cambi, si ricorda per quel simbolo. */
+function j_vpipSalvati(){ try{ return JSON.parse(localStorage.getItem('riskly-vpip')) || {}; }catch{ return {}; } }
+function j_vpipPer(sym){
+  sym = String(sym || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+  const salvati = j_vpipSalvati();
+  if(sym && salvati[sym] > 0) return salvati[sym];
+  if(/JPY$/.test(sym)) return 6.5;
+  return 10;
+}
+function j_vpipRicorda(sym, v){
+  sym = String(sym || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+  if(!sym || !(v > 0)) return;
+  const m = j_vpipSalvati(); m[sym] = v;
+  try{ localStorage.setItem('riskly-vpip', JSON.stringify(m)); }catch{}
+}
+const j_simbolo = () => (document.getElementById('f-symbol') || {}).value || '';
 /* in modifica: ricostruisce la compilazione rapida dagli scaglioni salvati */
 function j_rapDaScag(arr){
   Object.assign(j_rap, { tot: '', k: 0, corre: false, correPip: '' });
@@ -3493,25 +3510,26 @@ function j_rapGenera(){
    un pip medio vale quindi rischio ÷ pip di stop. */
 function j_scagStima(){
   const L = j_scagLotti(j_scag); if(!(L > 0)) return null;
-  const pip = j_scag.reduce((a, x) => a + x.l * (x.p || 0), 0) / L;
-  const stop = parseFloat(j_rap.stop) || 0, pct = parseFloat(j_rap.rischio) || 0, saldo = j_saldoPrimaOp();
-  const rischio = saldo > 0 && pct > 0 ? Math.round(saldo * pct) / 100 : null;
-  const eur = rischio !== null && stop > 0 ? Math.round(rischio * pip / stop * 100) / 100 : null;
-  return { pip, saldo, rischio, eur, pct };
+  const lp = j_scag.reduce((a, x) => a + x.l * (x.p || 0), 0);
+  const stop = parseFloat(j_rap.stop) || 0, vp = j_vpipPer(j_simbolo()), saldo = j_saldoPrimaOp();
+  const rischio = stop > 0 ? Math.round(L * stop * vp * 100) / 100 : null;     /* tutta la posizione allo stop */
+  const eur = Math.round(lp * vp * 100) / 100;
+  const pct = rischio !== null && saldo > 0 ? rischio / saldo * 100 : null;
+  return { pip: lp / L, saldo, rischio, eur, pct, vp };
 }
 /* rischio in euro (saldo × rischio %): va nel campo nascosto Rischio anche senza scaglioni */
 function j_applicaRischio(){
-  const saldo = j_saldoPrimaOp(), pct = parseFloat(j_rap.rischio) || 0, el = document.getElementById('f-risk');
-  if(!el || !(saldo > 0 && pct > 0)) return;
+  const st = j_scagStima(), el = document.getElementById('f-risk');
+  if(!el || !st || st.rischio === null) return;
   j_setUnita('risk', 'val', true);
-  el.value = (Math.round(saldo * pct) / 100).toFixed(2);
+  el.value = st.rischio.toFixed(2);
 }
 /* scrive risultato e rischio nei campi dell'operazione */
 function j_applicaStima(){
-  const st = j_scagStima(); if(!st || st.eur === null) return;
-  j_setUnita('pnl', 'val', true); j_setUnita('risk', 'val', true);
+  const st = j_scagStima(); if(!st) return;
+  j_setUnita('pnl', 'val', true);
   document.getElementById('f-pnl').value = st.eur.toFixed(2);
-  document.getElementById('f-risk').value = st.rischio.toFixed(2);
+  j_applicaRischio();
   j_aggiornaConversione();
 }
 const j_segno = (v, d) => (v > 0 ? '+' : (v < 0 ? '−' : '')) + Math.abs(v).toFixed(d);
@@ -3525,18 +3543,18 @@ function j_renderScag(senzaApplicare){
   const rimasti = Math.max(0, n - Math.min(j_rap.k, maxK) - (j_rap.corre ? 1 : 0));
   const chip = (attr, v, on, testo) => `<button type="button" class="jscelta${on ? ' on' : ''}" ${attr}="${v}">${testo}</button>`;
   box.innerHTML = `
-    <div class="jm-gtit"><b>Gestione e risultato</b><span>Rischio, lotti e scaglioni: il risultato qui sotto si calcola da solo</span></div>
+    <div class="jm-gtit"><b>Gestione e risultato</b><span>Lotti, stop e scaglioni: rischio e risultato si calcolano da soli</span></div>
     <div class="jrap">
       <div class="jrap-riga">
-        <div><label for="rp-rischio">Rischio (%) <span class="jaiuto" title="La percentuale del saldo che perdi se tutta la posizione chiude allo stop loss. Si ricorda per le prossime operazioni.">?</span></label><input type="number" id="rp-rischio" class="rp" data-k="rischio" step="0.05" min="0" inputmode="decimal" value="${esc(String(j_rap.rischio))}"></div>
         <div><label for="rp-tot">Lotto totale</label><input type="number" id="rp-tot" class="rp" data-k="tot" step="0.01" min="0.01" inputmode="decimal" placeholder="1.00" value="${esc(String(j_rap.tot))}"></div>
         <div><label for="rp-n">Scaglioni</label><input type="number" id="rp-n" class="rp" data-k="n" step="1" min="1" max="${J_SCAG_MAX}" inputmode="numeric" value="${n}"></div>
       </div>
       <div class="jrap-riga">
         <div><label for="rp-stop">Stop loss (pip)</label><input type="number" id="rp-stop" class="rp" data-k="stop" step="any" min="0" inputmode="decimal" value="${esc(String(j_rap.stop))}"></div>
         <div><label for="rp-passo">TP ogni (pip) <span class="jaiuto" title="Distanza tra un take profit e il successivo: con 10, il 1° scaglione chiude a +10 pip, il 2° a +20, il 3° a +30…">?</span></label><input type="number" id="rp-passo" class="rp" data-k="passo" step="any" min="0" inputmode="decimal" value="${esc(String(j_rap.passo))}"></div>
-        <div class="jrap-info" id="rpInfo" style="align-self:end">${lotti ? `${lotti[0].toFixed(2)} lotti a scaglione` : 'Inserisci il lotto totale'}</div>
+        <div><label for="rp-vpip">Valore pip a lotto <span class="jaiuto" title="Quanto vale 1 pip con 1 lotto, nella valuta del conto. Si propone il valore tipico del simbolo (10 per EURUSD, GBPUSD, XAUUSD…): controllalo una volta su MetaTrader, se lo cambi lo ricordiamo per quel simbolo.">?</span></label><input type="number" id="rp-vpip" step="any" min="0" inputmode="decimal" value="${j_vpipPer(j_simbolo())}"></div>
       </div>
+      <div class="jrap-info" id="rpInfo">${lotti ? `${lotti[0].toFixed(2)} lotti a scaglione` : 'Inserisci il lotto totale'}</div>
       <div class="jm-campo"><span>Scaglioni chiusi in profitto</span>
         <div class="jrap-griglia">${Array.from({ length: n }, (_, i) => `<button type="button" class="jrap-k${i < j_rap.k && i < maxK ? ' on' : ''}" data-rk="${i + 1}" ${i >= maxK ? 'disabled' : ''}><b>${i + 1}</b><small>${passo ? '+' + +(passo * (i + 1)).toFixed(1) + 'p' : ''}</small></button>`).join('')}</div>
         <div class="jchips-scelta">${chip('data-rsh', 0, j_rap.k === 0, 'Nessuno')}${chip('data-rsh', maxK, j_rap.k >= maxK && maxK > 0, j_rap.corre ? `Tutti tranne l'ultimo` : `Tutti e ${n}`)}</div>
@@ -3551,6 +3569,7 @@ function j_renderScag(senzaApplicare){
 
   box.oninput = e => {
     const t = e.target;
+    if(t.id === 'rp-vpip'){ j_vpipRicorda(j_simbolo(), parseFloat(t.value)); j_aggiornaStima(); return; }
     if(!t.classList.contains('rp') || t.type === 'checkbox') return;
     j_rap[t.dataset.k] = t.value; j_rapPref();
     if(t.dataset.k === 'n' || t.dataset.k === 'passo') return;   /* la griglia si ridisegna all'uscita dal campo */
@@ -3584,16 +3603,15 @@ function j_aggiornaStima(senzaApplicare){
   if(!st){ box.innerHTML = ''; return; }
   const cl = v => v > 0 ? 'up' : (v < 0 ? 'down' : '');
   let h = `<div class="jstima-r"><span>Risultato in pip <small>(media sui lotti)</small></span><b class="${cl(st.pip)}">${j_segno(st.pip, 1)} pip</b></div>`;
-  if(st.eur !== null){
-    h += `<div class="jstima-r"><span>Risultato <small>(rischio ${String(st.pct).replace('.', ',')}% = ${j_soldi(st.rischio, 2)})</small></span><b class="${cl(st.eur)}">${j_segno(st.eur, 2)} €</b></div>
-      <div class="jstima-r"><span>Saldo dopo l'operazione</span><b>${j_soldi(st.saldo + st.eur, 2)}</b></div>
-      <div class="jstima-nota">Il risultato è già scritto qui sotto.</div>`;
-    if(!senzaApplicare) j_applicaStima();
-  } else if(!st.saldo){
-    h += `<div class="jstima-nota">Per il risultato in euro imposta il <b>saldo iniziale</b> in alto: poi si aggiorna da solo a ogni operazione.</div>`;
-  } else {
-    h += `<div class="jstima-nota">Inserisci rischio % e stop loss per il risultato in euro.</div>`;
+  if(st.rischio !== null){
+    h += `<div class="jstima-r"><span>Rischio <small>(${j_scagLotti(j_scag).toFixed(2)} lotti × ${esc(String(j_rap.stop))} pip di stop)</small></span><b>${j_soldi(st.rischio, 2)}${st.pct !== null ? ` · ${st.pct.toFixed(2).replace('.', ',')}%` : ''}</b></div>`;
+    if(st.pct !== null && st.pct > 2) h += `<div class="jstima-nota" style="color:var(--down)">Attenzione: stai rischiando più del 2% del saldo.</div>`;
   }
+  h += `<div class="jstima-r"><span>Risultato</span><b class="${cl(st.eur)}">${j_segno(st.eur, 2)} €</b></div>`;
+  if(st.saldo) h += `<div class="jstima-r"><span>Saldo dopo l'operazione <small>(prima ${j_soldi(st.saldo, 2)})</small></span><b>${j_soldi(st.saldo + st.eur, 2)}</b></div>`;
+  else h += `<div class="jstima-nota">Imposta il <b>saldo iniziale</b> in alto per vedere la percentuale di rischio e il saldo aggiornato.</div>`;
+  h += `<div class="jstima-nota">Il risultato è già scritto qui sotto.</div>`;
+  if(!senzaApplicare) j_applicaStima();
   box.innerHTML = h;
 }
 
@@ -3866,6 +3884,10 @@ function j_renderScelte(){
   });
 }
 function j_aggiornaSalva(tipo, senzaChips){
+  if(tipo === 'simboli'){   /* cambia simbolo: cambia il valore del pip e quindi rischio e risultato */
+    const vp = document.getElementById('rp-vpip');
+    if(vp){ vp.value = j_vpipPer(j_simbolo()); j_aggiornaStima(!!j_modificaId); }
+  }
   const v = j_normVoce(tipo, document.getElementById(J_CAMPO[tipo]).value);
   const btn = document.getElementById('salva-' + tipo);
   if(btn) btn.hidden = !v || j_salvati(tipo).includes(v);
