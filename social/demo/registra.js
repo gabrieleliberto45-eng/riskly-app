@@ -70,7 +70,8 @@ async function registra(b, ID){
     for(const a of anim){ const k = (t - a[0]) / a[1]; if(k >= 0) await a[2](Math.min(1, k)); }
     anim = anim.filter(a => (t - a[0]) / a[1] < 1);
     await p.clock.runFor(1000 / FPS * vel);
-    await p.screenshot({ path: path.join(OUT, String(f).padStart(4, '0') + '.jpg'), type: 'jpeg', quality: 88 });
+    if(process.env.DEBUG && f % 30 === 0) console.log(t.toFixed(0), vel.toFixed(2), await p.evaluate(() => { const e = document.querySelector('[id^=fase]'); return [typeof runRG !== 'undefined' && runRG, (document.getElementById('faseRG')||{}).textContent]; }));
+    if(!process.env.DEBUG) await p.screenshot({ path: path.join(OUT, String(f).padStart(4, '0') + '.jpg'), type: 'jpeg', quality: 88 });
   }
   console.log(ID, 'fotogrammi', N, 'durata', DUR.toFixed(1));
   await ctx.close();

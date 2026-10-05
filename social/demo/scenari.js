@@ -14,7 +14,7 @@ module.exports = {
   /* RiskGuard: la simulazione della giornata che si consuma */
   p01: { init: BOT_COME, passi: [
     [0, async H => H.scorri('#bt-come .sim', .01, 40)],
-    ['guarda', async H => { await H.scorri('#chartRG', .6, 40); await H.sim('RG', 7500, 'chiude'); }],
+    ['guarda', async H => { await H.scorri('#chartRG', .6, 140); await H.sim('RG', 7500, 'chiude'); }],
     ['mezzanotte', async H => H.velocita(0)],
   ]},
   /* ScaleIn: la replica a scaglioni */
