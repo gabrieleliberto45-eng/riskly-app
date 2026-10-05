@@ -86,6 +86,12 @@
       <div id="sconto-codice" style="font-family:'JetBrains Mono',monospace;font-size:1.3rem;font-weight:700;color:var(--up);letter-spacing:.08em"></div>
     </div>
 
+    <div class="grp" id="premium-box" style="display:none">
+      <h3>30% di sconto sui bot</h3>
+      <div class="sub">Hai il journal Premium: con questo codice RiskGuard, TradeManager, ScaleIn e Riskly Pro costano il 30% in meno. Inseriscilo nella pagina di pagamento, alla voce "Aggiungi codice promozionale". Vale finché il piano Premium è attivo.</div>
+      <div id="premium-codice" style="font-family:'JetBrains Mono',monospace;font-size:1.3rem;font-weight:700;color:var(--up);letter-spacing:.08em"></div>
+    </div>
+
     <div id="bot-box">
     <div class="grp" style="border-color:rgba(182,216,79,.45)">
       <h3>1 · Entra nel gruppo clienti</h3>
@@ -170,6 +176,12 @@
     if(journal){
       document.getElementById('journal-box').style.display = 'block';
       document.getElementById('journal-sub').textContent = 'Il piano ' + journal.replace(/^journal\s+/i, '') + ' è attivo sul tuo account: accedi al journal con la stessa email e lo trovi già sbloccato.';
+    }
+    if(journal && /premium/i.test(journal)){
+      try{
+        const { data } = await sb.rpc('codice_sconto_premium');
+        if(data){ document.getElementById('premium-codice').textContent = data; document.getElementById('premium-box').style.display = 'block'; }
+      }catch(e){}
     }
     if(!haCorso && !haBot && journal) document.getElementById('lista-intro').textContent = 'Grazie per l\'acquisto. Il tuo piano del journal è attivo.';
     if(haBot && !haCorso){
