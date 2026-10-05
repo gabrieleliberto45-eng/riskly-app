@@ -14,27 +14,27 @@ module.exports = {
   /* RiskGuard: la simulazione della giornata che si consuma */
   p01: { init: BOT_COME, passi: [
     [0, async H => H.scorri('#bt-come .sim', .01, 40)],
-    ['guarda', async H => { await H.scorri('#chartRG', .6, 140); await H.sim('RG', 7500, 'chiude'); }],
+    ['guarda', async H => { await H.scorri('#chartRG', .6, 140); await H.sim('RG', 7500, 'chiude', 9500); }],
     ['basta', async H => H.velocita(0)],
   ]},
   /* ScaleIn: la replica a scaglioni */
   p04: { init: BOT_COME, passi: [
     [0, async H => H.scorri('#chartSI', .01, 140)],
-    ['apri', async H => H.sim('SI', 5000, 'quando')],
+    ['apri', async H => H.sim('SI', 5000, 'quando', 10000)],
     ['esce', async H => H.velocita(0)],
   ]},
   /* TradeManager: break-even e trailing */
   p05: { init: BOT_COME, passi: [
     [0, async H => H.scorri('#chartTM', .01, 140)],
-    ['guarda', async H => H.sim('TM', 6000, 'protetto')],
+    ['guarda', async H => H.sim('TM', 6000, 'protetto', 8500)],
     ['tutto', async H => H.velocita(0)],
   ]},
   /* Riskly Pro: il calcolo del lotto */
   p06: { init: async H => { await H.js(() => { go('calc'); document.getElementById('c-pips').value = ''; document.getElementById('c-bal').value = ''; calcPos(); }); }, passi: [
     [0, async H => H.scorri('.calc-grid', .01, 60)],
-    ['diecimila', async H => H.scrivi('#c-bal', '10000', .5)],
-    ['venticinque', async H => H.scrivi('#c-pips', '25', .3)],
-    ['cinquanta#1', async H => H.scrivi('#c-pips', '50', .3)],
+    ['diecimila', async H => H.scrivi('#c-bal', '10000', .01)],
+    ['venticinque', async H => H.scrivi('#c-pips', '25', .01)],
+    ['cinquanta#1', async H => H.scrivi('#c-pips', '50', .01)],
     ['riskly#1', async H => H.scorri('#o-lots', .6, 260)],
   ]},
   /* Journal: statistiche */
@@ -48,15 +48,16 @@ module.exports = {
     [0, async H => H.scorri('#p-start', .01, 160)],
     ['centomila', async H => { H.scrivi('#p-start', '100000', .5); H.scrivi('#p-day', '100000', .5); }],
     ['tracker', async H => H.scrivi('#p-cur', '96800', .8)],
-    ['riskguard#1', async H => { await H.js(() => { go('bot'); botTab('come'); }); await H.scorri('#chartRG', .01, 140); await H.sim('RG', 7500, 'margine'); }],
+    ['riskguard#1', async H => { await H.js(() => { go('bot'); botTab('come'); }); await H.scorri('#chartRG', .01, 140); await H.sim('RG', 7500, 'margine', 9500); }],
     ['controlla', async H => H.velocita(0)],
   ]},
   /* Calcolatori: rischio di rovina */
   p09: { init: async H => { await H.js(() => { go('calc'); document.getElementById('r-risk').value = '1'; calcRuin(); }); }, passi: [
     [0, async H => H.scorri('#r-wr', .01, 160)],
-    ['winrate', async H => H.scrivi('#r-wr', '50', .3)],
+    ['winrate', async H => { H.scrivi('#r-wr', '40', .01); }],
+    ['take', async H => { H.scrivi('#r-tp', '40', .01); }],
     ['simula', async H => H.scorri('#o-ruin', .7, 200)],
-    ['cinque#1', async H => H.scrivi('#r-risk', '5', .2)],
+    ['cinque#1', async H => H.scrivi('#r-risk', '5', .01)],
     ['calcolatori', async H => H.scorri('#mcChart', .8, 420)],
   ]},
   /* Journal: chiusura a scaglioni */
@@ -106,15 +107,15 @@ module.exports = {
   /* Domani: le tre simulazioni una dopo l'altra */
   p17: { init: BOT_COME, passi: [
     [0, async H => H.scorri('#chartRG', .01, 140)],
-    ['riskguard', async H => { await H.scorri('#chartRG', .01, 140); await H.sim('RG', 7500, 'trademanager'); }],
-    ['trademanager', async H => { await H.scorri('#chartTM', .5, 140); await H.sim('TM', 6000, 'scalein'); }],
-    ['scalein', async H => { await H.scorri('#chartSI', .5, 140); await H.sim('SI', 5000, 'unisce'); }],
+    ['riskguard', async H => { await H.scorri('#chartRG', .01, 140); await H.sim('RG', 7500, 'trademanager', 9500); }],
+    ['trademanager', async H => { await H.scorri('#chartTM', .5, 140); await H.sim('TM', 6000, 'scalein', 8500); }],
+    ['scalein', async H => { await H.scorri('#chartSI', .5, 140); await H.sim('SI', 5000, 'unisce', 10000); }],
     ['oggi', async H => H.velocita(0)],
   ]},
   /* Oggi: la pagina dei bot */
   p18: { init: async H => { await H.js(() => { go('bot'); botTab('scegli'); }); await H.js(SENZA_PREZZI); }, passi: [
     [0, async H => H.scorri(0, .01)],
-    ['simulazioni', async H => { await H.js(() => { window.visibile = () => false; botTab('come'); }); await H.scorri('#chartRG', .01, 140); await H.sim('RG', 7500, 'funzionano'); }],
+    ['simulazioni', async H => { await H.js(() => { window.visibile = () => false; botTab('come'); }); await H.scorri('#chartRG', .01, 140); await H.sim('RG', 7500, 'funzionano', 9500); }],
     ['funzionano', async H => { await H.js(() => botTab('scegli')); await H.scorri('.bot', .01, 90); }],
     ['prezzo', async H => H.scorri('.bot@3', 1.2, 90)],
   ]},
