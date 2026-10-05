@@ -194,6 +194,13 @@
   input:focus,select:focus{outline:none;border-color:var(--accent)}
   input::placeholder{color:var(--dim2)}
   .fld{margin-bottom:12px}
+  .aiuto{display:inline-grid;place-items:center;width:17px;height:17px;margin-left:6px;border-radius:50%;
+    border:1px solid rgba(182,216,79,.55);color:var(--accent);font:600 .66rem/1 'Instrument Sans',system-ui,sans-serif;
+    cursor:pointer;vertical-align:1px;user-select:none;-webkit-tap-highlight-color:transparent}
+  .aiuto:hover,.aiuto.on{background:var(--accent);color:#0B0D0C}
+  #aiuto-pop{position:fixed;z-index:300;max-width:290px;background:#141715;border:1px solid rgba(182,216,79,.45);
+    border-radius:12px;padding:12px 14px;color:var(--text);font:400 .84rem/1.55 'Instrument Sans',system-ui,sans-serif;
+    box-shadow:0 12px 30px rgba(0,0,0,.55);display:none}
   .out{background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:11px;padding:17px;margin-top:4px}
   .out-row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05);
            font-family:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace;font-size:.85rem}
@@ -2113,31 +2120,34 @@
       <div class="calc-grid">
         <div class="card">
           <div class="card-head"><h3>Dimensione della posizione</h3><span class="meta">lotti</span></div>
-          <div class="fld"><label for="c-bal">Saldo del conto (€)</label><input type="number" id="c-bal" value="10000" oninput="calcPos()"></div>
-          <div class="fld"><label for="c-risk">Rischio per trade (%)</label><input type="number" id="c-risk" value="1" step="0.1" oninput="calcPos()"></div>
-          <div class="fld"><label for="c-pips">Distanza dello stop (pip)</label><input type="number" id="c-pips" value="25" oninput="calcPos()"></div>
-          <div class="fld"><label for="c-val">Valore del pip per lotto (€)</label><input type="number" id="c-val" value="10" step="0.01" oninput="calcPos()"></div>
+          <div class="fld"><label for="c-bal">Saldo del conto (€) <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Quanti soldi hai sul conto adesso. Il rischio si calcola su questa cifra.">?</span></label><input type="number" id="c-bal" value="10000" oninput="calcPos()"></div>
+          <div class="fld"><label for="c-risk">Rischio per trade (%) <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="La parte del conto che accetti di perdere se il prezzo tocca lo stop loss. Con 10.000 € e l&#x27;1% rischi 100 €. Chi inizia di solito sta tra lo 0,5% e l&#x27;1%.">?</span></label><input type="number" id="c-risk" value="1" step="0.1" oninput="calcPos()"></div>
+          <div class="fld"><label for="c-pips">Distanza dello stop (pip) <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Quanti pip ci sono tra il prezzo di entrata e lo stop loss. Esempio: entri su EURUSD a 1,1000 e metti lo stop a 1,0975: sono 25 pip.">?</span></label><input type="number" id="c-pips" value="25" oninput="calcPos()"></div>
+          <div class="fld"><label for="c-tp">Distanza del take profit (pip) <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Quanti pip ci sono tra l&#x27;entrata e il take profit, cioè dove chiudi in guadagno. Esempio: entri a 1,1000 con target a 1,1050: sono 50 pip.">?</span></label><input type="number" id="c-tp" value="50" oninput="calcPos()"></div>
+          <div class="fld"><label for="c-val">Valore del pip per lotto (€) <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Quanto vale 1 pip con 1 lotto intero. Sulle coppie che finiscono in USD (EURUSD, GBPUSD) è 10 $, cioè circa 9 € a seconda del cambio. Su MetaTrader lo trovi nelle specifiche del simbolo.">?</span></label><input type="number" id="c-val" value="10" step="0.01" oninput="calcPos()"></div>
           <div class="out">
-            <div style="color:var(--dim2);font-size:.73rem">Lotti da aprire</div>
+            <div style="color:var(--dim2);font-size:.73rem">Lotti da aprire <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="La dimensione da inserire su MetaTrader. Con questi lotti, se il prezzo arriva allo stop loss, perdi esattamente il rischio che hai scelto, né di più né di meno.">?</span></div>
             <div class="big" id="o-lots">0.40</div>
-            <div class="out-row"><span>Rischio in euro</span><span class="down" id="o-eur">−€100.00</span></div>
-            <div class="out-row"><span>Se colpisci 2R</span><span class="up" id="o-2r">+€200.00</span></div>
-            <div class="out-row"><span>Trade prima del −10%</span><span id="o-cnt">10</span></div>
+            <div class="out-row"><span>Rischio in euro <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Quanto perdi se il prezzo arriva allo stop loss.">?</span></span><span class="down" id="o-eur">−€100.00</span></div>
+            <div class="out-row"><span id="o-tp-lab">Se arriva al take profit (50 pip)</span><span class="up" id="o-2r">+€200.00</span></div>
+            <div class="out-row"><span>Stop : take profit <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Stop e take profit a confronto. Con 25 pip di stop e 50 di take profit guadagni il doppio di quanto rischi: 1 a 2.">?</span></span><span id="o-rap">25 : 50 pip</span></div>
+            <div class="out-row"><span>Trade prima del −10% <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Quante perdite di fila servono per perdere il 10% del conto con questo rischio. Più il numero è alto, più tempo hai per accorgerti che qualcosa non va.">?</span></span><span id="o-cnt">10</span></div>
           </div>
         </div>
 
         <div class="card">
           <div class="card-head"><h3>Rischio di rovina</h3><span class="meta">Monte Carlo</span></div>
-          <div class="fld"><label for="r-wr">Winrate (%)</label><input type="number" id="r-wr" value="50" oninput="calcRuin()"></div>
-          <div class="fld"><label for="r-rr">Rapporto rischio/rendimento (R)</label><input type="number" id="r-rr" value="2" step="0.1" oninput="calcRuin()"></div>
-          <div class="fld"><label for="r-risk">Rischio per trade (%)</label><input type="number" id="r-risk" value="1" step="0.1" oninput="calcRuin()"></div>
-          <div class="fld"><label for="r-dd">Perdita che consideri "rovina" (%)</label><input type="number" id="r-dd" value="30" oninput="calcRuin()"></div>
+          <div class="fld"><label for="r-wr">Winrate (%) <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Su 100 operazioni, quante chiudi in guadagno. Lo trovi nelle statistiche del journal. Se non lo sai, parti dal 50%.">?</span></label><input type="number" id="r-wr" value="50" oninput="calcRuin()"></div>
+          <div class="fld"><label for="r-sl">Stop loss medio (pip) <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Quanti pip metti di solito tra l&#x27;entrata e lo stop loss.">?</span></label><input type="number" id="r-sl" value="25" oninput="calcRuin()"></div>
+          <div class="fld"><label for="r-tp">Take profit medio (pip) <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Quanti pip metti di solito tra l&#x27;entrata e il take profit. Con stop a 25 pip e take profit a 50, ogni operazione vincente vale il doppio di una perdente.">?</span></label><input type="number" id="r-tp" value="50" oninput="calcRuin()"></div>
+          <div class="fld"><label for="r-risk">Rischio per trade (%) <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="La parte del conto che perdi quando un&#x27;operazione chiude allo stop loss.">?</span></label><input type="number" id="r-risk" value="1" step="0.1" oninput="calcRuin()"></div>
+          <div class="fld"><label for="r-dd">Perdita che consideri "rovina" (%) <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="La perdita oltre la quale ti fermeresti o perderesti il conto, per esempio il limite di una prop firm. Il 30% vuol dire scendere da 10.000 € a 7.000 €.">?</span></label><input type="number" id="r-dd" value="30" oninput="calcRuin()"></div>
           <div class="out">
-            <div style="color:var(--dim2);font-size:.73rem">Probabilità di rovina su 200 trade</div>
+            <div style="color:var(--dim2);font-size:.73rem">Probabilità di rovina su 200 trade <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Simuliamo 1.500 volte una serie di 200 operazioni con i tuoi numeri, in ordine casuale. È la percentuale di serie in cui tocchi almeno una volta la perdita di rovina. Sotto il 5% è prudente, sopra il 20% è pericoloso.">?</span></div>
             <div class="big" id="o-ruin">—</div>
-            <div class="out-row"><span>Aspettativa per trade</span><span id="o-exp">—</span></div>
-            <div class="out-row"><span>Saldo mediano finale</span><span id="o-med">—</span></div>
-            <div class="out-row"><span>Peggior drawdown mediano</span><span class="down" id="o-mdd">—</span></div>
+            <div class="out-row"><span>Aspettativa per trade <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Quanto guadagni in media a operazione, contando sia le vincite sia le perdite. Esempio: winrate 50%, stop 25 pip, take profit 50 pip → 0,5 × 50 − 0,5 × 25 = +12,5 pip a operazione. Se è negativa, a lungo andare il conto scende.">?</span></span><span id="o-exp">—</span></div>
+            <div class="out-row"><span>Saldo mediano finale <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Il saldo tipico dopo 200 operazioni: metà delle simulazioni finisce sopra, metà sotto. 120% vuol dire che 10.000 € diventano 12.000 €.">?</span></span><span id="o-med">—</span></div>
+            <div class="out-row"><span>Peggior drawdown mediano <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="La discesa più grande dal punto più alto del conto, nel caso tipico. È quanto devi essere pronto a sopportare anche se il metodo funziona.">?</span></span><span class="down" id="o-mdd">—</span></div>
           </div>
           <svg id="mcChart" viewBox="0 0 400 110" style="width:100%;margin-top:13px;display:block"></svg>
         </div>
@@ -2146,12 +2156,12 @@
       <div class="card" style="margin-top:13px">
         <div class="card-head"><h3>Tracker challenge prop firm</h3><span class="meta">limiti in tempo reale</span></div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:18px">
-          <div><label for="p-start">Saldo iniziale (€)</label><input type="number" id="p-start" value="100000" oninput="calcProp()"></div>
-          <div><label for="p-cur">Saldo attuale (€)</label><input type="number" id="p-cur" value="103500" oninput="calcProp()"></div>
-          <div><label for="p-day">Saldo inizio giornata (€)</label><input type="number" id="p-day" value="104200" oninput="calcProp()"></div>
-          <div><label for="p-dd">DD giornaliero max (%)</label><input type="number" id="p-dd" value="5" step="0.1" oninput="calcProp()"></div>
-          <div><label for="p-tot">DD totale max (%)</label><input type="number" id="p-tot" value="10" step="0.1" oninput="calcProp()"></div>
-          <div><label for="p-tgt">Target profitto (%)</label><input type="number" id="p-tgt" value="8" step="0.1" oninput="calcProp()"></div>
+          <div><label for="p-start">Saldo iniziale (€) <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Il saldo con cui parte la challenge, per esempio 100.000 €.">?</span></label><input type="number" id="p-start" value="100000" oninput="calcProp()"></div>
+          <div><label for="p-cur">Saldo attuale (€) <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Il saldo di adesso, a operazioni chiuse.">?</span></label><input type="number" id="p-cur" value="103500" oninput="calcProp()"></div>
+          <div><label for="p-day">Saldo inizio giornata (€) <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Il saldo all&#x27;inizio della giornata. Di solito la perdita giornaliera si conta da qui, ma alcune prop firm usano l&#x27;equity: controlla il loro regolamento.">?</span></label><input type="number" id="p-day" value="104200" oninput="calcProp()"></div>
+          <div><label for="p-dd">DD giornaliero max (%) <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Quanto puoi perdere al massimo in un giorno. Spesso è il 5%. DD sta per drawdown, cioè la perdita dal punto di riferimento.">?</span></label><input type="number" id="p-dd" value="5" step="0.1" oninput="calcProp()"></div>
+          <div><label for="p-tot">DD totale max (%) <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="La perdita massima consentita rispetto al saldo iniziale. Spesso è il 10%: superarla vuol dire perdere la challenge.">?</span></label><input type="number" id="p-tot" value="10" step="0.1" oninput="calcProp()"></div>
+          <div><label for="p-tgt">Target profitto (%) <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Il guadagno da raggiungere per passare la fase. Di solito è l&#x27;8% o il 10%.">?</span></label><input type="number" id="p-tgt" value="8" step="0.1" oninput="calcProp()"></div>
         </div>
         <div id="propOut"></div>
       </div>
@@ -2161,12 +2171,12 @@
         <div class="card">
           <div class="card-head"><h3>Recupero dopo una perdita</h3><span class="meta">la matematica del drawdown</span></div>
           <p style="color:var(--dim);font-size:.85rem;margin-bottom:16px">Perdere il 50% non significa dover guadagnare il 50% per tornare in pari.</p>
-          <div class="fld"><label for="be-dd">Perdita subita (%)</label><input type="number" id="be-dd" value="20" step="1" oninput="calcBE()"></div>
+          <div class="fld"><label for="be-dd">Perdita subita (%) <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Quanto hai perso dal punto più alto del conto. Esempio: da 10.000 € a 8.000 € è il 20%.">?</span></label><input type="number" id="be-dd" value="20" step="1" oninput="calcBE()"></div>
           <div class="out">
-            <div style="color:var(--dim2);font-size:.73rem">Ti serve un guadagno del</div>
+            <div style="color:var(--dim2);font-size:.73rem">Ti serve un guadagno del <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Quanto devi guadagnare sul capitale che ti è rimasto per tornare dove eri. Da 8.000 € a 10.000 € servono 2.000 €, cioè il 25% di 8.000: più di quanto hai perso.">?</span></div>
             <div class="big" id="o-be">25.0%</div>
-            <div class="out-row"><span>Capitale rimasto</span><span id="o-be-rest">80% del totale</span></div>
-            <div class="out-row"><span>A 2R per trade con 1% di rischio</span><span id="o-be-trade">—</span></div>
+            <div class="out-row"><span>Capitale rimasto <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Quanto ti rimane del conto dopo la perdita.">?</span></span><span id="o-be-rest">80% del totale</span></div>
+            <div class="out-row"><span>Stop 25 pip, TP 50 pip, rischio 1% <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Quante operazioni vincenti servono per recuperare, con stop loss a 25 pip, take profit a 50 pip e rischio dell&#x27;1%: ogni vincita aggiunge circa il 2% al conto.">?</span></span><span id="o-be-trade">—</span></div>
           </div>
           <svg id="beChart" viewBox="0 0 400 130" style="width:100%;margin-top:14px;display:block"></svg>
         </div>
@@ -2175,16 +2185,16 @@
         <div class="card">
           <div class="card-head"><h3>Crescita composta</h3><span class="meta">compounding</span></div>
           <p style="color:var(--dim);font-size:.85rem;margin-bottom:16px">Come cresce il capitale reinvestendo i profitti, mese dopo mese.</p>
-          <div class="fld"><label for="cp-start">Capitale iniziale (€)</label><input type="number" id="cp-start" value="5000" oninput="calcComp()"></div>
-          <div class="fld"><label for="cp-rate">Rendimento medio mensile (%)</label><input type="number" id="cp-rate" value="3" step="0.1" oninput="calcComp()"></div>
-          <div class="fld"><label for="cp-mesi">Orizzonte (mesi)</label><input type="number" id="cp-mesi" value="24" oninput="calcComp()"></div>
-          <div class="fld"><label for="cp-prel">Prelievo mensile (€)</label><input type="number" id="cp-prel" value="0" oninput="calcComp()"></div>
+          <div class="fld"><label for="cp-start">Capitale iniziale (€) <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="La cifra con cui parti.">?</span></label><input type="number" id="cp-start" value="5000" oninput="calcComp()"></div>
+          <div class="fld"><label for="cp-rate">Rendimento medio mensile (%) <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Il guadagno medio al mese, in percentuale del conto. Attenzione: anche un 3% al mese costante è molto difficile da mantenere.">?</span></label><input type="number" id="cp-rate" value="3" step="0.1" oninput="calcComp()"></div>
+          <div class="fld"><label for="cp-mesi">Orizzonte (mesi) <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Per quanti mesi fai il calcolo.">?</span></label><input type="number" id="cp-mesi" value="24" oninput="calcComp()"></div>
+          <div class="fld"><label for="cp-prel">Prelievo mensile (€) <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Quanto togli dal conto ogni mese. Più prelevi, meno il capitale cresce.">?</span></label><input type="number" id="cp-prel" value="0" oninput="calcComp()"></div>
           <div class="out">
-            <div style="color:var(--dim2);font-size:.73rem">Capitale finale</div>
+            <div style="color:var(--dim2);font-size:.73rem">Capitale finale <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Quanto avresti alla fine reinvestendo i guadagni ogni mese, con lo stesso rendimento tutti i mesi.">?</span></div>
             <div class="big" id="o-cp">—</div>
-            <div class="out-row"><span>Profitto totale</span><span class="up" id="o-cp-prof">—</span></div>
-            <div class="out-row"><span>Prelevato nel periodo</span><span id="o-cp-prel">—</span></div>
-            <div class="out-row"><span>Crescita complessiva</span><span id="o-cp-perc">—</span></div>
+            <div class="out-row"><span>Profitto totale <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Capitale finale più quanto hai prelevato, meno il capitale iniziale.">?</span></span><span class="up" id="o-cp-prof">—</span></div>
+            <div class="out-row"><span>Prelevato nel periodo <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="La somma di tutti i prelievi mensili.">?</span></span><span id="o-cp-prel">—</span></div>
+            <div class="out-row"><span>Crescita complessiva <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Di quanto è cresciuto il conto in percentuale rispetto all&#x27;inizio.">?</span></span><span id="o-cp-perc">—</span></div>
           </div>
           <svg id="cpChart" viewBox="0 0 400 120" style="width:100%;margin-top:14px;display:block"></svg>
           <p style="color:var(--dim2);font-size:.75rem;margin-top:12px;line-height:1.6">Questa è pura matematica su un rendimento costante. Nessun conto reale cresce in modo lineare: i mesi in perdita esistono e il calcolo non li considera. Serve a capire l'effetto del compounding, non a stimare guadagni.</p>
@@ -5447,19 +5457,52 @@ function iscrivi(e, campo, msg){
 }
 
 /* ---------- Calcolatore posizione ---------- */
+/* "?" accanto ai campi: spiegazione al tocco */
+function aiuto(t){ return ' <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="' + esc(t) + '">?</span>'; }
+(function(){
+  let pop = null, attivo = null;
+  function chiudi(){ if(pop) pop.style.display = 'none'; if(attivo) attivo.classList.remove('on'); attivo = null; }
+  function apri(el){
+    if(!pop){ pop = document.createElement('div'); pop.id = 'aiuto-pop'; document.body.appendChild(pop); }
+    if(attivo === el){ chiudi(); return; }
+    chiudi(); attivo = el; el.classList.add('on');
+    pop.textContent = el.dataset.h; pop.style.display = 'block';
+    const r = el.getBoundingClientRect(), w = Math.min(290, innerWidth - 24);
+    pop.style.maxWidth = w + 'px';
+    let x = Math.min(Math.max(12, r.left + r.width/2 - w/2), innerWidth - w - 12);
+    let y = r.bottom + 8;
+    if(y + pop.offsetHeight > innerHeight - 90) y = Math.max(12, r.top - pop.offsetHeight - 8);
+    pop.style.left = x + 'px'; pop.style.top = y + 'px';
+  }
+  document.addEventListener('click', e => {
+    const el = e.target.closest('.aiuto');
+    if(el){ e.preventDefault(); e.stopPropagation(); apri(el); }
+    else if(!e.target.closest('#aiuto-pop')) chiudi();
+  }, true);
+  document.addEventListener('keydown', e => {
+    const el = e.target.closest && e.target.closest('.aiuto');
+    if(el && (e.key === 'Enter' || e.key === ' ')){ e.preventDefault(); apri(el); }
+    if(e.key === 'Escape') chiudi();
+  });
+  addEventListener('scroll', chiudi, { passive:true });
+})();
+
 function calcPos(){
-  const bal=+v('c-bal'), rp=+v('c-risk'), pips=+v('c-pips'), pv=+v('c-val');
+  const bal=+v('c-bal'), rp=+v('c-risk'), pips=+v('c-pips'), pv=+v('c-val'), tp=+v('c-tp');
   const riskEur = bal*rp/100;
   const lots = (pips>0 && pv>0) ? riskEur/(pips*pv) : 0;
   set('o-lots', lots.toFixed(2));
   set('o-eur', '−€'+riskEur.toFixed(2));
-  set('o-2r', '+€'+(riskEur*2).toFixed(2));
+  set('o-tp-lab', 'Se arriva al take profit (' + (tp||0) + ' pip)');
+  set('o-2r', '+€'+(lots*tp*pv).toFixed(2));
+  set('o-rap', pips>0 && tp>0 ? pips + ' : ' + tp + ' pip (1 a ' + (tp/pips).toFixed(1).replace('.0','') + ')' : '—');
   set('o-cnt', rp>0 ? Math.floor(10/rp) : '—');
 }
 
 /* ---------- Rischio di rovina ---------- */
 function calcRuin(){
-  const wr=+v('r-wr')/100, rr=+v('r-rr'), risk=+v('r-risk')/100, ruinDD=+v('r-dd')/100;
+  const wr=+v('r-wr')/100, sl=+v('r-sl'), tp=+v('r-tp'), risk=+v('r-risk')/100, ruinDD=+v('r-dd')/100;
+  const rr = sl>0 ? tp/sl : 0;
   const N=200, SIMS=1500;
   let ruined=0; const finals=[], mdds=[], sample=[];
 
@@ -5483,7 +5526,8 @@ function calcRuin(){
   set('o-ruin', pRuin.toFixed(1)+'%');
   document.getElementById('o-ruin').style.color = pRuin>20?'var(--down)':(pRuin>5?'var(--gold)':'var(--up)');
   const e=document.getElementById('o-exp');
-  e.textContent = (exp>=0?'+':'')+exp.toFixed(2)+'R';
+  const expPip = wr*tp - (1-wr)*sl;
+  e.textContent = (expPip>=0?'+':'')+expPip.toFixed(1)+' pip ('+(exp>=0?'+':'')+(exp*risk*100).toFixed(2)+'% del conto)';
   e.className = exp>=0?'up':'down';
   set('o-med', (finals[Math.floor(SIMS/2)]*100).toFixed(0)+'% del capitale');
   set('o-mdd', '−'+(mdds[Math.floor(SIMS/2)]*100).toFixed(1)+'%');
@@ -5526,9 +5570,9 @@ function calcProp(){
   const manca = Math.max(target-profitto,0);
 
   const rows=[
-    ['Puoi ancora perdere oggi', '€'+restaOggi.toFixed(2), perdOggi/limOggi, restaOggi>0?'up':'down'],
-    ['Margine sul drawdown totale', '€'+restaTot.toFixed(2), perdTot/limTot, restaTot>0?'up':'down'],
-    ['Manca al target', manca>0?'€'+manca.toFixed(2):'Target raggiunto', Math.min(profitto/target,1), manca>0?'':'up']
+    ['Puoi ancora perdere oggi'+aiuto("Quanto ti resta prima del limite giornaliero. Dividilo per quanto rischi a operazione e sai quanti stop loss puoi ancora prendere oggi."), '€'+restaOggi.toFixed(2), perdOggi/limOggi, restaOggi>0?'up':'down'],
+    ['Margine sul drawdown totale'+aiuto("Quanto ti resta prima del limite di perdita totale. Se lo superi, la challenge è persa."), '€'+restaTot.toFixed(2), perdTot/limTot, restaTot>0?'up':'down'],
+    ['Manca al target'+aiuto("Quanto devi ancora guadagnare per passare la fase."), manca>0?'€'+manca.toFixed(2):'Target raggiunto', Math.min(profitto/target,1), manca>0?'':'up']
   ];
 
   document.getElementById('propOut').innerHTML = rows.map(([l,val,pct,c])=>{
