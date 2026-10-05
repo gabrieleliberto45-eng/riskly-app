@@ -35,9 +35,10 @@ async function registra(b, ID){
   const ctx = await b.newContext({ viewport: { width: 360, height: 780 }, deviceScaleFactor: 3 });
   await ctx.route(/supabase\.co|cloudflareinsights|googletagmanager/, r => r.abort());
   const p = await ctx.newPage();
-  await p.clock.install();
+  await p.clock.install({ time: new Date('2026-10-05T09:00:00') });
   if(sc.storage) await p.addInitScript(s => { try{ Object.entries(s).forEach(([k, v]) => v === null ? localStorage.removeItem(k) : localStorage.setItem(k, v)); }catch(e){} }, sc.storage);
   await p.goto(sc.app === 'jr' ? 'file:///home/user/jr/index.html' : 'file:///home/user/riskly-app/site/index.html');
+  await p.clock.pauseAt(new Date('2026-10-05T09:00:02'));   /* il tempo avanza solo con runFor, un fotogramma alla volta */
   await p.clock.runFor(1200);
   await p.addStyleTag({ content: '#chatBtn,#chatBox,.jchat{display:none!important} *{scroll-behavior:auto!important}' });
 
