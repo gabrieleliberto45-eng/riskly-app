@@ -184,3 +184,11 @@ Le didascalie chiudono sempre con F2. Non si usano "unico", "il migliore" o "mai
 | 21/10 | p16 | Videocorso | Prima dei bot, il metodo |
 | 22/10 | p17 | Lancio | Domani |
 | 23/10 | p18 | Lancio | Oggi |
+
+### TikTok dal 6 ottobre: 1 post al giorno alle 18:00
+
+Le views su TikTok si fermavano a ~250 (primo test non superato), quindi:
+- su TikTok esce solo il reel prodotto del giorno, in versione corta (15–20 s, `social/video/tt/`, tagli in `demo/tagli-tt.json`, generati con `demo/componi-tt.js`);
+- didascalie corte con una domanda per i commenti (`promo/prodotti-tt.json`);
+- i 12 post educativi TikTok del 6–11 ottobre sono in **bozza** su Metricool (non escono, si possono riattivare);
+- Instagram e YouTube restano invariati.
