@@ -675,6 +675,18 @@
   .jshot{margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
   .jm-gruppo .jshot{margin-top:12px;padding-top:12px}
   .jstima-nota{font-size:.78rem;color:var(--dim2);margin-top:8px;line-height:1.5}
+  .jvpip{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:.8rem;color:var(--dim2);margin:2px 0 12px}
+  .jvpip b{color:var(--text)}
+  .jvpip.aperto{display:block}.jvpip.aperto input{margin-top:6px}
+  .jvpip-cambia{background:none;border:none;color:var(--accent);text-decoration:underline;font:inherit;cursor:pointer;padding:0}
+  .jfine .jscelta{flex:1 1 auto;justify-content:center}
+  .jriep{border:1px solid rgba(182,216,79,.35);border-radius:14px;padding:6px 14px;background:rgba(182,216,79,.05)}
+  .jriep-r{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+  .jriep-r:last-child{border:none}
+  .jriep-r>span{color:var(--dim);font-size:.86rem}
+  .jriep-r b{font-family:'JetBrains Mono',monospace;font-size:.95rem;text-align:right}
+  .jriep-r b small{color:var(--dim2);font-weight:400;font-size:.75rem}
+  .jriep-big b{font-size:1.25rem}
   .jshot > label{display:block;color:var(--dim2);font-size:.75rem;margin-bottom:10px}
   .jdrop{border:1.5px dashed var(--line-hi);border-radius:16px;padding:24px 18px;text-align:center;
          cursor:pointer;transition:border-color .2s,background .2s;background:rgba(0,0,0,.16)}
@@ -1269,7 +1281,7 @@ body{padding-top:0}
   .jscelta.jauto.on{background:rgba(182,216,79,.18);color:var(--accent);border-color:rgba(182,216,79,.45)}
   .jrap{background:rgba(255,255,255,.025);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:14px}
   .jrap label{display:block;color:var(--dim);font-size:.78rem;margin-bottom:6px}
-  .jrap-riga{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+  .jrap-riga{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
   .jrap-riga input,.jrap-riga1 input{width:100%;min-width:0}
   .jrap-riga1{margin:4px 0 12px}
   .jrap-info{color:var(--dim2);font-size:.75rem;font-family:'JetBrains Mono',monospace;margin:8px 0 14px}
@@ -1293,7 +1305,7 @@ body{padding-top:0}
   .jstima-r small{color:var(--dim2)}
   .jstima-r b{font-family:'JetBrains Mono',monospace;font-size:1rem;white-space:nowrap}
   .jstima-usa{margin-top:4px}
-  @media(max-width:520px){.jrap-riga{grid-template-columns:1fr 1fr}.jrap-riga > div:first-child{grid-column:1/-1}}
+  @media(max-width:520px){.jrap-riga{grid-template-columns:1fr 1fr}}
   /* ── SCAGLIONI (uscite a pezzi, es. con ScaleIn) ── */
   .jscag{margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
   .jscag > .jm-tit{color:var(--dim2);font-size:.75rem;margin-bottom:10px}
@@ -2767,7 +2779,7 @@ function j_apriOp(id){
 
   const campi = Object.values(METODI).flatMap(m => m.campi);
   const scag = j_scagParse((t.dettagli || {}).scaglioni);
-  const dett = Object.entries(t.dettagli || {}).filter(([k, v]) => v && k !== 'scaglioni' && k !== 'shot_conf').map(([k, v]) => {
+  const dett = Object.entries(t.dettagli || {}).filter(([k, v]) => v && !['scaglioni', 'shot_conf', 'stop'].includes(k)).map(([k, v]) => {
     const c = campi.find(x => x.id === k);
     return [c ? c.nome : k, v];
   });
@@ -3303,7 +3315,7 @@ function j_resetForm(){
   ['f-symbol','f-pnl','f-risk','f-strat','f-nota'].forEach(i=>document.getElementById(i).value='');
   j_setUnita('pnl', j_unitaPreferita('pnl'), true); j_setUnita('risk', j_unitaPreferita('risk'), true);
   j_renderScelte();
-  j_dettagli = {}; j_scag = []; Object.assign(j_rap, { tot: '', k: 0, corre: false, correPip: '' }); j_renderCampiMetodo(); j_renderScag();
+  j_dettagli = {}; j_scag = []; Object.assign(j_rap, { tot: '', k: 0, corre: false, correPip: '', esito: '', pipFine: '' }); j_renderCampiMetodo(); j_renderScag();
   document.getElementById('f-date').value = isoLocale();
   j_setDir('long');
   j_setEmo('lucido');
@@ -3449,7 +3461,7 @@ function j_scagRiassunto(arr){
 /* compilazione rapida, come i bot a scaglioni: lotto totale diviso in N parti uguali,
    le prime k chiuse in profitto a +passo, +2·passo…, le altre a pareggio o a stop, l'ultima eventualmente lasciata correre */
 let j_rap = Object.assign({ n: 10, passo: 10, stop: 20, resto: 'be' }, (() => { try{ return JSON.parse(localStorage.getItem('riskly-scag-rapido')) || {}; }catch{ return {}; } })(),
-  { tot: '', k: 0, corre: false, correPip: '' });
+  { tot: '', k: 0, corre: false, correPip: '', esito: '', pipFine: '' });
 function j_rapPref(){ try{ localStorage.setItem('riskly-scag-rapido', JSON.stringify({ n: j_rap.n, passo: j_rap.passo, stop: j_rap.stop, resto: j_rap.resto })); }catch{} }
 /* valore di 1 pip con 1 lotto, nella valuta del conto: dipende dal simbolo.
    Si propone un valore tipico e, se lo cambi, si ricorda per quel simbolo. */
@@ -3484,11 +3496,22 @@ function j_vpipRicorda(sym, v){
   }, 1500);
 }
 const j_simbolo = () => (document.getElementById('f-symbol') || {}).value || '';
-/* in modifica: ricostruisce la compilazione rapida dagli scaglioni salvati */
-function j_rapDaScag(arr){
-  Object.assign(j_rap, { tot: '', k: 0, corre: false, correPip: '' });
+/* com'è finita l'operazione: tp, sl, be, man (chiusa a mano) oppure scag (a scaglioni) */
+const J_FINE = [['tp', 'Take profit'], ['sl', 'Stop loss'], ['be', 'Break even'], ['man', 'Chiusa a mano'], ['scag', 'A scaglioni']];
+/* in modifica: ricostruisce la compilazione dagli scaglioni salvati */
+function j_rapDaScag(arr, dett){
+  Object.assign(j_rap, { tot: '', k: 0, corre: false, correPip: '', esito: '', pipFine: '' });
   if(!arr.length) return;
   j_rap.tot = j_scagLotti(arr).toFixed(2);
+  if(dett && dett.stop) j_rap.stop = dett.stop;
+  if(arr.length === 1){
+    const x = arr[0];
+    j_rap.esito = x.e;
+    if(x.e === 'sl' && x.p !== null) j_rap.stop = Math.abs(x.p);
+    if(x.e === 'tp' || x.e === 'man') j_rap.pipFine = x.p ?? '';
+    return;
+  }
+  j_rap.esito = 'scag';
   j_rap.n = arr.length;
   const tp = arr.filter(x => x.e === 'tp'), sl = arr.find(x => x.e === 'sl' && x.p !== null), man = arr.find(x => x.e === 'man');
   j_rap.k = tp.length;
@@ -3512,7 +3535,15 @@ function j_rapLotti(){
   return Array.from({ length: n }, (_, i) => (base + (i < resto ? 1 : 0)) / 100);
 }
 function j_rapGenera(){
-  const lotti = j_rapLotti(); if(!lotti) return false;
+  const tot = Math.round((parseFloat(j_rap.tot) || 0) * 100) / 100;
+  if(j_rap.esito !== 'scag'){
+    /* una sola uscita: i pip li dice com'è finita */
+    const pf = parseFloat(j_rap.pipFine), stop = Math.abs(parseFloat(j_rap.stop) || 0);
+    const p = { tp: Number.isFinite(pf) ? Math.abs(pf) : null, sl: stop || null, be: 0, man: Number.isFinite(pf) ? pf : null }[j_rap.esito];
+    j_scag = (tot > 0 && j_rap.esito && p !== null && p !== undefined) ? [{ l: tot, e: j_rap.esito, p: j_rap.esito === 'sl' ? -p : p }] : [];
+    return j_scag.length > 0;
+  }
+  const lotti = j_rapLotti(); if(!lotti){ j_scag = []; return false; }
   const n = lotti.length, maxK = j_rap.corre ? n - 1 : n, k = Math.min(j_rap.k, maxK), passo = parseFloat(j_rap.passo) || 0;
   j_scag = lotti.map((l, i) => {
     if(i < k) return { l, e: 'tp', p: passo * (i + 1) };
@@ -3525,7 +3556,7 @@ function j_rapGenera(){
    Il rischio in euro è quello che perdi se tutta la posizione chiude allo stop:
    un pip medio vale quindi rischio ÷ pip di stop. */
 function j_scagStima(){
-  const L = j_scagLotti(j_scag); if(!(L > 0)) return null;
+  const L = j_scagLotti(j_scag); if(!(L > 0) || j_scag.some(x => x.p === null)) return null;
   const lp = j_scag.reduce((a, x) => a + x.l * (x.p || 0), 0);
   const stop = parseFloat(j_rap.stop) || 0, vp = j_vpipPer(j_simbolo()), saldo = j_saldoPrimaOp();
   const rischio = stop > 0 ? Math.round(L * stop * vp * 100) / 100 : null;     /* tutta la posizione allo stop */
@@ -3558,85 +3589,115 @@ function j_renderScag(senzaApplicare){
   const lotti = j_rapLotti();
   const rimasti = Math.max(0, n - Math.min(j_rap.k, maxK) - (j_rap.corre ? 1 : 0));
   const chip = (attr, v, on, testo) => `<button type="button" class="jscelta${on ? ' on' : ''}" ${attr}="${v}">${testo}</button>`;
+  const sym = j_simbolo().toUpperCase().trim(), vp = j_vpipPer(sym);
+  const es = j_rap.esito;
+  let dettaglio = '';
+  if(es === 'tp') dettaglio = `<div class="jrap-riga1"><label for="rp-fine">Pip guadagnati</label><input type="number" id="rp-fine" class="rp" data-k="pipFine" step="any" min="0" inputmode="decimal" placeholder="es. 40" value="${esc(String(j_rap.pipFine))}"></div>`;
+  else if(es === 'man') dettaglio = `<div class="jrap-riga1"><label for="rp-fine">Pip alla chiusura <small style="color:var(--dim2)">(meno davanti se in perdita)</small></label><input type="number" id="rp-fine" class="rp" data-k="pipFine" step="any" inputmode="decimal" placeholder="es. 15 o -8" value="${esc(String(j_rap.pipFine))}"></div>`;
+  else if(es === 'scag') dettaglio = `
+      <div class="jrap-riga">
+        <div><label for="rp-n">Quanti scaglioni</label><input type="number" id="rp-n" class="rp" data-k="n" step="1" min="1" max="${J_SCAG_MAX}" inputmode="numeric" value="${n}"></div>
+        <div><label for="rp-passo">Un TP ogni (pip) <span class="jaiuto" title="Con 10: il 1° scaglione chiude a +10 pip, il 2° a +20, il 3° a +30…">?</span></label><input type="number" id="rp-passo" class="rp" data-k="passo" step="any" min="0" inputmode="decimal" value="${esc(String(j_rap.passo))}"></div>
+      </div>
+      <div class="jrap-info" id="rpInfo">${lotti ? `${lotti[0].toFixed(2)} lotti a scaglione` : 'Servono almeno 0,01 lotti a scaglione'}</div>
+      <div class="jm-campo"><span>Quali sono andati in profitto? <em class="jm-auto">tocca l'ultimo</em></span>
+        <div class="jrap-griglia">${Array.from({ length: n }, (_, i) => `<button type="button" class="jrap-k${i < j_rap.k && i < maxK ? ' on' : ''}" data-rk="${i + 1}" ${i >= maxK ? 'disabled' : ''}><b>${i + 1}</b><small>${passo ? '+' + +(passo * (i + 1)).toFixed(1) + 'p' : ''}</small></button>`).join('')}</div>
+        <div class="jchips-scelta">${chip('data-rsh', 0, j_rap.k === 0, 'Nessuno')}${chip('data-rsh', maxK, j_rap.k >= maxK && maxK > 0, j_rap.corre ? `Tutti tranne l'ultimo` : `Tutti`)}</div>
+      </div>
+      ${rimasti ? `<div class="jm-campo"><span>Gli altri ${rimasti} sono finiti a</span>
+        <div class="jseg jrap-seg">${['be', 'sl'].map(r => `<button type="button" class="${j_rap.resto === r ? 'on' : ''}" data-rresto="${r}">${r === 'be' ? 'Break even' : 'Stop loss'}</button>`).join('')}</div></div>` : ''}
+      <label class="jrap-corre"><input type="checkbox" class="rp" data-k="corre" ${j_rap.corre ? 'checked' : ''}><span><b>L'ultimo l'ho lasciato correre</b><small>Chiuso a mano o dal trailing</small></span></label>
+      ${j_rap.corre ? `<div class="jrap-riga1"><label for="rp-cpip">Pip dell'ultimo alla chiusura</label><input type="number" id="rp-cpip" class="rp" data-k="correPip" step="any" inputmode="decimal" placeholder="es. 45 o -20" value="${esc(String(j_rap.correPip))}"></div>` : ''}`;
+
   box.innerHTML = `
-    <div class="jm-gtit"><b>Gestione e risultato</b><span>Lotti, stop e scaglioni: rischio e risultato si calcolano da soli</span></div>
+    <div class="jm-gtit"><b>Calcolo automatico</b><span>Scrivi lotti e stop, poi tocca com'è finita: il resto lo calcoliamo noi</span></div>
     <div class="jrap">
       <div class="jrap-riga">
-        <div><label for="rp-tot">Lotto totale</label><input type="number" id="rp-tot" class="rp" data-k="tot" step="0.01" min="0.01" inputmode="decimal" placeholder="1.00" value="${esc(String(j_rap.tot))}"></div>
-        <div><label for="rp-n">Scaglioni</label><input type="number" id="rp-n" class="rp" data-k="n" step="1" min="1" max="${J_SCAG_MAX}" inputmode="numeric" value="${n}"></div>
+        <div><label for="rp-tot">Lotti</label><input type="number" id="rp-tot" class="rp" data-k="tot" step="0.01" min="0.01" inputmode="decimal" placeholder="es. 0.50" value="${esc(String(j_rap.tot))}"></div>
+        <div><label for="rp-stop">Stop loss (pip)</label><input type="number" id="rp-stop" class="rp" data-k="stop" step="any" min="0" inputmode="decimal" placeholder="es. 20" value="${esc(String(j_rap.stop))}"></div>
       </div>
-      <div class="jrap-riga">
-        <div><label for="rp-stop">Stop loss (pip)</label><input type="number" id="rp-stop" class="rp" data-k="stop" step="any" min="0" inputmode="decimal" value="${esc(String(j_rap.stop))}"></div>
-        <div><label for="rp-passo">TP ogni (pip) <span class="jaiuto" title="Distanza tra un take profit e il successivo: con 10, il 1° scaglione chiude a +10 pip, il 2° a +20, il 3° a +30…">?</span></label><input type="number" id="rp-passo" class="rp" data-k="passo" step="any" min="0" inputmode="decimal" value="${esc(String(j_rap.passo))}"></div>
-        <div><label for="rp-vpip">Valore pip a lotto <span class="jaiuto" title="Quanto vale 1 pip con 1 lotto, nella valuta del conto. Si propone il valore tipico del simbolo: 10 per EURUSD, GBPUSD e le altre coppie col dollaro; 10 anche per l'oro (XAU), dove 1 pip è 0,10 $ di prezzo, quindi 1 $ di movimento sono 10 pip. Controllalo una volta su MetaTrader: se lo cambi lo ricordiamo per quel simbolo, su tutti i tuoi dispositivi.">?</span></label><input type="number" id="rp-vpip" step="any" min="0" inputmode="decimal" value="${j_vpipPer(j_simbolo())}"></div>
+      <div class="jvpip" id="rpVpip">
+        <span>1 pip = <b>${vp}</b> a lotto${sym ? ' su ' + esc(sym) : ''}</span>
+        <button type="button" class="jvpip-cambia" data-vpip="1">cambia</button>
+        <span class="jaiuto" title="Quanto vale 1 pip con 1 lotto, nella valuta del conto: 10 per EURUSD, GBPUSD, oro (XAU) e le coppie col dollaro. Lo trovi su MetaTrader nelle specifiche del simbolo. Se lo cambi lo ricordiamo per quel simbolo, su tutti i tuoi dispositivi.">?</span>
       </div>
-      <div class="jrap-info" id="rpInfo">${lotti ? `${lotti[0].toFixed(2)} lotti a scaglione` : 'Inserisci il lotto totale'}</div>
-      <div class="jm-campo"><span>Scaglioni chiusi in profitto</span>
-        <div class="jrap-griglia">${Array.from({ length: n }, (_, i) => `<button type="button" class="jrap-k${i < j_rap.k && i < maxK ? ' on' : ''}" data-rk="${i + 1}" ${i >= maxK ? 'disabled' : ''}><b>${i + 1}</b><small>${passo ? '+' + +(passo * (i + 1)).toFixed(1) + 'p' : ''}</small></button>`).join('')}</div>
-        <div class="jchips-scelta">${chip('data-rsh', 0, j_rap.k === 0, 'Nessuno')}${chip('data-rsh', maxK, j_rap.k >= maxK && maxK > 0, j_rap.corre ? `Tutti tranne l'ultimo` : `Tutti e ${n}`)}</div>
+      <div class="jm-campo"><span>Com'è finita?</span>
+        <div class="jchips-scelta jfine">${J_FINE.map(([k, t]) => chip('data-fine', k, es === k, t)).join('')}</div>
       </div>
-      <div class="jm-campo"><span>Gli altri <em class="jm-auto" id="rpRim">${rimasti} ${rimasti === 1 ? 'scaglione' : 'scaglioni'}</em> chiusi a</span>
-        <div class="jseg jrap-seg">${['be', 'sl'].map(r => `<button type="button" class="${j_rap.resto === r ? 'on' : ''}" data-rresto="${r}">${r === 'be' ? 'Break even' : 'Stop loss'}</button>`).join('')}</div></div>
-      <label class="jrap-corre"><input type="checkbox" class="rp" data-k="corre" ${j_rap.corre ? 'checked' : ''}><span><b>Ultimo scaglione lasciato correre</b><small>Chiuso a mano o dal trailing</small></span></label>
-      ${j_rap.corre ? `<div class="jrap-riga1"><label for="rp-cpip">Pip dell'ultimo scaglione alla chiusura</label><input type="number" id="rp-cpip" class="rp" data-k="correPip" step="any" inputmode="decimal" placeholder="+45 o −20" value="${esc(String(j_rap.correPip))}"></div>` : ''}
+      ${dettaglio}
     </div>
     <div class="jstima" id="scagStima"></div>`;
   j_aggiornaStima(!!senzaApplicare);
 
   box.oninput = e => {
     const t = e.target;
-    if(t.id === 'rp-vpip'){ j_vpipRicorda(j_simbolo(), parseFloat(t.value)); j_aggiornaStima(); return; }
+    if(t.id === 'rp-vpip-in'){ j_vpipRicorda(j_simbolo(), parseFloat(t.value)); j_aggiornaStima(); return; }
     if(!t.classList.contains('rp') || t.type === 'checkbox') return;
     j_rap[t.dataset.k] = t.value; j_rapPref();
     if(t.dataset.k === 'n' || t.dataset.k === 'passo') return;   /* la griglia si ridisegna all'uscita dal campo */
     j_rapGenera(); j_aggiornaStima();
-    const lotti = j_rapLotti();
-    document.getElementById('rpInfo').textContent = lotti ? `${lotti[0].toFixed(2)} lotti a scaglione` + (lotti[0] !== lotti[lotti.length - 1] ? ` (alcuni ${lotti[lotti.length - 1].toFixed(2)})` : '') : 'Inserisci il lotto totale';
+    const info = document.getElementById('rpInfo'), lt = j_rapLotti();
+    if(info) info.textContent = lt ? `${lt[0].toFixed(2)} lotti a scaglione` + (lt[0] !== lt[lt.length - 1] ? ` (alcuni ${lt[lt.length - 1].toFixed(2)})` : '') : 'Servono almeno 0,01 lotti a scaglione';
   };
   box.onchange = e => {
     const t = e.target;
+    if(t.id === 'rp-vpip-in'){ j_renderScag(); return; }
     if(!t.classList.contains('rp')) return;
     if(t.type === 'checkbox') j_rap.corre = t.checked;
     if(t.dataset.k === 'n' || t.dataset.k === 'passo' || t.type === 'checkbox'){ j_rapGenera(); j_renderScag(); }
   };
   box.onclick = e => {
-    const d = e.target.closest('[data-rk],[data-rsh],[data-rresto]');
+    const d = e.target.closest('[data-rk],[data-rsh],[data-rresto],[data-fine],[data-vpip]');
     if(!d) return;
     const ds = d.dataset;
-    if(ds.rk !== undefined){ const k = +ds.rk; j_rap.k = (j_rap.k === k) ? k - 1 : k; }
+    if(ds.vpip){
+      const riga = document.getElementById('rpVpip');
+      riga.innerHTML = `<label for="rp-vpip-in">Valore di 1 pip con 1 lotto${sym ? ' su ' + esc(sym) : ''}</label><input type="number" id="rp-vpip-in" step="any" min="0" inputmode="decimal" value="${vp}">`;
+      riga.classList.add('aperto');
+      document.getElementById('rp-vpip-in').focus();
+      return;
+    }
+    if(ds.fine){ j_rap.esito = ds.fine; if(ds.fine !== 'scag') j_rap.pipFine = j_rap.pipFine; }
+    else if(ds.rk !== undefined){ const k = +ds.rk; j_rap.k = (j_rap.k === k) ? k - 1 : k; }
     else if(ds.rsh !== undefined) j_rap.k = +ds.rsh;
     else if(ds.rresto) { j_rap.resto = ds.rresto; j_rapPref(); }
     j_rapGenera();
     j_renderScag();
+    if(ds.fine === 'tp' || ds.fine === 'man'){ const f = document.getElementById('rp-fine'); if(f && !f.value) f.focus(); }
   };
 }
 function j_renderScagLista(){ j_aggiornaStima(); }
 function j_aggiornaStima(senzaApplicare){
   const box = document.getElementById('scagStima');
   if(!box) return;
-  if(!senzaApplicare) j_applicaRischio();
   const st = j_scagStima();
-  if(!st){ box.innerHTML = ''; return; }
-  const cl = v => v > 0 ? 'up' : (v < 0 ? 'down' : '');
-  let h = `<div class="jstima-r"><span>Risultato in pip <small>(media sui lotti)</small></span><b class="${cl(st.pip)}">${j_segno(st.pip, 1)} pip</b></div>`;
-  if(st.rischio !== null){
-    h += `<div class="jstima-r"><span>Rischio <small>(${j_scagLotti(j_scag).toFixed(2)} lotti × ${esc(String(j_rap.stop))} pip di stop)</small></span><b>${j_soldi(st.rischio, 2)}${st.pct !== null ? ` · ${st.pct.toFixed(2).replace('.', ',')}%` : ''}</b></div>`;
-    if(st.pct !== null && st.pct > 2) h += `<div class="jstima-nota" style="color:var(--down)">Attenzione: stai rischiando più del 2% del saldo.</div>`;
-  }
-  h += `<div class="jstima-r"><span>Risultato</span><b class="${cl(st.eur)}">${j_segno(st.eur, 2)} €</b></div>`;
+  const tot = parseFloat(j_rap.tot) || 0, stop = parseFloat(j_rap.stop) || 0;
   const conSegno = v => (v < 0 ? '−' : '') + j_soldi(v, 2);   /* j_soldi toglie il segno */
-  if(st.saldo) h += `<div class="jstima-r"><span>Saldo dopo l'operazione <small>(prima ${conSegno(st.saldo)})</small></span><b class="${st.saldo + st.eur < 0 ? 'down' : ''}">${conSegno(st.saldo + st.eur)}</b></div>`;
-  if(st.saldo < 0) h += `<div class="jstima-nota" style="color:var(--down)">Il saldo prima di questa operazione risulta <b>negativo</b> (${conSegno(st.saldo)}): le operazioni salvate hanno perso più del saldo iniziale. Controlla il <b>saldo iniziale</b> in alto o le operazioni registrate. Finché è negativo la percentuale di rischio non si può calcolare.</div>`;
-  else if(!st.saldo) h +=`<div class="jstima-nota">Imposta il <b>saldo iniziale</b> in alto per vedere la percentuale di rischio e il saldo aggiornato.</div>`;
-  h += `<div class="jstima-nota">Il risultato è già scritto qui sotto.</div>`;
-  if(!senzaApplicare) j_applicaStima();
+  const saldo = j_saldoPrimaOp();
+  /* rischio: basta conoscere lotti e stop, anche prima di dire com'è finita */
+  const vp = j_vpipPer(j_simbolo());
+  const rischio = tot > 0 && stop > 0 ? Math.round(tot * stop * vp * 100) / 100 : null;
+  const pct = rischio !== null && saldo > 0 ? rischio / saldo * 100 : null;
+  if(!senzaApplicare && rischio !== null){ j_setUnita('risk', 'val', true); document.getElementById('f-risk').value = rischio.toFixed(2); }
+  if(rischio === null && !st){ box.innerHTML = ''; return; }
+  const cl = v => v > 0 ? 'up' : (v < 0 ? 'down' : '');
+  let h = '<div class="jriep">';
+  if(rischio !== null) h += `<div class="jriep-r"><span>Rischio</span><b>${j_soldi(rischio, 2)}${pct !== null ? ` <small>· ${pct.toFixed(2).replace('.', ',')}% del saldo</small>` : ''}</b></div>`;
+  if(st) h += `<div class="jriep-r jriep-big"><span>Risultato</span><b class="${cl(st.eur)}">${j_segno(st.eur, 2)} <small>${j_segno(st.pip, 1)} pip</small></b></div>`;
+  else h += `<div class="jriep-r"><span>Risultato</span><b style="color:var(--dim2);font-weight:500">tocca com'è finita</b></div>`;
+  if(saldo) h += `<div class="jriep-r"><span>Saldo</span><b>${conSegno(saldo)}${st ? ` → <span class="${saldo + st.eur < 0 ? 'down' : ''}">${conSegno(saldo + st.eur)}</span>` : ''}</b></div>`;
+  h += '</div>';
+  if(pct !== null && pct > 2) h += `<div class="jstima-nota" style="color:var(--down)">Attenzione: stai rischiando più del 2% del saldo.</div>`;
+  if(saldo < 0) h += `<div class="jstima-nota" style="color:var(--down)">Il saldo risulta <b>negativo</b>: le operazioni salvate hanno perso più del saldo iniziale. Controlla il <b>saldo iniziale</b> in alto.</div>`;
+  else if(!saldo) h += `<div class="jstima-nota">Imposta il <b>saldo iniziale</b> in alto per vedere la percentuale di rischio e il saldo aggiornato.</div>`;
+  if(!senzaApplicare && st) j_applicaStima();
   box.innerHTML = h;
 }
 
 /* statistiche: per ogni scaglione (1°, 2°, 3°…) come si chiude */
 function j_renderScagStat(list){
   const card = document.getElementById('scagCard'); if(!card) return;
-  const op = list.map(t => j_scagParse((t.dettagli || {}).scaglioni)).filter(a => a.length);
+  const op = list.map(t => j_scagParse((t.dettagli || {}).scaglioni)).filter(a => a.length > 1);
   card.hidden = !op.length;
   if(!op.length) return;
   const maxN = Math.max(...op.map(a => a.length));
@@ -3730,15 +3791,16 @@ function j_aggiornaSessioni(ridisegna){
 function j_dettagliDaSalvare(){
   const out = {};
   Object.entries(j_dettagli).forEach(([k, v]) => { if(v && k[0] !== '_') out[k] = v; });
-  delete out.scaglioni;
+  delete out.scaglioni; delete out.stop;
   const sc = j_scagStringa(j_scag);
   if(sc) out.scaglioni = sc;
+  if(sc && parseFloat(j_rap.stop) > 0) out.stop = String(parseFloat(j_rap.stop));
   return out;
 }
 function j_dettagliTesto(t, conNomi){
   const d = t.dettagli || {};
   const campi = Object.values(METODI).flatMap(m => m.campi);
-  return Object.entries(d).filter(([k, v]) => v && k !== 'shot_conf').map(([k, v]) => {
+  return Object.entries(d).filter(([k, v]) => v && !['shot_conf', 'stop'].includes(k)).map(([k, v]) => {
     if(k === 'scaglioni') return conNomi ? 'Scaglioni: ' + j_scagRiassunto(j_scagParse(v)) : '';   /* in tabella ha la sua riga */
     const c = campi.find(x => x.id === k);
     return conNomi && c ? c.nome + ': ' + v : v;
@@ -3903,8 +3965,14 @@ function j_renderScelte(){
 }
 function j_aggiornaSalva(tipo, senzaChips){
   if(tipo === 'simboli'){   /* cambia simbolo: cambia il valore del pip e quindi rischio e risultato */
-    const vp = document.getElementById('rp-vpip');
-    if(vp){ vp.value = j_vpipPer(j_simbolo()); j_aggiornaStima(!!j_modificaId); }
+    if(document.getElementById('fScag') && document.getElementById('fScag').dataset.pronto){
+      if(!j_modificaId && !j_rap.tot){
+        const sn = j_simNorm(j_simbolo());
+        const ult = sn && j_ordina(j_trades.filter(t => j_simNorm(t.symbol) === sn && (t.dettagli || {}).scaglioni)).pop();
+        if(ult){ j_rap.tot = j_scagLotti(j_scagParse(ult.dettagli.scaglioni)).toFixed(2); if(ult.dettagli.stop) j_rap.stop = ult.dettagli.stop; }
+      }
+      j_rapGenera(); j_renderScag(!!j_modificaId);
+    }
   }
   const v = j_normVoce(tipo, document.getElementById(J_CAMPO[tipo]).value);
   const btn = document.getElementById('salva-' + tipo);
@@ -3983,7 +4051,7 @@ function j_modifica(id){
   document.getElementById('f-strat').value = t.strategy;
   j_setUnita('pnl','val',true); j_setUnita('risk','val',true);
   j_renderScelte();
-  j_dettagli = Object.assign({}, t.dettagli || {}); if(j_dettagli.sessioni) j_dettagli._sessioniAMano = '1'; j_scag = j_scagParse(j_dettagli.scaglioni); j_rapDaScag(j_scag); j_renderCampiMetodo(); j_renderScag(true);
+  j_dettagli = Object.assign({}, t.dettagli || {}); if(j_dettagli.sessioni) j_dettagli._sessioniAMano = '1'; j_scag = j_scagParse(j_dettagli.scaglioni); j_rapDaScag(j_scag, j_dettagli); j_renderCampiMetodo(); j_renderScag(true);
   document.getElementById('f-nota').value = t.nota;
   j_setDir(t.dir);
   j_setEmo(t.emo || 'lucido');
