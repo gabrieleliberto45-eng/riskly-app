@@ -21,18 +21,22 @@
    ]
   },
   {
-   "tipo": "conto",
-   "dur": 5.2,
-   "titolo": "Il percorso",
-   "righe": [
+   "tipo": "lista",
+   "dur": 5.4,
+   "titolo": "Il percorso:",
+   "passo": 1.0,
+   "voci": [
     [
-     "Oggi · videocorso",
-     "199 €",
-     "up"
+     "Oggi · il videocorso",
+     "impari le regole"
     ],
     [
-     "Dal 23 · bot",
-     "50% sul corso per chi li compra"
+     "Dal 23 · i bot",
+     "le fanno rispettare"
+    ],
+    [
+     "Chi compra un bot",
+     "ha il 50% sul corso"
     ]
    ]
   },

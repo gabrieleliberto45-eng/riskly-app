@@ -42,21 +42,14 @@
    ]
   },
   {
-   "tipo": "conto",
-   "dur": 4.6,
-   "titolo": "Prezzo di lancio",
-   "righe": [
-    [
-     "RiskGuard",
-     "99 €",
-     "up"
-    ],
-    [
-     "Una challenge da 100k",
-     "costa di più"
-    ]
+   "tipo": "frase",
+   "dur": 3.6,
+   "testo": [
+    "Prezzo di lancio",
+    "<em>bloccato a vita</em>",
+    "per i primi 10."
    ],
-   "nota": "Controlla sempre le regole EA della tua prop firm."
+   "nota": "Esce il 23 ottobre. Iscriversi alla lista d'attesa è gratis."
   },
   {
    "tipo": "chiusura",

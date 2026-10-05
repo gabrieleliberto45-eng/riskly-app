@@ -43,19 +43,11 @@
    ]
   },
   {
-   "tipo": "conto",
-   "dur": 5.4,
-   "titolo": "Disponibile subito",
-   "righe": [
-    [
-     "Videocorso · 10 moduli",
-     "199 €",
-     "up"
-    ],
-    [
-     "Accesso",
-     "a vita, su Telegram"
-    ]
+   "tipo": "frase",
+   "dur": 3.8,
+   "testo": [
+    "Disponibile subito.",
+    "<em>Accesso a vita.</em>"
    ],
    "nota": "Niente segnali: solo la parte che nessuno insegna."
   },

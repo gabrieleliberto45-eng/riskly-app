@@ -12,28 +12,24 @@
    ]
   },
   {
-   "tipo": "conto",
+   "tipo": "lista",
    "dur": 6.0,
-   "titolo": "Prezzo oggi vs dal 23",
-   "righe": [
+   "titolo": "Chi è tra i primi 10:",
+   "passo": 1.0,
+   "voci": [
     [
-     "RiskGuard",
-     "99 € → 198 €"
+     "Blocca il prezzo di lancio",
+     "per sempre"
     ],
     [
-     "TradeManager",
-     "99 € → 198 €"
+     "Aggiornamenti compresi",
+     "allo stesso prezzo"
     ],
     [
-     "ScaleIn",
-     "129 € → 258 €"
-    ],
-    [
-     "Riskly Pro",
-     "249 € → 498 €"
+     "Viene avvisato per primo",
+     "il 23 ottobre"
     ]
-   ],
-   "nota": "I primi 10 tengono il prezzo anche sugli aggiornamenti."
+   ]
   },
   {
    "tipo": "frase",

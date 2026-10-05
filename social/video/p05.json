@@ -41,20 +41,14 @@
    ]
   },
   {
-   "tipo": "conto",
-   "dur": 4.2,
-   "titolo": "Prezzo di lancio",
-   "righe": [
-    [
-     "TradeManager · una tantum",
-     "99 €",
-     "up"
-    ],
-    [
-     "Dal 23 ottobre",
-     "198 €"
-    ]
-   ]
+   "tipo": "frase",
+   "dur": 3.6,
+   "testo": [
+    "Prezzo di lancio",
+    "<em>bloccato a vita</em>",
+    "per i primi 10."
+   ],
+   "nota": "Esce il 23 ottobre. Iscriversi alla lista d'attesa è gratis."
   },
   {
    "tipo": "chiusura",

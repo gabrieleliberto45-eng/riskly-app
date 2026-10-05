@@ -62,20 +62,14 @@
    ]
   },
   {
-   "tipo": "conto",
-   "dur": 4.0,
-   "titolo": "Prezzo di lancio",
-   "righe": [
-    [
-     "Riskly Pro · una tantum",
-     "249 €",
-     "up"
-    ],
-    [
-     "Dal 23 ottobre",
-     "498 €"
-    ]
-   ]
+   "tipo": "frase",
+   "dur": 3.6,
+   "testo": [
+    "Prezzo di lancio",
+    "<em>bloccato a vita</em>",
+    "per i primi 10."
+   ],
+   "nota": "Esce il 23 ottobre. Iscriversi alla lista d'attesa è gratis."
   },
   {
    "tipo": "chiusura",

@@ -41,19 +41,11 @@
    ]
   },
   {
-   "tipo": "conto",
-   "dur": 4.4,
-   "titolo": "Disponibile subito",
-   "righe": [
-    [
-     "47 lezioni · quasi 3 ore",
-     "199 €",
-     "up"
-    ],
-    [
-     "Valore stimato",
-     "999 €"
-    ]
+   "tipo": "frase",
+   "dur": 3.8,
+   "testo": [
+    "47 lezioni, quasi 3 ore.",
+    "<em>Disponibile subito.</em>"
    ]
   },
   {
