@@ -3453,19 +3453,35 @@ let j_rap = Object.assign({ n: 10, passo: 10, stop: 20, resto: 'be' }, (() => { 
 function j_rapPref(){ try{ localStorage.setItem('riskly-scag-rapido', JSON.stringify({ n: j_rap.n, passo: j_rap.passo, stop: j_rap.stop, resto: j_rap.resto })); }catch{} }
 /* valore di 1 pip con 1 lotto, nella valuta del conto: dipende dal simbolo.
    Si propone un valore tipico e, se lo cambi, si ricorda per quel simbolo. */
-function j_vpipSalvati(){ try{ return JSON.parse(localStorage.getItem('riskly-vpip')) || {}; }catch{ return {}; } }
+/* i valori cambiati si salvano nell'account (valgono su tutti i dispositivi), con copia nel browser */
+function j_vpipSalvati(){
+  const m = (utente && utente.user_metadata && utente.user_metadata.vpip) || {};
+  let l = {}; try{ l = JSON.parse(localStorage.getItem('riskly-vpip')) || {}; }catch{}
+  return Object.assign({}, l, m);
+}
+const j_simNorm = sym => String(sym || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
 function j_vpipPer(sym){
-  sym = String(sym || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+  sym = j_simNorm(sym);
   const salvati = j_vpipSalvati();
   if(sym && salvati[sym] > 0) return salvati[sym];
+  /* oro: 1 pip = 1 $ di prezzo (es. 2650 → 2651); con 1 lotto (100 once) vale 100,
+     cioè 1 pip di XAU vale come 10 pip di EURUSD */
+  if(/XAU|GOLD/.test(sym)) return 100;
   if(/JPY$/.test(sym)) return 6.5;
   return 10;
 }
+let j_vpipTimer = null;
 function j_vpipRicorda(sym, v){
-  sym = String(sym || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+  sym = j_simNorm(sym);
   if(!sym || !(v > 0)) return;
   const m = j_vpipSalvati(); m[sym] = v;
   try{ localStorage.setItem('riskly-vpip', JSON.stringify(m)); }catch{}
+  if(utente && utente.user_metadata) utente.user_metadata.vpip = m;
+  clearTimeout(j_vpipTimer);
+  j_vpipTimer = setTimeout(async () => {
+    if(!sb || !utente || j_demo) return;
+    try{ await sb.auth.updateUser({ data: { vpip: m } }); }catch(err){ console.error(err); }
+  }, 1500);
 }
 const j_simbolo = () => (document.getElementById('f-symbol') || {}).value || '';
 /* in modifica: ricostruisce la compilazione rapida dagli scaglioni salvati */
@@ -3552,7 +3568,7 @@ function j_renderScag(senzaApplicare){
       <div class="jrap-riga">
         <div><label for="rp-stop">Stop loss (pip)</label><input type="number" id="rp-stop" class="rp" data-k="stop" step="any" min="0" inputmode="decimal" value="${esc(String(j_rap.stop))}"></div>
         <div><label for="rp-passo">TP ogni (pip) <span class="jaiuto" title="Distanza tra un take profit e il successivo: con 10, il 1° scaglione chiude a +10 pip, il 2° a +20, il 3° a +30…">?</span></label><input type="number" id="rp-passo" class="rp" data-k="passo" step="any" min="0" inputmode="decimal" value="${esc(String(j_rap.passo))}"></div>
-        <div><label for="rp-vpip">Valore pip a lotto <span class="jaiuto" title="Quanto vale 1 pip con 1 lotto, nella valuta del conto. Si propone il valore tipico del simbolo (10 per EURUSD, GBPUSD, XAUUSD…): controllalo una volta su MetaTrader, se lo cambi lo ricordiamo per quel simbolo.">?</span></label><input type="number" id="rp-vpip" step="any" min="0" inputmode="decimal" value="${j_vpipPer(j_simbolo())}"></div>
+        <div><label for="rp-vpip">Valore pip a lotto <span class="jaiuto" title="Quanto vale 1 pip con 1 lotto, nella valuta del conto. Si propone il valore tipico del simbolo: 10 per EURUSD, GBPUSD e le altre coppie col dollaro; 100 per l'oro (XAU), dove 1 pip è 1 $ di prezzo e vale come 10 pip di EURUSD. Controllalo una volta su MetaTrader: se lo cambi lo ricordiamo per quel simbolo, su tutti i tuoi dispositivi.">?</span></label><input type="number" id="rp-vpip" step="any" min="0" inputmode="decimal" value="${j_vpipPer(j_simbolo())}"></div>
       </div>
       <div class="jrap-info" id="rpInfo">${lotti ? `${lotti[0].toFixed(2)} lotti a scaglione` : 'Inserisci il lotto totale'}</div>
       <div class="jm-campo"><span>Scaglioni chiusi in profitto</span>
