@@ -8,6 +8,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#EEF2E3;font-fam
 .tit{position:absolute;top:170px;left:70px;right:70px;text-align:center;color:#0B0D0C;font-weight:800;font-size:72px;line-height:1.06;letter-spacing:-.02em;transition:none}
 .tit em{font-style:normal;background:#B6D84F;padding:0 12px;border-radius:12px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
 .tel{position:absolute;left:50%;top:400px;width:780px;height:1700px;transform:translateX(-50%);border-radius:84px;background:#0B0D0C;padding:18px;box-shadow:0 40px 80px rgba(11,13,12,.35),0 0 0 3px #2a2f2b inset}
+.tel.oriz{top:640px;width:1000px;height:600px;border-radius:40px;padding:16px}.tel.oriz img{border-radius:26px;object-position:center}
 .tel img{width:100%;height:100%;object-fit:cover;object-position:top;border-radius:68px;display:block}
 .sub{position:absolute;left:50px;right:50px;bottom:170px;z-index:5;text-align:center;font-weight:800;font-size:66px;line-height:1.15;color:#fff;
   text-shadow:0 4px 0 #0B0D0C,0 -4px 0 #0B0D0C,4px 0 0 #0B0D0C,-4px 0 0 #0B0D0C,4px 4px 0 #0B0D0C,-4px -4px 0 #0B0D0C,4px -4px 0 #0B0D0C,-4px 4px 0 #0B0D0C,0 10px 30px rgba(0,0,0,.4)}
@@ -22,7 +23,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#EEF2E3;font-fam
 <div class="fine" id="fine"><div class="logo">Riskly</div><div class="cta" id="cta"></div><div class="p">Contenuto educativo, non è consulenza finanziaria.</div></div>
 <script>
 let S=null;
-window.prepara=s=>{S=s;document.getElementById('pill').textContent=s.pill;document.getElementById('cta').textContent=s.cta;return true};
+window.prepara=s=>{S=s;document.querySelector('.tel').classList.toggle('oriz',!!s.oriz);document.getElementById('pill').textContent=s.pill;document.getElementById('cta').textContent=s.cta;return true};
 /* sottotitoli: gruppi di 3-4 parole, la parola detta in verde */
 function gruppi(par){const g=[];let c=[];par.forEach((w,i)=>{const nx=par[i+1];c.push(w);const fin=/[.,:!?]$/.test(w[2])||(nx&&nx[0]-w[1]>.22);if(c.length>=3||fin||i===par.length-1){g.push(c);c=[]}});return g}
 window.disegna=async(t,src)=>{

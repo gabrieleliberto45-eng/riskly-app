@@ -25,5 +25,423 @@
     "<em>7 giorni gratis</em>"
    ]
   ]
+ },
+ "p01": {
+  "pill": "RISKGUARD · MT4 E MT5",
+  "cta": "Lista d'attesa · link in bio",
+  "musica": "d",
+  "titoli": [
+   [
+    "",
+    "3 perdite di fila.<br><em>E apri la quarta?</em>"
+   ],
+   [
+    "guarda",
+    "Guarda cosa fa<br><em>RiskGuard</em>."
+   ],
+   [
+    "terza",
+    "Alla terza perdita<br><em>ti blocca</em>."
+   ],
+   [
+    "mezzanotte",
+    "Anche se<br><em>riavvii</em>."
+   ],
+   [
+    "riskguard#2",
+    "<em>Dal 23 ottobre</em>"
+   ]
+  ]
+ },
+ "p03": {
+  "pill": "VIDEOCORSO RISKLY",
+  "cta": "Videocorso · link in bio",
+  "musica": "j",
+  "oriz": true,
+  "titoli": [
+   [
+    "",
+    "Quanto rischiare<br><em>davvero</em>?"
+   ],
+   [
+    "perché",
+    "4 perdite<br>e <em>un terzo</em> del conto."
+   ],
+   [
+    "quarantasette",
+    "47 lezioni<br><em>in 10 moduli</em>."
+   ],
+   [
+    "disponibile",
+    "<em>Disponibile ora</em>"
+   ]
+  ]
+ },
+ "p04": {
+  "pill": "SCALEIN · MT4 E MT5",
+  "cta": "Lista d'attesa · link in bio",
+  "musica": "f",
+  "titoli": [
+   [
+    "",
+    "Più take profit<br><em>a mano?</em>"
+   ],
+   [
+    "apri",
+    "Apri <em>una</em><br>posizione."
+   ],
+   [
+    "replica",
+    "Il bot<br><em>la divide</em>."
+   ],
+   [
+    "quando",
+    "Il primo TP<br><em>è in profitto</em>."
+   ],
+   [
+    "scalein#2",
+    "<em>Dal 23 ottobre</em>"
+   ]
+  ]
+ },
+ "p05": {
+  "pill": "TRADEMANAGER · MT4 E MT5",
+  "cta": "Lista d'attesa · link in bio",
+  "musica": "k",
+  "titoli": [
+   [
+    "",
+    "Era in guadagno.<br><em>L'hai chiusa in perdita</em>."
+   ],
+   [
+    "pareggio",
+    "Stop al <em>pareggio</em>."
+   ],
+   [
+    "segue",
+    "Poi lo stop<br><em>segue il prezzo</em>."
+   ],
+   [
+    "trademanager#2",
+    "<em>Dal 23 ottobre</em>"
+   ]
+  ]
+ },
+ "p06": {
+  "pill": "RISKLY PRO · MT4 E MT5",
+  "cta": "Lista d'attesa · link in bio",
+  "musica": "a",
+  "titoli": [
+   [
+    "",
+    "Quanti lotti<br><em>devo aprire</em>?"
+   ],
+   [
+    "guarda",
+    "Stop 25 pip:<br><em>0,40 lotti</em>."
+   ],
+   [
+    "cinquanta",
+    "Stop 50 pip:<br><em>la metà</em>."
+   ],
+   [
+    "riskly#1",
+    "Riskly Pro<br><em>lo fa da solo</em>."
+   ]
+  ]
+ },
+ "p07": {
+  "pill": "JOURNAL RISKLY · DISPONIBILE ORA",
+  "cta": "7 giorni gratis · link in bio",
+  "musica": "h",
+  "titoli": [
+   [
+    "",
+    "Come tradi<br><em>dopo una perdita</em>?"
+   ],
+   [
+    "fascia",
+    "In che ore<br><em>perdi di più</em>."
+   ],
+   [
+    "stato",
+    "Quando entri<br><em>per rivalsa</em>."
+   ],
+   [
+    "provarlo",
+    "<em>7 giorni gratis</em>"
+   ]
+  ]
+ },
+ "p08": {
+  "pill": "PROP FIRM · RISKGUARD",
+  "cta": "Lista d'attesa · link in bio",
+  "musica": "b",
+  "titoli": [
+   [
+    "",
+    "Una giornata storta.<br><em>Challenge persa</em>."
+   ],
+   [
+    "prendi",
+    "Limite giornaliero<br><em>5%</em>."
+   ],
+   [
+    "problema",
+    "Sotto pressione<br><em>non lo guardi</em>."
+   ],
+   [
+    "riskguard#1",
+    "RiskGuard<br><em>ti ferma prima</em>."
+   ]
+  ]
+ },
+ "p09": {
+  "pill": "CALCOLATORI GRATIS",
+  "cta": "Calcolatori gratis · link in bio",
+  "musica": "c",
+  "titoli": [
+   [
+    "",
+    "Quanto rischi<br><em>di far saltare il conto</em>?"
+   ],
+   [
+    "metti",
+    "Winrate, stop<br>e <em>take profit</em>."
+   ],
+   [
+    "simula",
+    "Migliaia di<br><em>simulazioni</em>."
+   ],
+   [
+    "cinque#1",
+    "E al <em>5%</em>?"
+   ],
+   [
+    "cinque#2",
+    "<em>Gratis</em>, senza registrazione."
+   ]
+  ]
+ },
+ "p10": {
+  "pill": "VIDEOCORSO RISKLY",
+  "cta": "Videocorso · link in bio",
+  "musica": "j",
+  "oriz": true,
+  "titoli": [
+   [
+    "",
+    "Perdi il 50%.<br>Quanto devi <em>guadagnare</em>?"
+   ],
+   [
+    "cento",
+    "Il <em>100%</em>."
+   ],
+   [
+    "poi",
+    "Drawdown, prop firm,<br><em>trailing e scaglioni</em>."
+   ],
+   [
+    "disponibile",
+    "<em>Disponibile ora</em>"
+   ]
+  ]
+ },
+ "p11": {
+  "pill": "JOURNAL RISKLY · DISPONIBILE ORA",
+  "cta": "7 giorni gratis · link in bio",
+  "musica": "e",
+  "titoli": [
+   [
+    "",
+    "Chiusa a scaglioni?<br><em>I conti li fa lui</em>."
+   ],
+   [
+    "tocchi",
+    "Quanti sono andati<br><em>in profitto</em>?"
+   ],
+   [
+    "risultato#2",
+    "Risultato e saldo<br><em>già calcolati</em>."
+   ],
+   [
+    "prova",
+    "<em>7 giorni gratis</em>"
+   ]
+  ]
+ },
+ "p12": {
+  "pill": "I BOT RISKLY",
+  "cta": "Lista d'attesa · link in bio",
+  "musica": "g",
+  "titoli": [
+   [
+    "",
+    "Quale bot<br><em>fa per te</em>?"
+   ],
+   [
+    "riskguard",
+    "<em>RiskGuard</em>"
+   ],
+   [
+    "trademanager",
+    "<em>TradeManager</em>"
+   ],
+   [
+    "scalein",
+    "<em>ScaleIn</em>"
+   ],
+   [
+    "riskly#2",
+    "<em>Riskly Pro</em>"
+   ],
+   [
+    "nessuno",
+    "Nessuno apre<br><em>operazioni da solo</em>."
+   ]
+  ]
+ },
+ "p13": {
+  "pill": "JOURNAL · INPUT E CONFERMA",
+  "cta": "7 giorni gratis · link in bio",
+  "musica": "i",
+  "titoli": [
+   [
+    "",
+    "Il tuo setup<br><em>funziona davvero</em>?"
+   ],
+   [
+    "segni#1",
+    "L'input<br><em>con lo screenshot</em>."
+   ],
+   [
+    "conferma#2",
+    "La conferma<br><em>con lo screenshot</em>."
+   ],
+   [
+    "dopo",
+    "Dopo 30 operazioni<br><em>lo sai</em>."
+   ]
+  ]
+ },
+ "p14": {
+  "pill": "RISKLY · 23 OTTOBRE",
+  "cta": "Lista d'attesa · link in bio",
+  "musica": "d",
+  "titoli": [
+   [
+    "",
+    "Il 23 ottobre<br><em>escono i bot</em>."
+   ],
+   [
+    "pensati",
+    "Le tue regole,<br><em>rispettate</em>."
+   ],
+   [
+    "journal",
+    "E tutto<br><em>nel journal</em>."
+   ],
+   [
+    "primi",
+    "Primi 10:<br><em>prezzo bloccato</em>."
+   ]
+  ]
+ },
+ "p15": {
+  "pill": "− 3 GIORNI",
+  "cta": "Lista d'attesa · link in bio",
+  "musica": "f",
+  "titoli": [
+   [
+    "",
+    "Mancano<br><em>3 giorni</em>."
+   ],
+   [
+    "scegli",
+    "Scegli il bot,<br><em>scrivi l'email</em>."
+   ],
+   [
+    "nessun",
+    "<em>Nessun pagamento</em><br>adesso."
+   ],
+   [
+    "primi",
+    "Primi 10:<br><em>prezzo bloccato</em>."
+   ]
+  ]
+ },
+ "p16": {
+  "pill": "VIDEOCORSO RISKLY",
+  "cta": "Videocorso · link in bio",
+  "musica": "j",
+  "oriz": true,
+  "titoli": [
+   [
+    "",
+    "Un bot non ti salva<br>da <em>regole sbagliate</em>."
+   ],
+   [
+    "trailing",
+    "Il <em>trailing stop</em>."
+   ],
+   [
+    "scaglioni",
+    "Gli <em>scaglioni</em>."
+   ],
+   [
+    "cinquanta",
+    "−50% sul corso<br><em>con un bot</em>."
+   ]
+  ]
+ },
+ "p17": {
+  "pill": "DOMANI · 23 OTTOBRE",
+  "cta": "Lista d'attesa · link in bio",
+  "musica": "k",
+  "titoli": [
+   [
+    "",
+    "Domani<br><em>escono i bot</em>."
+   ],
+   [
+    "riskguard",
+    "<em>RiskGuard</em>"
+   ],
+   [
+    "trademanager",
+    "<em>TradeManager</em>"
+   ],
+   [
+    "scalein",
+    "<em>ScaleIn</em>"
+   ],
+   [
+    "oggi",
+    "<em>Ultimo giorno</em><br>per i primi 10."
+   ]
+  ]
+ },
+ "p18": {
+  "pill": "OGGI · 23 OTTOBRE",
+  "cta": "Disponibili ora · link in bio",
+  "musica": "a",
+  "titoli": [
+   [
+    "",
+    "I bot Riskly<br><em>sono disponibili</em>."
+   ],
+   [
+    "simulazioni",
+    "Guarda come<br><em>funzionano</em>."
+   ],
+   [
+    "funzionano",
+    "MT4 e MT5,<br><em>una volta sola</em>."
+   ],
+   [
+    "prezzo",
+    "Prezzo di lancio:<br><em>primi 10</em>."
+   ]
+  ]
  }
 }

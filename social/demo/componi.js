@@ -13,7 +13,7 @@ const musica = path.join(D, '..', 'generatore', 'musica', (cfg.musica || 'e') + 
 (async () => {
   const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 1080, height: 1920 } });
   await p.goto('file://' + path.join(D, 'modello.html')); await p.evaluate(() => document.fonts.ready);
-  const tw = w => w === '' ? 0 : ((parole.find(x => x[2].toLowerCase().startsWith(w)) || [0])[0]);
+  const tw = w => { if(w === '') return 0; const [q, n] = w.split('#'); const l = parole.filter(x => x[2].toLowerCase().replace(/[^a-zà-ù0-9']/g, '').startsWith(q)); const x = l[(+n || 1) - 1]; if(!x) throw new Error(ID + ': titolo, parola non trovata ' + w); return x[0]; };
   cfg.titoli = cfg.titoli.map(([k, h]) => [typeof k === 'string' ? tw(k) : k, h]);
   await p.evaluate(s => window.prepara(s), Object.assign({}, cfg, { parole, fine }));
   const out = path.join(D, '..', 'video', ID + '.mp4');
