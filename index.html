@@ -1213,6 +1213,8 @@ body{padding-top:0}
   .jform{align-items:start}
   .jform input[type=date],.jform input[type=time]{padding-left:12px;padding-right:10px}
   .jform>div:has(#fDirSeg),#f-saldo-box{grid-column:1/-1}
+  .jform-ris{margin-top:14px}.jform-ris #f-pnl-box{grid-column:1/-1}
+  .jform-ris #f-pnl{font-size:1.15rem;font-weight:600}
   .junita-riga label{white-space:nowrap}
   @media(min-width:900px){.jform{grid-template-columns:repeat(4,minmax(0,1fr))}
     .jform>div:has(#fDirSeg){grid-column:auto}.jform .jcampo-lista{grid-column:span 2}.jform #f-saldo-box{grid-column:span 2}}
@@ -1521,22 +1523,6 @@ body{padding-top:0}
                 <button type="button" data-d="short" onclick="j_setDir('short')">Short</button>
               </div>
             </div>
-            <div>
-              <div class="junita-riga"><label for="f-pnl">Risultato <span class="jaiuto" title="Quanto hai guadagnato o perso, in soldi o in percentuale del conto. Per una perdita metti il meno davanti: -50">?</span></label>
-                <div class="junita" data-campo="pnl"><button type="button" class="on jval" data-u="val" onclick="j_setUnita('pnl','val')">€</button><button type="button" data-u="pct" onclick="j_setUnita('pnl','pct')">%</button></div></div>
-              <input type="number" id="f-pnl" step="0.01" placeholder="125.50 o -50" required oninput="j_aggiornaConversione()">
-              <div class="jconv" id="conv-pnl"></div>
-            </div>
-            <div>
-              <div class="junita-riga"><label for="f-risk">Rischio <span class="jaiuto" title="Quanto avresti perso se fosse scattato lo stop loss, in soldi o in percentuale del conto. Serve a calcolare R: quante volte il rischio hai guadagnato.">?</span></label>
-                <div class="junita" data-campo="risk"><button type="button" class="on jval" data-u="val" onclick="j_setUnita('risk','val')">€</button><button type="button" data-u="pct" onclick="j_setUnita('risk','pct')">%</button></div></div>
-              <input type="number" id="f-risk" step="0.01" min="0" placeholder="100" oninput="j_aggiornaConversione()">
-              <div class="jconv" id="conv-risk"></div>
-            </div>
-            <div id="f-saldo-box" hidden>
-              <label for="f-saldo">Saldo del conto (<span class="jval">€</span>) <span class="jaiuto" title="Serve per trasformare la percentuale in soldi. Lo ricordiamo per le prossime operazioni.">?</span></label>
-              <input type="number" id="f-saldo" step="0.01" min="0" placeholder="10000" oninput="j_aggiornaConversione()">
-            </div>
             <div class="jcampo-lista" id="f-strat-box">
               <label for="f-strat">Strategia</label>
               <div class="jcon-salva"><input id="f-strat" placeholder="Breakout" maxlength="60" list="f-strategie" autocomplete="off" oninput="j_aggiornaSalva('strategie')">
@@ -1546,9 +1532,28 @@ body{padding-top:0}
             </div>
           </div>
 
-          <div class="jmetodo-campi" id="fMetodo"></div>
-
           <div class="jscag" id="fScag"></div>
+
+          <div class="jform jform-ris">
+            <div id="f-pnl-box">
+              <div class="junita-riga"><label for="f-pnl">Risultato <span class="jaiuto" title="Si calcola da solo dalla sezione Gestione e risultato. Se non usi gli scaglioni puoi scriverlo a mano, in soldi o in percentuale del conto. Per una perdita metti il meno davanti: -50">?</span></label>
+                <div class="junita" data-campo="pnl"><button type="button" class="on jval" data-u="val" onclick="j_setUnita('pnl','val')">€</button><button type="button" data-u="pct" onclick="j_setUnita('pnl','pct')">%</button></div></div>
+              <input type="number" id="f-pnl" step="0.01" placeholder="125.50 o -50" required oninput="j_aggiornaConversione()">
+              <div class="jconv" id="conv-pnl"></div>
+            </div>
+            <div id="f-risk-box" hidden>
+              <div class="junita-riga"><label for="f-risk">Rischio <span class="jaiuto" title="Quanto avresti perso se fosse scattato lo stop loss, in soldi o in percentuale del conto. Serve a calcolare R: quante volte il rischio hai guadagnato.">?</span></label>
+                <div class="junita" data-campo="risk"><button type="button" class="on jval" data-u="val" onclick="j_setUnita('risk','val')">€</button><button type="button" data-u="pct" onclick="j_setUnita('risk','pct')">%</button></div></div>
+              <input type="number" id="f-risk" step="0.01" min="0" placeholder="100" oninput="j_aggiornaConversione()">
+              <div class="jconv" id="conv-risk"></div>
+            </div>
+            <div id="f-saldo-box" hidden>
+              <label for="f-saldo">Saldo del conto (<span class="jval">€</span>) <span class="jaiuto" title="Serve per trasformare la percentuale in soldi. Lo ricordiamo per le prossime operazioni.">?</span></label>
+              <input type="number" id="f-saldo" step="0.01" min="0" placeholder="10000" oninput="j_aggiornaConversione()">
+            </div>
+          </div>
+
+          <div class="jmetodo-campi" id="fMetodo"></div>
 
           <div class="jemo-scelta">
             <label>Come ti sentivi quando l'hai aperta?</label>
@@ -3494,6 +3499,13 @@ function j_scagStima(){
   const eur = rischio !== null && stop > 0 ? Math.round(rischio * pip / stop * 100) / 100 : null;
   return { pip, saldo, rischio, eur, pct };
 }
+/* rischio in euro (saldo × rischio %): va nel campo nascosto Rischio anche senza scaglioni */
+function j_applicaRischio(){
+  const saldo = j_saldoPrimaOp(), pct = parseFloat(j_rap.rischio) || 0, el = document.getElementById('f-risk');
+  if(!el || !(saldo > 0 && pct > 0)) return;
+  j_setUnita('risk', 'val', true);
+  el.value = (Math.round(saldo * pct) / 100).toFixed(2);
+}
 /* scrive risultato e rischio nei campi dell'operazione */
 function j_applicaStima(){
   const st = j_scagStima(); if(!st || st.eur === null) return;
@@ -3513,7 +3525,7 @@ function j_renderScag(senzaApplicare){
   const rimasti = Math.max(0, n - Math.min(j_rap.k, maxK) - (j_rap.corre ? 1 : 0));
   const chip = (attr, v, on, testo) => `<button type="button" class="jscelta${on ? ' on' : ''}" ${attr}="${v}">${testo}</button>`;
   box.innerHTML = `
-    <div class="jm-gtit"><b>Gestione e risultato</b><span>Inserisci rischio, lotti e scaglioni: il risultato si calcola da solo</span></div>
+    <div class="jm-gtit"><b>Gestione e risultato</b><span>Rischio, lotti e scaglioni: il risultato qui sotto si calcola da solo</span></div>
     <div class="jrap">
       <div class="jrap-riga">
         <div><label for="rp-rischio">Rischio (%) <span class="jaiuto" title="La percentuale del saldo che perdi se tutta la posizione chiude allo stop loss. Si ricorda per le prossime operazioni.">?</span></label><input type="number" id="rp-rischio" class="rp" data-k="rischio" step="0.05" min="0" inputmode="decimal" value="${esc(String(j_rap.rischio))}"></div>
@@ -3567,6 +3579,7 @@ function j_renderScagLista(){ j_aggiornaStima(); }
 function j_aggiornaStima(senzaApplicare){
   const box = document.getElementById('scagStima');
   if(!box) return;
+  if(!senzaApplicare) j_applicaRischio();
   const st = j_scagStima();
   if(!st){ box.innerHTML = ''; return; }
   const cl = v => v > 0 ? 'up' : (v < 0 ? 'down' : '');
@@ -3574,7 +3587,7 @@ function j_aggiornaStima(senzaApplicare){
   if(st.eur !== null){
     h += `<div class="jstima-r"><span>Risultato <small>(rischio ${String(st.pct).replace('.', ',')}% = ${j_soldi(st.rischio, 2)})</small></span><b class="${cl(st.eur)}">${j_segno(st.eur, 2)} €</b></div>
       <div class="jstima-r"><span>Saldo dopo l'operazione</span><b>${j_soldi(st.saldo + st.eur, 2)}</b></div>
-      <div class="jstima-nota">Risultato e rischio sono già nei campi dell'operazione.</div>`;
+      <div class="jstima-nota">Il risultato è già scritto qui sotto.</div>`;
     if(!senzaApplicare) j_applicaStima();
   } else if(!st.saldo){
     h += `<div class="jstima-nota">Per il risultato in euro imposta il <b>saldo iniziale</b> in alto: poi si aggiorna da solo a ogni operazione.</div>`;
