@@ -58,7 +58,7 @@ async function registra(b, ID){
     clic: sel => p.click(sel),
     js: (fn, arg) => p.evaluate(fn, arg),
     /* avvia una simulazione del sito e regola la velocità perché l'evento cada sulla parola */
-    sim: async (k, msEvento, parolaEvento) => { const dt = W(parolaEvento) - t; vel = Math.max(.25, Math.min(2, msEvento / 1000 / dt)); await p.evaluate(k => window['play' + k](), k); },
+    sim: async (k, msEvento, parolaEvento) => { const dt = W(parolaEvento) - t; vel = Math.max(.25, Math.min(2, msEvento / 1000 / dt)); await p.evaluate(k => { window['play' + k](); }, k); },
   };
   if(sc.init) await sc.init(H);
   await p.clock.runFor(300);
@@ -67,8 +67,8 @@ async function registra(b, ID){
   for(let f = 0; f < N; f++){
     t = f / FPS;
     while(i < passi.length && passi[i][0] <= t){ await passi[i][1](H); i++; }
-    for(const a of anim){ const k = (t - a[0]) / a[1]; if(k >= 0 && k <= 1.05) await a[2](Math.min(1, k)); }
-    anim = anim.filter(a => (t - a[0]) / a[1] <= 1.05);
+    for(const a of anim){ const k = (t - a[0]) / a[1]; if(k >= 0) await a[2](Math.min(1, k)); }
+    anim = anim.filter(a => (t - a[0]) / a[1] < 1);
     await p.clock.runFor(1000 / FPS * vel);
     await p.screenshot({ path: path.join(OUT, String(f).padStart(4, '0') + '.jpg'), type: 'jpeg', quality: 88 });
   }
