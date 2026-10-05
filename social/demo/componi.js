@@ -18,7 +18,7 @@ const musica = path.join(D, '..', 'generatore', 'musica', (cfg.musica || 'e') + 
   const ff = spawn(ffmpeg, ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(FPS), '-c:v', 'mjpeg', '-i', '-',
     '-i', path.join(D, 'voce', ID + '.mp3'), '-i', musica,
     '-filter_complex', `[1:a]adelay=0|0,volume=1.0[v];[2:a]volume=0.14,afade=t=out:st=${(DUR - 1.2).toFixed(2)}:d=1.2[m];[v][m]amix=inputs=2:duration=longest:normalize=0,loudnorm=I=-14:TP=-1.5:LRA=7[a]`,
-    '-map', '0:v', '-map', '[a]', '-t', DUR.toFixed(2), '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '20', '-preset', 'medium', '-c:a', 'aac', '-b:a', '160k', '-movflags', '+faststart', out], { stdio: ['pipe', 'inherit', 'inherit'] });
+    '-map', '0:v', '-map', '[a]', '-t', DUR.toFixed(2), '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '20', '-preset', 'medium', '-c:a', 'aac', '-ar', '44100', '-ac', '2', '-b:a', '160k', '-movflags', '+faststart', out], { stdio: ['pipe', 'inherit', 'inherit'] });
   const chiuso = new Promise(r => ff.on('close', r));
   const N = Math.round(DUR * FPS);
   for(let f = 0; f < N; f++){
