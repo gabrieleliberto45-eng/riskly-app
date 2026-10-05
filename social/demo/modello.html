@@ -1,0 +1,37 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;700;800&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#EEF2E3;font-family:'Instrument Sans',system-ui,sans-serif}
+.bg{position:absolute;inset:0;background:radial-gradient(900px 700px at 85% 8%,rgba(182,216,79,.55),transparent 60%),radial-gradient(800px 700px at 0% 100%,rgba(34,197,94,.22),transparent 60%),#EEF2E3}
+.pill{position:absolute;top:96px;left:50%;transform:translateX(-50%);background:#0B0D0C;color:#B6D84F;font:600 26px 'JetBrains Mono',monospace;letter-spacing:.14em;padding:14px 28px;border-radius:99px;white-space:nowrap}
+.tit{position:absolute;top:170px;left:70px;right:70px;text-align:center;color:#0B0D0C;font-weight:800;font-size:72px;line-height:1.06;letter-spacing:-.02em;transition:none}
+.tit em{font-style:normal;background:#B6D84F;padding:0 12px;border-radius:12px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.tel{position:absolute;left:50%;top:400px;width:780px;height:1700px;transform:translateX(-50%);border-radius:84px;background:#0B0D0C;padding:18px;box-shadow:0 40px 80px rgba(11,13,12,.35),0 0 0 3px #2a2f2b inset}
+.tel img{width:100%;height:100%;object-fit:cover;object-position:top;border-radius:68px;display:block}
+.sub{position:absolute;left:50px;right:50px;bottom:170px;z-index:5;text-align:center;font-weight:800;font-size:66px;line-height:1.15;color:#fff;
+  text-shadow:0 4px 0 #0B0D0C,0 -4px 0 #0B0D0C,4px 0 0 #0B0D0C,-4px 0 0 #0B0D0C,4px 4px 0 #0B0D0C,-4px -4px 0 #0B0D0C,4px -4px 0 #0B0D0C,-4px 4px 0 #0B0D0C,0 10px 30px rgba(0,0,0,.4)}
+.sub .on{color:#B6D84F}
+.fine{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:34px;background:#0B0D0C;color:#fff;text-align:center}
+.fine .logo{font-weight:800;font-size:96px;letter-spacing:-.03em}
+.fine .cta{background:linear-gradient(135deg,#C8E36A,#7FBF4A);color:#0B0D0C;font-weight:800;font-size:54px;padding:26px 54px;border-radius:99px}
+.fine .p{color:#8B98A9;font-size:28px;max-width:820px;line-height:1.4}
+</style></head><body>
+<div class="bg"></div><div class="pill" id="pill"></div><div class="tit" id="tit"></div>
+<div class="tel"><img id="img"></div><div class="sub" id="sub"></div>
+<div class="fine" id="fine"><div class="logo">Riskly</div><div class="cta" id="cta"></div><div class="p">Contenuto educativo, non è consulenza finanziaria.</div></div>
+<script>
+let S=null;
+window.prepara=s=>{S=s;document.getElementById('pill').textContent=s.pill;document.getElementById('cta').textContent=s.cta;return true};
+/* sottotitoli: gruppi di 3-4 parole, la parola detta in verde */
+function gruppi(par){const g=[];let c=[];par.forEach((w,i)=>{const nx=par[i+1];c.push(w);const fin=/[.,:!?]$/.test(w[2])||(nx&&nx[0]-w[1]>.22);if(c.length>=3||fin||i===par.length-1){g.push(c);c=[]}});return g}
+window.disegna=async(t,src)=>{
+  const img=document.getElementById('img');
+  if(src && img.getAttribute('src')!==src){img.src=src;await img.decode().catch(()=>{})}
+  const tit=S.titoli.filter(x=>t>=x[0]).pop();document.getElementById('tit').innerHTML=tit?tit[1]:'';
+  const G=S._g||(S._g=gruppi(S.parole));
+  const g=G.find(x=>t>=x[0][0]-.05&&t<=x[x.length-1][1]+.25)||null;
+  document.getElementById('sub').innerHTML=g?g.map(w=>`<span class="${t>=w[0]&&t<=w[1]+.05?'on':''}">${w[2]}</span>`).join(' '):'';
+  document.getElementById('fine').style.display=t>=S.fine?'flex':'none';
+};
+</script></body></html>
