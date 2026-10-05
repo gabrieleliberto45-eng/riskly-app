@@ -15,7 +15,7 @@ module.exports = {
   p01: { init: BOT_COME, passi: [
     [0, async H => H.scorri('#bt-come .sim', .01, 40)],
     ['guarda', async H => { await H.scorri('#chartRG', .6, 140); await H.sim('RG', 7500, 'chiude'); }],
-    ['mezzanotte', async H => H.velocita(0)],
+    ['basta', async H => H.velocita(0)],
   ]},
   /* ScaleIn: la replica a scaglioni */
   p04: { init: BOT_COME, passi: [
