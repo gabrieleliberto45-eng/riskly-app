@@ -2164,6 +2164,26 @@
           <div class="card-head"><h3>Dimensione della posizione</h3><span class="meta">lotti</span></div>
           <div class="fld"><label for="c-bal">Saldo del conto (€) <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Quanti soldi hai sul conto adesso. Il rischio si calcola su questa cifra.">?</span></label><input type="number" id="c-bal" value="10000" oninput="calcPos()"></div>
           <div class="fld"><label for="c-risk">Rischio per trade (%) <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="La parte del conto che accetti di perdere se il prezzo tocca lo stop loss. Con 10.000 € e l&#x27;1% rischi 100 €. Chi inizia di solito sta tra lo 0,5% e l&#x27;1%.">?</span></label><input type="number" id="c-risk" value="1" step="0.1" oninput="calcPos()"></div>
+          <div class="fld"><label for="c-sym">Simbolo <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Il valore di 1 pip cambia da simbolo a simbolo: su EURUSD 1 pip è 0,0001, sull&#x27;oro (XAUUSD) è 0,10 $, sugli indici è 1 punto. Scegli il simbolo e il valore del pip si compila da solo con un valore tipico.">?</span></label>
+            <select id="c-sym" onchange="scegliSimbolo()">
+              <optgroup label="Forex">
+                <option value="EURUSD">EURUSD</option><option value="GBPUSD">GBPUSD</option><option value="AUDUSD">AUDUSD</option><option value="NZDUSD">NZDUSD</option>
+                <option value="USDJPY">USDJPY</option><option value="EURJPY">EURJPY</option><option value="GBPJPY">GBPJPY</option><option value="AUDJPY">AUDJPY</option>
+                <option value="USDCHF">USDCHF</option><option value="USDCAD">USDCAD</option><option value="EURGBP">EURGBP</option><option value="EURCHF">EURCHF</option><option value="EURAUD">EURAUD</option><option value="GBPAUD">GBPAUD</option>
+              </optgroup>
+              <optgroup label="Metalli ed energia">
+                <option value="XAUUSD">XAUUSD (oro)</option><option value="XAGUSD">XAGUSD (argento)</option><option value="USOIL">USOIL / WTI (petrolio)</option>
+              </optgroup>
+              <optgroup label="Indici">
+                <option value="US30">US30 (Dow Jones)</option><option value="NAS100">NAS100 (Nasdaq)</option><option value="US500">US500 (S&amp;P 500)</option><option value="GER40">GER40 (DAX)</option>
+              </optgroup>
+              <optgroup label="Cripto">
+                <option value="BTCUSD">BTCUSD</option><option value="ETHUSD">ETHUSD</option>
+              </optgroup>
+              <option value="ALTRO">Altro: scrivo io il valore del pip</option>
+            </select>
+            <div id="c-sym-info" style="color:var(--dim2);font-size:.74rem;margin-top:6px;line-height:1.45"></div>
+          </div>
           <div class="fld"><label for="c-pips">Distanza dello stop (pip) <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Quanti pip ci sono tra il prezzo di entrata e lo stop loss. Esempio: entri su EURUSD a 1,1000 e metti lo stop a 1,0975: sono 25 pip.">?</span></label><input type="number" id="c-pips" value="25" oninput="calcPos()"></div>
           <div class="fld"><label for="c-tp">Distanza del take profit (pip) <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Quanti pip ci sono tra l&#x27;entrata e il take profit, cioè dove chiudi in guadagno. Esempio: entri a 1,1000 con target a 1,1050: sono 50 pip.">?</span></label><input type="number" id="c-tp" value="50" oninput="calcPos()"></div>
           <div class="fld"><label for="c-val">Valore del pip per lotto (€) <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Quanto vale 1 pip con 1 lotto intero. Sulle coppie che finiscono in USD (EURUSD, GBPUSD) è 10 $, cioè circa 9 € a seconda del cambio. Su MetaTrader lo trovi nelle specifiche del simbolo.">?</span></label><input type="number" id="c-val" value="10" step="0.01" oninput="calcPos()"></div>
@@ -5568,6 +5588,12 @@ function aiuto(t){ return ' <span class="aiuto" role="button" tabindex="0" aria-
   addEventListener('scroll', chiudi, { passive:true });
 })();
 
+document.addEventListener('DOMContentLoaded', () => {
+  const el = document.getElementById('c-sym'); if(!el) return;
+  let ult = ''; try{ ult = localStorage.getItem('riskly-calc-sym') || ''; }catch{}
+  if(ult && [...el.options].some(o => o.value === ult)) el.value = ult;
+  scegliSimbolo();
+});
 function calcPos(){
   const bal=+v('c-bal'), rp=+v('c-risk'), pips=+v('c-pips'), pv=+v('c-val'), tp=+v('c-tp');
   const riskEur = bal*rp/100;
@@ -5578,6 +5604,26 @@ function calcPos(){
   set('o-2r', '+€'+(lots*tp*pv).toFixed(2));
   set('o-rap', pips>0 && tp>0 ? pips + ' : ' + tp + ' pip (1 a ' + (tp/pips).toFixed(1).replace('.0','') + ')' : '—');
   set('o-cnt', rp>0 ? Math.floor(10/rp) : '—');
+}
+
+/* simboli: quanto è 1 pip e quanto vale (circa) con 1 lotto, sul conto in euro.
+   Valori tipici: il valore esatto dipende dal broker e dal cambio, si controlla su MetaTrader
+   (tasto destro sul simbolo → Specifiche). */
+const SIMBOLI = {
+  EURUSD:['0,0001',10], GBPUSD:['0,0001',10], AUDUSD:['0,0001',10], NZDUSD:['0,0001',10],
+  USDJPY:['0,01',6.5], EURJPY:['0,01',6.5], GBPJPY:['0,01',6.5], AUDJPY:['0,01',6.5],
+  USDCHF:['0,0001',11], USDCAD:['0,0001',7], EURGBP:['0,0001',11.5], EURCHF:['0,0001',11], EURAUD:['0,0001',6.5], GBPAUD:['0,0001',6.5],
+  XAUUSD:['0,10 $ di prezzo (es. 2650,0 → 2650,1)',10], XAGUSD:['0,01 $ di prezzo',50], USOIL:['0,01 $ di prezzo',10],
+  US30:['1 punto',1], NAS100:['1 punto',1], US500:['1 punto',1], GER40:['1 punto',1],
+  BTCUSD:['1 $ di prezzo',1], ETHUSD:['1 $ di prezzo',1]
+};
+function scegliSimbolo(){
+  const sym = v('c-sym'), info = document.getElementById('c-sym-info'), d = SIMBOLI[sym];
+  try{ localStorage.setItem('riskly-calc-sym', sym); }catch{}
+  if(!d){ info.textContent = 'Scrivi qui sotto il valore di 1 pip con 1 lotto: lo trovi su MetaTrader nelle specifiche del simbolo.'; calcPos(); return; }
+  document.getElementById('c-val').value = d[1];
+  info.textContent = 'Su ' + sym + ' 1 pip = ' + d[0] + '. Con 1 lotto vale circa ' + String(d[1]).replace('.', ',') + ' € (dipende dal broker: controlla nelle specifiche del simbolo su MetaTrader).';
+  calcPos();
 }
 
 /* ---------- Rischio di rovina ---------- */
