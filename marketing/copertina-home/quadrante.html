@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1600px;height:900px;overflow:hidden;background:#090B0A}
+body{position:relative;font-family:'JetBrains Mono',monospace;color:#fff}
+.bg{position:absolute;inset:0;background:
+  radial-gradient(620px 620px at 50% 50%,rgba(182,216,79,.16),transparent 70%),
+  radial-gradient(900px 500px at 50% 120%,rgba(127,191,74,.12),transparent 70%)}
+.noise{position:absolute;inset:0;opacity:.07;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+/* linee orizzontali sottili */
+.righe{position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 48px);mask-image:radial-gradient(ellipse at 50% 50%,#000 20%,transparent 70%)}
+svg{position:absolute;inset:0}
+.centro{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center}
+.k{font-size:20px;letter-spacing:.32em;color:#8B98A9;margin-bottom:6px}
+.v{font-family:'Instrument Serif',serif;font-style:italic;font-size:230px;line-height:.9;letter-spacing:-.02em;
+   background:linear-gradient(180deg,#F1F8C8 0%,#C8E36A 45%,#7FBF4A 100%);-webkit-background-clip:text;color:transparent;
+   filter:drop-shadow(0 0 40px rgba(182,216,79,.35))}
+.s{margin-top:16px;font-size:16px;letter-spacing:.16em;color:#B9C4A4}
+.s b{color:#F87171;font-weight:500}
+.lbl{position:absolute;font-size:15px;letter-spacing:.2em;color:#6E7A6A}
+</style></head><body>
+<div class="bg"></div><div class="righe"></div><div class="noise"></div>
+<svg width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <filter id="bagliore" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="morbido"><feGaussianBlur stdDeviation="22"/></filter>
+    <linearGradient id="arco" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7FBF4A"/><stop offset="1" stop-color="#E2F28F"/></linearGradient>
+  </defs>
+  <g id="g"></g>
+</svg>
+<div class="centro">
+  <div class="k">RISCHIO PER OPERAZIONE</div>
+  <div class="v">1%</div>
+  <div class="s">IL RESTO DEL CONTO RESTA FUORI DAL MERCATO</div>
+</div>
+<script>
+const g = document.getElementById('g'), cx = 800, cy = 450;
+const N = 100, start = -135, sweep = 270;             // quadrante da 270°, apertura in basso
+const a = d => (d - 90) * Math.PI / 180, P = (r, d) => [cx + r * Math.cos(a(d)), cy + r * Math.sin(a(d))];
+// anello di vetro
+g.insertAdjacentHTML('beforeend', `<circle cx="${cx}" cy="${cy}" r="372" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+<circle cx="${cx}" cy="${cy}" r="300" fill="rgba(20,26,18,.55)" stroke="rgba(182,216,79,.18)" stroke-width="1.5"/>
+<circle cx="${cx}" cy="${cy}" r="300" fill="none" stroke="rgba(182,216,79,.25)" stroke-width="30" filter="url(#morbido)" opacity=".5"/>`);
+// tacche: 1 su 100 = 1%; la zona rossa (oltre il 90%) è la rovina
+for (let i = 0; i <= N; i++) {
+  const d = start + sweep * i / N, lungo = i % 10 === 0;
+  const [x1, y1] = P(lungo ? 318 : 326, d), [x2, y2] = P(352, d);
+  let col = 'rgba(255,255,255,.14)', w = lungo ? 3 : 2, f = '';
+  if (i <= 1) { col = '#C8E36A'; w = 6; f = 'filter="url(#bagliore)"'; }
+  else if (i >= 90) { col = `rgba(239,68,68,${.25 + (i - 90) * .06})`; w = 3; }
+  g.insertAdjacentHTML('beforeend', `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${col}" stroke-width="${w}" stroke-linecap="round" ${f}/>`);
+}
+// arco acceso dell'1% + indicatore
+const arc = (r, d0, d1) => { const [x0, y0] = P(r, d0), [x1, y1] = P(r, d1); return `M${x0} ${y0} A${r} ${r} 0 ${d1 - d0 > 180 ? 1 : 0} 1 ${x1} ${y1}`; };
+g.insertAdjacentHTML('beforeend', `<path d="${arc(372, start - 2, start + sweep * .01 + 2)}" stroke="url(#arco)" stroke-width="8" stroke-linecap="round" fill="none" filter="url(#bagliore)"/>
+<path d="${arc(372, start + sweep * .9, start + sweep)}" stroke="rgba(239,68,68,.55)" stroke-width="4" stroke-linecap="round" fill="none"/>`);
+const [px, py] = P(372, start + sweep * .01);
+g.insertAdjacentHTML('beforeend', `<circle cx="${px}" cy="${py}" r="14" fill="#0B0D0C" stroke="#E2F28F" stroke-width="4" filter="url(#bagliore)"/>`);
+// etichette 0 e 100
+const [lx, ly] = P(410, start), [rx, ry] = P(410, start + sweep);
+document.body.insertAdjacentHTML('beforeend', `<div class="lbl" style="left:${lx - 30}px;top:${ly - 10}px">0%</div><div class="lbl" style="left:${rx - 10}px;top:${ry - 10}px;color:#B4544F">100%</div>`);
+</script>
+</body></html>
