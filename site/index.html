@@ -96,7 +96,7 @@
   .btn.wide{width:100%}
   .btn:active{transform:translateY(1px)}
 
-  .page{display:none;animation:fade .22s ease}
+  .page{display:none;animation:entra .45s cubic-bezier(.16,1,.3,1)}
   .page.on{display:block}
   @keyframes fade{from{opacity:0}to{opacity:1}}
   section{padding:66px 0}
@@ -378,6 +378,42 @@
   .hero-new{position:relative;overflow:hidden;isolation:isolate}
   .hero-new>.wrap{position:relative;z-index:1}
   #h-scena{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+  /* scene in cima alle altre pagine */
+  .con-scena{position:relative;isolation:isolate}
+  .con-scena>.wrap{position:relative;z-index:1}
+  .scena-pag{position:absolute;left:0;top:0;width:100%;height:min(100%,760px);z-index:0;pointer-events:none;
+    -webkit-mask-image:linear-gradient(180deg,#000 55%,transparent);mask-image:linear-gradient(180deg,#000 55%,transparent)}
+  .con-scena::before{content:'';position:absolute;left:0;right:0;top:0;height:min(100%,760px);z-index:0;pointer-events:none;
+    background:radial-gradient(ellipse 60% 42% at 50% 22%,rgba(9,11,10,.8),rgba(9,11,10,.35) 60%,transparent 85%)}
+  /* luce di fondo che si muove piano dietro tutto il sito */
+  body::before{content:'';position:fixed;inset:-20%;z-index:-1;pointer-events:none;
+    background:radial-gradient(40% 35% at 20% 30%,rgba(182,216,79,.07),transparent 70%),
+               radial-gradient(35% 30% at 80% 70%,rgba(127,191,74,.06),transparent 70%);
+    animation:aurora 26s ease-in-out infinite alternate}
+  @keyframes aurora{0%{transform:translate3d(-4%,-2%,0) rotate(0deg)}50%{transform:translate3d(3%,4%,0) rotate(6deg)}100%{transform:translate3d(5%,-3%,0) rotate(-4deg)}}
+  /* cambio pagina e titoli */
+  @keyframes entra{from{opacity:0;transform:translateY(14px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+  .page.on .sez-titolo.pagina>*{animation:entra .8s cubic-bezier(.16,1,.3,1) both}
+  .page.on .sez-titolo.pagina>*:nth-child(2){animation-delay:.08s}
+  .page.on .sez-titolo.pagina>*:nth-child(3){animation-delay:.16s}
+  .page.on .sez-titolo.pagina>*:nth-child(4){animation-delay:.24s}
+  .hero-new .wrap>*{animation:entra .9s cubic-bezier(.16,1,.3,1) both}
+  .hero-new .wrap>*:nth-child(2){animation-delay:.1s}
+  .hero-new .wrap>*:nth-child(3){animation-delay:.2s}
+  .hero-new .wrap>*:nth-child(4){animation-delay:.3s}
+  .hero-new .wrap>*:nth-child(5){animation-delay:.4s}
+  /* riflesso sui pulsanti verdi */
+  .btn.pri{position:relative;overflow:hidden}
+  .btn.pri::after{content:'';position:absolute;top:0;bottom:0;left:-60%;width:40%;pointer-events:none;
+    background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);
+    animation:riflesso 5.5s ease-in-out infinite}
+  @keyframes riflesso{0%,70%{left:-60%}100%{left:130%}}
+  /* riquadri sotto il mouse */
+  .inclina{transition:transform .12s ease-out,box-shadow .3s!important;
+    background-image:radial-gradient(420px circle at var(--mx) var(--my),rgba(182,216,79,.10),transparent 60%)!important}
+  @media (prefers-reduced-motion: reduce){
+    body::before,.btn.pri::after,.page.on .sez-titolo.pagina>*,.hero-new .wrap>*{animation:none!important}
+  }
   .hero-new::after{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
     background:radial-gradient(ellipse 62% 50% at 50% 36%,rgba(9,11,10,.82),rgba(9,11,10,.4) 60%,transparent 82%),
       linear-gradient(180deg,rgba(9,11,10,.35),transparent 30%,transparent 78%,var(--bg) 100%)}
@@ -6122,90 +6158,7 @@ function chatDomanda(t){
 document.addEventListener('keydown', e => { if(e.key === 'Escape') chatChiudi(); });
 </script>
 
-<script>
-/* Home: scena di sfondo. Sotto un mercato caotico (terreno di linee, i picchi estremi diventano rossi),
-   sopra una linea verde che avanza calma. Si muove da sola, con lo scorrimento e con il mouse / l'inclinazione. */
-(function(){
-  const cv = document.getElementById('h-scena'); if(!cv) return;
-  const cx = cv.getContext('2d'), sez = cv.parentElement;
-  const fermo = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let W = 0, H = 0, dpr = 1, t = 0, mx = 0, my = 0, tx = 0, ty = 0, scroll = 0, visibile = true, ultimo = 0;
-  const piccolo = () => W < 700;
-  function misura(){
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    W = sez.clientWidth; H = sez.clientHeight;
-    cv.width = W * dpr; cv.height = H * dpr; cx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  }
-  /* altezza del mercato: somma di onde + creste, cambia nel tempo */
-  const quota = (x, z, t) => {
-    const a = Math.sin(x * .42 + z * .55 + t * .6) * .55 + Math.sin(x * .17 - z * .31 + t * .25) * .9
-            + Math.sin(x * 1.1 + z * 1.3 - t * .9) * .18;
-    const cresta = Math.pow(Math.abs(Math.sin(x * .23 + z * .19 + t * .35)), 6) * 2.2;
-    return a + cresta;
-  };
-  function disegna(){
-    cx.clearRect(0, 0, W, H);
-    mx += (tx - mx) * .05; my += (ty - my) * .05;
-    const righe = piccolo() ? 26 : 38, punti = piccolo() ? 64 : 110;
-    const f = Math.min(W, 1400) * .9;
-    const orizzonte = H * ((piccolo() ? .66 : .50) + scroll * .25) + my * 18;    // scorrendo, la camera si alza
-    const camH = 3.2 + scroll * 2.2;
-    const ruota = mx * .18;                                    // mouse / inclinazione
-    const avanti = t * .9;
-    for(let r = righe; r >= 1; r--){
-      const z = r * .9 + 1.2 - (avanti % .9);
-      const prof = 1 - z / (righe * .9 + 1.2);                // 1 vicino, 0 lontano
-      cx.beginPath();
-      let rosso = 0;
-      for(let i = 0; i <= punti; i++){
-        const u = i / punti * 2 - 1;
-        const x = u * z * 1.25 + ruota * z;
-        const h = quota(x, z + avanti, t);
-        if(h > 2.15) rosso++;
-        const sx = W / 2 + (x - ruota * z) / z * f * .5 + u * 40 * prof;
-        const sy = orizzonte + (camH - h) / z * f * .16;
-        i ? cx.lineTo(sx, sy) : cx.moveTo(sx, sy);
-      }
-      const al = .05 + prof * prof * .42;
-      cx.strokeStyle = rosso > punti * .12 ? `rgba(239,90,80,${al * .9})` : `rgba(182,216,79,${al})`;
-      cx.lineWidth = .6 + prof * 1.1;
-      cx.stroke();
-    }
-    /* linea della disciplina: avanza sopra il caos, sale piano */
-    const y0 = orizzonte - H * (piccolo() ? .1 : .06), pend = H * (piccolo() ? .06 : .13);
-    const linea = [];
-    for(let i = 0; i <= 120; i++){
-      const u = i / 120;
-      const x = u * W;
-      const y = y0 + pend * (.5 - u) + Math.sin(u * 9 + t * 1.3) * 5 + Math.sin(u * 23 - t * 2) * 2 + mx * 10 * (u - .5);
-      linea.push([x, y]);
-    }
-    const grad = cx.createLinearGradient(0, 0, W, 0);
-    grad.addColorStop(0, 'rgba(200,227,106,0)'); grad.addColorStop(.25, 'rgba(200,227,106,.85)');
-    grad.addColorStop(.75, 'rgba(226,242,143,1)'); grad.addColorStop(1, 'rgba(226,242,143,0)');
-    for(const [lw, a, bl] of [[10, .18, 24], [3, 1, 10]]){
-      cx.save(); cx.shadowColor = 'rgba(200,227,106,.9)'; cx.shadowBlur = bl; cx.globalAlpha = a;
-      cx.strokeStyle = grad; cx.lineWidth = lw; cx.lineJoin = 'round'; cx.lineCap = 'round';
-      cx.beginPath(); linea.forEach(([x, y], i) => i ? cx.lineTo(x, y) : cx.moveTo(x, y)); cx.stroke(); cx.restore();
-    }
-    /* punto luminoso che corre sulla linea */
-    const k = Math.floor(((t * .08) % 1) * 120), [px, py] = linea[k];
-    cx.save(); cx.fillStyle = '#F1F8C8'; cx.shadowColor = '#C8E36A'; cx.shadowBlur = 22;
-    cx.beginPath(); cx.arc(px, py, 4.5, 0, Math.PI * 2); cx.fill(); cx.restore();
-  }
-  function ciclo(ora){
-    if(!visibile){ requestAnimationFrame(ciclo); return; }
-    const dt = Math.min(.05, (ora - (ultimo || ora)) / 1000); ultimo = ora; t += dt;
-    disegna(); requestAnimationFrame(ciclo);
-  }
-  misura(); addEventListener('resize', misura);
-  addEventListener('scroll', () => { scroll = Math.min(1, scrollY / Math.max(1, H)); if(fermo) disegna(); }, { passive: true });
-  addEventListener('pointermove', e => { tx = e.clientX / innerWidth * 2 - 1; ty = e.clientY / innerHeight * 2 - 1; }, { passive: true });
-  addEventListener('deviceorientation', e => { if(e.gamma == null) return; tx = Math.max(-1, Math.min(1, e.gamma / 30)); ty = Math.max(-1, Math.min(1, (e.beta - 45) / 40)); });
-  new IntersectionObserver(v => { visibile = v[0].isIntersecting; }).observe(sez);
-  if(fermo){ t = 4; disegna(); } else requestAnimationFrame(ciclo);
-})();
-</script>
+<script src="scene.js" defer></script>
 </body>
 </html>
 
