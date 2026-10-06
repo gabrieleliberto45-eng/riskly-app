@@ -3472,6 +3472,21 @@ function j_vpipSalvati(){
   return Object.assign({}, l, m);
 }
 const j_simNorm = sym => String(sym || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+/* quanto è 1 pip in prezzo, per tradurre lo stop: "20 pip su XAUUSD = 2,00 $ di prezzo" */
+function j_stopInPrezzo(sym, pips){
+  const nome = String(sym || '').toUpperCase().trim();
+  sym = j_simNorm(sym); pips = parseFloat(pips);
+  if(!sym || !(pips > 0)) return '';
+  let pip = .0001, u = '';
+  if(/XAG|SILVER|OIL|WTI|BRENT|XTI|XBR/.test(sym)){ pip = .01; u = '$'; }
+  else if(/XAU|GOLD/.test(sym)){ pip = .1; u = '$'; }
+  else if(/US30|DJ30|WS30|DOW|NAS|NDX|USTEC|US100|US500|SPX|SP500|GER|DE30|DE40|DAX|UK100|FTSE|JP225|NIK/.test(sym)){ pip = 1; u = 'punti'; }
+  else if(/BTC|ETH|XRP|SOL|LTC/.test(sym)){ pip = 1; u = '$'; }
+  else if(/JPY$/.test(sym.slice(0, 6))) pip = .01;
+  const dec = pip >= 1 ? 0 : (pip >= .01 ? 2 : 4);
+  const n = (pips * pip).toLocaleString('it-IT', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+  return `${pips} pip su ${esc(nome)} = ${u === 'punti' ? n + ' punti' : u ? n + ' ' + u : n} di prezzo`;
+}
 /* valore di 1 pip con 1 lotto (valuta del conto, circa): si ricava dal simbolo, senza chiederlo.
    Gli stessi valori tipici dei calcolatori su riskly.trade. Funziona anche con i suffissi dei broker (XAUUSD.m, EURUSDm…). */
 function j_vpipPer(sym){
@@ -3627,6 +3642,7 @@ function j_renderScag(senzaApplicare){
         <div><label for="rp-tot">Lotti</label><input type="number" id="rp-tot" class="rp" data-k="tot" step="0.01" min="0.01" inputmode="decimal" placeholder="es. 0.50" value="${esc(String(j_rap.tot))}"></div>
         <div><label for="rp-stop">Stop loss (pip)</label><input type="number" id="rp-stop" class="rp" data-k="stop" step="any" min="0" inputmode="decimal" placeholder="es. 20" value="${esc(String(j_rap.stop))}"></div>
       </div>
+      <div class="jrap-info" id="rpStopPrezzo">${j_stopInPrezzo(sym, j_rap.stop)}</div>
       <div class="jm-campo"><span>Com'è finita?</span>
         <div class="jchips-scelta jfine">${J_FINE.map(([k, t]) => chip('data-fine', k, es === k, t)).join('')}</div>
       </div>
@@ -3640,6 +3656,7 @@ function j_renderScag(senzaApplicare){
     if(t.id === 'rp-vpip-in'){ j_vpipRicorda(j_simbolo(), parseFloat(t.value)); j_aggiornaStima(); return; }
     if(!t.classList.contains('rp') || t.type === 'checkbox') return;
     j_rap[t.dataset.k] = t.value; j_rapPref();
+    if(t.dataset.k === 'stop'){ const sp = document.getElementById('rpStopPrezzo'); if(sp) sp.textContent = j_stopInPrezzo(j_simbolo(), t.value); }
     if(t.dataset.k === 'n' || t.dataset.k === 'passo') return;   /* la griglia si ridisegna all'uscita dal campo */
     j_rapGenera(); j_aggiornaStima();
     const info = document.getElementById('rpInfo'), lt = j_rapLotti();
