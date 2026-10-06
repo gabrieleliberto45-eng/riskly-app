@@ -96,6 +96,72 @@
       if(fase > .85){ cx.fillStyle = `rgba(11,13,12,${(fase - .85) / .15 * .9})`; cx.fillRect(0, 0, W, H); }
     },
 
+    /* prezzi: barre che respirano e disegnano una curva che sale */
+    barre(cx, W, H, t, s){
+      const n = W < 700 ? 26 : 48, gap = W / n, base = H * (.86 + s.scroll * .1) + my * 10;
+      const punti = [];
+      for(let i = 0; i < n; i++){
+        const u = i / (n - 1);
+        const h = H * (.10 + u * .34) + Math.sin(i * .7 + t * 1.4) * H * .035 + Math.sin(i * .23 - t * .6) * H * .05;
+        const x = i * gap + gap * .2 + mx * 10 * (u - .5);
+        const g = cx.createLinearGradient(0, base - h, 0, base);
+        const a = .10 + u * .22;
+        g.addColorStop(0, `rgba(200,227,106,${a + .1})`); g.addColorStop(1, 'rgba(182,216,79,0)');
+        cx.fillStyle = g; cx.fillRect(x, base - h, gap * .6, h);
+        punti.push([x + gap * .3, base - h - 10]);
+      }
+      lineaLuce(cx, W, punti, t, true);
+    },
+
+    /* corso: costellazione di punti che si collegano */
+    costellazione(cx, W, H, t, s){
+      const n = W < 700 ? 34 : 70, lim = W < 700 ? 110 : 150, pts = [];
+      for(let i = 0; i < n; i++){
+        const r = rng(i * 53 + 7);
+        const x = (r() * W + Math.sin(t * (.1 + r() * .2) + i) * 40 + mx * 20 * (r() - .3)) % W;
+        const y = r() * H * .85 + Math.cos(t * (.12 + r() * .2) + i * 2) * 30 + s.scroll * H * .2 + my * 12;
+        pts.push([x, y, r()]);
+      }
+      for(let i = 0; i < n; i++) for(let j = i + 1; j < n; j++){
+        const dx = pts[i][0] - pts[j][0], dy = pts[i][1] - pts[j][1], d = Math.hypot(dx, dy);
+        if(d < lim){ cx.strokeStyle = `rgba(182,216,79,${(1 - d / lim) * .28})`; cx.lineWidth = 1;
+          cx.beginPath(); cx.moveTo(pts[i][0], pts[i][1]); cx.lineTo(pts[j][0], pts[j][1]); cx.stroke(); }
+      }
+      for(const [x, y, k] of pts){
+        const luce = k > .82;
+        cx.save(); cx.fillStyle = luce ? '#E2F28F' : 'rgba(200,227,106,.55)';
+        if(luce){ cx.shadowColor = '#C8E36A'; cx.shadowBlur = 14; }
+        cx.beginPath(); cx.arc(x, y, luce ? 3 : 1.8, 0, Math.PI * 2); cx.fill(); cx.restore();
+      }
+    },
+
+    /* metodo: griglia in prospettiva che scorre, con una strada dritta al centro */
+    griglia(cx, W, H, t, s){
+      const oriz = H * (.38 + s.scroll * .15) + my * 14, cxp = W / 2 + mx * 40, f = H * .9;
+      const avanti = (t * .6) % 1;
+      for(let k = 0; k < 22; k++){                         // linee trasversali
+        const z = 1 + k - avanti, y = oriz + f / z * .55;
+        if(y > H) continue;
+        cx.strokeStyle = `rgba(182,216,79,${Math.min(.35, .5 / z)})`; cx.lineWidth = 1;
+        cx.beginPath(); cx.moveTo(0, y); cx.lineTo(W, y); cx.stroke();
+      }
+      for(let k = -14; k <= 14; k++){                      // linee verso l'orizzonte
+        const xb = cxp + k * W * .09;
+        cx.strokeStyle = `rgba(182,216,79,${k === 0 ? 0 : .14})`; cx.lineWidth = 1;
+        cx.beginPath(); cx.moveTo(cxp + (xb - cxp) * .04, oriz); cx.lineTo(xb + (xb - cxp) * 1.5, H * 1.3); cx.stroke();
+      }
+      /* la strada: due bordi luminosi */
+      for(const lato of [-1, 1]){
+        const g = cx.createLinearGradient(0, oriz, 0, H);
+        g.addColorStop(0, 'rgba(226,242,143,0)'); g.addColorStop(1, 'rgba(226,242,143,.9)');
+        cx.save(); cx.strokeStyle = g; cx.lineWidth = 2.5; cx.shadowColor = '#C8E36A'; cx.shadowBlur = 14;
+        cx.beginPath(); cx.moveTo(cxp + lato * 3, oriz); cx.lineTo(cxp + lato * W * .16, H * 1.05); cx.stroke(); cx.restore();
+      }
+      const sole = cx.createRadialGradient(cxp, oriz, 0, cxp, oriz, W * .25);
+      sole.addColorStop(0, 'rgba(226,242,143,.35)'); sole.addColorStop(1, 'rgba(226,242,143,0)');
+      cx.fillStyle = sole; cx.fillRect(0, 0, W, H);
+    },
+
     onde(cx, W, H, t, s){
       const nastri = 5, base = H * (.58 + s.scroll * .2) + my * 14;
       for(let n = 0; n < nastri; n++){
@@ -167,7 +233,7 @@
   /* home: canvas già nel markup; le altre pagine: aggiunto in cima alla prima sezione */
   const home = document.getElementById('h-scena');
   if(home) scena(home, 'terreno');
-  const TEMA_PAGINA = { bot: 'candele', calc: 'montecarlo', journal: 'onde', corso: 'onde', metodo: 'onde', faq: 'onde' };
+  const TEMA_PAGINA = { bot: 'candele', calc: 'montecarlo', journal: 'barre', corso: 'costellazione', metodo: 'griglia', faq: 'onde' };
   for(const [id, tema] of Object.entries(TEMA_PAGINA)){
     const sez = document.querySelector(`#${id} > section:first-child`);
     if(!sez) continue;
