@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1600px;height:900px;overflow:hidden}
+body{background:#0B0D0C;color:#fff;font-family:'Instrument Sans',sans-serif;position:relative}
+.glow{position:absolute;inset:0;background:
+  radial-gradient(1000px 650px at 50% 60%,rgba(182,216,79,.20),transparent 62%),
+  radial-gradient(600px 400px at 0% 0%,rgba(127,191,74,.10),transparent 60%)}
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse at 50% 55%,#000 30%,transparent 75%)}
+.scr{position:absolute;border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.14);background:#0F1311;box-shadow:0 40px 90px rgba(0,0,0,.65)}
+.scr img{display:block;width:100%;height:100%;object-fit:cover;object-position:top left}
+.lab{position:absolute;z-index:5;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:21px;letter-spacing:.06em;padding:11px 18px;border-radius:99px;white-space:nowrap}
+.lab.v{color:#0B0D0C;background:linear-gradient(135deg,#C8E36A,#7FBF4A);box-shadow:0 10px 30px rgba(0,0,0,.45)}
+.lab.s{color:#E6F2C2;background:rgba(11,13,12,.85);border:1px solid rgba(182,216,79,.55)}
+/* journal: in alto a destra */
+.j{left:760px;top:60px;width:780px;height:314px;transform:rotate(1.5deg);opacity:.95}
+/* corso: in alto a sinistra */
+.c{left:60px;top:60px;width:560px;height:315px;transform:rotate(-2.5deg);opacity:.92}
+/* calcolatori: in basso a destra */
+.k{left:1010px;top:470px;width:520px;height:316px;transform:rotate(2.5deg)}
+/* bot: centrale, davanti */
+.b{left:250px;top:300px;width:880px;height:321px;transform:rotate(-1deg);border:2px solid rgba(182,216,79,.75);box-shadow:0 0 0 7px rgba(182,216,79,.13),0 60px 120px rgba(0,0,0,.75);z-index:3}
+.play{position:absolute;left:50%;top:50%;width:92px;height:92px;margin:-46px 0 0 -46px;border-radius:50%;background:linear-gradient(135deg,#C8E36A,#7FBF4A);box-shadow:0 0 0 12px rgba(182,216,79,.18),0 16px 40px rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center}
+.play:after{content:'';margin-left:8px;border-left:30px solid #0B0D0C;border-top:19px solid transparent;border-bottom:19px solid transparent}
+.logo{position:absolute;left:84px;bottom:60px;font-weight:700;font-size:40px;letter-spacing:-.02em;display:flex;align-items:center;gap:14px;z-index:6}
+.logo i{width:16px;height:16px;border-radius:50%;background:#B6D84F;box-shadow:0 0 20px #B6D84F}
+.tag{position:absolute;left:84px;bottom:118px;font-family:'Instrument Serif',serif;font-size:44px;line-height:1.05;z-index:6;color:#fff}
+.tag em{color:#C8E36A}
+</style></head><body>
+<div class="glow"></div><div class="grid"></div>
+
+<div class="scr c"><img src="corso.jpg"><div class="play"></div></div>
+<span class="lab s" style="left:96px;top:44px;transform:rotate(-2.5deg)">VIDEOCORSO · 47 LEZIONI</span>
+
+<div class="scr j"><img src="journal_c.png"></div>
+<span class="lab s" style="left:1300px;top:36px;transform:rotate(1.5deg)">JOURNAL</span>
+
+<div class="scr k"><img src="calc.png"></div>
+<span class="lab s" style="left:1250px;top:800px;transform:rotate(2.5deg)">CALCOLATORI GRATIS</span>
+
+<div class="scr b"><img src="bot_c.png"></div>
+<span class="lab v" style="left:280px;top:270px;z-index:6;transform:rotate(-1deg)">BOT MT4 · MT5 — DAL 23 OTTOBRE</span>
+
+<div class="tag">Un solo metodo,<br><em>quattro strumenti.</em></div>
+<div class="logo"><i></i>Riskly</div>
+</body></html>
