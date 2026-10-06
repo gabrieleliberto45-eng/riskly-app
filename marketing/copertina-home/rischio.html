@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0}
+html,body{width:1600px;height:900px;overflow:hidden;background:#0B0D0C}
+svg{display:block}
+text{font-family:'JetBrains Mono',monospace!important}
+</style></head><body>
+<svg id="s" width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="48%" r="55%">
+      <stop offset="0" stop-color="#B6D84F" stop-opacity=".26"/>
+      <stop offset=".55" stop-color="#7FBF4A" stop-opacity=".06"/>
+      <stop offset="1" stop-color="#0B0D0C" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="scudo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1B2318"/>
+      <stop offset="1" stop-color="#0E120D"/>
+    </linearGradient>
+    <linearGradient id="bordo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E2F28F"/>
+      <stop offset="1" stop-color="#6FAE3E"/>
+    </linearGradient>
+    <linearGradient id="area" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#B6D84F" stop-opacity=".35"/>
+      <stop offset="1" stop-color="#B6D84F" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="ombra" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="28"/>
+      <feOffset dy="30"/>
+      <feComponentTransfer><feFuncA type="linear" slope=".7"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="luce"><feGaussianBlur stdDeviation="10"/></filter>
+    <clipPath id="dentro"><path id="forma" d="M800 170 L1040 250 Q1048 253 1048 262 L1048 470 Q1048 640 800 760 Q552 640 552 470 L552 262 Q552 253 560 250 Z"/></clipPath>
+    <linearGradient id="sfuma" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0B0D0C" stop-opacity="1"/>
+      <stop offset=".18" stop-color="#0B0D0C" stop-opacity="0"/>
+      <stop offset=".82" stop-color="#0B0D0C" stop-opacity="0"/>
+      <stop offset="1" stop-color="#0B0D0C" stop-opacity="1"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="#0B0D0C"/>
+  <rect width="1600" height="900" fill="url(#glow)"/>
+  <g id="griglia" stroke="#ffffff" stroke-opacity=".035"></g>
+  <g id="candele"></g>
+
+  <!-- limite di perdita -->
+  <line x1="0" y1="690" x2="1600" y2="690" stroke="#EF4444" stroke-width="3" stroke-dasharray="14 12" opacity=".85"/>
+  <rect x="96" y="650" rx="10" width="250" height="30" fill="#2A1212" stroke="#EF4444" stroke-opacity=".6"/>
+  <text x="221" y="671" fill="#F87171" font-family="JetBrains Mono" font-weight="700" font-size="17" text-anchor="middle" letter-spacing="2">LIMITE DI PERDITA</text>
+
+  <rect width="1600" height="900" fill="url(#sfuma)"/>
+
+  <!-- scudo -->
+  <g filter="url(#ombra)">
+    <use href="#forma" fill="url(#scudo)"/>
+  </g>
+  <g clip-path="url(#dentro)">
+    <path id="eqA" fill="url(#area)"/>
+    <path id="eqL" fill="none" stroke="#C8E36A" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <path id="eqG" fill="none" stroke="#C8E36A" stroke-width="16" stroke-linecap="round" opacity=".35" filter="url(#luce)"/>
+  </g>
+  <use href="#forma" fill="none" stroke="url(#bordo)" stroke-width="7"/>
+  <use href="#forma" fill="none" stroke="#E2F28F" stroke-width="20" opacity=".12" filter="url(#luce)"/>
+
+  <!-- etichetta rischio -->
+  <rect x="725" y="545" rx="22" width="150" height="44" fill="#0B0D0C" stroke="#B6D84F" stroke-opacity=".7"/>
+  <text x="800" y="575" fill="#C8E36A" font-family="JetBrains Mono" font-weight="700" font-size="22" text-anchor="middle">1% max</text>
+</svg>
+<script>
+// candele: discesa che rimbalza sul limite, poi riparte
+let r = 7; const rnd = () => (r = (r * 9301 + 49297) % 233280) / 233280;
+const g = document.getElementById('candele'); let y = 330;
+for (let i = 0; i < 64; i++) {
+  const x = 30 + i * 24.5;
+  let tr = i < 15 ? 25 : (i < 21 ? 0 : -7);
+  const o = y, c = Math.min(676, y + tr + (rnd() - .5) * 40);
+  const hi = Math.min(o, c) - rnd() * 22, lo = Math.min(689, Math.max(o, c) + rnd() * 26);
+  const su = c < o, col = su ? '#4ADE80' : '#EF4444';
+  g.insertAdjacentHTML('beforeend', `<line x1="${x}" x2="${x}" y1="${hi}" y2="${lo}" stroke="${col}" stroke-opacity=".5" stroke-width="2"/>
+  <rect x="${x - 7}" y="${Math.min(o, c)}" width="14" height="${Math.max(3, Math.abs(c - o))}" fill="${col}" fill-opacity=".5" rx="2"/>`);
+  y = c;
+}
+const gr = document.getElementById('griglia');
+for (let x = 0; x <= 1600; x += 64) gr.insertAdjacentHTML('beforeend', `<line x1="${x}" x2="${x}" y1="0" y2="900"/>`);
+for (let yy = 0; yy <= 900; yy += 64) gr.insertAdjacentHTML('beforeend', `<line x1="0" x2="1600" y1="${yy}" y2="${yy}"/>`);
+// curva di capitale dentro lo scudo: sale con piccoli ritracciamenti
+const pts = []; let ey = 520;
+for (let i = 0; i <= 28; i++) { const x = 560 + i * 17.5; ey += -8.2 + (rnd() - .45) * 22; pts.push([x, ey]); }
+const d = 'M' + pts.map(p => p.join(' ')).join(' L');
+document.getElementById('eqL').setAttribute('d', d);
+document.getElementById('eqG').setAttribute('d', d);
+document.getElementById('eqA').setAttribute('d', d + ` L1048 800 L552 800 Z`);
+</script>
+</body></html>
