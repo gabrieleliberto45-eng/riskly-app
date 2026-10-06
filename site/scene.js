@@ -199,49 +199,53 @@
     cx.beginPath(); cx.arc(px, py, 4.5, 0, Math.PI * 2); cx.fill(); cx.restore();
   }
 
-  /* una scena: si ridimensiona con la sezione, si ferma quando non si vede */
-  const scene = [];
-  function scena(cv, tema){
-    const sez = cv.parentElement, cx = cv.getContext('2d');
-    const s = { cv, cx, sez, tema, W: 0, H: 0, scroll: 0, vista: false, t: 3 + Math.random() * 4 };
-    s.misura = () => {
-      const dpr = Math.min(devicePixelRatio || 1, 2);
-      s.W = cv.clientWidth; s.H = cv.clientHeight;
-      if(!s.W || !s.H) return;
-      cv.width = s.W * dpr; cv.height = s.H * dpr; cx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    };
-    s.disegna = () => {
-      if(!s.W) s.misura(); if(!s.W) return;
-      const r = sez.getBoundingClientRect();
-      s.scroll = Math.max(0, Math.min(1, -r.top / Math.max(1, s.H)));
-      cx.clearRect(0, 0, s.W, s.H); TEMI[tema](cx, s.W, s.H, s.t, s);
-    };
-    new IntersectionObserver(v => { s.vista = v[0].isIntersecting; if(s.vista){ s.misura(); if(fermo) s.disegna(); } }).observe(sez);
-    scene.push(s); s.misura(); if(fermo) s.disegna();
+  /* uno sfondo fisso dietro tutta la pagina: il tema cambia con la pagina,
+     la scena avanza da sola e ancora di più quando scorri */
+  const TEMA_PAGINA = { home: 'terreno', bot: 'candele', calc: 'montecarlo', journal: 'barre', corso: 'costellazione', metodo: 'griglia', faq: 'onde' };
+  const cv = document.createElement('canvas');
+  cv.id = 'sfondo'; cv.setAttribute('aria-hidden', 'true');
+  document.body.prepend(cv);
+  const cx = cv.getContext('2d');
+  const s = { W: 0, H: 0, scroll: 0, t: 4, tema: 'terreno', buio: 0 };
+  let ultimoScroll = scrollY;
+  function misura(){
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    s.W = innerWidth; s.H = innerHeight;
+    cv.width = s.W * dpr; cv.height = s.H * dpr; cx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
-  addEventListener('resize', () => scene.forEach(s => s.misura()));
-  if(fermo) addEventListener('scroll', () => scene.forEach(s => s.vista && s.disegna()), { passive: true });
+  function aggiornaTema(){
+    const pag = document.querySelector('.page.on');
+    const tema = pag && TEMA_PAGINA[pag.id];
+    cv.style.opacity = tema ? '' : '0';
+    if(tema && tema !== s.tema){ s.tema = tema; s.t = 3 + Math.random() * 4; }
+    if(fermo) disegna();
+  }
+  function disegna(){
+    if(!s.W) misura();
+    s.scroll = Math.min(1, scrollY / s.H) * .6;
+    cx.clearRect(0, 0, s.W, s.H);
+    TEMI[s.tema](cx, s.W, s.H, s.t, s);
+    /* più scendi, più lo sfondo si abbassa di tono, così il testo resta leggibile */
+    const buio = .12 + Math.min(1, scrollY / (s.H * .8)) * .38;
+    cx.fillStyle = `rgba(9,11,10,${buio})`; cx.fillRect(0, 0, s.W, s.H);
+  }
+  addEventListener('resize', () => { misura(); if(fermo) disegna(); });
+  addEventListener('scroll', () => {
+    const d = scrollY - ultimoScroll; ultimoScroll = scrollY;
+    s.t += Math.max(-1, Math.min(1, d / 260));            // scorrendo la scena va avanti (o indietro)
+    if(fermo) disegna();
+  }, { passive: true });
+  new MutationObserver(aggiornaTema).observe(document.body, { subtree: true, attributes: true, attributeFilter: ['class'] });
+  misura(); aggiornaTema();
 
   let ultimo = 0;
   function ciclo(ora){
     const dt = Math.min(.05, (ora - (ultimo || ora)) / 1000); ultimo = ora;
     mx += (tx - mx) * .05; my += (ty - my) * .05;
-    for(const s of scene) if(s.vista){ s.t += dt; s.disegna(); }
+    if(!document.hidden && cv.style.opacity !== '0'){ s.t += dt; disegna(); }
     requestAnimationFrame(ciclo);
   }
-
-  /* home: canvas già nel markup; le altre pagine: aggiunto in cima alla prima sezione */
-  const home = document.getElementById('h-scena');
-  if(home) scena(home, 'terreno');
-  const TEMA_PAGINA = { bot: 'candele', calc: 'montecarlo', journal: 'barre', corso: 'costellazione', metodo: 'griglia', faq: 'onde' };
-  for(const [id, tema] of Object.entries(TEMA_PAGINA)){
-    const sez = document.querySelector(`#${id} > section:first-child`);
-    if(!sez) continue;
-    sez.classList.add('con-scena');
-    const cv = document.createElement('canvas'); cv.className = 'scena-pag'; cv.setAttribute('aria-hidden', 'true');
-    sez.prepend(cv); scena(cv, tema);
-  }
-  if(!fermo) requestAnimationFrame(ciclo);
+  if(fermo) disegna(); else requestAnimationFrame(ciclo);
 
   /* riquadri che si inclinano sotto il mouse */
   if(!fermo && matchMedia('(hover: hover) and (pointer: fine)').matches){

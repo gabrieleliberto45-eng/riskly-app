@@ -377,14 +377,7 @@
   .h-fine{color:var(--dim2);font-size:.85rem}
   .hero-new{position:relative;overflow:hidden;isolation:isolate}
   .hero-new>.wrap{position:relative;z-index:1}
-  #h-scena{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
-  /* scene in cima alle altre pagine */
-  .con-scena{position:relative;isolation:isolate}
-  .con-scena>.wrap{position:relative;z-index:1}
-  .scena-pag{position:absolute;left:0;top:0;width:100%;height:min(100%,760px);z-index:0;pointer-events:none;
-    -webkit-mask-image:linear-gradient(180deg,#000 55%,transparent);mask-image:linear-gradient(180deg,#000 55%,transparent)}
-  .con-scena::before{content:'';position:absolute;left:0;right:0;top:0;height:min(100%,760px);z-index:0;pointer-events:none;
-    background:radial-gradient(ellipse 60% 42% at 50% 22%,rgba(9,11,10,.8),rgba(9,11,10,.35) 60%,transparent 85%)}
+  #sfondo{position:fixed;inset:0;width:100vw;height:100vh;z-index:-1;pointer-events:none;transition:opacity .4s}
   /* luce di fondo che si muove piano dietro tutto il sito */
   body::before{content:'';position:fixed;inset:-20%;z-index:-1;pointer-events:none;
     background:radial-gradient(40% 35% at 20% 30%,rgba(182,216,79,.07),transparent 70%),
@@ -416,7 +409,7 @@
   }
   .hero-new::after{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
     background:radial-gradient(ellipse 62% 50% at 50% 36%,rgba(9,11,10,.82),rgba(9,11,10,.4) 60%,transparent 82%),
-      linear-gradient(180deg,rgba(9,11,10,.35),transparent 30%,transparent 78%,var(--bg) 100%)}
+      linear-gradient(180deg,rgba(9,11,10,.35),transparent 30%)}
 
   .sez-vetrina{padding:52px 0 44px}
   .sez-vetrina .wrap{max-width:620px}
@@ -1416,7 +1409,6 @@
 
   <!-- HERO -->
   <section class="hero-new">
-    <canvas id="h-scena" aria-hidden="true"></canvas>
     <div class="wrap">
       <div class="h-eyebrow">GESTIONE DEL RISCHIO · DISCIPLINA · ANALISI</div>
       <h1>Il mercato non lo controlli.<br><span class="gr">Tutto il resto sì.</span></h1>
