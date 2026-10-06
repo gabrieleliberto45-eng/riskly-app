@@ -3472,14 +3472,25 @@ function j_vpipSalvati(){
   return Object.assign({}, l, m);
 }
 const j_simNorm = sym => String(sym || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+/* valore di 1 pip con 1 lotto (valuta del conto, circa): si ricava dal simbolo, senza chiederlo.
+   Gli stessi valori tipici dei calcolatori su riskly.trade. Funziona anche con i suffissi dei broker (XAUUSD.m, EURUSDm…). */
 function j_vpipPer(sym){
   sym = j_simNorm(sym);
-  const salvati = j_vpipSalvati();
-  if(sym && salvati[sym] > 0) return salvati[sym];
-  /* oro: 1 pip = 0,10 $ di prezzo (es. 2650,0 → 2650,1); con 1 lotto (100 once) vale 10,
-     come 1 pip di EURUSD. 1 $ di prezzo dell'oro sono quindi 10 pip */
-  if(/XAU|GOLD/.test(sym)) return 10;
-  if(/JPY$/.test(sym)) return 6.5;
+  if(/XAG|SILVER/.test(sym)) return 50;
+  if(/XAU|GOLD/.test(sym)) return 10;           /* 1 pip = 0,10 $ di prezzo; con 1 lotto (100 once) vale 10 */
+  if(/OIL|WTI|BRENT|XTI|XBR/.test(sym)) return 10;
+  if(/US30|DJ30|WS30|DOW|NAS|NDX|USTEC|US100|US500|SPX|SP500|GER|DE30|DE40|DAX|UK100|FTSE|JP225|NIK/.test(sym)) return 1;
+  if(/BTC|ETH|XRP|SOL|LTC/.test(sym)) return 1;
+  const m = /^([A-Z]{3})([A-Z]{3})/.exec(sym);
+  if(m){
+    const q = m[2];
+    if(q === 'JPY') return 6.5;
+    if(q === 'CHF') return 11;
+    if(q === 'GBP') return 11.5;
+    if(q === 'CAD') return 7;
+    if(q === 'AUD') return 6.5;
+    if(q === 'NZD') return 6;
+  }
   return 10;
 }
 let j_vpipTimer = null;
@@ -3615,11 +3626,6 @@ function j_renderScag(senzaApplicare){
       <div class="jrap-riga">
         <div><label for="rp-tot">Lotti</label><input type="number" id="rp-tot" class="rp" data-k="tot" step="0.01" min="0.01" inputmode="decimal" placeholder="es. 0.50" value="${esc(String(j_rap.tot))}"></div>
         <div><label for="rp-stop">Stop loss (pip)</label><input type="number" id="rp-stop" class="rp" data-k="stop" step="any" min="0" inputmode="decimal" placeholder="es. 20" value="${esc(String(j_rap.stop))}"></div>
-      </div>
-      <div class="jvpip" id="rpVpip">
-        <span>1 pip = <b>${vp}</b> a lotto${sym ? ' su ' + esc(sym) : ''}</span>
-        <button type="button" class="jvpip-cambia" data-vpip="1">cambia</button>
-        <span class="jaiuto" title="Quanto vale 1 pip con 1 lotto, nella valuta del conto: 10 per EURUSD, GBPUSD, oro (XAU) e le coppie col dollaro. Lo trovi su MetaTrader nelle specifiche del simbolo. Se lo cambi lo ricordiamo per quel simbolo, su tutti i tuoi dispositivi.">?</span>
       </div>
       <div class="jm-campo"><span>Com'è finita?</span>
         <div class="jchips-scelta jfine">${J_FINE.map(([k, t]) => chip('data-fine', k, es === k, t)).join('')}</div>
