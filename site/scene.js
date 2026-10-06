@@ -226,7 +226,7 @@
     cx.clearRect(0, 0, s.W, s.H);
     TEMI[s.tema](cx, s.W, s.H, s.t, s);
     /* più scendi, più lo sfondo si abbassa di tono, così il testo resta leggibile */
-    const buio = .12 + Math.min(1, scrollY / (s.H * .8)) * .38;
+    const buio = .1 + Math.min(1, scrollY / (s.H * .8)) * .22;
     cx.fillStyle = `rgba(9,11,10,${buio})`; cx.fillRect(0, 0, s.W, s.H);
   }
   addEventListener('resize', () => { misura(); if(fermo) disegna(); });
