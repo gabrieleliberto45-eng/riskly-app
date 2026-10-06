@@ -2184,7 +2184,7 @@
             </select>
             <div id="c-sym-info" style="color:var(--dim2);font-size:.74rem;margin-top:6px;line-height:1.45"></div>
           </div>
-          <div class="fld"><label for="c-pips">Distanza dello stop (pip) <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Quanti pip ci sono tra il prezzo di entrata e lo stop loss. Esempio: entri su EURUSD a 1,1000 e metti lo stop a 1,0975: sono 25 pip.">?</span></label><input type="number" id="c-pips" value="25" oninput="calcPos()"></div>
+          <div class="fld"><label for="c-pips">Distanza dello stop (pip) <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Quanti pip ci sono tra il prezzo di entrata e lo stop loss. Esempio: entri su EURUSD a 1,1000 e metti lo stop a 1,0975: sono 25 pip.">?</span></label><input type="number" id="c-pips" value="25" oninput="calcPos()"><div id="c-pips-prezzo" style="color:var(--dim2);font-size:.74rem;margin-top:6px"></div></div>
           <div class="fld"><label for="c-tp">Distanza del take profit (pip) <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Quanti pip ci sono tra l&#x27;entrata e il take profit, cioè dove chiudi in guadagno. Esempio: entri a 1,1000 con target a 1,1050: sono 50 pip.">?</span></label><input type="number" id="c-tp" value="50" oninput="calcPos()"></div>
           <div class="fld" id="c-val-fld" style="display:none"><label for="c-val">Valore del pip per lotto (€) <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Quanto vale 1 pip con 1 lotto intero. Sulle coppie che finiscono in USD (EURUSD, GBPUSD) è 10 $, cioè circa 9 € a seconda del cambio. Su MetaTrader lo trovi nelle specifiche del simbolo.">?</span></label><input type="number" id="c-val" value="10" step="0.01" oninput="calcPos()"></div>
           <div class="out">
@@ -5604,6 +5604,7 @@ function calcPos(){
   set('o-2r', '+€'+(lots*tp*pv).toFixed(2));
   set('o-rap', pips>0 && tp>0 ? pips + ' : ' + tp + ' pip (1 a ' + (tp/pips).toFixed(1).replace('.0','') + ')' : '—');
   set('o-cnt', rp>0 ? Math.floor(10/rp) : '—');
+  if(typeof stopInPrezzo === 'function') stopInPrezzo();
 }
 
 /* simboli: quanto è 1 pip e quanto vale (circa) con 1 lotto, sul conto in euro.
@@ -5617,6 +5618,17 @@ const SIMBOLI = {
   US30:['1 punto',1], NAS100:['1 punto',1], US500:['1 punto',1], GER40:['1 punto',1],
   BTCUSD:['1 $ di prezzo',1], ETHUSD:['1 $ di prezzo',1]
 };
+/* quanto è 1 pip in prezzo, per tradurre lo stop: "20 pip su XAUUSD = 2,00 $ di prezzo" */
+const PIP_PREZZO = { XAUUSD:[.1,'$'], XAGUSD:[.01,'$'], USOIL:[.01,'$'], US30:[1,'punti'], NAS100:[1,'punti'], US500:[1,'punti'], GER40:[1,'punti'], BTCUSD:[1,'$'], ETHUSD:[1,'$'] };
+function stopInPrezzo(){
+  const el = document.getElementById('c-pips-prezzo'); if(!el) return;
+  const sym = v('c-sym'), pips = +v('c-pips');
+  if(!(pips > 0) || !SIMBOLI[sym]){ el.textContent = ''; return; }
+  const [pip, u] = PIP_PREZZO[sym] || [/JPY$/.test(sym) ? .01 : .0001, ''];
+  const d = pips * pip, dec = pip >= 1 ? 0 : (pip >= .01 ? 2 : 4);
+  const num = d.toLocaleString('it-IT', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+  el.textContent = pips + ' pip su ' + sym + ' = ' + (u === 'punti' ? num + ' punti di prezzo' : u ? num + ' ' + u + ' di prezzo' : num + ' di prezzo');
+}
 function scegliSimbolo(){
   const sym = v('c-sym'), info = document.getElementById('c-sym-info'), d = SIMBOLI[sym];
   try{ localStorage.setItem('riskly-calc-sym', sym); }catch{}
