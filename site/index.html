@@ -375,8 +375,12 @@
   .h-lead{color:var(--dim);font-size:1.12rem;max-width:50ch;margin:0 auto 40px;line-height:1.75}
   .h-cta{display:flex;gap:13px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
   .h-fine{color:var(--dim2);font-size:.85rem}
-  .h-cop img{display:block;width:100%;max-width:600px;height:auto;margin:6px auto 28px;border-radius:18px;
-    border:1px solid rgba(182,216,79,.5);box-shadow:0 0 0 1px rgba(182,216,79,.15),0 24px 60px rgba(0,0,0,.45)}
+  .hero-new{position:relative;overflow:hidden;isolation:isolate}
+  .hero-new>.wrap{position:relative;z-index:1}
+  #h-scena{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+  .hero-new::after{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:radial-gradient(ellipse 62% 50% at 50% 36%,rgba(9,11,10,.82),rgba(9,11,10,.4) 60%,transparent 82%),
+      linear-gradient(180deg,rgba(9,11,10,.35),transparent 30%,transparent 78%,var(--bg) 100%)}
 
   .sez-vetrina{padding:52px 0 44px}
   .sez-vetrina .wrap{max-width:620px}
@@ -1376,13 +1380,10 @@
 
   <!-- HERO -->
   <section class="hero-new">
+    <canvas id="h-scena" aria-hidden="true"></canvas>
     <div class="wrap">
       <div class="h-eyebrow">GESTIONE DEL RISCHIO · DISCIPLINA · ANALISI</div>
       <h1>Il mercato non lo controlli.<br><span class="gr">Tutto il resto sì.</span></h1>
-      <picture class="h-cop">
-        <source srcset="home-copertina.webp" type="image/webp">
-        <img src="home-copertina.jpg" width="1200" height="900" fetchpriority="high" alt="Quadrante del rischio fermo all’1% per operazione, lontano dalla zona rossa">
-      </picture>
       <p class="h-lead">Quanto rischiare, quando fermarti, come gestire una posizione aperta, cosa dicono davvero i tuoi numeri. Il trading si decide qui, non nella previsione del prossimo movimento.</p>
       <div class="h-cta">
         <button class="btn pri lg" onclick="apriModulo('attesa','tutti i prodotti',0)">Blocca il prezzo dei bot</button>
@@ -6119,6 +6120,91 @@ function chatDomanda(t){
   }, 250);
 }
 document.addEventListener('keydown', e => { if(e.key === 'Escape') chatChiudi(); });
+</script>
+
+<script>
+/* Home: scena di sfondo. Sotto un mercato caotico (terreno di linee, i picchi estremi diventano rossi),
+   sopra una linea verde che avanza calma. Si muove da sola, con lo scorrimento e con il mouse / l'inclinazione. */
+(function(){
+  const cv = document.getElementById('h-scena'); if(!cv) return;
+  const cx = cv.getContext('2d'), sez = cv.parentElement;
+  const fermo = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let W = 0, H = 0, dpr = 1, t = 0, mx = 0, my = 0, tx = 0, ty = 0, scroll = 0, visibile = true, ultimo = 0;
+  const piccolo = () => W < 700;
+  function misura(){
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = sez.clientWidth; H = sez.clientHeight;
+    cv.width = W * dpr; cv.height = H * dpr; cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  /* altezza del mercato: somma di onde + creste, cambia nel tempo */
+  const quota = (x, z, t) => {
+    const a = Math.sin(x * .42 + z * .55 + t * .6) * .55 + Math.sin(x * .17 - z * .31 + t * .25) * .9
+            + Math.sin(x * 1.1 + z * 1.3 - t * .9) * .18;
+    const cresta = Math.pow(Math.abs(Math.sin(x * .23 + z * .19 + t * .35)), 6) * 2.2;
+    return a + cresta;
+  };
+  function disegna(){
+    cx.clearRect(0, 0, W, H);
+    mx += (tx - mx) * .05; my += (ty - my) * .05;
+    const righe = piccolo() ? 26 : 38, punti = piccolo() ? 64 : 110;
+    const f = Math.min(W, 1400) * .9;
+    const orizzonte = H * ((piccolo() ? .66 : .50) + scroll * .25) + my * 18;    // scorrendo, la camera si alza
+    const camH = 3.2 + scroll * 2.2;
+    const ruota = mx * .18;                                    // mouse / inclinazione
+    const avanti = t * .9;
+    for(let r = righe; r >= 1; r--){
+      const z = r * .9 + 1.2 - (avanti % .9);
+      const prof = 1 - z / (righe * .9 + 1.2);                // 1 vicino, 0 lontano
+      cx.beginPath();
+      let rosso = 0;
+      for(let i = 0; i <= punti; i++){
+        const u = i / punti * 2 - 1;
+        const x = u * z * 1.25 + ruota * z;
+        const h = quota(x, z + avanti, t);
+        if(h > 2.15) rosso++;
+        const sx = W / 2 + (x - ruota * z) / z * f * .5 + u * 40 * prof;
+        const sy = orizzonte + (camH - h) / z * f * .16;
+        i ? cx.lineTo(sx, sy) : cx.moveTo(sx, sy);
+      }
+      const al = .05 + prof * prof * .42;
+      cx.strokeStyle = rosso > punti * .12 ? `rgba(239,90,80,${al * .9})` : `rgba(182,216,79,${al})`;
+      cx.lineWidth = .6 + prof * 1.1;
+      cx.stroke();
+    }
+    /* linea della disciplina: avanza sopra il caos, sale piano */
+    const y0 = orizzonte - H * (piccolo() ? .1 : .06), pend = H * (piccolo() ? .06 : .13);
+    const linea = [];
+    for(let i = 0; i <= 120; i++){
+      const u = i / 120;
+      const x = u * W;
+      const y = y0 + pend * (.5 - u) + Math.sin(u * 9 + t * 1.3) * 5 + Math.sin(u * 23 - t * 2) * 2 + mx * 10 * (u - .5);
+      linea.push([x, y]);
+    }
+    const grad = cx.createLinearGradient(0, 0, W, 0);
+    grad.addColorStop(0, 'rgba(200,227,106,0)'); grad.addColorStop(.25, 'rgba(200,227,106,.85)');
+    grad.addColorStop(.75, 'rgba(226,242,143,1)'); grad.addColorStop(1, 'rgba(226,242,143,0)');
+    for(const [lw, a, bl] of [[10, .18, 24], [3, 1, 10]]){
+      cx.save(); cx.shadowColor = 'rgba(200,227,106,.9)'; cx.shadowBlur = bl; cx.globalAlpha = a;
+      cx.strokeStyle = grad; cx.lineWidth = lw; cx.lineJoin = 'round'; cx.lineCap = 'round';
+      cx.beginPath(); linea.forEach(([x, y], i) => i ? cx.lineTo(x, y) : cx.moveTo(x, y)); cx.stroke(); cx.restore();
+    }
+    /* punto luminoso che corre sulla linea */
+    const k = Math.floor(((t * .08) % 1) * 120), [px, py] = linea[k];
+    cx.save(); cx.fillStyle = '#F1F8C8'; cx.shadowColor = '#C8E36A'; cx.shadowBlur = 22;
+    cx.beginPath(); cx.arc(px, py, 4.5, 0, Math.PI * 2); cx.fill(); cx.restore();
+  }
+  function ciclo(ora){
+    if(!visibile){ requestAnimationFrame(ciclo); return; }
+    const dt = Math.min(.05, (ora - (ultimo || ora)) / 1000); ultimo = ora; t += dt;
+    disegna(); requestAnimationFrame(ciclo);
+  }
+  misura(); addEventListener('resize', misura);
+  addEventListener('scroll', () => { scroll = Math.min(1, scrollY / Math.max(1, H)); if(fermo) disegna(); }, { passive: true });
+  addEventListener('pointermove', e => { tx = e.clientX / innerWidth * 2 - 1; ty = e.clientY / innerHeight * 2 - 1; }, { passive: true });
+  addEventListener('deviceorientation', e => { if(e.gamma == null) return; tx = Math.max(-1, Math.min(1, e.gamma / 30)); ty = Math.max(-1, Math.min(1, (e.beta - 45) / 40)); });
+  new IntersectionObserver(v => { visibile = v[0].isIntersecting; }).observe(sez);
+  if(fermo){ t = 4; disegna(); } else requestAnimationFrame(ciclo);
+})();
 </script>
 </body>
 </html>
