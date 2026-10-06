@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1600px;height:900px;overflow:hidden}
+body{background:#0B0D0C;color:#fff;font-family:'Instrument Sans',sans-serif;position:relative}
+.glow{position:absolute;inset:0;background:
+  radial-gradient(900px 600px at 78% 55%,rgba(182,216,79,.22),transparent 60%),
+  radial-gradient(700px 500px at 8% 0%,rgba(127,191,74,.12),transparent 60%)}
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse at 70% 50%,#000 30%,transparent 75%)}
+.sx{position:absolute;left:96px;top:110px;width:640px}
+.pill{display:inline-block;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:22px;letter-spacing:.14em;color:#0B0D0C;background:linear-gradient(135deg,#C8E36A,#7FBF4A);padding:12px 24px;border-radius:99px}
+h1{font-family:'Instrument Serif',serif;font-weight:400;font-size:104px;line-height:.98;letter-spacing:-.01em;margin:38px 0 26px}
+h1 em{font-style:italic;color:#C8E36A}
+.sub{font-size:30px;line-height:1.35;color:#AEB8C4;max-width:560px}
+.chips{display:flex;gap:14px;margin-top:46px;flex-wrap:wrap}
+.chip{font-family:'JetBrains Mono',monospace;font-size:22px;padding:14px 20px;border:1px solid rgba(182,216,79,.45);border-radius:14px;background:rgba(182,216,79,.06)}
+.chip b{color:#C8E36A;font-weight:700;font-size:30px;margin-right:8px}
+.logo{position:absolute;left:96px;bottom:70px;font-weight:700;font-size:34px;letter-spacing:-.02em;display:flex;align-items:center;gap:12px}
+.logo i{width:14px;height:14px;border-radius:50%;background:#B6D84F;box-shadow:0 0 18px #B6D84F}
+.stack{position:absolute;right:70px;top:150px;width:760px;height:600px;perspective:1800px}
+.scr{position:absolute;width:640px;aspect-ratio:16/9;border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.12);box-shadow:0 40px 90px rgba(0,0,0,.65)}
+.scr img{width:100%;height:100%;object-fit:cover;display:block}
+.s3{left:150px;top:0;transform:rotateY(-14deg) rotateZ(3deg);opacity:.55}
+.s2{left:80px;top:95px;transform:rotateY(-14deg) rotateZ(1.5deg);opacity:.8}
+.s1{left:0;top:200px;transform:rotateY(-14deg);border:2px solid rgba(182,216,79,.7);box-shadow:0 0 0 6px rgba(182,216,79,.12),0 50px 110px rgba(0,0,0,.7)}
+.play{position:absolute;left:50%;top:50%;width:120px;height:120px;margin:-60px 0 0 -60px;border-radius:50%;background:linear-gradient(135deg,#C8E36A,#7FBF4A);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 14px rgba(182,216,79,.18),0 20px 50px rgba(0,0,0,.5)}
+.play:after{content:'';margin-left:10px;border-left:40px solid #0B0D0C;border-top:25px solid transparent;border-bottom:25px solid transparent}
+.dur{position:absolute;right:16px;bottom:14px;font-family:'JetBrains Mono',monospace;font-size:20px;background:rgba(0,0,0,.75);padding:6px 12px;border-radius:8px}
+</style></head><body>
+<div class="glow"></div><div class="grid"></div>
+<div class="sx">
+  <span class="pill">VIDEOCORSO</span>
+  <h1>Gestione<br>del <em>rischio</em></h1>
+  <div class="sub">Dalla teoria alla regola: quanto rischiare, come calcolarlo, come non bruciare il conto.</div>
+  <div class="chips">
+    <div class="chip"><b>47</b>lezioni</div>
+    <div class="chip"><b>10</b>moduli</div>
+    <div class="chip"><b>~3</b>ore</div>
+  </div>
+</div>
+<div class="logo"><i></i>Riskly</div>
+<div class="stack">
+  <div class="scr s3"><img src="a.jpg"></div>
+  <div class="scr s2"><img src="b.jpg"></div>
+  <div class="scr s1"><img src="e.jpg"><div class="play"></div><div class="dur">Lezione 3.2</div></div>
+</div>
+</body></html>

@@ -1148,6 +1148,7 @@
   .pz-corso{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;
     background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:22px}
   .pz-corso p{color:var(--dim);font-size:.88rem;max-width:52ch}
+  .corso-cop img{display:block;width:100%;height:auto;border-radius:14px;border:1px solid rgba(182,216,79,.35);margin-bottom:22px}
   .pz-corso,.lancio-box,#calc .card{border-color:rgba(182,216,79,.5);box-shadow:0 0 0 1px rgba(182,216,79,.15),0 14px 40px rgba(182,216,79,.08)}
   @media(max-width:900px){.pz-grid{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:600px){
@@ -2765,6 +2766,10 @@
       
 
       <div class="lancio-box">
+        <picture class="corso-cop">
+          <source srcset="corso-copertina.webp" type="image/webp">
+          <img src="corso-copertina.jpg" width="1200" height="675" loading="lazy" alt="Videocorso Riskly sulla gestione del rischio: 47 lezioni, 10 moduli, circa 3 ore">
+        </picture>
         <div class="lancio-riga">
           <div>
             <h3>Il corso è disponibile · 199 € al lancio</h3>
