@@ -18,5 +18,9 @@
 /grazie          /download.html   200
 /success         /download.html   200
 
+# informativa privacy in pagina propria (per i moduli pubblicitari)
+/privacy         /privacy.html    200
+/privacy/        /privacy.html    200
+
 # qualsiasi altro indirizzo (es. link delle email di conferma) apre il sito invece di "Page not found"
 /*    /index.html   200
