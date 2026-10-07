@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Euroceramiche Niscemi</title>
+<meta name="description" content="Euroceramiche Niscemi: pavimenti, rivestimenti, arredo bagno e materiali edili. Showroom a Niscemi (CL).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#faf7f2; --surface:#ffffff; --ink:#1f2a2e; --muted:#5d6a6e;
+  --brand:#1d5c74; --brand-ink:#ffffff; --accent:#c8743c; --line:#e6dfd4;
+  --tile-a:#1d5c74; --tile-b:#e9dcc6; --tile-c:#c8743c;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121719; --surface:#1a2124; --ink:#ecebe7; --muted:#a3adb0;
+    --brand:#5fa8c4; --brand-ink:#0d1416; --accent:#e0915a; --line:#2b3438;
+    --tile-a:#2a6f88; --tile-b:#2b3438; --tile-c:#b8682f;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121719; --surface:#1a2124; --ink:#ecebe7; --muted:#a3adb0;
+  --brand:#5fa8c4; --brand-ink:#0d1416; --accent:#e0915a; --line:#2b3438;
+  --tile-a:#2a6f88; --tile-b:#2b3438; --tile-c:#b8682f;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif}
+a{color:inherit}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.15;margin:0 0 .5em}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+
+/* header */
+header{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:Fraunces,serif;font-weight:700;font-size:1.2rem}
+.logo-mark{width:30px;height:30px;display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.logo-mark i{display:block;border-radius:2px}
+.logo-mark i:nth-child(1),.logo-mark i:nth-child(4){background:var(--brand)}
+.logo-mark i:nth-child(2){background:var(--accent)}
+.logo-mark i:nth-child(3){background:var(--tile-b);outline:1px solid var(--line)}
+.logo small{display:block;font:500 .7rem/1 Inter,sans-serif;color:var(--muted);letter-spacing:.12em;text-transform:uppercase}
+nav ul{display:flex;gap:24px;list-style:none;margin:0;padding:0}
+nav a{text-decoration:none;color:var(--muted);font-weight:500}
+nav a:hover{color:var(--ink)}
+.menu-btn{display:none;background:none;border:1px solid var(--line);border-radius:8px;padding:6px 10px;color:var(--ink);font:inherit}
+@media (max-width:760px){
+  .menu-btn{display:block}
+  nav ul{display:none;position:absolute;left:0;right:0;top:64px;flex-direction:column;gap:0;background:var(--surface);border-bottom:1px solid var(--line)}
+  nav ul.open{display:flex}
+  nav li a{display:block;padding:14px 16px;border-top:1px solid var(--line)}
+}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding-block:72px}
+.eyebrow{color:var(--accent);font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:.8rem}
+.hero h1{font-size:clamp(2.2rem,5vw,3.6rem)}
+.hero p{color:var(--muted);font-size:1.1rem;max-width:34em}
+.btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.btn{display:inline-block;padding:12px 22px;border-radius:999px;text-decoration:none;font-weight:600;border:1px solid var(--brand)}
+.btn.primary{background:var(--brand);color:var(--brand-ink)}
+.btn.ghost{color:var(--brand)}
+.mosaic{aspect-ratio:1;display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.mosaic span{border-radius:6px;background:var(--tile-b)}
+.mosaic span.a{background:var(--tile-a)}
+.mosaic span.c{background:var(--tile-c)}
+.mosaic span.q{background:conic-gradient(var(--tile-a) 0 25%,var(--tile-b) 0 50%,var(--tile-a) 0 75%,var(--tile-b) 0)}
+.mosaic span.d{background:radial-gradient(circle at 50% 50%,var(--tile-c) 0 28%,var(--tile-b) 29%)}
+@media (max-width:760px){.hero{grid-template-columns:1fr;padding-block:40px;gap:32px}.mosaic{max-width:360px}}
+
+/* sections */
+section{padding:72px 0;border-top:1px solid var(--line)}
+.section-head{max-width:640px;margin-bottom:36px}
+.section-head p{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media (max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.grid{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.card .swatch{height:120px}
+.card .body{padding:20px}
+.card h3{font-size:1.25rem}
+.card p{margin:0;color:var(--muted);font-size:.95rem}
+.sw1{background:repeating-linear-gradient(90deg,var(--tile-b) 0 58px,var(--line) 58px 60px),var(--tile-b)}
+.sw2{background:conic-gradient(var(--tile-a) 0 25%,var(--tile-b) 0 50%,var(--tile-a) 0 75%,var(--tile-b) 0) 0 0/40px 40px}
+.sw3{background:linear-gradient(135deg,var(--tile-a),var(--brand))}
+.sw4{background:repeating-linear-gradient(0deg,var(--tile-c) 0 18px,color-mix(in srgb,var(--tile-c) 80%,#000) 18px 20px)}
+.sw5{background:radial-gradient(circle,var(--tile-c) 0 30%,transparent 31%) 0 0/40px 40px,var(--tile-b)}
+.sw6{background:repeating-linear-gradient(45deg,var(--line) 0 2px,var(--tile-b) 2px 14px)}
+
+.why{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:28px}
+.why div{border-left:3px solid var(--accent);padding-left:16px}
+.why h3{font-size:1.15rem}
+.why p{margin:0;color:var(--muted)}
+
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+@media (max-width:760px){.contact{grid-template-columns:1fr}}
+.info dl{margin:0;display:grid;gap:16px}
+.info dt{font-weight:600;font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.info dd{margin:2px 0 0;font-size:1.05rem}
+form{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;display:grid;gap:14px}
+label{display:grid;gap:6px;font-weight:500;font-size:.9rem}
+input,select,textarea{font:inherit;padding:10px 12px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);width:100%}
+textarea{min-height:110px;resize:vertical}
+button.btn{cursor:pointer;font:inherit;font-weight:600}
+.note{font-size:.85rem;color:var(--muted);margin:0}
+
+footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:.9rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top">
+      <span class="logo-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span>Euroceramiche<small>Niscemi</small></span>
+    </a>
+    <nav>
+      <button class="menu-btn" aria-expanded="false" aria-controls="menu">Menu</button>
+      <ul id="menu">
+        <li><a href="#prodotti">Prodotti</a></li>
+        <li><a href="#servizi">Servizi</a></li>
+        <li><a href="#contatti">Contatti</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <div>
+      <div class="eyebrow">Showroom a Niscemi (CL)</div>
+      <h1>Ceramiche, pavimenti e bagni per la tua casa</h1>
+      <p>Da Euroceramiche trovi pavimenti, rivestimenti, arredo bagno e materiali edili. Vieni a scegliere in showroom: ti aiutiamo a trovare la soluzione giusta per ogni ambiente.</p>
+      <div class="btns">
+        <a class="btn primary" href="#contatti">Richiedi un preventivo</a>
+        <a class="btn ghost" href="#prodotti">Scopri i prodotti</a>
+      </div>
+    </div>
+    <div class="mosaic" aria-hidden="true">
+      <span class="a"></span><span></span><span class="q"></span><span class="c"></span>
+      <span></span><span class="d"></span><span class="a"></span><span></span>
+      <span class="q"></span><span class="a"></span><span></span><span class="d"></span>
+      <span class="c"></span><span></span><span class="q"></span><span class="a"></span>
+    </div>
+  </div>
+
+  <section id="prodotti">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Prodotti</div>
+        <h2>Tutto per pavimentare, rivestire e arredare</h2>
+        <p>Un assortimento pensato per chi costruisce, ristruttura o vuole solo rinnovare un ambiente.</p>
+      </div>
+      <div class="grid">
+        <article class="card"><div class="swatch sw1"></div><div class="body"><h3>Pavimenti</h3><p>Gres porcellanato, effetto legno, effetto pietra e marmo, per interni ed esterni.</p></div></article>
+        <article class="card"><div class="swatch sw2"></div><div class="body"><h3>Rivestimenti</h3><p>Piastrelle per bagno e cucina, decori, maioliche e mosaici.</p></div></article>
+        <article class="card"><div class="swatch sw3"></div><div class="body"><h3>Arredo bagno</h3><p>Mobili bagno, specchi, lavabi e accessori in diversi stili e misure.</p></div></article>
+        <article class="card"><div class="swatch sw5"></div><div class="body"><h3>Sanitari e docce</h3><p>Sanitari sospesi e a terra, piatti doccia, box doccia e rubinetteria.</p></div></article>
+        <article class="card"><div class="swatch sw4"></div><div class="body"><h3>Parquet e laminati</h3><p>Pavimenti in legno e laminato per ambienti caldi e accoglienti.</p></div></article>
+        <article class="card"><div class="swatch sw6"></div><div class="body"><h3>Materiali edili</h3><p>Collanti, stucchi, impermeabilizzanti e tutto il necessario per la posa.</p></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="servizi">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Servizi</div>
+        <h2>Ti seguiamo dalla scelta alla consegna</h2>
+      </div>
+      <div class="why">
+        <div><h3>Consulenza in showroom</h3><p>Ti aiutiamo ad abbinare formati, colori e finiture per il tuo progetto.</p></div>
+        <div><h3>Preventivi su misura</h3><p>Portaci le misure o la planimetria: prepariamo un preventivo dettagliato.</p></div>
+        <div><h3>Privati e imprese</h3><p>Forniture per la casa e per i cantieri di imprese edili e professionisti.</p></div>
+        <div><h3>Consegna</h3><p>Chiedi in negozio le modalità di consegna del materiale in cantiere o a domicilio.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contatti">
+    <div class="wrap contact">
+      <div class="info">
+        <div class="eyebrow">Contatti</div>
+        <h2>Vieni a trovarci</h2>
+        <dl>
+          <!-- TODO: inserire i dati reali dell'attività -->
+          <div><dt>Indirizzo</dt><dd>[Via e numero civico], 93015 Niscemi (CL)</dd></div>
+          <div><dt>Telefono</dt><dd><a href="tel:+390000000000">[numero di telefono]</a></dd></div>
+          <div><dt>Email</dt><dd><a href="mailto:info@example.com">[indirizzo email]</a></dd></div>
+          <div><dt>Orari</dt><dd>Lunedì – Sabato: [orari]<br>Domenica: chiuso</dd></div>
+        </dl>
+      </div>
+      <form id="form">
+        <h3>Richiedi un preventivo</h3>
+        <label>Nome<input name="nome" required autocomplete="name"></label>
+        <label>Telefono<input name="telefono" type="tel" required autocomplete="tel"></label>
+        <label>Ti interessa
+          <select name="interesse">
+            <option>Pavimenti</option><option>Rivestimenti</option><option>Arredo bagno</option>
+            <option>Sanitari e docce</option><option>Parquet e laminati</option><option>Materiali edili</option><option>Altro</option>
+          </select>
+        </label>
+        <label>Messaggio<textarea name="messaggio" placeholder="Descrivi il lavoro: ambiente, metri quadri, tempi..."></textarea></label>
+        <button class="btn primary" type="submit">Invia richiesta</button>
+        <p class="note">Il modulo apre il tuo programma email con il messaggio già compilato.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="y"></span> Euroceramiche – Niscemi (CL)</span>
+    <span>P.IVA [da inserire]</span>
+  </div>
+</footer>
+
+<script>
+document.getElementById('y').textContent = new Date().getFullYear();
+const btn = document.querySelector('.menu-btn'), menu = document.getElementById('menu');
+btn.addEventListener('click', () => {
+  const open = menu.classList.toggle('open');
+  btn.setAttribute('aria-expanded', open);
+});
+menu.addEventListener('click', e => { if (e.target.tagName === 'A') { menu.classList.remove('open'); btn.setAttribute('aria-expanded', false); } });
+// Invio tramite email: sostituire l'indirizzo con quello reale
+const EMAIL = 'info@example.com';
+document.getElementById('form').addEventListener('submit', e => {
+  e.preventDefault();
+  const d = new FormData(e.target);
+  const body = `Nome: ${d.get('nome')}\nTelefono: ${d.get('telefono')}\nInteresse: ${d.get('interesse')}\n\n${d.get('messaggio')}`;
+  location.href = `mailto:${EMAIL}?subject=${encodeURIComponent('Richiesta preventivo - ' + d.get('interesse'))}&body=${encodeURIComponent(body)}`;
+});
+</script>
+</body>
+</html>
