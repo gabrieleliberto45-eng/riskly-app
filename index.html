@@ -2021,7 +2021,8 @@ function daRiga(r){
     dettagli: j_separaNota(r.nota).dettagli,
     shot: r.screenshot || '',
     shotUrl: '',
-    fonte: r.fonte || 'manuale'
+    fonte: r.fonte || 'manuale',
+    conto: r.bot_dettagli && r.bot_dettagli.conto != null ? String(r.bot_dettagli.conto) : ''
   };
 }
 
@@ -4673,6 +4674,22 @@ function b_soldi(v, valuta){
   return (n > 0 ? '+' : '') + n.toFixed(2) + ' ' + esc(valuta || '');
 }
 
+/* la giornata del conto, dalle operazioni chiuse arrivate dal bot oggi (data del server di MetaTrader):
+   risultato e drawdown massimo, in % del saldo di inizio giornata */
+function b_giornata(s){
+  const d = s.dati || {};
+  const m = /^(\d{4})\.(\d{2})\.(\d{2})/.exec(d.ora_server || '');
+  const oggi = m ? `${m[1]}-${m[2]}-${m[3]}` : new Date().toISOString().slice(0, 10);
+  const ops = (j_trades || []).filter(t => t.fonte === 'bot' && t.conto === String(s.conto) && t.date === oggi)
+    .sort((a, b) => (a.ora || '').localeCompare(b.ora || ''));
+  let cum = 0, picco = 0, dd = 0;
+  for(const t of ops){ cum += t.pnl; picco = Math.max(picco, cum); dd = Math.max(dd, picco - cum); }
+  dd = Math.max(dd, picco - (cum + (Number(d.pnl_aperto) || 0)));
+  const inizio = (Number(d.saldo) || 0) - cum;
+  const pct = v => inizio > 0 ? v / inizio * 100 : 0;
+  return { risultato: cum, risultatoPct: pct(cum), dd, ddPct: pct(dd), n: ops.length };
+}
+
 function b_renderStato(){
   const box = document.getElementById('jbot');
   if(!box) return;
@@ -4701,15 +4718,18 @@ function b_renderStato(){
     const quota   = limite > 0 ? Math.min(perdita / limite, 1) : 0;
     const colore  = quota >= .8 ? 'var(--down)' : quota >= .5 ? 'var(--gold)' : 'var(--up)';
 
+    const g = b_giornata(s);
     const conMax = (v, m) => (Number(m) > 0 ? `${Number(v) || 0} / ${Number(m)}` : `${Number(v) || 0}`);
 
     return `<div class="jbot-card ${offline && stato !== 'bloccato' ? '' : stato}">
       <div class="jbot-top">
-        <div class="jbot-nome">${esc(d.bot || s.bot)}<small>${esc(d.simbolo || '')}</small></div>
+        <div class="jbot-nome">${esc(d.bot || s.bot)}<small>${d.piattaforma ? esc(d.piattaforma) + ' · ' : ''}${esc(d.simbolo || '')}</small></div>
         <span class="jbot-stato ${classeStato}">${etichetta}</span>
       </div>
       <div class="jbot-riga"><span>Perdita oggi</span><b>${perdita.toFixed(2)}%${limite > 0 ? ' / ' + limite.toFixed(1) + '%' : ''}</b></div>
       ${limite > 0 ? `<div class="jbot-barra"><i style="width:${(quota * 100).toFixed(0)}%;background:${colore}"></i></div>` : ''}
+      <div class="jbot-riga"><span>Vincita oggi</span><b style="color:${g.risultato > 0 ? 'var(--up)' : 'inherit'}">${g.risultato > 0 ? '+' + g.risultatoPct.toFixed(2) + '% · ' + b_soldi(g.risultato, d.valuta) : '0.00%'}</b></div>
+      <div class="jbot-riga"><span>Drawdown max oggi</span><b style="color:${g.ddPct >= 1 ? 'var(--down)' : 'inherit'}">${g.dd > 0 ? '−' + g.ddPct.toFixed(2) + '% · −' + g.dd.toFixed(2) + ' ' + esc(d.valuta || '') : '0.00%'}</b></div>
       <div class="jbot-riga"><span>Trade oggi</span><b>${conMax(d.trade_oggi, d.max_trade)}</b></div>
       <div class="jbot-riga"><span>Perdite di fila</span><b>${conMax(d.perdite_fila, d.max_perdite)}</b></div>
       <div class="jbot-riga"><span>Posizioni aperte</span><b>${Number(d.posizioni) || 0}${Number(d.posizioni) ? ' · ' + b_soldi(d.pnl_aperto, d.valuta) : ''}</b></div>
