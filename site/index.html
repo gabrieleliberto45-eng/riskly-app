@@ -92,6 +92,7 @@
   .btn.pri{background:var(--grad);border-color:transparent;color:#04121C;font-weight:700;
     box-shadow:0 4px 22px rgba(182,216,79,.22)}
   @media (hover:hover) and (pointer:fine){.btn.pri:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(182,216,79,.32);filter:brightness(1.05)}}
+  .btn.pri:hover{color:#04121C;background:var(--grad)}
   .btn.lg{padding:18px 38px;font-size:1rem}
   .btn.wide{width:100%}
   .btn:active,.btn.pri:active{transform:scale(.97)}
@@ -110,7 +111,7 @@
   .glass{background:var(--panel)}
   .card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;gap:12px}
   .card-head h3{font-size:.95rem;font-family:'Instrument Sans',-apple-system,system-ui,sans-serif;font-weight:600}
-  .meta{font-family:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace;font-size:.74rem;color:var(--dim2)}
+  .meta{font-family:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace;font-size:.75rem;color:var(--dim2)}
 
   /* HERO */
   .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center;padding:70px 0 50px}
@@ -132,7 +133,7 @@
              background:rgba(182,216,79,.13)}
   .tool h3{font-family:'Instrument Sans',-apple-system,system-ui,sans-serif;font-size:1rem;font-weight:600;margin-bottom:6px}
   .tool p{color:var(--dim);font-size:.86rem;flex-grow:1}
-  .tool .flag{font-size:.71rem;color:var(--up);margin-top:12px;font-family:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace}
+  .tool .flag{font-size:.75rem;color:var(--up);margin-top:12px;font-family:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace}
   .tool .flag.soon{color:var(--dim2)}
 
   /* BOT CARDS */
@@ -141,7 +142,7 @@
        display:flex;flex-direction:column;transition:.18s}
   .bot:hover{border-color:var(--line-hi)}
   .bot,.bot.hi{border-color:rgba(182,216,79,.5);box-shadow:0 0 0 1px rgba(182,216,79,.15),0 14px 40px rgba(182,216,79,.08);background:var(--panel-hi)}
-  .bot .badge{display:inline-block;font-size:.68rem;font-family:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace;
+  .bot .badge{display:inline-block;font-size:.75rem;font-family:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace;
     padding:3px 9px;border-radius:99px;background:rgba(182,216,79,.16);color:var(--accent);margin-bottom:11px;align-self:flex-start}
   .bot .badge.g{border-color:rgba(34,197,94,.32);color:var(--up)}
   .bot h3{font-family:'Instrument Serif',Georgia,'Times New Roman',serif;font-size:1.5rem;margin-bottom:7px}
@@ -159,7 +160,7 @@
   /* COMPARISON TABLE */
   .t-scroll{overflow-x:auto;margin:0 -20px;padding:0 20px}
   table{width:100%;border-collapse:collapse;font-size:.85rem;min-width:620px}
-  th{text-align:left;color:var(--dim2);font-weight:500;font-size:.72rem;
+  th{text-align:left;color:var(--dim2);font-weight:500;font-size:.75rem;
      padding:0 12px 12px;border-bottom:1px solid var(--line)}
   th.c,td.c{text-align:center}
   td{padding:12px;border-bottom:1px solid rgba(255,255,255,.045)}
@@ -173,8 +174,8 @@
   .plan{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:26px;
         display:flex;flex-direction:column;position:relative}
   .plan,.plan.hi{border-color:rgba(182,216,79,.5);box-shadow:0 0 0 1px rgba(182,216,79,.15),0 14px 40px rgba(182,216,79,.08);background:var(--panel-hi)}
-  .plan .tagline{position:absolute;top:-10px;left:26px;font-size:.68rem;font-family:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace;
-    background:var(--accent);color:#fff;padding:3px 10px;border-radius:99px}
+  .plan .tagline{position:absolute;top:-10px;left:26px;font-size:.75rem;font-family:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace;
+    background:var(--accent);color:#0B0D0C;padding:3px 10px;border-radius:99px}
   .plan .nm{font-family:'Instrument Serif',Georgia,'Times New Roman',serif;font-size:1.4rem;margin-bottom:4px}
   .plan .pr{font-family:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace;font-size:1.85rem;margin:12px 0 3px}
   .plan .pr s{color:var(--dim2);font-size:.9rem;margin-right:7px}
@@ -188,7 +189,7 @@
 
   /* CALC */
   .calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
-  label{display:block;color:var(--dim2);font-size:.73rem;margin-bottom:6px}
+  label{display:block;color:var(--dim2);font-size:.75rem;margin-bottom:6px}
   select{color-scheme:dark}
   select option,select optgroup{background:#121614;color:var(--text)}
   input,select{width:100%;background:rgba(0,0,0,.3);border:1px solid var(--line);color:var(--text);
@@ -249,24 +250,24 @@
   .cta h2{max-width:19ch;margin:0 auto 20px}
   footer{border-top:1px solid var(--line);padding:34px 0;color:var(--dim2);font-size:.8rem}
   .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:26px;margin-bottom:26px}
-  .foot-grid h4{font-family:'Instrument Sans',-apple-system,system-ui,sans-serif;font-size:.78rem;color:var(--dim);font-weight:600;margin-bottom:11px}
+  .foot-grid h3,.foot-grid h4{font-family:'Instrument Sans',-apple-system,system-ui,sans-serif;font-size:.78rem;color:var(--dim);font-weight:600;margin-bottom:11px}
   .foot-grid a{display:block;padding:4px 0;color:var(--dim2);font-size:.83rem;cursor:pointer}
   .foot-grid a:hover{color:var(--text)}
-  .disc{color:var(--dim2);font-size:.74rem;max-width:78ch;line-height:1.65;
+  .disc{color:var(--dim2);font-size:.75rem;max-width:78ch;line-height:1.65;
         border-top:1px solid var(--line);padding-top:18px}
 
   /* ── COMPATIBILITÀ ── */
-  .compat-t{color:var(--dim2);font-size:.72rem;letter-spacing:.1em;text-align:center;
+  .compat-t{color:var(--dim2);font-size:.75rem;letter-spacing:.1em;text-align:center;
     font-family:'JetBrains Mono','SF Mono',Menlo,monospace;margin-bottom:20px}
   .compat{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:11px}
   .pf{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:18px;
       background:var(--panel);border:1px solid var(--line);transition:border-color .18s}
   .pf:hover{border-color:var(--line-hi)}
-  .pf.on{border-color:rgba(182,216,79,.3);background:linear-gradient(140deg,rgba(182,216,79,.06),var(--panel))}
+  .pf.on{border-color:rgba(182,216,79,.3);background:linear-gradient(140deg,rgba(182,216,79,.06),var(--panel)),var(--panel)}
   .pf-ico{display:flex;flex-shrink:0}
   .pf-txt{display:flex;flex-direction:column;min-width:0;flex:1}
   .pf-txt b{font-size:.87rem;font-weight:500;color:var(--text)}
-  .pf-txt i{font-style:normal;font-size:.73rem;color:var(--dim2);margin-top:2px}
+  .pf-txt i{font-style:normal;font-size:.75rem;color:var(--dim2);margin-top:2px}
   .pf.on .pf-txt i{color:var(--up)}
   .pf-tag{font-size:.8rem;color:var(--up);flex-shrink:0}
 
@@ -306,8 +307,8 @@
   .card + .diff{margin-top:16px}
 
   /* ── PROGRESSO LETTURA ── */
-  #progressoLettura{position:fixed;top:0;left:0;height:3px;width:0;z-index:80;
-    background:var(--grad);transition:width .12s linear;pointer-events:none}
+  #progressoLettura{position:fixed;top:0;left:0;height:3px;width:100%;z-index:80;
+    background:var(--grad);transform:scaleX(0);transform-origin:left;transition:transform .12s linear;pointer-events:none}
 
 
 
@@ -335,15 +336,15 @@
   .f-contatti{display:flex;flex-direction:column;gap:6px}
   .f-contatti a{color:var(--dim);font-size:.85rem;transition:color .15s}
   .f-contatti a:hover{color:var(--accent)}
-  .f-col h4{font-family:'Instrument Sans',system-ui,sans-serif;font-size:.72rem;
+  .f-col h3,.f-col h4{font-family:'Instrument Sans',system-ui,sans-serif;font-size:.75rem;
     color:var(--dim2);font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
   .f-col a{display:block;padding:5px 0;color:var(--dim);font-size:.86rem;cursor:pointer;transition:color .15s}
   .f-col a:hover{color:var(--text)}
   .f-basso{padding-top:26px}
-  .f-basso .disc{color:var(--dim2);font-size:.72rem;line-height:1.7;max-width:none;
+  .f-basso .disc{color:var(--dim2);font-size:.75rem;line-height:1.7;max-width:none;
                  border:none;padding:0;margin-bottom:20px}
   .f-firma{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
-    font-family:'JetBrains Mono','SF Mono',Menlo,monospace;font-size:.72rem;color:var(--dim2)}
+    font-family:'JetBrains Mono','SF Mono',Menlo,monospace;font-size:.75rem;color:var(--dim2)}
 
   @media(max-width:860px){
     footer{padding:40px 0 28px}
@@ -422,7 +423,7 @@
   /* fascia compatibilità */
   .fascia{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:26px 0}
   .fascia .wrap{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap}
-  .f-lbl{font-family:'Instrument Sans',system-ui,sans-serif;font-size:.72rem;font-weight:600;
+  .f-lbl{font-family:'Instrument Sans',system-ui,sans-serif;font-size:.75rem;font-weight:600;
     letter-spacing:.1em;text-transform:uppercase;color:var(--dim2)}
   .f-voce{color:var(--dim);font-size:.88rem}
   .f-sep{width:3px;height:3px;border-radius:99px;background:var(--dim2);opacity:.5}
@@ -430,7 +431,7 @@
   /* intestazioni di sezione numerate */
   .sez-titolo{margin-bottom:56px;max-width:56ch;margin-left:auto;margin-right:auto;text-align:center}
   .sez-num{display:none;font-family:'Instrument Sans',system-ui,sans-serif;
-    font-size:.76rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+    font-size:.76rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
     color:var(--accent);margin-bottom:20px;
     padding:7px 16px;border-radius:99px;background:rgba(182,216,79,.12)}
   .sez-titolo h2{margin-bottom:18px;line-height:1.14;font-size:2.5rem}
@@ -444,14 +445,14 @@
     transition:transform .25s cubic-bezier(.2,.7,.3,1), border-color .25s, background .25s}
   .prod-riga:hover{background:var(--panel-hi);border-color:rgba(182,216,79,.45);
                    transform:translateY(-6px);box-shadow:0 14px 34px rgba(0,0,0,.4)}
-  .prod-n{font-family:'Instrument Sans',system-ui,sans-serif;font-size:.74rem;font-weight:600;
-    letter-spacing:.11em;text-transform:uppercase;color:var(--accent);
+  .prod-n{font-family:'Instrument Sans',system-ui,sans-serif;font-size:.75rem;font-weight:600;
+    letter-spacing:.08em;text-transform:uppercase;color:var(--accent);
     background:rgba(182,216,79,.12);padding:8px 15px;border-radius:99px;white-space:nowrap}
   .prod-c h3{font-family:'Instrument Sans',system-ui,sans-serif;font-size:1.14rem;
     font-weight:600;margin-bottom:9px;letter-spacing:-.015em}
   .prod-c p{color:var(--dim);font-size:.9rem;max-width:60ch;line-height:1.65}
   .prod-a{display:flex;align-items:center;justify-content:flex-end;gap:16px}
-  .prod-tag{font-family:'JetBrains Mono','SF Mono',Menlo,monospace;font-size:.68rem;
+  .prod-tag{font-family:'JetBrains Mono','SF Mono',Menlo,monospace;font-size:.75rem;
     color:var(--dim2);border:1px solid var(--line);padding:4px 10px;border-radius:99px;white-space:nowrap}
   .prod-tag.libero{color:var(--up);border-color:rgba(34,197,94,.3)}
   .prod-tag.arrivo{color:var(--accent);border-color:rgba(182,216,79,.32)}
@@ -468,8 +469,8 @@
   .mom{background:var(--panel);border:1px solid var(--line);border-radius:20px;
        padding:34px 30px;transition:border-color .25s}
   .mom:hover{border-color:var(--line-hi)}
-  .mom-t{font-family:'Instrument Sans',system-ui,sans-serif;font-size:.74rem;font-weight:600;
-         letter-spacing:.11em;text-transform:uppercase;color:var(--accent);
+  .mom-t{font-family:'Instrument Sans',system-ui,sans-serif;font-size:.75rem;font-weight:600;
+         letter-spacing:.08em;text-transform:uppercase;color:var(--accent);
          background:rgba(182,216,79,.12);padding:7px 15px;border-radius:99px;
          display:inline-block;margin-bottom:18px}
   .mom p{color:var(--dim);font-size:.9rem;line-height:1.7}
@@ -514,7 +515,7 @@
   #tc-ok:disabled{opacity:.35;cursor:not-allowed;box-shadow:none}
 
   .mod-head{margin-bottom:22px}
-  .mod-kicker{color:var(--accent);font-size:.71rem;font-family:'JetBrains Mono','SF Mono',Menlo,monospace;
+  .mod-kicker{color:var(--accent);font-size:.75rem;font-family:'JetBrains Mono','SF Mono',Menlo,monospace;
     letter-spacing:.08em;margin-bottom:8px}
   .mod-head h3{font-family:'Instrument Serif',Georgia,serif;font-size:1.5rem;margin-bottom:6px}
   .mod-head p{color:var(--dim);font-size:.86rem}
@@ -527,7 +528,7 @@
   .mod-campo input:focus,.mod-campo select:focus,.mod-campo textarea:focus{
     outline:none;border-color:var(--accent)}
   .mod-campo input::placeholder,.mod-campo textarea::placeholder{color:var(--dim2)}
-  .mod-aiuto{color:var(--dim2);font-size:.72rem;margin-top:5px}
+  .mod-aiuto{color:var(--dim2);font-size:.75rem;margin-top:5px}
 
   .mod-riepilogo{background:rgba(182,216,79,.09);border:1px solid rgba(182,216,79,.22);
     border-radius:16px;padding:16px 18px;margin:22px 0;font-size:.85rem}
@@ -595,7 +596,7 @@
 
   @media(max-width:760px){
     .corso{grid-template-columns:auto 1fr;gap:16px;padding:20px 22px}
-    .c-durata{grid-column:2;color:var(--dim2);font-size:.72rem}
+    .c-durata{grid-column:2;color:var(--dim2);font-size:.75rem}
     .corso-info{grid-template-columns:repeat(2,1fr)}
     .lancio-riga .btn{width:100%}
   }
@@ -608,7 +609,7 @@
   .jnav:hover{border-color:var(--accent);color:var(--accent)}
 
   .jcal-int{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:8px}
-  .jcal-int span{text-align:center;font-size:.66rem;color:var(--dim2);
+  .jcal-int span{text-align:center;font-size:.75rem;color:var(--dim2);
     font-family:'JetBrains Mono','SF Mono',Menlo,monospace;letter-spacing:.06em}
 
   .jcal{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
@@ -617,15 +618,15 @@
     justify-content:space-between;position:relative;transition:.18s}
   .jgiorno.vuoto{border:none;background:none}
   .jgiorno.oggi{border-color:var(--accent)}
-  .jgiorno .n{font-size:.68rem;color:var(--dim2);
+  .jgiorno .n{font-size:.75rem;color:var(--dim2);
     font-family:'JetBrains Mono','SF Mono',Menlo,monospace}
-  .jgiorno .v{font-size:.72rem;font-weight:600;line-height:1.1;
+  .jgiorno .v{font-size:.75rem;font-weight:600;line-height:1.1;
     font-family:'JetBrains Mono','SF Mono',Menlo,monospace}
   .jgiorno.su{background:rgba(34,197,94,.12);border-color:rgba(34,197,94,.26)}
   .jgiorno.su .v{color:var(--up)}
   .jgiorno.giu{background:rgba(239,68,68,.11);border-color:rgba(239,68,68,.24)}
   .jgiorno.giu .v{color:var(--down)}
-  .jgiorno .q{position:absolute;top:6px;right:7px;font-size:.58rem;color:var(--dim2)}
+  .jgiorno .q{position:absolute;top:6px;right:7px;font-size:.75rem;color:var(--dim2)}
 
   .jcal-piede{display:flex;gap:20px;flex-wrap:wrap;margin-top:16px;padding-top:14px;
     border-top:1px solid var(--line);font-size:.8rem;color:var(--dim)}
@@ -663,7 +664,7 @@
 
   /* ── SPUNTO ── */
   .jspunto{margin-bottom:16px;display:flex;gap:16px;align-items:flex-start;
-    background:linear-gradient(140deg,rgba(182,216,79,.07),var(--panel))}
+    background:linear-gradient(140deg,rgba(182,216,79,.07),var(--panel)),var(--panel)}
   .jspunto .ico{width:36px;height:36px;border-radius:99px;background:rgba(182,216,79,.13);
     display:grid;place-items:center;flex-shrink:0;color:var(--accent);font-size:.95rem}
   .jspunto h4{font-size:.94rem;font-weight:600;margin-bottom:5px}
@@ -676,8 +677,8 @@
   @media(max-width:760px){
     .jcal{gap:4px}
     .jgiorno{padding:5px 6px;border-radius:9px}
-    .jgiorno .n{font-size:.6rem}
-    .jgiorno .v{font-size:.6rem}
+    .jgiorno .n{font-size:.68rem}
+    .jgiorno .v{font-size:.68rem}
     .jgiorno .q{display:none}
     .jemo-riga .nm{min-width:70px;font-size:.8rem}
   }
@@ -698,10 +699,10 @@
   .jkpi{background:var(--panel);border:1px solid var(--line);border-radius:18px;
         padding:18px 20px;position:relative;overflow:hidden;transition:border-color .18s}
   .jkpi:hover{border-color:var(--line-hi)}
-  .jkpi-label{color:var(--dim2);font-size:.72rem;margin-bottom:7px}
+  .jkpi-label{color:var(--dim2);font-size:.75rem;margin-bottom:7px}
   .jkpi-val{font-family:'JetBrains Mono','SF Mono',Menlo,monospace;font-size:1.32rem;font-weight:500}
-  .jkpi-sub{color:var(--dim2);font-size:.7rem;margin-top:5px;font-family:'JetBrains Mono','SF Mono',Menlo,monospace}
-  .jkpi.hero{grid-column:span 2;background:linear-gradient(135deg,rgba(182,216,79,.09),var(--panel))}
+  .jkpi-sub{color:var(--dim2);font-size:.75rem;margin-top:5px;font-family:'JetBrains Mono','SF Mono',Menlo,monospace}
+  .jkpi.hero{grid-column:span 2;background:linear-gradient(135deg,rgba(182,216,79,.09),var(--panel)),var(--panel)}
   .jkpi.hero .jkpi-val{font-size:1.9rem}
   .jkpi-spark{position:absolute;right:0;bottom:0;width:70px;height:30px;opacity:.5}
 
@@ -725,13 +726,13 @@
 
   .jt-scroll{overflow-x:auto;margin:0 -20px;padding:0 20px}
   .jt-scroll table{width:100%;border-collapse:collapse;font-size:.83rem;min-width:600px}
-  .jt-scroll th{text-align:left;color:var(--dim2);font-weight:500;font-size:.71rem;
+  .jt-scroll th{text-align:left;color:var(--dim2);font-weight:500;font-size:.75rem;
                 padding:0 12px 11px;border-bottom:1px solid var(--line)}
   .jt-scroll td{padding:12px;border-bottom:1px solid rgba(255,255,255,.045);
                 font-family:'JetBrains Mono','SF Mono',Menlo,monospace}
   .jt-scroll tbody tr:hover{background:rgba(255,255,255,.022)}
   .jt-scroll tbody tr:last-child td{border-bottom:none}
-  .pill{display:inline-block;padding:3px 9px;border-radius:20px;font-size:.7rem;
+  .pill{display:inline-block;padding:3px 9px;border-radius:20px;font-size:.75rem;
         font-family:'Instrument Sans',system-ui,sans-serif;font-weight:500}
   .pill.long{background:rgba(34,197,94,.13);color:var(--up)}
   .pill.short{background:rgba(239,68,68,.12);color:var(--down)}
@@ -776,7 +777,7 @@
   .vt-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:18px}
   .vt-t{font-family:'Instrument Serif',Georgia,serif;font-size:1.22rem;letter-spacing:-.01em}
   .vt-s{color:var(--dim2);font-size:.76rem;margin-top:3px}
-  .vt-badge{font-family:'JetBrains Mono','SF Mono',Menlo,monospace;font-size:.68rem;
+  .vt-badge{font-family:'JetBrains Mono','SF Mono',Menlo,monospace;font-size:.75rem;
     color:var(--accent);padding:6px 14px;border-radius:99px;
     white-space:nowrap;border:1px solid rgba(182,216,79,.28)}
   .vt-badge.free{color:var(--up);border-color:rgba(34,197,94,.3)}
@@ -786,7 +787,7 @@
   .vt-kpi > div{background:rgba(0,0,0,.24);border:1px solid var(--line);border-radius:14px;padding:13px 14px}
   .vt-kpi b{display:block;font-family:'JetBrains Mono','SF Mono',Menlo,monospace;
     font-size:1.12rem;font-weight:500;line-height:1}
-  .vt-kpi i{display:block;font-style:normal;color:var(--dim2);font-size:.69rem;margin-top:5px}
+  .vt-kpi i{display:block;font-style:normal;color:var(--dim2);font-size:.75rem;margin-top:5px}
   .vt-eq{width:100%;display:block}
 
   /* calcolatori */
@@ -826,7 +827,7 @@
   /* ── PIATTAFORME ── */
   .plat{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:6px;
     background:rgba(255,255,255,.05);border:1px solid var(--line);
-    font-family:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace;font-size:.68rem;color:var(--dim)}
+    font-family:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace;font-size:.75rem;color:var(--dim)}
   .plat.on{background:rgba(34,197,94,.11);border-color:rgba(34,197,94,.3);color:var(--up)}
   .plat.soon{color:var(--dim2)}
   .plat svg{flex-shrink:0}
@@ -838,7 +839,7 @@
   .diff > div{padding:26px}
   .diff .altri{background:rgba(239,68,68,.04);border-right:1px solid var(--line)}
   .diff .noi{background:linear-gradient(150deg,rgba(182,216,79,.07),transparent)}
-  .diff h4{font-family:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace;font-size:.72rem;letter-spacing:.06em;
+  .diff h4{font-family:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace;font-size:.75rem;letter-spacing:.06em;
     margin-bottom:14px;font-weight:400}
   .diff .altri h4{color:var(--dim2)}
   .diff .noi h4{color:var(--up)}
@@ -875,9 +876,9 @@
   .slot-bar{height:6px;background:rgba(0,0,0,.35);border-radius:99px;overflow:hidden}
   .slot-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),#16A34A);border-radius:99px}
   .slot-lbl{display:flex;justify-content:space-between;font-family:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace;
-    font-size:.74rem;color:var(--dim2);margin-top:7px}
+    font-size:.75rem;color:var(--dim2);margin-top:7px}
 
-  .badge-off{position:absolute;top:-9px;right:18px;font-size:.66rem;font-family:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace;
+  .badge-off{position:absolute;top:-9px;right:18px;font-size:.75rem;font-family:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace;
     background:linear-gradient(135deg,var(--accent),#16A34A);color:#fff;padding:3px 9px;border-radius:99px}
   .bot{position:relative}
   .price s{color:var(--dim2);font-size:.95rem;margin-right:8px}
@@ -892,24 +893,24 @@
   .mt-bar{display:flex;align-items:center;gap:7px;padding:8px 12px;
     background:rgba(255,255,255,.03);border-bottom:1px solid var(--line)}
   .mt-bar .dot{width:8px;height:8px;border-radius:99px}
-  .mt-title{font-family:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace;font-size:.69rem;color:var(--dim2);margin-left:5px}
+  .mt-title{font-family:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace;font-size:.75rem;color:var(--dim2);margin-left:5px}
   .mt-live{margin-left:auto;display:flex;align-items:center;gap:5px;
-        font-family:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace;font-size:.65rem;color:var(--dim2)}
-  .mt-live i{width:5px;height:5px;border-radius:99px;background:var(--down);animation:pulse 1.6s infinite}
+        font-family:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace;font-size:.75rem;color:var(--dim2)}
+  .mt-live i{width:5px;height:5px;border-radius:99px;background:var(--down)}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
   .mt-body{position:relative}
   .mt-body svg{width:100%;display:block;height:auto}
 
   .ea{position:absolute;background:rgba(12,17,28,.96);border:1px solid rgba(45,55,80,.9);
       border-radius:7px;padding:11px 13px;font-family:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace;
-      font-size:10px;line-height:1.75;min-width:224px;backdrop-filter:blur(3px)}
+      font-size:11px;line-height:1.75;min-width:224px;backdrop-filter:blur(3px)}
   .ea::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
       background:var(--accent);border-radius:7px 7px 0 0}
-  .ea .t{color:var(--accent);font-weight:500;letter-spacing:.5px;margin-bottom:6px;font-size:9.5px}
+  .ea .t{color:var(--accent);font-weight:500;letter-spacing:.5px;margin-bottom:6px;font-size:11px}
   .ea .row{display:flex;justify-content:space-between;gap:12px;color:#8C97AE}
   .ea .row b{font-weight:400;transition:color .3s}
   .ea .g{color:var(--up)} .ea .r{color:var(--down)} .ea .o{color:var(--gold)}
-  .ea .st{margin-top:7px;padding-top:6px;border-top:1px solid rgba(255,255,255,.07);font-size:9.5px}
+  .ea .st{margin-top:7px;padding-top:6px;border-top:1px solid rgba(255,255,255,.07);font-size:11px}
   .ea .barra{height:5px;background:rgba(255,255,255,.09);border-radius:99px;
              overflow:hidden;margin:3px 0 5px}
   .ea .barra i{display:block;height:100%;border-radius:99px;transition:width .35s ease}
@@ -920,7 +921,7 @@
 
   .evt{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%) scale(.92);
     background:rgba(182,216,79,.95);color:#fff;padding:8px 16px;border-radius:8px;
-    font-family:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace;font-size:11px;letter-spacing:.3px;
+    font-family:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace;font-size:12px;letter-spacing:.3px;
     opacity:0;pointer-events:none;white-space:nowrap;
     transition:opacity .5s ease, transform .5s cubic-bezier(.2,.8,.3,1)}
   .evt.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
@@ -929,36 +930,36 @@
 
   .sim-ctrl{display:flex;gap:13px;margin-top:12px;align-items:center;flex-wrap:wrap}
   .sim-prog{flex:1;min-width:120px;height:3px;background:rgba(255,255,255,.07);border-radius:99px;overflow:hidden}
-  .sim-prog i{display:block;height:100%;width:0;background:var(--accent);border-radius:99px;transition:width .25s linear}
-  .sim-fase{font-family:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace;font-size:.72rem;color:var(--dim2);min-width:180px;text-align:right}
+  .sim-prog i{display:block;height:100%;width:100%;transform:scaleX(0);transform-origin:left;background:var(--accent);border-radius:99px;transition:transform .25s linear}
+  .sim-fase{font-family:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace;font-size:.75rem;color:var(--dim2);min-width:180px;text-align:right}
 
   /* Su schermo stretto il pannello scende sotto il grafico */
   @media(max-width:760px){
     .mt-body{display:flex;flex-direction:column}
     .ea{position:static;width:100%;min-width:0;border-radius:0;border:none;
         border-top:1px solid rgba(45,55,80,.9);background:rgba(9,13,22,.98);
-        padding:13px 14px;font-size:11px}
+        padding:13px 14px;font-size:12px}
     .ea::before{display:none}
     .ea.tl,.ea.tr,.ea.bl{top:auto;left:auto;right:auto;bottom:auto}
     .ea .t{color:var(--accent);margin-bottom:8px;padding-bottom:7px;
-           border-bottom:1px solid rgba(255,255,255,.07);font-size:10px}
+           border-bottom:1px solid rgba(255,255,255,.07);font-size:11px}
     .ea .row{padding:1px 0}
-    .evt{font-size:10.5px;padding:7px 13px;white-space:normal;text-align:center;
+    .evt{font-size:11.5px;padding:7px 13px;white-space:normal;text-align:center;
          max-width:82%;top:38%}
     .sim{margin-bottom:32px}
     .sim-head h3{font-size:1.2rem}
     .sim-head p{font-size:.85rem}
     .sim-ctrl{gap:9px}
-    .sim-fase{min-width:auto;text-align:left;font-size:.68rem}
+    .sim-fase{min-width:auto;text-align:left;font-size:.75rem}
     .sim-prog{min-width:80px}
-    .mt-title{font-size:.62rem;margin-left:3px}
+    .mt-title{font-size:.75rem;margin-left:3px}
     .mt-bar{padding:7px 10px;gap:5px}
     .mt-bar .dot{width:7px;height:7px}
-    .mt-live{font-size:.6rem}
+    .mt-live{font-size:.75rem}
   }
   @media(max-width:420px){
-    .ea{font-size:10px;padding:11px 12px}
-    .mt-title{font-size:.56rem}
+    .ea{font-size:11px;padding:11px 12px}
+    .mt-title{font-size:.75rem}
     .sim-head p{font-size:.82rem}
   }
   @media(prefers-reduced-motion:reduce){.mt-live i{animation:none}}
@@ -979,7 +980,7 @@
 
     /* barra lancio più compatta */
     .lancio-bar .wrap{gap:5px;flex-direction:column;text-align:center;font-size:.78rem}
-    .lancio-bar .rest{font-size:.72rem}
+    .lancio-bar .rest{font-size:.75rem}
 
     /* box lancio */
     .lancio-box{padding:20px}
@@ -1016,7 +1017,7 @@
 
     /* footer */
     .foot-grid{gap:20px}
-    .disc{font-size:.72rem}
+    .disc{font-size:.75rem}
     .cta{padding:56px 0}
     .cta h2{font-size:1.5rem}
   }
@@ -1073,7 +1074,7 @@
       border:1px solid var(--line);border-radius:26px;box-shadow:0 12px 36px rgba(0,0,0,.5)}
     .dbarra button{background:none;border:none;font-family:inherit;color:#7C887E;cursor:pointer;
       display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;height:52px;min-width:84px;padding:0 10px;
-      border-radius:17px;font-size:.72rem;font-weight:500;transition:color .15s,background .15s}
+      border-radius:17px;font-size:.75rem;font-weight:500;transition:color .15s,background .15s}
     .dbarra button:hover{color:var(--text);background:rgba(255,255,255,.05)}
     .dbarra button svg{width:21px;height:21px}
     .dbarra button.on{color:#0B0D0C;background:var(--grad)}
@@ -1095,7 +1096,7 @@
       border:1px solid var(--line);border-radius:24px;box-shadow:0 10px 30px rgba(0,0,0,.45)}
     .sbarra button{background:none;border:none;font-family:inherit;color:#6B788A;cursor:pointer;
       display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;height:56px;
-      border-radius:14px;font-size:.6rem;font-weight:500;letter-spacing:0;-webkit-tap-highlight-color:transparent;min-width:0;padding:0}
+      border-radius:14px;font-size:.68rem;font-weight:500;letter-spacing:0;-webkit-tap-highlight-color:transparent;min-width:0;padding:0}
     .sbarra button svg{width:21px;height:21px}
     .sbarra button.on{color:#0B0D0C;background:var(--grad);font-weight:600}
     .sbarra .sb-piu{width:56px;height:56px;border-radius:50%;margin:-30px auto 0;padding:0;gap:0;
@@ -1119,6 +1120,8 @@
   html{scrollbar-color:#2C342E var(--bg);accent-color:var(--accent)}
   input,textarea{caret-color:var(--accent)}
   h1,h2,h3{text-wrap:balance}
+  /* leggibilità sopra lo sfondo animato */
+  .lead,.hero-new p,.sez-head h2,.page > .wrap > h2{text-shadow:0 0 18px var(--bg),0 0 6px var(--bg)}
   p,li{text-wrap:pretty}
   /* ═══ AREA CLIENTI ═══ */
   .acc-testa{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;
@@ -1134,8 +1137,8 @@
     border-top:1px solid var(--line);padding:15px 0;flex-wrap:wrap}
   .acq:first-of-type{border-top:none}
   .acq-nome{font-weight:600;font-size:.95rem}
-  .acq-meta{font-family:'JetBrains Mono',monospace;font-size:.74rem;color:var(--dim2);margin-top:3px}
-  .acq-stato{font-family:'JetBrains Mono',monospace;font-size:.7rem;padding:4px 11px;
+  .acq-meta{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--dim2);margin-top:3px}
+  .acq-stato{font-family:'JetBrains Mono',monospace;font-size:.75rem;padding:4px 11px;
     border-radius:100px;border:1px solid;white-space:nowrap}
   .acq-stato.attivo{color:var(--up);border-color:rgba(34,197,94,.4);background:rgba(34,197,94,.08)}
   .acq-stato.attesa{color:#F59E0B;border-color:rgba(245,158,11,.4);background:rgba(245,158,11,.08)}
@@ -1169,9 +1172,9 @@
   /* ═══ PAGINA PREZZI ═══ */
   .pz-hook{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:stretch;margin:0 auto 30px;max-width:760px}
   .pz-hook .c{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:22px;text-align:center}
-  .pz-hook .c.r{border-color:rgba(239,68,68,.4);background:linear-gradient(160deg,rgba(239,68,68,.09),var(--panel))}
-  .pz-hook .c.g{border-color:rgba(182,216,79,.45);background:linear-gradient(160deg,rgba(182,216,79,.1),var(--panel))}
-  .pz-hook .k{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.12em;color:var(--dim2);margin-bottom:10px}
+  .pz-hook .c.r{border-color:rgba(239,68,68,.4);background:linear-gradient(160deg,rgba(239,68,68,.09),var(--panel)),var(--panel)}
+  .pz-hook .c.g{border-color:rgba(182,216,79,.45);background:linear-gradient(160deg,rgba(182,216,79,.1),var(--panel)),var(--panel)}
+  .pz-hook .k{font-family:'JetBrains Mono',monospace;font-size:.75rem;letter-spacing:.08em;color:var(--dim2);margin-bottom:10px}
   .pz-hook .v{font-family:'Instrument Serif',Georgia,serif;font-size:1.9rem;line-height:1.1;margin-bottom:8px}
   .pz-hook .c.r .v{color:var(--down)} .pz-hook .c.g .v{color:var(--up)}
   .pz-hook .d{color:var(--dim);font-size:.84rem;line-height:1.5}
@@ -1179,14 +1182,14 @@
   .pz-sez{display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap;
     margin:46px 0 16px;border-bottom:1px solid var(--line);padding-bottom:12px}
   .pz-sez h3{font-family:'Instrument Serif',Georgia,serif;font-size:1.7rem;font-weight:400}
-  .pz-sez span{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--dim2);letter-spacing:.08em}
+  .pz-sez span{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--dim2);letter-spacing:.08em}
   .pz-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
   .pz{background:var(--panel);border:1px solid rgba(182,216,79,.5);box-shadow:0 0 0 1px rgba(182,216,79,.15),0 14px 40px rgba(182,216,79,.08);border-radius:var(--r);padding:20px;display:flex;flex-direction:column;position:relative}
   .pz.hi{border-color:rgba(182,216,79,.5);box-shadow:0 0 0 1px rgba(182,216,79,.15),0 14px 40px rgba(182,216,79,.08)}
-  .pz .tg{position:absolute;top:-10px;left:18px;font-family:'JetBrains Mono',monospace;font-size:.64rem;
+  .pz .tg{position:absolute;top:-10px;left:18px;font-family:'JetBrains Mono',monospace;font-size:.75rem;
     background:var(--grad);color:#08110c;padding:3px 10px;border-radius:99px;font-weight:600}
   .pz h4{font-size:1.08rem;font-weight:600;margin-bottom:4px}
-  .pz .pl{font-family:'JetBrains Mono',monospace;font-size:.66rem;color:var(--dim2);margin-bottom:10px}
+  .pz .pl{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--dim2);margin-bottom:10px}
   .pz p{color:var(--dim);font-size:.84rem;line-height:1.5;margin-bottom:14px;flex:1}
   .pz .pr2{font-family:'JetBrains Mono',monospace;font-size:.76rem;color:var(--dim);margin-bottom:12px}
   .pz .pr2 b{color:var(--up);font-weight:500}
@@ -1207,7 +1210,7 @@
   .gs-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:24px}
   .gs-kpi{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px}
   .gs-kpi .n{font-family:'JetBrains Mono',monospace;font-size:1.7rem;line-height:1.1}
-  .gs-kpi .l{font-size:.72rem;color:var(--dim2);margin-top:4px}
+  .gs-kpi .l{font-size:.75rem;color:var(--dim2);margin-top:4px}
   .gs-kpi.g .n{color:var(--up)} .gs-kpi.w .n{color:#F59E0B}
   .gs-tab{display:flex;gap:4px;background:rgba(0,0,0,.28);border:1px solid var(--line);
     border-radius:99px;padding:4px;margin-bottom:18px;overflow-x:auto}
@@ -1219,22 +1222,22 @@
     border-top:1px solid var(--line);padding:14px 0}
   .gs-riga:first-of-type{border-top:none}
   .gs-riga .m{font-weight:600;font-size:.92rem}
-  .gs-riga .d{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--dim2);margin-top:3px;word-break:break-all}
+  .gs-riga .d{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--dim2);margin-top:3px;word-break:break-all}
   .gs-msg{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--up);min-height:20px;margin-bottom:10px}
   .gs-msg.err{color:var(--down)}
   .gs-vuoto{text-align:center;color:var(--dim2);padding:24px 10px;font-size:.86rem}
   .gs-bars{display:flex;align-items:flex-end;gap:5px;height:120px;margin:14px 0 8px}
   .gs-bars div{flex:1;background:var(--grad);border-radius:4px 4px 0 0;min-height:2px;position:relative}
   .gs-bars div span{position:absolute;top:-17px;left:0;right:0;text-align:center;
-    font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--dim2)}
-  .gs-bars-l{display:flex;gap:5px;font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--dim2)}
+    font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--dim2)}
+  .gs-bars-l{display:flex;gap:5px;font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--dim2)}
   .gs-bars-l div{flex:1;text-align:center}
   .gs-fonte{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding:10px 0;font-size:.85rem}
   .gs-fonte b{font-family:'JetBrains Mono',monospace;color:var(--up);font-weight:500}
   @media(max-width:620px){ .gs-kpis{grid-template-columns:repeat(2,1fr)} }
 
   .badge-sic{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:16px}
-  .badge-sic span{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--dim);
+  .badge-sic span{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--dim);
     border:1px solid var(--line);border-radius:99px;padding:6px 12px;background:rgba(0,0,0,.2)}
   .badge-sic b{color:var(--up);font-weight:500}
 
@@ -1245,12 +1248,12 @@
     font-family:'Instrument Serif',Georgia,serif;font-size:2.6rem;color:var(--dim2)}
   .chi h3{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:1.6rem;margin-bottom:10px}
   .chi p{color:var(--dim);font-size:.93rem;line-height:1.7;margin-bottom:12px;max-width:62ch}
-  .chi .firma{font-family:'JetBrains Mono',monospace;font-size:.74rem;color:var(--dim2);margin-top:14px}
+  .chi .firma{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--dim2);margin-top:14px}
   @media(max-width:700px){ .chi{grid-template-columns:1fr;gap:20px;padding:26px} .chi .foto{width:96px;height:96px} }
 
   .prova{background:rgba(14,165,233,.07);border:1px solid rgba(14,165,233,.32);
     border-radius:var(--r);padding:22px 24px;margin-top:22px}
-  .prova .k{font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.13em;
+  .prova .k{font-family:'JetBrains Mono',monospace;font-size:.75rem;letter-spacing:.08em;
     color:var(--accent-2);margin-bottom:8px}
   .prova p{color:var(--dim);font-size:.87rem;line-height:1.6;margin:0}
   .prova a{color:var(--accent-2)}
@@ -1258,7 +1261,7 @@
   .prop-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:16px 0;
     border:1px solid var(--line);border-radius:14px}
   .prop-tab{width:100%;border-collapse:collapse;margin:0;font-size:.84rem;min-width:520px}
-  .prop-tab th{text-align:left;font-family:'JetBrains Mono',monospace;font-size:.68rem;
+  .prop-tab th{text-align:left;font-family:'JetBrains Mono',monospace;font-size:.75rem;
     letter-spacing:.08em;color:var(--dim2);padding:8px 10px;border-bottom:1px solid var(--line)}
   .prop-tab td{padding:10px;border-bottom:1px solid var(--line);color:var(--dim);vertical-align:top}
   .prop-tab td:first-child{color:var(--text);font-weight:600;white-space:nowrap}
@@ -1271,14 +1274,14 @@
   .cd-fascia{background:linear-gradient(135deg,rgba(182,216,79,.1),rgba(14,165,233,.08));
     border:1px solid rgba(182,216,79,.3);border-radius:var(--r);padding:26px 22px;
     text-align:center;margin:0 auto 34px;max-width:620px}
-  .cd-kick{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.14em;
+  .cd-kick{font-family:'JetBrains Mono',monospace;font-size:.75rem;letter-spacing:.08em;
     text-transform:uppercase;color:var(--accent);margin-bottom:12px}
   .cd-riga{display:flex;justify-content:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
   .cd-box{background:rgba(0,0,0,.3);border:1px solid var(--line-hi);border-radius:13px;
     padding:11px 4px;min-width:66px}
   .cd-n{font-family:'JetBrains Mono',monospace;font-size:1.6rem;font-weight:500;
     color:var(--text);line-height:1.1}
-  .cd-l{font-size:.66rem;color:var(--dim2);text-transform:uppercase;letter-spacing:.08em;margin-top:3px}
+  .cd-l{font-size:.75rem;color:var(--dim2);text-transform:uppercase;letter-spacing:.08em;margin-top:3px}
   .cd-sotto{font-size:.86rem;color:var(--dim);line-height:1.55}
 
   .prezzo-chiuso{font-family:'JetBrains Mono',monospace;font-size:.82rem;color:var(--dim);
@@ -1321,7 +1324,7 @@
   .ch-top{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--line);
     background:linear-gradient(160deg,rgba(182,216,79,.1),transparent 70%)}
   .ch-top b{display:block;font-size:.95rem}
-  .ch-top small{color:var(--dim2);font-size:.72rem}
+  .ch-top small{color:var(--dim2);font-size:.75rem}
   .ch-top button{margin-left:auto;background:none;border:none;color:var(--dim);font-size:1.3rem;cursor:pointer;padding:4px 8px}
   .ch-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px}
   .ch-m{flex-shrink:0;max-width:88%;padding:10px 13px;border-radius:16px;font-size:.86rem;line-height:1.55}
@@ -1331,7 +1334,7 @@
   .ch-m.bot a{color:var(--accent);text-decoration:underline}
   .ch-m.bot{overflow-x:auto}
   .ch-m.bot div{background:none!important;border:none!important;padding:0!important;margin:6px 0!important;box-shadow:none!important}
-  .ch-m.bot table{font-size:.72rem;border-collapse:collapse;margin:6px 0;width:100%}
+  .ch-m.bot table{font-size:.75rem;border-collapse:collapse;margin:6px 0;width:100%}
   .ch-m.bot td,.ch-m.bot th{border-top:1px solid var(--line);padding:4px;text-align:left;vertical-align:top}
   .ch-chips{display:flex;flex-wrap:wrap;gap:6px;flex-shrink:0}
   .ch-chips button{background:rgba(182,216,79,.08);border:1px solid rgba(182,216,79,.3);color:var(--text);font-family:inherit;
@@ -1350,7 +1353,7 @@
   .valore-corso{display:grid;grid-template-columns:220px 1fr;gap:26px;align-items:center;margin:22px 0 30px;
     padding:24px;border:1px solid rgba(182,216,79,.3);border-radius:18px;background:rgba(182,216,79,.05)}
   .vc-cifra{text-align:center}
-  .vc-k{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.14em;color:var(--dim)}
+  .vc-k{font-family:'JetBrains Mono',monospace;font-size:.75rem;letter-spacing:.08em;color:var(--dim)}
   .vc-n{font-size:2.6rem;font-weight:700;color:var(--accent);line-height:1.1;margin:6px 0}
   .vc-s{color:var(--dim);font-size:.85rem}
   .vc-s b{color:var(--up)}
@@ -1420,7 +1423,6 @@
   <!-- HERO -->
   <section class="hero-new">
     <div class="wrap">
-      <div class="h-eyebrow">GESTIONE DEL RISCHIO · DISCIPLINA · ANALISI</div>
       <h1>Il mercato non lo controlli.<br><span class="gr">Tutto il resto sì.</span></h1>
       <p class="h-lead">Quanto rischiare, quando fermarti, come gestire una posizione aperta, cosa dicono davvero i tuoi numeri. Il trading si decide qui, non nella previsione del prossimo movimento.</p>
       <div class="h-cta">
@@ -1549,7 +1551,6 @@
   <section>
     <div class="wrap">
       <div class="sez-titolo">
-        <span class="sez-num">01</span>
         <h2>Cinque aree, un solo obiettivo</h2>
         <p>Tenere sotto controllo tutto quello che dipende da te. Nessuno strumento ti dice cosa comprare.</p>
       </div>
@@ -1622,7 +1623,6 @@
   <section class="sez-scura">
     <div class="wrap">
       <div class="sez-titolo">
-        <span class="sez-num">02</span>
         <h2>La disciplina non è<br>forza di volontà</h2>
         <p>È un sistema che interviene nei tre momenti in cui i conti si bruciano. Nessuno dei tre riguarda la scelta del trade.</p>
       </div>
@@ -1724,7 +1724,6 @@
   <section>
     <div class="wrap">
       <div class="sez-titolo pagina">
-        <span class="sez-num">BOT</span>
         <h2>Quattro software di gestione.<br><em>Nessun segnale.</em></h2>
         <p class="lead">Non decidono cosa comprare e non aprono operazioni per conto loro. Proteggono il conto, gestiscono le posizioni che hai già aperto, e fanno rispettare le regole che hai deciso quando eri lucido — anche quando non lo sei più. E ogni operazione finisce da sola nel tuo journal.</p>
         <div class="plats" style="margin-top:18px">
@@ -2114,7 +2113,7 @@
               <tr>
                 <th>Cosa conta</th>
                 <th class="c" style="color:#2EE06C">Riskly</th>
-                <th class="c">Bot che fanno trading<br><span style="font-weight:400;color:var(--dim2);font-size:.72rem">segnali, griglie, martingala</span></th>
+                <th class="c">Bot che fanno trading<br><span style="font-weight:400;color:var(--dim2);font-size:.75rem">segnali, griglie, martingala</span></th>
                 <th class="c">Gestori di rischio tipici</th>
               </tr>
             </thead>
@@ -2164,7 +2163,6 @@
   <section>
     <div class="wrap">
       <div class="sez-titolo pagina">
-        <span class="sez-num">CALCOLATORI</span>
         <h2>Calcola prima, <em>non dopo</em></h2>
         <p class="lead">Cinque strumenti gratuiti, senza registrazione. Girano nel tuo browser: nessun dato viene inviato.</p>
       </div>
@@ -2192,12 +2190,12 @@
               </optgroup>
               <option value="ALTRO">Altro: scrivo io il valore del pip</option>
             </select>
-            <div id="c-sym-info" style="color:var(--dim2);font-size:.74rem;margin-top:6px;line-height:1.45"></div>
+            <div id="c-sym-info" style="color:var(--dim2);font-size:.75rem;margin-top:6px;line-height:1.45"></div>
           </div>
-          <div class="fld"><label for="c-pips">Distanza dello stop (pip) <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Quanti pip ci sono tra il prezzo di entrata e lo stop loss. Esempio: entri su EURUSD a 1,1000 e metti lo stop a 1,0975: sono 25 pip.">?</span></label><input type="number" id="c-pips" value="25" oninput="calcPos()"><div id="c-pips-prezzo" style="color:var(--dim2);font-size:.74rem;margin-top:6px"></div></div>
+          <div class="fld"><label for="c-pips">Distanza dello stop (pip) <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Quanti pip ci sono tra il prezzo di entrata e lo stop loss. Esempio: entri su EURUSD a 1,1000 e metti lo stop a 1,0975: sono 25 pip.">?</span></label><input type="number" id="c-pips" value="25" oninput="calcPos()"><div id="c-pips-prezzo" style="color:var(--dim2);font-size:.75rem;margin-top:6px"></div></div>
           <div class="fld" id="c-val-fld" style="display:none"><label for="c-val">Valore del pip per lotto (€) <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Quanto vale 1 pip con 1 lotto intero. Sulle coppie che finiscono in USD (EURUSD, GBPUSD) è 10 $, cioè circa 9 € a seconda del cambio. Su MetaTrader lo trovi nelle specifiche del simbolo.">?</span></label><input type="number" id="c-val" value="10" step="0.01" oninput="calcPos()"></div>
           <div class="out">
-            <div style="color:var(--dim2);font-size:.73rem">Lotti da aprire <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="La dimensione da inserire su MetaTrader. Con questi lotti, se il prezzo arriva allo stop loss, perdi esattamente il rischio che hai scelto, né di più né di meno.">?</span></div>
+            <div style="color:var(--dim2);font-size:.75rem">Lotti da aprire <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="La dimensione da inserire su MetaTrader. Con questi lotti, se il prezzo arriva allo stop loss, perdi esattamente il rischio che hai scelto, né di più né di meno.">?</span></div>
             <div class="big" id="o-lots">0.40</div>
             <div class="out-row"><span>Rischio in euro <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Quanto perdi se il prezzo arriva allo stop loss.">?</span></span><span class="down" id="o-eur">−€100.00</span></div>
             <div class="out-row"><span>Trade prima del −10% <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Quante perdite di fila servono per perdere il 10% del conto con questo rischio. Più il numero è alto, più tempo hai per accorgerti che qualcosa non va.">?</span></span><span id="o-cnt">10</span></div>
@@ -2212,7 +2210,7 @@
           <div class="fld"><label for="r-risk">Rischio per trade (%) <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="La parte del conto che perdi quando un&#x27;operazione chiude allo stop loss.">?</span></label><input type="number" id="r-risk" value="1" step="0.1" oninput="calcRuin()"></div>
           <div class="fld"><label for="r-dd">Perdita che consideri "rovina" (%) <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="La perdita oltre la quale ti fermeresti o perderesti il conto, per esempio il limite di una prop firm. Il 30% vuol dire scendere da 10.000 € a 7.000 €.">?</span></label><input type="number" id="r-dd" value="30" oninput="calcRuin()"></div>
           <div class="out">
-            <div style="color:var(--dim2);font-size:.73rem">Probabilità di rovina su 200 trade <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Simuliamo 1.500 volte una serie di 200 operazioni con i tuoi numeri, in ordine casuale. È la percentuale di serie in cui tocchi almeno una volta la perdita di rovina. Sotto il 5% è prudente, sopra il 20% è pericoloso.">?</span></div>
+            <div style="color:var(--dim2);font-size:.75rem">Probabilità di rovina su 200 trade <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Simuliamo 1.500 volte una serie di 200 operazioni con i tuoi numeri, in ordine casuale. È la percentuale di serie in cui tocchi almeno una volta la perdita di rovina. Sotto il 5% è prudente, sopra il 20% è pericoloso.">?</span></div>
             <div class="big" id="o-ruin">—</div>
             <div class="out-row"><span>Aspettativa per trade <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Quanto guadagni in media a operazione, contando sia le vincite sia le perdite. Esempio: winrate 50%, stop 25 pip, take profit 50 pip → 0,5 × 50 − 0,5 × 25 = +12,5 pip a operazione. Se è negativa, a lungo andare il conto scende.">?</span></span><span id="o-exp">—</span></div>
             <div class="out-row"><span>Saldo mediano finale <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Il saldo tipico dopo 200 operazioni: metà delle simulazioni finisce sopra, metà sotto. 120% vuol dire che 10.000 € diventano 12.000 €.">?</span></span><span id="o-med">—</span></div>
@@ -2242,7 +2240,7 @@
           <p style="color:var(--dim);font-size:.85rem;margin-bottom:16px">Perdere il 50% non significa dover guadagnare il 50% per tornare in pari.</p>
           <div class="fld"><label for="be-dd">Perdita subita (%) <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Quanto hai perso dal punto più alto del conto. Esempio: da 10.000 € a 8.000 € è il 20%.">?</span></label><input type="number" id="be-dd" value="20" step="1" oninput="calcBE()"></div>
           <div class="out">
-            <div style="color:var(--dim2);font-size:.73rem">Ti serve un guadagno del <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Quanto devi guadagnare sul capitale che ti è rimasto per tornare dove eri. Da 8.000 € a 10.000 € servono 2.000 €, cioè il 25% di 8.000: più di quanto hai perso.">?</span></div>
+            <div style="color:var(--dim2);font-size:.75rem">Ti serve un guadagno del <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Quanto devi guadagnare sul capitale che ti è rimasto per tornare dove eri. Da 8.000 € a 10.000 € servono 2.000 €, cioè il 25% di 8.000: più di quanto hai perso.">?</span></div>
             <div class="big" id="o-be">25.0%</div>
             <div class="out-row"><span>Capitale rimasto <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Quanto ti rimane del conto dopo la perdita.">?</span></span><span id="o-be-rest">80% del totale</span></div>
             <div class="out-row"><span>Stop 25 pip, TP 50 pip, rischio 1% <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Quante operazioni vincenti servono per recuperare, con stop loss a 25 pip, take profit a 50 pip e rischio dell&#x27;1%: ogni vincita aggiunge circa il 2% al conto.">?</span></span><span id="o-be-trade">—</span></div>
@@ -2259,7 +2257,7 @@
           <div class="fld"><label for="cp-mesi">Orizzonte (mesi) <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Per quanti mesi fai il calcolo.">?</span></label><input type="number" id="cp-mesi" value="24" oninput="calcComp()"></div>
           <div class="fld"><label for="cp-prel">Prelievo mensile (€) <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Quanto togli dal conto ogni mese. Più prelevi, meno il capitale cresce.">?</span></label><input type="number" id="cp-prel" value="0" oninput="calcComp()"></div>
           <div class="out">
-            <div style="color:var(--dim2);font-size:.73rem">Capitale finale <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Quanto avresti alla fine reinvestendo i guadagni ogni mese, con lo stesso rendimento tutti i mesi.">?</span></div>
+            <div style="color:var(--dim2);font-size:.75rem">Capitale finale <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Quanto avresti alla fine reinvestendo i guadagni ogni mese, con lo stesso rendimento tutti i mesi.">?</span></div>
             <div class="big" id="o-cp">—</div>
             <div class="out-row"><span>Profitto totale <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="Capitale finale più quanto hai prelevato, meno il capitale iniziale.">?</span></span><span class="up" id="o-cp-prof">—</span></div>
             <div class="out-row"><span>Prelevato nel periodo <span class="aiuto" role="button" tabindex="0" aria-label="Spiegazione" data-h="La somma di tutti i prelievi mensili.">?</span></span><span id="o-cp-prel">—</span></div>
@@ -2284,7 +2282,6 @@
   <section>
     <div class="wrap">
       <div class="sez-titolo pagina">
-        <span class="sez-num">PREZZI</span>
         <h2>Tutto quello che serve<br><em>per restare in gioco</em></h2>
         <p class="lead">Software per MetaTrader, journal e videocorso. Nessun segnale, nessun abbonamento obbligatorio sui bot: paghi una volta e sono tuoi.</p>
       </div>
@@ -2460,7 +2457,6 @@
   <section>
     <div class="wrap" style="max-width:760px">
       <div class="sez-titolo pagina">
-        <span class="sez-num">METODO</span>
         <h2>Perché <em>non</em> vendiamo segnali</h2>
       </div>
 
@@ -2498,7 +2494,6 @@
   <section>
     <div class="wrap" style="max-width:820px">
       <div class="sez-titolo pagina">
-        <span class="sez-num">FAQ</span>
         <h2>Quello che <em>ci chiedono di più</em></h2>
       </div>
 
@@ -2820,7 +2815,6 @@
   <section>
     <div class="wrap">
       <div class="sez-titolo pagina">
-        <span class="sez-num">Videocorso</span>
         <h2>Gestione del rischio,<br>dalla teoria alla regola</h2>
         <p class="lead">Quarantasette lezioni in dieci moduli, quasi tre ore. Dalle basi del rischio per trade al Monte Carlo, dalle regole delle prop firm al trailing, agli scaglioni e all'hedging. Spiegato come a lezione, con esempi in euro e pip. Niente strategie, niente segnali: solo la parte che nessuno ti insegna.</p>
       </div>
@@ -3042,7 +3036,6 @@
   <section>
     <div class="wrap testo">
       <div class="sez-titolo pagina">
-        <span class="sez-num">PRIVACY</span>
         <h2>Informativa sul trattamento<br>dei dati personali</h2>
         <p class="lead">Ultimo aggiornamento: ottobre 2026</p>
       </div>
@@ -3088,7 +3081,6 @@
   <section>
     <div class="wrap testo">
       <div class="sez-titolo pagina">
-        <span class="sez-num">TERMINI</span>
         <h2>Termini e condizioni<br>di servizio</h2>
         <p class="lead">Ultimo aggiornamento: settembre 2026</p>
       </div>
@@ -3169,7 +3161,7 @@
       </div>
 
       <div class="f-col">
-        <h4>Prodotti</h4>
+        <h3>Prodotti</h3>
         <a onclick="go('bot')">Bot MT4 e MT5</a>
         <a onclick="go('app')">Journal</a>
         <a onclick="go('calc')">Calcolatori</a>
@@ -3178,14 +3170,14 @@
       </div>
 
       <div class="f-col">
-        <h4>Informazioni</h4>
+        <h3>Informazioni</h3>
         <a onclick="go('metodo')">Il metodo</a>
         <a onclick="go('faq')">Domande frequenti</a>
         <a href="mailto:supporto@riskly.trade">Assistenza</a>
       </div>
 
       <div class="f-col">
-        <h4>Legale</h4>
+        <h3>Legale</h3>
         <a onclick="go('privacy')">Privacy</a>
         <a onclick="go('termini')">Termini di servizio</a>
         <a onclick="go('termini')">Recesso</a>
@@ -3354,7 +3346,7 @@ async function playRG(){
       const d0 = t>0 ? tappe[t-1][2] : 0;
       disegnaRG(i, false);
       pannelloRG(p0+(perd-p0)*f, d0+(dd-d0)*f, trade, perdite, false, 'Operatività consentita');
-      document.getElementById('progRG').style.width = (i/58*100)+'%';
+      document.getElementById('progRG').style.transform = 'scaleX('+((i/58*100)/100)+')';
       await attesa(90);
     }
     prev = fino;
@@ -3375,7 +3367,7 @@ async function playRG(){
 }
 
 function resetRG(){
-  document.getElementById('progRG').style.width = '0%';
+  document.getElementById('progRG').style.transform = 'scaleX(0)';
   document.getElementById('faseRG').textContent = 'inizio giornata';
   disegnaRG(6, false);
   pannelloRG(0, 0, 0, 0, false, 'Operatività consentita');
@@ -3468,7 +3460,7 @@ async function playTM(){
 
     disegnaTM(i, sl, et, traccia);
     pannelloTM(prezzo, sl, be, trail, stato);
-    document.getElementById('progTM').style.width = (i/cndTM.length*100)+'%';
+    document.getElementById('progTM').style.transform = 'scaleX('+((i/cndTM.length*100)/100)+')';
     await attesa(105);
   }
 
@@ -3480,7 +3472,7 @@ async function playTM(){
 }
 
 function resetTM(){
-  document.getElementById('progTM').style.width = '0%';
+  document.getElementById('progTM').style.transform = 'scaleX(0)';
   document.getElementById('faseTM').textContent = 'posizione aperta';
   disegnaTM(20, SL_TM, 'SL '+SL_TM.toFixed(0), false);
   pannelloTM(cndTM[19].c, SL_TM, 'in attesa 20 pip', 'in attesa 30 pip', 'Posizione aperta');
@@ -3544,7 +3536,7 @@ async function playSI(){
       <div class="row"><b>Posizioni</b><b>1</b></div>
       <div class="row"><b>Rischio totale</b><b class="g">0.42%</b></div>
       <div class="st">● In attesa di replicare…</div>`;
-    document.getElementById('progSI').style.width = (i/cndSI.length*100)+'%';
+    document.getElementById('progSI').style.transform = 'scaleX('+((i/cndSI.length*100)/100)+')';
     await attesa(130);
   }
 
@@ -3605,7 +3597,7 @@ async function playSI(){
         <div class="st g">● Break-even sulle restanti</div>`;
     }
 
-    document.getElementById('progSI').style.width = (i/cndSI.length*100)+'%';
+    document.getElementById('progSI').style.transform = 'scaleX('+((i/cndSI.length*100)/100)+')';
     await attesa(105);
   }
 
@@ -3617,7 +3609,7 @@ async function playSI(){
 }
 
 function resetSI(){
-  document.getElementById('progSI').style.width = '0%';
+  document.getElementById('progSI').style.transform = 'scaleX(0)';
   document.getElementById('faseSI').textContent = 'ordine manuale';
   disegnaSI(20, false, 0, 0);
   document.getElementById('panelSI').innerHTML = `
@@ -4302,7 +4294,7 @@ function aggiornaProgresso(){
   const h = document.documentElement;
   const max = h.scrollHeight - h.clientHeight;
   const p = max > 0 ? (h.scrollTop / max) * 100 : 0;
-  if(_prog) _prog.style.width = p + '%';
+  if(_prog) _prog.style.transform = 'scaleX(' + (p/100) + ')';
 }
 
 /* pulsante torna su */
@@ -4351,8 +4343,6 @@ function apriModulo(tipo, prodotto, prezzo){
   const acquisto = (tipo === 'acquisto');
   const attesa   = (tipo === 'attesa');
 
-  document.getElementById('mod-kicker').textContent =
-    attesa ? 'LISTA D\'ATTESA' : (acquisto ? 'ACQUISTO' : 'PROVA GRATUITA');
 
   document.getElementById('mod-titolo').textContent =
     (attesa && prezzo === 0) ? 'Avvisami quando esce'
@@ -4875,8 +4865,7 @@ function chiediTermini(prodotto){
     ov.className = 'modale on'; ov.style.zIndex = 250;
     ov.innerHTML = `<div class="mod-box" role="dialog" aria-modal="true" aria-labelledby="tc-tit">
       <button class="mod-x" type="button" data-tc="no" aria-label="Chiudi">✕</button>
-      <div class="mod-kicker" style="font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.14em;color:var(--accent)">PRIMA DEL PAGAMENTO</div>
-      <h3 id="tc-tit" style="margin:6px 0 4px">${esc(prodotto)}</h3>
+      <h3 id="tc-tit" style="margin:0 0 4px">${esc(prodotto)}</h3>
       <p style="color:var(--dim);font-size:.86rem;margin-bottom:16px">Per continuare devi accettare entrambe le voci.</p>
       <label class="tc-voce"><input type="checkbox" id="tc-1"><span>Ho letto e accetto i <a href="#termini" data-tc="leggi">Termini e condizioni</a> e l'informativa sui rischi del trading.</span></label>
       <label class="tc-voce"><input type="checkbox" id="tc-2"><span>Chiedo che l'accesso al prodotto digitale inizi subito dopo il pagamento e so che così <b>perdo il diritto di recesso di 14 giorni</b>: non sono previsti rimborsi. Restano validi i diritti di garanzia previsti dalla legge.</span></label>
@@ -5910,7 +5899,6 @@ calcPos(); calcRuin(); calcProp(); calcBE(); calcComp(); setCiclo('a');
     <button class="mod-x" onclick="chiudiModulo()" aria-label="Chiudi">✕</button>
 
     <div class="mod-head">
-      <div class="mod-kicker" id="mod-kicker">RICHIESTA</div>
       <h3 id="mod-titolo">Prova gratuita</h3>
       <p id="mod-sotto">Ti mandiamo il file e la licenza entro un giorno lavorativo.</p>
     </div>
