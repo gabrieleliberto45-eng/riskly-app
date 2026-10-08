@@ -19,11 +19,12 @@ function avvia(){
   try { gl = new THREE.WebGLRenderer({ canvas: cv, antialias: !piccolo, powerPreference: 'high-performance' }); }
   catch(e){ sez.classList.add('senza-3d'); return; }
   gl.setPixelRatio(Math.min(devicePixelRatio || 1, piccolo ? 1.5 : 2));
-  gl.setClearColor(0x040508, 1);
+  const P = window.PAL || { bg:'#0D0E10', acc:'#C9C5BC', accHi:'#F2EFE9', accLo:'#6E6B66', line:'#2A2D32', up:'#5FAE8A', down:'#CC6A61' };
+  gl.setClearColor(P.bg, 1);
 
   const scena = new THREE.Scene();
-  scena.background = new THREE.Color(0x040508);
-  scena.fog = new THREE.FogExp2(0x040508, piccolo ? .022 : .019);
+  scena.background = new THREE.Color(P.bg);
+  scena.fog = new THREE.FogExp2(P.bg, piccolo ? .022 : .019);
   const cam = new THREE.PerspectiveCamera(42, 1, .1, 400);
 
   /* ── prezzi: caos, poi trade A (stop preso), poi trade B (break-even, trailing, uscita in guadagno) ── */
@@ -72,9 +73,9 @@ function avvia(){
   const matC = new THREE.MeshBasicMaterial({ toneMapped: false });
   const corpi = new THREE.InstancedMesh(geoC, matC, N);
   const stoppini = new THREE.InstancedMesh(geoS, new THREE.MeshBasicMaterial({ toneMapped: false }), N);
-  const SU = new THREE.Color(0x2BE38B), GIU = new THREE.Color(0xFF3B5C);
+  const SU = new THREE.Color(P.up), GIU = new THREE.Color(P.down);
   for(let i = 0; i < N; i++){
-    const col = (C[i].c >= C[i].o ? SU : GIU).clone().multiplyScalar(i < 40 ? .38 : 1.0);
+    const col = (C[i].c >= C[i].o ? SU : GIU).clone().multiplyScalar(i < 40 ? .4 : .95);
     corpi.setColorAt(i, col); stoppini.setColorAt(i, col.clone().multiplyScalar(.8));
   }
   scena.add(corpi, stoppini);
@@ -94,13 +95,13 @@ function avvia(){
 
   /* ── pavimento a griglia e polvere nello spazio ── */
   const fondo = Y(Math.min(...C.map(k => k.l))) - 4;
-  const griglia = new THREE.GridHelper(700, 175, 0x1A6A88, 0x10303E);
+  const griglia = new THREE.GridHelper(700, 175, new THREE.Color(P.accLo), new THREE.Color(P.line));
   griglia.material.transparent = true; griglia.material.opacity = .55; griglia.material.depthWrite = false;
   griglia.position.y = fondo; scena.add(griglia);
   const nP = piccolo ? 500 : 1400, posP = new Float32Array(nP * 3);
   for(let i = 0; i < nP; i++){ posP[i*3] = (rnd() - .5) * 220; posP[i*3+1] = fondo + rnd() * 60; posP[i*3+2] = (rnd() - .5) * 160; }
   const polvere = new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.BufferAttribute(posP, 3)),
-    new THREE.PointsMaterial({ color: 0x5CE1FF, size: .18, transparent: true, opacity: .55, depthWrite: false, toneMapped: false }));
+    new THREE.PointsMaterial({ color: new THREE.Color(P.acc), size: .14, transparent: true, opacity: .55, depthWrite: false, toneMapped: false }));
   scena.add(polvere);
 
   /* ── lastre laser: stop (rosso), break-even/trailing (ghiaccio), ingressi e take profit ── */
@@ -121,8 +122,8 @@ function avvia(){
     g.visible = alfa > .01;
     g.userData.mats.forEach((m, k) => { m.transparent = true; m.opacity = (k === 0 ? .16 : 1) * alfa; });
   }
-  const stopA = lastra(0xFF3B5C), ingressoA = lastra(0x7F93AA), stopBL = lastra(0xFF3B5C), ingressoB = lastra(0x7F93AA);
-  const tp = [lastra(0x8B7BFF), lastra(0x8B7BFF), lastra(0x8B7BFF)];
+  const stopA = lastra(P.down), ingressoA = lastra(P.accLo), stopBL = lastra(P.down), ingressoB = lastra(P.accLo);
+  const tp = [lastra(P.accHi), lastra(P.accHi), lastra(P.accHi)];
   [ingressoA, ingressoB].forEach(g => g.userData.piano.visible = false);
   tp.forEach(g => g.userData.piano.visible = false);
 
@@ -131,14 +132,14 @@ function avvia(){
   for(let i = 0; i < nE; i++){ const a = rnd() * Math.PI * 2, b = rnd() * Math.PI - Math.PI / 2, v = .4 + rnd();
     dirE.push(new THREE.Vector3(Math.cos(a) * Math.cos(b) * v, Math.abs(Math.sin(b)) * v * .7, Math.sin(a) * Math.cos(b) * v)); }
   const scintille = new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.BufferAttribute(posE, 3)),
-    new THREE.PointsMaterial({ color: 0xFF6A85, size: .22, transparent: true, opacity: 0, depthWrite: false, toneMapped: false, blending: THREE.AdditiveBlending }));
+    new THREE.PointsMaterial({ color: new THREE.Color(P.down), size: .22, transparent: true, opacity: 0, depthWrite: false, toneMapped: false, blending: THREE.AdditiveBlending }));
   scena.add(scintille);
   let tEsplosione = -1;
 
   /* ── post-produzione: bagliore ── */
   const comp = new EffectComposer(gl);
   comp.addPass(new RenderPass(scena, cam));
-  const bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), piccolo ? .55 : .72, .38, .32);
+  const bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), piccolo ? .35 : .45, .35, .45);
   comp.addPass(bloom);
   comp.addPass(new OutputPass());
 
@@ -246,7 +247,7 @@ function avvia(){
     const aB = THREE.MathUtils.clamp((riv - 56.6) * 1.5, 0, 1);
     const sB = iB >= 56 ? stopB[iB] : E - 1;
     const prima = sB < E - .001;
-    stopBL.userData.mats.forEach(m => m.color && m.color.set(prima ? 0xFF3B5C : 0x5CE1FF));
+    stopBL.userData.mats.forEach(m => m.color && m.color.set(prima ? P.down : P.acc));
     stopBL.userData.mats[3].color.multiplyScalar(2);
     const yS = stopBL.position.y || Y(E - 1);
     stendi(stopBL, X(55.5), X(Math.max(riv, 56.6)), THREE.MathUtils.lerp(yS, Y(sB), fermo ? 1 : .18), aB);

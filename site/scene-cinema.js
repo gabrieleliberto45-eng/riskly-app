@@ -8,6 +8,8 @@
    - Riquadri che si inclinano e si illuminano sotto il mouse (solo con mouse).
    Con "riduci movimento" attivo le scene restano ferme e i riquadri non si inclinano. */
 (function(){
+  const PAL_ = window.PAL || { acc:'#C9C5BC', accHi:'#F2EFE9', accRgb:'201,197,188', accHiRgb:'242,239,233' };
+  const A = PAL_.accRgb, AH = PAL_.accHiRgb, D = '204,106,97', U = '95,174,138';
   const fermo = matchMedia('(prefers-reduced-motion: reduce)').matches;
   let mx = 0, my = 0, tx = 0, ty = 0;
   addEventListener('pointermove', e => { tx = e.clientX / innerWidth * 2 - 1; ty = e.clientY / innerHeight * 2 - 1; }, { passive: true });
@@ -37,7 +39,7 @@
           i ? cx.lineTo(sx, sy) : cx.moveTo(sx, sy);
         }
         const al = .05 + prof * prof * .42;
-        cx.strokeStyle = rosso > punti * .12 ? `rgba(255,59,92,${al * .9})` : `rgba(92,225,255,${al})`;
+        cx.strokeStyle = rosso > punti * .12 ? `rgba(${D},${al * .9})` : `rgba(${A},${al})`;
         cx.lineWidth = .6 + prof * 1.1; cx.stroke();
       }
       const y0 = orizzonte - H * (piccolo ? .1 : .06), pend = H * (piccolo ? .06 : .13), linea = [];
@@ -60,14 +62,14 @@
         const r = rng(k * 7 + 3);
         const hi = Math.min(a, b) - r() * 16, lo = Math.max(a, b) + r() * 16;
         const tocca = lo >= stop - 2, su = b < a;
-        const col = tocca ? '255,59,92' : (su ? '74,222,128' : '92,225,255');
+        const col = tocca ? `${D}` : (su ? `${U}` : `${A}`);
         const al = .16 + .22 * Math.sin(Math.PI * i / n);
         cx.strokeStyle = `rgba(${col},${al})`; cx.fillStyle = `rgba(${col},${al})`; cx.lineWidth = 1.2;
         cx.beginPath(); cx.moveTo(x, hi); cx.lineTo(x, Math.min(lo, stop)); cx.stroke();
         cx.fillRect(x - passo * .28, Math.min(a, b), passo * .56, Math.max(2, Math.abs(b - a)));
       }
       cx.save(); cx.setLineDash([10, 9]); cx.lineDashOffset = -t * 30;
-      cx.strokeStyle = 'rgba(255,59,92,.55)'; cx.lineWidth = 2;
+      cx.strokeStyle = `rgba(${D},.55)`; cx.lineWidth = 2;
       cx.beginPath(); cx.moveTo(0, stop); cx.lineTo(W, stop); cx.stroke(); cx.restore();
     },
 
@@ -86,7 +88,7 @@
         }
         finali.push(y);
         const male = y > y0 + H * .2;
-        cx.strokeStyle = male ? 'rgba(255,59,92,.3)' : 'rgba(92,225,255,.24)';
+        cx.strokeStyle = male ? `rgba(${D},.3)` : `rgba(${A},.24)`;
         cx.lineWidth = 1; cx.stroke();
       }
       /* percorso tipico, più luminoso */
@@ -106,7 +108,7 @@
         const x = i * gap + gap * .2 + mx * 10 * (u - .5);
         const g = cx.createLinearGradient(0, base - h, 0, base);
         const a = .10 + u * .22;
-        g.addColorStop(0, `rgba(120,232,255,${a + .1})`); g.addColorStop(1, 'rgba(92,225,255,0)');
+        g.addColorStop(0, `rgba(${A},${a + .1})`); g.addColorStop(1, `rgba(${A},0)`);
         cx.fillStyle = g; cx.fillRect(x, base - h, gap * .6, h);
         punti.push([x + gap * .3, base - h - 10]);
       }
@@ -124,13 +126,13 @@
       }
       for(let i = 0; i < n; i++) for(let j = i + 1; j < n; j++){
         const dx = pts[i][0] - pts[j][0], dy = pts[i][1] - pts[j][1], d = Math.hypot(dx, dy);
-        if(d < lim){ cx.strokeStyle = `rgba(92,225,255,${(1 - d / lim) * .28})`; cx.lineWidth = 1;
+        if(d < lim){ cx.strokeStyle = `rgba(${A},${(1 - d / lim) * .28})`; cx.lineWidth = 1;
           cx.beginPath(); cx.moveTo(pts[i][0], pts[i][1]); cx.lineTo(pts[j][0], pts[j][1]); cx.stroke(); }
       }
       for(const [x, y, k] of pts){
         const luce = k > .82;
-        cx.save(); cx.fillStyle = luce ? '#B2F2FF' : 'rgba(120,232,255,.55)';
-        if(luce){ cx.shadowColor = '#78E8FF'; cx.shadowBlur = 14; }
+        cx.save(); cx.fillStyle = luce ? `${PAL_.accHi}` : `rgba(${A},.55)`;
+        if(luce){ cx.shadowColor = `${PAL_.acc}`; cx.shadowBlur = 14; }
         cx.beginPath(); cx.arc(x, y, luce ? 3 : 1.8, 0, Math.PI * 2); cx.fill(); cx.restore();
       }
     },
@@ -142,23 +144,23 @@
       for(let k = 0; k < 22; k++){                         // linee trasversali
         const z = 1 + k - avanti, y = oriz + f / z * .55;
         if(y > H) continue;
-        cx.strokeStyle = `rgba(92,225,255,${Math.min(.35, .5 / z)})`; cx.lineWidth = 1;
+        cx.strokeStyle = `rgba(${A},${Math.min(.35, .5 / z)})`; cx.lineWidth = 1;
         cx.beginPath(); cx.moveTo(0, y); cx.lineTo(W, y); cx.stroke();
       }
       for(let k = -14; k <= 14; k++){                      // linee verso l'orizzonte
         const xb = cxp + k * W * .09;
-        cx.strokeStyle = `rgba(92,225,255,${k === 0 ? 0 : .14})`; cx.lineWidth = 1;
+        cx.strokeStyle = `rgba(${A},${k === 0 ? 0 : .14})`; cx.lineWidth = 1;
         cx.beginPath(); cx.moveTo(cxp + (xb - cxp) * .04, oriz); cx.lineTo(xb + (xb - cxp) * 1.5, H * 1.3); cx.stroke();
       }
       /* la strada: due bordi luminosi */
       for(const lato of [-1, 1]){
         const g = cx.createLinearGradient(0, oriz, 0, H);
-        g.addColorStop(0, 'rgba(178,242,255,0)'); g.addColorStop(1, 'rgba(178,242,255,.9)');
-        cx.save(); cx.strokeStyle = g; cx.lineWidth = 2.5; cx.shadowColor = '#78E8FF'; cx.shadowBlur = 14;
+        g.addColorStop(0, `rgba(${AH},0)`); g.addColorStop(1, `rgba(${AH},.9)`);
+        cx.save(); cx.strokeStyle = g; cx.lineWidth = 2.5; cx.shadowColor = `${PAL_.acc}`; cx.shadowBlur = 14;
         cx.beginPath(); cx.moveTo(cxp + lato * 3, oriz); cx.lineTo(cxp + lato * W * .16, H * 1.05); cx.stroke(); cx.restore();
       }
       const sole = cx.createRadialGradient(cxp, oriz, 0, cxp, oriz, W * .25);
-      sole.addColorStop(0, 'rgba(178,242,255,.35)'); sole.addColorStop(1, 'rgba(178,242,255,0)');
+      sole.addColorStop(0, `rgba(${AH},.35)`); sole.addColorStop(1, `rgba(${AH},0)`);
       cx.fillStyle = sole; cx.fillRect(0, 0, W, H);
     },
 
@@ -174,10 +176,10 @@
           i ? cx.lineTo(x, y) : cx.moveTo(x, y);
         }
         const g = cx.createLinearGradient(0, 0, W, 0);
-        const c = ver ? '178,242,255' : '92,225,255', a = ver ? .75 : .18 + n * .03;
+        const c = ver ? `${AH}` : `${A}`, a = ver ? .75 : .18 + n * .03;
         g.addColorStop(0, `rgba(${c},0)`); g.addColorStop(.3, `rgba(${c},${a})`); g.addColorStop(.7, `rgba(${c},${a})`); g.addColorStop(1, `rgba(${c},0)`);
         cx.save(); cx.strokeStyle = g; cx.lineWidth = ver ? 2.5 : 1.2;
-        if(ver){ cx.shadowColor = 'rgba(120,232,255,.9)'; cx.shadowBlur = 16; }
+        if(ver){ cx.shadowColor = `rgba(${A},.9)`; cx.shadowBlur = 16; }
         cx.stroke(); cx.restore();
       }
     }
@@ -187,15 +189,15 @@
   function lineaLuce(cx, W, linea, t, finoAllaFine){
     if(linea.length < 2) return;
     const g = cx.createLinearGradient(0, 0, W, 0);
-    g.addColorStop(0, 'rgba(120,232,255,0)'); g.addColorStop(.25, 'rgba(120,232,255,.85)');
-    g.addColorStop(.75, 'rgba(178,242,255,1)'); g.addColorStop(1, finoAllaFine ? 'rgba(178,242,255,1)' : 'rgba(178,242,255,0)');
+    g.addColorStop(0, `rgba(${A},0)`); g.addColorStop(.25, `rgba(${A},.85)`);
+    g.addColorStop(.75, `rgba(${AH},1)`); g.addColorStop(1, finoAllaFine ? `rgba(${AH},1)` : `rgba(${AH},0)`);
     for(const [lw, a, bl] of [[10, .18, 24], [3, 1, 10]]){
-      cx.save(); cx.shadowColor = 'rgba(120,232,255,.9)'; cx.shadowBlur = bl; cx.globalAlpha = a;
+      cx.save(); cx.shadowColor = `rgba(${A},.9)`; cx.shadowBlur = bl; cx.globalAlpha = a;
       cx.strokeStyle = g; cx.lineWidth = lw; cx.lineJoin = 'round'; cx.lineCap = 'round';
       cx.beginPath(); linea.forEach(([x, y], i) => i ? cx.lineTo(x, y) : cx.moveTo(x, y)); cx.stroke(); cx.restore();
     }
     const [px, py] = finoAllaFine ? linea[linea.length - 1] : linea[Math.floor(((t * .08) % 1) * (linea.length - 1))];
-    cx.save(); cx.fillStyle = '#E6FBFF'; cx.shadowColor = '#78E8FF'; cx.shadowBlur = 22;
+    cx.save(); cx.fillStyle = `${PAL_.accHi}`; cx.shadowColor = `${PAL_.acc}`; cx.shadowBlur = 22;
     cx.beginPath(); cx.arc(px, py, 4.5, 0, Math.PI * 2); cx.fill(); cx.restore();
   }
 
