@@ -649,5 +649,408 @@
     ]
    }
   ]
+ },
+ {
+  "id": "s04-ltcm",
+  "titolo": "Due premi Nobel e un fondo che perse 4,6 miliardi",
+  "segmenti": [
+   {
+    "cartello": "AGOSTO 1998 · CONNECTICUT",
+    "voce": "Due premi Nobel, i migliori matematici di Wall Street. E un fondo che in quattro mesi perde quattro miliardi e seicento milioni di dollari.",
+    "battute": [
+     {
+      "su": "nobel",
+      "azione": "testo",
+      "testo": "2 PREMI NOBEL",
+      "y": 9.8,
+      "colore": "lime",
+      "id": "nob",
+      "camera": {
+       "pos": [
+        0,
+        6.5,
+        17
+       ],
+       "guarda": [
+        0,
+        6.3,
+        0
+       ]
+      }
+     },
+     {
+      "su": "fondo",
+      "azione": "torre",
+      "x": 0,
+      "id": "t"
+     },
+     {
+      "su": "miliardi",
+      "azione": "testo",
+      "testo": "−4,6 MLD $",
+      "y": 8.4,
+      "colore": "rosso",
+      "alto": 1.4
+     }
+    ]
+   },
+   {
+    "voce": "Si chiamava Long-Term Capital Management. Scommetteva su piccole differenze di prezzo tra obbligazioni, e per guadagnare abbastanza usava una leva di circa venticinque a uno.",
+    "battute": [
+     {
+      "su": "long",
+      "azione": "testo",
+      "testo": "LTCM",
+      "x": -20,
+      "y": 9.8,
+      "colore": "lime",
+      "camera": {
+       "pos": [
+        -20,
+        6.5,
+        17
+       ],
+       "guarda": [
+        -20,
+        6.3,
+        0
+       ]
+      }
+     },
+     {
+      "su": "differenze",
+      "azione": "grafico",
+      "tipo": "crollo",
+      "livello": 6,
+      "x": -20,
+      "id": "g"
+     },
+     {
+      "su": "venticinque",
+      "azione": "contatore",
+      "prefisso": "LEVA ",
+      "a": 25,
+      "suffisso": ":1",
+      "x": -20,
+      "y": 8.4,
+      "alto": 1.3,
+      "colore": "oro"
+     }
+    ]
+   },
+   {
+    "cartello": "17 AGOSTO 1998 · MOSCA",
+    "voce": "Poi la Russia smette di pagare i suoi debiti. Gli investitori di tutto il mondo scappano verso i titoli più sicuri, e le differenze su cui il fondo scommetteva si allargano invece di chiudersi.",
+    "battute": [
+     {
+      "su": "russia",
+      "azione": "testo",
+      "testo": "LA RUSSIA NON PAGA",
+      "x": -20,
+      "y": 9.8,
+      "colore": "rosso",
+      "alto": 1.1
+     },
+     {
+      "su": "allargano",
+      "azione": "crollo_ora",
+      "chi": "g"
+     },
+     {
+      "su": "invece",
+      "azione": "crolla",
+      "gruppo": "t",
+      "camera": {
+       "pos": [
+        0,
+        6.5,
+        17
+       ],
+       "guarda": [
+        0,
+        6.3,
+        0
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "cartello": "SETTEMBRE 1998 · NEW YORK",
+    "voce": "Il fondo è così grande che la Fed di New York riunisce quattordici banche. Mettono tre miliardi e seicento milioni di dollari per evitare che il crollo trascini tutto il sistema.",
+    "battute": [
+     {
+      "su": "fed",
+      "azione": "palazzi",
+      "nomi": [
+       "FED NEW YORK"
+      ],
+      "x": 40,
+      "id": "fed",
+      "camera": {
+       "pos": [
+        40,
+        6.5,
+        17
+       ],
+       "guarda": [
+        40,
+        6.3,
+        0
+       ]
+      }
+     },
+     {
+      "su": "quattordici",
+      "azione": "contatore",
+      "a": 14,
+      "suffisso": " BANCHE",
+      "x": 40,
+      "y": 9.8,
+      "alto": 1.3,
+      "colore": "bianco",
+      "prefisso": ""
+     },
+     {
+      "su": "tre",
+      "azione": "testo",
+      "testo": "3,6 MLD $ PER SALVARLO",
+      "x": 40,
+      "y": 2.3,
+      "colore": "oro",
+      "alto": 0.9
+     }
+    ]
+   },
+   {
+    "voce": "La lezione: anche il modello più intelligente può sbagliare, e con tanta leva basta un solo errore. Riskly Pro calcola il rischio su tutte le posizioni insieme, prima che tu apra la prossima. Seguici per altre storie di rischio.",
+    "battute": [
+     {
+      "su": "lezione",
+      "azione": "testo",
+      "testo": "MODELLO ≠ GARANZIA",
+      "x": 80,
+      "y": 9.8,
+      "colore": "bianco",
+      "alto": 1,
+      "camera": {
+       "pos": [
+        80,
+        6.5,
+        17
+       ],
+       "guarda": [
+        80,
+        6.3,
+        0
+       ]
+      }
+     },
+     {
+      "su": "riskly",
+      "azione": "scudo",
+      "nome": "RISKLY PRO",
+      "x": 80,
+      "y": 6
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "s05-knight",
+  "titolo": "45 minuti, 440 milioni: il programma che nessuno fermò",
+  "segmenti": [
+   {
+    "cartello": "1 AGOSTO 2012 · NEW YORK",
+    "voce": "Quarantacinque minuti. Tanto basta a un programma di trading fuori controllo per far perdere a una società quattrocentoquaranta milioni di dollari.",
+    "battute": [
+     {
+      "su": "quarantacinque",
+      "azione": "contatore",
+      "a": 45,
+      "suffisso": " MINUTI",
+      "y": 9.8,
+      "alto": 1.5,
+      "colore": "bianco",
+      "id": "min",
+      "camera": {
+       "pos": [
+        0,
+        6.5,
+        17
+       ],
+       "guarda": [
+        0,
+        6.3,
+        0
+       ]
+      },
+      "prefisso": ""
+     },
+     {
+      "su": "programma",
+      "azione": "grafico",
+      "tipo": "sale",
+      "livello": 5,
+      "x": 0,
+      "id": "g"
+     },
+     {
+      "su": "quattrocentoquaranta",
+      "azione": "contatore",
+      "prefisso": "−",
+      "a": 440,
+      "suffisso": " MLN $",
+      "y": 2.3,
+      "alto": 1.3,
+      "colore": "rosso"
+     }
+    ]
+   },
+   {
+    "voce": "La società si chiamava Knight Capital, uno dei più grandi operatori della borsa americana. Quella mattina installa un nuovo software, ma su uno dei suoi server resta attivo un vecchio codice.",
+    "battute": [
+     {
+      "su": "knight",
+      "azione": "palazzi",
+      "nomi": [
+       "KNIGHT CAPITAL"
+      ],
+      "x": 40,
+      "id": "kn",
+      "camera": {
+       "pos": [
+        40,
+        6.5,
+        17
+       ],
+       "guarda": [
+        40,
+        6.3,
+        0
+       ]
+      }
+     },
+     {
+      "su": "vecchio",
+      "azione": "testo",
+      "testo": "VECCHIO CODICE ATTIVO",
+      "x": 40,
+      "y": 9.8,
+      "colore": "rosso",
+      "alto": 1
+     }
+    ]
+   },
+   {
+    "cartello": "ORE 9:30 · APERTURA",
+    "voce": "All'apertura il programma inizia a mandare ordini da solo, milioni di ordini, comprando caro e rivendendo a meno. Nessun limite lo ferma.",
+    "battute": [
+     {
+      "su": "apertura",
+      "azione": "grafico",
+      "tipo": "scende",
+      "livello": 6,
+      "x": -20,
+      "camera": {
+       "pos": [
+        -20,
+        6.5,
+        17
+       ],
+       "guarda": [
+        -20,
+        6.3,
+        0
+       ]
+      }
+     },
+     {
+      "su": "milioni",
+      "azione": "testo",
+      "testo": "OLTRE 4 MILIONI DI ESECUZIONI",
+      "x": -20,
+      "y": 9.8,
+      "colore": "oro",
+      "alto": 0.9
+     },
+     {
+      "su": "nessun",
+      "azione": "testo",
+      "testo": "NESSUN LIMITE",
+      "x": -20,
+      "y": 2.3,
+      "colore": "rosso",
+      "alto": 1.2
+     }
+    ]
+   },
+   {
+    "voce": "Quando lo spengono, il danno è fatto. Il titolo crolla, e pochi giorni dopo la società deve farsi salvare da un gruppo di investitori.",
+    "battute": [
+     {
+      "su": "titolo",
+      "azione": "crolla",
+      "gruppo": "kn",
+      "nome": "KNIGHT CAPITAL",
+      "camera": {
+       "pos": [
+        40,
+        6.5,
+        17
+       ],
+       "guarda": [
+        40,
+        6.3,
+        0
+       ]
+      }
+     },
+     {
+      "su": "salvare",
+      "azione": "testo",
+      "testo": "SALVATA DA INVESTITORI",
+      "x": 40,
+      "y": 9.8,
+      "colore": "oro",
+      "alto": 1
+     }
+    ]
+   },
+   {
+    "voce": "La lezione: un sistema automatico senza limiti è il rischio più grande. I bot di Riskly non aprono operazioni da soli, e RiskGuard ha un massimo di operazioni al giorno e ti ferma al limite di perdita. Seguici per altre storie di rischio.",
+    "battute": [
+     {
+      "su": "lezione",
+      "azione": "testo",
+      "testo": "AUTOMATICO ≠ SENZA LIMITI",
+      "x": 80,
+      "y": 9.8,
+      "colore": "bianco",
+      "alto": 0.9,
+      "camera": {
+       "pos": [
+        80,
+        6.5,
+        17
+       ],
+       "guarda": [
+        80,
+        6.3,
+        0
+       ]
+      }
+     },
+     {
+      "su": "riskguard",
+      "azione": "scudo",
+      "nome": "RISKGUARD",
+      "x": 80,
+      "y": 6
+     }
+    ]
+   }
+  ]
  }
 ]

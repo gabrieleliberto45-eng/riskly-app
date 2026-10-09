@@ -1,370 +1,420 @@
 [
-  {
-    "id": "c01-lotto",
-    "titolo": "Il lotto non si sceglie a occhio",
-    "slide": [
-      {
-        "tipo": "copertina",
-        "testo": "Il lotto <mark>non si sceglie</mark> a occhio.",
-        "sotto": "La formula in 4 slide. Salvala."
-      },
-      {
-        "tipo": "testo",
-        "titolo": "La formula",
-        "testo": "<b>Lotti = rischio in $ ÷ (stop in pip × valore del pip)</b>",
-        "nota": "Su EURUSD 1 pip vale circa 10 $ per lotto."
-      },
-      {
-        "tipo": "numeri",
-        "titolo": "Un esempio",
-        "righe": [
-          [
-            "Conto",
-            "10.000 $"
-          ],
-          [
-            "Rischio 1%",
-            "100 $"
-          ],
-          [
-            "Stop",
-            "25 pip"
-          ],
-          [
-            "100 ÷ (25 × 10)",
-            "<mark>0,40 lotti</mark>"
-          ]
-        ]
-      },
-      {
-        "tipo": "numeri",
-        "titolo": "Stesso rischio, stop diverso",
-        "righe": [
-          [
-            "Stop 10 pip",
-            "1,00 lotto"
-          ],
-          [
-            "Stop 25 pip",
-            "0,40 lotti"
-          ],
-          [
-            "Stop 50 pip",
-            "0,20 lotti"
-          ]
-        ],
-        "nota": "In tutti e tre i casi rischi 100 $. Prima decidi lo stop, poi il lotto."
-      },
-      {
-        "tipo": "domanda",
-        "testo": "Tu il lotto <mark>lo calcoli</mark> o vai a occhio?",
-        "sotto": "Scrivilo nei commenti 👇",
-        "link": "Calcolatore gratuito su riskly.trade"
-      }
+ {
+  "id": "c01-lotto",
+  "titolo": "Il lotto non si sceglie a occhio",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "Il lotto <mark>non si sceglie</mark> a occhio.",
+    "sotto": "La formula in 4 slide. Salvala."
+   },
+   {
+    "tipo": "testo",
+    "titolo": "La formula",
+    "testo": "<b>Lotti = rischio in $ ÷ (stop in pip × valore del pip)</b>",
+    "nota": "Su EURUSD 1 pip vale circa 10 $ per lotto."
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "Un esempio",
+    "righe": [
+     [
+      "Conto",
+      "10.000 $"
+     ],
+     [
+      "Rischio 1%",
+      "100 $"
+     ],
+     [
+      "Stop",
+      "25 pip"
+     ],
+     [
+      "100 ÷ (25 × 10)",
+      "<mark>0,40 lotti</mark>"
+     ]
     ]
-  },
-  {
-    "id": "c02-breakeven",
-    "titolo": "Break-even troppo presto",
-    "slide": [
-      {
-        "tipo": "copertina",
-        "testo": "Break-even a 5 pip. Ti senti al sicuro. <mark>Ti stai tagliando i profitti.</mark>",
-        "sotto": "Scorri →"
-      },
-      {
-        "tipo": "testo",
-        "titolo": "Il prezzo respira",
-        "testo": "Molti trade buoni tornano verso l'ingresso prima di partire. Con lo stop a pareggio troppo vicino, ti chiudono a zero proprio quelli."
-      },
-      {
-        "tipo": "numeri",
-        "titolo": "100 trade, esempio semplificato",
-        "righe": [
-          [
-            "40 vincenti da +2R",
-            "+80R"
-          ],
-          [
-            "60 perdenti da −1R",
-            "−60R"
-          ],
-          [
-            "Risultato",
-            "+20R"
-          ],
-          [
-            "Se 15 vincenti chiudono a pareggio",
-            "<mark>−10R</mark>"
-          ]
-        ],
-        "nota": "25 × 2R = +50R, meno 60R di perdite."
-      },
-      {
-        "tipo": "testo",
-        "titolo": "Ma serve anche a salvare dei trade",
-        "testo": "Il break-even salva anche dei perdenti. Per questo non va spostato a sensazione: decidi una regola scritta, per esempio dopo 1R."
-      },
-      {
-        "tipo": "domanda",
-        "testo": "Dopo quanti pip <mark>lo sposti tu?</mark>",
-        "sotto": "Scrivi il numero nei commenti 👇",
-        "link": "TradeManager lo fa con le tue regole, dal 23 ottobre"
-      }
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "Stesso rischio, stop diverso",
+    "righe": [
+     [
+      "Stop 10 pip",
+      "1,00 lotto"
+     ],
+     [
+      "Stop 25 pip",
+      "0,40 lotti"
+     ],
+     [
+      "Stop 50 pip",
+      "0,20 lotti"
+     ]
+    ],
+    "nota": "In tutti e tre i casi rischi 100 $. Prima decidi lo stop, poi il lotto."
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Tu il lotto <mark>lo calcoli</mark> o vai a occhio?",
+    "sotto": "Scrivilo nei commenti 👇",
+    "link": "Calcolatore gratuito su riskly.trade"
+   }
+  ]
+ },
+ {
+  "id": "c02-breakeven",
+  "titolo": "Break-even troppo presto",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "Break-even a 5 pip. Ti senti al sicuro. <mark>Ti stai tagliando i profitti.</mark>",
+    "sotto": "Scorri →"
+   },
+   {
+    "tipo": "testo",
+    "titolo": "Il prezzo respira",
+    "testo": "Molti trade buoni tornano verso l'ingresso prima di partire. Con lo stop a pareggio troppo vicino, ti chiudono a zero proprio quelli."
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "100 trade, esempio semplificato",
+    "righe": [
+     [
+      "40 vincenti da +2R",
+      "+80R"
+     ],
+     [
+      "60 perdenti da −1R",
+      "−60R"
+     ],
+     [
+      "Risultato",
+      "+20R"
+     ],
+     [
+      "Se 15 vincenti chiudono a pareggio",
+      "<mark>−10R</mark>"
+     ]
+    ],
+    "nota": "25 × 2R = +50R, meno 60R di perdite."
+   },
+   {
+    "tipo": "testo",
+    "titolo": "Ma serve anche a salvare dei trade",
+    "testo": "Il break-even salva anche dei perdenti. Per questo non va spostato a sensazione: decidi una regola scritta, per esempio dopo 1R."
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Dopo quanti pip <mark>lo sposti tu?</mark>",
+    "sotto": "Scrivi il numero nei commenti 👇",
+    "link": "TradeManager lo fa con le tue regole, dal 23 ottobre"
+   }
+  ]
+ },
+ {
+  "id": "c03-propfirm",
+  "titolo": "Il limite giornaliero della prop firm",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "Il limite giornaliero è il 5%. <mark>Tu fermati al 4%.</mark>",
+    "sotto": "Per chi fa challenge. Scorri →"
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "Su un conto da 100.000 $",
+    "righe": [
+     [
+      "Limite della prop",
+      "5.000 $"
+     ],
+     [
+      "Il tuo stop giornaliero",
+      "4.000 $"
+     ],
+     [
+      "Margine",
+      "<mark>1.000 $</mark>"
+     ]
     ]
-  },
-  {
-    "id": "c03-propfirm",
-    "titolo": "Il limite giornaliero della prop firm",
-    "slide": [
-      {
-        "tipo": "copertina",
-        "testo": "Il limite giornaliero è il 5%. <mark>Tu fermati al 4%.</mark>",
-        "sotto": "Per chi fa challenge. Scorri →"
-      },
-      {
-        "tipo": "numeri",
-        "titolo": "Su un conto da 100.000 $",
-        "righe": [
-          [
-            "Limite della prop",
-            "5.000 $"
-          ],
-          [
-            "Il tuo stop giornaliero",
-            "4.000 $"
-          ],
-          [
-            "Margine",
-            "<mark>1.000 $</mark>"
-          ]
-        ]
-      },
-      {
-        "tipo": "testo",
-        "titolo": "Perché il margine",
-        "testo": "Lo stop può essere eseguito peggio del previsto (slippage). E molte prop calcolano il limite sull'equity, cioè contando anche le posizioni ancora aperte."
-      },
-      {
-        "tipo": "numeri",
-        "titolo": "Con l'1% a operazione",
-        "righe": [
-          [
-            "1ª perdita",
-            "−1%"
-          ],
-          [
-            "2ª perdita",
-            "−2%"
-          ],
-          [
-            "3ª perdita",
-            "−3%"
-          ],
-          [
-            "4ª perdita",
-            "<mark>−4% · stop</mark>"
-          ]
-        ],
-        "nota": "Quattro perdite di fila e la giornata è finita. Senza eccezioni."
-      },
-      {
-        "tipo": "domanda",
-        "testo": "Quante challenge hai perso <mark>per il limite giornaliero?</mark>",
-        "sotto": "Rispondi sinceramente 👇",
-        "link": "RiskGuard ti ferma prima del limite, dal 23 ottobre"
-      }
+   },
+   {
+    "tipo": "testo",
+    "titolo": "Perché il margine",
+    "testo": "Lo stop può essere eseguito peggio del previsto (slippage). E molte prop calcolano il limite sull'equity, cioè contando anche le posizioni ancora aperte."
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "Con l'1% a operazione",
+    "righe": [
+     [
+      "1ª perdita",
+      "−1%"
+     ],
+     [
+      "2ª perdita",
+      "−2%"
+     ],
+     [
+      "3ª perdita",
+      "−3%"
+     ],
+     [
+      "4ª perdita",
+      "<mark>−4% · stop</mark>"
+     ]
+    ],
+    "nota": "Quattro perdite di fila e la giornata è finita. Senza eccezioni."
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Quante challenge hai perso <mark>per il limite giornaliero?</mark>",
+    "sotto": "Rispondi sinceramente 👇",
+    "link": "RiskGuard ti ferma prima del limite, dal 23 ottobre"
+   }
+  ]
+ },
+ {
+  "id": "c04-winrate",
+  "titolo": "Vinci 3 trade su 10 e sei in profitto",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "Vinci 3 trade su 10. <mark>E sei in profitto.</mark>",
+    "sotto": "Il winrate da solo non dice niente →"
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "10 trade, rischio 1R ciascuno",
+    "righe": [
+     [
+      "3 vincenti da +3R",
+      "+9R"
+     ],
+     [
+      "7 perdenti da −1R",
+      "−7R"
+     ],
+     [
+      "Totale",
+      "<mark>+2R</mark>"
+     ]
+    ],
+    "nota": "Prima di costi e commissioni."
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "Winrate minimo per andare in pari",
+    "righe": [
+     [
+      "Vinci 0,5R, perdi 1R",
+      "67%"
+     ],
+     [
+      "Vinci 1R, perdi 1R",
+      "50%"
+     ],
+     [
+      "Vinci 2R, perdi 1R",
+      "33%"
+     ],
+     [
+      "Vinci 3R, perdi 1R",
+      "<mark>25%</mark>"
+     ]
     ]
-  },
-  {
-    "id": "c04-winrate",
-    "titolo": "Vinci 3 trade su 10 e sei in profitto",
-    "slide": [
-      {
-        "tipo": "copertina",
-        "testo": "Vinci 3 trade su 10. <mark>E sei in profitto.</mark>",
-        "sotto": "Il winrate da solo non dice niente →"
-      },
-      {
-        "tipo": "numeri",
-        "titolo": "10 trade, rischio 1R ciascuno",
-        "righe": [
-          [
-            "3 vincenti da +3R",
-            "+9R"
-          ],
-          [
-            "7 perdenti da −1R",
-            "−7R"
-          ],
-          [
-            "Totale",
-            "<mark>+2R</mark>"
-          ]
-        ],
-        "nota": "Prima di costi e commissioni."
-      },
-      {
-        "tipo": "numeri",
-        "titolo": "Winrate minimo per andare in pari",
-        "righe": [
-          [
-            "Vinci 0,5R, perdi 1R",
-            "67%"
-          ],
-          [
-            "Vinci 1R, perdi 1R",
-            "50%"
-          ],
-          [
-            "Vinci 2R, perdi 1R",
-            "33%"
-          ],
-          [
-            "Vinci 3R, perdi 1R",
-            "<mark>25%</mark>"
-          ]
-        ]
-      },
-      {
-        "tipo": "testo",
-        "titolo": "La domanda giusta",
-        "testo": "Non «quante volte vinco?», ma «quanto vinco quando vinco, e quanto perdo quando perdo?». Senza un journal non lo sai."
-      },
-      {
-        "tipo": "domanda",
-        "testo": "Il tuo winrate e il tuo rapporto? <mark>Scrivili.</mark>",
-        "sotto": "Nei commenti, anche a occhio 👇",
-        "link": "Journal Riskly: 7 giorni gratis su riskly.trade"
-      }
+   },
+   {
+    "tipo": "testo",
+    "titolo": "La domanda giusta",
+    "testo": "Non «quante volte vinco?», ma «quanto vinco quando vinco, e quanto perdo quando perdo?». Senza un journal non lo sai."
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Il tuo winrate e il tuo rapporto? <mark>Scrivili.</mark>",
+    "sotto": "Nei commenti, anche a occhio 👇",
+    "link": "Journal Riskly: 7 giorni gratis su riskly.trade"
+   }
+  ]
+ },
+ {
+  "id": "c05-frasi",
+  "titolo": "5 frasi che bruciano un conto",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "5 frasi che <mark>bruciano un conto.</mark>",
+    "sotto": "Quante ne hai dette? →"
+   },
+   {
+    "tipo": "frasi",
+    "voci": [
+     [
+      "1",
+      "«Lo stop lo metto dopo.»",
+      "Lo stop si mette prima di entrare."
+     ],
+     [
+      "2",
+      "«Recupero e chiudo.»",
+      "Dopo una perdita si rallenta, non si raddoppia."
+     ]
     ]
-  },
-  {
-    "id": "c05-frasi",
-    "titolo": "5 frasi che bruciano un conto",
-    "slide": [
-      {
-        "tipo": "copertina",
-        "testo": "5 frasi che <mark>bruciano un conto.</mark>",
-        "sotto": "Quante ne hai dette? →"
-      },
-      {
-        "tipo": "frasi",
-        "voci": [
-          [
-            "1",
-            "«Lo stop lo metto dopo.»",
-            "Lo stop si mette prima di entrare."
-          ],
-          [
-            "2",
-            "«Recupero e chiudo.»",
-            "Dopo una perdita si rallenta, non si raddoppia."
-          ]
-        ]
-      },
-      {
-        "tipo": "frasi",
-        "voci": [
-          [
-            "3",
-            "«Stavolta è diverso.»",
-            "Il piano vale anche oggi."
-          ],
-          [
-            "4",
-            "«Tanto torna.»",
-            "Il mercato non sa dove hai messo lo stop."
-          ]
-        ]
-      },
-      {
-        "tipo": "frasi",
-        "voci": [
-          [
-            "5",
-            "«Supero il limite di poco.»",
-            "Il limite è un muro, non un consiglio."
-          ]
-        ]
-      },
-      {
-        "tipo": "domanda",
-        "testo": "Quale hai detto <mark>più spesso?</mark>",
-        "sotto": "Scrivi il numero nei commenti 👇",
-        "link": "Guida gratuita «Le 7 regole di rischio» su riskly.trade"
-      }
+   },
+   {
+    "tipo": "frasi",
+    "voci": [
+     [
+      "3",
+      "«Stavolta è diverso.»",
+      "Il piano vale anche oggi."
+     ],
+     [
+      "4",
+      "«Tanto torna.»",
+      "Il mercato non sa dove hai messo lo stop."
+     ]
     ]
-  },
-  {
-    "id": "n01-settimana",
-    "stile": "notizie",
-    "titolo": "La settimana dei mercati",
-    "slide": [
-      {
-        "tipo": "copertina",
-        "testo": "3 cose che muovono i mercati <mark>questa settimana.</mark>",
-        "sotto": "12–16 ottobre · orari italiani"
-      },
-      {
-        "tipo": "numeri",
-        "titolo": "1 · Inflazione USA",
-        "righe": [
-          [
-            "Dato di settembre (CPI)",
-            "mer 14 ott"
-          ],
-          [
-            "Orario",
-            "14:30"
-          ],
-          [
-            "Agosto",
-            "3,4%"
-          ]
-        ],
-        "nota": "Pochi minuti prima e dopo il dato gli spread si allargano e il prezzo può saltare lo stop."
-      },
-      {
-        "tipo": "numeri",
-        "titolo": "2 · Petrolio",
-        "righe": [
-          [
-            "Brent",
-            "circa 100 $"
-          ],
-          [
-            "Motivo",
-            "tensioni a Hormuz"
-          ]
-        ],
-        "nota": "Dallo Stretto di Hormuz passa una parte enorme del petrolio mondiale. Petrolio alto → più inflazione → la Fed può alzare ancora i tassi → dollaro più forte."
-      },
-      {
-        "tipo": "numeri",
-        "titolo": "3 · Fed",
-        "righe": [
-          [
-            "16 settembre",
-            "tassi +0,25%"
-          ],
-          [
-            "Livello attuale",
-            "3,75–4,00%"
-          ],
-          [
-            "Prossima decisione",
-            "<mark>28 ott, ore 19:00</mark>"
-          ]
-        ],
-        "nota": "Il 25 ottobre in Italia torna l'ora solare, negli USA una settimana dopo: per qualche giorno i dati USA escono un'ora prima."
-      },
-      {
-        "tipo": "domanda",
-        "testo": "Il giorno del CPI <mark>tu operi o stai fuori?</mark>",
-        "sotto": "Scrivilo nei commenti 👇",
-        "link": "Calendario e calcolatori su riskly.trade"
-      }
+   },
+   {
+    "tipo": "frasi",
+    "voci": [
+     [
+      "5",
+      "«Supero il limite di poco.»",
+      "Il limite è un muro, non un consiglio."
+     ]
     ]
-  }
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Quale hai detto <mark>più spesso?</mark>",
+    "sotto": "Scrivi il numero nei commenti 👇",
+    "link": "Guida gratuita «Le 7 regole di rischio» su riskly.trade"
+   }
+  ]
+ },
+ {
+  "id": "n01-settimana",
+  "stile": "notizie",
+  "titolo": "La settimana dei mercati",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "3 cose che muovono i mercati <mark>questa settimana.</mark>",
+    "sotto": "12–16 ottobre · orari italiani"
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "1 · Inflazione USA",
+    "righe": [
+     [
+      "Dato di settembre (CPI)",
+      "mer 14 ott"
+     ],
+     [
+      "Orario",
+      "14:30"
+     ],
+     [
+      "Agosto",
+      "3,4%"
+     ]
+    ],
+    "nota": "Pochi minuti prima e dopo il dato gli spread si allargano e il prezzo può saltare lo stop."
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "2 · Petrolio",
+    "righe": [
+     [
+      "Brent",
+      "circa 100 $"
+     ],
+     [
+      "Motivo",
+      "tensioni a Hormuz"
+     ]
+    ],
+    "nota": "Dallo Stretto di Hormuz passa una parte enorme del petrolio mondiale. Petrolio alto → più inflazione → la Fed può alzare ancora i tassi → dollaro più forte."
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "3 · Fed",
+    "righe": [
+     [
+      "16 settembre",
+      "tassi +0,25%"
+     ],
+     [
+      "Livello attuale",
+      "3,75–4,00%"
+     ],
+     [
+      "Prossima decisione",
+      "<mark>28 ott, ore 19:00</mark>"
+     ]
+    ],
+    "nota": "Il 25 ottobre in Italia torna l'ora solare, negli USA una settimana dopo: per qualche giorno i dati USA escono un'ora prima."
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Il giorno del CPI <mark>tu operi o stai fuori?</mark>",
+    "sotto": "Scrivilo nei commenti 👇",
+    "link": "Calendario e calcolatori su riskly.trade"
+   }
+  ]
+ },
+ {
+  "id": "c06-operazioni",
+  "titolo": "Quante operazioni al giorno",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "Più operazioni non vuol dire più profitto. <mark>Spesso succede il contrario.</mark>",
+    "sotto": "Scorri →"
+   },
+   {
+    "tipo": "testo",
+    "titolo": "Perché succede",
+    "testo": "Dopo le prime operazioni sei più stanco, vuoi recuperare o \"sfruttare il momento\". Il setup diventa più largo e le entrate più deboli."
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "Quanto costa operare troppo",
+    "righe": [
+     [
+      "Costo per operazione (spread + commissione)",
+      "1 pip"
+     ],
+     [
+      "Con 0,5 lotti su EURUSD",
+      "5 $"
+     ],
+     [
+      "10 operazioni al giorno",
+      "50 $"
+     ],
+     [
+      "20 giorni di trading",
+      "<mark>1.000 $ al mese</mark>"
+     ]
+    ],
+    "nota": "Su un conto da 10.000 $ è il 10% al mese, prima ancora di vincere o perdere un trade. Esempio illustrativo: i costi cambiano per broker."
+   },
+   {
+    "tipo": "testo",
+    "titolo": "La regola",
+    "testo": "Decidi il massimo di operazioni al giorno prima di aprire la piattaforma, per esempio 3. Quando ci arrivi, chiudi. Anche se \"questa sembrava buona\"."
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Quante operazioni fai <mark>in un giorno normale?</mark>",
+    "sotto": "Scrivi il numero nei commenti 👇",
+    "link": "RiskGuard: massimo di operazioni al giorno, dal 23 ottobre"
+   }
+  ]
+ }
 ]
