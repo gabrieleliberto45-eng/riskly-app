@@ -30,3 +30,23 @@ Stili grafici: bianco "foglio" · scuro marchio · rosso "notiziario" (attualit�
 - In più, quando esce un video lungo su YouTube: 2 clip verticali che portano al canale.
 - Attualità ("La settimana dei mercati") il lunedì mattina prima dei dati importanti.
 - I vecchi reel/video promozionali programmati sono in bozza: non escono.
+
+## Calendario TikTok + Instagram (programmato il 9 ottobre)
+| Data | Ora | Contenuto |
+|---|---|---|
+| 9 ott | 18:30 / 19:30 | YouTube v02 + teaser t1 |
+| 10 ott | 18:00 | Storia s01 · franco svizzero |
+| 11 ott | 10:00 / 13:00 | teaser t2 · carosello c02 breakeven |
+| 12 ott | 09:00 / 18:00 | n01 settimana dei mercati · Storia s02 · Barings |
+| 13 ott | 13:00 | carosello c04 winrate |
+| 14 ott | 18:00 | Storia s03 · Archegos |
+| 15 ott | 13:00 | carosello c01 lotto |
+| 16 ott | 18:00 | **da fare: storia s04** |
+| 17 ott | 13:00 | carosello c03 prop firm |
+| 18 ott | 18:00 | **da fare: storia s05** |
+| 19 ott | 13:00 | carosello c05 frasi |
+| 20 ott | 13:00 / 18:00 | conto alla rovescia "Mancano 3 giorni" (IG / TikTok) |
+| 21 ott | 13:00 | **da fare: carosello c06** |
+| 22 ott | 13:00 / 18:00 | "Domani escono i bot" (IG / TikTok) |
+
+In bozza (non escono): tutti i vecchi reel/video promo dal 10 al 22 e tutti gli Shorts promo YouTube dal 9 al 22, tranne gli Shorts del 9 e 10 alle 16:00.
