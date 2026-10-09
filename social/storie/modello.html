@@ -35,13 +35,13 @@
   <div class="handle">riskly.trade</div>
 </div>
 <script>
-window.visZoom=1.35;
 const g=document.getElementById('grana').getContext('2d'), img=g.createImageData(540,960);
 function grana(seed){let x=seed*9301+49297;for(let i=0;i<img.data.length;i+=4){x=(x*9301+49297)%233280;const v=x/233280*255;img.data[i]=img.data[i+1]=img.data[i+2]=v;img.data[i+3]=255;}g.putImageData(img,0,0);}
 let parole=[], cartello='';
-window.prepara=(seg,ultimo,par)=>{ parole=par; cartello=seg.cartello||''; if(window.vis) window.vis.imposta(seg.visual);
+document.fonts.load("900 120px Archivo");
+window.prepara=(seg,ultimo,par)=>{ parole=par; cartello=seg.cartello||''; 
   document.getElementById('disc').textContent=ultimo?'Contenuto informativo ed educativo, non è consulenza finanziaria. Il trading con leva comporta un alto rischio.':''; };
-window.fotogramma=(t,f)=>{
+window.fotogramma=(t,f,tg)=>{
   // cartello: si scrive lettera per lettera nei primi secondi
   const n=Math.floor(Math.max(0,t-.2)*28); document.getElementById('cart').innerHTML=cartello?`<span>${cartello.slice(0,n)}</span>`:'';
   // sottotitoli: gruppi di 4 parole, la parola detta adesso in verde
@@ -49,8 +49,8 @@ window.fotogramma=(t,f)=>{
   const ini=Math.floor(k/4)*4, gr=parole.slice(ini,ini+4);
   document.getElementById('sub').innerHTML=parole.length&&t>=parole[0][0]-.1?gr.map((p,j)=>ini+j===k?`<b>${p[2]}</b>`:p[2]).join(' '):'';
   if(f%2===0) grana(f);
-  if(window.vis) window.vis.disegna(t);
+  if(window.storia) window.storia.disegna(tg);
 };
 </script>
-<script type="module" src="vis3d.js"></script>
+<script type="module" src="scena-storia.js"></script>
 </body></html>

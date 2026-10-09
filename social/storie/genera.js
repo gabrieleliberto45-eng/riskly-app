@@ -19,14 +19,27 @@ const durata = f => { const o = spawnSync(FF, ['-i', f]).stderr.toString().match
     const enc = spawn(FF, ['-y', '-f', 'image2pipe', '-framerate', String(FPS), '-i', '-', '-c:v', 'libx264', '-crf', '20', '-pix_fmt', 'yuv420p', path.join(tmp, 'muto.mp4')], { stdio: ['pipe', 'ignore', 'ignore'] });
     const scrivi = buf => new Promise(ok => enc.stdin.write(buf) ? ok() : enc.stdin.once('drain', ok));
     let fr = 0; const voci = [];
-    for(let i = 0; i < st.segmenti.length; i++){
-      const base = path.join(Q, 'voce', `${st.id}-${String(i + 1).padStart(2, '0')}`);
-      const par = JSON.parse(fs.readFileSync(base + '.json', 'utf8')); const D = durata(base + '.mp3') + PAUSA; voci.push(base + '.mp3');
-      await p.evaluate(([s, u, par, t0]) => { window.visT0 = t0; window.prepara(s, u, par); }, [st.segmenti[i], i === st.segmenti.length - 1, par, D * .55]);
+    // battute: ogni azione 3D parte quando la voce dice la sua parola chiave
+    const norm = w => w.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '');
+    const segs = st.segmenti.map((s, i) => { const base = path.join(Q, 'voce', `${st.id}-${String(i + 1).padStart(2, '0')}`);
+      return { s, base, par: JSON.parse(fs.readFileSync(base + '.json', 'utf8')), D: durata(base + '.mp3') + PAUSA }; });
+    const battute = []; let off = 0;
+    for(const g of segs){ let da = 0;
+      for(const b of (g.s.battute || [])){ const k = norm(b.su); let j = g.par.findIndex((w, x) => x >= da && norm(w[2]).startsWith(k));
+        if(j < 0){ console.error('parola non trovata:', st.id, b.su); j = da; } da = j + 1;
+        battute.push({ ...b, t: off + Math.max(0, g.par[j] ? g.par[j][0] : 0) }); }
+      off += g.D; }
+    battute.sort((a, b) => a.t - b.t);
+    await p.evaluate(b => window.storia.imposta(b), battute);
+    let tg = 0;
+    for(let i = 0; i < segs.length; i++){
+      const { base, par, D } = segs[i]; voci.push(base + '.mp3');
+      await p.evaluate(([s, u, par]) => window.prepara(s, u, par), [st.segmenti[i], i === st.segmenti.length - 1, par]);
       for(let f = 0; f < Math.round(D * FPS); f++){
-        await p.evaluate(([t, f]) => window.fotogramma(t, f), [f / FPS, fr++]);
+        await p.evaluate(([t, f, tg]) => window.fotogramma(t, f, tg), [f / FPS, fr++, tg + f / FPS]);
         await scrivi(await (await p.$('#v')).screenshot({ type: 'jpeg', quality: 90 }));
       }
+      tg += Math.round(D * FPS) / FPS;
       process.stdout.write(`${st.id} ${i + 1}/${st.segmenti.length}\n`);
     }
     await new Promise(ok => { enc.on('close', ok); enc.stdin.end(); });

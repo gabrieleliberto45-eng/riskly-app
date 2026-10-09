@@ -5,25 +5,199 @@
   "segmenti": [
    {
     "cartello": "15 GENNAIO 2015 · ZURIGO",
-    "visual": "crollo",
-    "voce": "Quindici gennaio 2015, ore dieci e mezza. In pochi minuti migliaia di trader perdono più soldi di quanti ne avessero sul conto."
+    "voce": "Quindici gennaio 2015, ore dieci e mezza. In pochi minuti migliaia di trader perdono più soldi di quanti ne avessero sul conto.",
+    "battute": [
+     {
+      "su": "quindici",
+      "azione": "grafico",
+      "tipo": "crollo",
+      "livello": 6.5,
+      "id": "g",
+      "camera": {
+       "pos": [
+        0,
+        6.5,
+        17
+       ],
+       "guarda": [
+        0,
+        6.3,
+        0
+       ]
+      }
+     },
+     {
+      "su": "più",
+      "azione": "testo",
+      "testo": "SALDO NEGATIVO",
+      "colore": "rosso",
+      "y": 9.3,
+      "id": "neg"
+     }
+    ]
    },
    {
-    "visual": "crollo",
-    "voce": "Da tre anni la Banca nazionale svizzera teneva il cambio euro franco sopra uno virgola venti. Quella mattina, senza preavviso, toglie il limite."
+    "voce": "Da tre anni la Banca nazionale svizzera teneva il cambio euro franco sopra uno virgola venti. Quella mattina, senza preavviso, toglie il limite.",
+    "battute": [
+     {
+      "su": "banca",
+      "azione": "testo",
+      "testo": "BANCA NAZIONALE SVIZZERA",
+      "y": 9.8,
+      "alto": 1,
+      "id": "bns"
+     },
+     {
+      "su": "sopra",
+      "azione": "linea",
+      "y": 6.3,
+      "testo": "EUR/CHF 1,20",
+      "id": "soglia",
+      "camera": {
+       "pos": [
+        2,
+        6.5,
+        17
+       ],
+       "guarda": [
+        0,
+        6.3,
+        0
+       ]
+      }
+     },
+     {
+      "su": "toglie",
+      "azione": "cade",
+      "chi": "soglia"
+     }
+    ]
    },
    {
-    "visual": "crollo",
-    "voce": "Il franco si rafforza di circa il trenta per cento in pochi minuti. Gli stop loss non vengono eseguiti al prezzo impostato, ma molto più in basso, dove c'era di nuovo un prezzo."
+    "voce": "Il franco si rafforza di circa il trenta per cento in pochi minuti. Gli stop loss non vengono eseguiti al prezzo impostato, ma molto più in basso, dove c'era di nuovo un prezzo.",
+    "battute": [
+     {
+      "su": "franco",
+      "azione": "togli",
+      "chi": [
+       "neg",
+       "bns"
+      ]
+     },
+     {
+      "su": "rafforza",
+      "azione": "crollo_ora",
+      "chi": "g",
+      "camera": {
+       "pos": [
+        6,
+        6.5,
+        17
+       ],
+       "guarda": [
+        4,
+        6.3,
+        0
+       ]
+      }
+     },
+     {
+      "su": "trenta",
+      "azione": "testo",
+      "testo": "−30% IN MINUTI",
+      "colore": "rosso",
+      "x": 3,
+      "y": 8.6,
+      "id": "m30"
+     },
+     {
+      "su": "stop",
+      "azione": "gap",
+      "da": 6.2,
+      "a": 3.6,
+      "x": 3.0,
+      "stop": "STOP IMPOSTATO",
+      "eseguito": "ESEGUITO QUI",
+      "id": "gap"
+     }
+    ]
    },
    {
     "cartello": "FXCM · ALPARI UK",
-    "visual": "domino",
-    "voce": "Alcuni broker restano con i saldi negativi dei clienti. Alpari UK finisce in insolvenza, FXCM ha bisogno di un prestito di trecento milioni di dollari per restare in piedi."
+    "voce": "Alcuni broker restano con i saldi negativi dei clienti. Alpari UK finisce in insolvenza, FXCM ha bisogno di un prestito di trecento milioni di dollari per restare in piedi.",
+    "battute": [
+     {
+      "su": "alcuni",
+      "azione": "palazzi",
+      "nomi": [
+       "ALPARI UK",
+       "FXCM"
+      ],
+      "x": 40,
+      "id": "br",
+      "camera": {
+       "pos": [
+        40,
+        6.5,
+        17
+       ],
+       "guarda": [
+        40,
+        6.3,
+        0
+       ]
+      }
+     },
+     {
+      "su": "insolvenza",
+      "azione": "crolla",
+      "gruppo": "br",
+      "nome": "ALPARI UK"
+     },
+     {
+      "su": "trecento",
+      "azione": "contatore",
+      "prefisso": "PRESTITO ",
+      "a": 300,
+      "suffisso": " MLN $",
+      "x": 40,
+      "y": 9.3,
+      "alto": 1.2,
+      "colore": "oro"
+     }
+    ]
    },
    {
-    "visual": "scudo",
-    "voce": "La lezione: lo stop loss non è una garanzia, conta quanto rischi su ogni posizione. Per questo Riskly Pro calcola il lotto sul rischio che scegli e non apre con spread troppo larghi. Seguici per altre storie di rischio."
+    "voce": "La lezione: lo stop loss non è una garanzia, conta quanto rischi su ogni posizione. Per questo Riskly Pro calcola il lotto sul rischio che scegli e non apre con spread troppo larghi. Seguici per altre storie di rischio.",
+    "battute": [
+     {
+      "su": "lezione",
+      "azione": "testo",
+      "testo": "STOP ≠ GARANZIA",
+      "x": 80,
+      "y": 9.3,
+      "colore": "bianco",
+      "camera": {
+       "pos": [
+        80,
+        6.5,
+        17
+       ],
+       "guarda": [
+        80,
+        6.3,
+        0
+       ]
+      }
+     },
+     {
+      "su": "riskly",
+      "azione": "scudo",
+      "nome": "RISKLY PRO",
+      "x": 80,
+      "y": 6
+     }
+    ]
    }
   ]
  },
@@ -33,25 +207,203 @@
   "segmenti": [
    {
     "cartello": "FEBBRAIO 1995 · SINGAPORE",
-    "visual": "torre",
-    "voce": "Un trader di ventotto anni fa fallire la banca d'affari più antica di Londra. Da solo."
+    "voce": "Un trader di ventotto anni fa fallire la banca d'affari più antica di Londra. Da solo.",
+    "battute": [
+     {
+      "su": "trader",
+      "azione": "testo",
+      "testo": "28 ANNI",
+      "y": 9.3,
+      "colore": "bianco",
+      "id": "eta",
+      "camera": {
+       "pos": [
+        0,
+        6.5,
+        17
+       ],
+       "guarda": [
+        0,
+        6.3,
+        0
+       ]
+      }
+     },
+     {
+      "su": "banca",
+      "azione": "palazzi",
+      "nomi": [
+       "BARINGS"
+      ],
+      "x": 0,
+      "id": "bar"
+     }
+    ]
    },
    {
-    "visual": "torre",
-    "voce": "Si chiamava Nick Leeson e lavorava per Barings a Singapore. Quando perdeva, nascondeva le perdite in un conto segreto, il famoso numero ottantotto ottantotto otto, e raddoppiava per recuperare."
+    "voce": "Si chiamava Nick Leeson e lavorava per Barings a Singapore. Quando perdeva, nascondeva le perdite in un conto segreto, il famoso numero ottantotto ottantotto otto, e raddoppiava per recuperare.",
+    "battute": [
+     {
+      "su": "nick",
+      "azione": "testo",
+      "testo": "NICK LEESON",
+      "x": 40,
+      "y": 9.3,
+      "colore": "lime",
+      "camera": {
+       "pos": [
+        40,
+        6.5,
+        17
+       ],
+       "guarda": [
+        40,
+        6.3,
+        0
+       ]
+      }
+     },
+     {
+      "su": "conto",
+      "azione": "testo",
+      "testo": "CONTO 88888",
+      "x": 40,
+      "y": 8.4,
+      "colore": "rosso",
+      "alto": 1.1
+     },
+     {
+      "su": "raddoppiava",
+      "azione": "torre",
+      "x": 40,
+      "id": "t"
+     }
+    ]
    },
    {
     "cartello": "KOBE · 17 GENNAIO 1995",
-    "visual": "torre",
-    "voce": "Poi arriva il terremoto di Kobe. La borsa giapponese crolla e le sue posizioni con lei. Il buco arriva a ottocentoventisette milioni di sterline."
+    "voce": "Poi arriva il terremoto di Kobe. La borsa giapponese crolla e le sue posizioni con lei. Il buco arriva a ottocentoventisette milioni di sterline.",
+    "battute": [
+     {
+      "su": "terremoto",
+      "azione": "testo",
+      "testo": "KOBE · 17/1/1995",
+      "x": 40,
+      "y": 9.8,
+      "colore": "bianco",
+      "alto": 0.9
+     },
+     {
+      "su": "crolla",
+      "azione": "crolla",
+      "gruppo": "t"
+     },
+     {
+      "su": "buco",
+      "azione": "contatore",
+      "prefisso": "−",
+      "a": 827,
+      "suffisso": " MLN £",
+      "x": 40,
+      "y": 8.6,
+      "alto": 1.6,
+      "colore": "rosso",
+      "camera": {
+       "pos": [
+        40,
+        6.5,
+        17
+       ],
+       "guarda": [
+        40,
+        6.3,
+        0
+       ]
+      }
+     }
+    ]
    },
    {
-    "visual": "torre",
-    "voce": "Barings, fondata nel 1762, viene venduta per una sterlina simbolica. Leeson finisce in carcere."
+    "voce": "Barings, fondata nel 1762, viene venduta per una sterlina simbolica. Leeson finisce in carcere.",
+    "battute": [
+     {
+      "su": "barings",
+      "azione": "testo",
+      "testo": "DAL 1762",
+      "x": 0,
+      "y": 9.8,
+      "colore": "oro",
+      "camera": {
+       "pos": [
+        0,
+        6.5,
+        17
+       ],
+       "guarda": [
+        0,
+        6.3,
+        0
+       ]
+      }
+     },
+     {
+      "su": "venduta",
+      "azione": "crolla",
+      "gruppo": "bar",
+      "nome": "BARINGS"
+     },
+     {
+      "su": "sterlina",
+      "azione": "testo",
+      "testo": "VENDUTA PER 1 £",
+      "x": 0,
+      "y": 8.4,
+      "colore": "rosso",
+      "alto": 1.2
+     }
+    ]
    },
    {
-    "visual": "scudo",
-    "voce": "Raddoppiare per recuperare e nascondere le perdite: due errori che ogni trader conosce. RiskGuard ti ferma dopo le perdite di fila che decidi tu, e il journal di Riskly registra ogni operazione, senza poterla nascondere. Seguici per altre storie di rischio."
+    "voce": "Raddoppiare per recuperare e nascondere le perdite: due errori che ogni trader conosce. RiskGuard ti ferma dopo le perdite di fila che decidi tu, e il journal di Riskly registra ogni operazione, senza poterla nascondere. Seguici per altre storie di rischio.",
+    "battute": [
+     {
+      "su": "raddoppiare",
+      "azione": "testo",
+      "testo": "RADDOPPIARE · NASCONDERE",
+      "x": 80,
+      "y": 9.8,
+      "colore": "rosso",
+      "alto": 0.9,
+      "camera": {
+       "pos": [
+        80,
+        6.5,
+        17
+       ],
+       "guarda": [
+        80,
+        6.3,
+        0
+       ]
+      }
+     },
+     {
+      "su": "riskguard",
+      "azione": "scudo",
+      "nome": "RISKGUARD",
+      "x": 80,
+      "y": 6
+     },
+     {
+      "su": "journal",
+      "azione": "testo",
+      "testo": "+ JOURNAL RISKLY",
+      "x": 80,
+      "y": 2.3,
+      "colore": "lime",
+      "alto": 0.9
+     }
+    ]
    }
   ]
  },
@@ -61,25 +413,240 @@
   "segmenti": [
    {
     "cartello": "MARZO 2021 · NEW YORK",
-    "visual": "torre",
-    "voce": "In due giorni un fondo privato quasi sconosciuto perde circa venti miliardi di dollari. E trascina con sé alcune delle banche più grandi del mondo."
+    "voce": "In due giorni un fondo privato quasi sconosciuto perde circa venti miliardi di dollari. E trascina con sé alcune delle banche più grandi del mondo.",
+    "battute": [
+     {
+      "su": "due",
+      "azione": "torre",
+      "x": 0,
+      "id": "t",
+      "camera": {
+       "pos": [
+        0,
+        6.5,
+        17
+       ],
+       "guarda": [
+        0,
+        6.3,
+        0
+       ]
+      }
+     },
+     {
+      "su": "venti",
+      "azione": "contatore",
+      "prefisso": "−",
+      "a": 20,
+      "suffisso": " MLD $",
+      "y": 9.8,
+      "alto": 1.6,
+      "colore": "rosso",
+      "id": "c20"
+     },
+     {
+      "su": "banche",
+      "azione": "palazzi",
+      "nomi": [
+       "CREDIT SUISSE",
+       "NOMURA",
+       "MORGAN STANLEY"
+      ],
+      "x": 40,
+      "id": "bk",
+      "camera": {
+       "pos": [
+        40,
+        6.5,
+        17
+       ],
+       "guarda": [
+        40,
+        6.3,
+        0
+       ]
+      }
+     }
+    ]
    },
    {
-    "visual": "torre",
-    "voce": "Il fondo si chiamava Archegos. Comprava pochi titoli, usando moltissima leva attraverso strumenti derivati, così le sue posizioni enormi non comparivano da nessuna parte."
+    "voce": "Il fondo si chiamava Archegos. Comprava pochi titoli, usando moltissima leva attraverso strumenti derivati, così le sue posizioni enormi non comparivano da nessuna parte.",
+    "battute": [
+     {
+      "su": "archegos",
+      "azione": "testo",
+      "testo": "ARCHEGOS",
+      "x": 0,
+      "y": 9.8,
+      "colore": "lime",
+      "camera": {
+       "pos": [
+        0,
+        6.5,
+        17
+       ],
+       "guarda": [
+        0,
+        6.3,
+        0
+       ]
+      }
+     },
+     {
+      "su": "leva",
+      "azione": "testo",
+      "testo": "LEVA ALTISSIMA",
+      "x": 0,
+      "y": 8.4,
+      "colore": "oro",
+      "alto": 1
+     },
+     {
+      "su": "derivati",
+      "azione": "testo",
+      "testo": "POSIZIONI INVISIBILI",
+      "x": 0,
+      "y": 2.3,
+      "colore": "bianco",
+      "alto": 0.8
+     }
+    ]
    },
    {
-    "visual": "crollo",
-    "voce": "Quando alcuni di quei titoli scendono, arrivano le richieste di margine. Archegos non riesce a coprirle, e le banche iniziano a vendere tutto insieme."
+    "voce": "Quando alcuni di quei titoli scendono, arrivano le richieste di margine. Archegos non riesce a coprirle, e le banche iniziano a vendere tutto insieme.",
+    "battute": [
+     {
+      "su": "scendono",
+      "azione": "grafico",
+      "tipo": "scende",
+      "livello": 6,
+      "x": -20,
+      "camera": {
+       "pos": [
+        -20,
+        6.5,
+        17
+       ],
+       "guarda": [
+        -20,
+        6.3,
+        0
+       ]
+      }
+     },
+     {
+      "su": "margine",
+      "azione": "testo",
+      "testo": "MARGIN CALL",
+      "x": -20,
+      "y": 9.8,
+      "colore": "rosso",
+      "alto": 1.4
+     },
+     {
+      "su": "coprirle",
+      "azione": "crolla",
+      "gruppo": "t",
+      "camera": {
+       "pos": [
+        0,
+        6.5,
+        17
+       ],
+       "guarda": [
+        0,
+        6.3,
+        0
+       ]
+      }
+     },
+     {
+      "su": "vendere",
+      "azione": "testo",
+      "testo": "VENDITE A CATENA",
+      "x": 40,
+      "y": 9.8,
+      "colore": "rosso",
+      "alto": 1,
+      "camera": {
+       "pos": [
+        40,
+        6.5,
+        17
+       ],
+       "guarda": [
+        40,
+        6.3,
+        0
+       ]
+      }
+     }
+    ]
    },
    {
     "cartello": "CREDIT SUISSE: −5,5 MILIARDI $",
-    "visual": "domino",
-    "voce": "Le perdite delle banche superano i dieci miliardi di dollari. Credit Suisse da sola perde circa cinque miliardi e mezzo."
+    "voce": "Le perdite delle banche superano i dieci miliardi di dollari. Credit Suisse da sola perde circa cinque miliardi e mezzo.",
+    "battute": [
+     {
+      "su": "dieci",
+      "azione": "contatore",
+      "prefisso": "OLTRE ",
+      "a": 10,
+      "suffisso": " MLD $",
+      "x": 40,
+      "y": 9.8,
+      "alto": 1.2,
+      "colore": "rosso"
+     },
+     {
+      "su": "credit",
+      "azione": "crolla",
+      "gruppo": "bk",
+      "nome": "CREDIT SUISSE"
+     },
+     {
+      "su": "cinque",
+      "azione": "testo",
+      "testo": "CREDIT SUISSE −5,5 MLD $",
+      "x": 40,
+      "y": 2.3,
+      "colore": "rosso",
+      "alto": 0.9
+     }
+    ]
    },
    {
-    "visual": "scudo",
-    "voce": "Più leva usi, meno movimento basta per azzerarti. E il rischio va calcolato su tutte le posizioni insieme: è quello che fa Riskly Pro, prima che tu apra la prossima. Seguici per altre storie di rischio."
+    "voce": "Più leva usi, meno movimento basta per azzerarti. E il rischio va calcolato su tutte le posizioni insieme: è quello che fa Riskly Pro, prima che tu apra la prossima. Seguici per altre storie di rischio.",
+    "battute": [
+     {
+      "su": "leva",
+      "azione": "testo",
+      "testo": "PIÙ LEVA = MENO MARGINE",
+      "x": 80,
+      "y": 9.8,
+      "colore": "bianco",
+      "alto": 0.9,
+      "camera": {
+       "pos": [
+        80,
+        6.5,
+        17
+       ],
+       "guarda": [
+        80,
+        6.3,
+        0
+       ]
+      }
+     },
+     {
+      "su": "riskly",
+      "azione": "scudo",
+      "nome": "RISKLY PRO",
+      "x": 80,
+      "y": 6
+     }
+    ]
    }
   ]
  }
