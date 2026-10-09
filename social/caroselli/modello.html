@@ -5,6 +5,10 @@
   @font-face{font-family:'Archivo';src:url(archivo.woff2) format('woff2');font-weight:400 900;font-stretch:62% 125%}
   @font-face{font-family:'Martian Mono';src:url(martian-mono.woff2) format('woff2');font-weight:400 700;font-stretch:75% 112.5%}
   :root{--carta:#F7F7F4;--inchiostro:#0E0F0E;--grigio:#5C615C;--lime:#C8EE4A;--riga:#D9DBD4}
+  body.scuro{--carta:#0B0D0C;--inchiostro:#EEF2EA;--grigio:#9AA39A;--riga:#232823;--lime:#B6D84F}
+  body.scuro .s::before{background:repeating-linear-gradient(0deg,transparent 0 63px,rgba(238,242,234,.035) 63px 64px)}
+  body.scuro mark{color:#0B0D0C}
+  body.scuro .link{background:var(--lime);color:#0B0D0C}
   *{box-sizing:border-box;margin:0;padding:0}
   body{background:#888}
   .s{width:1080px;height:1350px;background:var(--carta);color:var(--inchiostro);position:relative;overflow:hidden;
@@ -40,7 +44,7 @@
 </style></head>
 <body><div id="s" class="s"></div>
 <script>
-const LOGO = '<svg width="44" height="44" viewBox="0 0 44 44" fill="none"><path d="M9 31 L17 19.5 L23.5 25 L35 11" stroke="#0E0F0E" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 36 H35" stroke="#7DA81E" stroke-width="3.6" stroke-linecap="round"/></svg>';
+const LOGO = '<svg width="44" height="44" viewBox="0 0 44 44" fill="none"><path d="M9 31 L17 19.5 L23.5 25 L35 11" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 36 H35" stroke="#7DA81E" stroke-width="3.6" stroke-linecap="round"/></svg>';
 window.mostra = (d, i, n) => {
   const s = document.getElementById('s');
   let c = '';

@@ -6,14 +6,16 @@ const path = require('path');
 
 (async () => {
   const dati = JSON.parse(fs.readFileSync(path.join(__dirname, 'caroselli.json'), 'utf8'));
-  const scelti = process.argv.slice(2);
+  const scuro = process.argv.includes('--scuro');
+  const scelti = process.argv.slice(2).filter(a => a !== '--scuro');
   const b = await chromium.launch();
   const p = await b.newPage({ viewport: { width: 1080, height: 1350 } });
   await p.goto('file://' + path.join(__dirname, 'modello.html'));
+  if(scuro) await p.evaluate(() => document.body.classList.add('scuro'));
   await p.evaluate(() => document.fonts.ready);
   for(const c of dati){
     if(scelti.length && !scelti.includes(c.id)) continue;
-    const dir = path.join(__dirname, c.id); fs.mkdirSync(dir, { recursive: true });
+    const dir = path.join(__dirname, c.id + (scuro ? '-scuro' : '')); fs.mkdirSync(dir, { recursive: true });
     for(let i = 0; i < c.slide.length; i++){
       await p.evaluate(([d, i, n]) => window.mostra(d, i, n), [c.slide[i], i, c.slide.length]);
       await p.evaluate(() => document.fonts.ready);
