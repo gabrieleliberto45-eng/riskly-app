@@ -1,0 +1,20 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:'Archivo';src:url(../archivo.woff2) format('woff2');font-weight:400 900;font-stretch:62% 125%}
+@font-face{font-family:'Martian Mono';src:url(../martian-mono.woff2) format('woff2');font-weight:400 700}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;background:#0B0D0C;color:#EEF2EA;font-family:'Archivo';position:relative;overflow:hidden}
+.alto{position:absolute;left:70px;right:70px;top:180px}
+.tag{display:inline-block;background:#C8102E;color:#fff;font:800 34px 'Archivo';font-stretch:85%;letter-spacing:.05em;padding:10px 20px;margin-bottom:34px}
+h1{font-weight:900;font-stretch:72%;font-size:100px;line-height:.98;text-transform:uppercase;word-spacing:.12em}
+mark{background:linear-gradient(transparent 10%,#B6D84F 10%,#B6D84F 90%,transparent 90%);color:#0B0D0C;padding:0 .08em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.basso{position:absolute;left:70px;right:70px;top:1400px}
+.cta{display:flex;align-items:center;gap:26px;background:#EEF2EA;color:#0B0D0C;padding:30px 36px;border-radius:14px;font:800 50px/1.1 'Archivo'}
+.cta svg{flex:none}
+.sotto{margin-top:26px;font:500 36px/1.4 'Archivo';color:#9AA39A}
+.disc{position:absolute;left:70px;right:70px;bottom:120px;font:500 24px/1.4 'Archivo';color:#6F786F}
+</style></head><body>
+<div class="alto"><div class="tag" id="tag"></div><h1 id="h"></h1></div>
+<div class="basso"><div class="cta"><svg width="84" height="60" viewBox="0 0 28 20"><rect width="28" height="20" rx="5" fill="#FF0000"/><path d="M11 6l7 4-7 4z" fill="#fff"/></svg><span id="cta"></span></div><div class="sotto" id="sotto"></div></div>
+<div class="disc">Contenuto informativo ed educativo, non è consulenza finanziaria. Il trading con leva comporta un alto rischio.</div>
+<script>window.imposta=(o)=>{for(const k in o)document.getElementById(k).innerHTML=o[k]}</script>
+</body></html>
