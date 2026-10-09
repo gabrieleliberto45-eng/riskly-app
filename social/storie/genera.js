@@ -16,7 +16,7 @@ const durata = f => { const o = spawnSync(FF, ['-i', f]).stderr.toString().match
   for(const st of tutte){
     if(scelte.length && !scelte.includes(st.id)) continue;
     const tmp = path.join(Q, 'tmp-' + st.id); fs.rmSync(tmp, { recursive: true, force: true }); fs.mkdirSync(tmp);
-    const enc = spawn(FF, ['-y', '-f', 'image2pipe', '-framerate', String(FPS), '-i', '-', '-c:v', 'libx264', '-crf', '20', '-pix_fmt', 'yuv420p', path.join(tmp, 'muto.mp4')], { stdio: ['pipe', 'ignore', 'ignore'] });
+    const enc = spawn(FF, ['-y', '-f', 'image2pipe', '-framerate', String(FPS), '-i', '-', '-c:v', 'libx264', '-crf', '27', '-pix_fmt', 'yuv420p', path.join(tmp, 'muto.mp4')], { stdio: ['pipe', 'ignore', 'ignore'] });
     const scrivi = buf => new Promise(ok => enc.stdin.write(buf) ? ok() : enc.stdin.once('drain', ok));
     let fr = 0; const voci = [];
     // battute: ogni azione 3D parte quando la voce dice la sua parola chiave
