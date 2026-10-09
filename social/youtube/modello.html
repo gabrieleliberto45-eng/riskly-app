@@ -36,12 +36,27 @@
   .nota{margin-top:40px;font:500 34px/1.45 'Archivo';color:var(--dim);max-width:60ch}
   .piede{position:absolute;left:120px;right:120px;bottom:70px;display:flex;justify-content:space-between;font:500 24px 'Martian Mono';color:var(--dim)}
   .barra{position:absolute;left:0;bottom:0;height:6px;background:var(--lime)}
+  /* scena 3D a destra, testo a sinistra */
+  #gl{position:absolute;right:60px;top:190px;width:860px;height:760px;z-index:0}
+  #cont{position:absolute;inset:0;z-index:1}
+  .con3d .corpo{right:900px}
+  .con3d .grande{font-size:112px}
+  .con3d .tit{font-size:66px;max-width:22ch}
+  .con3d .riga span:first-child{font-size:36px}
+  .con3d .riga span:last-child{font-size:40px;white-space:normal;text-align:right;max-width:58%}
+  .con3d .riga span:first-child{max-width:42%}
+  .con3d .corpo{bottom:170px}
+  .con3d .punto b{font-size:46px}
+  .con3d .punto span{font-size:36px}
+  .con3d .formula{font-size:46px}
+  .con3d .nota{font-size:28px}
+  .con3d .piccolo{font-size:34px}
   /* comparse */
   .e{opacity:0;transform:translateY(24px)}
   .e.on{animation:entra .7s cubic-bezier(.23,1,.32,1) forwards}
   @keyframes entra{to{opacity:1;transform:none}}
 </style></head>
-<body><div id="v"></div>
+<body><div id="v"><canvas id="gl" width="860" height="760"></canvas><div id="cont"></div></div>
 <script>
 const LOGO='<svg width="40" height="40" viewBox="0 0 44 44" fill="none"><path d="M9 31 L17 19.5 L23.5 25 L35 11" stroke="#EEF2EA" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 36 H35" stroke="#B6D84F" stroke-width="3.6" stroke-linecap="round"/></svg>';
 /* disegna la scena: gli elementi .e compaiono in ordine; mostra(k) accende i primi k */
@@ -52,7 +67,9 @@ window.scena=(s,i,n,avanzamento)=>{
   if(s.tipo==='numeri') c=`<div class="tit e">${s.titolo}</div><div class="righe e">${(s.colonne&&s.colonne[0])?`<div class="intest"><span>${s.colonne[0]}</span><span>${s.colonne[1]}</span></div>`:''}</div>`
      +`<div class="righe-dentro"></div>`+(s.nota?`<div class="nota e">${s.nota}</div>`:'');
   if(s.tipo==='formula') c=`<div class="tit e">${s.titolo}</div><div class="formula e">${s.formula}</div>`+(s.nota?`<div class="nota e">${s.nota}</div>`:'');
-  document.getElementById('v').innerHTML=`<div class="testa"><span class="cap"><i></i>${s.capitolo}</span><span>${i+1} / ${n}</span></div>
+  document.getElementById('v').classList.toggle('con3d',!!s.visual);
+  if(window.vis) window.vis.imposta(s.visual);
+  document.getElementById('cont').innerHTML=`<div class="testa"><span class="cap"><i></i>${s.capitolo}</span><span>${i+1} / ${n}</span></div>
     <div class="corpo">${c}</div>
     <div class="piede"><span class="logo">${LOGO}Riskly</span><span>riskly.trade · contenuto educativo</span></div>
     <div class="barra" style="width:${(avanzamento*100).toFixed(2)}%"></div>`;
@@ -71,4 +88,11 @@ window.mostra=(k,t)=>{
   document.getAnimations().forEach(a=>a.pause());
   el.forEach((e,j)=>{ if(j>=k) return; e.getAnimations().forEach(a=>{a.currentTime=(j===k-1?t:10)*1000;}); });
 };
-</script></body></html>
+/* un fotogramma della scena all'istante t: ogni elemento .e entra al suo tempo, la scena 3D si muove */
+window.fotogramma=(t,tempi)=>{
+  const el=[...document.querySelectorAll('.e')];
+  el.forEach((e,j)=>{ const d=t-tempi[j]; e.classList.add('on'); e.getAnimations().forEach(a=>{a.pause();a.currentTime=Math.max(0,d)*1000;}); e.style.visibility=d<0?'hidden':'visible'; });
+  if(window.vis) window.vis.disegna(t);
+};
+</script>
+<script type="module" src="vis3d.js"></script></body></html>

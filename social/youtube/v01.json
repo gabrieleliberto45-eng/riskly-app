@@ -7,7 +7,8 @@
       "tipo": "titolo",
       "grande": "Stesso trade.<br><mark>Rischio diverso.</mark>",
       "piccolo": "Guida al position sizing",
-      "voce": "Due trader aprono lo stesso trade su EURUSD, con lo stesso ingresso e lo stesso stop a venticinque pip. Il prezzo va contro e lo stop scatta. Il primo perde cento dollari. Il secondo ne perde mille. Hanno sbagliato la stessa previsione, ma il danno è dieci volte diverso. La differenza è una sola: il lotto. In questo video vediamo come si calcola il lotto giusto, passo per passo, su forex, oro e yen, e perché con un conto piccolo è più difficile di quanto sembri."
+      "voce": "Due trader aprono lo stesso trade su EURUSD, con lo stesso ingresso e lo stesso stop a venticinque pip. Il prezzo va contro e lo stop scatta. Il primo perde cento dollari. Il secondo ne perde mille. Hanno sbagliato la stessa previsione, ma il danno è dieci volte diverso. La differenza è una sola: il lotto. In questo video vediamo come si calcola il lotto giusto, passo per passo, su forex, oro e yen, e perché con un conto piccolo è più difficile di quanto sembri.",
+      "visual": "pile"
     },
     {
       "capitolo": "Perché il lotto conta",
@@ -27,7 +28,8 @@
           "lo decidi tu: trasforma lo stop in euro o dollari"
         ]
       ],
-      "voce": "Quando apri un'operazione decidi tre cose. Il punto di ingresso, dove però il mercato fa quello che vuole. Lo stop, cioè dove ammetti di aver sbagliato. E il lotto, cioè quanto vale ogni pip. Lo stop dice dove esci. Il lotto dice quanto ti costa uscire. Per questo la gestione del rischio parte dal lotto, non dalla previsione."
+      "voce": "Quando apri un'operazione decidi tre cose. Il punto di ingresso, dove però il mercato fa quello che vuole. Lo stop, cioè dove ammetti di aver sbagliato. E il lotto, cioè quanto vale ogni pip. Lo stop dice dove esci. Il lotto dice quanto ti costa uscire. Per questo la gestione del rischio parte dal lotto, non dalla previsione.",
+      "visual": "candele"
     },
     {
       "capitolo": "La regola dell'1%",
@@ -52,7 +54,8 @@
         ]
       ],
       "nota": "Le perdite si calcolano sul conto che resta, per questo non sono esattamente 10, 20 e 50%.",
-      "voce": "Prima di calcolare il lotto devi sapere quanto rischiare. Molti trader usano una regola semplice: al massimo l'uno per cento del conto per operazione. Perché così poco? Perché le serie di perdite arrivano a tutti. Con dieci perdite di fila, all'uno per cento perdi circa il nove virgola sei per cento del conto. Al due per cento circa il diciotto. Al cinque per cento perdi il quaranta per cento, e per tornare in pari ti serve un guadagno di quasi il settanta per cento. L'uno per cento non è una legge, ma è un buon punto di partenza."
+      "voce": "Prima di calcolare il lotto devi sapere quanto rischiare. Molti trader usano una regola semplice: al massimo l'uno per cento del conto per operazione. Perché così poco? Perché le serie di perdite arrivano a tutti. Con dieci perdite di fila, all'uno per cento perdi circa il nove virgola sei per cento del conto. Al due per cento circa il diciotto. Al cinque per cento perdi il quaranta per cento, e per tornare in pari ti serve un guadagno di quasi il settanta per cento. L'uno per cento non è una legge, ma è un buon punto di partenza.",
+      "visual": "drawdown"
     },
     {
       "capitolo": "Pip e lotti",
@@ -77,7 +80,8 @@
         ]
       ],
       "nota": "Su EURUSD 1 pip = 0,0001. Con 1 lotto standard vale circa 10 $.",
-      "voce": "Due parole su pip e lotti, perché servono per la formula. Il pip è il movimento minimo di riferimento di una coppia: su EURUSD è il quarto decimale, cioè zero virgola zero zero zero uno. Il lotto è la dimensione della posizione. Un lotto standard sono centomila unità della valuta base, un mini lotto sono diecimila, un micro lotto mille. Su EURUSD, con un lotto standard, ogni pip vale circa dieci dollari. Con un mini lotto un dollaro, con un micro lotto dieci centesimi. Più grande il lotto, più vale ogni pip, nel bene e nel male."
+      "voce": "Due parole su pip e lotti, perché servono per la formula. Il pip è il movimento minimo di riferimento di una coppia: su EURUSD è il quarto decimale, cioè zero virgola zero zero zero uno. Il lotto è la dimensione della posizione. Un lotto standard sono centomila unità della valuta base, un mini lotto sono diecimila, un micro lotto mille. Su EURUSD, con un lotto standard, ogni pip vale circa dieci dollari. Con un mini lotto un dollaro, con un micro lotto dieci centesimi. Più grande il lotto, più vale ogni pip, nel bene e nel male.",
+      "visual": "lotti"
     },
     {
       "capitolo": "La formula",
@@ -85,7 +89,8 @@
       "titolo": "La formula del lotto",
       "formula": "Lotti = <mark>rischio</mark> ÷ (<span>stop in pip</span> × <span>valore del pip</span>)",
       "nota": "Il valore del pip è quello per 1 lotto standard.",
-      "voce": "Ecco la formula. I lotti sono uguali al rischio in denaro, diviso lo stop in pip moltiplicato per il valore di un pip per un lotto standard. Tre numeri: quanto vuoi rischiare, quanto è lontano lo stop, e quanto vale ogni pip. Gli ultimi due dipendono dal mercato su cui operi. Vediamoli con un esempio."
+      "voce": "Ecco la formula. I lotti sono uguali al rischio in denaro, diviso lo stop in pip moltiplicato per il valore di un pip per un lotto standard. Tre numeri: quanto vuoi rischiare, quanto è lontano lo stop, e quanto vale ogni pip. Gli ultimi due dipendono dal mercato su cui operi. Vediamoli con un esempio.",
+      "visual": "bilancia"
     },
     {
       "capitolo": "Esempio su EURUSD",
@@ -113,7 +118,8 @@
           "<mark>0,40 lotti</mark>"
         ]
       ],
-      "voce": "Conto da diecimila dollari, rischio dell'uno per cento: cento dollari. Lo stop è a venticinque pip. Su EURUSD un pip è il quarto decimale, e con un lotto standard, cioè centomila euro, ogni pip vale circa dieci dollari. Quindi: cento diviso venticinque per dieci. Fa zero virgola quaranta lotti. Se lo stop scatta, perdi venticinque pip per quattro dollari a pip: esattamente cento dollari, l'uno per cento."
+      "voce": "Conto da diecimila dollari, rischio dell'uno per cento: cento dollari. Lo stop è a venticinque pip. Su EURUSD un pip è il quarto decimale, e con un lotto standard, cioè centomila euro, ogni pip vale circa dieci dollari. Quindi: cento diviso venticinque per dieci. Fa zero virgola quaranta lotti. Se lo stop scatta, perdi venticinque pip per quattro dollari a pip: esattamente cento dollari, l'uno per cento.",
+      "visual": "candele"
     },
     {
       "capitolo": "Prima lo stop, poi il lotto",
@@ -142,7 +148,8 @@
         ]
       ],
       "nota": "Lo stop si mette dove il trade è sbagliato. Il lotto si adatta allo stop, non il contrario.",
-      "voce": "Guarda cosa succede cambiando lo stop. Con uno stop a dieci pip puoi aprire un lotto. A venticinque, zero virgola quaranta. A cinquanta, zero virgola venti. A cento pip, zero virgola dieci. In tutti i casi rischi gli stessi cento dollari. Questo è il punto più importante del video: lo stop si mette dove l'idea di trading è sbagliata, guardando il grafico. Poi il lotto si adatta allo stop. L'errore classico è fare il contrario: decidere il lotto per abitudine e poi stringere lo stop per farcelo stare."
+      "voce": "Guarda cosa succede cambiando lo stop. Con uno stop a dieci pip puoi aprire un lotto. A venticinque, zero virgola quaranta. A cinquanta, zero virgola venti. A cento pip, zero virgola dieci. In tutti i casi rischi gli stessi cento dollari. Questo è il punto più importante del video: lo stop si mette dove l'idea di trading è sbagliata, guardando il grafico. Poi il lotto si adatta allo stop. L'errore classico è fare il contrario: decidere il lotto per abitudine e poi stringere lo stop per farcelo stare.",
+      "visual": "bilancia"
     },
     {
       "capitolo": "Oro (XAUUSD)",
@@ -171,7 +178,8 @@
         ]
       ],
       "nota": "Il modo di contare i pip sull'oro cambia da broker a broker. Controlla la specifica del contratto.",
-      "voce": "Sull'oro la confusione nasce perché ogni broker conta i pip in modo diverso. Il modo più sicuro è ragionare in dollari di movimento. Su molti broker un lotto d'oro sono cento once, quindi se il prezzo si muove di un dollaro, un lotto guadagna o perde cento dollari. Se il tuo stop è a cinque dollari dall'ingresso, un lotto perderebbe cinquecento dollari. Per rischiarne cento ti servono zero virgola venti lotti. Prima di operare, apri la specifica del contratto sul tuo MetaTrader e controlla la dimensione del lotto."
+      "voce": "Sull'oro la confusione nasce perché ogni broker conta i pip in modo diverso. Il modo più sicuro è ragionare in dollari di movimento. Su molti broker un lotto d'oro sono cento once, quindi se il prezzo si muove di un dollaro, un lotto guadagna o perde cento dollari. Se il tuo stop è a cinque dollari dall'ingresso, un lotto perderebbe cinquecento dollari. Per rischiarne cento ti servono zero virgola venti lotti. Prima di operare, apri la specifica del contratto sul tuo MetaTrader e controlla la dimensione del lotto.",
+      "visual": "oro"
     },
     {
       "capitolo": "Coppie con lo yen",
@@ -199,7 +207,8 @@
           "<mark>0,50 lotti</mark>"
         ]
       ],
-      "voce": "Sulle coppie con lo yen il pip è il secondo decimale, e il suo valore in dollari cambia con il prezzo. Con USDJPY a centocinquanta, un pip per un lotto standard vale circa sei dollari e sessantasette. Con uno stop a trenta pip, un lotto perde circa duecento dollari. Per rischiarne cento ti servono circa zero virgola cinquanta lotti. Ecco perché usare sempre dieci dollari a pip, su ogni coppia, porta a errori."
+      "voce": "Sulle coppie con lo yen il pip è il secondo decimale, e il suo valore in dollari cambia con il prezzo. Con USDJPY a centocinquanta, un pip per un lotto standard vale circa sei dollari e sessantasette. Con uno stop a trenta pip, un lotto perde circa duecento dollari. Per rischiarne cento ti servono circa zero virgola cinquanta lotti. Ecco perché usare sempre dieci dollari a pip, su ogni coppia, porta a errori.",
+      "visual": "globo"
     },
     {
       "capitolo": "Indici (DAX, Nasdaq)",
@@ -228,7 +237,8 @@
         ]
       ],
       "nota": "Il valore per punto cambia molto tra broker e strumenti: controlla sempre la specifica.",
-      "voce": "Sugli indici, come il DAX o il Nasdaq, non si parla di pip ma di punti, e il valore di un punto dipende dal contratto del tuo broker. Facciamo un esempio con un contratto da un euro per punto per lotto. Se lo stop è a quaranta punti, un lotto perde quaranta euro. Per rischiare cento euro puoi aprire due virgola cinque lotti. Ma attenzione: su un altro broker lo stesso indice può valere dieci euro o venticinque euro per punto, e allora il lotto giusto cambia completamente. Prima di usare la formula, controlla sempre quanto vale un punto sul tuo conto."
+      "voce": "Sugli indici, come il DAX o il Nasdaq, non si parla di pip ma di punti, e il valore di un punto dipende dal contratto del tuo broker. Facciamo un esempio con un contratto da un euro per punto per lotto. Se lo stop è a quaranta punti, un lotto perde quaranta euro. Per rischiare cento euro puoi aprire due virgola cinque lotti. Ma attenzione: su un altro broker lo stesso indice può valere dieci euro o venticinque euro per punto, e allora il lotto giusto cambia completamente. Prima di usare la formula, controlla sempre quanto vale un punto sul tuo conto.",
+      "visual": "indici"
     },
     {
       "capitolo": "Conto in euro",
@@ -248,7 +258,8 @@
           "Poi usa la formula come prima"
         ]
       ],
-      "voce": "Se il tuo conto è in euro, il rischio è in euro ma il valore del pip su EURUSD è in dollari. Calcola il rischio in euro, convertilo in dollari al cambio del momento, poi usa la formula. La differenza è di qualche punto percentuale, ma su tante operazioni conta. Un calcolatore lo fa in automatico."
+      "voce": "Se il tuo conto è in euro, il rischio è in euro ma il valore del pip su EURUSD è in dollari. Calcola il rischio in euro, convertilo in dollari al cambio del momento, poi usa la formula. La differenza è di qualche punto percentuale, ma su tante operazioni conta. Un calcolatore lo fa in automatico.",
+      "visual": "globo"
     },
     {
       "capitolo": "Prop firm",
@@ -273,7 +284,8 @@
         ]
       ],
       "nota": "Conti approssimati, sul saldo di inizio giornata. Senza margine, uno slippage basta a sforare.",
-      "voce": "Se fai le challenge delle prop firm, il calcolo del lotto va fatto pensando al limite giornaliero. Su una challenge da centomila dollari con limite giornaliero del cinque per cento, cioè cinquemila dollari, rischiando il due per cento a trade bastano tre perdite di fila per sforare. All'uno per cento ne bastano cinque. Allo zero virgola cinque per cento ne servono dieci. Per questo molti trader di prop rischiano meno dell'uno per cento, e si fermano prima del limite, ad esempio al quattro per cento, lasciando un margine per lo slippage."
+      "voce": "Se fai le challenge delle prop firm, il calcolo del lotto va fatto pensando al limite giornaliero. Su una challenge da centomila dollari con limite giornaliero del cinque per cento, cioè cinquemila dollari, rischiando il due per cento a trade bastano tre perdite di fila per sforare. All'uno per cento ne bastano cinque. Allo zero virgola cinque per cento ne servono dieci. Per questo molti trader di prop rischiano meno dell'uno per cento, e si fermano prima del limite, ad esempio al quattro per cento, lasciando un margine per lo slippage.",
+      "visual": "scudo"
     },
     {
       "capitolo": "Il problema dei conti piccoli",
@@ -302,7 +314,8 @@
         ]
       ],
       "nota": "Con un conto molto piccolo, il lotto minimo ti costringe a rischiare più dell'1%.",
-      "voce": "Ora il caso che nessuno spiega. Conto da cento dollari, rischio dell'uno per cento: un dollaro. Con uno stop a venticinque pip ti servirebbero zero virgola zero zero quattro lotti. Ma il lotto minimo della maggior parte dei broker è zero virgola zero uno. Con zero virgola zero uno e venticinque pip rischi due dollari e cinquanta, cioè il due virgola cinque per cento. Con un conto piccolo la regola dell'uno per cento è spesso impossibile da rispettare. Le alternative sono stop più stretti, ma solo se il grafico li giustifica, oppure accettare un rischio più alto sapendo cosa comporta, oppure aspettare di avere un capitale adeguato."
+      "voce": "Ora il caso che nessuno spiega. Conto da cento dollari, rischio dell'uno per cento: un dollaro. Con uno stop a venticinque pip ti servirebbero zero virgola zero zero quattro lotti. Ma il lotto minimo della maggior parte dei broker è zero virgola zero uno. Con zero virgola zero uno e venticinque pip rischi due dollari e cinquanta, cioè il due virgola cinque per cento. Con un conto piccolo la regola dell'uno per cento è spesso impossibile da rispettare. Le alternative sono stop più stretti, ma solo se il grafico li giustifica, oppure accettare un rischio più alto sapendo cosa comporta, oppure aspettare di avere un capitale adeguato.",
+      "visual": "minimo"
     },
     {
       "capitolo": "Dopo le perdite",
@@ -327,7 +340,8 @@
         ]
       ],
       "nota": "Così il rischio scende da solo quando perdi e sale quando guadagni.",
-      "voce": "Ultimo dettaglio importante: la percentuale si calcola sul saldo attuale, non su quello di partenza. Se il conto scende da diecimila a novemila dollari, l'uno per cento diventa novanta dollari, e il lotto scende di conseguenza. Se il conto sale a undicimila, l'uno per cento diventa centodieci. In questo modo il rischio si riduce da solo quando sei in perdita, proprio quando sei più vulnerabile, e cresce quando le cose vanno bene. È l'opposto di quello che fa chi raddoppia il lotto per recuperare."
+      "voce": "Ultimo dettaglio importante: la percentuale si calcola sul saldo attuale, non su quello di partenza. Se il conto scende da diecimila a novemila dollari, l'uno per cento diventa novanta dollari, e il lotto scende di conseguenza. Se il conto sale a undicimila, l'uno per cento diventa centodieci. In questo modo il rischio si riduce da solo quando sei in perdita, proprio quando sei più vulnerabile, e cresce quando le cose vanno bene. È l'opposto di quello che fa chi raddoppia il lotto per recuperare.",
+      "visual": "drawdown"
     },
     {
       "capitolo": "Tre errori da evitare",
@@ -347,7 +361,8 @@
           "EURUSD e GBPUSD all'1% sono quasi un 2%"
         ]
       ],
-      "voce": "Tre errori frequenti. Primo: arrotondare per eccesso. Se la formula dà zero virgola trentasette, apri zero virgola trentasette o arrotonda per difetto, non a zero virgola quaranta. Secondo: dimenticare i costi. Spread e commissioni si aggiungono alla perdita quando lo stop scatta. Terzo: aprire più posizioni correlate. Long su EURUSD e GBPUSD all'uno per cento ciascuna sono quasi una sola scommessa sul dollaro al due per cento. Il rischio va calcolato sull'insieme delle posizioni aperte."
+      "voce": "Tre errori frequenti. Primo: arrotondare per eccesso. Se la formula dà zero virgola trentasette, apri zero virgola trentasette o arrotonda per difetto, non a zero virgola quaranta. Secondo: dimenticare i costi. Spread e commissioni si aggiungono alla perdita quando lo stop scatta. Terzo: aprire più posizioni correlate. Long su EURUSD e GBPUSD all'uno per cento ciascuna sono quasi una sola scommessa sul dollaro al due per cento. Il rischio va calcolato sull'insieme delle posizioni aperte.",
+      "visual": "domino"
     },
     {
       "capitolo": "Riepilogo",
@@ -371,14 +386,16 @@
           "Controlla il valore del pip del mercato che usi"
         ]
       ],
-      "voce": "Riassumendo. Decidi quanto rischiare, ad esempio l'uno per cento. Metti lo stop dove il trade è sbagliato, guardando il grafico. Calcola il lotto con la formula, arrotondando per difetto. E controlla sempre il valore del pip, o la dimensione del contratto, del mercato su cui operi."
+      "voce": "Riassumendo. Decidi quanto rischiare, ad esempio l'uno per cento. Metti lo stop dove il trade è sbagliato, guardando il grafico. Calcola il lotto con la formula, arrotondando per difetto. E controlla sempre il valore del pip, o la dimensione del contratto, del mercato su cui operi.",
+      "visual": "scudo"
     },
     {
       "capitolo": "Calcolatore gratuito",
       "tipo": "chiusura",
       "grande": "Calcolatore gratuito<br><mark>su riskly.trade</mark>",
       "piccolo": "Scegli il simbolo, inserisci conto, rischio e stop: il lotto lo calcola lui.",
-      "voce": "Se non vuoi fare i conti a mano, su riskly punto trade trovi un calcolatore gratuito, senza registrazione. Scegli il simbolo, inserisci conto, rischio e stop, e ti dice il lotto. Nel prossimo video vediamo come si costruisce un piano di rischio giornaliero, con il limite di perdita e lo stop dopo le perdite di fila. Se ti è stato utile, iscriviti al canale e scrivi nei commenti quanto rischi per operazione. Questo video è educativo e non è una consulenza finanziaria. Il trading con leva comporta un alto rischio e puoi perdere tutto il capitale."
+      "voce": "Se non vuoi fare i conti a mano, su riskly punto trade trovi un calcolatore gratuito, senza registrazione. Scegli il simbolo, inserisci conto, rischio e stop, e ti dice il lotto. Nel prossimo video vediamo come si costruisce un piano di rischio giornaliero, con il limite di perdita e lo stop dopo le perdite di fila. Se ti è stato utile, iscriviti al canale e scrivi nei commenti quanto rischi per operazione. Questo video è educativo e non è una consulenza finanziaria. Il trading con leva comporta un alto rischio e puoi perdere tutto il capitale.",
+      "visual": "lotti"
     }
   ]
 }
