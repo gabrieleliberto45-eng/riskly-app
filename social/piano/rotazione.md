@@ -39,14 +39,16 @@ Stili grafici: bianco "foglio" · scuro marchio · rosso "notiziario" (attualit�
 | 11 ott | 10:00 / 13:00 | teaser t2 · carosello c02 breakeven |
 | 12 ott | 09:00 / 18:00 | n01 settimana dei mercati · Storia s02 · Barings |
 | 13 ott | 13:00 | carosello c04 winrate |
-| 14 ott | 18:00 | Storia s03 · Archegos |
+| 14 ott | 09:00 / 12:00 / 18:00 | YouTube v03 inflazione USA · clip v03-t1 · Storia s03 · Archegos |
 | 15 ott | 13:00 | carosello c01 lotto |
-| 16 ott | 18:00 | **da fare: storia s04** |
+| 16 ott | 18:00 | Storia s04 · LTCM |
 | 17 ott | 13:00 | carosello c03 prop firm |
-| 18 ott | 18:00 | **da fare: storia s05** |
+| 18 ott | 18:00 | Storia s05 · Knight Capital |
 | 19 ott | 13:00 | carosello c05 frasi |
 | 20 ott | 13:00 / 18:00 | conto alla rovescia "Mancano 3 giorni" (IG / TikTok) |
-| 21 ott | 13:00 | **da fare: carosello c06** |
+| 21 ott | 13:00 | carosello c06 operazioni al giorno (scuro) |
 | 22 ott | 13:00 / 18:00 | "Domani escono i bot" (IG / TikTok) |
 
 In bozza (non escono): tutti i vecchi reel/video promo dal 10 al 22 e tutti gli Shorts promo YouTube dal 9 al 22, tranne gli Shorts del 9 e 10 alle 16:00.
+
+Aggiornato il 9 ottobre sera: tutto il calendario fino al 22 è programmato. Dal 16 ottobre la routine del venerdì segue questo piano (storie/caroselli alternati, YouTube solo video lunghi + clip).
