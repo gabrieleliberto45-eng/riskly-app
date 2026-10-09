@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8">
+<style>
+  /* stile "foglio bianco": nero pieno, carattere stretto, evidenziatore verde lime sui numeri che contano */
+  @font-face{font-family:'Archivo';src:url(archivo.woff2) format('woff2');font-weight:400 900;font-stretch:62% 125%}
+  @font-face{font-family:'Martian Mono';src:url(martian-mono.woff2) format('woff2');font-weight:400 700;font-stretch:75% 112.5%}
+  :root{--carta:#F7F7F4;--inchiostro:#0E0F0E;--grigio:#5C615C;--lime:#C8EE4A;--riga:#D9DBD4}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#888}
+  .s{width:1080px;height:1350px;background:var(--carta);color:var(--inchiostro);position:relative;overflow:hidden;
+     font-family:'Archivo',sans-serif;padding:96px 92px 110px;display:flex;flex-direction:column}
+  .s::before{content:'';position:absolute;inset:0;pointer-events:none;
+     background:repeating-linear-gradient(0deg,transparent 0 63px,rgba(14,15,14,.045) 63px 64px)}
+  .testa{display:flex;justify-content:space-between;align-items:center;font:600 30px 'Martian Mono',monospace;color:var(--grigio);position:relative}
+  .logo{display:flex;align-items:center;gap:14px;font:800 38px 'Archivo';font-stretch:90%;color:var(--inchiostro);letter-spacing:-.01em}
+  .corpo{flex:1;display:flex;flex-direction:column;justify-content:center;position:relative}
+  .grande,.medio,.tit,.frase .q{word-spacing:.14em}
+  mark{background:linear-gradient(transparent 12%,var(--lime) 12%,var(--lime) 88%,transparent 88%);color:inherit;padding:0 .08em;
+       -webkit-box-decoration-break:clone;box-decoration-break:clone}
+  .grande{font-weight:900;font-stretch:72%;font-size:132px;line-height:.98;letter-spacing:-.015em;text-transform:uppercase}
+  .medio{font-weight:900;font-stretch:72%;font-size:104px;line-height:1;letter-spacing:-.01em;text-transform:uppercase}
+  .sotto{margin-top:48px;font:500 40px/1.35 'Archivo';color:var(--grigio)}
+  .tit{font-weight:900;font-stretch:75%;font-size:74px;line-height:1;text-transform:uppercase;margin-bottom:52px;letter-spacing:-.005em}
+  .par{font:500 50px/1.4 'Archivo';max-width:22ch}
+  .par b{font-weight:800}
+  .nota{margin-top:44px;font:500 34px/1.45 'Archivo';color:var(--grigio);max-width:30ch}
+  .righe{border-top:4px solid var(--inchiostro)}
+  .riga{display:flex;justify-content:space-between;align-items:baseline;gap:30px;padding:30px 0;border-bottom:2px solid var(--riga)}
+  .riga span:first-child{font:500 40px/1.25 'Archivo'}
+  .riga span:last-child{font:700 50px 'Martian Mono',monospace;font-stretch:87.5%;white-space:nowrap;font-variant-numeric:tabular-nums}
+  .riga:last-child span:first-child{font-weight:800}
+  .frase{padding:38px 0;border-bottom:2px solid var(--riga);display:grid;grid-template-columns:110px 1fr;gap:6px 0}
+  .frase .n{font:700 64px 'Martian Mono';color:var(--inchiostro);grid-row:1/3}
+  .frase .q{font-weight:900;font-stretch:75%;font-size:78px;line-height:1.02;text-transform:uppercase}
+  .frase .a{font:500 38px/1.35 'Archivo';color:var(--grigio);margin-top:12px}
+  .link{margin-top:56px;display:inline-flex;align-self:flex-start;font:700 34px 'Archivo';background:var(--inchiostro);color:var(--carta);padding:22px 30px;border-radius:6px}
+  .piede{position:absolute;left:92px;right:92px;bottom:48px;display:flex;justify-content:space-between;font:500 24px 'Martian Mono';color:var(--grigio)}
+  .disc{font:500 24px/1.4 'Archivo';color:var(--grigio);max-width:44ch}
+  .freccia{font:700 30px 'Martian Mono';color:var(--inchiostro)}
+</style></head>
+<body><div id="s" class="s"></div>
+<script>
+const LOGO = '<svg width="44" height="44" viewBox="0 0 44 44" fill="none"><path d="M9 31 L17 19.5 L23.5 25 L35 11" stroke="#0E0F0E" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 36 H35" stroke="#7DA81E" stroke-width="3.6" stroke-linecap="round"/></svg>';
+window.mostra = (d, i, n) => {
+  const s = document.getElementById('s');
+  let c = '';
+  if(d.tipo === 'copertina') c = `<div class="grande">${d.testo}</div><div class="sotto">${d.sotto || ''}</div>`;
+  if(d.tipo === 'testo') c = `<div class="tit">${d.titolo}</div><div class="par">${d.testo}</div>${d.nota ? `<div class="nota">${d.nota}</div>` : ''}`;
+  if(d.tipo === 'numeri') c = `<div class="tit">${d.titolo}</div><div class="righe">${d.righe.map(r => `<div class="riga"><span>${r[0]}</span><span>${r[1]}</span></div>`).join('')}</div>${d.nota ? `<div class="nota">${d.nota}</div>` : ''}`;
+  if(d.tipo === 'frasi') c = d.voci.map(v => `<div class="frase"><span class="n">${v[0]}</span><span class="q">${v[1]}</span><span class="a">${v[2]}</span></div>`).join('');
+  if(d.tipo === 'domanda') c = `<div class="medio">${d.testo}</div><div class="sotto">${d.sotto}</div><div class="link">${d.link}</div>`;
+  const ultima = i === n - 1;
+  s.innerHTML = `<div class="testa"><span class="logo">${LOGO}Riskly</span><span>${i + 1}/${n}</span></div>
+    <div class="corpo">${c}</div>
+    <div class="piede">${ultima ? '<span class="disc">Contenuto educativo, non è consulenza finanziaria. Il trading con leva comporta un alto rischio: puoi perdere tutto il capitale.</span>' : '<span>riskly.trade</span><span class="freccia">scorri →</span>'}</div>`;
+};
+</script></body></html>
