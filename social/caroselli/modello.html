@@ -9,6 +9,12 @@
   body.scuro .s::before{background:repeating-linear-gradient(0deg,transparent 0 63px,rgba(238,242,234,.035) 63px 64px)}
   body.scuro mark{color:#0B0D0C}
   body.scuro .link{background:var(--lime);color:#0B0D0C}
+  body.notizie{--carta:#FFFFFF;--inchiostro:#111;--grigio:#555;--riga:#E4E4E4;--lime:#FFD84D}
+  body.notizie .s::before{background:none}
+  body.notizie .s{padding-top:150px}
+  body.notizie .s::after{content:'MERCATI · LA SETTIMANA';position:absolute;left:0;right:0;top:0;height:78px;background:#C8102E;color:#fff;
+    font:800 32px/78px 'Archivo';font-stretch:85%;letter-spacing:.06em;padding-left:92px}
+  body.notizie .testa{position:absolute;top:100px;left:92px;right:92px}
   *{box-sizing:border-box;margin:0;padding:0}
   body{background:#888}
   .s{width:1080px;height:1350px;background:var(--carta);color:var(--inchiostro);position:relative;overflow:hidden;

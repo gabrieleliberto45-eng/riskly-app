@@ -1,0 +1,59 @@
+{
+  "id": "v02",
+  "titolo": "Fed, petrolio a 100 $ e Hormuz: cosa cambia per chi fa trading (ottobre 2026)",
+  "scene": [
+    { "capitolo": "Introduzione", "tipo": "titolo", "grande": "Tassi su. Petrolio a 100 $.<br><mark>E adesso?</mark>", "piccolo": "Ottobre 2026: cosa muove i mercati e come proteggere il conto",
+      "voce": "La Fed ha alzato i tassi per la prima volta dal 2023. Il petrolio è tornato intorno ai cento dollari per le tensioni nello Stretto di Hormuz. Il dollaro è vicino ai massimi da un anno e mezzo, e tra pochi giorni esce il dato sull'inflazione americana. In questo video mettiamo in fila cosa sta succedendo, perché queste cose sono collegate tra loro, e soprattutto cosa significa per chi fa trading. Non faremo previsioni: parleremo di rischio. Questi sono i fatti fino al nove ottobre." },
+
+    { "capitolo": "La Fed ha alzato i tassi", "tipo": "numeri", "titolo": "La decisione del 16 settembre", "colonne": ["", ""], "righe": [
+        ["Rialzo", "+0,25%"], ["Nuovo livello", "3,75–4,00%"], ["Primo rialzo dal", "luglio 2023"], ["Prossima decisione", "<mark>28 ottobre</mark>"]],
+      "nota": "Fonte: comunicato della Federal Reserve del 16 settembre 2026.",
+      "voce": "Partiamo dalla Fed. Il sedici settembre la banca centrale americana ha alzato i tassi di un quarto di punto, portandoli tra il tre virgola settantacinque e il quattro per cento. È il primo rialzo dal luglio del 2023. Il motivo è l'inflazione, ancora lontana dall'obiettivo del due per cento. I verbali di quella riunione, pubblicati il sette ottobre, sono stati letti dal mercato come da falchi: molti membri vedono possibile un altro rialzo entro fine anno. La prossima decisione è il ventotto ottobre." },
+
+    { "capitolo": "Rendimenti e dollaro", "tipo": "punti", "titolo": "Cosa è successo dopo", "punti": [
+        ["Rendimenti", "il decennale USA sopra il 5%, vicino ai massimi da oltre vent'anni"],
+        ["Dollaro", "vicino ai massimi degli ultimi 18 mesi"],
+        ["Borse", "S&P 500 e Nasdaq ai record a inizio settimana, poi in calo"]],
+      "voce": "Cosa è successo dopo. I rendimenti dei titoli di Stato americani sono saliti: il decennale è sopra il cinque per cento, vicino ai livelli più alti da oltre vent'anni. Il dollaro si è rafforzato ed è vicino ai massimi degli ultimi diciotto mesi. Le borse americane hanno toccato nuovi record a inizio settimana, ma poi sono scese per due giorni, con il Nasdaq in calo dell'uno virgola venticinque per cento l'otto ottobre. Tassi alti rendono più costoso indebitarsi e più attraenti le obbligazioni: per questo pesano su azioni e oro." },
+
+    { "capitolo": "Petrolio e Hormuz", "tipo": "numeri", "titolo": "Petrolio: perché è a 100 $", "colonne": ["", ""], "righe": [
+        ["Brent", "circa 100–103 $"], ["WTI", "circa 90 $"], ["Motivo", "tensioni nello Stretto di Hormuz"]],
+      "nota": "Il 9 ottobre il prezzo è sceso dopo che Trump ha parlato di «discussioni produttive» con l'Iran.",
+      "voce": "Il secondo tema è il petrolio. Il Brent si muove intorno ai cento dollari al barile, con picchi sopra i centodue. Il motivo è lo Stretto di Hormuz, il passaggio tra l'Iran e la penisola arabica da cui transita una parte enorme del petrolio mondiale. Gli attacchi alle navi in quell'area fanno temere interruzioni delle forniture. Il nove ottobre il prezzo è sceso di oltre l'uno per cento dopo che Trump ha parlato di discussioni produttive con l'Iran. Questo ci dice una cosa importante: in questa fase il petrolio reagisce alle notizie geopolitiche, anche a una sola dichiarazione." },
+
+    { "capitolo": "La catena: petrolio → Fed", "tipo": "punti", "titolo": "Come si collega tutto", "punti": [
+        ["1", "Petrolio alto"],
+        ["2", "Benzina, trasporti, energia più cari: l'inflazione sale"],
+        ["3", "La Fed tiene i tassi alti o li alza ancora"],
+        ["4", "Rendimenti su, dollaro più forte"],
+        ["5", "Pressione su oro, azioni e EURUSD"]],
+      "voce": "Perché il petrolio interessa anche a chi fa trading su EURUSD o sull'oro? Perché è il primo anello di una catena. Il petrolio alto fa salire benzina, trasporti ed energia, e quindi l'inflazione. Con l'inflazione alta la Fed tiene i tassi alti o li alza ancora. Tassi più alti spingono su i rendimenti e rafforzano il dollaro. E un dollaro forte, con rendimenti alti, di solito pesa su oro, azioni ed EURUSD. Di solito, non sempre: quest'anno l'oro è salito insieme al petrolio, perché la paura geopolitica ha spinto la domanda di beni rifugio." },
+
+    { "capitolo": "Oro", "tipo": "numeri", "titolo": "Oro: tirato da due parti", "colonne": ["", ""], "righe": [
+        ["Prezzo (9 ottobre)", "circa 4.190 $"], ["Ultimo mese", "circa −3%"], ["Ultimo anno", "circa +4%"]],
+      "nota": "Contro: tassi alti e dollaro forte. A favore: domanda di beni rifugio per la geopolitica.",
+      "voce": "L'oro oggi è tirato da due parti. Da un lato tassi alti e dollaro forte lo spingono giù, perché l'oro non paga interessi. Dall'altro le tensioni in Medio Oriente lo sostengono come bene rifugio. Il risultato è un prezzo intorno ai quattromilacentonovanta dollari l'oncia, in calo di circa il tre per cento nell'ultimo mese ma ancora sopra di circa il quattro per cento in un anno. Quando due forze opposte si scontrano, i movimenti possono essere bruschi in entrambe le direzioni. Per chi opera sull'oro, è il momento di ricontrollare la dimensione delle posizioni." },
+
+    { "capitolo": "Il calendario di ottobre", "tipo": "numeri", "titolo": "Le date da segnare (ora italiana)", "colonne": ["Data", "Dato"], "righe": [
+        ["Mer 14 ott, 14:30", "inflazione USA (CPI)"], ["Gio 15 ott, 14:30", "prezzi alla produzione e vendite"], ["Mer 28 ott, 19:00", "<mark>decisione Fed</mark>"], ["Gio 29 ott, 13:30", "PIL USA e inflazione PCE"]],
+      "nota": "Il 25 ottobre in Italia torna l'ora solare, negli USA il 1° novembre: per una settimana i dati USA escono un'ora prima del solito.",
+      "voce": "Ecco le date da segnare, in ora italiana. Mercoledì quattordici ottobre alle quattordici e trenta esce l'inflazione americana di settembre: ad agosto era al tre virgola quattro per cento. Giovedì quindici, sempre alle quattordici e trenta, prezzi alla produzione e vendite al dettaglio. Il ventotto ottobre la decisione della Fed, che arriverà alle diciannove e non alle venti. Il motivo è il cambio dell'ora: in Italia l'ora solare torna il venticinque ottobre, negli Stati Uniti solo il primo novembre. Per quella settimana i dati americani escono un'ora prima del solito. Infine giovedì ventinove, alle tredici e trenta, PIL americano e inflazione PCE. Sono dettagli che fanno la differenza tra un ordine messo con calma e uno stop saltato." },
+
+    { "capitolo": "Cosa fare con il rischio", "tipo": "punti", "titolo": "Gestire il rischio in questa fase", "punti": [
+        ["Notizie", "niente nuove posizioni nei minuti intorno ai dati"],
+        ["Lotto", "volatilità più alta: stop più larghi, lotto più piccolo"],
+        ["Correlazioni", "dollaro forte su più coppie = una sola scommessa"],
+        ["Weekend", "le notizie geopolitiche arrivano anche a mercato chiuso"]],
+      "voce": "Arriviamo alla parte che conta. Primo: nei minuti intorno ai dati più importanti gli spread si allargano e il prezzo può saltare lo stop. Molti trader evitano di aprire nuove posizioni in quel momento. Secondo: con più volatilità servono stop più larghi, e quindi un lotto più piccolo, per rischiare la stessa percentuale. È la formula che abbiamo visto nel video sul position sizing. Terzo: in una fase di dollaro forte, posizioni su più coppie contro il dollaro sono in realtà una scommessa sola. Quarto: le notizie geopolitiche arrivano anche nel fine settimana, a mercato chiuso. Il lunedì il prezzo può riaprire lontano da dove ha chiuso." },
+
+    { "capitolo": "In sintesi", "tipo": "punti", "titolo": "In sintesi", "punti": [
+        ["Fed", "tassi in salita, prossima decisione il 28 ottobre"],
+        ["Petrolio", "intorno ai 100 $, guidato dalle notizie su Hormuz"],
+        ["Date", "14, 15, 28 e 29 ottobre"],
+        ["Rischio", "lotto più piccolo, niente ingressi sui dati"]],
+      "voce": "In sintesi. La Fed ha ricominciato ad alzare i tassi e decide di nuovo il ventotto ottobre. Il petrolio resta intorno ai cento dollari, guidato dalle notizie dallo Stretto di Hormuz. Le date da segnare sono il quattordici, il quindici, il ventotto e il ventinove ottobre. E la regola per questa fase è semplice: lotto più piccolo e niente ingressi a cavallo dei dati." },
+
+    { "capitolo": "Chiusura", "tipo": "chiusura", "grande": "Il mercato non lo controlli.<br><mark>Il rischio sì.</mark>", "piccolo": "Calcolatori gratuiti e journal su riskly.trade",
+      "voce": "Se vuoi calcolare il lotto giusto con stop più larghi, su riskly punto trade trovi i calcolatori gratuiti. Iscriviti al canale: ogni settimana mettiamo in fila i fatti che muovono i mercati e cosa significano per il tuo rischio. E scrivi nei commenti: il giorno del dato sull'inflazione, tu operi o stai fuori? Questo video è informativo ed educativo, non è una consulenza finanziaria né un invito a investire. Il trading con leva comporta un alto rischio e puoi perdere tutto il capitale." }
+  ]
+}

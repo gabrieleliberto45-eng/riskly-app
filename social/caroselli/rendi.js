@@ -15,6 +15,7 @@ const path = require('path');
   await p.evaluate(() => document.fonts.ready);
   for(const c of dati){
     if(scelti.length && !scelti.includes(c.id)) continue;
+    await p.evaluate(s => { document.body.classList.toggle('notizie', s === 'notizie'); }, c.stile || '');
     const dir = path.join(__dirname, c.id + (scuro ? '-scuro' : '')); fs.mkdirSync(dir, { recursive: true });
     for(let i = 0; i < c.slide.length; i++){
       await p.evaluate(([d, i, n]) => window.mostra(d, i, n), [c.slide[i], i, c.slide.length]);
