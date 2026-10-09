@@ -23,3 +23,10 @@ Stili grafici: bianco "foglio" · scuro marchio · rosso "notiziario" (attualit�
 - Solo fatti verificati, con data; niente previsioni di prezzo, niente "compra/vendi".
 - Ogni notizia chiude con cosa significa per il rischio (lotto, stop, orari).
 - Orari sempre in ora italiana (attenzione al cambio d'ora: Italia 25 ottobre, USA 1° novembre).
+
+## Alternanza decisa il 9 ottobre (TikTok e Instagram)
+- Giorni pari dal 10: **Storie di rischio** (reel cinematografico, crolli e disastri veri), ore 18:00. Ogni storia chiude collegandosi a uno strumento Riskly.
+- Giorni dispari dall'11: **Gestione del rischio** (carosello), ore 13:00.
+- In più, quando esce un video lungo su YouTube: 2 clip verticali che portano al canale.
+- Attualità ("La settimana dei mercati") il lunedì mattina prima dei dati importanti.
+- I vecchi reel/video promozionali programmati sono in bozza: non escono.

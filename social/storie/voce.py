@@ -6,7 +6,9 @@ Q = os.path.dirname(os.path.abspath(__file__))
 async def main():
     for st in json.load(open(os.path.join(Q, 'storie.json'))):
         if len(sys.argv) > 1 and st['id'] not in sys.argv[1:]: continue
+        solo_ultimo = os.environ.get('SOLO_ULTIMO')
         for i, s in enumerate(st['segmenti']):
+            if solo_ultimo and i != len(st['segmenti']) - 1: continue
             base = os.path.join(Q, 'voce', f"{st['id']}-{i+1:02d}")
             c = edge_tts.Communicate(s['voce'], 'it-IT-GiuseppeMultilingualNeural', rate='+6%', pitch='-4Hz', boundary='WordBoundary')
             parole = []
