@@ -49,6 +49,6 @@ Stili grafici: bianco "foglio" · scuro marchio · rosso "notiziario" (attualit�
 | 21 ott | 13:00 | carosello c06 operazioni al giorno (scuro) |
 | 22 ott | 13:00 / 18:00 | "Domani escono i bot" (IG / TikTok) |
 
-In bozza (non escono): tutti i vecchi reel/video promo dal 10 al 22 e tutti gli Shorts promo YouTube dal 9 al 22, tranne gli Shorts del 9 e 10 alle 16:00.
+In bozza (non escono): tutti i vecchi reel/video promo dal 10 al 22 e tutti gli Shorts promo YouTube dal 9 al 22 (compresi quelli del 9 e 10 alle 16:00).
 
 Aggiornato il 9 ottobre sera: tutto il calendario fino al 22 è programmato. Dal 16 ottobre la routine del venerdì segue questo piano (storie/caroselli alternati, YouTube solo video lunghi + clip).
