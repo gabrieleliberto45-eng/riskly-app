@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8">
+<style>
+  /* video lunghi YouTube, 1920×1080: fondo scuro del marchio, verde lime solo su ciò che conta */
+  @font-face{font-family:'Archivo';src:url(archivo.woff2) format('woff2');font-weight:400 900;font-stretch:62% 125%}
+  @font-face{font-family:'Martian Mono';src:url(martian-mono.woff2) format('woff2');font-weight:400 700;font-stretch:75% 112.5%}
+  :root{--bg:#0B0D0C;--panel:#121512;--testo:#EEF2EA;--dim:#9AA39A;--riga:#232823;--lime:#B6D84F}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg)}
+  #v{width:1920px;height:1080px;position:relative;overflow:hidden;background:
+      radial-gradient(1200px 700px at 85% 10%,rgba(182,216,79,.08),transparent 60%),var(--bg);
+     color:var(--testo);font-family:'Archivo',sans-serif}
+  #v::before{content:'';position:absolute;inset:0;opacity:.5;
+     background-image:linear-gradient(rgba(238,242,234,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(238,242,234,.035) 1px,transparent 1px);
+     background-size:96px 96px}
+  .testa{position:absolute;left:120px;right:120px;top:70px;display:flex;justify-content:space-between;align-items:center;font:600 26px 'Martian Mono';color:var(--dim)}
+  .cap{display:flex;align-items:center;gap:16px}
+  .cap i{width:12px;height:12px;background:var(--lime);border-radius:2px}
+  .logo{display:flex;align-items:center;gap:12px;font:800 32px 'Archivo';font-stretch:90%;color:var(--testo)}
+  .corpo{position:absolute;left:120px;right:120px;top:190px;bottom:150px;display:flex;flex-direction:column;justify-content:center}
+  mark{background:linear-gradient(transparent 10%,var(--lime) 10%,var(--lime) 90%,transparent 90%);color:#0B0D0C;padding:0 .08em;
+       -webkit-box-decoration-break:clone;box-decoration-break:clone}
+  .grande{font-weight:900;font-stretch:72%;font-size:150px;line-height:.98;text-transform:uppercase;letter-spacing:-.01em;word-spacing:.12em}
+  .piccolo{margin-top:44px;font:500 40px/1.4 'Archivo';color:var(--dim);max-width:40ch}
+  .tit{font-weight:900;font-stretch:75%;font-size:84px;line-height:1;text-transform:uppercase;margin-bottom:56px;word-spacing:.12em;max-width:28ch}
+  .righe{border-top:4px solid var(--testo);max-width:1400px}
+  .intest{display:flex;justify-content:space-between;padding:18px 0;font:600 26px 'Martian Mono';color:var(--dim);border-bottom:2px solid var(--riga)}
+  .riga{display:flex;justify-content:space-between;align-items:baseline;gap:40px;padding:26px 0;border-bottom:2px solid var(--riga)}
+  .riga span:first-child{font:500 44px/1.2 'Archivo'}
+  .riga span:last-child{font:700 54px 'Martian Mono';font-stretch:87.5%;white-space:nowrap;font-variant-numeric:tabular-nums}
+  .punto{display:grid;grid-template-columns:auto 1fr;gap:6px 36px;padding:26px 0;border-bottom:2px solid var(--riga);max-width:1500px;align-items:baseline}
+  .punto b{font-weight:900;font-stretch:75%;font-size:60px;text-transform:uppercase;color:var(--lime);min-width:80px}
+  .punto span{font:500 46px/1.3 'Archivo'}
+  .formula{font:700 66px/1.5 'Martian Mono';font-stretch:87.5%;max-width:1600px}
+  .formula span{color:var(--lime)}
+  .nota{margin-top:40px;font:500 34px/1.45 'Archivo';color:var(--dim);max-width:60ch}
+  .piede{position:absolute;left:120px;right:120px;bottom:70px;display:flex;justify-content:space-between;font:500 24px 'Martian Mono';color:var(--dim)}
+  .barra{position:absolute;left:0;bottom:0;height:6px;background:var(--lime)}
+  /* comparse */
+  .e{opacity:0;transform:translateY(24px)}
+  .e.on{animation:entra .7s cubic-bezier(.23,1,.32,1) forwards}
+  @keyframes entra{to{opacity:1;transform:none}}
+</style></head>
+<body><div id="v"></div>
+<script>
+const LOGO='<svg width="40" height="40" viewBox="0 0 44 44" fill="none"><path d="M9 31 L17 19.5 L23.5 25 L35 11" stroke="#EEF2EA" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 36 H35" stroke="#B6D84F" stroke-width="3.6" stroke-linecap="round"/></svg>';
+/* disegna la scena: gli elementi .e compaiono in ordine; mostra(k) accende i primi k */
+window.scena=(s,i,n,avanzamento)=>{
+  let c='';
+  if(s.tipo==='titolo'||s.tipo==='chiusura') c=`<div class="grande e">${s.grande}</div><div class="piccolo e">${s.piccolo||''}</div>`;
+  if(s.tipo==='punti') c=`<div class="tit e">${s.titolo}</div>`+s.punti.map(p=>`<div class="punto e"><b>${p[0]}</b><span>${p[1]}</span></div>`).join('');
+  if(s.tipo==='numeri') c=`<div class="tit e">${s.titolo}</div><div class="righe e">${(s.colonne&&s.colonne[0])?`<div class="intest"><span>${s.colonne[0]}</span><span>${s.colonne[1]}</span></div>`:''}</div>`
+     +`<div class="righe-dentro"></div>`+(s.nota?`<div class="nota e">${s.nota}</div>`:'');
+  if(s.tipo==='formula') c=`<div class="tit e">${s.titolo}</div><div class="formula e">${s.formula}</div>`+(s.nota?`<div class="nota e">${s.nota}</div>`:'');
+  document.getElementById('v').innerHTML=`<div class="testa"><span class="cap"><i></i>${s.capitolo}</span><span>${i+1} / ${n}</span></div>
+    <div class="corpo">${c}</div>
+    <div class="piede"><span class="logo">${LOGO}Riskly</span><span>riskly.trade · contenuto educativo</span></div>
+    <div class="barra" style="width:${(avanzamento*100).toFixed(2)}%"></div>`;
+  if(s.tipo==='numeri'){                      // le righe stanno dentro la tabella, una alla volta
+    const t=document.querySelector('.righe'), nota=document.querySelector('.nota');
+    s.righe.forEach(r=>{const d=document.createElement('div');d.className='riga e';d.innerHTML=`<span>${r[0]}</span><span>${r[1]}</span>`;t.appendChild(d);});
+    document.querySelector('.righe-dentro').remove();
+    if(nota) t.after(nota);
+  }
+  return document.querySelectorAll('.e').length;
+};
+/* accende i primi k elementi; l'ultimo acceso è all'istante t (secondi) della sua animazione */
+window.mostra=(k,t)=>{
+  const el=[...document.querySelectorAll('.e')];
+  el.forEach((e,j)=>{e.classList.toggle('on',j<k);});
+  document.getAnimations().forEach(a=>a.pause());
+  el.forEach((e,j)=>{ if(j>=k) return; e.getAnimations().forEach(a=>{a.currentTime=(j===k-1?t:10)*1000;}); });
+};
+</script></body></html>

@@ -1,0 +1,26 @@
+Quanti lotti aprire su ogni operazione? In questo video vediamo la formula del position sizing passo per passo, con esempi su EURUSD, oro, USDJPY e indici, il caso delle prop firm e il problema dei conti piccoli.
+
+Calcolatore gratuito, senza registrazione: https://riskly.trade/yt
+
+Capitoli
+0:00 Introduzione
+0:31 Perché il lotto conta
+0:54 La regola dell'1%
+1:29 Pip e lotti
+2:05 La formula
+2:25 Esempio su EURUSD
+2:55 Prima lo stop, poi il lotto
+3:30 Oro (XAUUSD)
+4:02 Coppie con lo yen
+4:29 Indici (DAX, Nasdaq)
+5:04 Conto in euro
+5:23 Prop firm
+5:56 Il problema dei conti piccoli
+6:36 Dopo le perdite
+7:07 Tre errori da evitare
+7:41 Riepilogo
+8:01 Calcolatore gratuito
+
+Contenuto educativo, non è consulenza finanziaria. Il trading con leva (forex, CFD) comporta un alto rischio: puoi perdere tutto il capitale. Esempi semplificati: valore del pip e dimensione dei contratti dipendono dal broker.
+
+#trading #forex #positionsizing #gestionedelrischio
