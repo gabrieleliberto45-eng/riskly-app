@@ -1,0 +1,158 @@
+{
+  "id": "v03",
+  "titolo": "Inflazione USA oggi alle 14:30: come non farti saltare lo stop (CPI 14 ottobre 2026)",
+  "scene": [
+    {
+      "capitolo": "Introduzione",
+      "tipo": "titolo",
+      "grande": "Oggi alle 14:30<br><mark>il mercato salta.</mark>",
+      "piccolo": "Il dato sull'inflazione USA del 14 ottobre e come proteggere il conto",
+      "voce": "Oggi, mercoledì quattordici ottobre, alle quattordici e trenta ora italiana, esce il dato sull'inflazione americana. In pochi secondi l'euro dollaro, l'oro e gli indici possono muoversi più che in un'intera giornata normale. Gli spread si allargano, gli ordini vengono eseguiti a prezzi diversi da quelli che hai impostato, e uno stop che sembrava al sicuro può saltare. In questo video vediamo cos'è questo dato, perché questa volta conta più del solito, cosa si aspetta il mercato e, soprattutto, come gestire il rischio prima, durante e dopo. Non faremo previsioni sul dato: parleremo di come non farsi male.",
+      "visual": "candele"
+    },
+    {
+      "capitolo": "Cos'è il CPI",
+      "tipo": "punti",
+      "titolo": "CPI: l'indice dei prezzi al consumo",
+      "punti": [
+        ["Cosa misura", "quanto sono cambiati i prezzi di un paniere di beni e servizi"],
+        ["Chi lo pubblica", "il Bureau of Labor Statistics, ogni mese"],
+        ["Due numeri", "generale (tutto) e core (senza cibo ed energia)"],
+        ["Due confronti", "rispetto al mese prima e rispetto a un anno prima"]
+      ],
+      "voce": "CPI sta per Consumer Price Index, l'indice dei prezzi al consumo. Misura quanto sono cambiati i prezzi di un paniere di beni e servizi che una famiglia americana compra: affitto, cibo, benzina, auto, servizi. Lo pubblica ogni mese il Bureau of Labor Statistics. I numeri da guardare sono due: il dato generale, che comprende tutto, e il dato core, che toglie cibo ed energia perché sono i prezzi più ballerini. E ognuno viene dato in due modi: rispetto al mese precedente e rispetto a un anno prima. Quando senti dire che l'inflazione è al tre virgola quattro per cento, si parla del dato generale su dodici mesi.",
+      "visual": "pile"
+    },
+    {
+      "capitolo": "L'ultimo dato: agosto",
+      "tipo": "numeri",
+      "titolo": "Il CPI di agosto (uscito l'11 settembre)",
+      "colonne": ["", ""],
+      "righe": [
+        ["Generale, su 12 mesi", "3,4%"],
+        ["Core, su 12 mesi", "2,4%"],
+        ["Benzina, su 12 mesi", "<mark>+27,4%</mark>"],
+        ["Obiettivo della Fed", "2%"]
+      ],
+      "nota": "Fonte: Bureau of Labor Statistics, CPI di agosto 2026. Il core al 2,4% è il livello più basso da marzo 2021.",
+      "voce": "Vediamo l'ultimo dato, quello di agosto, uscito l'undici settembre. L'inflazione generale era al tre virgola quattro per cento su dodici mesi. Quella core, senza cibo ed energia, al due virgola quattro per cento, il livello più basso da marzo del duemilaventuno. Guardate la differenza tra i due numeri: quasi tutta la spinta viene dall'energia. La benzina costava più del ventisette per cento rispetto a un anno prima. È l'effetto del petrolio intorno ai cento dollari, di cui abbiamo parlato nel video sulla Fed e sullo Stretto di Hormuz. L'obiettivo della Fed resta il due per cento.",
+      "visual": "scale"
+    },
+    {
+      "capitolo": "Perché questa volta conta di più",
+      "tipo": "punti",
+      "titolo": "Perché questo dato pesa più del solito",
+      "punti": [
+        ["16 settembre", "la Fed ha alzato i tassi, primo rialzo dal 2023"],
+        ["28 ottobre", "prossima decisione: un altro rialzo è sul tavolo"],
+        ["Il CPI", "è uno degli ultimi dati importanti prima della riunione"]
+      ],
+      "voce": "Perché questa volta il dato conta più del solito? Perché il sedici settembre la Fed ha alzato i tassi per la prima volta dal duemilaventitré, proprio pochi giorni dopo il dato di agosto. La prossima decisione è il ventotto ottobre, e il mercato sta cercando di capire se ci sarà un altro rialzo. Il CPI di oggi è uno degli ultimi dati importanti prima di quella riunione. Quindi non è solo un numero sui prezzi: è un indizio su cosa farà la banca centrale più importante del mondo. E quando cambia l'idea su cosa farà la Fed, si muovono il dollaro, i rendimenti, l'oro e le borse, tutti insieme.",
+      "visual": "domino"
+    },
+    {
+      "capitolo": "Cosa si aspetta il mercato",
+      "tipo": "numeri",
+      "titolo": "Le stime per settembre (al 9 ottobre)",
+      "colonne": ["", ""],
+      "righe": [
+        ["Generale, su 12 mesi", "circa 3,6–3,7%"],
+        ["Core, su 12 mesi", "circa 2,4%"],
+        ["Motivo della salita", "la benzina, di nuovo"]
+      ],
+      "nota": "Stime raccolte fino al 9 ottobre (consenso degli analisti e modello della Fed di Cleveland). Possono cambiare prima dell'uscita.",
+      "voce": "Cosa si aspetta il mercato? Le stime raccolte fino al nove ottobre indicano un'inflazione generale in salita, intorno al tre virgola sei, tre virgola sette per cento, di nuovo spinta dalla benzina. Il dato core invece è atteso stabile, intorno al due virgola quattro. Attenzione: queste sono stime, non certezze, e possono cambiare nei giorni prima dell'uscita. Ma il punto è un altro. Il mercato non reagisce al numero in sé: reagisce alla differenza tra il numero e le attese. Se esce esattamente come previsto, il movimento può essere piccolo. Se esce diverso, anche di un solo decimale, il prezzo deve ricalcolare tutto in pochi secondi.",
+      "visual": "bilancia"
+    },
+    {
+      "capitolo": "Cosa succede alle 14:30",
+      "tipo": "punti",
+      "titolo": "Nei secondi dopo il dato",
+      "punti": [
+        ["Spread", "si allarga, anche di molte volte"],
+        ["Liquidità", "pochi ordini disponibili ai prezzi vicini"],
+        ["Slippage", "lo stop viene eseguito al primo prezzo disponibile"],
+        ["Falsi movimenti", "il primo scatto può invertirsi in pochi minuti"]
+      ],
+      "voce": "Cosa succede nei secondi dopo le quattordici e trenta? Primo: lo spread si allarga, a volte di molte volte rispetto al normale, perché chi fornisce prezzi si protegge. Secondo: la liquidità sparisce, ci sono pochi ordini ai prezzi vicini a quello attuale. Terzo, ed è la conseguenza più importante: lo stop loss non è un muro. Quando il prezzo lo raggiunge, diventa un ordine a mercato e viene eseguito al primo prezzo disponibile, che può essere parecchi pip più lontano. Questo si chiama slippage. Quarto: il primo movimento può essere falso. Capita spesso che il prezzo scatti in una direzione e torni indietro in pochi minuti, prendendo gli stop di chi era da una parte e dall'altra.",
+      "visual": "candele"
+    },
+    {
+      "capitolo": "Un esempio con i numeri",
+      "tipo": "numeri",
+      "titolo": "Esempio: stop a 20 pip, eseguito a 35",
+      "colonne": ["", "Perdita"],
+      "righe": [
+        ["Conto 10.000 $, rischio previsto 1%", "100 $"],
+        ["0,5 lotti EURUSD, stop 20 pip", "100 $"],
+        ["Slippage di 15 pip: chiuso a 35", "<mark>175 $</mark>"],
+        ["Rischio reale", "1,75%"]
+      ],
+      "nota": "Esempio illustrativo, valore del pip circa 10 $ per lotto su EURUSD. Lo slippage reale dipende dal broker e dal momento.",
+      "voce": "Facciamo un esempio con i numeri. Conto da diecimila dollari, rischio previsto dell'uno per cento, quindi cento dollari. Su euro dollaro, con uno stop di venti pip, il lotto giusto è zero virgola cinque: venti pip per cinque dollari al pip fa cento dollari. Ora immagina che al dato il prezzo salti e lo stop venga eseguito a trentacinque pip invece che a venti. Sono quindici pip di slippage. La perdita diventa centosettantacinque dollari: l'uno virgola settantacinque per cento invece dell'uno. Su un conto di una prop firm con limite giornaliero del cinque per cento, due o tre operazioni così e la giornata è finita. Questo è solo un esempio, ma il meccanismo è reale.",
+      "visual": "lotti"
+    },
+    {
+      "capitolo": "Prima del dato",
+      "tipo": "punti",
+      "titolo": "Prima delle 14:30",
+      "punti": [
+        ["Calendario", "segna l'orario: 14:30 ora italiana"],
+        ["Posizioni aperte", "decidi prima: chiudi, riduci o tieni con un rischio accettato"],
+        ["Ordini pendenti", "cancella quelli troppo vicini al prezzo"],
+        ["Esposizione", "più coppie col dollaro = una scommessa sola"]
+      ],
+      "voce": "Cosa fare prima del dato. Primo: segnati l'orario, le quattordici e trenta ora italiana. Sembra banale, ma molti si accorgono del dato solo quando il prezzo è già saltato. Secondo: decidi prima cosa fare con le posizioni aperte, a mente fredda. Puoi chiuderle, ridurle, oppure tenerle accettando che la perdita possa essere più grande dello stop. Quello che non devi fare è decidere alle quattordici e ventinove. Terzo: cancella gli ordini pendenti troppo vicini al prezzo, perché possono essere eseguiti nel momento peggiore. Quarto: controlla l'esposizione totale. Se hai euro dollaro, sterlina dollaro e oro, contro il dollaro hai in realtà una sola grande scommessa.",
+      "visual": "calendario"
+    },
+    {
+      "capitolo": "Durante e dopo",
+      "tipo": "punti",
+      "titolo": "Durante e dopo il dato",
+      "punti": [
+        ["Durante", "niente nuove posizioni nei minuti intorno al dato"],
+        ["Dopo", "aspetta che lo spread torni normale"],
+        ["Se entri", "stop più largo, lotto più piccolo, stesso rischio"],
+        ["Il 15 ottobre", "altri dati alle 14:30: prezzi alla produzione e vendite"]
+      ],
+      "voce": "Durante il dato, la regola più semplice è anche la più efficace: niente nuove posizioni nei minuti intorno all'uscita. Non stai perdendo un'occasione, stai evitando il momento in cui il costo di entrare è più alto. Dopo, aspetta che lo spread torni normale prima di fare qualsiasi cosa. Se poi decidi di entrare, ricordati che la volatilità resta alta per un po': servono stop più larghi, e quindi un lotto più piccolo, per rischiare la stessa percentuale. Con uno stop di quaranta pip invece di venti, il lotto va dimezzato. E non è finita: domani, giovedì quindici, sempre alle quattordici e trenta, escono prezzi alla produzione e vendite al dettaglio.",
+      "visual": "scudo"
+    },
+    {
+      "capitolo": "Le date fino alla Fed",
+      "tipo": "numeri",
+      "titolo": "Le prossime date (ora italiana)",
+      "colonne": ["Data", "Dato"],
+      "righe": [
+        ["Mer 14 ott, 14:30", "<mark>inflazione USA (CPI)</mark>"],
+        ["Gio 15 ott, 14:30", "prezzi alla produzione e vendite"],
+        ["Mer 28 ott, 19:00", "decisione Fed"],
+        ["Gio 29 ott, 13:30", "PIL USA e inflazione PCE"]
+      ],
+      "nota": "Il 25 ottobre in Italia torna l'ora solare, negli USA il 1° novembre: in quella settimana i dati USA escono un'ora prima. Verifica sempre sul calendario ufficiale.",
+      "voce": "Ecco le prossime date, in ora italiana. Oggi alle quattordici e trenta l'inflazione. Domani alle quattordici e trenta prezzi alla produzione e vendite al dettaglio. Il ventotto ottobre la decisione della Fed, alle diciannove e non alle venti, perché in Italia l'ora solare torna il venticinque ottobre mentre negli Stati Uniti solo il primo novembre. Per lo stesso motivo, il ventinove ottobre PIL e inflazione PCE escono alle tredici e trenta. Sono dettagli, ma un'ora di differenza è la differenza tra un ordine messo con calma e uno stop saltato.",
+      "visual": "calendario"
+    },
+    {
+      "capitolo": "In sintesi",
+      "tipo": "punti",
+      "titolo": "In sintesi",
+      "punti": [
+        ["Il dato", "CPI USA oggi alle 14:30, stime in salita per la benzina"],
+        ["Il mercato", "reagisce alla sorpresa, non al numero"],
+        ["Lo stop", "non è un muro: con lo slippage puoi perdere di più"],
+        ["La regola", "decidi prima, niente ingressi sul dato, lotto più piccolo"]
+      ],
+      "voce": "In sintesi. Oggi alle quattordici e trenta esce l'inflazione americana, con stime in salita a causa della benzina. Il mercato non reagisce al numero, ma alla differenza tra il numero e le attese. Nei secondi dopo il dato lo stop non è un muro: con lo slippage puoi perdere più di quanto avevi previsto. E la regola è semplice: decidi prima cosa fare con le posizioni aperte, niente ingressi a cavallo del dato, e se la volatilità sale il lotto scende.",
+      "visual": "indici"
+    },
+    {
+      "capitolo": "Chiusura",
+      "tipo": "chiusura",
+      "grande": "Il dato non lo controlli.<br><mark>Il tuo rischio sì.</mark>",
+      "piccolo": "Calcolatori gratuiti e journal su riskly.trade",
+      "voce": "Se vuoi ricalcolare il lotto con uno stop più largo, su riskly punto trade trovi i calcolatori gratuiti, senza registrazione. Iscriviti al canale: ogni settimana mettiamo in fila i fatti che muovono i mercati e cosa significano per il tuo rischio. E scrivi nei commenti: oggi alle quattordici e trenta tu sei dentro o fuori dal mercato? Questo video è informativo ed educativo, non è una consulenza finanziaria né un invito a investire. Il trading con leva comporta un alto rischio e puoi perdere tutto il capitale.",
+      "visual": "scudo"
+    }
+  ]
+}
