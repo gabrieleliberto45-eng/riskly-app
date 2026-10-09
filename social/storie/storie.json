@@ -1,0 +1,20 @@
+[
+ {"id":"s01-franco","titolo":"Il giorno in cui il franco svizzero bruciò i broker","segmenti":[
+  {"cartello":"15 GENNAIO 2015 · ZURIGO","visual":"crollo","voce":"Quindici gennaio 2015, ore dieci e mezza. In pochi minuti migliaia di trader perdono più soldi di quanti ne avessero sul conto."},
+  {"visual":"crollo","voce":"Da tre anni la Banca nazionale svizzera teneva il cambio euro franco sopra uno virgola venti. Quella mattina, senza preavviso, toglie il limite."},
+  {"visual":"crollo","voce":"Il franco si rafforza di circa il trenta per cento in pochi minuti. Gli stop loss non vengono eseguiti al prezzo impostato, ma molto più in basso, dove c'era di nuovo un prezzo."},
+  {"cartello":"FXCM · ALPARI UK","visual":"domino","voce":"Alcuni broker restano con i saldi negativi dei clienti. Alpari UK finisce in insolvenza, FXCM ha bisogno di un prestito di trecento milioni di dollari per restare in piedi."},
+  {"visual":"scudo","voce":"La lezione: lo stop loss non è una garanzia. Con eventi come questo vale la dimensione della posizione e la protezione dal saldo negativo del tuo broker. Seguici per altre storie di rischio."}]},
+ {"id":"s02-barings","titolo":"Un solo trader fece fallire la banca più antica di Londra","segmenti":[
+  {"cartello":"FEBBRAIO 1995 · SINGAPORE","visual":"torre","voce":"Un trader di ventotto anni fa fallire la banca d'affari più antica di Londra. Da solo."},
+  {"visual":"torre","voce":"Si chiamava Nick Leeson e lavorava per Barings a Singapore. Quando perdeva, nascondeva le perdite in un conto segreto, il famoso numero ottantotto ottantotto otto, e raddoppiava per recuperare."},
+  {"cartello":"KOBE · 17 GENNAIO 1995","visual":"torre","voce":"Poi arriva il terremoto di Kobe. La borsa giapponese crolla e le sue posizioni con lei. Il buco arriva a ottocentoventisette milioni di sterline."},
+  {"visual":"torre","voce":"Barings, fondata nel 1762, viene venduta per una sterlina simbolica. Leeson finisce in carcere."},
+  {"visual":"scudo","voce":"Raddoppiare per recuperare e nascondere le perdite: due errori che ogni trader conosce. Un limite di perdita scritto prima, e un journal che non mente, servono proprio a questo. Seguici per altre storie di rischio."}]},
+ {"id":"s03-archegos","titolo":"Archegos: 20 miliardi spariti in due giorni","segmenti":[
+  {"cartello":"MARZO 2021 · NEW YORK","visual":"torre","voce":"In due giorni un fondo privato quasi sconosciuto perde circa venti miliardi di dollari. E trascina con sé alcune delle banche più grandi del mondo."},
+  {"visual":"torre","voce":"Il fondo si chiamava Archegos. Comprava pochi titoli, usando moltissima leva attraverso strumenti derivati, così le sue posizioni enormi non comparivano da nessuna parte."},
+  {"visual":"crollo","voce":"Quando alcuni di quei titoli scendono, arrivano le richieste di margine. Archegos non riesce a coprirle, e le banche iniziano a vendere tutto insieme."},
+  {"cartello":"CREDIT SUISSE: −5,5 MILIARDI $","visual":"domino","voce":"Le perdite delle banche superano i dieci miliardi di dollari. Credit Suisse da sola perde circa cinque miliardi e mezzo."},
+  {"visual":"scudo","voce":"Più leva usi, meno movimento basta per azzerarti. Il rischio si calcola su tutte le posizioni insieme, non una alla volta. Seguici per altre storie di rischio."}]}
+]
