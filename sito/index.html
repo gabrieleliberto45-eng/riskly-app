@@ -1279,7 +1279,7 @@
             <div class="vt-br"><i class="gold"></i><span>Pausa dopo una perdita — 12 min</span></div>
             <div class="vt-br"><i class="down"></i><span>Blocco: 3 perdite consecutive</span></div>
           </div>
-          <div class="vt-nota">Il rischio è calcolato sull'insieme delle posizioni</div>
+          <div class="vt-nota">Il rischio è calcolato sull'operazione insieme ai suoi scaglioni</div>
         </div>
 
         <!-- CALCOLATORI -->
@@ -1808,12 +1808,12 @@
               MT4
             </span>
           </div>
-          <p class="sub">I tre moduli in un solo bot con stato condiviso: il rischio è calcolato sull'insieme delle posizioni, non su ciascuna separatamente.</p>
+          <p class="sub">I tre moduli in un solo bot con stato condiviso: il rischio di un'operazione è calcolato insieme a tutti i suoi scaglioni, non su ciascuno separatamente.</p>
           <ul>
             <li>Tutto di RiskGuard</li>
             <li>Tutto di TradeManager</li>
             <li>Tutto di ScaleIn</li>
-            <li>Rischio calcolato sull'insieme delle posizioni</li>
+            <li>Rischio calcolato sull'operazione insieme ai suoi scaglioni</li>
             <li>Pulsanti BUY e SELL con il lotto già calcolato</li>
             <li>Niente aperture con spread largo o vicino alle notizie</li>
             <li>Operazioni nel journal e stato sul telefono</li>
@@ -2072,7 +2072,7 @@
         <div class="pz">
           <div class="tg">TUTTI E TRE</div>
           <h4>Riskly Pro</h4><div class="pl">I TRE MODULI INSIEME</div>
-          <p>Rischio calcolato sull'insieme delle posizioni, non su ognuna da sola. Costa meno dei tre separati.<br><span style="color:var(--up)">Include il 50% di sconto sul videocorso.</span></p>
+          <p>Rischio calcolato sull'operazione insieme ai suoi scaglioni, non su ognuno da solo. Costa meno dei tre separati.<br><span style="color:var(--up)">Include il 50% di sconto sul videocorso.</span></p>
           <div class="pr2"><b style="font-size:1.15rem">€249</b> <span style="color:var(--dim2)">(poi €498)</span> · 3 conti · una tantum</div>
           <button class="btn wide" data-prodotto="Riskly Pro" onclick="azioneProdotto('Riskly Pro')">Disponibile dal 23 ottobre · blocca il posto</button>
         </div>
@@ -2261,7 +2261,7 @@
           <p>Entrambe. Ogni bot esiste sia per MetaTrader 4 che per MetaTrader 5, e la licenza copre tutte e due le piattaforme: se cambi versione non paghi nulla in più. L'unica differenza: il filtro notizie di Riskly Pro c'è solo su MT5, perché MetaTrader 4 non ha il calendario economico.</p></details>
 
         <details><summary>Cosa fa Riskly che gli altri bot di gestione rischio non fanno?</summary>
-          <p>Il blocco al raggiungimento del limite di perdita ce l'hanno quasi tutti: è lo standard della categoria. Quello che cambia è <b>quando</b> interviene. Gli altri aspettano che l'equity scenda sotto una soglia, cioè che i soldi siano già persi. Riskly ti ferma prima, sul comportamento: pausa obbligatoria dopo ogni perdita e stop dopo N perdite consecutive, anche se il conto è ancora perfettamente sano. Se apri una posizione durante la pausa, viene chiusa — non è un avviso, è un blocco. In più il rischio è calcolato sull'insieme delle posizioni aperte invece che su ciascuna separatamente. Quando scatta un blocco, Riskly chiude anche MetaTrader fino a mezzanotte, così non puoi rientrare e pagare di nuovo lo spread; se apri un lotto troppo grande, toglie solo la parte in eccesso invece di chiudere tutto; e ogni operazione chiusa arriva da sola nel tuo journal.</p></details>
+          <p>Il blocco al raggiungimento del limite di perdita ce l'hanno quasi tutti: è lo standard della categoria. Quello che cambia è <b>quando</b> interviene. Gli altri aspettano che l'equity scenda sotto una soglia, cioè che i soldi siano già persi. Riskly ti ferma prima, sul comportamento: pausa obbligatoria dopo ogni perdita e stop dopo N perdite consecutive, anche se il conto è ancora perfettamente sano. Se apri una posizione durante la pausa, viene chiusa — non è un avviso, è un blocco. In più il rischio di un'operazione è calcolato insieme a tutti i suoi scaglioni, invece che su ciascuno separatamente. Quando scatta un blocco, Riskly chiude anche MetaTrader fino a mezzanotte, così non puoi rientrare e pagare di nuovo lo spread; se apri un lotto troppo grande, toglie solo la parte in eccesso invece di chiudere tutto; e ogni operazione chiusa arriva da sola nel tuo journal.</p></details>
 
         <details><summary>I bot vanno bene per le challenge delle prop firm?</summary>
           <p>Sì, RiskGuard e Riskly Pro aiutano proprio lì: imposti una perdita giornaliera un po' più bassa di quella della tua prop e il bot blocca l'operatività, chiudendo anche MetaTrader, prima della violazione. I limiti dei bot sono tutti giornalieri: il drawdown massimo complessivo della challenge tienilo d'occhio a parte, per esempio con il tracker nei calcolatori. Verifica anche il regolamento della tua prop firm, perché alcune limitano l'uso di Expert Advisor.</p></details>
@@ -2273,7 +2273,7 @@
           <p>No. RiskGuard e TradeManager agiscono solo su posizioni che hai già aperto tu. ScaleIn apre posizioni aggiuntive, ma solo dopo che tu hai aperto la prima manualmente, e con i parametri che hai impostato. Riskly Pro ha i pulsanti BUY e SELL, che aprono solo quando li premi tu, con il lotto calcolato sul rischio che hai scelto.</p></details>
 
         <details><summary>Posso usare più bot insieme?</summary>
-          <p>Sì, purché non facciano la stessa cosa sulle stesse posizioni: RiskGuard insieme a TradeManager o a ScaleIn va benissimo, mentre Riskly Pro contiene già tutti e tre e non va affiancato agli altri sullo stesso simbolo. Se ti servono più moduli, Riskly Pro costa meno della somma e i moduli comunicano tra loro: il rischio viene calcolato sull'insieme delle posizioni, non su ciascuna separatamente.</p></details>
+          <p>Sì, purché non facciano la stessa cosa sulle stesse posizioni: RiskGuard insieme a TradeManager o a ScaleIn va benissimo, mentre Riskly Pro contiene già tutti e tre e non va affiancato agli altri sullo stesso simbolo. Se ti servono più moduli, Riskly Pro costa meno della somma e i moduli comunicano tra loro: il rischio di un'operazione viene calcolato insieme a tutti i suoi scaglioni, non su ciascuno separatamente.</p></details>
 
         <details><summary>Come funziona la prova del journal?</summary>
           <p>Sette giorni con tutte le funzioni del piano che scegli, senza carta di credito. Alla scadenza decidi se attivare l'abbonamento: se non lo fai, i tuoi dati restano salvati e puoi esportarli quando vuoi.</p></details>
