@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Riskly — Area clienti</title>
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B0D0C; --bg2:#101311; --panel:#151916; --line:#252B26;
+    --text:#E6EDF3; --dim:#8B98A9; --dim2:#5D6B7D;
+    --up:#22C55E; --accent:#B6D84F; --accent-2:#0EA5E9;
+    --grad:linear-gradient(135deg,#CBE46E 0%,#A9D14A 55%,#7DBE4A 100%);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:'Instrument Sans',sans-serif;
+    min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+  .box{max-width:460px;width:100%}
+  h1{font-family:'Instrument Serif',serif;font-weight:400;font-size:1.9rem;margin:0 0 8px}
+  p{color:var(--dim);line-height:1.55;font-size:.92rem}
+  .gate{background:linear-gradient(160deg,rgba(182,216,79,.07),transparent 60%),var(--panel);border:1px solid var(--line);border-radius:18px;padding:28px}
+  input{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:12px;
+    color:var(--text);font-family:'JetBrains Mono',monospace;font-size:1rem;padding:13px 14px;margin:14px 0}
+  input:focus{outline:none;border-color:var(--accent)}
+  button{width:100%;background:var(--grad);border:none;border-radius:100px;color:#08110c;
+    font-family:'Instrument Sans',sans-serif;font-weight:700;font-size:.95rem;padding:14px;cursor:pointer}
+  .err{color:#EF4444;font-size:.82rem;display:none;margin-top:-4px;margin-bottom:10px}
+  .lista{display:none}
+  .grp{background:linear-gradient(160deg,rgba(182,216,79,.06),transparent 60%),var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:14px}
+  .grp h3{margin:0 0 4px;font-size:1.05rem}
+  .grp .sub{font-size:.78rem;color:var(--dim2);margin-bottom:14px}
+  .file-row{display:flex;align-items:center;justify-content:space-between;
+    border-top:1px solid var(--line);padding:11px 0}
+  .file-row:first-of-type{border-top:none}
+  .file-row span{font-family:'JetBrains Mono',monospace;font-size:.84rem;color:var(--text)}
+  .file-row a{color:var(--accent);text-decoration:none;font-size:.82rem;font-weight:600}
+  .file-row a:hover{text-decoration:underline}
+  .guida{background:rgba(182,216,79,.07);border:1px solid rgba(182,216,79,.25);border-radius:14px;
+    padding:16px 18px;margin-bottom:18px;font-size:.85rem}
+  .guida a{color:var(--accent)}
+  .btn-link{display:inline-block;background:var(--grad);border-radius:100px;color:#08110c;
+    font-weight:700;font-size:.9rem;padding:13px 24px;text-decoration:none;margin-top:16px}
+  .note{font-size:.76rem;color:var(--dim2);margin-top:22px;line-height:1.6}
+  #nl-badge-frame{display:none!important}
+
+  /* sfumature */
+  .card,.glass,.tool,.bot,.plan,.capture,.jkpi,.jcard,.vetrina,.lancio-box,.bot-rimando,.acc-card,.acc-box,.pz,.gs-kpi{
+    background:linear-gradient(160deg,rgba(182,216,79,.06) 0%,rgba(255,255,255,.012) 38%,transparent 70%),var(--panel)}
+  .hero-new h1 .gr{background:linear-gradient(100deg,#D2E97A,#9FCB47 55%,#6FBF5A);-webkit-background-clip:text;background-clip:text;color:transparent}
+  nav{background:linear-gradient(180deg,rgba(14,17,15,.94),rgba(11,13,12,.86))}
+</style>
+</head>
+<body>
+<div class="box">
+
+  <div class="gate" id="gate">
+    <h1>Area clienti</h1>
+    <p id="gate-testo">Verifico il tuo account…</p>
+    <div id="gate-azioni"></div>
+  </div>
+
+  <div class="lista" id="lista">
+    <h1>Area clienti</h1>
+    <p id="lista-intro">Grazie per l'acquisto. I bot, la guida all'installazione e tutti gli aggiornamenti li trovi nel gruppo Telegram riservato ai clienti.</p>
+
+    <div class="grp" id="corso-box" style="border-color:rgba(182,216,79,.45);display:none">
+      <h3>Il tuo videocorso</h3>
+      <div class="sub">Il corso è in un gruppo Telegram privato, con una cartella per ogni modulo e le lezioni in ordine. Tocca il pulsante e chiedi di entrare: approviamo le richieste a mano, di solito in poche ore. L'accesso è a vita.</div>
+      <div id="corso-tg"></div>
+    </div>
+
+    <div class="grp" id="journal-box" style="border-color:rgba(182,216,79,.45);display:none">
+      <h3>Il tuo journal</h3>
+      <div class="sub" id="journal-sub">Il piano è attivo sul tuo account: accedi al journal con la stessa email e lo trovi già sbloccato.</div>
+      <a class="btn-link" href="https://app.riskly.trade">Apri il journal</a>
+    </div>
+
+    <div class="grp" id="sconto-box" style="display:none">
+      <h3>50% di sconto sul videocorso</h3>
+      <div class="sub">Hai acquistato un software Riskly: con questo codice il videocorso costa la metà. Inseriscilo nella pagina di pagamento, alla voce "Aggiungi codice promozionale".</div>
+      <div id="sconto-codice" style="font-family:'JetBrains Mono',monospace;font-size:1.3rem;font-weight:700;color:var(--up);letter-spacing:.08em"></div>
+    </div>
+
+    <div class="grp" id="premium-box" style="display:none">
+      <h3>30% di sconto sui bot</h3>
+      <div class="sub">Hai il journal Premium: con questo codice RiskGuard, TradeManager, ScaleIn e Riskly Pro costano il 30% in meno. Inseriscilo nella pagina di pagamento, alla voce "Aggiungi codice promozionale". Vale finché il piano Premium è attivo.</div>
+      <div id="premium-codice" style="font-family:'JetBrains Mono',monospace;font-size:1.3rem;font-weight:700;color:var(--up);letter-spacing:.08em"></div>
+    </div>
+
+    <div id="bot-box">
+    <div class="grp" style="border-color:rgba(182,216,79,.45)">
+      <h3>1 · Entra nel gruppo clienti</h3>
+      <div class="sub">Riservato a chi ha acquistato. Le richieste di accesso sono approvate a mano, di solito entro poche ore.</div>
+      <div id="tg-box"></div>
+    </div>
+
+    <div class="grp">
+      <h3>2 · Ricevi i tuoi file</h3>
+      <div class="sub" style="margin-bottom:0">Scrivici in privato su Telegram con <b style="color:var(--text)">l'email dell'acquisto</b> e il <b style="color:var(--text)">numero del conto MetaTrader</b>. Ti inviamo i file già abilitati per quel conto, <b style="color:var(--text)">entro 24 ore lavorative</b>.</div>
+    </div>
+
+    <div class="grp">
+      <h3>3 · Installa e prova su demo</h3>
+      <div class="sub" style="margin-bottom:0">Nel gruppo trovi la guida passo passo. Prova sempre su conto demo prima di usare il bot su un conto reale.</div>
+    </div>
+    </div>
+
+    <p class="note">Problemi? Scrivi a <b>supporto@riskly.trade</b>.</p>
+  </div>
+
+  <div class="note" style="text-align:center;margin-top:28px">Riskly · riskly.trade</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const SB_URL = 'https://swlztverwfgdgchgpudt.supabase.co';
+  const SB_KEY = 'sb_publishable_j9bujIvCEz6x21yYoCODPw_lIZCJrIR';
+
+  let sb = null;
+  try{ if(window.supabase) sb = window.supabase.createClient(SB_URL, SB_KEY); }
+  catch(e){ console.error(e); }
+
+  /* ---------- conteggio visite (anonimo, senza cookie) ---------- */
+  (function(){
+    try{
+      if(!sb) return;
+      if(sessionStorage.getItem('riskly_visita')) return;
+      sessionStorage.setItem('riskly_visita','1');
+      let da = '';
+      try{ da = document.referrer ? new URL(document.referrer).hostname.replace(/^www\./,'') : ''; }catch(e){}
+      const q = new URLSearchParams(location.search);
+      const tag = q.get('da') || q.get('utm_source') || '';
+      sb.from('visite').insert({ percorso: location.pathname || '/', referer: tag || da || 'diretto' })
+        .then(()=>{}, ()=>{});
+    }catch(e){}
+  })();
+
+  function mostraGate(testo, azioni){
+    document.getElementById('gate-testo').innerHTML = testo;
+    document.getElementById('gate-azioni').innerHTML = azioni || '';
+    document.getElementById('gate').style.display = 'block';
+    document.getElementById('lista').style.display = 'none';
+  }
+
+  /* il link del gruppo arriva dal server, e solo a chi ha un acquisto attivo:
+     nel codice della pagina non c'è, quindi non si trova con "visualizza sorgente" */
+  async function linkDa(funzione){
+    try{
+      const { data, error } = await sb.rpc(funzione);
+      if(!error && typeof data === 'string' && data.startsWith('https://t.me/')) return data;
+    }catch(e){}
+    return '';
+  }
+  function pulsante(box, link, testo){
+    if(link){
+      const a = document.createElement('a');
+      a.className = 'btn-link'; a.href = link; a.target = '_blank'; a.rel = 'noopener';
+      a.textContent = testo;
+      box.replaceChildren(a);
+    }else{
+      box.innerHTML = '<div class="sub" style="margin:0;color:var(--text)">Il link è in arrivo: ti scriviamo noi all\'email dell\'acquisto.</div>';
+    }
+  }
+  /* prodotti attivi: il corso ha il suo gruppo, i bot il gruppo clienti */
+  async function sblocca(prodotti){
+    document.getElementById('gate').style.display = 'none';
+    document.getElementById('lista').style.display = 'block';
+    const haCorso = prodotti.some(p => /corso/i.test(p));
+    const haBot = prodotti.some(p => !/corso/i.test(p) && !/^journal/i.test(p));
+    const journal = prodotti.find(p => /^journal/i.test(p));
+    if(journal){
+      document.getElementById('journal-box').style.display = 'block';
+      document.getElementById('journal-sub').textContent = 'Il piano ' + journal.replace(/^journal\s+/i, '') + ' è attivo sul tuo account: accedi al journal con la stessa email e lo trovi già sbloccato.';
+    }
+    if(journal && /premium/i.test(journal)){
+      try{
+        const { data } = await sb.rpc('codice_sconto_premium');
+        if(data){ document.getElementById('premium-codice').textContent = data; document.getElementById('premium-box').style.display = 'block'; }
+      }catch(e){}
+    }
+    if(!haCorso && !haBot && journal) document.getElementById('lista-intro').textContent = 'Grazie per l\'acquisto. Il tuo piano del journal è attivo.';
+    if(haBot && !haCorso){
+      try{
+        const { data } = await sb.rpc('codice_sconto_corso');
+        if(data){ document.getElementById('sconto-codice').textContent = data; document.getElementById('sconto-box').style.display = 'block'; }
+      }catch(e){}
+    }
+    document.getElementById('corso-box').style.display = haCorso ? 'block' : 'none';
+    document.getElementById('bot-box').style.display = haBot ? 'block' : 'none';
+    if(haCorso && !haBot) document.getElementById('lista-intro').textContent = 'Grazie per l\'acquisto. Qui sotto trovi l\'accesso al tuo videocorso.';
+    if(haCorso) pulsante(document.getElementById('corso-tg'), await linkDa('link_gruppo_corso'), 'Entra nel corso su Telegram');
+    if(haBot) pulsante(document.getElementById('tg-box'), await linkDa('link_gruppo_clienti'), 'Entra nel gruppo Telegram');
+  }
+
+  /* arrivo da Stripe dopo il pagamento (i link di pagamento aggiungono ?pagato=1) */
+  const PAGATO = new URLSearchParams(location.search).has('pagato');
+  const RICEVUTO = '<b style="color:var(--up)">Pagamento ricevuto, grazie!</b><br>';
+
+  async function verifica(){
+    if(PAGATO) document.querySelector('#gate h1').textContent = 'Grazie per l\'acquisto';
+    if(!sb){
+      mostraGate('Connessione al server non riuscita. Ricarica la pagina.', '');
+      return;
+    }
+
+    const { data:{ session } } = await sb.auth.getSession();
+
+    if(!session){
+      mostraGate(
+        PAGATO
+          ? RICEVUTO + 'Per seguire il tuo ordine accedi con l\'account Riskly che hai usato per acquistare: '
+            + 'quando lo confermiamo, qui compare il pulsante per entrare nel gruppo Telegram.'
+          : 'Per entrare nell\'area clienti accedi con l\'account usato per l\'acquisto.',
+        '<a class="btn-link" href="index.html">Vai al sito e accedi</a>');
+      return;
+    }
+
+    /* dopo il pagamento la conferma arriva da Stripe in pochi secondi: se non c'è ancora, riprova */
+    let data, error;
+    for(let i = 0; i < (PAGATO ? 10 : 1); i++){
+      if(i){ mostraGate(RICEVUTO + 'Sto attivando il tuo acquisto, un attimo…', ''); await new Promise(r => setTimeout(r, 3000)); }
+      ({ data, error } = await sb.from('acquisti')
+        .select('prodotto,stato').eq('utente', session.user.id).eq('stato','attivo'));
+      if(error || (data && data.length)) break;
+    }
+
+    if(error){
+      mostraGate('Non riesco a verificare i tuoi acquisti. Riprova tra poco.', '');
+      return;
+    }
+
+    if(!data || !data.length){
+      mostraGate(
+        PAGATO
+          ? RICEVUTO + 'Stiamo confermando il tuo ordine: di solito in poche ore, al massimo entro 24 ore lavorative. '
+            + 'Appena è confermato, in questa pagina compare il pulsante per entrare nel gruppo Telegram. '
+            + 'Ricevi la ricevuta di Stripe via email.'
+          : 'Il tuo account non ha ancora acquisti confermati.<br>' +
+            'Se hai appena pagato, l\'accesso si sblocca appena registriamo il pagamento.',
+        '<a class="btn-link" href="index.html">Torna al sito</a>');
+      return;
+    }
+
+    sblocca(data.map(r => r.prodotto || ''));
+  }
+
+  verifica();
+</script>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cf51a7ed50e145f9b3eeed28a64ed18e"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
