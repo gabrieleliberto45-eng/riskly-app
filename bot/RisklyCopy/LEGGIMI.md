@@ -1,0 +1,35 @@
+# RisklyCopy — copiatore di operazioni tra conti (MT4 e MT5)
+
+Stato: prima versione, **non ancora compilata né provata**. Da compilare in MetaEditor (`RisklyCopy.mq5` per MT5, `RisklyCopy.mq4` per MT4) e provare su conti demo prima di venderla.
+
+## Come funziona
+- Sul conto principale: RisklyCopy in modalità **Invia** (su un grafico qualsiasi; un solo grafico basta per tutto il conto).
+- Sugli altri conti: RisklyCopy in modalità **Ricevi**, stesso **Nome del canale**.
+- I conti si parlano dalla cartella comune di MetaTrader (`%APPDATA%\MetaQuotes\Terminal\Common\Files\RisklyCopy`): funziona tra MT4 e MT5 **sullo stesso computer o VPS**. Conti su computer diversi: versione futura via journal.
+- Si può usare insieme a Riskly Pro: ogni bot sul suo grafico (MT5 permette un bot per grafico, non uno per terminale).
+
+## Il lotto sul conto che riceve
+| Modo | Cosa fa |
+|---|---|
+| In proporzione al saldo (predefinito) | lotto principale × saldo di questo conto ÷ saldo del principale: **stessa % di rischio** |
+| Rischio % sullo stop loss | lotto calcolato perché, se tocca lo stop, perdi la % scelta (senza stop usa il saldo) |
+| Moltiplicatore | stesso lotto × moltiplicatore |
+| Lotto fisso | sempre lo stesso lotto |
+
+**Conti piccoli.** Esempio: principale da 10.000 € con 0,50 lotti (1%), secondario da 100 €: il lotto giusto sarebbe 0,005, sotto il minimo del broker (0,01). Con 0,01 lotti e stop a 20 pip su EURUSD il rischio è circa 2 € = **2%**, il doppio del principale.
+Per questo c'è il parametro *"Conto piccolo: usa il lotto minimo solo se rischia al massimo questa %"* (predefinito 2%): se il lotto minimo farebbe rischiare di più, l'operazione **non viene copiata** e nel registro "Esperti" c'è il motivo. Senza stop loss sul principale il rischio non si può verificare e l'operazione non viene copiata.
+
+## Cosa copia
+Apertura di posizioni a mercato, chiusura, chiusura parziale (in proporzione), modifica di stop loss e take profit. **Non** copia ordini pendenti (copia la posizione quando si attivano).
+
+## Sicurezze
+- Se il conto principale non aggiorna da 15 s (MetaTrader chiuso, PC spento) il secondario **non fa nulla**: non chiude niente per sbaglio.
+- Non copia posizioni aperte da più di 60 s o con prezzo spostato di oltre 30 pip.
+- Lotto massimo e numero massimo di posizioni.
+- Se una copia fallisce riprova al massimo 5 volte.
+- Le posizioni chiuse a mano sul secondario non vengono riaperte.
+
+## Da fare prima della vendita
+- Compilare e provare su demo: MT5→MT5, MT4→MT5, MT5→MT4, chiusure parziali, simboli con suffisso.
+- Aggiungere lo stesso controllo della licenza degli altri bot.
+- Conto MT5 in modalità netting: non supportato (avviso all'avvio).
