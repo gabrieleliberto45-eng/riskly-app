@@ -1,0 +1,5 @@
+Sito separato degli strumenti gratuiti (strumenti.riskly.trade) — NON pubblicato.
+Da pubblicare dopo il lancio del 23 ottobre: nuovo sito Netlify + sottodominio strumenti.riskly.trade,
+poi sul sito principale togliere la pagina Strumenti e reindirizzare /calendario e la pagina Calcolatori qui.
+index.html si rigenera dalla pagina Strumenti del sito con: python3 costruisci.py <index del sito> index.html
+Schede apribili da link: #calendario #posizione #montecarlo #prop #recupero #crescita
