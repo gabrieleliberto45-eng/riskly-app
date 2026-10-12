@@ -1,0 +1,20 @@
+diff --git a/dev/fd/63 b/tmp/claude-0/-home-user-riskly-app/828ac661-4dae-5bef-b009-53b6d39ce38e/scratchpad/dep/site/index.html
+index 0000000..db16a08 100644
+--- a/dev/fd/63
++++ b/tmp/claude-0/-home-user-riskly-app/828ac661-4dae-5bef-b009-53b6d39ce38e/scratchpad/dep/site/index.html
+@@ -6000,6 +6000,7 @@ calcPos(); calcRuin(); calcProp(); calcBE(); calcComp(); setCiclo('a');
+   <button data-p="journal" onclick="go('journal')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8Z"/><circle cx="7.5" cy="7.5" r="1.3"/></svg><span>Prezzi</span></button>
+   <button data-p="metodo" onclick="go('metodo')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v5c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6Z"/><path d="m9 12 2 2 4-4"/></svg><span>Metodo</span></button>
+   <button data-p="faq" onclick="go('faq')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.4"/><path d="M12 17h.01"/></svg><span>FAQ</span></button>
++  <button data-p="calendario" onclick="location.href='/calendario'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 17h.01M12 17h.01"/></svg><span>Calendario</span></button>
+ </div>
+ <!-- barra in basso (solo telefono) -->
+ <div class="sbarra" id="sbarra" aria-label="Navigazione">
+@@ -6015,6 +6016,7 @@ calcPos(); calcRuin(); calcProp(); calcBE(); calcComp(); setCiclo('a');
+   <div class="saltro-box">
+     <button data-p="metodo" onclick="chiudiAltro();go('metodo')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v5c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6Z"/><path d="m9 12 2 2 4-4"/></svg>Metodo</button>
+     <button data-p="faq" onclick="chiudiAltro();go('faq')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.4"/><path d="M12 17h.01"/></svg>FAQ</button>
++    <button data-p="calendario" onclick="chiudiAltro();location.href='/calendario'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 17h.01M12 17h.01"/></svg>Calendario economico</button>
+     <hr>
+     <button id="sa-accedi" onclick="chiudiAltro();document.getElementById('nav-accedi').click()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span>Accedi</span></button>
+     <button id="sa-gestione" data-p="gestione" style="display:none" onclick="chiudiAltro();go('gestione')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Gestione</button>
