@@ -31,7 +31,8 @@ input double        InpMoltiplicatore = 1.0;    // Moltiplicatore
 input double        InpRischio     = 1.0;       // Rischio per operazione (%) - modo Rischio
 input double        InpLottoFisso  = 0.01;      // Lotto fisso - modo Lotto fisso
 input double        InpLottoMax    = 5.0;       // Lotto massimo per operazione
-input double        InpRischioMin  = 2.0;       // Conto piccolo: usa il lotto minimo solo se rischia al massimo questa % (0 = mai)
+input bool          InpRaggruppa   = true;      // Conto piccolo: copia al lotto minimo e raggruppa le operazioni (false = non copiare)
+input double        InpRischioMin  = 0;         // Conto piccolo: rischio massimo con il lotto minimo (%) (0 = nessun limite)
 
 input group "Filtri (solo RICEVI)"
 input bool          InpCopiaSLTP   = true;      // Copia stop loss e take profit
@@ -166,17 +167,7 @@ double CalcolaLotto(const PosMaster &m, string sym)
       double dist = MathAbs(m.prezzo - m.sl);
       if(tick > 0 && valore > 0 && dist > 0) lotto = (AccountInfoDouble(ACCOUNT_EQUITY) * InpRischio / 100.0) / (dist / tick * valore);
    }
-   double norm = NormLotto(sym, lotto);
-   if(norm > 0 || lotto <= 0) return norm;
-   // il lotto giusto e' sotto il minimo del broker (es. conto da 100 che copia un conto da 10.000):
-   // il lotto minimo farebbe rischiare di piu' del conto principale, quindi si usa solo se il rischio resta accettabile
-   double minimo = SymbolInfoDouble(sym, SYMBOL_VOLUME_MIN), t = SymbolInfoDouble(sym, SYMBOL_TRADE_TICK_SIZE), v = SymbolInfoDouble(sym, SYMBOL_TRADE_TICK_VALUE), d = MathAbs(m.prezzo - m.sl), eq = AccountInfoDouble(ACCOUNT_EQUITY);
-   if(InpRischioMin <= 0 || m.sl <= 0 || t <= 0 || v <= 0 || eq <= 0)
-   { Print("RisklyCopy: lotto calcolato ", DoubleToString(lotto, 4), " sotto il minimo ", minimo, " e rischio non verificabile: non copiata"); return 0; }
-   double rischio = minimo * d / t * v / eq * 100.0;
-   if(rischio <= InpRischioMin) { Print("RisklyCopy: uso il lotto minimo ", minimo, " (rischio ", DoubleToString(rischio, 2), "%)"); return NormalizeDouble(minimo, 8); }
-   Print("RisklyCopy: col lotto minimo ", minimo, " rischieresti il ", DoubleToString(rischio, 2), "% del conto (limite ", InpRischioMin, "%): non copiata");
-   return 0;
+   return MathMin(lotto, InpLottoMax);
 }
 
 int ContaCopiate()
@@ -186,6 +177,41 @@ int ContaCopiate()
    return n;
 }
 
+
+// Lotto da aprire per una nuova posizione del principale.
+// Se il lotto giusto e' sotto il minimo del broker (es. conto da 100 che copia un conto da 10.000) e InpRaggruppa e' attivo:
+// la prima operazione si copia al lotto minimo; le successive sullo stesso simbolo e direzione si aprono solo quando
+// la somma dei lotti "giusti" delle posizioni aperte sul principale supera quello che e' gia' aperto qui.
+// Esempio: 10 operazioni da 0,005 "giuste" -> sul secondario circa 5 posizioni da 0,01 (stessa esposizione totale).
+double LottoDaAprire(const PosMaster &m, string sym, double giusto, string &nota)
+{
+   double norm = NormLotto(sym, giusto);
+   if(norm > 0) return norm;
+   if(!InpRaggruppa) { nota = "lotto sotto il minimo"; return 0; }
+   double minimo = SymbolInfoDouble(sym, SYMBOL_VOLUME_MIN);
+   int tipo = m.tipo;
+   double obiettivo = 0, attuale = 0;
+   for(int k = 0; k < ArraySize(master); k++)
+      if(master[k].tipo == tipo && Mappa(master[k].sym) == sym && GlobalVariableCheck(GV("d" + (string)master[k].ticket)))
+         obiettivo += GlobalVariableGet(GV("d" + (string)master[k].ticket));
+   for(int i = 0; i < PositionsTotal(); i++)
+   {
+      ulong t = PositionGetTicket(i);
+      if(t && PositionGetInteger(POSITION_MAGIC) == InpMagic && PositionGetString(POSITION_SYMBOL) == sym &&
+         (int)PositionGetInteger(POSITION_TYPE) == tipo) attuale += PositionGetDouble(POSITION_VOLUME);
+   }
+   double lotto = 0;
+   if(attuale <= 0) lotto = minimo;                                   // niente di aperto: si copia al minimo
+   else if(obiettivo - attuale >= minimo - 1e-9) lotto = NormLotto(sym, obiettivo - attuale);
+   if(lotto <= 0) { nota = "raggruppata con le posizioni gia' aperte (esposizione gia' coperta)"; return 0; }
+   if(InpRischioMin > 0)
+   {
+      double t = SymbolInfoDouble(sym, SYMBOL_TRADE_TICK_SIZE), v = SymbolInfoDouble(sym, SYMBOL_TRADE_TICK_VALUE), d = MathAbs(m.prezzo - m.sl), e = AccountInfoDouble(ACCOUNT_EQUITY);
+      if(m.sl > 0 && t > 0 && v > 0 && e > 0 && lotto * d / t * v / e * 100.0 > InpRischioMin)
+      { nota = "col lotto minimo il rischio supera il " + DoubleToString(InpRischioMin, 1) + "%"; return 0; }
+   }
+   return lotto;
+}
 // una posizione nuova del conto principale: la copia o la scarta (una volta sola)
 void CopiaNuova(const PosMaster &m, int &copiate)
 {
@@ -200,8 +226,12 @@ void CopiaNuova(const PosMaster &m, int &copiate)
    double prezzo = (m.tipo == POSITION_TYPE_BUY) ? SymbolInfoDouble(sym, SYMBOL_ASK) : SymbolInfoDouble(sym, SYMBOL_BID);
    if(InpScostMax > 0 && MathAbs(prezzo - m.prezzo) > InpScostMax * Pip(sym))
    { GlobalVariableSet(chiave, 0); Print("RisklyCopy: prezzo troppo lontano dall'entrata del conto principale, ", m.ticket, " non copiata"); return; }
-   double lotto = CalcolaLotto(m, sym);
-   if(lotto <= 0) { GlobalVariableSet(chiave, 0); Print("RisklyCopy: lotto troppo piccolo per ", m.ticket); return; }
+   double giusto = CalcolaLotto(m, sym);
+   if(giusto <= 0) { GlobalVariableSet(chiave, 0); Print("RisklyCopy: lotto non calcolabile per ", m.ticket); return; }
+   GlobalVariableSet(GV("d" + (string)m.ticket), giusto);
+   string nota = "";
+   double lotto = LottoDaAprire(m, sym, giusto, nota);
+   if(lotto <= 0) { GlobalVariableSet(chiave, 0); Print("RisklyCopy: ", m.ticket, " non copiata: ", nota); return; }
    int cifre = (int)SymbolInfoInteger(sym, SYMBOL_DIGITS);
    double sl = InpCopiaSLTP ? NormalizeDouble(m.sl, cifre) : 0, tp = InpCopiaSLTP ? NormalizeDouble(m.tp, cifre) : 0;
    trade.SetTypeFillingBySymbol(sym);
@@ -244,7 +274,7 @@ void Ricevi()
       int k = TrovaMaster(mt);
       if(k < 0)
       {
-         if(trade.PositionClose(t)) { GlobalVariableDel(GV("s" + (string)t)); GlobalVariableDel(GV("mi" + (string)mt)); GlobalVariableDel(GV("si" + (string)mt)); GlobalVariableDel(GV("m" + (string)mt)); }
+         if(trade.PositionClose(t)) { GlobalVariableDel(GV("s" + (string)t)); GlobalVariableDel(GV("mi" + (string)mt)); GlobalVariableDel(GV("si" + (string)mt)); GlobalVariableDel(GV("m" + (string)mt)); GlobalVariableDel(GV("d" + (string)mt)); }
          continue;
       }
       // chiusura parziale in proporzione

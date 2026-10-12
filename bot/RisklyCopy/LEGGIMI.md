@@ -16,8 +16,13 @@ Stato: prima versione, **non ancora compilata né provata**. Da compilare in Met
 | Moltiplicatore | stesso lotto × moltiplicatore |
 | Lotto fisso | sempre lo stesso lotto |
 
-**Conti piccoli.** Esempio: principale da 10.000 € con 0,50 lotti (1%), secondario da 100 €: il lotto giusto sarebbe 0,005, sotto il minimo del broker (0,01). Con 0,01 lotti e stop a 20 pip su EURUSD il rischio è circa 2 € = **2%**, il doppio del principale.
-Per questo c'è il parametro *"Conto piccolo: usa il lotto minimo solo se rischia al massimo questa %"* (predefinito 2%): se il lotto minimo farebbe rischiare di più, l'operazione **non viene copiata** e nel registro "Esperti" c'è il motivo. Senza stop loss sul principale il rischio non si può verificare e l'operazione non viene copiata.
+**Conti piccoli.** Esempio: principale da 10.000 € con 0,50 lotti, secondario da 100 €: il lotto giusto sarebbe 0,005, sotto il minimo del broker (0,01).
+Con *"Conto piccolo: copia al lotto minimo e raggruppa"* attivo (predefinito):
+- la prima operazione si copia al lotto minimo 0,01;
+- le successive sullo stesso simbolo e direzione si aprono solo quando la somma dei lotti giusti delle posizioni aperte sul principale supera quello già aperto sul secondario.
+- Esempio: 10 operazioni da 0,50 sul principale → sul secondario 5 posizioni da 0,01 (alle operazioni 1, 4, 6, 8, 10): stessa esposizione totale (0,05).
+- La prima operazione da sola rischia il doppio (0,01 invece di 0,005): è il prezzo del lotto minimo. Se vuoi un tetto, imposta *"rischio massimo con il lotto minimo (%)"*.
+Con il raggruppamento spento, le operazioni sotto il minimo non vengono copiate.
 
 ## Cosa copia
 Apertura di posizioni a mercato, chiusura, chiusura parziale (in proporzione), modifica di stop loss e take profit. **Non** copia ordini pendenti (copia la posizione quando si attivano).
