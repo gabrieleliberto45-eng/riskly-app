@@ -1,0 +1,2 @@
+Cartella per i file di TradeManager (MT4: .mq4/.ex4, MT5: .mq5/.ex5, ed eventuali .set).
+I sorgenti non sono ancora nel repository: caricali qui.
