@@ -91,19 +91,37 @@ bool SimboloAmmesso(string sym)
 }
 
 // ----------------------------------------------------------------- INVIA
+// Dopo una chiusura parziale MT4 crea un nuovo ordine con commento "from #vecchio": per i conti che ricevono
+// deve restare la stessa posizione (con volume minore), non una chiusa e una nuova. Si risale al primo numero.
+int Radice(int ticket, string commento)
+{
+   string chiave = GV("root" + (string)ticket);
+   if(GlobalVariableCheck(chiave)) return (int)GlobalVariableGet(chiave);
+   int r = ticket, p = StringFind(commento, "from #");
+   if(p >= 0)
+   {
+      int vecchio = (int)StringToInteger(StringSubstr(commento, p + 6));
+      if(vecchio > 0) r = GlobalVariableCheck(GV("root" + (string)vecchio)) ? (int)GlobalVariableGet(GV("root" + (string)vecchio)) : vecchio;
+      GlobalVariableSet(chiave, r);
+   }
+   return r;
+}
+
 void Invia()
 {
+   if(!IsConnected() || TimeGMT() - avvio < 5) { stato = "In attesa del collegamento al broker"; return; }
    string tmp = FileCanale() + ".tmp";
    int h = FileOpen(tmp, FILE_WRITE | FILE_TXT | FILE_COMMON | FILE_ANSI);
    if(h == INVALID_HANDLE) { stato = "Errore nella scrittura del file comune (" + (string)GetLastError() + ")"; return; }
    FileWriteString(h, StringFormat("H;%d;%.2f;%.2f;%s\n", (int)TimeGMT(), AccountBalance(), AccountEquity(), AccountCurrency()));
-   long diff = (long)(TimeCurrent() - TimeGMT());
+   // differenza tra ora del server e GMT, arrotondata alla mezz'ora (TimeCurrent e' l'ora dell'ultimo prezzo)
+   long diff = (long)MathRound((double)(TimeCurrent() - TimeGMT()) / 1800.0) * 1800;
    int n = 0;
    for(int i = 0; i < OrdersTotal(); i++)
    {
       if(!OrderSelect(i, SELECT_BY_POS, MODE_TRADES)) continue;
       if(OrderType() != OP_BUY && OrderType() != OP_SELL) continue;      // solo posizioni a mercato
-      FileWriteString(h, StringFormat("P;%d;%s;%d;%.8f;%.8f;%.8f;%.8f;%d\n", OrderTicket(), OrderSymbol(), OrderType(),
+      FileWriteString(h, StringFormat("P;%d;%s;%d;%.8f;%.8f;%.8f;%.8f;%d\n", Radice(OrderTicket(), OrderComment()), OrderSymbol(), OrderType(),
                                       OrderLots(), OrderOpenPrice(), OrderStopLoss(), OrderTakeProfit(), (int)((long)OrderOpenTime() - diff)));
       n++;
    }
@@ -262,6 +280,27 @@ void CopiaNuova(const PosMaster &m, int &copiate)
    }
 }
 
+// toglie le variabili globali delle posizioni del principale ormai chiuse (una volta al minuto)
+datetime ultimaPulizia = 0;
+void Pulizia()
+{
+   if(TimeGMT() - ultimaPulizia < 60) return;
+   ultimaPulizia = TimeGMT();
+   string pref[] = {"m", "d", "r"};
+   for(int i = GlobalVariablesTotal() - 1; i >= 0; i--)
+   {
+      string nome = GlobalVariableName(i);
+      for(int j = 0; j < 3; j++)
+      {
+         string p = GV(pref[j]);
+         if(StringFind(nome, p) != 0) continue;
+         string resto = StringSubstr(nome, StringLen(p));
+         long tk = StringToInteger(resto);
+         if(tk > 0 && (string)tk == resto && TrovaMaster(tk) < 0) GlobalVariableDel(nome);
+      }
+   }
+}
+
 void Ricevi()
 {
    if(!LeggiMaster()) return;
@@ -276,15 +315,20 @@ void Ricevi()
       long mt = MasterDiOrdine(t); if(mt == 0) continue;
       double chiudi = (OrderType() == OP_BUY) ? MarketInfo(sym, MODE_BID) : MarketInfo(sym, MODE_ASK);
       int k = TrovaMaster(mt);
+      string assente = GV("x" + (string)t);
       if(k < 0)
       {
+         double volte = GlobalVariableCheck(assente) ? GlobalVariableGet(assente) + 1 : 1;
+         GlobalVariableSet(assente, volte);
+         if(volte < 3) continue;                       // conferma: la posizione deve mancare per 3 letture di fila
          if(OrderClose(t, OrderLots(), chiudi, InpSlippage, clrGray))
          {
             GlobalVariableDel(GV("s" + (string)t)); GlobalVariableDel(GV("mi" + (string)mt));
-            GlobalVariableDel(GV("si" + (string)mt)); GlobalVariableDel(GV("m" + (string)mt)); GlobalVariableDel(GV("d" + (string)mt));
+            GlobalVariableDel(GV("si" + (string)mt)); GlobalVariableDel(GV("m" + (string)mt)); GlobalVariableDel(GV("d" + (string)mt)); GlobalVariableDel(assente);
          }
          continue;
       }
+      if(GlobalVariableCheck(assente)) GlobalVariableDel(assente);
       double mIniz = GlobalVariableCheck(GV("mi" + (string)mt)) ? GlobalVariableGet(GV("mi" + (string)mt)) : master[k].vol;
       double sIniz = GlobalVariableCheck(GV("si" + (string)mt)) ? GlobalVariableGet(GV("si" + (string)mt)) : OrderLots();
       if(mIniz > 0 && master[k].vol < mIniz - 1e-9)
@@ -298,7 +342,15 @@ void Ricevi()
          int cifre = (int)MarketInfo(sym, MODE_DIGITS); double punto = MarketInfo(sym, MODE_POINT);
          double sl = NormalizeDouble(master[k].sl, cifre), tp = NormalizeDouble(master[k].tp, cifre);
          if(MathAbs(OrderStopLoss() - sl) > punto / 2 || MathAbs(OrderTakeProfit() - tp) > punto / 2)
-            if(!OrderModify(t, OrderOpenPrice(), sl, tp, 0, clrNONE)) Print("RisklyCopy: modifica SL/TP non riuscita, errore ", GetLastError());
+         {
+            string ultimo = GV("q" + (string)t);
+            double hash = sl * 7919.0 + tp * 104729.0 + 1;
+            if(!GlobalVariableCheck(ultimo) || GlobalVariableGet(ultimo) != hash)
+            {
+               GlobalVariableSet(ultimo, hash);
+               if(!OrderModify(t, OrderOpenPrice(), sl, tp, 0, clrNONE)) Print("RisklyCopy: modifica SL/TP non riuscita su ", t, ", errore ", GetLastError());
+            }
+         }
       }
    }
 
@@ -306,6 +358,7 @@ void Ricevi()
    int copiate = ContaCopiate();
    for(int k = 0; k < ArraySize(master); k++)
       if(!GlobalVariableCheck(GV("m" + (string)master[k].ticket))) CopiaNuova(master[k], copiate);
+   Pulizia();
    stato = "RICEVI · canale \"" + InpCanale + "\" · " + (string)copiate + " posizioni copiate aperte";
 }
 

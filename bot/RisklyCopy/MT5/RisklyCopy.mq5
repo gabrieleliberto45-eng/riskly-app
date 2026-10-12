@@ -38,7 +38,7 @@ input group "Filtri (solo RICEVI)"
 input bool          InpCopiaSLTP   = true;      // Copia stop loss e take profit
 input bool          InpCopiaAperte = false;     // All'avvio copia anche le posizioni gia' aperte
 input int           InpEtaMax      = 60;        // Non copiare posizioni aperte da piu' di N secondi
-input double        InpScostMax    = 30;        // Non copiare se il prezzo si e' spostato di piu' di N punti x10 (pip)
+input double        InpScostMax    = 30;        // Non copiare se il prezzo si e' spostato di piu' di N pip
 input int           InpPosMax      = 20;        // Numero massimo di posizioni copiate aperte
 input string        InpSimboli     = "";        // Copia solo questi simboli (vuoto = tutti, es. XAUUSD,EURUSD)
 input string        InpMappa       = "";        // Nomi diversi tra broker (es. GOLD=XAUUSD,US30=DJ30)
@@ -98,6 +98,9 @@ bool SimboloAmmesso(string sym)
 // ----------------------------------------------------------------- INVIA
 void Invia()
 {
+   // appena avviato o senza collegamento la lista delle posizioni puo' essere vuota: non la si manda, altrimenti
+   // i conti che ricevono chiuderebbero tutto
+   if(!TerminalInfoInteger(TERMINAL_CONNECTED) || TimeGMT() - avvio < 5) { stato = "In attesa del collegamento al broker"; return; }
    string tmp = FileCanale() + ".tmp";
    int h = FileOpen(tmp, FILE_WRITE | FILE_TXT | FILE_COMMON | FILE_ANSI);
    if(h == INVALID_HANDLE) { stato = "Errore nella scrittura del file comune (" + (string)GetLastError() + ")"; return; }
@@ -259,6 +262,27 @@ void CopiaNuova(const PosMaster &m, int &copiate)
    }
 }
 
+// toglie le variabili globali delle posizioni del principale ormai chiuse (una volta al minuto)
+datetime ultimaPulizia = 0;
+void Pulizia()
+{
+   if(TimeGMT() - ultimaPulizia < 60) return;
+   ultimaPulizia = TimeGMT();
+   string pref[] = {"m", "d", "r"};
+   for(int i = GlobalVariablesTotal() - 1; i >= 0; i--)
+   {
+      string nome = GlobalVariableName(i);
+      for(int j = 0; j < 3; j++)
+      {
+         string p = GV(pref[j]);
+         if(StringFind(nome, p) != 0) continue;
+         string resto = StringSubstr(nome, StringLen(p));
+         ulong tk = (ulong)StringToInteger(resto);
+         if(tk > 0 && (string)tk == resto && TrovaMaster(tk) < 0) GlobalVariableDel(nome);
+      }
+   }
+}
+
 void Ricevi()
 {
    if(!LeggiMaster()) return;
@@ -272,11 +296,16 @@ void Ricevi()
       else { string cm = PositionGetString(POSITION_COMMENT); if(StringFind(cm, "RC#") == 0) mt = (ulong)StringToInteger(StringSubstr(cm, 3)); }
       if(mt == 0) continue;
       int k = TrovaMaster(mt);
+      string assente = GV("x" + (string)t);
       if(k < 0)
       {
-         if(trade.PositionClose(t)) { GlobalVariableDel(GV("s" + (string)t)); GlobalVariableDel(GV("mi" + (string)mt)); GlobalVariableDel(GV("si" + (string)mt)); GlobalVariableDel(GV("m" + (string)mt)); GlobalVariableDel(GV("d" + (string)mt)); }
+         double volte = GlobalVariableCheck(assente) ? GlobalVariableGet(assente) + 1 : 1;
+         GlobalVariableSet(assente, volte);
+         if(volte < 3) continue;                       // conferma: la posizione deve mancare per 3 letture di fila
+         if(trade.PositionClose(t)) { GlobalVariableDel(GV("s" + (string)t)); GlobalVariableDel(GV("mi" + (string)mt)); GlobalVariableDel(GV("si" + (string)mt)); GlobalVariableDel(GV("m" + (string)mt)); GlobalVariableDel(GV("d" + (string)mt)); GlobalVariableDel(assente); }
          continue;
       }
+      if(GlobalVariableCheck(assente)) GlobalVariableDel(assente);
       // chiusura parziale in proporzione
       double mIniz = GlobalVariableCheck(GV("mi" + (string)mt)) ? GlobalVariableGet(GV("mi" + (string)mt)) : master[k].vol;
       double sIniz = GlobalVariableCheck(GV("si" + (string)mt)) ? GlobalVariableGet(GV("si" + (string)mt)) : PositionGetDouble(POSITION_VOLUME);
@@ -294,7 +323,15 @@ void Ricevi()
          double sl = NormalizeDouble(master[k].sl, cifre), tp = NormalizeDouble(master[k].tp, cifre);
          if(MathAbs(PositionGetDouble(POSITION_SL) - sl) > SymbolInfoDouble(sym, SYMBOL_POINT) / 2 ||
             MathAbs(PositionGetDouble(POSITION_TP) - tp) > SymbolInfoDouble(sym, SYMBOL_POINT) / 2)
-            trade.PositionModify(t, sl, tp);
+         {
+            string ultimo = GV("q" + (string)t), firma = DoubleToString(sl, cifre) + "/" + DoubleToString(tp, cifre);
+            double hash = (double)StringLen(firma) * 1000003.0 + sl * 7919.0 + tp * 104729.0;
+            if(!GlobalVariableCheck(ultimo) || GlobalVariableGet(ultimo) != hash)
+            {
+               GlobalVariableSet(ultimo, hash);
+               if(!trade.PositionModify(t, sl, tp)) Print("RisklyCopy: modifica SL/TP non riuscita su ", t, ": ", trade.ResultRetcodeDescription());
+            }
+         }
       }
    }
 
@@ -302,6 +339,7 @@ void Ricevi()
    int copiate = ContaCopiate();
    for(int k = 0; k < ArraySize(master); k++)
       if(!GlobalVariableCheck(GV("m" + (string)master[k].ticket))) CopiaNuova(master[k], copiate);
+   Pulizia();
    stato = "RICEVI · canale \"" + InpCanale + "\" · " + (string)copiate + " posizioni copiate aperte";
 }
 

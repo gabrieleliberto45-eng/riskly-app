@@ -28,6 +28,10 @@ Con il raggruppamento spento, le operazioni sotto il minimo non vengono copiate.
 Apertura di posizioni a mercato, chiusura, chiusura parziale (in proporzione), modifica di stop loss e take profit. **Non** copia ordini pendenti (copia la posizione quando si attivano).
 
 ## Sicurezze
+- Il conto principale non manda la lista finché non è collegato al broker (e per 5 s dopo l'avvio): così una lista vuota all'apertura di MetaTrader non fa chiudere tutto ai conti che ricevono.
+- Una copia si chiude solo se la posizione manca dal principale per 3 letture di fila.
+- Chiusura parziale su un principale MT4: la posizione resta la stessa (il nuovo ordine "from #" eredita il numero), quindi il secondario chiude in proporzione invece che tutto.
+- Modifica di stop/take profit rifiutata dal broker: un solo tentativo per ogni cambiamento, niente richieste a raffica.
 - Se il conto principale non aggiorna da 15 s (MetaTrader chiuso, PC spento) il secondario **non fa nulla**: non chiude niente per sbaglio.
 - Non copia posizioni aperte da più di 60 s o con prezzo spostato di oltre 30 pip.
 - Lotto massimo e numero massimo di posizioni.
@@ -38,3 +42,4 @@ Apertura di posizioni a mercato, chiusura, chiusura parziale (in proporzione), m
 - Compilare e provare su demo: MT5→MT5, MT4→MT5, MT5→MT4, chiusure parziali, simboli con suffisso.
 - Aggiungere lo stesso controllo della licenza degli altri bot.
 - Conto MT5 in modalità netting: non supportato (avviso all'avvio).
+- Conti in valute diverse (EUR e USD): in modalità "saldo" il rapporto usa i saldi così come sono; meglio usare "rischio %".
