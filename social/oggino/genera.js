@@ -55,7 +55,7 @@ const SUONI = { cursore: [['click', 1.0]], entra: [['whoosh', 0], ['tonfo', .4]]
     const tot = (tg).toFixed(2);
     const fc = filtri.join(';') + ';' + [...Array(n).keys()].map(k => `[a${k}]`).join('') + `amix=inputs=${n}:duration=longest:normalize=0,atrim=0:${tot},loudnorm=I=-14:TP=-1.5[a]`;
     const r = spawnSync(FF, ['-y', '-i', path.join(tmp, 'muto.mp4'), ...ingressi, '-filter_complex', fc.replace(/\[(\d+):a\]/g, (m, k) => `[${+k + 1}:a]`),
-      '-map', '0:v', '-map', '[a]', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', '-movflags', '+faststart', '-shortest', path.join(Q, ep.id + '.mp4')]);
+      '-map', '0:v', '-map', '[a]', '-c:v', 'copy', '-c:a', 'aac', '-ar', '48000', '-b:a', '192k', '-movflags', '+faststart', '-shortest', path.join(Q, ep.id + '.mp4')]);
     if(r.status) console.error(r.stderr.toString().slice(-1500));
     fs.rmSync(tmp, { recursive: true, force: true });
     console.log(ep.id + '.mp4', tot + ' s');
