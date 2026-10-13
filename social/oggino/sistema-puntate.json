@@ -476,5 +476,89 @@
    "cta": "riskly.trade<small>link qui sotto ↓</small>"
   },
   "prodotto": "riskly.trade"
+ },
+ {
+  "id": "ad02-pulito",
+  "ora": "15:42",
+  "simbolo": "XAUUSD",
+  "seme": 11,
+  "base": 4195,
+  "vol": 1.6,
+  "saldo": "Saldo 9 700,00 €",
+  "oggi": "Oggi −300,00 € (−3,0%)",
+  "lotto": [
+   "0.40",
+   "0.40"
+  ],
+  "perdite": [],
+  "pensieri": [
+   [
+    0.15,
+    "terza perdita di fila."
+   ],
+   [
+    1.35,
+    "raddoppio e recupero."
+   ]
+  ],
+  "tempi": {
+   "lotto": 1.55,
+   "tocco": 2.6,
+   "blocco": 2.65,
+   "titolo": 3.25,
+   "righe": 99,
+   "passo": 0.45,
+   "chiusa": 4.2,
+   "offerta": 6.6,
+   "cta": 9.9,
+   "fine": 15.6,
+   "durata": 18.4
+  },
+  "righe": [],
+  "chiusura": "Il tuo trading non ha un problema di strategia. Ha un problema di rischio.",
+  "offerta": {
+   "titolo": "INIZIA DA QUI",
+   "righe": [
+    [
+     "📘",
+     "Guida «Le 7 regole del rischio»",
+     "PDF da scaricare",
+     "GRATIS"
+    ],
+    [
+     "🧮",
+     "5 calcolatori",
+     "lotto, Monte Carlo, prop firm, recupero, crescita",
+     "GRATIS"
+    ],
+    [
+     "📅",
+     "Calendario economico",
+     "dati in tempo reale, filtri per paese",
+     "GRATIS"
+    ],
+    [
+     "📊",
+     "Journal Riskly",
+     "statistiche e calendario delle operazioni",
+     "7 GG GRATIS"
+    ],
+    [
+     "🎓",
+     "Videocorso",
+     "47 lezioni · quasi 3 ore",
+     "199 €"
+    ],
+    [
+     "🤖",
+     "Bot per MT4 e MT5",
+     "ti fermano prima dell'errore · dal 23 ottobre",
+     "DA 49 €"
+    ]
+   ],
+   "cta": "riskly.trade<small>link qui sotto ↓</small>"
+  },
+  "prodotto": "riskly.trade",
+  "pulito": true
  }
 ]

@@ -86,6 +86,11 @@
   #cta{position:absolute;left:150px;right:150px;top:1560px;text-align:center;background:#B6D84F;color:#0B0D0C;font:800 52px 'Archivo';border-radius:999px;padding:30px 0;opacity:0;
        box-shadow:0 0 60px rgba(182,216,79,.45)}
   #cta small{display:block;font:600 28px 'Martian Mono';margin-top:4px}
+  #v.pulito #app{display:none}
+  #v.pulito #pens{top:640px;font-size:78px;line-height:1.2;text-align:center}
+  #v.pulito #pens small{display:none}
+  #v.pulito #dito{display:none}
+  #v.pulito #blocco{left:340px !important;top:1080px !important;width:400px !important;height:130px !important;font-size:42px}
   #grana{position:absolute;inset:0;width:1080px;height:1920px;opacity:.06;mix-blend-mode:screen;pointer-events:none}
 </style></head>
 <body><div id="v">
@@ -169,7 +174,7 @@ const gr = $('grana').getContext('2d'), img = gr.createImageData(540, 960);
 function grana(f){ let x = f * 9301 + 49297; for(let i = 0; i < img.data.length; i += 4){ x = (x * 9301 + 49297) % 233280; const v = x / 233280 * 255; img.data[i] = img.data[i+1] = img.data[i+2] = v; img.data[i+3] = 255; } gr.putImageData(img, 0, 0); }
 function digita(testo, t, a, vel = 17){ const n = Math.floor(cl((t - a) * vel, 0, testo.length)); return testo.slice(0, n); }
 
-window.imposta = e => { E = e; C = candele(46, e.seme || 7, e.base || 4195, e.vol || 1.6);
+window.imposta = e => { E = e; $('v').classList.toggle('pulito', !!e.pulito); C = candele(46, e.seme || 7, e.base || 4195, e.vol || 1.6);
   $('sim').textContent = e.simbolo; $('saldo').textContent = e.saldo; $('oggi').textContent = e.oggi; $('prod').textContent = e.prodotto;
   $('righe').innerHTML = e.righe.map((r, i) => `<div class="${i === e.righe.length - 1 ? 'tot' : ''}"><span>${r[0]}</span><b>${r[1] || ''}</b></div>`).join('');
   $('chiusa').textContent = e.chiusura;
