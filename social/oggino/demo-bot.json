@@ -1,0 +1,1131 @@
+[
+ {
+  "id": "b-trademanager",
+  "bot": "TradeManager",
+  "simbolo": "XAUUSD",
+  "ora": "10:12",
+  "scala": [
+   4186.0,
+   4198.0
+  ],
+  "prezzo": [
+   [
+    -20,
+    4189.6
+   ],
+   [
+    0,
+    4189.8
+   ],
+   [
+    2,
+    4190.0
+   ],
+   [
+    6,
+    4192.6
+   ],
+   [
+    8,
+    4193.4
+   ],
+   [
+    12.5,
+    4195.6
+   ],
+   [
+    14,
+    4195.8
+   ],
+   [
+    17,
+    4192.6
+   ],
+   [
+    19,
+    4192.4
+   ]
+  ],
+  "rumore": 0.35,
+  "lotto": [
+   [
+    0,
+    "0.40"
+   ]
+  ],
+  "tocchi": [
+   [
+    1.6
+   ]
+  ],
+  "linee": [
+   {
+    "tipo": "entrata",
+    "etichetta": "buy 0.40",
+    "prezzo": 4190.43,
+    "da": 1.7000000000000002,
+    "a": 16.21
+   },
+   {
+    "tipo": "sl",
+    "etichetta": "SL",
+    "prezzo": 4187.43,
+    "da": 2.2,
+    "a": 16.21,
+    "colpo": true,
+    "sposta": [
+     [
+      5.53,
+      4190.53,
+      0.4
+     ],
+     [
+      7.57,
+      4191.43,
+      0.3
+     ],
+     [
+      9.03,
+      4191.93,
+      0.3
+     ],
+     [
+      10.11,
+      4192.43,
+      0.3
+     ],
+     [
+      10.47,
+      4192.93,
+      0.3
+     ],
+     [
+      11.61,
+      4193.43,
+      0.3
+     ],
+     [
+      13.31,
+      4193.93,
+      0.3
+     ]
+    ]
+   },
+   {
+    "tipo": "tp",
+    "etichetta": "TP",
+    "prezzo": 4196.43,
+    "da": 2.2,
+    "a": 16.21
+   }
+  ],
+  "notifiche": [
+   [
+    2.2,
+    "Stop loss e take profit impostati in automatico: 30 e 60 pip"
+   ],
+   [
+    5.53,
+    "+20 pip: stop spostato a pareggio"
+   ],
+   [
+    7.57,
+    "Trailing stop attivo: lo stop segue il prezzo a 20 pip"
+   ],
+   [
+    15.61,
+    "Posizione chiusa allo stop a 4193.93 · +35 pip"
+   ]
+  ],
+  "didascalie": [
+   [
+    0.3,
+    "1",
+    "Apri una posizione. Anche senza stop loss."
+   ],
+   [
+    4.43,
+    "2",
+    "A +20 pip lo stop va a pareggio."
+   ],
+   [
+    7.17,
+    "3",
+    "Poi lo stop segue il prezzo."
+   ],
+   [
+    15.709999999999999,
+    "4",
+    "Chiusa in profitto (+35 pip). Senza toccare niente."
+   ]
+  ],
+  "pannello": [
+   [
+    0,
+    "attivo",
+    0,
+    [
+     [
+      "Stop auto",
+      "30 pip"
+     ],
+     [
+      "Break-even",
+      "a +20 pip"
+     ],
+     [
+      "Trailing",
+      "20 pip"
+     ],
+     [
+      "Passo",
+      "5 pip"
+     ]
+    ]
+   ],
+   [
+    5.53,
+    "pareggio ✓",
+    0,
+    [
+     [
+      "Stop auto",
+      "30 pip"
+     ],
+     [
+      "Break-even",
+      "fatto",
+      "#B6D84F"
+     ],
+     [
+      "Trailing",
+      "20 pip"
+     ],
+     [
+      "Passo",
+      "5 pip"
+     ]
+    ]
+   ],
+   [
+    7.57,
+    "trailing",
+    0,
+    [
+     [
+      "Stop auto",
+      "30 pip"
+     ],
+     [
+      "Break-even",
+      "fatto",
+      "#B6D84F"
+     ],
+     [
+      "Trailing",
+      "attivo",
+      "#B6D84F"
+     ],
+     [
+      "Passo",
+      "5 pip"
+     ]
+    ]
+   ],
+   [
+    15.61,
+    "chiusa +35 pip",
+    0,
+    [
+     [
+      "Stop auto",
+      "30 pip"
+     ],
+     [
+      "Break-even",
+      "fatto",
+      "#B6D84F"
+     ],
+     [
+      "Trailing",
+      "fatto",
+      "#B6D84F"
+     ],
+     [
+      "Risultato",
+      "+35 pip",
+      "#00C853"
+     ]
+    ]
+   ]
+  ],
+  "punti": [
+   "Stop e take profit automatici se mancano",
+   "Break-even dopo i pip che scegli",
+   "Trailing stop: avvio, distanza e passo"
+  ],
+  "quando": "Per MT4 e MT5 · dal 23 ottobre",
+  "fine": 18.41,
+  "durata": 24.21
+ },
+ {
+  "id": "b-riskguard",
+  "bot": "RiskGuard",
+  "simbolo": "XAUUSD",
+  "ora": "15:40",
+  "scala": [
+   4180.5,
+   4195.5
+  ],
+  "prezzo": [
+   [
+    -20,
+    4191.6
+   ],
+   [
+    0,
+    4192.0
+   ],
+   [
+    1.4,
+    4192.2
+   ],
+   [
+    3.8,
+    4189.0
+   ],
+   [
+    4.6,
+    4189.4
+   ],
+   [
+    5.0,
+    4189.5
+   ],
+   [
+    7.4,
+    4186.3
+   ],
+   [
+    8.2,
+    4186.8
+   ],
+   [
+    8.6,
+    4186.9
+   ],
+   [
+    11.0,
+    4183.6
+   ],
+   [
+    12.5,
+    4184.2
+   ],
+   [
+    15,
+    4186.8
+   ],
+   [
+    18,
+    4188.2
+   ]
+  ],
+  "rumore": 0.35,
+  "lotto": [
+   [
+    0,
+    "0.40"
+   ]
+  ],
+  "tocchi": [
+   [
+    1.2
+   ],
+   [
+    4.8
+   ],
+   [
+    8.4
+   ],
+   [
+    12.48
+   ]
+  ],
+  "linee": [
+   {
+    "tipo": "entrata",
+    "etichetta": "buy 0.40",
+    "prezzo": 4192.28,
+    "da": 1.3,
+    "a": 3.68
+   },
+   {
+    "tipo": "sl",
+    "etichetta": "SL",
+    "prezzo": 4189.78,
+    "da": 1.4,
+    "a": 3.68,
+    "colpo": true
+   },
+   {
+    "tipo": "tp",
+    "etichetta": "TP",
+    "prezzo": 4197.28,
+    "da": 1.4,
+    "a": 3.68
+   },
+   {
+    "tipo": "entrata",
+    "etichetta": "buy 0.40",
+    "prezzo": 4189.73,
+    "da": 4.8999999999999995,
+    "a": 7.1499999999999995
+   },
+   {
+    "tipo": "sl",
+    "etichetta": "SL",
+    "prezzo": 4187.23,
+    "da": 5.0,
+    "a": 7.1499999999999995,
+    "colpo": true
+   },
+   {
+    "tipo": "tp",
+    "etichetta": "TP",
+    "prezzo": 4194.73,
+    "da": 5.0,
+    "a": 7.1499999999999995
+   },
+   {
+    "tipo": "entrata",
+    "etichetta": "buy 0.40",
+    "prezzo": 4187.2,
+    "da": 8.5,
+    "a": 10.68
+   },
+   {
+    "tipo": "sl",
+    "etichetta": "SL",
+    "prezzo": 4184.7,
+    "da": 8.6,
+    "a": 10.68,
+    "colpo": true
+   },
+   {
+    "tipo": "tp",
+    "etichetta": "TP",
+    "prezzo": 4192.2,
+    "da": 8.6,
+    "a": 10.68
+   }
+  ],
+  "notifiche": [
+   [
+    3.08,
+    "Stop loss · −1,0% · perdite di fila: 1 su 3"
+   ],
+   [
+    6.55,
+    "Stop loss · −1,0% · perdite di fila: 2 su 3"
+   ],
+   [
+    10.08,
+    "3 perdite di fila: pausa attiva fino alle 18:00"
+   ],
+   [
+    12.530000000000001,
+    "Operazione bloccata: la pausa è attiva"
+   ]
+  ],
+  "blocco": [
+   12.530000000000001,
+   14.88
+  ],
+  "didascalie": [
+   [
+    0.2,
+    "1",
+    "La regola: massimo 3 perdite di fila."
+   ],
+   [
+    3.2800000000000002,
+    "2",
+    "Ogni stop viene contato."
+   ],
+   [
+    10.18,
+    "3",
+    "Alla terza: pausa. Niente quarta."
+   ],
+   [
+    11.88,
+    "4",
+    "Anche se ci riprovi."
+   ]
+  ],
+  "pannello": [
+   [
+    0,
+    "attivo",
+    0,
+    [
+     [
+      "Perdite di fila",
+      "0 / 3"
+     ],
+     [
+      "Perdita oggi",
+      "0,0% / 3,0%"
+     ],
+     [
+      "Trade oggi",
+      "0 / 5"
+     ],
+     [
+      "Stop obbligatorio",
+      "sì"
+     ]
+    ]
+   ],
+   [
+    3.08,
+    "attivo",
+    0,
+    [
+     [
+      "Perdite di fila",
+      "1 / 3",
+      "#ff6b61"
+     ],
+     [
+      "Perdita oggi",
+      "1,0% / 3,0%",
+      "#ff6b61"
+     ],
+     [
+      "Trade oggi",
+      "1 / 5"
+     ],
+     [
+      "Stop obbligatorio",
+      "sì"
+     ]
+    ]
+   ],
+   [
+    6.55,
+    "attivo",
+    0,
+    [
+     [
+      "Perdite di fila",
+      "2 / 3",
+      "#ff6b61"
+     ],
+     [
+      "Perdita oggi",
+      "2,0% / 3,0%",
+      "#ff6b61"
+     ],
+     [
+      "Trade oggi",
+      "2 / 5"
+     ],
+     [
+      "Stop obbligatorio",
+      "sì"
+     ]
+    ]
+   ],
+   [
+    10.08,
+    "in pausa",
+    1,
+    [
+     [
+      "Perdite di fila",
+      "3 / 3",
+      "#ff6b61"
+     ],
+     [
+      "Perdita oggi",
+      "3,0% / 3,0%",
+      "#ff6b61"
+     ],
+     [
+      "Trade oggi",
+      "3 / 5"
+     ],
+     [
+      "Stop obbligatorio",
+      "sì"
+     ]
+    ]
+   ]
+  ],
+  "punti": [
+   "Ti ferma dopo le perdite di fila che scegli",
+   "Limite di perdita giornaliero con margine",
+   "Stop loss obbligatorio e massimo di trade al giorno"
+  ],
+  "quando": "Per MT4 e MT5 · dal 23 ottobre",
+  "fine": 15.38,
+  "durata": 21.18
+ },
+ {
+  "id": "b-scalein",
+  "bot": "ScaleIn",
+  "simbolo": "XAUUSD",
+  "ora": "09:31",
+  "scala": [
+   4185.5,
+   4198.5
+  ],
+  "prezzo": [
+   [
+    -20,
+    4189.6
+   ],
+   [
+    0,
+    4189.8
+   ],
+   [
+    2,
+    4190.1
+   ],
+   [
+    5.5,
+    4192.9
+   ],
+   [
+    7,
+    4192.5
+   ],
+   [
+    9.5,
+    4194.9
+   ],
+   [
+    11,
+    4194.5
+   ],
+   [
+    13.5,
+    4196.9
+   ],
+   [
+    15,
+    4196.6
+   ],
+   [
+    17,
+    4196.2
+   ]
+  ],
+  "rumore": 0.35,
+  "lotto": [
+   [
+    0,
+    "0.10"
+   ]
+  ],
+  "tocchi": [
+   [
+    1.5
+   ]
+  ],
+  "linee": [
+   {
+    "tipo": "entrata",
+    "etichetta": "buy 0.10 ×3",
+    "prezzo": 4190.61,
+    "da": 1.6,
+    "a": 13.59
+   },
+   {
+    "tipo": "sl",
+    "etichetta": "SL",
+    "prezzo": 4187.61,
+    "da": 2.1,
+    "a": 13.59
+   },
+   {
+    "tipo": "tp",
+    "etichetta": "TP1",
+    "prezzo": 4192.61,
+    "da": 2.1,
+    "a": 5.33,
+    "colpo": true
+   },
+   {
+    "tipo": "tp",
+    "etichetta": "TP2",
+    "prezzo": 4194.61,
+    "da": 2.1,
+    "a": 9.53,
+    "colpo": true
+   },
+   {
+    "tipo": "tp",
+    "etichetta": "TP3",
+    "prezzo": 4196.61,
+    "da": 2.1,
+    "a": 13.59,
+    "colpo": true
+   }
+  ],
+  "pannello": [
+   [
+    0,
+    "pronto",
+    0,
+    [
+     [
+      "Take profit",
+      "20 · 40 · 60 pip"
+     ],
+     [
+      "Volumi",
+      "uguali"
+     ],
+     [
+      "Stop auto",
+      "30 pip"
+     ],
+     [
+      "Posizioni",
+      "—"
+     ]
+    ]
+   ],
+   [
+    2.1,
+    "3 posizioni",
+    0,
+    [
+     [
+      "Take profit",
+      "20 · 40 · 60 pip"
+     ],
+     [
+      "Volumi",
+      "uguali"
+     ],
+     [
+      "Stop auto",
+      "30 pip"
+     ],
+     [
+      "Posizioni",
+      "3 aperte"
+     ]
+    ]
+   ],
+   [
+    4.73,
+    "2 aperte",
+    0,
+    [
+     [
+      "Take profit",
+      "20 · 40 · 60 pip"
+     ],
+     [
+      "Volumi",
+      "uguali"
+     ],
+     [
+      "Incassati",
+      "+20 pip",
+      "#00C853"
+     ],
+     [
+      "Posizioni",
+      "2 aperte"
+     ]
+    ]
+   ],
+   [
+    8.93,
+    "1 aperte",
+    0,
+    [
+     [
+      "Take profit",
+      "20 · 40 · 60 pip"
+     ],
+     [
+      "Volumi",
+      "uguali"
+     ],
+     [
+      "Incassati",
+      "+40 pip",
+      "#00C853"
+     ],
+     [
+      "Posizioni",
+      "1 aperte"
+     ]
+    ]
+   ],
+   [
+    12.99,
+    "chiuse tutte",
+    0,
+    [
+     [
+      "Take profit",
+      "20 · 40 · 60 pip"
+     ],
+     [
+      "Volumi",
+      "uguali"
+     ],
+     [
+      "Incassati",
+      "+60 pip",
+      "#00C853"
+     ],
+     [
+      "Posizioni",
+      "0 aperte"
+     ]
+    ]
+   ]
+  ],
+  "notifiche": [
+   [
+    2.1,
+    "Aperte altre 2 posizioni · take profit a 20, 40 e 60 pip · stop 30 pip"
+   ],
+   [
+    4.73,
+    "TP1 raggiunto · +20 pip"
+   ],
+   [
+    8.93,
+    "TP2 raggiunto · +40 pip"
+   ],
+   [
+    12.99,
+    "TP3 raggiunto · +60 pip · tutte chiuse"
+   ]
+  ],
+  "didascalie": [
+   [
+    0.3,
+    "1",
+    "Apri una posizione a mano."
+   ],
+   [
+    2.2,
+    "2",
+    "ScaleIn apre le altre, con take profit scaglionati."
+   ],
+   [
+    4.83,
+    "3",
+    "Ogni parte esce al suo livello."
+   ],
+   [
+    13.09,
+    "4",
+    "Una entrata, tre uscite. Tutto automatico."
+   ]
+  ],
+  "punti": [
+   "Take profit scaglionati in pip",
+   "Volumi uguali o personalizzati",
+   "Stop automatico e controllo del rischio totale"
+  ],
+  "quando": "Per MT4 e MT5 · dal 23 ottobre",
+  "fine": 15.79,
+  "durata": 21.59
+ },
+ {
+  "id": "b-risklypro",
+  "bot": "Riskly Pro",
+  "simbolo": "XAUUSD",
+  "ora": "14:28",
+  "scala": [
+   4185.0,
+   4195.5
+  ],
+  "prezzo": [
+   [
+    -20,
+    4189.8
+   ],
+   [
+    0,
+    4190.0
+   ],
+   [
+    3,
+    4190.3
+   ],
+   [
+    8.6,
+    4189.8
+   ],
+   [
+    8.9,
+    4187.6
+   ],
+   [
+    9.3,
+    4189.4
+   ],
+   [
+    10.0,
+    4189.0
+   ],
+   [
+    10.4,
+    4189.2
+   ],
+   [
+    13.6,
+    4191.9
+   ],
+   [
+    15,
+    4192.3
+   ],
+   [
+    17,
+    4192.0
+   ]
+  ],
+  "rumore": 0.35,
+  "lotto": [
+   [
+    0,
+    "—"
+   ],
+   [
+    1.6,
+    "0.40"
+   ]
+  ],
+  "tocchi": [
+   [
+    4.7
+   ],
+   [
+    10.2
+   ]
+  ],
+  "blocco": [
+   4.75,
+   6.9
+  ],
+  "banner": {
+   "testo": "CPI USA · 14:30",
+   "secondi": 120,
+   "da": 3.0,
+   "a": 8.6
+  },
+  "linee": [
+   {
+    "tipo": "entrata",
+    "etichetta": "buy 0.40",
+    "prezzo": 4189.43,
+    "da": 10.299999999999999
+   },
+   {
+    "tipo": "sl",
+    "etichetta": "SL",
+    "prezzo": 4186.93,
+    "da": 10.399999999999999,
+    "sposta": [
+     [
+      12.93,
+      4189.53,
+      0.4
+     ]
+    ]
+   },
+   {
+    "tipo": "tp",
+    "etichetta": "TP",
+    "prezzo": 4194.43,
+    "da": 10.399999999999999
+   }
+  ],
+  "notifiche": [
+   [
+    1.6,
+    "Rischio 1% con stop a 25 pip: lotto calcolato 0.40"
+   ],
+   [
+    4.75,
+    "Notizia tra 2 minuti: apertura bloccata"
+   ],
+   [
+    10.399999999999999,
+    "BUY 0.40 · rischio 1% (100 €) · stop 25 pip"
+   ],
+   [
+    12.93,
+    "+20 pip: stop spostato a pareggio"
+   ]
+  ],
+  "didascalie": [
+   [
+    0.3,
+    "1",
+    "Scegli quanto rischiare. Il lotto lo calcola lui."
+   ],
+   [
+    3.3,
+    "2",
+    "Notizia in arrivo? Non apre."
+   ],
+   [
+    9.0,
+    "3",
+    "Dopo il dato apre. Con il lotto giusto."
+   ],
+   [
+    12.23,
+    "4",
+    "E poi gestisce la posizione."
+   ]
+  ],
+  "pannello": [
+   [
+    0,
+    "attivo",
+    0,
+    [
+     [
+      "Rischio",
+      "1,0%"
+     ],
+     [
+      "Stop",
+      "25 pip"
+     ],
+     [
+      "Lotto",
+      "—"
+     ],
+     [
+      "Filtro notizie",
+      "on"
+     ]
+    ]
+   ],
+   [
+    1.6,
+    "attivo",
+    0,
+    [
+     [
+      "Rischio",
+      "1,0%"
+     ],
+     [
+      "Stop",
+      "25 pip"
+     ],
+     [
+      "Lotto",
+      "0.40",
+      "#B6D84F"
+     ],
+     [
+      "Filtro notizie",
+      "on"
+     ]
+    ]
+   ],
+   [
+    3.0,
+    "notizia",
+    1,
+    [
+     [
+      "Rischio",
+      "1,0%"
+     ],
+     [
+      "Stop",
+      "25 pip"
+     ],
+     [
+      "Lotto",
+      "0.40",
+      "#B6D84F"
+     ],
+     [
+      "Filtro notizie",
+      "blocca",
+      "#ff6b61"
+     ]
+    ]
+   ],
+   [
+    8.6,
+    "attivo",
+    0,
+    [
+     [
+      "Rischio",
+      "1,0%"
+     ],
+     [
+      "Stop",
+      "25 pip"
+     ],
+     [
+      "Lotto",
+      "0.40",
+      "#B6D84F"
+     ],
+     [
+      "Filtro notizie",
+      "on"
+     ]
+    ]
+   ],
+   [
+    12.93,
+    "pareggio ✓",
+    0,
+    [
+     [
+      "Rischio",
+      "0% (pareggio)",
+      "#B6D84F"
+     ],
+     [
+      "Stop",
+      "a pareggio"
+     ],
+     [
+      "Lotto",
+      "0.40",
+      "#B6D84F"
+     ],
+     [
+      "Filtro notizie",
+      "on"
+     ]
+    ]
+   ]
+  ],
+  "punti": [
+   "Lotto calcolato sul rischio che scegli",
+   "Filtro su spread e notizie",
+   "RiskGuard, TradeManager e ScaleIn insieme"
+  ],
+  "quando": "Per MT4 e MT5 · dal 23 ottobre",
+  "fine": 15.53,
+  "durata": 21.33
+ }
+]
