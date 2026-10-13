@@ -83,6 +83,7 @@
   #offerta.fitto .o .t small{font-size:25px}
   #offerta.fitto .o .pz{font-size:28px;padding:10px 14px}
   #cta.fitto{top:1650px}
+  #offerta .o .pz.frec{background:none;color:#B6D84F;font-size:44px;padding:0 6px}
   #cta{position:absolute;left:150px;right:150px;top:1560px;text-align:center;background:#B6D84F;color:#0B0D0C;font:800 52px 'Archivo';border-radius:999px;padding:30px 0;opacity:0;
        box-shadow:0 0 60px rgba(182,216,79,.45)}
   #cta small{display:block;font:600 28px 'Martian Mono';margin-top:4px}
@@ -178,7 +179,7 @@ window.imposta = e => { E = e; $('v').classList.toggle('pulito', !!e.pulito); C 
   $('sim').textContent = e.simbolo; $('saldo').textContent = e.saldo; $('oggi').textContent = e.oggi; $('prod').textContent = e.prodotto;
   $('righe').innerHTML = e.righe.map((r, i) => `<div class="${i === e.righe.length - 1 ? 'tot' : ''}"><span>${r[0]}</span><b>${r[1] || ''}</b></div>`).join('');
   $('chiusa').textContent = e.chiusura;
-  if(e.offerta){ $('oTit').textContent = e.offerta.titolo; $('oRighe').innerHTML = e.offerta.righe.map(o => `<div class="o"><span class="ic">${o[0]}</span><span class="t">${o[1]}<small>${o[2]}</small></span><span class="pz">${o[3]}</span></div>`).join('');
+  if(e.offerta){ $('oTit').textContent = e.offerta.titolo; $('oRighe').innerHTML = e.offerta.righe.map(o => `<div class="o"><span class="ic">${o[0]}</span><span class="t">${o[1]}<small>${o[2]}</small></span>${o[3] ? `<span class="pz">${o[3]}</span>` : '<span class="pz frec">→</span>'}</div>`).join('');
     $('cta').innerHTML = e.offerta.cta; $('offerta').classList.toggle('fitto', e.offerta.righe.length > 4); $('cta').classList.toggle('fitto', e.offerta.righe.length > 4); }
   $('ora').textContent = e.ora || '15:42'; $('oggi').style.color = e.oggiColore || '#ff5252';
   $('banner').style.display = e.banner ? 'flex' : 'none'; GTOP = e.banner ? 520 : 430; $('graf').style.top = GTOP + 'px'; if(e.banner) $('bTesto').textContent = e.banner.testo;
