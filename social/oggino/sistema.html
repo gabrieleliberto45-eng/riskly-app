@@ -205,7 +205,7 @@ window.fotogramma = (t, f) => {
   $('lot').style.color = cambiaLotto && t >= T.lotto && t < T.lotto + .5 ? '#FFD54F' : '#fff';
   // pensieri digitati
   let html = '';
-  E.pensieri.forEach(([a, testo]) => { if(t >= a && t < T.blocco) html = `<small>PENSIERI</small>${digita(testo, t, a)}<span class="c" style="opacity:${(t * 2.2 % 1) < .55 ? 1 : 0}"></span>`; });
+  E.pensieri.forEach(([a, testo]) => { if(t >= a && t < T.blocco) html = `<small>PENSIERI</small>${digita(testo, t, a, E.vel || 17)}<span class="c" style="opacity:${(t * 2.2 % 1) < .55 ? 1 : 0}"></span>`; });
   $('pens').innerHTML = html;
   // dito: va sul + del lotto, poi sul BUY
   const dito = $('dito'), v = $('v').getBoundingClientRect();

@@ -20,7 +20,8 @@ const FF = execSync(`python3 -c "import imageio_ffmpeg as i;print(i.get_ffmpeg_e
     await new Promise(ok => { enc.on('close', ok); enc.stdin.end(); });
     // suoni: tasti mentre si scrivono i pensieri, tocchi, il blocco, il titolo, le righe, la chiusura
     const ev = [];
-    ep.pensieri.forEach(([a, testo]) => { for(let i = 0; i < testo.length; i++) if(testo[i] !== ' ' && a + i / 17 < T.blocco) ev.push(['tasto', a + i / 17, .5 + (i % 3) * .1]); });
+    const vel = ep.vel || 17;
+    ep.pensieri.forEach(([a, testo]) => { for(let i = 0; i < testo.length; i++) if(testo[i] !== ' ' && a + i / vel < T.blocco) ev.push(['tasto', a + i / vel, .5 + (i % 3) * .1]); });
     if(ep.lotto[0] !== ep.lotto[1]) ev.push(['click', T.lotto, .9]);
     if(T.dialogo) ev.push(['tick', T.dialogo, .8]);
     ev.push(['click', T.tocco, .9], ['tonfo', T.blocco, 1], ['timbro', T.blocco, .7], ['boom', T.titolo, .9]);
