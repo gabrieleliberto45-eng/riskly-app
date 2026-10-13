@@ -424,12 +424,12 @@
    "blocco": 2.5,
    "titolo": 2.95,
    "righe": 99,
-   "passo": 0.55,
+   "passo": 0.45,
    "chiusa": 3.9,
-   "offerta": 6.6,
-   "cta": 9.0,
-   "fine": 14.2,
-   "durata": 17.0
+   "offerta": 6.4,
+   "cta": 9.7,
+   "fine": 15.4,
+   "durata": 18.2
   },
   "righe": [],
   "chiusura": "Il tuo trading non ha un problema di strategia. Ha un problema di rischio.",
@@ -443,6 +443,18 @@
      "GRATIS"
     ],
     [
+     "🧮",
+     "5 calcolatori",
+     "lotto, Monte Carlo, prop firm, recupero, crescita",
+     "GRATIS"
+    ],
+    [
+     "📅",
+     "Calendario economico",
+     "dati in tempo reale, filtri per paese",
+     "GRATIS"
+    ],
+    [
      "📊",
      "Journal Riskly",
      "statistiche e calendario delle operazioni",
@@ -453,6 +465,12 @@
      "Videocorso",
      "47 lezioni · quasi 3 ore",
      "199 €"
+    ],
+    [
+     "🤖",
+     "Bot per MT4 e MT5",
+     "ti fermano prima dell'errore · dal 23 ottobre",
+     "DA 49 €"
     ]
    ],
    "cta": "riskly.trade<small>link qui sotto ↓</small>"
