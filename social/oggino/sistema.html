@@ -49,19 +49,30 @@
   #righe{position:absolute;left:150px;right:150px;top:900px;font:500 46px/1.75 'Martian Mono';color:#C9CFC6}
   #righe div{opacity:0;display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.08)}
   #righe div b{color:#ff5252;font-weight:700}
-  #righe div.tot{border:0;margin-top:18px;color:#F3F1EA;font-weight:700;line-height:1.35}
-  #chiusa{position:absolute;left:90px;right:90px;top:1420px;text-align:center;font:600 46px/1.4 'Archivo';color:#F3F1EA;opacity:0}
+  #righe div.tot{border:0;margin-top:18px;color:#F3F1EA;font-weight:700;line-height:1.35;font-size:40px}
+  #chiusa{position:absolute;left:90px;right:90px;top:1500px;text-align:center;font:600 46px/1.4 'Archivo';color:#F3F1EA;opacity:0}
   #fine{position:absolute;inset:0;background:#050605;opacity:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:40px}
   #fine .logo{display:flex;align-items:center;gap:24px;font:800 92px 'Archivo';color:#F3F1EA}
   #fine .logo svg{width:110px;height:110px}
   #fine .prod{font:600 40px 'Martian Mono';color:#C9CFC6;letter-spacing:.04em}
   #fine .serie{font:900 64px 'Archivo';font-stretch:70%;color:#B6D84F;letter-spacing:.02em}
   #fine .disc{position:absolute;bottom:130px;left:110px;right:110px;text-align:center;font:500 27px/1.45 'Archivo';color:rgba(243,241,234,.55)}
+  #banner{margin:18px 30px 0;display:none;align-items:center;gap:16px;background:#2a0d0d;border:2px solid #ff3b30;border-radius:10px;padding:14px 20px;
+          font:700 30px Arial;color:#ff6b61}
+  #banner i{width:14px;height:14px;border-radius:50%;background:#ff3b30;flex:none}
+  #banner b{margin-left:auto;font:700 34px 'Martian Mono';color:#fff}
+  #dialogo{position:absolute;left:90px;right:90px;top:700px;background:#1c1f23;border-radius:22px;padding:40px 38px 30px;opacity:0;box-shadow:0 30px 80px rgba(0,0,0,.8)}
+  #dialogo h4{font:700 40px Arial;margin-bottom:16px}
+  #dialogo p{font:400 32px/1.4 Arial;color:#b9bec4;margin-bottom:34px}
+  #dialogo .bt{display:flex;gap:18px}
+  #dialogo .bt div{flex:1;text-align:center;padding:24px 0;border-radius:14px;font:700 32px Arial}
+  #dlgSi{background:#2b3036;color:#fff}
+  #dlgNo{background:#1E6FD9;color:#fff}
   #grana{position:absolute;inset:0;width:1080px;height:1920px;opacity:.06;mix-blend-mode:screen;pointer-events:none}
 </style></head>
 <body><div id="v">
   <div id="app">
-    <div class="stato"><span>15:42</span><span>●●● 72%</span></div>
+    <div class="stato"><span id="ora">15:42</span><span>●●● 72%</span></div>
     <div class="barra"><b id="sim">XAUUSD</b><span class="tf">M5</span><span class="ic"><span>＋</span><span>ƒ</span><span>⋯</span></span></div>
     <div class="click">
       <div class="sell">SELL<div class="p" id="ps"></div></div>
@@ -69,7 +80,9 @@
       <div class="buy" id="buy">BUY<div class="p" id="pb"></div></div>
     </div>
     <div class="info"><span id="saldo">Saldo 9 700,00 €</span><span id="oggi">Oggi −300,00 € (−3,0%)</span></div>
+    <div id="banner"><i></i><span id="bTesto"></span><b id="bConto"></b></div>
     <canvas id="graf" width="1080" height="1180"></canvas>
+    <div id="dialogo"><h4 id="dTit"></h4><p id="dTesto"></p><div class="bt"><div id="dlgSi"></div><div id="dlgNo"></div></div></div>
     <div class="tab"><div>Quotazioni</div><div class="on">Grafico</div><div>Trading</div><div>Storico</div><div>Impostazioni</div></div>
   </div>
   <div id="dito"></div>
@@ -97,13 +110,16 @@ let E = null;                                   // dati della puntata
 function candele(n, seme, base, vol){ let s = seme, p = base; const r = () => (s = (s * 9301 + 49297) % 233280) / 233280, out = [];
   for(let i = 0; i < n; i++){ const o = p, c = o + (r() - .5) * vol * 2 - vol * .12; const hi = Math.max(o, c) + r() * vol * .8, lo = Math.min(o, c) - r() * vol * .8; out.push([o, hi, lo, c]); p = c; } return out; }
 let C = [];
-function disegnaGrafico(t, prezzo){
+let posSL = null, GTOP = 430;
+function disegnaGrafico(t, prezzo, sl){
   const g = $('graf').getContext('2d'), W = 1080, H = 1180, ax = 150;
   g.fillStyle = '#000'; g.fillRect(0, 0, W, H);
-  const vis = C.slice(-46); const hi = Math.max(...vis.map(c => c[1]), prezzo) + 1, lo = Math.min(...vis.map(c => c[2]), prezzo) - 1;
+  const vis = C.slice(-46), ult = C[C.length - 1][3], P = E.posizione;
+  const extra = P ? [ult + P.entrata, ult + P.sl, ult + (P.nuovo ?? P.sl)] : [];
+  const mg = (E.vol || 1.6) * .6, hi = Math.max(...vis.map(c => c[1]), prezzo, ...extra) + mg, lo = Math.min(...vis.map(c => c[2]), prezzo, ...extra) - mg;
   const y = v => 40 + (hi - v) / (hi - lo) * (H - 120);
   g.strokeStyle = '#1b1e22'; g.lineWidth = 1; g.font = '24px Arial'; g.fillStyle = '#9aa0a6'; g.textAlign = 'left';
-  for(let k = 0; k <= 8; k++){ const v = lo + (hi - lo) * k / 8, yy = y(v); g.beginPath(); g.moveTo(0, yy); g.lineTo(W - ax, yy); g.stroke(); g.fillText(v.toFixed(2), W - ax + 12, yy + 8); }
+  for(let k = 0; k <= 8; k++){ const v = lo + (hi - lo) * k / 8, yy = y(v); g.beginPath(); g.moveTo(0, yy); g.lineTo(W - ax, yy); g.stroke(); g.fillText(v.toFixed(E.cifre || 2), W - ax + 12, yy + 8); }
   const w = (W - ax - 20) / vis.length;
   vis.forEach((c, i) => { const x = 10 + i * w, su = c[3] >= c[0], col = su ? '#00C853' : '#FF1744';
     const ul = i === vis.length - 1;                     // l'ultima candela si muove con il prezzo
@@ -113,9 +129,19 @@ function disegnaGrafico(t, prezzo){
     const t1 = y(Math.max(c[0], cc)), t2 = y(Math.min(c[0], cc)); g.fillRect(x + w * .18, t1, w * .64, Math.max(2, t2 - t1)); });
   // linea del prezzo e etichetta a destra
   const yp = y(prezzo); g.strokeStyle = '#FF1744'; g.setLineDash([6, 6]); g.beginPath(); g.moveTo(0, yp); g.lineTo(W - ax, yp); g.stroke(); g.setLineDash([]);
-  g.fillStyle = '#FF1744'; g.fillRect(W - ax, yp - 18, ax, 36); g.fillStyle = '#fff'; g.font = 'bold 24px Arial'; g.fillText(prezzo.toFixed(2), W - ax + 10, yp + 8);
+  g.fillStyle = '#FF1744'; g.fillRect(W - ax, yp - 18, ax, 36); g.fillStyle = '#fff'; g.font = 'bold 24px Arial'; g.fillText(prezzo.toFixed(E.cifre || 2), W - ax + 10, yp + 8);
+  if(P){
+    const ye = y(ult + P.entrata), ys = y(sl);
+    g.setLineDash([10, 8]); g.lineWidth = 2;
+    g.strokeStyle = '#1E88E5'; g.beginPath(); g.moveTo(0, ye); g.lineTo(W - ax, ye); g.stroke();
+    g.strokeStyle = '#FF1744'; g.beginPath(); g.moveTo(0, ys); g.lineTo(W - ax, ys); g.stroke(); g.setLineDash([]);
+    g.font = 'bold 24px Arial'; g.fillStyle = '#1E88E5'; g.fillText(P.etichetta || 'buy 0.40', 14, ye - 10);
+    g.fillStyle = '#FF1744'; g.fillRect(W - ax - 96, ys - 20, 86, 40); g.fillStyle = '#fff'; g.fillText('SL', W - ax - 70, ys + 9);
+    g.fillStyle = '#FF1744'; g.fillRect(W - ax, ys - 18, ax, 36); g.fillStyle = '#fff'; g.fillText(sl.toFixed(E.cifre || 2), W - ax + 10, ys + 8);
+    posSL = [W - ax - 53, GTOP + ys];
+  }
   // tre operazioni chiuse in perdita: frecce sul grafico
-  E.perdite.forEach(([i, txt]) => { const c = vis[i]; if(!c) return; const x = 10 + i * w + w / 2, yy = y(c[1]) - 26;
+  (E.perdite || []).forEach(([i, txt]) => { const c = vis[i]; if(!c) return; const x = 10 + i * w + w / 2, yy = y(c[1]) - 26;
     g.fillStyle = '#FF1744'; g.beginPath(); g.moveTo(x, yy + 14); g.lineTo(x - 11, yy - 4); g.lineTo(x + 11, yy - 4); g.fill();
     g.font = 'bold 22px Arial'; g.textAlign = 'center'; g.fillText(txt, x, yy - 14); g.textAlign = 'left'; });
 }
@@ -126,28 +152,40 @@ function digita(testo, t, a, vel = 17){ const n = Math.floor(cl((t - a) * vel, 0
 window.imposta = e => { E = e; C = candele(46, e.seme || 7, e.base || 4195, e.vol || 1.6);
   $('sim').textContent = e.simbolo; $('saldo').textContent = e.saldo; $('oggi').textContent = e.oggi; $('prod').textContent = e.prodotto;
   $('righe').innerHTML = e.righe.map((r, i) => `<div class="${i === e.righe.length - 1 ? 'tot' : ''}"><span>${r[0]}</span><b>${r[1] || ''}</b></div>`).join('');
-  $('chiusa').textContent = e.chiusura; };
+  $('chiusa').textContent = e.chiusura;
+  $('ora').textContent = e.ora || '15:42'; $('oggi').style.color = e.oggiColore || '#ff5252';
+  $('banner').style.display = e.banner ? 'flex' : 'none'; GTOP = e.banner ? 520 : 430; $('graf').style.top = GTOP + 'px'; if(e.banner) $('bTesto').textContent = e.banner.testo;
+  if(e.dialogo){ $('dTit').textContent = e.dialogo.titolo; $('dTesto').textContent = e.dialogo.testo; $('dlgSi').textContent = e.dialogo.si; $('dlgNo').textContent = e.dialogo.no; } };
 window.fotogramma = (t, f) => {
   const T = E.tempi;
   // prezzo che scende piano e trema
-  const base = C[C.length - 1][3], prezzo = base - t * .35 + Math.sin(t * 7) * .25 + Math.sin(t * 2.3) * .4;
-  const gelato = t >= T.blocco;
-  const p = gelato ? base - T.blocco * .35 + Math.sin(T.blocco * 7) * .25 + Math.sin(T.blocco * 2.3) * .4 : prezzo;
-  disegnaGrafico(t, p);
+  const base = C[C.length - 1][3], der = E.deriva ?? .35, az = E.azione || 'buy';
+  const amp = (E.vol || 1.6) / 1.6, prz = x => base - x * der + (Math.sin(x * 7) * .25 + Math.sin(x * 2.3) * .4) * amp;
+  const tt = Math.min(t, T.blocco), p = prz(tt);
+  let sl = 0;
+  if(E.posizione){ const P = E.posizione; sl = base + P.sl;
+    if(az === 'stop') sl = base + P.sl + (P.nuovo - P.sl) * ease(fra(tt, T.tocco, .9)); }
+  disegnaGrafico(t, p, sl);
+  if(E.banner){ const sec = Math.max(0, Math.round(E.banner.secondi - tt)); $('bConto').textContent = '00:' + String(sec).padStart(2, '0'); }
+  if(E.dialogo){ const d = $('dialogo'), k = ease(fra(t, T.dialogo, .3)); d.style.opacity = t >= T.dialogo ? k : 0; d.style.transform = `scale(${.94 + .06 * k})`; }
   const spr = E.spread || .29;
-  $('ps').innerHTML = `${Math.floor(p)}.<b>${(p % 1).toFixed(2).slice(2)}</b>`;
-  $('pb').innerHTML = `${Math.floor(p + spr)}.<b>${((p + spr) % 1).toFixed(2).slice(2)}</b>`;
+  const fmt = x => { const d = E.cifre || 2, s = x.toFixed(d);
+    return d === 5 ? `${s.slice(0, -3)}<b>${s.slice(-3, -1)}</b><sup style="font-size:30px">${s.slice(-1)}</sup>` : `${s.slice(0, -2)}<b>${s.slice(-2)}</b>`; };
+  $('ps').innerHTML = fmt(p); $('pb').innerHTML = fmt(p + spr);
+  const cambiaLotto = E.lotto[0] !== E.lotto[1];
   $('lot').textContent = t >= T.lotto ? E.lotto[1] : E.lotto[0];
-  $('lot').style.color = t >= T.lotto && t < T.lotto + .5 ? '#FFD54F' : '#fff';
+  $('lot').style.color = cambiaLotto && t >= T.lotto && t < T.lotto + .5 ? '#FFD54F' : '#fff';
   // pensieri digitati
   let html = '';
   E.pensieri.forEach(([a, testo]) => { if(t >= a && t < T.blocco) html = `<small>PENSIERI</small>${digita(testo, t, a)}<span class="c" style="opacity:${(t * 2.2 % 1) < .55 ? 1 : 0}"></span>`; });
   $('pens').innerHTML = html;
   // dito: va sul + del lotto, poi sul BUY
-  const dito = $('dito'); const buy = $('buy').getBoundingClientRect(), v = $('v').getBoundingClientRect();
-  const pBuy = [buy.left - v.left + buy.width / 2, buy.top - v.top + buy.height / 2], pPiu = [655, 245], pRiposo = [880, 1500];
+  const dito = $('dito'), v = $('v').getBoundingClientRect();
+  const bersaglio = az === 'dialogo' ? $('dlgNo') : $('buy');
+  const buy = az === 'stop' ? { left: v.left + posSL[0] - 70, top: v.top + posSL[1] - 34, width: 140, height: 68 } : bersaglio.getBoundingClientRect();
+  const pBuy = [buy.left - v.left + buy.width / 2, buy.top - v.top + buy.height / 2], pPiu = cambiaLotto ? [655, 245] : [880, 1500], pRiposo = [880, 1500];
   let pos = null, op = 0, sc = 1;
-  if(t >= T.lotto - .7 && t < T.lotto + .3){ const k = ease(fra(t, T.lotto - .7, .5)); pos = [pRiposo[0] + (pPiu[0] - pRiposo[0]) * k, pRiposo[1] + (pPiu[1] - pRiposo[1]) * k]; op = 1; sc = t >= T.lotto && t < T.lotto + .15 ? .82 : 1; }
+  if(cambiaLotto && t >= T.lotto - .7 && t < T.lotto + .3){ const k = ease(fra(t, T.lotto - .7, .5)); pos = [pRiposo[0] + (pPiu[0] - pRiposo[0]) * k, pRiposo[1] + (pPiu[1] - pRiposo[1]) * k]; op = 1; sc = t >= T.lotto && t < T.lotto + .15 ? .82 : 1; }
   else if(t >= T.tocco - .8 && t < T.blocco + .6){ const k = ease(fra(t, T.tocco - .8, .7)); pos = [pPiu[0] + (pBuy[0] - pPiu[0]) * k, pPiu[1] + (pBuy[1] - pPiu[1]) * k]; op = 1 - fra(t, T.blocco + .2, .4); sc = t >= T.tocco && t < T.tocco + .15 ? .8 : 1; }
   if(pos){ dito.style.left = pos[0] + 'px'; dito.style.top = pos[1] + 'px'; }
   dito.style.opacity = op; dito.style.transform = `translate(-50%,-50%) scale(${sc})`;

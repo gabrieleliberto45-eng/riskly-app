@@ -66,5 +66,201 @@
   ],
   "chiusura": "Chiudi la piattaforma. Domani il mercato c'è ancora.",
   "prodotto": "RiskGuard · dal 23 ottobre"
+ },
+ {
+  "id": "p02-dato",
+  "ora": "14:29",
+  "simbolo": "EURUSD",
+  "base": 1.085,
+  "vol": 0.0006,
+  "seme": 21,
+  "deriva": 0.0,
+  "spread": 0.00012,
+  "saldo": "Saldo 10 000,00 €",
+  "oggi": "Oggi 0,00 €",
+  "oggiColore": "#9aa0a6",
+  "lotto": [
+   "0.40",
+   "0.40"
+  ],
+  "banner": {
+   "testo": "CPI USA · 14:30",
+   "secondi": 58
+  },
+  "pensieri": [
+   [
+    0.5,
+    "il dato esce tra un minuto…"
+   ],
+   [
+    2.8,
+    "entro adesso, prima che parta."
+   ]
+  ],
+  "tempi": {
+   "lotto": 99,
+   "tocco": 5.2,
+   "blocco": 5.25,
+   "titolo": 5.95,
+   "righe": 6.9,
+   "passo": 0.7,
+   "chiusa": 10.1,
+   "fine": 12.9,
+   "durata": 15.8
+  },
+  "righe": [
+   [
+    "Dato",
+    "CPI USA 14:30"
+   ],
+   [
+    "Spread",
+    "si allarga"
+   ],
+   [
+    "Prezzo",
+    "salta"
+   ],
+   [
+    "= non è un'entrata.<br>È una scommessa.",
+    ""
+   ]
+  ],
+  "chiusura": "Aspetta che il prezzo si calmi. L'occasione vera arriva dopo.",
+  "prodotto": "Riskly Pro · dal 23 ottobre",
+  "cifre": 5
+ },
+ {
+  "id": "p03-stop",
+  "ora": "11:08",
+  "simbolo": "XAUUSD",
+  "base": 4195,
+  "vol": 1.4,
+  "seme": 33,
+  "deriva": 0.38,
+  "saldo": "Saldo 10 000,00 €",
+  "oggi": "Posizione −0,9%",
+  "lotto": [
+   "0.40",
+   "0.40"
+  ],
+  "azione": "stop",
+  "posizione": {
+   "entrata": 3.0,
+   "sl": -2.6,
+   "nuovo": -10.0,
+   "etichetta": "buy 0.40"
+  },
+  "pensieri": [
+   [
+    0.5,
+    "è quasi allo stop…"
+   ],
+   [
+    2.7,
+    "lo sposto più giù, così respira."
+   ]
+  ],
+  "tempi": {
+   "lotto": 99,
+   "tocco": 5.0,
+   "blocco": 5.55,
+   "titolo": 6.25,
+   "righe": 7.2,
+   "passo": 0.7,
+   "chiusa": 10.4,
+   "fine": 13.2,
+   "durata": 16.1
+  },
+  "righe": [
+   [
+    "Rischio previsto",
+    "−1,0%"
+   ],
+   [
+    "Stop spostato",
+    "−2,3%"
+   ],
+   [
+    "Perdita possibile",
+    "+130%"
+   ],
+   [
+    "= lo stop non respira.<br>Sei tu che non vuoi perdere.",
+    ""
+   ]
+  ],
+  "chiusura": "Lo stop si decide prima di entrare. Non durante.",
+  "prodotto": "Riskly · il rischio si decide prima"
+ },
+ {
+  "id": "p04-weekend",
+  "ora": "22:51",
+  "simbolo": "XAUUSD",
+  "base": 4195,
+  "vol": 1.2,
+  "seme": 47,
+  "deriva": 0.08,
+  "saldo": "Saldo 10 000,00 €",
+  "oggi": "Posizione +0,4%",
+  "oggiColore": "#00C853",
+  "lotto": [
+   "0.40",
+   "0.40"
+  ],
+  "azione": "dialogo",
+  "posizione": {
+   "entrata": -1.5,
+   "sl": -6.0,
+   "etichetta": "buy 0.40"
+  },
+  "dialogo": {
+   "titolo": "Mercato in chiusura",
+   "testo": "Il mercato chiude tra 9 minuti e riapre lunedì. Hai 1 posizione aperta su XAUUSD.",
+   "si": "Chiudi posizione",
+   "no": "Tieni aperta"
+  },
+  "pensieri": [
+   [
+    0.5,
+    "venerdì sera…"
+   ],
+   [
+    2.3,
+    "la tengo fino a lunedì. tanto riparte da qui."
+   ]
+  ],
+  "tempi": {
+   "lotto": 99,
+   "dialogo": 4.7,
+   "tocco": 6.1,
+   "blocco": 6.15,
+   "titolo": 6.85,
+   "righe": 7.8,
+   "passo": 0.7,
+   "chiusa": 11.0,
+   "fine": 13.8,
+   "durata": 16.7
+  },
+  "righe": [
+   [
+    "Mercato chiuso",
+    "48 ore"
+   ],
+   [
+    "Lunedì riapre",
+    "lontano"
+   ],
+   [
+    "Lo stop",
+    "non è un muro"
+   ],
+   [
+    "= non è pazienza.<br>È un salto nel buio.",
+    ""
+   ]
+  ],
+  "chiusura": "Il gap del weekend non si elimina. Si riduce con il lotto.",
+  "prodotto": "Riskly · il rischio si decide prima"
  }
 ]
