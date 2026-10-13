@@ -8,7 +8,7 @@ def mk(K, r):
         else:
             for (a, x), (b, y) in zip(K, K[1:]):
                 if a <= t <= b: k = (t - a) / (b - a); s = k * k * (3 - 2 * k); v = x + (y - x) * s; break
-        return v + (math.sin(t * 9.1) * .35 + math.sin(t * 4.3 + 1) * .4 + math.sin(t * 17.3 + 2) * .25) * r
+        return v + (math.sin(t * 3.7) * .35 + math.sin(t * 1.9 + 1) * .4 + math.sin(t * 6.1 + 2) * .25) * r
     return p
 def primo(p, da, cond, fino=60):
     t = da
@@ -21,7 +21,7 @@ F = lambda x: f"{x:.2f}"
 D = []
 
 # ---------------- TradeManager ----------------
-K = [(-20, 4189.6), (0, 4189.8), (2, 4190.0), (6, 4192.6), (8, 4193.4), (12.5, 4195.6), (14, 4195.8), (17, 4192.6), (19, 4192.4)]
+K = [(-40, 4189.6), (0, 4189.8), (2, 4190.0), (6, 4192.6), (8, 4193.4), (12.5, 4195.6), (14, 4195.8), (17, 4192.6), (19, 4192.4)]
 p = mk(K, R); tap = 1.6; e = round(p(tap) + SPR, 2); sl0, tp = round(e - 3.0, 2), round(e + 6.0, 2)
 tbe = primo(p, tap, lambda v: v >= e + 2.0); be = round(e + .1, 2)
 moves = [[tbe, be, .4]]; sl = be; mx = 0; t = tbe; ttr = None
@@ -50,7 +50,7 @@ D.append({"id": "b-trademanager", "bot": "TradeManager", "simbolo": "XAUUSD", "o
   "quando": "Per MT4 e MT5 · dal 23 ottobre", "fine": round(tch + 2.8, 2), "durata": round(tch + 8.6, 2)})
 
 # ---------------- RiskGuard ----------------
-K = [(-20, 4191.6), (0, 4192.0), (1.4, 4192.2), (3.8, 4189.0), (4.6, 4189.4), (5.0, 4189.5), (7.4, 4186.3), (8.2, 4186.8), (8.6, 4186.9), (11.0, 4183.6), (12.5, 4184.2), (15, 4186.8), (18, 4188.2)]
+K = [(-40, 4191.6), (0, 4192.0), (1.4, 4192.2), (3.8, 4189.0), (4.6, 4189.4), (5.0, 4189.5), (7.4, 4186.3), (8.2, 4186.8), (8.6, 4186.9), (11.0, 4183.6), (12.5, 4184.2), (15, 4186.8), (18, 4188.2)]
 p = mk(K, R); taps = [1.2, 4.8, 8.4]; lin = []; hits = []; pan = [[0, "attivo", 0, [["Perdite di fila", "0 / 3"], ["Perdita oggi", "0,0% / 3,0%"], ["Trade oggi", "0 / 5"], ["Stop obbligatorio", "sì"]]]]
 notif = []
 for i, tp_ in enumerate(taps):
@@ -72,7 +72,7 @@ D.append({"id": "b-riskguard", "bot": "RiskGuard", "simbolo": "XAUUSD", "ora": "
   "quando": "Per MT4 e MT5 · dal 23 ottobre", "fine": round(t4 + 2.9, 2), "durata": round(t4 + 8.7, 2)})
 
 # ---------------- ScaleIn ----------------
-K = [(-20, 4189.6), (0, 4189.8), (2, 4190.1), (5.5, 4192.9), (7, 4192.5), (9.5, 4194.9), (11, 4194.5), (13.5, 4196.9), (15, 4196.6), (17, 4196.2)]
+K = [(-40, 4189.6), (0, 4189.8), (2, 4190.1), (5.5, 4192.9), (7, 4192.5), (9.5, 4194.9), (11, 4194.5), (13.5, 4196.9), (15, 4196.6), (17, 4196.2)]
 p = mk(K, R); tap = 1.5; e = round(p(tap) + SPR, 2); sl = round(e - 3.0, 2)
 tps = [round(e + 2.0 * k, 2) for k in (1, 2, 3)]; th = []; da = tap
 for x in tps: h = primo(p, da, lambda v: v >= x); th.append(h); da = h
@@ -94,7 +94,7 @@ D.append({"id": "b-scalein", "bot": "ScaleIn", "simbolo": "XAUUSD", "ora": "09:3
 
 # ---------------- Riskly Pro ----------------
 # lotto dal rischio + filtro notizie, poi entra in 3 parti (scaglionamento): TP1 e pareggio, trailing, TP2, l'ultima parte esce col trailing
-K = [(-20, 4189.8), (0, 4190.0), (3, 4190.3), (8.6, 4189.8), (8.9, 4187.6), (9.3, 4189.4), (10.0, 4189.0), (10.4, 4189.2),
+K = [(-40, 4189.8), (0, 4190.0), (3, 4190.3), (8.6, 4189.8), (8.9, 4187.6), (9.3, 4189.4), (10.0, 4189.0), (10.4, 4189.2),
      (12.6, 4191.7), (13.3, 4191.4), (15.6, 4193.8), (16.3, 4193.5), (18.2, 4194.7), (18.8, 4194.5), (20.2, 4192.2), (22, 4192.0)]
 p = mk(K, R); tap1, tap2 = 4.7, 10.2; e = round(p(tap2) + SPR, 2); sl0 = round(e - 2.5, 2)
 tps = [round(e + 2.0 * k, 2) for k in (1, 2, 3)]
@@ -141,7 +141,7 @@ D.append({"id": "b-risklypro", "bot": "Riskly Pro", "simbolo": "XAUUSD", "ora": 
 
 # ---------------- RisklyCopy ----------------
 # apri sul principale, la copia parte sugli altri conti con il lotto ricalcolato sul saldo; stop spostato e chiusura copiati
-K = [(-20, 4189.6), (0, 4189.8), (2, 4190.0), (5.5, 4192.2), (6.3, 4191.9), (9.5, 4193.6), (10.3, 4193.3), (13.2, 4195.4), (14.5, 4195.2), (16, 4195.0)]
+K = [(-40, 4189.6), (0, 4189.8), (2, 4190.0), (5.5, 4192.2), (6.3, 4191.9), (9.5, 4193.6), (10.3, 4193.3), (13.2, 4195.4), (14.5, 4195.2), (16, 4195.0)]
 p = mk(K, R); tap = 1.6; e = round(p(tap) + SPR, 2); sl0, tp = round(e - 2.5, 2), round(e + 5.0, 2)
 tc = round(tap + .9, 2); tbe = primo(p, tap, lambda v: v >= e + 2.0); tm = round(tbe + .6, 2)
 th = primo(p, tm, lambda v: v >= tp)

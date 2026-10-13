@@ -26,9 +26,10 @@
   #banner i{width:14px;height:14px;border-radius:50%;background:#ff3b30}
   #banner b{margin-left:auto;font:700 32px 'Martian Mono';color:#fff}
   #graf{position:absolute;left:0;top:470px;width:1080px;height:1000px}
-  #didas{position:absolute;left:40px;right:40px;top:500px;font:700 40px/1.25 'Archivo';color:#F3F1EA;background:rgba(0,0,0,.72);border-left:6px solid #B6D84F;
-         padding:18px 24px;border-radius:8px;opacity:0}
-  #didas b{color:#B6D84F;font-family:'Martian Mono';margin-right:10px}
+  #didas{position:absolute;left:36px;right:36px;top:490px;font:800 44px/1.22 'Archivo';color:#0B0D0C;background:#B6D84F;
+         padding:22px 28px 22px 24px;border-radius:16px;opacity:0;display:flex;gap:20px;align-items:center;
+         box-shadow:0 0 0 4px rgba(182,216,79,.25),0 18px 50px rgba(0,0,0,.65);transform-origin:50% 50%}
+  #didas b{flex:none;width:64px;height:64px;border-radius:50%;background:#0B0D0C;color:#B6D84F;font:700 34px 'Martian Mono';display:grid;place-items:center}
   #pann{position:absolute;left:24px;right:24px;top:1480px;height:250px;background:#0d110e;border:2px solid #252B26;border-radius:22px;padding:22px 28px}
   #pann .tit{display:flex;align-items:center;gap:14px;font:800 34px 'Archivo';color:#F3F1EA;margin-bottom:16px}
   #pann .tit span{margin-left:auto;font:700 26px 'Martian Mono';padding:6px 14px;border-radius:999px;background:rgba(182,216,79,.14);color:#B6D84F}
@@ -92,7 +93,7 @@ const cl = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
 const fra = (t, a, d) => cl((t - a) / d);
 const ease = x => 1 - Math.pow(1 - cl(x), 3);
 let E = null;
-const PER = .35, N = 44;                       // durata di una candela (s) e candele visibili
+const PER = .75, N = 30;                        // durata di una candela (s) e candele visibili: lente, si seguono a occhio
 
 /* prezzo: interpolazione dei punti chiave + un'ondulazione che non cambia mai (stessa scena = stesso video) */
 function prezzo(t){
@@ -101,7 +102,7 @@ function prezzo(t){
   else if(t >= K[K.length - 1][0]) p = K[K.length - 1][1];
   else for(let i = 0; i < K.length - 1; i++) if(t >= K[i][0] && t <= K[i + 1][0]){ const k = (t - K[i][0]) / (K[i + 1][0] - K[i][0]); const s = k * k * (3 - 2 * k); p = K[i][1] + (K[i + 1][1] - K[i][1]) * s; break; }
   const r = E.rumore ?? .35;
-  return p + (Math.sin(t * 9.1) * .35 + Math.sin(t * 4.3 + 1) * .4 + Math.sin(t * 17.3 + 2) * .25) * r;
+  return p + (Math.sin(t * 3.7) * .35 + Math.sin(t * 1.9 + 1) * .4 + Math.sin(t * 6.1 + 2) * .25) * r;
 }
 /* stato delle linee al tempo t: valori iniziali + spostamenti, comparsa e scomparsa */
 function linee(t){
@@ -171,7 +172,10 @@ window.fotogramma = (t, f) => {
   $('graf').style.top = (bn && t >= bn.da && t < bn.a) ? '540px' : '470px';
   // didascalie
   const d = ultimo(E.didascalie, t);
-  if(d){ $('didas').innerHTML = `<b>${d[1]}</b>${d[2]}`; $('didas').style.opacity = ease(fra(t, d[0], .3)) * (d[3] && t > d[3] ? 1 - fra(t, d[3], .3) : 1); } else $('didas').style.opacity = 0;
+  if(d){ $('didas').innerHTML = `<b>${d[1]}</b><span>${d[2]}</span>`; const k = ease(fra(t, d[0], .35));
+    $('didas').style.opacity = k * (d[3] && t > d[3] ? 1 - fra(t, d[3], .3) : 1);
+    $('didas').style.transform = `scale(${1 + (1 - k) * .08})`;              // ogni nuova spiegazione arriva con un piccolo colpo
+  } else $('didas').style.opacity = 0;
   // pannello del bot
   const pn = ultimo(E.pannello, t);
   if(pn){ $('pStato').textContent = pn[1]; $('pStato').className = pn[2] ? 'rosso' : '';
