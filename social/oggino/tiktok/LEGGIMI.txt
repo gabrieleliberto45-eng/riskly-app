@@ -1,0 +1,3 @@
+Versioni per TikTok: stesso video ridotto all'80% con margini neri (x 95, y 110), così niente finisce nelle zone
+che TikTok taglia sugli schermi 19,5:9 o copre con icone e descrizione. Instagram usa i file originali.
+Rigenera: ffmpeg -i X.mp4 -vf "scale=864:1536,pad=1080:1920:95:110:color=0x000000" -c:a copy tiktok/X.mp4
