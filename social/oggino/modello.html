@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8">
+<style>
+  /* "Oggi no." verticale 1080×1920: il robot di Riskly che ferma il trader. 3D a pieno schermo + sottotitoli parola per parola */
+  @font-face{font-family:'Archivo';src:url(archivo.woff2) format('woff2');font-weight:400 900;font-stretch:62% 125%}
+  @font-face{font-family:'Martian Mono';src:url(martian-mono.woff2) format('woff2');font-weight:400 700;font-stretch:75% 112.5%}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#000}
+  #v{width:1080px;height:1920px;position:relative;overflow:hidden;background:radial-gradient(120% 70% at 50% 40%,#141a13 0%,#070807 70%);font-family:'Archivo',sans-serif;color:#F3F1EA}
+  #gl{position:absolute;inset:0;width:1080px;height:1920px}
+  .velo{position:absolute;inset:0;pointer-events:none;background:radial-gradient(110% 75% at 50% 42%,transparent 50%,rgba(0,0,0,.7) 100%)}
+  #rosso{position:absolute;inset:0;pointer-events:none;background:radial-gradient(90% 60% at 50% 40%,rgba(239,68,68,.0),rgba(239,68,68,.35));opacity:0}
+  .serie{position:absolute;top:84px;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:16px;font:700 30px 'Martian Mono';letter-spacing:.24em;color:#B6D84F}
+  .serie i{width:12px;height:12px;border-radius:50%;background:#B6D84F;box-shadow:0 0 18px #B6D84F}
+  #cart{position:absolute;top:150px;left:70px;right:70px;text-align:center;font:700 34px 'Martian Mono';letter-spacing:.08em;color:#EF4444}
+  #sub{position:absolute;left:60px;right:60px;top:1500px;text-align:center;font-weight:900;font-stretch:82%;font-size:84px;line-height:1.05;
+       text-transform:uppercase;text-shadow:0 4px 24px rgba(0,0,0,.95),0 0 2px #000}
+  #sub b{color:#B6D84F}
+  #sub.trader{font-style:italic;font-weight:800;color:#C9CFC6}
+  #sub.trader b{color:#fff}
+  #timbro{position:absolute;left:0;right:0;top:560px;text-align:center;font:900 250px/1 'Archivo';font-stretch:72%;letter-spacing:-.01em;color:#B6D84F;
+          text-shadow:0 0 60px rgba(182,216,79,.55),0 10px 40px rgba(0,0,0,.9);opacity:0;transform:scale(1.6)}
+  #fine{position:absolute;inset:0;background:#070807;opacity:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px}
+  #fine .big{font:900 230px/1 'Archivo';font-stretch:72%;color:#B6D84F;text-shadow:0 0 70px rgba(182,216,79,.45)}
+  #fine .logo{display:flex;align-items:center;gap:22px;font:800 76px 'Archivo';color:#F3F1EA}
+  #fine .logo svg{width:92px;height:92px}
+  #fine .prod{font:600 40px 'Martian Mono';color:#C9CFC6;letter-spacing:.04em}
+  #fine .disc{position:absolute;bottom:150px;left:110px;right:110px;text-align:center;font:500 27px/1.45 'Archivo';color:rgba(243,241,234,.6)}
+  .handle{position:absolute;bottom:70px;left:0;right:0;text-align:center;font:600 30px 'Martian Mono';color:rgba(243,241,234,.65)}
+</style></head>
+<body><div id="v">
+  <canvas id="gl" width="1080" height="1920"></canvas>
+  <div class="velo"></div><div id="rosso"></div>
+  <div class="serie"><i></i>OGGI NO.</div>
+  <div id="cart"></div>
+  <div id="timbro">OGGI NO.</div>
+  <div id="sub"></div>
+  <div class="handle">riskly.trade</div>
+  <div id="fine">
+    <div class="big">OGGI NO.</div>
+    <div class="logo"><svg viewBox="0 0 44 44"><path d="M9 31 L17 19.5 L23.5 25 L35 11" stroke="#B6D84F" stroke-width="3.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 36 H35" stroke="#8B98A9" stroke-width="3.2" stroke-linecap="round"/></svg>Riskly</div>
+    <div class="prod">RiskGuard · dal 23 ottobre</div>
+    <div class="disc">Comunicazione promozionale. Contenuto educativo, non è consulenza finanziaria. Il trading con leva comporta un alto rischio di perdita.</div>
+  </div>
+</div>
+<script>
+let parole=[], cartello='', chi='robot';
+document.fonts.load("900 120px Archivo");
+window.prepara=(seg,par)=>{ parole=par; cartello=seg.cartello||''; chi=seg.chi; document.getElementById('sub').className=chi; };
+window.fotogramma=(t,tg)=>{
+  const n=Math.floor(Math.max(0,t-.1)*30); document.getElementById('cart').textContent=cartello.slice(0,n);
+  let k=parole.findIndex(p=>t<p[1]); if(k<0) k=parole.length-1;
+  const gr=4, ini=Math.floor(k/gr)*gr, g=parole.slice(ini,ini+gr);
+  document.getElementById('sub').innerHTML=parole.length&&t>=parole[0][0]-.05?g.map((p,j)=>ini+j===k?`<b>${p[2]}</b>`:p[2]).join(' '):'';
+  if(window.ep) window.ep.disegna(tg);
+};
+</script>
+<script type="module" src="scena.js"></script>
+</body></html>

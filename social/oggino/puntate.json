@@ -1,0 +1,87 @@
+[
+ {
+  "id": "p01-quarta",
+  "titolo": "La quarta",
+  "segmenti": [
+   {
+    "chi": "trader",
+    "cartello": "15:42 · TERZA PERDITA DI FILA",
+    "voce": "Terza perdita di fila. Va bene. Adesso apro doppio e recupero tutto.",
+    "battute": [
+     {
+      "su": "terza",
+      "azione": "perdite"
+     },
+     {
+      "su": "doppio",
+      "azione": "lotto"
+     },
+     {
+      "su": "recupero",
+      "azione": "cursore"
+     }
+    ]
+   },
+   {
+    "chi": "robot",
+    "voce": "Oggi no.",
+    "battute": [
+     {
+      "su": "oggi",
+      "azione": "entra"
+     },
+     {
+      "su": "no",
+      "azione": "timbro"
+     }
+    ]
+   },
+   {
+    "chi": "robot",
+    "voce": "Tre perdite di fila: hai già lasciato il tre per cento del conto. La quarta, con il lotto doppio, non è un trade. È rabbia.",
+    "battute": [
+     {
+      "su": "lasciato",
+      "azione": "etichetta",
+      "testo": "−3% OGGI",
+      "colore": "rosso",
+      "x": -2.75,
+      "y": 7.0,
+      "id": "e1"
+     },
+     {
+      "su": "doppio",
+      "azione": "etichetta",
+      "testo": "LOTTO ×2",
+      "colore": "oro",
+      "x": 2.75,
+      "y": 4.4,
+      "id": "e2"
+     },
+     {
+      "su": "rabbia",
+      "azione": "rabbia"
+     }
+    ]
+   },
+   {
+    "chi": "robot",
+    "voce": "Chiudi la piattaforma. Domani il mercato è ancora lì. Tu, anche.",
+    "battute": [
+     {
+      "su": "chiudi",
+      "azione": "chiudi"
+     },
+     {
+      "su": "domani",
+      "azione": "calma"
+     },
+     {
+      "su": "anche",
+      "azione": "fine"
+     }
+    ]
+   }
+  ]
+ }
+]
