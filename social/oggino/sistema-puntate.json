@@ -262,5 +262,127 @@
   ],
   "chiusura": "Il gap del weekend non si elimina. Si riduce con il lotto.",
   "prodotto": "Riskly · il rischio si decide prima"
+ },
+ {
+  "id": "p05-scaglioni",
+  "ora": "10:12",
+  "simbolo": "XAUUSD",
+  "base": 4195,
+  "vol": 1.3,
+  "seme": 58,
+  "deriva": -0.12,
+  "saldo": "Saldo 10 000,00 €",
+  "oggi": "Oggi 0,00 €",
+  "oggiColore": "#9aa0a6",
+  "lotto": [
+   "0.40",
+   "2.00"
+  ],
+  "pensieri": [
+   [
+    0.5,
+    "voglio 5 take profit diversi…"
+   ],
+   [
+    2.8,
+    "apro 5 posizioni da 0.40 e scaglioni."
+   ]
+  ],
+  "tempi": {
+   "lotto": 5.0,
+   "tocco": 6.4,
+   "blocco": 6.45,
+   "titolo": 7.15,
+   "righe": 8.1,
+   "passo": 0.7,
+   "chiusa": 11.3,
+   "fine": 14.1,
+   "durata": 17.0
+  },
+  "righe": [
+   [
+    "Posizioni",
+    "5 × 0.40"
+   ],
+   [
+    "Rischio pensato",
+    "−1,0%"
+   ],
+   [
+    "Rischio reale",
+    "−5,0%"
+   ],
+   [
+    "= non è scaglionare.<br>È rischiare 5 volte.",
+    ""
+   ]
+  ],
+  "chiusura": "Una sola posizione, divisa in più take profit.",
+  "prodotto": "ScaleIn · dal 23 ottobre"
+ },
+ {
+  "id": "p06-copia",
+  "ora": "16:05",
+  "simbolo": "XAUUSD",
+  "base": 4195,
+  "vol": 1.3,
+  "seme": 64,
+  "deriva": -0.05,
+  "saldo": "Saldo 10 000,00 €",
+  "oggi": "Oggi +0,6%",
+  "oggiColore": "#00C853",
+  "lotto": [
+   "0.40",
+   "0.40"
+  ],
+  "azione": "dialogo",
+  "dialogo": {
+   "titolo": "Copia operazione",
+   "testo": "BUY XAUUSD 0.40 su 3 conti: 10 000 € · 2 000 € · 100 €. Stesso lotto su tutti.",
+   "si": "Annulla",
+   "no": "Copia"
+  },
+  "pensieri": [
+   [
+    0.5,
+    "funziona sul conto grande…"
+   ],
+   [
+    2.4,
+    "la copio uguale anche sugli altri."
+   ]
+  ],
+  "tempi": {
+   "lotto": 99,
+   "dialogo": 4.4,
+   "tocco": 5.9,
+   "blocco": 5.95,
+   "titolo": 6.65,
+   "righe": 7.6,
+   "passo": 0.7,
+   "chiusa": 10.8,
+   "fine": 13.6,
+   "durata": 16.5
+  },
+  "righe": [
+   [
+    "Conto da 10 000 €",
+    "−1%"
+   ],
+   [
+    "Conto da 2 000 €",
+    "−5%"
+   ],
+   [
+    "Conto da 100 €",
+    "−100%"
+   ],
+   [
+    "= non è copiare.<br>È moltiplicare il rischio.",
+    ""
+   ]
+  ],
+  "chiusura": "Il lotto si ricalcola su ogni conto.",
+  "prodotto": "RisklyCopy · presto"
  }
 ]
