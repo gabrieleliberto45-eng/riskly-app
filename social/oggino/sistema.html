@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8">
+<style>
+  /* "Oggi no." v2 — niente personaggio, niente voce: lo schermo di MetaTrader (app per telefono), i pensieri scritti,
+     il sistema che blocca. Tutto deterministico: window.fotogramma(t) disegna l'istante t. */
+  @font-face{font-family:'Archivo';src:url(archivo.woff2) format('woff2');font-weight:400 900;font-stretch:62% 125%}
+  @font-face{font-family:'Martian Mono';src:url(martian-mono.woff2) format('woff2');font-weight:400 700;font-stretch:75% 112.5%}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#000}
+  #v{width:1080px;height:1920px;position:relative;overflow:hidden;background:#000;font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;color:#fff}
+  /* ---- app MetaTrader (ricostruita) ---- */
+  #app{position:absolute;inset:0;transform-origin:50% 42%}
+  .stato{height:64px;display:flex;justify-content:space-between;align-items:center;padding:0 44px;font:600 30px Arial;color:#fff}
+  .barra{height:96px;display:flex;align-items:center;gap:26px;padding:0 30px;border-bottom:1px solid #222;font:500 34px Arial}
+  .barra b{font-weight:700}
+  .barra .tf{color:#9aa0a6;font-size:30px}
+  .barra .ic{margin-left:auto;display:flex;gap:34px;color:#cfd4da;font-size:34px}
+  .click{display:grid;grid-template-columns:1fr 250px 1fr;height:150px;margin:16px 20px 0;gap:0}
+  .sell,.buy{display:flex;flex-direction:column;justify-content:center;padding:0 26px;font:600 26px Arial;letter-spacing:.04em}
+  .sell{background:#D32F2F;border-radius:10px 0 0 10px}
+  .buy{background:#1E6FD9;border-radius:0 10px 10px 0;align-items:flex-end}
+  .sell .p,.buy .p{font:500 30px Arial;margin-top:4px}
+  .sell .p b,.buy .p b{font-size:58px;font-weight:700}
+  .lotto{background:#16191d;display:flex;align-items:center;justify-content:space-between;padding:0 22px;font:600 42px Arial;color:#fff;border-top:1px solid #2a2e33;border-bottom:1px solid #2a2e33}
+  .lotto i{font-style:normal;color:#9aa0a6;font-size:46px}
+  #lot{transition:none}
+  .info{display:flex;justify-content:space-between;padding:20px 36px 0;font:500 28px Arial;color:#9aa0a6}
+  #oggi{color:#ff5252;font-weight:700}
+  #graf{position:absolute;left:0;top:430px;width:1080px;height:1180px}
+  .tab{position:absolute;bottom:0;left:0;right:0;height:150px;border-top:1px solid #222;display:grid;grid-template-columns:repeat(5,1fr);
+       text-align:center;font:500 22px Arial;color:#8a9097;padding-top:26px;background:#000}
+  .tab div::before{content:'';display:block;width:40px;height:40px;margin:0 auto 10px;border:3px solid currentColor;border-radius:9px;opacity:.8}
+  .tab .on{color:#1E88E5}
+  /* dito che tocca */
+  #dito{position:absolute;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.28);border:4px solid rgba(255,255,255,.75);
+        transform:translate(-50%,-50%);opacity:0;box-shadow:0 0 40px rgba(255,255,255,.25)}
+  /* pensieri del trader */
+  #pens{position:absolute;left:70px;right:70px;top:1180px;font:500 58px/1.25 'Martian Mono';font-stretch:88%;color:#fff;
+        text-shadow:0 3px 18px #000,0 0 4px #000;min-height:150px}
+  #pens .c{display:inline-block;width:.55em;height:1em;background:#fff;vertical-align:-.12em;margin-left:4px}
+  #pens small{display:block;font:600 26px 'Martian Mono';letter-spacing:.2em;color:#9aa0a6;margin-bottom:14px}
+  /* blocco del sistema */
+  #gelo{position:absolute;inset:0;background:#000;opacity:0}
+  #blocco{position:absolute;opacity:0;display:flex;align-items:center;justify-content:center;gap:16px;background:#0b0b0b;border:3px solid #ff3b30;
+          color:#ff3b30;font:800 34px 'Martian Mono';letter-spacing:.14em;border-radius:10px}
+  #blocco svg{width:40px;height:40px}
+  #titolo{position:absolute;left:0;right:0;top:560px;text-align:center;font:900 250px/1 'Archivo';font-stretch:68%;letter-spacing:-.01em;color:#F3F1EA;opacity:0}
+  #titolo span{color:#B6D84F}
+  #righe{position:absolute;left:150px;right:150px;top:900px;font:500 46px/1.75 'Martian Mono';color:#C9CFC6}
+  #righe div{opacity:0;display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.08)}
+  #righe div b{color:#ff5252;font-weight:700}
+  #righe div.tot{border:0;margin-top:18px;color:#F3F1EA;font-weight:700;line-height:1.35}
+  #chiusa{position:absolute;left:90px;right:90px;top:1420px;text-align:center;font:600 46px/1.4 'Archivo';color:#F3F1EA;opacity:0}
+  #fine{position:absolute;inset:0;background:#050605;opacity:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:40px}
+  #fine .logo{display:flex;align-items:center;gap:24px;font:800 92px 'Archivo';color:#F3F1EA}
+  #fine .logo svg{width:110px;height:110px}
+  #fine .prod{font:600 40px 'Martian Mono';color:#C9CFC6;letter-spacing:.04em}
+  #fine .serie{font:900 64px 'Archivo';font-stretch:70%;color:#B6D84F;letter-spacing:.02em}
+  #fine .disc{position:absolute;bottom:130px;left:110px;right:110px;text-align:center;font:500 27px/1.45 'Archivo';color:rgba(243,241,234,.55)}
+  #grana{position:absolute;inset:0;width:1080px;height:1920px;opacity:.06;mix-blend-mode:screen;pointer-events:none}
+</style></head>
+<body><div id="v">
+  <div id="app">
+    <div class="stato"><span>15:42</span><span>●●● 72%</span></div>
+    <div class="barra"><b id="sim">XAUUSD</b><span class="tf">M5</span><span class="ic"><span>＋</span><span>ƒ</span><span>⋯</span></span></div>
+    <div class="click">
+      <div class="sell">SELL<div class="p" id="ps"></div></div>
+      <div class="lotto"><i>−</i><span id="lot">0.40</span><i>+</i></div>
+      <div class="buy" id="buy">BUY<div class="p" id="pb"></div></div>
+    </div>
+    <div class="info"><span id="saldo">Saldo 9 700,00 €</span><span id="oggi">Oggi −300,00 € (−3,0%)</span></div>
+    <canvas id="graf" width="1080" height="1180"></canvas>
+    <div class="tab"><div>Quotazioni</div><div class="on">Grafico</div><div>Trading</div><div>Storico</div><div>Impostazioni</div></div>
+  </div>
+  <div id="dito"></div>
+  <div id="pens"></div>
+  <div id="gelo"></div>
+  <div id="blocco"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>BLOCCATO</div>
+  <div id="titolo">OGGI NO<span>.</span></div>
+  <div id="righe"></div>
+  <div id="chiusa"></div>
+  <canvas id="grana" width="540" height="960"></canvas>
+  <div id="fine">
+    <div class="serie">OGGI NO.</div>
+    <div class="logo"><svg viewBox="0 0 44 44"><path d="M9 31 L17 19.5 L23.5 25 L35 11" stroke="#B6D84F" stroke-width="3.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 36 H35" stroke="#8B98A9" stroke-width="3.2" stroke-linecap="round"/></svg>Riskly</div>
+    <div class="prod" id="prod"></div>
+    <div class="disc">Comunicazione promozionale. Contenuto educativo, non è consulenza finanziaria. Il trading con leva comporta un alto rischio di perdita.</div>
+  </div>
+</div>
+<script>
+const $ = id => document.getElementById(id);
+const cl = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const fra = (t, a, d) => cl((t - a) / d);
+const ease = x => 1 - Math.pow(1 - cl(x), 3);
+let E = null;                                   // dati della puntata
+/* candele finte ma credibili, sempre uguali (seme fisso) */
+function candele(n, seme, base, vol){ let s = seme, p = base; const r = () => (s = (s * 9301 + 49297) % 233280) / 233280, out = [];
+  for(let i = 0; i < n; i++){ const o = p, c = o + (r() - .5) * vol * 2 - vol * .12; const hi = Math.max(o, c) + r() * vol * .8, lo = Math.min(o, c) - r() * vol * .8; out.push([o, hi, lo, c]); p = c; } return out; }
+let C = [];
+function disegnaGrafico(t, prezzo){
+  const g = $('graf').getContext('2d'), W = 1080, H = 1180, ax = 150;
+  g.fillStyle = '#000'; g.fillRect(0, 0, W, H);
+  const vis = C.slice(-46); const hi = Math.max(...vis.map(c => c[1]), prezzo) + 1, lo = Math.min(...vis.map(c => c[2]), prezzo) - 1;
+  const y = v => 40 + (hi - v) / (hi - lo) * (H - 120);
+  g.strokeStyle = '#1b1e22'; g.lineWidth = 1; g.font = '24px Arial'; g.fillStyle = '#9aa0a6'; g.textAlign = 'left';
+  for(let k = 0; k <= 8; k++){ const v = lo + (hi - lo) * k / 8, yy = y(v); g.beginPath(); g.moveTo(0, yy); g.lineTo(W - ax, yy); g.stroke(); g.fillText(v.toFixed(2), W - ax + 12, yy + 8); }
+  const w = (W - ax - 20) / vis.length;
+  vis.forEach((c, i) => { const x = 10 + i * w, su = c[3] >= c[0], col = su ? '#00C853' : '#FF1744';
+    const ul = i === vis.length - 1;                     // l'ultima candela si muove con il prezzo
+    const cc = ul ? prezzo : c[3], h = ul ? Math.max(c[1], prezzo) : c[1], l = ul ? Math.min(c[2], prezzo) : c[2], cu = ul ? cc >= c[0] : su;
+    g.strokeStyle = g.fillStyle = ul ? (cu ? '#00C853' : '#FF1744') : col;
+    g.beginPath(); g.moveTo(x + w / 2, y(h)); g.lineTo(x + w / 2, y(l)); g.lineWidth = 2; g.stroke();
+    const t1 = y(Math.max(c[0], cc)), t2 = y(Math.min(c[0], cc)); g.fillRect(x + w * .18, t1, w * .64, Math.max(2, t2 - t1)); });
+  // linea del prezzo e etichetta a destra
+  const yp = y(prezzo); g.strokeStyle = '#FF1744'; g.setLineDash([6, 6]); g.beginPath(); g.moveTo(0, yp); g.lineTo(W - ax, yp); g.stroke(); g.setLineDash([]);
+  g.fillStyle = '#FF1744'; g.fillRect(W - ax, yp - 18, ax, 36); g.fillStyle = '#fff'; g.font = 'bold 24px Arial'; g.fillText(prezzo.toFixed(2), W - ax + 10, yp + 8);
+  // tre operazioni chiuse in perdita: frecce sul grafico
+  E.perdite.forEach(([i, txt]) => { const c = vis[i]; if(!c) return; const x = 10 + i * w + w / 2, yy = y(c[1]) - 26;
+    g.fillStyle = '#FF1744'; g.beginPath(); g.moveTo(x, yy + 14); g.lineTo(x - 11, yy - 4); g.lineTo(x + 11, yy - 4); g.fill();
+    g.font = 'bold 22px Arial'; g.textAlign = 'center'; g.fillText(txt, x, yy - 14); g.textAlign = 'left'; });
+}
+const gr = $('grana').getContext('2d'), img = gr.createImageData(540, 960);
+function grana(f){ let x = f * 9301 + 49297; for(let i = 0; i < img.data.length; i += 4){ x = (x * 9301 + 49297) % 233280; const v = x / 233280 * 255; img.data[i] = img.data[i+1] = img.data[i+2] = v; img.data[i+3] = 255; } gr.putImageData(img, 0, 0); }
+function digita(testo, t, a, vel = 17){ const n = Math.floor(cl((t - a) * vel, 0, testo.length)); return testo.slice(0, n); }
+
+window.imposta = e => { E = e; C = candele(46, e.seme || 7, e.base || 4195, e.vol || 1.6);
+  $('sim').textContent = e.simbolo; $('saldo').textContent = e.saldo; $('oggi').textContent = e.oggi; $('prod').textContent = e.prodotto;
+  $('righe').innerHTML = e.righe.map((r, i) => `<div class="${i === e.righe.length - 1 ? 'tot' : ''}"><span>${r[0]}</span><b>${r[1] || ''}</b></div>`).join('');
+  $('chiusa').textContent = e.chiusura; };
+window.fotogramma = (t, f) => {
+  const T = E.tempi;
+  // prezzo che scende piano e trema
+  const base = C[C.length - 1][3], prezzo = base - t * .35 + Math.sin(t * 7) * .25 + Math.sin(t * 2.3) * .4;
+  const gelato = t >= T.blocco;
+  const p = gelato ? base - T.blocco * .35 + Math.sin(T.blocco * 7) * .25 + Math.sin(T.blocco * 2.3) * .4 : prezzo;
+  disegnaGrafico(t, p);
+  const spr = E.spread || .29;
+  $('ps').innerHTML = `${Math.floor(p)}.<b>${(p % 1).toFixed(2).slice(2)}</b>`;
+  $('pb').innerHTML = `${Math.floor(p + spr)}.<b>${((p + spr) % 1).toFixed(2).slice(2)}</b>`;
+  $('lot').textContent = t >= T.lotto ? E.lotto[1] : E.lotto[0];
+  $('lot').style.color = t >= T.lotto && t < T.lotto + .5 ? '#FFD54F' : '#fff';
+  // pensieri digitati
+  let html = '';
+  E.pensieri.forEach(([a, testo]) => { if(t >= a && t < T.blocco) html = `<small>PENSIERI</small>${digita(testo, t, a)}<span class="c" style="opacity:${(t * 2.2 % 1) < .55 ? 1 : 0}"></span>`; });
+  $('pens').innerHTML = html;
+  // dito: va sul + del lotto, poi sul BUY
+  const dito = $('dito'); const buy = $('buy').getBoundingClientRect(), v = $('v').getBoundingClientRect();
+  const pBuy = [buy.left - v.left + buy.width / 2, buy.top - v.top + buy.height / 2], pPiu = [655, 245], pRiposo = [880, 1500];
+  let pos = null, op = 0, sc = 1;
+  if(t >= T.lotto - .7 && t < T.lotto + .3){ const k = ease(fra(t, T.lotto - .7, .5)); pos = [pRiposo[0] + (pPiu[0] - pRiposo[0]) * k, pRiposo[1] + (pPiu[1] - pRiposo[1]) * k]; op = 1; sc = t >= T.lotto && t < T.lotto + .15 ? .82 : 1; }
+  else if(t >= T.tocco - .8 && t < T.blocco + .6){ const k = ease(fra(t, T.tocco - .8, .7)); pos = [pPiu[0] + (pBuy[0] - pPiu[0]) * k, pPiu[1] + (pBuy[1] - pPiu[1]) * k]; op = 1 - fra(t, T.blocco + .2, .4); sc = t >= T.tocco && t < T.tocco + .15 ? .8 : 1; }
+  if(pos){ dito.style.left = pos[0] + 'px'; dito.style.top = pos[1] + 'px'; }
+  dito.style.opacity = op; dito.style.transform = `translate(-50%,-50%) scale(${sc})`;
+  // blocco: tutto si ferma, si scurisce e si stringe un poco
+  const g1 = ease(fra(t, T.blocco, .35));
+  $('app').style.filter = `grayscale(${g1}) brightness(${1 - .55 * g1})`;
+  $('app').style.transform = `scale(${1 - .03 * g1})`;
+  const bl = $('blocco'); bl.style.left = (pBuy[0] - buy.width / 2 - 10) + 'px'; bl.style.top = (pBuy[1] - buy.height / 2 - 10) + 'px';
+  bl.style.width = (buy.width + 20) + 'px'; bl.style.height = (buy.height + 20) + 'px';
+  bl.style.opacity = t >= T.blocco ? 1 - fra(t, T.titolo + .2, .3) : 0;
+  bl.style.transform = `scale(${t >= T.blocco ? 1.25 - .25 * ease(fra(t, T.blocco, .18)) : 1})`;
+  $('gelo').style.opacity = .82 * ease(fra(t, T.titolo, .4)) * (1 - fra(t, T.fine, .5));
+  const ti = $('titolo'), kt = fra(t, T.titolo, .22);
+  ti.style.opacity = t >= T.titolo ? 1 - fra(t, T.fine - .4, .4) : 0;
+  ti.style.transform = `scale(${1.25 - .25 * ease(kt)})`; ti.style.filter = `blur(${(1 - ease(kt)) * 10}px)`;
+  [...$('righe').children].forEach((d, i) => { const a = T.righe + i * T.passo; d.style.opacity = (t >= a ? ease(fra(t, a, .25)) : 0) * (1 - fra(t, T.fine - .4, .4)); d.style.transform = `translateY(${(1 - ease(fra(t, a, .25))) * 16}px)`; });
+  $('chiusa').style.opacity = ease(fra(t, T.chiusa, .5)) * (1 - fra(t, T.fine - .4, .4));
+  $('fine').style.opacity = ease(fra(t, T.fine, .5));
+  if(f % 2 === 0) grana(f);
+};
+window.visPronto = true;
+</script>
+</body></html>

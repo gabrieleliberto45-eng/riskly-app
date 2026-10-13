@@ -1,0 +1,70 @@
+[
+ {
+  "id": "p01v2-quarta",
+  "simbolo": "XAUUSD",
+  "saldo": "Saldo 9 700,00 €",
+  "oggi": "Oggi −300,00 € (−3,0%)",
+  "lotto": [
+   "0.40",
+   "0.80"
+  ],
+  "seme": 11,
+  "base": 4195,
+  "vol": 1.6,
+  "perdite": [
+   [
+    30,
+    "−1%"
+   ],
+   [
+    36,
+    "−1%"
+   ],
+   [
+    42,
+    "−1%"
+   ]
+  ],
+  "pensieri": [
+   [
+    0.5,
+    "terza perdita di fila…"
+   ],
+   [
+    2.7,
+    "ok. raddoppio e recupero tutto."
+   ]
+  ],
+  "tempi": {
+   "lotto": 5.0,
+   "tocco": 6.4,
+   "blocco": 6.45,
+   "titolo": 7.15,
+   "righe": 8.1,
+   "passo": 0.7,
+   "chiusa": 11.3,
+   "fine": 14.1,
+   "durata": 17.0
+  },
+  "righe": [
+   [
+    "Perdite di fila",
+    "3"
+   ],
+   [
+    "Conto oggi",
+    "−3,0%"
+   ],
+   [
+    "Lotto",
+    "×2"
+   ],
+   [
+    "= non è un trade.<br>È rabbia.",
+    ""
+   ]
+  ],
+  "chiusura": "Chiudi la piattaforma. Domani il mercato c'è ancora.",
+  "prodotto": "RiskGuard · dal 23 ottobre"
+ }
+]
