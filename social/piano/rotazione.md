@@ -62,3 +62,8 @@ Aggiornato il 9 ottobre sera: tutto il calendario fino al 22 è programmato. Dal
 Schermo di MetaTrader ricostruito, pensieri del trader scritti (niente voce sintetica, niente personaggio), il sistema che blocca il pulsante, "OGGI NO." e un referto di 3 righe con i numeri, chiusura Riskly. 15-17 s, funziona anche senza audio.
 Si produce con social/oggino/sistema.html + sistema-puntate.json + genera-sistema.js (azioni: buy, stop, dialogo; avviso del dato opzionale).
 Ritmo: giorni dispari alle 18:00 (dopo il carosello delle 13:00). Il weekend (p04) è montato ma scartato: a Gabriele non piace. Idee per le prossime: l'ottava operazione del giorno, il lotto "a occhio", la challenge all'ultimo giorno, il trade fuori orario, il segnale del gruppo Telegram.
+
+## TikTok: versione con margini (deciso il 13 ottobre)
+Su TikTok i video 9:16 a tutto schermo vengono tagliati ai lati sugli schermi più alti (19,5:9) e coperti da icone e descrizione.
+Regola: ogni video ha due post separati alla stessa ora, **Instagram con l'originale** e **TikTok con la versione in social/oggino/tiktok/**
+(contenuto all'80%, margini neri: ffmpeg -vf "scale=864:1536,pad=1080:1920:95:110:color=0x000000"). Già fatto per tutti i video dal 14 al 21 ottobre.
