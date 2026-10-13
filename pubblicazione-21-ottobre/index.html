@@ -880,6 +880,14 @@
   .price s{color:var(--dim2);font-size:.95rem;margin-right:8px}
   .price-off{color:var(--up);font-family:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace;font-size:.76rem;margin-top:-2px;margin-bottom:3px}
 
+  /* ── VIDEO DEI BOT ── */
+  .vbot{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+  .vb{margin:0;background:#0B0D0C;border:1px solid rgba(255,255,255,.08);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+  .vb video{display:block;width:100%;aspect-ratio:9/16;background:#050605;object-fit:cover}
+  .vb figcaption{padding:12px 14px 14px;display:flex;flex-direction:column;gap:4px}
+  .vb figcaption b{font-size:.95rem}
+  .vb figcaption span{color:var(--dim);font-size:.78rem;line-height:1.45}
+  @media (max-width:1000px){ .vbot{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:min(72%,260px);overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px} .vb{scroll-snap-align:start} }
   /* ── SIMULAZIONI BOT ── */
   .sim{margin-bottom:26px}
   .sim-head{margin-bottom:13px}
@@ -1939,13 +1947,13 @@
           </div>
           <div>
             <h3 style="font-family:'Instrument Sans',-apple-system,system-ui,sans-serif;font-size:.92rem;font-weight:600;margin-bottom:6px">Simulazioni prima dell'acquisto</h3>
-            <p style="color:var(--dim);font-size:.85rem">Nella sezione dei bot vedi passo passo come si comporta ognuno, con esempi in pip ed euro. Dopo l'acquisto provalo prima su conto demo.</p>
+            <p style="color:var(--dim);font-size:.85rem">Nella sezione dei bot c'è un video per ognuno: vedi passo passo come si comporta. Dopo l'acquisto provalo prima su conto demo.</p>
           </div>
         </div>
       </div>
 
       <div class="bot-rimandi">
-      <button class="bot-rimando" onclick="botTab('come')"><b>Come funzionano →</b><span>Le simulazioni passo passo e i test su conto demo.</span></button>
+      <button class="bot-rimando" onclick="botTab('come')"><b>Come funzionano →</b><span>Un video per ogni bot e i test su conto demo.</span></button>
       <button class="bot-rimando" onclick="botTab('confronti')"><b>Confronti →</b><span>Quale bot fa per te, Riskly e gli altri, prop firm.</span></button>
       </div>
 
@@ -1984,90 +1992,42 @@
         </div>
       </div>
 
-      <!-- ══ SIMULAZIONI ══ -->
+      <!-- ══ VIDEO DEI BOT ══ -->
       <div style="margin-bottom:38px">
-        <div class="sim">
-          <div class="sim-head">
-            <h3>RiskGuard — la giornata che si consuma</h3>
-            <p>Le barre si riempiono trade dopo trade. Alla terza perdita consecutiva il bot chiude tutto e sospende l'operatività, prima che il limite venga davvero violato.</p>
-          </div>
-          <div class="mt">
-            <div class="mt-bar">
-              <span class="dot" style="background:#FF5F57"></span>
-              <span class="dot" style="background:#FEBC2E"></span>
-              <span class="dot" style="background:#28C840"></span>
-              <span class="mt-title">EURUSD,M15 — Conto demo — MetaTrader 5</span>
-              <span class="mt-live"><i></i>LIVE</span>
-            </div>
-            <div class="mt-body">
-              <svg id="chartRG" viewBox="0 0 800 300"></svg>
-              <div class="ea tr" id="panelRG"></div>
-              <div class="evt" id="evRG"></div>
-            </div>
-          </div>
-          <div class="sim-ctrl">
-            <div class="sim-prog"><i id="progRG"></i></div>
-            <span class="sim-fase" id="faseRG">inizio giornata</span>
-          </div>
+        <div class="sim-head">
+          <h3>Guarda come lavorano</h3>
+          <p>Un video per ogni bot: il grafico si muove e vedi passo passo cosa fa. Partono senza audio, tocca il video per alzare il volume.</p>
         </div>
-
-        <div class="sim">
-          <div class="sim-head">
-            <h3>TradeManager — lo stop che si sposta</h3>
-            <p>La linea rossa si alza da sola: prima al break-even, poi in trailing dietro al prezzo. Tu non tocchi nulla.</p>
-          </div>
-          <div class="mt">
-            <div class="mt-bar">
-              <span class="dot" style="background:#FF5F57"></span>
-              <span class="dot" style="background:#FEBC2E"></span>
-              <span class="dot" style="background:#28C840"></span>
-              <span class="mt-title">XAUUSD,M5 — Conto demo — MetaTrader 5</span>
-              <span class="mt-live"><i></i>LIVE</span>
-            </div>
-            <div class="mt-body">
-              <svg id="chartTM" viewBox="0 0 800 300"></svg>
-              <div class="ea tl" id="panelTM"></div>
-              <div class="evt" id="evTM"></div>
-            </div>
-          </div>
-          <div class="sim-ctrl">
-            <div class="sim-prog"><i id="progTM"></i></div>
-            <span class="sim-fase" id="faseTM">posizione aperta</span>
-          </div>
-        </div>
-
-        <div class="sim">
-          <div class="sim-head">
-            <h3>ScaleIn — una posizione diventa quattro</h3>
-            <p>Apri il primo ordine a mano. In meno di un secondo il bot replica la posizione e assegna a ciascuna un take profit diverso.</p>
-          </div>
-          <div class="mt">
-            <div class="mt-bar">
-              <span class="dot" style="background:#FF5F57"></span>
-              <span class="dot" style="background:#FEBC2E"></span>
-              <span class="dot" style="background:#28C840"></span>
-              <span class="mt-title">GBPUSD,M15 — Conto demo — MetaTrader 5</span>
-              <span class="mt-live"><i></i>LIVE</span>
-            </div>
-            <div class="mt-body">
-              <svg id="chartSI" viewBox="0 0 800 320"></svg>
-              <div class="ea bl" id="panelSI"></div>
-              <div class="evt" id="evSI"></div>
-            </div>
-          </div>
-          <div class="sim-ctrl">
-            <div class="sim-prog"><i id="progSI"></i></div>
-            <span class="sim-fase" id="faseSI">ordine manuale</span>
-          </div>
+        <div class="vbot">
+          <figure class="vb">
+            <video src="video/risklypro.mp4" poster="video/risklypro.jpg" muted loop playsinline preload="none" controls></video>
+            <figcaption><b>Riskly Pro</b><span>Lotto calcolato sul rischio, niente aperture vicino alle notizie, entrata in 3 parti con pareggio e trailing stop.</span></figcaption>
+          </figure>
+          <figure class="vb">
+            <video src="video/riskguard.mp4" poster="video/riskguard.jpg" muted loop playsinline preload="none" controls></video>
+            <figcaption><b>RiskGuard</b><span>Massimo 3 perdite di fila: alla terza mette in pausa e la quarta operazione non parte.</span></figcaption>
+          </figure>
+          <figure class="vb">
+            <video src="video/trademanager.mp4" poster="video/trademanager.jpg" muted loop playsinline preload="none" controls></video>
+            <figcaption><b>TradeManager</b><span>Stop e take profit automatici, pareggio a +20 pip, poi lo stop segue il prezzo.</span></figcaption>
+          </figure>
+          <figure class="vb">
+            <video src="video/scalein.mp4" poster="video/scalein.jpg" muted loop playsinline preload="none" controls></video>
+            <figcaption><b>ScaleIn</b><span>Apri una posizione: il bot apre le altre parti con take profit scaglionati.</span></figcaption>
+          </figure>
+          <figure class="vb">
+            <video src="video/risklycopy.mp4" poster="video/risklycopy.jpg" muted loop playsinline preload="none" controls></video>
+            <figcaption><b>RisklyCopy</b><span>Copia le operazioni dal conto principale agli altri, con il lotto ricalcolato sul saldo di ogni conto.</span></figcaption>
+          </figure>
         </div>
 
         <p style="color:var(--dim2);font-size:.76rem;margin-top:14px;line-height:1.6;max-width:70ch">
-          Ricostruzioni grafiche a scopo illustrativo, non registrazioni di operazioni reali e non rappresentative di risultati ottenibili.
+          Simulazioni illustrative, non registrazioni di operazioni reali e non rappresentative di risultati ottenibili.
         </p>
 
       <div class="prova">
         <div class="k">TEST IN CORSO · CONTO DEMO MT5</div>
-        <p>Le animazioni qui sopra sono ricostruzioni. I test veri li pubblichiamo sul
+        <p>I video qui sopra sono simulazioni. I test veri li pubblichiamo sul
         <a href="https://t.me/+mlCyBs21_7A3ZDg0" target="_blank" rel="noopener">canale Telegram</a>:
         screenshot datati di MetaTrader, non mockup. Se una funzione non regge il test, lo scriviamo lì.</p>
       </div>
@@ -3277,444 +3237,14 @@ function esc(v){
   return String(v ?? '').replace(/[&<>"'`]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;','`':'&#96;'}[c]));
 }
 
-/* ═══ SIMULAZIONI BOT ═══ */
-/* ═══════════ GENERAZIONE PREZZI ═══════════ */
-function candele(seed, n, base, vol, drift){
-  let s = seed, p = base;
-  const rnd = () => { s = (s*9301+49297)%233280; return s/233280; };
-  const out = [];
-  for(let i=0;i<n;i++){
-    const o = p;
-    const c = o + (rnd()-0.5)*vol + drift;
-    out.push({o, c,
-      hi: Math.max(o,c) + rnd()*vol*0.45,
-      lo: Math.min(o,c) - rnd()*vol*0.45});
-    p = c;
-  }
-  return out;
-}
-
-/* vero se siamo su schermo stretto */
-function mobile(){ return window.innerWidth <= 760; }
-
-/* disegna un insieme di candele con scala fissa */
-function render(cnd, tot, W, H, mn, mx){
-  const pad = (mx-mn)*0.07;
-  const lo = mn - pad, hi = mx + pad;
-  const Y = v => 12 + (hi-v)/(hi-lo) * (H-24);
-  const step = W/(tot+2);
-  const w = Math.max(step*0.55, mobile() ? 3.5 : 2);
-
-  let svg = '';
-  for(let i=1;i<5;i++){
-    const y = 12 + (H-24)*i/5;
-    svg += `<line x1="0" y1="${y}" x2="${W}" y2="${y}" stroke="rgba(255,255,255,.045)"/>`;
-  }
-  cnd.forEach((c,i)=>{
-    const x = step*(i+1);
-    const col = c.c >= c.o ? '#22C55E' : '#EF4444';
-    svg += `<line x1="${x}" y1="${Y(c.hi)}" x2="${x}" y2="${Y(c.lo)}" stroke="${col}" stroke-width="${mobile()?1.6:1}"/>`;
-    const yt = Y(Math.max(c.o,c.c)), yb = Y(Math.min(c.o,c.c));
-    svg += `<rect x="${x-w/2}" y="${yt}" width="${w}" height="${Math.max(yb-yt,1)}" fill="${col}"/>`;
-  });
-  return {svg, Y, step};
-}
-
-function linea(y, W, col, testo, dash){
-  const m = mobile();
-  const bw = m ? 104 : 84;        // larghezza etichetta
-  const fs = m ? 13 : 10;         // dimensione testo
-  const bh = m ? 24 : 18;
-  const x0 = W - bw - 4;
-
-  let o = `<line x1="0" y1="${y}" x2="${x0}" y2="${y}" stroke="${col}" stroke-width="${m?1.8:1.2}"
-           ${dash?'stroke-dasharray="5 4"':''} opacity=".9"/>`;
-  o += `<rect x="${x0}" y="${y-bh/2}" width="${bw}" height="${bh}" rx="3" fill="${col}" opacity=".95"/>`;
-  o += `<text x="${x0+bw/2}" y="${y+fs*0.36}" text-anchor="middle" fill="#0B0F19" font-size="${fs}"
-         font-family="JetBrains Mono, SF Mono, Menlo, Consolas, monospace" font-weight="500">${testo}</text>`;
-  return o;
-}
-
-function barra(val, max, colore){
-  const p = Math.min(Math.max(val/max,0),1)*100;
-  return `<div class="barra"><i class="${colore}" style="width:${p.toFixed(1)}%"></i></div>`;
-}
-function colSoglia(v,s){ const f=v/s; return f>=0.85?'r':(f>=0.5?'o':'g'); }
-
-function evento(id, testo, tipo, durata){
-  const e = document.getElementById(id);
-  e.textContent = testo;
-  e.className = 'evt on' + (tipo ? ' '+tipo : '');
-  setTimeout(()=>{ e.className = 'evt' + (tipo ? ' '+tipo : ''); }, durata || 1600);
-}
-
-const attesa = ms => new Promise(r=>setTimeout(r,ms));
-
-/* ═══════════ 1. RISKGUARD ═══════════ */
-const cndRG = candele(4242, 62, 1.0850, 0.0016, -0.00013);
-const mnRG = Math.min(...cndRG.map(c=>c.lo));
-const mxRG = Math.max(...cndRG.map(c=>c.hi));
-
-let runRG = false;
-
-function pannelloRG(perd, dd, trade, perdite, bloccato, txt){
-  const sg=3.5, st=7.0;
-  const cg=colSoglia(perd,sg), ct=colSoglia(dd,st);
-  document.getElementById('panelRG').innerHTML = `
-    <div class="t">RISKLY PRO · PROTEZIONE</div>
-    <div class="row"><b>Giornaliero</b><b class="${cg}">${perd.toFixed(2)}% / ${sg}%</b></div>
-    ${barra(perd, sg, cg)}
-    <div class="row" style="margin-top:5px"><b>Totale</b><b class="${ct}">${dd.toFixed(2)}% / ${st}%</b></div>
-    ${barra(dd, st, ct)}
-    <div class="row" style="margin-top:6px"><b>Trade oggi</b><b class="${trade>=5?'r':''}">${trade} / 5</b></div>
-    <div class="row"><b>Perdite consec.</b><b class="${perdite>=3?'r':''}">${perdite} / 3</b></div>
-    <div class="st ${bloccato?'r':'g'}">${bloccato?'●':'●'} ${txt}</div>`;
-}
-
-function disegnaRG(fino, bloccato){
-  const W=800,H=300;
-  const d = render(cndRG.slice(0,fino), cndRG.length, W, H, mnRG, mxRG);
-  let svg = d.svg;
-  if(bloccato){
-    const x = d.step*fino;
-    svg += `<line x1="${x}" y1="12" x2="${x}" y2="${H-12}" stroke="#EF4444" stroke-width="1.4" stroke-dasharray="4 4" opacity=".8"/>`;
-    svg += `<rect x="${x-64}" y="20" width="128" height="20" rx="4" fill="#EF4444" opacity=".92"/>`;
-    svg += `<text x="${x}" y="34" text-anchor="middle" fill="#0B0F19" font-size="10.5"
-             font-family="JetBrains Mono, SF Mono, Menlo, Consolas, monospace" font-weight="500">CHIUSURA FORZATA</text>`;
-  }
-  document.getElementById('chartRG').innerHTML = svg;
-}
-
-async function playRG(){
-  if(runRG) return;
-  runRG = true;
-
-  // tappe: [candela, perdita%, dd%, trade, perdite consecutive, evento]
-  const tappe = [
-    [18, 0.4, 0.9, 1, 0, null, 'mattina · 1 trade'],
-    [30, 1.6, 2.4, 2, 1, ['Trade #2 chiuso in perdita','rosso'], 'prima perdita'],
-    [42, 2.7, 4.0, 3, 2, ['Trade #3 chiuso in perdita','rosso'], 'perdite consecutive'],
-    [54, 3.4, 5.3, 4, 3, ['Terza perdita consecutiva','rosso'], 'soglia vicina'],
-    [58, 3.5, 5.4, 4, 3, ['BLOCCO ATTIVO — operatività sospesa','rosso'], 'bloccato']
-  ];
-
-  let prev = 6;
-  for(let t=0;t<tappe.length;t++){
-    const [fino, perd, dd, trade, perdite, ev, fase] = tappe[t];
-    document.getElementById('faseRG').textContent = fase;
-
-    // avanzamento graduale delle candele
-    for(let i=prev;i<=fino;i++){
-      const f = (i-prev)/(fino-prev || 1);
-      const p0 = t>0 ? tappe[t-1][1] : 0;
-      const d0 = t>0 ? tappe[t-1][2] : 0;
-      disegnaRG(i, false);
-      pannelloRG(p0+(perd-p0)*f, d0+(dd-d0)*f, trade, perdite, false, 'Operatività consentita');
-      document.getElementById('progRG').style.width = (i/58*100)+'%';
-      await attesa(90);
-    }
-    prev = fino;
-
-    if(ev) evento('evRG', ev[0], ev[1], 2400);
-    if(t === tappe.length-1){
-      disegnaRG(fino, true);
-      pannelloRG(perd, dd, trade, perdite, true, 'BLOCCATO — 3 perdite consecutive');
-    }
-    await attesa(t === tappe.length-1 ? 300 : 700);
-  }
-
-  document.getElementById('faseRG').textContent = 'operatività sospesa';
-  await attesa(3000);
-  resetRG();
-  await attesa(600);
-  runRG = false;
-}
-
-function resetRG(){
-  document.getElementById('progRG').style.width = '0%';
-  document.getElementById('faseRG').textContent = 'inizio giornata';
-  disegnaRG(6, false);
-  pannelloRG(0, 0, 0, 0, false, 'Operatività consentita');
-}
-
-/* ═══════════ 2. TRADEMANAGER ═══════════ */
-const cndTM = candele(1717, 60, 2385, 6.5, 0.40);
-const INGR_TM = 2392, SL_TM = 2380;
-const R_TM = INGR_TM - SL_TM;
-const TP_TM = INGR_TM + R_TM*3;
-const mnTM = Math.min(SL_TM-5, ...cndTM.map(c=>c.lo));
-const mxTM = Math.max(TP_TM+5, ...cndTM.map(c=>c.hi));
-
-let runTM = false;
-
-function disegnaTM(fino, sl, etichetta, mostraTraccia){
-  const W=800,H=300;
-  const d = render(cndTM.slice(0,fino), cndTM.length, W, H, mnTM, mxTM);
-  let svg = d.svg;
-
-  svg += linea(d.Y(TP_TM), W, '#22C55E', 'TP ' + TP_TM.toFixed(0), true);
-  svg += linea(d.Y(INGR_TM), W, '#22C55E', 'IN ' + INGR_TM.toFixed(0), false);
-  svg += linea(d.Y(sl), W, '#EF4444', etichetta, false);
-
-  if(mostraTraccia){
-    svg += `<line x1="0" y1="${d.Y(SL_TM)}" x2="${W-92}" y2="${d.Y(SL_TM)}"
-             stroke="#EF4444" stroke-width="1" stroke-dasharray="2 5" opacity=".25"/>`;
-    const x = W*0.13;
-    svg += `<line x1="${x}" y1="${d.Y(SL_TM)}" x2="${x}" y2="${d.Y(sl)+7}"
-             stroke="#22C55E" stroke-width="1.3" opacity=".75"/>`;
-    svg += `<path d="M${x-4},${d.Y(sl)+8} L${x},${d.Y(sl)+1} L${x+4},${d.Y(sl)+8} Z" fill="#22C55E" opacity=".75"/>`;
-  }
-  document.getElementById('chartTM').innerHTML = svg;
-}
-
-function pannelloTM(prezzo, sl, be, trail, stato){
-  const r = (prezzo - INGR_TM)/R_TM;
-  document.getElementById('panelTM').innerHTML = `
-    <div class="t">RISKLY PRO · GESTIONE</div>
-    <div class="row"><b>XAUUSD 0.10</b><b class="${r>=0?'g':'r'}">${r>=0?'+':''}${r.toFixed(2)}</b></div>
-    <div class="row"><b>Ingresso</b><b>${INGR_TM.toFixed(2)}</b></div>
-    <div class="row"><b>Stop loss</b><b class="${sl>INGR_TM?'g':''}">${sl.toFixed(2)}</b></div>
-    <div class="row" style="margin-top:6px"><b>Break-even</b><b class="${be==='APPLICATO'?'g':''}">${be}</b></div>
-    <div class="row"><b>Trailing</b><b class="${trail==='ATTIVO'?'g':''}">${trail}</b></div>
-    <div class="st ${sl>INGR_TM?'g':''}">● ${stato}</div>`;
-}
-
-async function playTM(){
-  if(runTM) return;
-  runTM = true;
-
-  let sl = SL_TM, be = 'in attesa 20 pip', trail = 'in attesa 30 pip';
-  let stato = 'Posizione aperta';
-  let traccia = false;
-  let beFatto = false;
-
-  document.getElementById('faseTM').textContent = 'posizione aperta';
-
-  for(let i=20;i<=cndTM.length;i++){
-    const prezzo = cndTM[i-1].c;
-    const r = (prezzo - INGR_TM)/R_TM;
-
-    // break-even a 1R
-    if(!beFatto && r >= 1.0){
-      beFatto = true;
-      sl = INGR_TM + R_TM*0.1;
-      be = 'APPLICATO'; traccia = true;
-      stato = 'Break-even applicato';
-      evento('evTM','Break-even applicato a 20 pip','verde',2400);
-      document.getElementById('faseTM').textContent = 'break-even';
-      disegnaTM(i, sl, 'BE ' + sl.toFixed(0), traccia);
-      pannelloTM(prezzo, sl, be, trail, stato);
-      await attesa(1500);
-    }
-
-    // trailing da 1.5R
-    if(r >= 1.5){
-      if(trail !== 'ATTIVO'){
-        trail = 'ATTIVO';
-        stato = 'Stop in profitto garantito';
-        evento('evTM','Trailing stop attivato','verde',2300);
-        document.getElementById('faseTM').textContent = 'trailing attivo';
-      }
-      const nuovo = prezzo - R_TM*1.4;
-      if(nuovo > sl) sl = nuovo;
-    }
-
-    const et = trail==='ATTIVO' ? 'TRAIL '+sl.toFixed(0)
-             : (beFatto ? 'BE '+sl.toFixed(0) : 'SL '+sl.toFixed(0));
-
-    disegnaTM(i, sl, et, traccia);
-    pannelloTM(prezzo, sl, be, trail, stato);
-    document.getElementById('progTM').style.width = (i/cndTM.length*100)+'%';
-    await attesa(105);
-  }
-
-  document.getElementById('faseTM').textContent = 'stop in profitto garantito';
-  await attesa(3000);
-  resetTM();
-  await attesa(600);
-  runTM = false;
-}
-
-function resetTM(){
-  document.getElementById('progTM').style.width = '0%';
-  document.getElementById('faseTM').textContent = 'posizione aperta';
-  disegnaTM(20, SL_TM, 'SL '+SL_TM.toFixed(0), false);
-  pannelloTM(cndTM[19].c, SL_TM, 'in attesa 20 pip', 'in attesa 30 pip', 'Posizione aperta');
-}
-
-/* ═══════════ 3. SCALEIN ═══════════ */
-const cndSI = candele(9090, 58, 1.2650, 0.0012, 0.00010);
-const INGR_SI = 1.2668, SL_SI = 1.2650;
-const R_SI = INGR_SI - SL_SI;
-const TP1 = INGR_SI + R_SI, TP2 = INGR_SI + R_SI*2, TP3 = INGR_SI + R_SI*3;
-const mnSI = Math.min(SL_SI-0.0004, ...cndSI.map(c=>c.lo));
-const mxSI = Math.max(TP3+0.0004, ...cndSI.map(c=>c.hi));
-
-let runSI = false;
-
-function disegnaSI(fino, mostraTP, xScaglioni, tp1Colpito){
-  const W=800,H=320;
-  const d = render(cndSI.slice(0,fino), cndSI.length, W, H, mnSI, mxSI);
-  let svg = d.svg;
-
-  svg += linea(d.Y(INGR_SI), W, '#22C55E', 'IN ' + INGR_SI.toFixed(4), false);
-  svg += linea(d.Y(SL_SI), W, '#EF4444', 'SL ' + SL_SI.toFixed(4), false);
-
-  if(mostraTP){
-    svg += linea(d.Y(TP1), W, '#22C55E', 'TP1 20 pip', true);
-    svg += linea(d.Y(TP2), W, '#22C55E', 'TP2 40 pip', true);
-    svg += linea(d.Y(TP3), W, '#22C55E', 'TP3 60 pip', true);
-  }
-
-  if(xScaglioni){
-    const x = d.step*xScaglioni;
-    svg += `<line x1="${x}" y1="12" x2="${x}" y2="${H-12}" stroke="#22C55E" stroke-width="1.2" stroke-dasharray="4 4" opacity=".55"/>`;
-    svg += `<rect x="${x-52}" y="18" width="104" height="19" rx="4" fill="#22C55E" opacity=".9"/>`;
-    svg += `<text x="${x}" y="31.5" text-anchor="middle" fill="#fff" font-size="10"
-             font-family="JetBrains Mono, SF Mono, Menlo, Consolas, monospace">+3 SCAGLIONI</text>`;
-  }
-
-  if(tp1Colpito){
-    const xt = d.step*tp1Colpito;
-    svg += `<circle cx="${xt}" cy="${d.Y(TP1)}" r="5" fill="#22C55E"/>`;
-    svg += `<circle cx="${xt}" cy="${d.Y(TP1)}" r="11" fill="#22C55E" opacity=".2"/>`;
-  }
-
-  document.getElementById('chartSI').innerHTML = svg;
-}
-
-async function playSI(){
-  if(runSI) return;
-  runSI = true;
-
-  const pan = document.getElementById('panelSI');
-  let xScag = 0, tp1Hit = 0, tpVisibili = false;
-
-  // fase 1: solo l'ordine manuale
-  document.getElementById('faseSI').textContent = 'ordine manuale';
-  for(let i=20;i<=30;i++){
-    disegnaSI(i, false, 0, 0);
-    pan.innerHTML = `
-      <div class="t">RISKLY PRO · SCAGLIONAMENTO</div>
-      <div class="row"><b>GBPUSD 0.01</b><b>manuale</b></div>
-      <div class="row"><b>Posizioni</b><b>1</b></div>
-      <div class="row"><b>Rischio totale</b><b class="g">0.42%</b></div>
-      <div class="st">● In attesa di replicare…</div>`;
-    document.getElementById('progSI').style.width = (i/cndSI.length*100)+'%';
-    await attesa(130);
-  }
-
-  // fase 2: scaglionamento
-  evento('evSI','Scaglionamento: 3 posizioni aggiuntive', null, 2600);
-  document.getElementById('faseSI').textContent = 'replica in corso';
-  xScag = 30; tpVisibili = true;
-
-  const righe = [
-    '<div class="row"><b>#1 · 0.01</b><b>TP 20 pip</b></div>',
-    '<div class="row"><b>#2 · 0.01</b><b>TP 40 pip</b></div>',
-    '<div class="row"><b>#3 · 0.01</b><b>TP 60 pip</b></div>',
-    '<div class="row"><b>#4 · 0.01</b><b>TP 80 pip</b></div>'
-  ];
-
-  for(let k=1;k<=4;k++){
-    disegnaSI(30, tpVisibili, xScag, 0);
-    pan.innerHTML = `
-      <div class="t">RISKLY PRO · SCAGLIONAMENTO</div>
-      <div class="row"><b>GBPUSD</b><b>+0.00</b></div>
-      ${righe.slice(0,k).join('')}
-      <div class="row" style="margin-top:5px"><b>Rischio totale</b><b class="g">${(0.42*k).toFixed(2)}% / 2.00%</b></div>
-      <div class="st g">● ${k-1} scaglioni aperti</div>`;
-    await attesa(620);
-  }
-  await attesa(1000);
-
-  // fase 3: il prezzo sale fino a TP1
-  document.getElementById('faseSI').textContent = 'prezzo in movimento';
-  let colpito = false;
-
-  for(let i=31;i<=cndSI.length;i++){
-    const prezzo = cndSI[i-1].c;
-    const r = (prezzo - INGR_SI)/R_SI;
-
-    if(!colpito && prezzo >= TP1){
-      colpito = true; tp1Hit = i;
-      evento('evSI','TP1 raggiunto — posizione #1 chiusa','verde',2600);
-      document.getElementById('faseSI').textContent = 'TP1 eseguito';
-    }
-
-    disegnaSI(i, tpVisibili, xScag, tp1Hit);
-
-    if(!colpito){
-      pan.innerHTML = `
-        <div class="t">RISKLY PRO · SCAGLIONAMENTO</div>
-        <div class="row"><b>GBPUSD</b><b class="${r>=0?'g':'r'}">${r>=0?'+':''}${r.toFixed(2)}</b></div>
-        ${righe.join('')}
-        <div class="row" style="margin-top:5px"><b>Rischio totale</b><b class="g">1.68% / 2.00%</b></div>
-        <div class="st g">● 4 posizioni attive</div>`;
-    } else {
-      pan.innerHTML = `
-        <div class="t">RISKLY PRO · SCAGLIONAMENTO</div>
-        <div class="row"><b>GBPUSD</b><b class="g">+${r.toFixed(2)}</b></div>
-        <div class="row"><b>#1 · 0.01</b><b class="g">chiusa a TP1</b></div>
-        ${righe.slice(1).join('')}
-        <div class="row" style="margin-top:5px"><b>Rischio residuo</b><b class="g">0.84%</b></div>
-        <div class="st g">● Break-even sulle restanti</div>`;
-    }
-
-    document.getElementById('progSI').style.width = (i/cndSI.length*100)+'%';
-    await attesa(105);
-  }
-
-  document.getElementById('faseSI').textContent = 'TP1 chiuso · 3 posizioni attive';
-  await attesa(3000);
-  resetSI();
-  await attesa(600);
-  runSI = false;
-}
-
-function resetSI(){
-  document.getElementById('progSI').style.width = '0%';
-  document.getElementById('faseSI').textContent = 'ordine manuale';
-  disegnaSI(20, false, 0, 0);
-  document.getElementById('panelSI').innerHTML = `
-    <div class="t">RISKLY PRO · SCAGLIONAMENTO</div>
-    <div class="row"><b>GBPUSD 0.01</b><b>manuale</b></div>
-    <div class="row"><b>Posizioni</b><b>1</b></div>
-    <div class="row"><b>Rischio totale</b><b class="g">0.42%</b></div>
-    <div class="st">● In attesa di replicare…</div>`;
-}
-
-/* ═══════════ AVVIO AUTOMATICO ═══════════ */
-function visibile(id){
-  const el = document.getElementById(id);
-  if(!el) return false;
-  const pagina = document.getElementById('bot');
-  if(!pagina || !pagina.classList.contains('on')) return false;
-  const r = el.getBoundingClientRect();
-  return r.top < window.innerHeight * 0.9 && r.bottom > 0;
-}
-
-/* stato iniziale */
-resetRG(); resetTM(); resetSI();
-
-/* ── Ciclo di controllo: ogni simulazione riparte da sola ── */
-const play    = {chartRG: playRG,   chartTM: playTM,   chartSI: playSI};
-const inCorso = {chartRG: ()=>runRG, chartTM: ()=>runTM, chartSI: ()=>runSI};
-const ultimoAvvio = {chartRG:0, chartTM:0, chartSI:0};
-
-function controllaSimulazioni(){
-  const ora = Date.now();
-  ['chartRG','chartTM','chartSI'].forEach(id=>{
-    if(inCorso[id]()) return;                    // già in esecuzione
-    if(!visibile(id)) return;                    // fuori schermo o pagina chiusa
-    if(ora - ultimoAvvio[id] < 1500) return;     // evita doppi avvii
-    ultimoAvvio[id] = ora;
-    play[id]();
-  });
-}
-
-/* controllo periodico: gestisce fine ciclo, scroll e cambio pagina */
-setInterval(controllaSimulazioni, 1000);
+/* ═══ VIDEO DEI BOT ═══ */
+/* partono (senza audio) quando sono a schermo e si fermano quando escono: si scaricano solo se qualcuno li guarda */
+const vbOss = 'IntersectionObserver' in window ? new IntersectionObserver(voci => voci.forEach(v => {
+  const el = v.target;
+  if(v.isIntersecting && v.intersectionRatio >= .5){ el.preload = 'auto'; const p = el.play(); if(p) p.catch(()=>{}); }
+  else if(!el.paused) el.pause();
+}), {threshold:[0, .5]}) : null;
+document.querySelectorAll('.vb video').forEach(v => vbOss && vbOss.observe(v));
 
 /* sotto-pagine della pagina Bot */
 function botTab(nome){
@@ -3729,27 +3259,7 @@ function botTab(nome){
   if(typeof preparaComparsa === 'function') setTimeout(preparaComparsa, 60);
 }
 
-function avviaSimulazioni(){
-  setTimeout(controllaSimulazioni, 300);
-}
-
-window.addEventListener('scroll', ()=>{
-  clearTimeout(window._simScroll);
-  window._simScroll = setTimeout(controllaSimulazioni, 200);
-}, {passive:true});
-
-/* ridisegna quando cambia la larghezza (rotazione schermo) */
-let _largh = window.innerWidth;
-window.addEventListener('resize', ()=>{
-  if(Math.abs(window.innerWidth - _largh) < 60) return;
-  _largh = window.innerWidth;
-  clearTimeout(window._simResize);
-  window._simResize = setTimeout(()=>{
-    if(!runRG) resetRG();
-    if(!runTM) resetTM();
-    if(!runSI) resetSI();
-  }, 250);
-});
+function avviaSimulazioni(){}
 
 /* ═══ JOURNAL ═══ */
 

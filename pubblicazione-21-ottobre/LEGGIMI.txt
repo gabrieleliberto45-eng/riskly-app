@@ -1,4 +1,6 @@
 Sito pronto da pubblicare su Netlify il 21 ottobre 2026 (rinnovo dei crediti).
 Base: il sito online (commit 1d8e72c) + sezione Strumenti a schede con calendario economico,
 pagina /calendario, redirect, riga privacy su TradingView.
+Bot > Come funzionano: le tre animazioni ricostruite sono sostituite dai 5 video dei bot (cartella video/,
+compressi 720p da social/oggino/b-*.mp4, copertine come anteprima; partono senza audio solo quando sono a schermo).
 Pubblicazione: zip del contenuto di questa cartella (senza questo file) -> POST api.netlify.com/api/v1/sites/44a1076d-45d2-4c1e-a702-541fbc7a3010/deploys
