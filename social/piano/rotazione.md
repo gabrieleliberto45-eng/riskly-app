@@ -53,8 +53,9 @@ Stili grafici: bianco "foglio" · scuro marchio · rosso "notiziario" (attualit�
 | 25 ott | 18:00 | video "come funziona" · RiskGuard |
 | 26 ott | 18:00 | video "come funziona" · TradeManager |
 | 27 ott | 18:00 | video "come funziona" · ScaleIn |
+| 28 ott | 18:00 | video "come funziona" · RisklyCopy |
 
-Video dei bot: social/oggino/b-*.mp4 (demo.html + demo-bot.json + genera-demo.js), TikTok + Instagram Reel, contenuto commerciale del proprio marchio.
+Video dei bot: social/oggino/b-*.mp4 (demo.html + demo-bot.json + genera-demo.js), TikTok + Instagram Reel, contenuto commerciale del proprio marchio. Copertine con il nome del bot: social/oggino/copertine/ (copertina.html + genera-copertine.js).
 Sponsorizzate pronte (le avvia Gabriele dal 23): social/oggino/ad01-inizia.mp4 (con grafico) e ad02-pulito.mp4 (senza grafico, per la verifica).
 
 In bozza (non escono): tutti i vecchi reel/video promo dal 10 al 22 e tutti gli Shorts promo YouTube dal 9 al 22 (compresi quelli del 9 e 10 alle 16:00).
