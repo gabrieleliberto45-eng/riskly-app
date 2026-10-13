@@ -93,27 +93,51 @@ D.append({"id": "b-scalein", "bot": "ScaleIn", "simbolo": "XAUUSD", "ora": "09:3
   "quando": "Per MT4 e MT5 · dal 23 ottobre", "fine": round(th[2] + 2.8, 2), "durata": round(th[2] + 8.6, 2)})
 
 # ---------------- Riskly Pro ----------------
-K = [(-20, 4189.8), (0, 4190.0), (3, 4190.3), (8.6, 4189.8), (8.9, 4187.6), (9.3, 4189.4), (10.0, 4189.0), (10.4, 4189.2), (13.6, 4191.9), (15, 4192.3), (17, 4192.0)]
-p = mk(K, R); tap1, tap2 = 4.7, 10.2; e = round(p(tap2) + SPR, 2); sl = round(e - 2.5, 2); tpp = round(e + 5.0, 2)
-tbe = primo(p, tap2, lambda v: v >= e + 2.0)
-assert min(p(x / 100) for x in range(int(tap2 * 100), int((tbe + 3) * 100))) > sl
-D.append({"id": "b-risklypro", "bot": "Riskly Pro", "simbolo": "XAUUSD", "ora": "14:28", "scala": [4185.0, 4195.5], "prezzo": K, "rumore": R,
+# lotto dal rischio + filtro notizie, poi entra in 3 parti (scaglionamento): TP1 e pareggio, trailing, TP2, l'ultima parte esce col trailing
+K = [(-20, 4189.8), (0, 4190.0), (3, 4190.3), (8.6, 4189.8), (8.9, 4187.6), (9.3, 4189.4), (10.0, 4189.0), (10.4, 4189.2),
+     (12.6, 4191.7), (13.3, 4191.4), (15.6, 4193.8), (16.3, 4193.5), (18.2, 4194.7), (18.8, 4194.5), (20.2, 4192.2), (22, 4192.0)]
+p = mk(K, R); tap1, tap2 = 4.7, 10.2; e = round(p(tap2) + SPR, 2); sl0 = round(e - 2.5, 2)
+tps = [round(e + 2.0 * k, 2) for k in (1, 2, 3)]
+t1 = primo(p, tap2, lambda v: v >= tps[0]); be = round(e + .1, 2)
+moves = [[t1, be, .4]]; sl = be; mx = 0; t = t1; ttr = None; t2 = None
+while True:
+    t = round(t + .02, 2); v = p(t); mx = max(mx, v)
+    if t2 is None and v >= tps[1]: t2 = t
+    if mx - e >= 3.0:
+        nuovo = round(e + math.floor((mx - e - 2.0) / .5) * .5, 2)
+        if nuovo > sl + 1e-9: moves.append([t, nuovo, .3]); sl = nuovo; ttr = ttr or t
+    if t > t1 + .5 and v <= sl: tch = t; break
+assert t2 and ttr < t2 < tch, (ttr, t2, tch)
+assert max(p(x / 100) for x in range(int(tap2 * 100), int(tch * 100))) < tps[2], 'TP3 colpito'
+assert min(p(x / 100) for x in range(int(tap2 * 100), int(t1 * 100))) > sl0
+pip = round((sl - e) / .1); tot = 20 + 40 + pip
+R4 = lambda a, b, c, d: [a, b, c, d]
+D.append({"id": "b-risklypro", "bot": "Riskly Pro", "simbolo": "XAUUSD", "ora": "14:28", "scala": [4185.0, 4197.0], "prezzo": K, "rumore": R,
   "lotto": [[0, "—"], [1.6, "0.40"]], "tocchi": [[tap1], [tap2]], "blocco": [tap1 + .05, tap1 + 2.2],
   "banner": {"testo": "CPI USA · 14:30", "secondi": 120, "da": 3.0, "a": 8.6},
-  "linee": [{"tipo": "entrata", "etichetta": "buy 0.40", "prezzo": e, "da": tap2 + .1},
-            {"tipo": "sl", "etichetta": "SL", "prezzo": sl, "da": tap2 + .2, "sposta": [[tbe, round(e + .1, 2), .4]]},
-            {"tipo": "tp", "etichetta": "TP", "prezzo": tpp, "da": tap2 + .2}],
+  "linee": [{"tipo": "entrata", "etichetta": "buy 0.40 · 3 parti", "prezzo": e, "da": tap2 + .1, "a": tch + .6},
+            {"tipo": "sl", "etichetta": "SL", "prezzo": sl0, "da": tap2 + .2, "a": tch + .6, "colpo": True, "sposta": moves},
+            {"tipo": "tp", "etichetta": "TP1", "prezzo": tps[0], "da": tap2 + .2, "a": t1 + .6, "colpo": True},
+            {"tipo": "tp", "etichetta": "TP2", "prezzo": tps[1], "da": tap2 + .2, "a": t2 + .6, "colpo": True},
+            {"tipo": "tp", "etichetta": "TP3", "prezzo": tps[2], "da": tap2 + .2, "a": tch + .6}],
   "notifiche": [[1.6, "Rischio 1% con stop a 25 pip: lotto calcolato 0.40"], [tap1 + .05, "Notizia tra 2 minuti: apertura bloccata"],
-                [tap2 + .2, "BUY 0.40 · rischio 1% (100 €) · stop 25 pip"], [tbe, "+20 pip: stop spostato a pareggio"]],
+                [tap2 + .2, "BUY 0.40 in 3 parti · take profit a 20, 40 e 60 pip · stop 25 pip"],
+                [t1, "TP1 +20 pip · stop delle altre parti a pareggio"], [ttr, "Trailing stop attivo: lo stop segue il prezzo a 20 pip"],
+                [t2, "TP2 +40 pip · resta l'ultima parte"], [tch, f"Ultima parte chiusa dal trailing · +{pip} pip"]],
   "didascalie": [[.3, "1", "Scegli quanto rischiare. Il lotto lo calcola lui."], [3.3, "2", "Notizia in arrivo? Non apre."],
-                 [9.0, "3", "Dopo il dato apre. Con il lotto giusto."], [tbe - .7, "4", "E poi gestisce la posizione."]],
-  "pannello": [[0, "attivo", 0, [["Rischio", "1,0%"], ["Stop", "25 pip"], ["Lotto", "—"], ["Filtro notizie", "on"]]],
-               [1.6, "attivo", 0, [["Rischio", "1,0%"], ["Stop", "25 pip"], ["Lotto", "0.40", "#B6D84F"], ["Filtro notizie", "on"]]],
-               [3.0, "notizia", 1, [["Rischio", "1,0%"], ["Stop", "25 pip"], ["Lotto", "0.40", "#B6D84F"], ["Filtro notizie", "blocca", "#ff6b61"]]],
-               [8.6, "attivo", 0, [["Rischio", "1,0%"], ["Stop", "25 pip"], ["Lotto", "0.40", "#B6D84F"], ["Filtro notizie", "on"]]],
-               [tbe, "pareggio ✓", 0, [["Rischio", "0% (pareggio)", "#B6D84F"], ["Stop", "a pareggio"], ["Lotto", "0.40", "#B6D84F"], ["Filtro notizie", "on"]]]],
-  "punti": ["Lotto calcolato sul rischio che scegli", "Filtro su spread e notizie", "RiskGuard, TradeManager e ScaleIn insieme"],
-  "quando": "Per MT4 e MT5 · dal 23 ottobre", "fine": round(tbe + 2.6, 2), "durata": round(tbe + 8.4, 2)})
+                 [9.0, "3", "Dopo il dato entra in 3 parti, con il lotto giusto."], [t1 - .6, "4", "Prima uscita: lo stop va a pareggio."],
+                 [ttr - .2, "5", "Poi lo stop segue il prezzo."], [tch + .1, "6", f"+20, +40, +{pip} pip. Senza toccare niente."]],
+  "pannello": [[0, "attivo", 0, R4(["Rischio", "1,0%"], ["Lotto", "—"], ["Scaglioni", "20 · 40 · 60 pip"], ["Filtro notizie", "on"])],
+               [1.6, "attivo", 0, R4(["Rischio", "1,0%"], ["Lotto", "0.40", "#B6D84F"], ["Scaglioni", "20 · 40 · 60 pip"], ["Filtro notizie", "on"])],
+               [3.0, "notizia", 1, R4(["Rischio", "1,0%"], ["Lotto", "0.40", "#B6D84F"], ["Scaglioni", "20 · 40 · 60 pip"], ["Filtro notizie", "blocca", "#ff6b61"])],
+               [8.6, "attivo", 0, R4(["Rischio", "1,0%"], ["Lotto", "0.40", "#B6D84F"], ["Scaglioni", "20 · 40 · 60 pip"], ["Filtro notizie", "on"])],
+               [tap2 + .2, "3 parti", 0, R4(["Rischio", "1,0%"], ["Parti aperte", "3"], ["Break-even", "a +20 pip"], ["Trailing", "20 pip"])],
+               [t1, "pareggio ✓", 0, R4(["Rischio", "0% (pareggio)", "#B6D84F"], ["Parti aperte", "2"], ["Break-even", "fatto", "#B6D84F"], ["Trailing", "20 pip"])],
+               [ttr, "trailing", 0, R4(["Rischio", "0% (pareggio)", "#B6D84F"], ["Parti aperte", "2"], ["Break-even", "fatto", "#B6D84F"], ["Trailing", "attivo", "#B6D84F"])],
+               [t2, "trailing", 0, R4(["Incassati", "+60 pip", "#00C853"], ["Parti aperte", "1"], ["Break-even", "fatto", "#B6D84F"], ["Trailing", "attivo", "#B6D84F"])],
+               [tch, "chiusa", 0, R4(["Incassati", f"+{tot} pip", "#00C853"], ["Parti aperte", "0"], ["Break-even", "fatto", "#B6D84F"], ["Trailing", "fatto", "#B6D84F"])]],
+  "punti": ["Lotto calcolato sul rischio e filtro notizie", "Entrata in più parti con take profit scaglionati", "Break-even e trailing stop automatici"],
+  "quando": "Per MT4 e MT5 · dal 23 ottobre", "fine": round(tch + 2.8, 2), "durata": round(tch + 8.6, 2)})
 
 json.dump(D, open('demo-bot.json', 'w'), ensure_ascii=False, indent=1)
 for d in D: print(d['id'], 'durata', d['durata'])

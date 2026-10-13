@@ -852,7 +852,7 @@
   "ora": "14:28",
   "scala": [
    4185.0,
-   4195.5
+   4197.0
   ],
   "prezzo": [
    [
@@ -888,15 +888,35 @@
     4189.2
    ],
    [
-    13.6,
-    4191.9
+    12.6,
+    4191.7
    ],
    [
-    15,
-    4192.3
+    13.3,
+    4191.4
    ],
    [
-    17,
+    15.6,
+    4193.8
+   ],
+   [
+    16.3,
+    4193.5
+   ],
+   [
+    18.2,
+    4194.7
+   ],
+   [
+    18.8,
+    4194.5
+   ],
+   [
+    20.2,
+    4192.2
+   ],
+   [
+    22,
     4192.0
    ]
   ],
@@ -932,28 +952,73 @@
   "linee": [
    {
     "tipo": "entrata",
-    "etichetta": "buy 0.40",
+    "etichetta": "buy 0.40 · 3 parti",
     "prezzo": 4189.43,
-    "da": 10.299999999999999
+    "da": 10.299999999999999,
+    "a": 20.380000000000003
    },
    {
     "tipo": "sl",
     "etichetta": "SL",
     "prezzo": 4186.93,
     "da": 10.399999999999999,
+    "a": 20.380000000000003,
+    "colpo": true,
     "sposta": [
      [
-      12.93,
+      11.92,
       4189.53,
       0.4
+     ],
+     [
+      14.42,
+      4190.43,
+      0.3
+     ],
+     [
+      14.54,
+      4190.93,
+      0.3
+     ],
+     [
+      15.14,
+      4191.43,
+      0.3
+     ],
+     [
+      17.24,
+      4191.93,
+      0.3
+     ],
+     [
+      17.38,
+      4192.43,
+      0.3
      ]
     ]
    },
    {
     "tipo": "tp",
-    "etichetta": "TP",
-    "prezzo": 4194.43,
-    "da": 10.399999999999999
+    "etichetta": "TP1",
+    "prezzo": 4191.43,
+    "da": 10.399999999999999,
+    "a": 12.52,
+    "colpo": true
+   },
+   {
+    "tipo": "tp",
+    "etichetta": "TP2",
+    "prezzo": 4193.43,
+    "da": 10.399999999999999,
+    "a": 15.74,
+    "colpo": true
+   },
+   {
+    "tipo": "tp",
+    "etichetta": "TP3",
+    "prezzo": 4195.43,
+    "da": 10.399999999999999,
+    "a": 20.380000000000003
    }
   ],
   "notifiche": [
@@ -967,11 +1032,23 @@
    ],
    [
     10.399999999999999,
-    "BUY 0.40 · rischio 1% (100 €) · stop 25 pip"
+    "BUY 0.40 in 3 parti · take profit a 20, 40 e 60 pip · stop 25 pip"
    ],
    [
-    12.93,
-    "+20 pip: stop spostato a pareggio"
+    11.92,
+    "TP1 +20 pip · stop delle altre parti a pareggio"
+   ],
+   [
+    14.42,
+    "Trailing stop attivo: lo stop segue il prezzo a 20 pip"
+   ],
+   [
+    15.14,
+    "TP2 +40 pip · resta l'ultima parte"
+   ],
+   [
+    19.78,
+    "Ultima parte chiusa dal trailing · +30 pip"
    ]
   ],
   "didascalie": [
@@ -988,12 +1065,22 @@
    [
     9.0,
     "3",
-    "Dopo il dato apre. Con il lotto giusto."
+    "Dopo il dato entra in 3 parti, con il lotto giusto."
    ],
    [
-    12.23,
+    11.32,
     "4",
-    "E poi gestisce la posizione."
+    "Prima uscita: lo stop va a pareggio."
+   ],
+   [
+    14.22,
+    "5",
+    "Poi lo stop segue il prezzo."
+   ],
+   [
+    19.880000000000003,
+    "6",
+    "+20, +40, +30 pip. Senza toccare niente."
    ]
   ],
   "pannello": [
@@ -1007,12 +1094,12 @@
       "1,0%"
      ],
      [
-      "Stop",
-      "25 pip"
-     ],
-     [
       "Lotto",
       "—"
+     ],
+     [
+      "Scaglioni",
+      "20 · 40 · 60 pip"
      ],
      [
       "Filtro notizie",
@@ -1030,13 +1117,13 @@
       "1,0%"
      ],
      [
-      "Stop",
-      "25 pip"
-     ],
-     [
       "Lotto",
       "0.40",
       "#B6D84F"
+     ],
+     [
+      "Scaglioni",
+      "20 · 40 · 60 pip"
      ],
      [
       "Filtro notizie",
@@ -1054,13 +1141,13 @@
       "1,0%"
      ],
      [
-      "Stop",
-      "25 pip"
-     ],
-     [
       "Lotto",
       "0.40",
       "#B6D84F"
+     ],
+     [
+      "Scaglioni",
+      "20 · 40 · 60 pip"
      ],
      [
       "Filtro notizie",
@@ -1079,13 +1166,13 @@
       "1,0%"
      ],
      [
-      "Stop",
-      "25 pip"
-     ],
-     [
       "Lotto",
       "0.40",
       "#B6D84F"
+     ],
+     [
+      "Scaglioni",
+      "20 · 40 · 60 pip"
      ],
      [
       "Filtro notizie",
@@ -1094,7 +1181,30 @@
     ]
    ],
    [
-    12.93,
+    10.399999999999999,
+    "3 parti",
+    0,
+    [
+     [
+      "Rischio",
+      "1,0%"
+     ],
+     [
+      "Parti aperte",
+      "3"
+     ],
+     [
+      "Break-even",
+      "a +20 pip"
+     ],
+     [
+      "Trailing",
+      "20 pip"
+     ]
+    ]
+   ],
+   [
+    11.92,
     "pareggio ✓",
     0,
     [
@@ -1104,28 +1214,106 @@
       "#B6D84F"
      ],
      [
-      "Stop",
-      "a pareggio"
+      "Parti aperte",
+      "2"
      ],
      [
-      "Lotto",
-      "0.40",
+      "Break-even",
+      "fatto",
       "#B6D84F"
      ],
      [
-      "Filtro notizie",
-      "on"
+      "Trailing",
+      "20 pip"
+     ]
+    ]
+   ],
+   [
+    14.42,
+    "trailing",
+    0,
+    [
+     [
+      "Rischio",
+      "0% (pareggio)",
+      "#B6D84F"
+     ],
+     [
+      "Parti aperte",
+      "2"
+     ],
+     [
+      "Break-even",
+      "fatto",
+      "#B6D84F"
+     ],
+     [
+      "Trailing",
+      "attivo",
+      "#B6D84F"
+     ]
+    ]
+   ],
+   [
+    15.14,
+    "trailing",
+    0,
+    [
+     [
+      "Incassati",
+      "+60 pip",
+      "#00C853"
+     ],
+     [
+      "Parti aperte",
+      "1"
+     ],
+     [
+      "Break-even",
+      "fatto",
+      "#B6D84F"
+     ],
+     [
+      "Trailing",
+      "attivo",
+      "#B6D84F"
+     ]
+    ]
+   ],
+   [
+    19.78,
+    "chiusa",
+    0,
+    [
+     [
+      "Incassati",
+      "+90 pip",
+      "#00C853"
+     ],
+     [
+      "Parti aperte",
+      "0"
+     ],
+     [
+      "Break-even",
+      "fatto",
+      "#B6D84F"
+     ],
+     [
+      "Trailing",
+      "fatto",
+      "#B6D84F"
      ]
     ]
    ]
   ],
   "punti": [
-   "Lotto calcolato sul rischio che scegli",
-   "Filtro su spread e notizie",
-   "RiskGuard, TradeManager e ScaleIn insieme"
+   "Lotto calcolato sul rischio e filtro notizie",
+   "Entrata in più parti con take profit scaglionati",
+   "Break-even e trailing stop automatici"
   ],
   "quando": "Per MT4 e MT5 · dal 23 ottobre",
-  "fine": 15.53,
-  "durata": 21.33
+  "fine": 22.58,
+  "durata": 28.38
  }
 ]
