@@ -23,7 +23,7 @@
 </div>
 <script>
 window.copertina = c => {
-  const n = document.getElementById('nome'); n.textContent = c.nome; let fs = 210; n.style.fontSize = fs + 'px'; while(n.scrollWidth > 940 && fs > 100){ fs -= 4; n.style.fontSize = fs + 'px'; } document.getElementById('frase').textContent = c.frase;
+  const n = document.getElementById('nome'); n.textContent = c.nome; let fs = 210; n.style.fontSize = fs + 'px'; while(n.scrollWidth > 860 && fs > 100){ fs -= 4; n.style.fontSize = fs + 'px'; } document.getElementById('frase').textContent = c.frase;
   const g = document.getElementById('cand').getContext('2d'); g.clearRect(0, 0, 1080, 1920);
   let x = c.seme, p = 1100;
   for(let i = 0; i < 30; i++){ x = (x * 9301 + 49297) % 233280; const d = (x / 233280 - .5) * 110 + (p - 1080) * .25 - 9; const o = p, cl = p - d; x = (x * 9301 + 49297) % 233280; const w = 20 + x / 233280 * 50;
