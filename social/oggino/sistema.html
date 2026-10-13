@@ -68,6 +68,16 @@
   #dialogo .bt div{flex:1;text-align:center;padding:24px 0;border-radius:14px;font:700 32px Arial}
   #dlgSi{background:#2b3036;color:#fff}
   #dlgNo{background:#1E6FD9;color:#fff}
+  #offerta{position:absolute;left:80px;right:80px;top:880px;opacity:0}
+  #offerta h5{font:700 34px 'Martian Mono';letter-spacing:.18em;color:#9aa0a6;margin-bottom:26px;text-align:center}
+  #offerta .o{display:flex;align-items:center;gap:26px;background:rgba(21,25,22,.92);border:2px solid #252B26;border-radius:22px;padding:26px 30px;margin-bottom:20px;opacity:0}
+  #offerta .o .ic{font-size:58px;width:70px;text-align:center}
+  #offerta .o .t{flex:1;font:700 40px/1.2 'Archivo';color:#F3F1EA}
+  #offerta .o .t small{display:block;font:500 28px 'Archivo';color:#9aa0a6;margin-top:4px}
+  #offerta .o .pz{font:800 34px 'Martian Mono';color:#0B0D0C;background:#B6D84F;border-radius:12px;padding:12px 18px;white-space:nowrap}
+  #cta{position:absolute;left:150px;right:150px;top:1560px;text-align:center;background:#B6D84F;color:#0B0D0C;font:800 52px 'Archivo';border-radius:999px;padding:30px 0;opacity:0;
+       box-shadow:0 0 60px rgba(182,216,79,.45)}
+  #cta small{display:block;font:600 28px 'Martian Mono';margin-top:4px}
   #grana{position:absolute;inset:0;width:1080px;height:1920px;opacity:.06;mix-blend-mode:screen;pointer-events:none}
 </style></head>
 <body><div id="v">
@@ -92,6 +102,8 @@
   <div id="titolo">OGGI NO<span>.</span></div>
   <div id="righe"></div>
   <div id="chiusa"></div>
+  <div id="offerta"><h5 id="oTit"></h5><div id="oRighe"></div></div>
+  <div id="cta"></div>
   <canvas id="grana" width="540" height="960"></canvas>
   <div id="fine">
     <div class="serie">OGGI NO.</div>
@@ -153,6 +165,8 @@ window.imposta = e => { E = e; C = candele(46, e.seme || 7, e.base || 4195, e.vo
   $('sim').textContent = e.simbolo; $('saldo').textContent = e.saldo; $('oggi').textContent = e.oggi; $('prod').textContent = e.prodotto;
   $('righe').innerHTML = e.righe.map((r, i) => `<div class="${i === e.righe.length - 1 ? 'tot' : ''}"><span>${r[0]}</span><b>${r[1] || ''}</b></div>`).join('');
   $('chiusa').textContent = e.chiusura;
+  if(e.offerta){ $('oTit').textContent = e.offerta.titolo; $('oRighe').innerHTML = e.offerta.righe.map(o => `<div class="o"><span class="ic">${o[0]}</span><span class="t">${o[1]}<small>${o[2]}</small></span><span class="pz">${o[3]}</span></div>`).join('');
+    $('cta').innerHTML = e.offerta.cta; }
   $('ora').textContent = e.ora || '15:42'; $('oggi').style.color = e.oggiColore || '#ff5252';
   $('banner').style.display = e.banner ? 'flex' : 'none'; GTOP = e.banner ? 520 : 430; $('graf').style.top = GTOP + 'px'; if(e.banner) $('bTesto').textContent = e.banner.testo;
   if(e.dialogo){ $('dTit').textContent = e.dialogo.titolo; $('dTesto').textContent = e.dialogo.testo; $('dlgSi').textContent = e.dialogo.si; $('dlgNo').textContent = e.dialogo.no; } };
@@ -203,6 +217,13 @@ window.fotogramma = (t, f) => {
   ti.style.transform = `scale(${1.25 - .25 * ease(kt)})`; ti.style.filter = `blur(${(1 - ease(kt)) * 10}px)`;
   [...$('righe').children].forEach((d, i) => { const a = T.righe + i * T.passo; d.style.opacity = (t >= a ? ease(fra(t, a, .25)) : 0) * (1 - fra(t, T.fine - .4, .4)); d.style.transform = `translateY(${(1 - ease(fra(t, a, .25))) * 16}px)`; });
   $('chiusa').style.opacity = ease(fra(t, T.chiusa, .5)) * (1 - fra(t, T.fine - .4, .4));
+  if(E.offerta){
+    const of = $('offerta'); of.style.opacity = t >= T.offerta ? 1 : 0;
+    [...$('oRighe').children].forEach((d, i) => { const a = T.offerta + .3 + i * T.passo; const k = ease(fra(t, a, .3)); d.style.opacity = t >= a ? k : 0; d.style.transform = `translateX(${(1 - k) * 60}px)`; });
+    const c = $('cta'), kc = ease(fra(t, T.cta, .35)); c.style.opacity = t >= T.cta ? kc : 0;
+    c.style.transform = `scale(${(.9 + .1 * kc) * (1 + .03 * Math.sin((t - T.cta) * 6) * (t >= T.cta + .4 ? 1 : 0))})`;
+    $('chiusa').style.opacity = ease(fra(t, T.chiusa, .4)) * (1 - fra(t, T.offerta - .3, .3));
+  }
   $('fine').style.opacity = ease(fra(t, T.fine, .5));
   if(f % 2 === 0) grana(f);
 };

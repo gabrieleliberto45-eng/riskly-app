@@ -25,6 +25,7 @@ const FF = execSync(`python3 -c "import imageio_ffmpeg as i;print(i.get_ffmpeg_e
     if(T.dialogo) ev.push(['tick', T.dialogo, .8]);
     ev.push(['click', T.tocco, .9], ['tonfo', T.blocco, 1], ['timbro', T.blocco, .7], ['boom', T.titolo, .9]);
     ep.righe.forEach((r, i) => ev.push(['tick', T.righe + i * T.passo, .7]));
+    if(ep.offerta){ ep.offerta.righe.forEach((r, i) => ev.push(['tick', T.offerta + .3 + i * T.passo, .8])); ev.push(['click', T.cta, .9]); }
     ev.push(['chiusura', T.fine + .2, .8]);
     const ing = [], fil = []; let n = 0;
     for(const [f, t, vol] of ev){ const ms = Math.round(t * 1000); ing.push('-i', path.join(Q, 'sfx', f + '.wav'));

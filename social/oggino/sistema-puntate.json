@@ -384,5 +384,79 @@
   ],
   "chiusura": "Il lotto si ricalcola su ogni conto.",
   "prodotto": "RisklyCopy · presto"
+ },
+ {
+  "id": "ad01-inizia",
+  "ora": "15:42",
+  "simbolo": "XAUUSD",
+  "seme": 11,
+  "base": 4195,
+  "vol": 1.6,
+  "saldo": "Saldo 9 700,00 €",
+  "oggi": "Oggi −300,00 € (−3,0%)",
+  "lotto": [
+   "0.40",
+   "0.80"
+  ],
+  "perdite": [
+   [
+    30,
+    "−1%"
+   ],
+   [
+    36,
+    "−1%"
+   ],
+   [
+    42,
+    "−1%"
+   ]
+  ],
+  "pensieri": [
+   [
+    0.15,
+    "terza perdita. raddoppio e recupero."
+   ]
+  ],
+  "tempi": {
+   "lotto": 1.55,
+   "tocco": 2.45,
+   "blocco": 2.5,
+   "titolo": 2.95,
+   "righe": 99,
+   "passo": 0.55,
+   "chiusa": 3.9,
+   "offerta": 6.6,
+   "cta": 9.0,
+   "fine": 14.2,
+   "durata": 17.0
+  },
+  "righe": [],
+  "chiusura": "Il tuo trading non ha un problema di strategia. Ha un problema di rischio.",
+  "offerta": {
+   "titolo": "INIZIA DA QUI",
+   "righe": [
+    [
+     "📘",
+     "Guida «Le 7 regole del rischio»",
+     "PDF da scaricare",
+     "GRATIS"
+    ],
+    [
+     "📊",
+     "Journal Riskly",
+     "statistiche e calendario delle operazioni",
+     "7 GG GRATIS"
+    ],
+    [
+     "🎓",
+     "Videocorso",
+     "47 lezioni · quasi 3 ore",
+     "199 €"
+    ]
+   ],
+   "cta": "riskly.trade<small>link qui sotto ↓</small>"
+  },
+  "prodotto": "riskly.trade"
  }
 ]
