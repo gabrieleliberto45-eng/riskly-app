@@ -48,6 +48,14 @@ Stili grafici: bianco "foglio" · scuro marchio · rosso "notiziario" (attualit�
 | 20 ott | 13:00 / 18:00 | conto alla rovescia "Mancano 3 giorni" (IG / TikTok) |
 | 21 ott | 13:00 / 18:00 | carosello c06 operazioni al giorno (scuro) · **Oggi no.** p06 copia tra conti (RisklyCopy) |
 | 22 ott | 13:00 / 18:00 | "Domani escono i bot" (IG / TikTok) |
+| 23 ott | 13:00 / 18:00 | lancio bot (IG + YouTube / TikTok) |
+| 24 ott | 18:00 | video "come funziona" · Riskly Pro |
+| 25 ott | 18:00 | video "come funziona" · RiskGuard |
+| 26 ott | 18:00 | video "come funziona" · TradeManager |
+| 27 ott | 18:00 | video "come funziona" · ScaleIn |
+
+Video dei bot: social/oggino/b-*.mp4 (demo.html + demo-bot.json + genera-demo.js), TikTok + Instagram Reel, contenuto commerciale del proprio marchio.
+Sponsorizzate pronte (le avvia Gabriele dal 23): social/oggino/ad01-inizia.mp4 (con grafico) e ad02-pulito.mp4 (senza grafico, per la verifica).
 
 In bozza (non escono): tutti i vecchi reel/video promo dal 10 al 22 e tutti gli Shorts promo YouTube dal 9 al 22 (compresi quelli del 9 e 10 alle 16:00).
 
