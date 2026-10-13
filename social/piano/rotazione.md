@@ -49,12 +49,8 @@ Stili grafici: bianco "foglio" · scuro marchio · rosso "notiziario" (attualit�
 | 21 ott | 13:00 / 18:00 | carosello c06 operazioni al giorno (scuro) · **Oggi no.** p06 copia tra conti (RisklyCopy) |
 | 22 ott | 13:00 / 18:00 | "Domani escono i bot" (IG / TikTok) |
 | 23 ott | 13:00 / 18:00 | lancio bot (IG + YouTube / TikTok) |
-| 24 ott | 18:00 | video "come funziona" · Riskly Pro |
-| 25 ott | 18:00 | video "come funziona" · RiskGuard |
-| 26 ott | 18:00 | video "come funziona" · TradeManager |
-| 27 ott | 18:00 | video "come funziona" · ScaleIn |
-| 28 ott | 18:00 | video "come funziona" · RisklyCopy |
 
+Video "come funziona" dei bot, alle 20:30 (anticipati il 13 ottobre su richiesta di Gabriele): 13 ott Riskly Pro · 14 RiskGuard · 15 TradeManager · 16 ScaleIn · 21 RisklyCopy (dopo la pubblicazione del sito con la sua scheda).
 Video dei bot: social/oggino/b-*.mp4 (demo.html + demo-bot.json + genera-demo.js), TikTok + Instagram Reel, contenuto commerciale del proprio marchio. Copertine con il nome del bot: social/oggino/copertine/ (copertina.html + genera-copertine.js).
 Sponsorizzate pronte (le avvia Gabriele dal 23): social/oggino/ad01-inizia.mp4 (con grafico) e ad02-pulito.mp4 (senza grafico, per la verifica).
 
