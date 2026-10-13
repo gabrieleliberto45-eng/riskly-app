@@ -4420,6 +4420,12 @@ if(sb){
   else if(new URLSearchParams(location.search).has('recupero')) apriAccesso('recupero');
 }
 
+/* link diretti a una pagina, per annunci e bio: riskly.trade/?vai=bot (si può unire a &da=ig-ad01) */
+(function(){
+  const v = new URLSearchParams(location.search).get('vai');
+  if(v && ['bot','calc','corso','journal','metodo','faq'].includes(v)) window.addEventListener('load', () => go(v));
+})();
+
 
 /* ═══════════════════════════════════════
    CONTO ALLA ROVESCIA
