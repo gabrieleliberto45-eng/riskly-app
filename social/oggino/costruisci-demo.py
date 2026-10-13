@@ -139,5 +139,29 @@ D.append({"id": "b-risklypro", "bot": "Riskly Pro", "simbolo": "XAUUSD", "ora": 
   "punti": ["Lotto calcolato sul rischio e filtro notizie", "Entrata in più parti con take profit scaglionati", "Break-even e trailing stop automatici"],
   "quando": "Per MT4 e MT5 · dal 23 ottobre", "fine": round(tch + 2.8, 2), "durata": round(tch + 8.6, 2)})
 
+# ---------------- RisklyCopy ----------------
+# apri sul principale, la copia parte sugli altri conti con il lotto ricalcolato sul saldo; stop spostato e chiusura copiati
+K = [(-20, 4189.6), (0, 4189.8), (2, 4190.0), (5.5, 4192.2), (6.3, 4191.9), (9.5, 4193.6), (10.3, 4193.3), (13.2, 4195.4), (14.5, 4195.2), (16, 4195.0)]
+p = mk(K, R); tap = 1.6; e = round(p(tap) + SPR, 2); sl0, tp = round(e - 2.5, 2), round(e + 5.0, 2)
+tc = round(tap + .9, 2); tbe = primo(p, tap, lambda v: v >= e + 2.0); tm = round(tbe + .6, 2)
+th = primo(p, tm, lambda v: v >= tp)
+assert min(p(x / 100) for x in range(int(tap * 100), int(tm * 100))) > sl0 and min(p(x / 100) for x in range(int(tm * 100), int(th * 100))) > e + .1
+C = lambda a, b, c, d, col=None: [["10 000 €", a] + ([col] if col else []), ["2 000 €", b] + ([col] if col else []), ["1 000 €", c] + ([col] if col else []), ["Rischio", d]]
+D.append({"id": "b-risklycopy", "bot": "RisklyCopy", "simbolo": "XAUUSD", "ora": "11:04", "scala": [4186.0, 4197.0], "prezzo": K, "rumore": R,
+  "lotto": [[0, "0.40"]], "tocchi": [[tap]],
+  "linee": [{"tipo": "entrata", "etichetta": "buy 0.40", "prezzo": e, "da": tap + .1, "a": th + .6},
+            {"tipo": "sl", "etichetta": "SL", "prezzo": sl0, "da": tap + .2, "a": th + .6, "sposta": [[tm, round(e + .1, 2), .5]]},
+            {"tipo": "tp", "etichetta": "TP", "prezzo": tp, "da": tap + .2, "a": th + .6, "colpo": True}],
+  "notifiche": [[tc, "Copiata su 2 conti · lotto ricalcolato sul saldo: 0.08 e 0.04"], [tm, "Stop spostato sul principale · aggiornato su 2 conti"],
+                [th, "Take profit sul principale · chiuse anche le 2 copie"]],
+  "didascalie": [[.3, "1", "Apri sul conto principale."], [tc + .1, "2", "Gli altri conti copiano. Il lotto si ricalcola: stesso rischio."],
+                 [tm - .5, "3", "Sposti lo stop? Si sposta ovunque."], [th + .1, "4", "Chiudi sul principale: si chiude su tutti. +2% su ogni conto."]],
+  "pannello": [[0, "invia a 2 conti", 0, C("—", "—", "—", "1% ovunque")],
+               [tc, "copiata ✓", 0, C("BUY 0.40", "BUY 0.08", "BUY 0.04", "1% ovunque"), ],
+               [tm, "stop copiato ✓", 0, C("SL pareggio", "SL pareggio", "SL pareggio", "0% ovunque")],
+               [th, "chiuse ✓", 0, C("+200 €", "+40 €", "+20 €", "+2% ovunque", "#00C853")]],
+  "punti": ["Copia tra conti MT4 e MT5", "Lotto in proporzione al saldo o al rischio", "Conti piccoli: lotto minimo e raggruppamento"],
+  "quando": "Per MT4 e MT5 · dal 23 ottobre", "fine": round(th + 2.8, 2), "durata": round(th + 8.6, 2)})
+
 json.dump(D, open('demo-bot.json', 'w'), ensure_ascii=False, indent=1)
 for d in D: print(d['id'], 'durata', d['durata'])

@@ -1315,5 +1315,241 @@
   "quando": "Per MT4 e MT5 · dal 23 ottobre",
   "fine": 22.58,
   "durata": 28.38
+ },
+ {
+  "id": "b-risklycopy",
+  "bot": "RisklyCopy",
+  "simbolo": "XAUUSD",
+  "ora": "11:04",
+  "scala": [
+   4186.0,
+   4197.0
+  ],
+  "prezzo": [
+   [
+    -20,
+    4189.6
+   ],
+   [
+    0,
+    4189.8
+   ],
+   [
+    2,
+    4190.0
+   ],
+   [
+    5.5,
+    4192.2
+   ],
+   [
+    6.3,
+    4191.9
+   ],
+   [
+    9.5,
+    4193.6
+   ],
+   [
+    10.3,
+    4193.3
+   ],
+   [
+    13.2,
+    4195.4
+   ],
+   [
+    14.5,
+    4195.2
+   ],
+   [
+    16,
+    4195.0
+   ]
+  ],
+  "rumore": 0.35,
+  "lotto": [
+   [
+    0,
+    "0.40"
+   ]
+  ],
+  "tocchi": [
+   [
+    1.6
+   ]
+  ],
+  "linee": [
+   {
+    "tipo": "entrata",
+    "etichetta": "buy 0.40",
+    "prezzo": 4190.43,
+    "da": 1.7000000000000002,
+    "a": 13.629999999999999
+   },
+   {
+    "tipo": "sl",
+    "etichetta": "SL",
+    "prezzo": 4187.93,
+    "da": 1.8,
+    "a": 13.629999999999999,
+    "sposta": [
+     [
+      7.81,
+      4190.53,
+      0.5
+     ]
+    ]
+   },
+   {
+    "tipo": "tp",
+    "etichetta": "TP",
+    "prezzo": 4195.43,
+    "da": 1.8,
+    "a": 13.629999999999999,
+    "colpo": true
+   }
+  ],
+  "notifiche": [
+   [
+    2.5,
+    "Copiata su 2 conti · lotto ricalcolato sul saldo: 0.08 e 0.04"
+   ],
+   [
+    7.81,
+    "Stop spostato sul principale · aggiornato su 2 conti"
+   ],
+   [
+    13.03,
+    "Take profit sul principale · chiuse anche le 2 copie"
+   ]
+  ],
+  "didascalie": [
+   [
+    0.3,
+    "1",
+    "Apri sul conto principale."
+   ],
+   [
+    2.6,
+    "2",
+    "Gli altri conti copiano. Il lotto si ricalcola: stesso rischio."
+   ],
+   [
+    7.31,
+    "3",
+    "Sposti lo stop? Si sposta ovunque."
+   ],
+   [
+    13.129999999999999,
+    "4",
+    "Chiudi sul principale: si chiude su tutti. +2% su ogni conto."
+   ]
+  ],
+  "pannello": [
+   [
+    0,
+    "invia a 2 conti",
+    0,
+    [
+     [
+      "10 000 €",
+      "—"
+     ],
+     [
+      "2 000 €",
+      "—"
+     ],
+     [
+      "1 000 €",
+      "—"
+     ],
+     [
+      "Rischio",
+      "1% ovunque"
+     ]
+    ]
+   ],
+   [
+    2.5,
+    "copiata ✓",
+    0,
+    [
+     [
+      "10 000 €",
+      "BUY 0.40"
+     ],
+     [
+      "2 000 €",
+      "BUY 0.08"
+     ],
+     [
+      "1 000 €",
+      "BUY 0.04"
+     ],
+     [
+      "Rischio",
+      "1% ovunque"
+     ]
+    ]
+   ],
+   [
+    7.81,
+    "stop copiato ✓",
+    0,
+    [
+     [
+      "10 000 €",
+      "SL pareggio"
+     ],
+     [
+      "2 000 €",
+      "SL pareggio"
+     ],
+     [
+      "1 000 €",
+      "SL pareggio"
+     ],
+     [
+      "Rischio",
+      "0% ovunque"
+     ]
+    ]
+   ],
+   [
+    13.03,
+    "chiuse ✓",
+    0,
+    [
+     [
+      "10 000 €",
+      "+200 €",
+      "#00C853"
+     ],
+     [
+      "2 000 €",
+      "+40 €",
+      "#00C853"
+     ],
+     [
+      "1 000 €",
+      "+20 €",
+      "#00C853"
+     ],
+     [
+      "Rischio",
+      "+2% ovunque"
+     ]
+    ]
+   ]
+  ],
+  "punti": [
+   "Copia tra conti MT4 e MT5",
+   "Lotto in proporzione al saldo o al rischio",
+   "Conti piccoli: lotto minimo e raggruppamento"
+  ],
+  "quando": "Per MT4 e MT5 · dal 23 ottobre",
+  "fine": 15.83,
+  "durata": 21.63
  }
 ]
