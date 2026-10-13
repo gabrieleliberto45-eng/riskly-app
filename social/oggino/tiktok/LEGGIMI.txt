@@ -1,3 +1,4 @@
-Versioni per TikTok: stesso video ridotto all'80% con margini neri (x 95, y 110), così niente finisce nelle zone
-che TikTok taglia sugli schermi 19,5:9 o copre con icone e descrizione. Instagram usa i file originali.
+Versioni "a margini sicuri" da usare su TikTok E Instagram (anche negli annunci): stesso video ridotto all'80% con margini neri
+(x 95, y 110). A schermo intero, su telefoni 19,5:9, sia TikTok sia Instagram ingrandiscono il 9:16 e tagliano i lati, e icone e
+descrizione coprono i bordi: così nulla di importante finisce lì. Gli originali restano per il sito.
 Rigenera: ffmpeg -i X.mp4 -vf "scale=864:1536,pad=1080:1920:95:110:color=0x000000" -c:a copy tiktok/X.mp4

@@ -63,7 +63,8 @@ Schermo di MetaTrader ricostruito, pensieri del trader scritti (niente voce sint
 Si produce con social/oggino/sistema.html + sistema-puntate.json + genera-sistema.js (azioni: buy, stop, dialogo; avviso del dato opzionale).
 Ritmo: giorni dispari alle 18:00 (dopo il carosello delle 13:00). Il weekend (p04) è montato ma scartato: a Gabriele non piace. Idee per le prossime: l'ottava operazione del giorno, il lotto "a occhio", la challenge all'ultimo giorno, il trade fuori orario, il segnale del gruppo Telegram.
 
-## TikTok: versione con margini (deciso il 13 ottobre)
-Su TikTok i video 9:16 a tutto schermo vengono tagliati ai lati sugli schermi più alti (19,5:9) e coperti da icone e descrizione.
-Regola: ogni video ha due post separati alla stessa ora, **Instagram con l'originale** e **TikTok con la versione in social/oggino/tiktok/**
-(contenuto all'80%, margini neri: ffmpeg -vf "scale=864:1536,pad=1080:1920:95:110:color=0x000000"). Già fatto per tutti i video dal 14 al 21 ottobre.
+## Versione con margini su TikTok e Instagram (deciso il 13 ottobre)
+A schermo intero, sui telefoni più alti (19,5:9), sia TikTok sia Instagram ingrandiscono i video 9:16 e tagliano i lati; icone e descrizione coprono i bordi.
+Regola: sui social si pubblica sempre la versione in social/oggino/tiktok/ (contenuto all'80%, margini neri:
+ffmpeg -vf "scale=864:1536,pad=1080:1920:95:110:color=0x000000"), anche negli annunci. Gli originali restano per il sito.
+Post Instagram e TikTok separati alla stessa ora. Già fatto per tutti i video dal 13 al 21 ottobre.

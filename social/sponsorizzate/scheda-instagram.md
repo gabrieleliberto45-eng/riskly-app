@@ -12,7 +12,7 @@ Dove si fa: **adsmanager.facebook.com** (dal computer: dal telefono mancano met�
 - [ ] Instagram è un **account professionale** collegato a una **Pagina Facebook** di Riskly.
 - [ ] Hai un **account pubblicitario** in Meta Business Suite, con **metodo di pagamento** (carta) e **valuta EUR**, fuso orario **Europe/Rome**.
 - [ ] Il sito è aggiornato (pubblicazione del 21): il link `riskly.trade/?vai=bot` deve aprire direttamente la pagina dei bot.
-- [ ] Hai sul computer i 3 video (cartella `social/oggino/`):
+- [ ] Hai sul computer i 3 video nella versione **con i margini** (cartella `social/oggino/tiktok/`: a schermo intero Instagram taglia i lati degli originali):
   - `ad02-pulito.mp4` (21 s, senza grafico: il più "sicuro" per la revisione)
   - `ad01-inizia.mp4` (18 s, con grafico)
   - `b-risklypro.mp4` (37 s, il bot al lavoro)
