@@ -38,13 +38,13 @@ Stili grafici: bianco "foglio" · scuro marchio · rosso "notiziario" (attualit�
 | 10 ott | 18:00 | Storia s01 · franco svizzero |
 | 11 ott | 10:00 / 13:00 | teaser t2 · carosello c02 breakeven |
 | 12 ott | 09:00 / 18:00 | n01 settimana dei mercati · Storia s02 · Barings |
-| 13 ott | 13:00 | carosello c04 winrate |
+| 13 ott | 13:00 / 18:00 | carosello c04 winrate · **Oggi no.** p02 il minuto prima del dato |
 | 14 ott | 09:00 / 12:00 / 18:00 | YouTube v03 inflazione USA · clip v03-t1 · Storia s03 · Archegos |
-| 15 ott | 13:00 | carosello c01 lotto |
+| 15 ott | 13:00 / 18:00 | carosello c01 lotto · **Oggi no.** p01 la quarta operazione |
 | 16 ott | 18:00 | Storia s04 · LTCM |
-| 17 ott | 13:00 | carosello c03 prop firm |
+| 17 ott | 13:00 / 18:00 | carosello c03 prop firm · **Oggi no.** p04 il weekend |
 | 18 ott | 18:00 | Storia s05 · Knight Capital |
-| 19 ott | 13:00 | carosello c05 frasi |
+| 19 ott | 13:00 / 18:00 | carosello c05 frasi · **Oggi no.** p03 lo stop spostato |
 | 20 ott | 13:00 / 18:00 | conto alla rovescia "Mancano 3 giorni" (IG / TikTok) |
 | 21 ott | 13:00 | carosello c06 operazioni al giorno (scuro) |
 | 22 ott | 13:00 / 18:00 | "Domani escono i bot" (IG / TikTok) |
@@ -52,3 +52,8 @@ Stili grafici: bianco "foglio" · scuro marchio · rosso "notiziario" (attualit�
 In bozza (non escono): tutti i vecchi reel/video promo dal 10 al 22 e tutti gli Shorts promo YouTube dal 9 al 22 (compresi quelli del 9 e 10 alle 16:00).
 
 Aggiornato il 9 ottobre sera: tutto il calendario fino al 22 è programmato. Dal 16 ottobre la routine del venerdì segue questo piano (storie/caroselli alternati, YouTube solo video lunghi + clip).
+
+## Format "Oggi no." (deciso il 13 ottobre)
+Schermo di MetaTrader ricostruito, pensieri del trader scritti (niente voce sintetica, niente personaggio), il sistema che blocca il pulsante, "OGGI NO." e un referto di 3 righe con i numeri, chiusura Riskly. 15-17 s, funziona anche senza audio.
+Si produce con social/oggino/sistema.html + sistema-puntate.json + genera-sistema.js (azioni: buy, stop, dialogo; avviso del dato opzionale).
+Ritmo: giorni dispari alle 18:00 (dopo il carosello delle 13:00). Idee per le prossime: l'ottava operazione del giorno, il lotto "a occhio", la challenge all'ultimo giorno, il trade fuori orario, il segnale del gruppo Telegram.
