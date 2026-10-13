@@ -4,3 +4,6 @@ pagina /calendario, redirect, riga privacy su TradingView.
 Bot > Come funzionano: le tre animazioni ricostruite sono sostituite dai 5 video dei bot (cartella video/,
 compressi 720p da social/oggino/b-*.mp4, copertine come anteprima; partono senza audio solo quando sono a schermo).
 Pubblicazione: zip del contenuto di questa cartella (senza questo file) -> POST api.netlify.com/api/v1/sites/44a1076d-45d2-4c1e-a702-541fbc7a3010/deploys
+
+RisklyCopy: scheda prodotto (pagina Bot e listino nel Journal) come "in arrivo", lancio 69 € poi 129 €, 1 conto principale + 3 che ricevono.
+Il pulsante apre la lista d'attesa. Per venderlo: crea il link Stripe da 69 €, aggiungilo in STRIPE['RisklyCopy'] (con VENDITA_ATTIVA = true diventa "Acquista").

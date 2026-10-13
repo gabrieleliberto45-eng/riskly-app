@@ -161,7 +161,7 @@ D.append({"id": "b-risklycopy", "bot": "RisklyCopy", "simbolo": "XAUUSD", "ora":
                [tm, "stop copiato ✓", 0, C("SL pareggio", "SL pareggio", "SL pareggio", "0% ovunque")],
                [th, "chiuse ✓", 0, C("+200 €", "+40 €", "+20 €", "+2% ovunque", "#00C853")]],
   "punti": ["Copia tra conti MT4 e MT5", "Lotto in proporzione al saldo o al rischio", "Conti piccoli: lotto minimo e raggruppamento"],
-  "quando": "Per MT4 e MT5 · dal 23 ottobre", "fine": round(th + 2.8, 2), "durata": round(th + 8.6, 2)})
+  "quando": "MT4 e MT5 · in arrivo a 69 €", "fine": round(th + 2.8, 2), "durata": round(th + 8.6, 2)})
 
 json.dump(D, open('demo-bot.json', 'w'), ensure_ascii=False, indent=1)
 for d in D: print(d['id'], 'durata', d['durata'])

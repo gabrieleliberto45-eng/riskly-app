@@ -1181,6 +1181,9 @@
   .pz-sez h3{font-family:'Instrument Serif',Georgia,serif;font-size:1.7rem;font-weight:400}
   .pz-sez span{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--dim2);letter-spacing:.08em}
   .pz-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .pz.pz-largo{grid-column:1/-1;display:grid;grid-template-columns:1.6fr 1fr;gap:6px 28px;align-items:end}
+  .pz.pz-largo p{margin-bottom:0}
+  @media(max-width:700px){.pz.pz-largo{grid-template-columns:1fr}.pz.pz-largo p{margin-bottom:14px}}
   .pz{background:var(--panel);border:1px solid rgba(182,216,79,.5);box-shadow:0 0 0 1px rgba(182,216,79,.15),0 14px 40px rgba(182,216,79,.08);border-radius:var(--r);padding:20px;display:flex;flex-direction:column;position:relative}
   .pz.hi{border-color:rgba(182,216,79,.5);box-shadow:0 0 0 1px rgba(182,216,79,.15),0 14px 40px rgba(182,216,79,.08)}
   .pz .tg{position:absolute;top:-10px;left:18px;font-family:'JetBrains Mono',monospace;font-size:.64rem;
@@ -1931,6 +1934,35 @@
           <div class="plabel">una tantum · 3 conti · aggiornamenti a vita</div>
           <button class="btn pri wide" style="margin-top:8px" data-prodotto="Riskly Pro" onclick="azioneProdotto('Riskly Pro')">Disponibile dal 23 ottobre · blocca il posto</button>
         </div>
+
+        <!-- RISKLYCOPY -->
+        <div class="bot">
+          <span class="badge">Nuovo · in arrivo</span>
+          <h3>RisklyCopy</h3>
+          <div class="plats" style="margin-bottom:11px">
+            <span class="plat on">
+              <svg width="12" height="12" viewBox="0 0 32 32" fill="none"><rect x="7" y="17" width="4" height="8" rx="1.4" fill="currentColor"/><rect x="14" y="11" width="4" height="14" rx="1.4" fill="currentColor"/><rect x="21" y="6" width="4" height="19" rx="1.4" fill="currentColor"/></svg>
+              MT5
+            </span>
+            <span class="plat on">
+              <svg width="12" height="12" viewBox="0 0 32 32" fill="none"><rect x="7" y="18" width="4" height="7" rx="1.4" fill="currentColor"/><rect x="14" y="13" width="4" height="12" rx="1.4" fill="currentColor"/><rect x="21" y="9" width="4" height="16" rx="1.4" fill="currentColor"/></svg>
+              MT4
+            </span>
+          </div>
+          <p class="sub">Apri sul conto principale e gli altri copiano. Il lotto si ricalcola sul saldo di ogni conto: stesso rischio, non lo stesso lotto.</p>
+          <ul>
+            <li>Copia apertura, chiusura, chiusure parziali, stop e take profit</li>
+            <li>Tra MT4 e MT5, sullo stesso computer o VPS</li>
+            <li>Lotto in proporzione al saldo, al rischio %, moltiplicatore o fisso</li>
+            <li>Conti piccoli: copia al lotto minimo e raggruppa le operazioni</li>
+            <li>Se il principale si spegne, non chiude niente per sbaglio</li>
+            <li>Si usa insieme a Riskly Pro, ognuno sul suo grafico</li>
+          </ul>
+          <div class="price">€69</div>
+          <div class="price-off">prezzo di lancio · poi €129</div>
+          <div class="plabel">una tantum · 1 conto principale + 3 che ricevono · aggiornamenti inclusi</div>
+          <button class="btn pri wide" style="margin-top:8px" data-prodotto="RisklyCopy" onclick="azioneProdotto('RisklyCopy')">In arrivo · blocca il prezzo di lancio</button>
+        </div>
       </div>
 
       <!-- LICENZA -->
@@ -2379,6 +2411,13 @@
           <div class="pr2"><b style="font-size:1.15rem">€199</b> <span style="color:var(--dim2)">(poi €299)</span> · 3 conti · una tantum</div>
           <button class="btn pri wide" data-prodotto="Riskly Pro" onclick="azioneProdotto('Riskly Pro')">Disponibile dal 23 ottobre · blocca il posto</button>
         </div>
+        <div class="pz pz-largo">
+          <div><div class="tg">NUOVO · IN ARRIVO</div>
+          <h4>RisklyCopy</h4><div class="pl">COPIA TRA CONTI</div>
+          <p>Copia le operazioni dal conto principale agli altri, tra MT4 e MT5, con il lotto ricalcolato sul saldo di ogni conto.</p></div>
+          <div><div class="pr2"><b style="font-size:1.15rem">€69</b> <span style="color:var(--dim2)">(poi €129)</span> · 1 principale + 3 conti · una tantum</div>
+          <button class="btn pri wide" data-prodotto="RisklyCopy" onclick="azioneProdotto('RisklyCopy')">In arrivo · blocca il prezzo di lancio</button></div>
+        </div>
       </div>
         <div class="badge-sic">
           <span><b>Nessuna carta</b> richiesta ora</span>
@@ -2534,7 +2573,7 @@
           <p style="color:var(--dim2);font-size:.82rem">Dati raccolti dai regolamenti pubblici a settembre 2026. I regolamenti cambiano spesso: <b>controlla sempre le condizioni aggiornate della tua prop prima di acquistare</b>, e in caso di dubbio scrivi al loro supporto chiedendo se sono ammessi gli EA di sola gestione del rischio. Fallo prima di acquistare: dopo l'acquisto non sono previsti rimborsi.</p></details>
 
         <details><summary>Quanto costeranno?</summary>
-          <p>I software si pagano <b>una volta sola</b>, non sono un abbonamento: la licenza resta tua, aggiornamenti inclusi. Prezzi di lancio: RiskGuard <b>99 €</b>, TradeManager <b>49 €</b>, ScaleIn <b>79 €</b>, Riskly Pro <b>199 €</b>, videocorso <b>199 €</b>. Dopo il lancio i prezzi saranno 149 €, 79 €, 129 €, 299 € e, per il videocorso, 249 €: per i primi 10 iscritti quelli di lancio restano bloccati a vita, aggiornamenti inclusi. Il journal è a parte, da 29 € l'anno (prezzo di lancio fino al 31 dicembre), con 7 giorni di prova gratuita. Chi acquista un software ha il 50% di sconto sul videocorso.</p></details>
+          <p>I software si pagano <b>una volta sola</b>, non sono un abbonamento: la licenza resta tua, aggiornamenti inclusi. Prezzi di lancio: RiskGuard <b>99 €</b>, TradeManager <b>49 €</b>, ScaleIn <b>79 €</b>, Riskly Pro <b>199 €</b>, videocorso <b>199 €</b>. RisklyCopy, il copiatore tra conti, è in arrivo a <b>69 €</b> (poi 129 €). Dopo il lancio i prezzi saranno 149 €, 79 €, 129 €, 299 € e, per il videocorso, 249 €: per i primi 10 iscritti quelli di lancio restano bloccati a vita, aggiornamenti inclusi. Il journal è a parte, da 29 € l'anno (prezzo di lancio fino al 31 dicembre), con 7 giorni di prova gratuita. Chi acquista un software ha il 50% di sconto sul videocorso.</p></details>
 
         <details><summary>Fate rimborsi?</summary>
           <p>No. Sono prodotti digitali che ricevi subito: prima di pagare accetti che l'accesso parta immediatamente e, come prevede la legge per i contenuti digitali, il diritto di recesso di 14 giorni non si applica. Per questo puoi valutare tutto prima: <b>7 giorni di prova gratuita del journal</b>, le simulazioni passo passo dei bot, il programma completo del corso, e puoi scriverci qualsiasi dubbio prima dell'acquisto.</p>
@@ -2544,7 +2583,7 @@
           <p>Dopo il pagamento il tuo account sblocca l'accesso al gruppo Telegram riservato ai clienti. Lì trovi le guide e ci scrivi in privato con l'email dell'acquisto e il numero del tuo conto MetaTrader: ti inviamo i file già abilitati per quel conto, entro 24 ore lavorative. La consegna è manuale di proposito: così ogni licenza è legata al conto giusto e possiamo aiutarti sull'installazione.</p></details>
 
         <details><summary>Su quanti conti posso usare un bot?</summary>
-          <p>Due conti per RiskGuard, TradeManager e ScaleIn; tre per Riskly Pro. Puoi usarli su conto demo e reale. Se cambi broker o numero di conto, scrivici e aggiorniamo la licenza senza costi.</p></details>
+          <p>Due conti per RiskGuard, TradeManager e ScaleIn; tre per Riskly Pro; per RisklyCopy un conto principale e tre che ricevono. Puoi usarli su conto demo e reale. Se cambi broker o numero di conto, scrivici e aggiorniamo la licenza senza costi.</p></details>
 
         <details><summary>Cosa comprende il videocorso?</summary>
           <p>Quarantasette lezioni video in dieci moduli, quasi tre ore in tutto: rischio per trade, stop e lotto; expectancy, profit factor e drawdown; position sizing con rischio fisso, ATR e Kelly; Monte Carlo e probabilità di rovina; disciplina, limiti giornalieri e checklist; le regole delle prop firm; break-even, trailing e scaglioni; compounding, mitigazione e hedging; e alla fine il tuo piano operativo su una pagina. Ogni lezione ha esempi svolti ed esercizi. Non contiene strategie d'ingresso né segnali operativi: quella è una scelta, non una mancanza.</p></details>
@@ -4033,7 +4072,7 @@ document.addEventListener('keydown', e=>{
    ═══════════════════════════════════════ */
 
 /* prezzi dopo il lancio, mostrati accanto a quelli di lancio (tienili allineati alle schede) */
-const PREZZO_DOPO_LANCIO = { 'RiskGuard':149, 'TradeManager':79, 'ScaleIn':129, 'Riskly Pro':299, 'Videocorso':249 };
+const PREZZO_DOPO_LANCIO = { 'RiskGuard':149, 'TradeManager':79, 'ScaleIn':129, 'Riskly Pro':299, 'RisklyCopy':129, 'Videocorso':249 };
 
 /* ═══ CONFIGURAZIONE VENDITA ═══
    Quando hai Partita IVA e i link Stripe pronti:
@@ -4431,7 +4470,7 @@ setInterval(aggiornaCountdown, 1000);
 
 /* il pulsante del prodotto cambia in base a VENDITA_ATTIVA */
 /* prezzi di lancio, usati per registrare l'ordine prima del pagamento */
-const PREZZO_LANCIO = { 'RiskGuard':99, 'TradeManager':49, 'ScaleIn':79, 'Riskly Pro':199, 'Videocorso':199 };
+const PREZZO_LANCIO = { 'RiskGuard':99, 'TradeManager':49, 'ScaleIn':79, 'Riskly Pro':199, 'RisklyCopy':69, 'Videocorso':199 };
 
 /* termini e condizioni + consenso all'accesso immediato (senza, il recesso di 14 giorni resterebbe valido).
    Restituisce la data dell'accettazione, o null se il cliente annulla. */
@@ -4483,7 +4522,7 @@ async function azioneProdotto(nome){
     window.location.href = link;   /* stessa scheda: i browser dentro TikTok e Instagram bloccano le finestre nuove */
     return;
   }
-  apriModulo('attesa', nome, 0);
+  apriModulo('attesa', nome, nome === 'RisklyCopy' ? PREZZO_LANCIO[nome] : 0);
 }
 
 /* pulsanti dei piani del journal: stesso percorso dei bot, con il ciclo scelto */
@@ -4509,6 +4548,7 @@ async function azioneJournal(btn){
 
 function etichettaProdotto(nome){
   if(nome === 'Videocorso') return inVendita(nome) ? 'Acquista il corso · 199 €' : 'Avvisami all\'uscita';
+  if(nome === 'RisklyCopy' && !inVendita(nome)) return 'In arrivo · blocca il prezzo di lancio';
   return inVendita(nome) ? 'Acquista' : 'Disponibile dal 23 ottobre · blocca il posto';
 }
 
@@ -5689,13 +5729,13 @@ document.addEventListener('keydown', e=>{ if(e.key === 'Escape') chiudiAltro(); 
 /* ---------- Assistente: cerca la risposta tra FAQ e schede del sito ---------- */
 const CHAT_EXTRA = [
   { q: 'Quanto costano i bot?', k: 'prezzo prezzi bot riskguard trademanager scalein riskly pro costano listino sconto lancio',
-    a: '<p>Si pagano <b>una volta sola</b>, niente abbonamento, aggiornamenti inclusi:</p><p><b>RiskGuard</b> 99 € · <b>TradeManager</b> 49 € · <b>ScaleIn</b> 79 € · <b>Riskly Pro</b> 199 €</p><p>Sono prezzi di lancio: dopo diventano 149 €, 79 €, 129 € e 299 €. Per i primi 10 restano bloccati a vita. Chi compra un bot ha il 50% di sconto sul videocorso.</p>',
+    a: '<p>Si pagano <b>una volta sola</b>, niente abbonamento, aggiornamenti inclusi:</p><p><b>RiskGuard</b> 99 € · <b>TradeManager</b> 49 € · <b>ScaleIn</b> 79 € · <b>Riskly Pro</b> 199 €</p><p>In arrivo: <b>RisklyCopy</b>, il copiatore tra conti, a 69 € (poi 129 €).</p><p>Sono prezzi di lancio: dopo diventano 149 €, 79 €, 129 € e 299 €. Per i primi 10 restano bloccati a vita. Chi compra un bot ha il 50% di sconto sul videocorso.</p>',
     azioni: [['Vedi i bot', "chatChiudi();go('bot')"]] },
   { q: 'Quando escono i bot? Data di lancio', k: 'quando lancio data uscita escono esce esci disponibili 23 ottobre acquistare comprare',
     a: '<p>I bot escono <b>giovedì 23 ottobre</b>. I primi 10 che acquistano tengono il prezzo di lancio per sempre, aggiornamenti compresi.</p><p>Iscriviti alla lista d\'attesa per essere avvisato per primo: nessun pagamento fino al lancio.</p>',
     azioni: [['Iscriviti alla lista d\'attesa', "chatChiudi();apriModulo('attesa','tutti i prodotti',0)"]] },
   { q: 'Che differenza c\'è tra i bot? Quale scegliere', k: 'differenza quale scegliere bot riskguard trademanager scalein riskly pro confronto consigli',
-    a: '<p><b>RiskGuard</b> (99 €): ti ferma. Pausa dopo una perdita, stop dopo N perdite di fila, limite di perdita giornaliero, stop loss obbligatorio.</p><p><b>TradeManager</b> (49 €): gestisce la posizione aperta. Stop loss e take profit automatici, break-even, trailing stop, tutto in pip.</p><p><b>ScaleIn</b> (79 €): replica la tua posizione in più scaglioni con take profit diversi.</p><p><b>Riskly Pro</b> (199 €): tutti e tre insieme, con il rischio calcolato sull\'insieme delle posizioni, pulsanti BUY/SELL con lotto già calcolato e filtro su spread e notizie.</p><p>Se il problema è fermarti: RiskGuard. Se è gestire le posizioni: TradeManager. Se vuoi tutto: Riskly Pro.</p>',
+    a: '<p><b>RiskGuard</b> (99 €): ti ferma. Pausa dopo una perdita, stop dopo N perdite di fila, limite di perdita giornaliero, stop loss obbligatorio.</p><p><b>TradeManager</b> (49 €): gestisce la posizione aperta. Stop loss e take profit automatici, break-even, trailing stop, tutto in pip.</p><p><b>ScaleIn</b> (79 €): replica la tua posizione in più scaglioni con take profit diversi.</p><p><b>Riskly Pro</b> (199 €): tutti e tre insieme, con il rischio calcolato sull\'insieme delle posizioni, pulsanti BUY/SELL con lotto già calcolato e filtro su spread e notizie.</p><p><b>RisklyCopy</b> (69 €, in arrivo): copia le operazioni dal conto principale agli altri, con il lotto ricalcolato sul saldo di ogni conto.</p><p>Se il problema è fermarti: RiskGuard. Se è gestire le posizioni: TradeManager. Se vuoi tutto: Riskly Pro.</p>',
     azioni: [['Vedi i bot', "chatChiudi();go('bot')"]] },
   { q: 'Quanto costa il journal? Piani', k: 'journal diario prezzo costo piani base pro premium abbonamento mensile annuale vita',
     a: '<p>Il journal ha 3 piani, con <b>7 giorni di prova gratis</b> senza carta:</p><p><b>Base</b>: 29 €/anno (2,99 €/mese, 89 € a vita)<br><b>Pro</b>: 64 €/anno (6,49 €/mese, 174 € a vita)<br><b>Premium</b>: 114 €/anno (11,49 €/mese, 274 € a vita)</p><p>Sono prezzi di lancio, validi fino al 31 dicembre: chi si abbona entro quella data mantiene lo stesso prezzo ai rinnovi. Premium ha anche il 30% di sconto sui bot.</p>',
