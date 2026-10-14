@@ -1,0 +1,17 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:'Archivo';src:url(archivo.woff2) format('woff2');font-weight:400 900;font-stretch:62% 125%}
+@font-face{font-family:'Martian Mono';src:url(martian-mono.woff2) format('woff2');font-weight:400 700;font-stretch:75% 112.5%}
+html,body{margin:0;background:#050605}
+#c{width:1024px;height:1024px;position:relative;overflow:hidden;background:radial-gradient(circle at 50% 38%,#1a2010 0%,#050605 62%);color:#F3F1EA;font-family:'Archivo';display:flex;flex-direction:column;align-items:center;justify-content:center}
+.logo{width:250px;height:250px;margin-top:-20px}
+.marca{font-family:'Martian Mono';font-weight:700;font-size:44px;letter-spacing:.32em;margin:14px 0 30px 0.32em;color:#EEF2EA}
+.box{background:#B6D84F;color:#050605;padding:16px 34px 20px;font-weight:900;font-stretch:80%;text-transform:uppercase;font-size:84px;line-height:.95;text-align:center;letter-spacing:-.01em;border-radius:6px}
+.sotto{font-family:'Martian Mono';font-size:30px;color:#9aa38a;margin-top:26px;letter-spacing:.12em;text-transform:uppercase}
+</style></head><body><div id="c">
+<svg class="logo" viewBox="0 0 44 44" fill="none"><path d="M9 31 L17 19.5 L23.5 25 L35 11" stroke="#EEF2EA" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 36 H35" stroke="#B6D84F" stroke-width="3.6" stroke-linecap="round"/></svg>
+<div class="marca">RISKLY</div>
+<div class="box" id="t"></div>
+<div class="sotto">videocorso</div>
+</div><script>
+const q=new URLSearchParams(location.search);document.getElementById('t').innerHTML=q.get('t');
+</script></body></html>
