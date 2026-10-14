@@ -25,7 +25,7 @@ pul = lambda t: re.sub(r'\*\*(.+?)\*\*', r'\1', t)
 RITOCCHI = {'0.1': ["Il prezzo si muove per un motivo: spesso è una notizia", "L'analisi fondamentale studia contesto, attese e reazioni", "Non è una sfera di cristallo: serve a sapere quando proteggersi"],
             '0.4': ["Quattro domande per ogni notizia: dato, aspettativa, reazione, rischio", "Non chiederti dove andrà il prezzo", "Chiediti cosa fare se si muove molto"],
             '1.2': ["Ogni dato corregge anche quelli dei mesi precedenti", "Una revisione può contare più del dato del mese", "Leggi sempre il dato completo prima di operare"],
-            '1.3': ["Quello che tutti si aspettano è già nel prezzo", "Conta la sorpresa, non il dato in sé", "Sell the news: anche una buona notizia può far scendere il prezzo"],
+            '1.3': ["Quello che tutti si aspettano è già nel prezzo", "Conta la sorpresa, non il dato in sé", "Anche una buona notizia attesa può far scendere il prezzo"],
             '1.4': ["Nei minuti del dato spread, slippage e gap aumentano", "Lo stop può essere eseguito lontano dal livello impostato", "Lotti ridotti e niente ordini stretti a ridosso del dato"]}
 TITOLI = {}
 def durata(f):
