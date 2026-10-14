@@ -2896,6 +2896,16 @@
         </div>
       </div>
 
+      <div class="lancio-box" style="margin-top:18px">
+        <div class="lancio-riga">
+          <div>
+            <h3>In arrivo · Riskly · Analisi fondamentale</h3>
+            <p>Il secondo corso: indicatori economici (inflazione, lavoro, PIL, PMI), banche centrali, tassi e obbligazioni, correlazioni tra asset, beni rifugio ed eventi straordinari. Sempre con la stessa domanda: cosa cambia per il rischio. Iscriviti alla lista d'attesa e ti avvisiamo quando esce.</p>
+          </div>
+          <button class="btn" onclick="azioneProdotto('Corso Analisi fondamentale')">Avvisami quando esce</button>
+        </div>
+      </div>
+
       <div class="valore-corso">
         <div class="vc-cifra">
           <div class="vc-k">VALORE REALE DI MERCATO</div>
@@ -4032,6 +4042,11 @@ function apriModulo(tipo, prodotto, prezzo){
       <div class="rg-riga"><span>${esc(prodotto)}</span><b>in arrivo</b></div>
       ${dopoLancio ? `<div class="rg-riga"><span>Prezzo dopo il lancio</span><b style="color:var(--dim2)">€${dopoLancio}</b></div>` : ''}
       <div class="rg-riga rg-tot"><span>Prezzo di lancio · primi 10</span><b>€${prezzo}</b></div>`;
+    rg.style.display = 'block';
+  } else if(attesa && /corso/i.test(prodotto)){
+    rg.innerHTML = `
+      <div class="rg-riga"><span>${esc(prodotto)}</span><b>in arrivo</b></div>
+      <div class="rg-riga rg-tot"><span>Lista d'attesa</span><b>ti avvisiamo all'uscita</b></div>`;
     rg.style.display = 'block';
   } else if(attesa){
     rg.innerHTML = `

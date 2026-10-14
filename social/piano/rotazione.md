@@ -71,7 +71,7 @@ Post Instagram e TikTok separati alla stessa ora. Già fatto per tutti i video d
 
 ## YouTube dal 14 ottobre: due serie fisse (decise da Gabriele)
 Formato: senza voce (la voce sintetica da qui non funziona), sottotitoli a schermo e musica: `MUTO=1 node social/youtube/genera.js vNN`
-(server: python3 -m http.server 8790 nella cartella social/youtube). Ogni video chiude portando al corso **Riskly · Analisi fondamentale** (in arrivo).
+(server: python3 -m http.server 8790 nella cartella social/youtube). Ogni video chiude portando al corso **Riskly · Analisi fondamentale** (in arrivo): fino al 21 ottobre "iscriviti al canale per sapere quando esce", dal 21 "lista d'attesa su riskly.trade, pagina Corso".
 
 1. **"Domani esce"**: il giorno prima di ogni dato ad alto impatto USA o eurozona (importanza alta nel calendario), alle 18:30.
    2–3 minuti: cosa esce e a che ora italiana, il contesto, il consenso (precedente → atteso), come può reagire di solito il mercato,

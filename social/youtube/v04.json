@@ -3,38 +3,133 @@
  "serie": "Domani esce",
  "titolo": "Domani alle 14:30: vendite al dettaglio e prezzi alla produzione USA (15 ottobre 2026)",
  "scene": [
-  {"capitolo": "Introduzione", "tipo": "titolo",
+  {
+   "capitolo": "Introduzione",
+   "tipo": "titolo",
    "grande": "Domani alle 14:30<br><mark>vendite e prezzi USA</mark>",
    "piccolo": "Cosa esce giovedì 15 ottobre, cosa si aspetta il mercato e come gestire il rischio",
-   "voce": "Domani, giovedì quindici ottobre, alle quattordici e trenta ora italiana, escono due dati americani importanti: le vendite al dettaglio e i prezzi alla produzione. In tre minuti vediamo cosa misurano, cosa si aspetta il mercato e come gestire il rischio. Niente previsioni sul dato."},
-  {"capitolo": "Cosa esce", "tipo": "punti", "titolo": "Cosa esce domani",
-   "punti": [["Vendite al dettaglio", "quanto hanno speso i consumatori americani a settembre"],
-             ["Prezzi alla produzione", "quanto costano beni e servizi per le imprese: anticipano l'inflazione"],
-             ["Stessa ora", "anche sussidi di disoccupazione e indice manifatturiero di Filadelfia"]],
-   "voce": "Le vendite al dettaglio misurano quanto hanno speso i consumatori americani a settembre. I prezzi alla produzione, il PPI, dicono quanto costano beni e servizi per le imprese, e spesso anticipano l'inflazione al consumo. Alla stessa ora escono anche i sussidi di disoccupazione e l'indice manifatturiero di Filadelfia: tanti numeri insieme, quindi più movimento."},
-  {"capitolo": "Il contesto: il CPI di oggi", "tipo": "numeri", "titolo": "Il contesto: l'inflazione di oggi",
-   "colonne": ["CPI di settembre", "Consenso → effettivo"],
-   "righe": [["Generale, su base annua", "3,6% → __CPI_AA__"], ["Core, su base annua", "2,5% → __CORE_AA__"], ["Generale, sul mese", "0,6% → __CPI_MM__"]],
+   "voce": "Domani, giovedì quindici ottobre, alle quattordici e trenta ora italiana, escono due dati americani importanti: le vendite al dettaglio e i prezzi alla produzione. In tre minuti vediamo cosa misurano, cosa si aspetta il mercato e come gestire il rischio. Niente previsioni sul dato."
+  },
+  {
+   "capitolo": "Cosa esce",
+   "tipo": "punti",
+   "titolo": "Cosa esce domani",
+   "punti": [
+    [
+     "Vendite al dettaglio",
+     "quanto hanno speso i consumatori americani a settembre"
+    ],
+    [
+     "Prezzi alla produzione",
+     "quanto costano beni e servizi per le imprese: anticipano l'inflazione"
+    ],
+    [
+     "Stessa ora",
+     "anche sussidi di disoccupazione e indice manifatturiero di Filadelfia"
+    ]
+   ],
+   "voce": "Le vendite al dettaglio misurano quanto hanno speso i consumatori americani a settembre. I prezzi alla produzione, il PPI, dicono quanto costano beni e servizi per le imprese, e spesso anticipano l'inflazione al consumo. Alla stessa ora escono anche i sussidi di disoccupazione e l'indice manifatturiero di Filadelfia: tanti numeri insieme, quindi più movimento."
+  },
+  {
+   "capitolo": "Il contesto: il CPI di oggi",
+   "tipo": "numeri",
+   "titolo": "Il contesto: l'inflazione di oggi",
+   "colonne": [
+    "CPI di settembre",
+    "Consenso → effettivo"
+   ],
+   "righe": [
+    [
+     "Generale, su base annua",
+     "3,6% → __CPI_AA__"
+    ],
+    [
+     "Core, su base annua",
+     "2,5% → __CORE_AA__"
+    ],
+    [
+     "Generale, sul mese",
+     "0,6% → __CPI_MM__"
+    ]
+   ],
    "nota": "Fonte: Bureau of Labor Statistics, 14 ottobre 2026. Consenso dal calendario economico.",
-   "voce": "__VOCE_CPI__"},
-  {"capitolo": "Cosa si aspetta il mercato", "tipo": "numeri", "titolo": "Cosa si aspetta il mercato",
-   "colonne": ["Dato di settembre", "Precedente → consenso"],
-   "righe": [["Vendite al dettaglio, sul mese", "1,2% → 0,3%"], ["Gruppo di controllo, sul mese", "1,4% → 0,3%"], ["Prezzi alla produzione, sul mese", "0,4% → 0,5%"], ["Prezzi alla produzione, su base annua", "5,4% → 5,3%"]],
+   "voce": "__VOCE_CPI__"
+  },
+  {
+   "capitolo": "Cosa si aspetta il mercato",
+   "tipo": "numeri",
+   "titolo": "Cosa si aspetta il mercato",
+   "colonne": [
+    "Dato di settembre",
+    "Precedente → consenso"
+   ],
+   "righe": [
+    [
+     "Vendite al dettaglio, sul mese",
+     "1,2% → 0,3%"
+    ],
+    [
+     "Gruppo di controllo, sul mese",
+     "1,4% → 0,3%"
+    ],
+    [
+     "Prezzi alla produzione, sul mese",
+     "0,4% → 0,5%"
+    ],
+    [
+     "Prezzi alla produzione, su base annua",
+     "5,4% → 5,3%"
+    ]
+   ],
    "nota": "Stime del calendario economico al 14 ottobre: possono cambiare fino all'uscita del dato.",
-   "voce": "Ecco le attese. Le vendite al dettaglio, dopo un aumento dell'uno virgola due per cento ad agosto, sono attese in crescita di appena lo zero virgola tre. Lo stesso per il gruppo di controllo, la parte che entra nel calcolo del PIL. I prezzi alla produzione sono attesi in aumento dello zero virgola cinque sul mese, e al cinque virgola tre per cento su base annua. Ricorda: conta la sorpresa, cioè la differenza tra il dato e queste attese."},
-  {"capitolo": "Come può reagire il mercato", "tipo": "punti", "titolo": "Come può reagire (di solito)",
-   "punti": [["Sopra le attese", "economia e prezzi forti: dollaro più forte, oro e indici sotto pressione"],
-             ["Sotto le attese", "consumi deboli: dollaro più debole, rendimenti in calo"],
-             ["Non sempre", "dipende anche da come il mercato ha digerito il CPI di oggi"]],
-   "voce": "Come può reagire il mercato? Di solito, se i dati escono sopra le attese, il mercato legge un'economia e dei prezzi più forti: il dollaro tende a rafforzarsi, mentre oro e indici possono scendere. Se escono sotto, il contrario. Ma non sempre: domani conterà molto anche come il mercato avrà digerito l'inflazione di oggi. Sono tendenze, non regole."},
-  {"capitolo": "Il rischio", "tipo": "punti", "titolo": "Il rischio domani alle 14:30",
-   "punti": [["Prima", "niente ordini pendenti o stop stretti a ridosso delle 14:30"],
-             ["Se resti dentro", "lotto ridotto: lo stop può essere eseguito più lontano"],
-             ["Dopo", "aspetta 5–10 minuti: spread e liquidità tornano normali"]],
-   "voce": "E il rischio. Prima delle quattordici e trenta, evita ordini pendenti e stop molto stretti a ridosso dell'orario. Se decidi di restare dentro, riduci il lotto, perché lo stop può essere eseguito più lontano del previsto. E dopo il dato, aspetta cinque o dieci minuti: spread e liquidità tornano normali, e la prima reazione spesso si corregge."},
-  {"capitolo": "Per approfondire", "tipo": "chiusura",
+   "voce": "Ecco le attese. Le vendite al dettaglio, dopo un aumento dell'uno virgola due per cento ad agosto, sono attese in crescita di appena lo zero virgola tre. Lo stesso per il gruppo di controllo, la parte che entra nel calcolo del PIL. I prezzi alla produzione sono attesi in aumento dello zero virgola cinque sul mese, e al cinque virgola tre per cento su base annua. Ricorda: conta la sorpresa, cioè la differenza tra il dato e queste attese."
+  },
+  {
+   "capitolo": "Come può reagire il mercato",
+   "tipo": "punti",
+   "titolo": "Come può reagire (di solito)",
+   "punti": [
+    [
+     "Sopra le attese",
+     "economia e prezzi forti: dollaro più forte, oro e indici sotto pressione"
+    ],
+    [
+     "Sotto le attese",
+     "consumi deboli: dollaro più debole, rendimenti in calo"
+    ],
+    [
+     "Non sempre",
+     "dipende anche da come il mercato ha digerito il CPI di oggi"
+    ]
+   ],
+   "voce": "Come può reagire il mercato? Di solito, se i dati escono sopra le attese, il mercato legge un'economia e dei prezzi più forti: il dollaro tende a rafforzarsi, mentre oro e indici possono scendere. Se escono sotto, il contrario. Ma non sempre: domani conterà molto anche come il mercato avrà digerito l'inflazione di oggi. Sono tendenze, non regole."
+  },
+  {
+   "capitolo": "Il rischio",
+   "tipo": "punti",
+   "titolo": "Il rischio domani alle 14:30",
+   "punti": [
+    [
+     "Prima",
+     "niente ordini pendenti o stop stretti a ridosso delle 14:30"
+    ],
+    [
+     "Se resti dentro",
+     "lotto ridotto: lo stop può essere eseguito più lontano"
+    ],
+    [
+     "Dopo",
+     "aspetta 5–10 minuti: spread e liquidità tornano normali"
+    ]
+   ],
+   "voce": "E il rischio. Prima delle quattordici e trenta, evita ordini pendenti e stop molto stretti a ridosso dell'orario. Se decidi di restare dentro, riduci il lotto, perché lo stop può essere eseguito più lontano del previsto. E dopo il dato, aspetta cinque o dieci minuti: spread e liquidità tornano normali, e la prima reazione spesso si corregge."
+  },
+  {
+   "capitolo": "Per approfondire",
+   "tipo": "chiusura",
    "grande": "Capire i dati<br><mark>da zero</mark>",
-   "piccolo": "In arrivo il corso Riskly · Analisi fondamentale: indicatori, banche centrali, correlazioni, beni rifugio. Info su riskly.trade",
-   "voce": "Vuoi capire questi dati da zero? Sta arrivando il corso Riskly Analisi fondamentale: indicatori economici, banche centrali, correlazioni tra asset e beni rifugio, sempre con un occhio al rischio. Trovi le informazioni su riskly punto trade. Contenuto educativo, non consulenza finanziaria: il trading con leva può farti perdere tutto il capitale."}
+   "piccolo": "In arrivo il corso Riskly · Analisi fondamentale: indicatori, banche centrali, correlazioni, beni rifugio. Iscriviti al canale per sapere quando esce.",
+   "voce": "Vuoi capire questi dati da zero? Sta arrivando il corso Riskly Analisi fondamentale: indicatori economici, banche centrali, correlazioni tra asset e beni rifugio, sempre con un occhio al rischio. Iscriviti al canale per sapere quando esce. Contenuto educativo, non consulenza finanziaria: il trading con leva può farti perdere tutto il capitale."
+  }
  ]
 }
