@@ -1,4 +1,5 @@
 # Riskly · Analisi fondamentale — testo parlato (moduli 0 e 1)
+Voce: it-IT-GiuseppeMultilingualNeural a velocità normale, la stessa del corso di gestione del rischio. Stile: insegnante che parla allo studente. Verificata trascrivendo ogni traccia (verifica_voce.py).
 
 Voce: it-IT-DiegoNeural, velocità -2% (come il corso di gestione del rischio). Stile: insegnante che parla allo studente. Verificata trascrivendo ogni traccia (verifica_voce.py).
 

@@ -1,4 +1,4 @@
-# Corso video Riskly: voce sintetica (edge-tts, it-IT-DiegoNeural) + slide (slide.html via Playwright) + ffmpeg.
+# Corso video Riskly: voce sintetica (edge-tts; il corso è stato montato con it-IT-GiuseppeMultilingualNeural +0%) + slide (slide.html via Playwright) + ffmpeg.
 # uso:  python3 build.py voce            → genera/riusa gli mp3 di ogni passaggio (cartella voce/)
 #       python3 build.py png             → fotogrammi delle slide (out/png/)
 #       python3 build.py video [id ...]  → video delle lezioni (out/) ; senza id = tutte + corso intero
