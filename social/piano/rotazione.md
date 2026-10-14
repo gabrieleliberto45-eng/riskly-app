@@ -70,6 +70,7 @@ ffmpeg -vf "scale=864:1536,pad=1080:1920:95:110:color=0x000000"), anche negli an
 Post Instagram e TikTok separati alla stessa ora. Già fatto per tutti i video dal 13 al 21 ottobre.
 
 ## YouTube dal 14 ottobre: due serie fisse (decise da Gabriele)
+**Autonomia piena (Gabriele, 14 ottobre): le puntate si scrivono, montano e programmano senza chiedere conferma; a Gabriele solo una riga a cose fatte.**
 Formato: senza voce (la voce sintetica da qui non funziona), sottotitoli a schermo e musica: `MUTO=1 node social/youtube/genera.js vNN`
 (server: python3 -m http.server 8790 nella cartella social/youtube). Ogni video chiude portando al corso **Riskly · Analisi fondamentale** (in arrivo): fino al 21 ottobre "iscriviti al canale per sapere quando esce", dal 21 "lista d'attesa su riskly.trade, pagina Corso".
 
