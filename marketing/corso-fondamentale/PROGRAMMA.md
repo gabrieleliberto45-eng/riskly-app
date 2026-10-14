@@ -2,7 +2,7 @@
 
 Stesso formato del corso di gestione del rischio e dei video YouTube: slide 16:9 in stile Riskly, grafici, voce, capitoli.
 Obiettivo: capire **perché** si muovono i mercati e **come comportarsi** intorno ai dati, senza previsioni e senza segnali.
-Durata stimata: **11 moduli · 55 lezioni · circa 2 ore e mezza** (lezioni da 2–4 minuti).
+Durata stimata: **11 moduli · 57 lezioni · circa 2 ore e mezza** (lezioni da 2–4 minuti).
 
 Regole (come nel corso di rischio):
 - ogni numero storico con fonte e data, verificato; niente previsioni di prezzo, niente "compra/vendi";
@@ -65,7 +65,9 @@ Regole (come nel corso di rischio):
 3. Rendimenti e yen (USDJPY)
 4. Materie prime e valute: petrolio–CAD, metalli–AUD
 5. Indici azionari, risk-on e risk-off
-6. Correlazioni e rischio: due posizioni "diverse" che sono la stessa
+6. La famiglia dell'oro: argento (XAG), platino (XPT), AUD e NZD, e perché si muovono con l'oro
+7. Oro e borsa americana, e come usare la famiglia dell'oro (leggere il motore, dimensionare, divergenze)
+8. Correlazioni e rischio: due posizioni "diverse" che sono la stessa
 
 ## Modulo 8 · Beni rifugio
 1. Cosa rende un bene un rifugio

@@ -218,7 +218,7 @@ window.mostra = function(s, k, info){
     if(s.risultato){ const e = $('<div class="ris el">' + E(s.risultato) + '</div>'); a.appendChild(e); els.push(e); }
   } else if(t === 'confronto'){
     a.innerHTML = testa; const g = $('<div class="cols"></div>'); a.appendChild(g);
-    [['a', s.sx], ['b', s.dx]].forEach(([c, d]) => { const col = $('<div class="card ' + c + ' el"><h3>' + E(d.t) + '</h3>' + d.punti.map(p => '<div class="riga"><span>' + E(p[0]) + '</span><span>' + E(p[1]||'') + '</span></div>').join('') + '</div>'); g.appendChild(col); els.push(col); });
+    [['a', s.sx], ['b', s.dx]].forEach(([c, d]) => { const col = $('<div class="card ' + c + ' el"><h3>' + E(d.t) + '</h3>' + d.punti.map(p => '<div class="riga"><span>' + E(p[0]) + '</span><span' + ([s.sx, s.dx].some(x => x.punti.some(q => String(q[1]||'').length > 18)) ? ' class="lungo"' : '') + '>' + E(p[1]||'') + '</span></div>').join('') + '</div>'); g.appendChild(col); els.push(col); });
     if(s.risultato){ const e = $('<div class="ris el">' + E(s.risultato) + '</div>'); a.appendChild(e); els.push(e); }
   } else if(t === 'grafico'){
     a.innerHTML = testa; const b = $('<div class="imgbox el"><img src="grafici/' + s.img + '"></div>'); a.appendChild(b); els.push(b);

@@ -1,6 +1,7 @@
 # Carica il corso Riskly · Analisi fondamentale in un gruppo Telegram con gli Argomenti: un argomento per modulo, video in ordine con didascalia.
 # uso: TG_TOKEN=... python3 telegram_carica.py trova          → mostra i gruppi visti dal bot
 #      TG_TOKEN=... TG_CHAT=-100... python3 telegram_carica.py carica   (riprende da dove si è fermato: stato in out/telegram_stato.json)
+#      TG_TOKEN=... TG_CHAT=-100... python3 telegram_carica.py svuota   (cancella gli argomenti del bot per ricaricare da capo)
 import os, sys, json, re, glob, time, subprocess, requests, build
 T = os.environ['TG_TOKEN']; API = f'https://api.telegram.org/bot{T}/'; STATO = build.QUI + '/out/telegram_stato.json'
 def call(m, files=None, **p):
@@ -48,9 +49,9 @@ def carica(chat):
             punti = RITOCCHI.get(l['id']) or [pul(p) if isinstance(p, str) else f'{pul(p[0])} — {pul(p[1])}' for p in (riep['punti'] if riep else [])]
             cap = f"🎬 Lezione {l['id']} · {TITOLI.get(l['id'], pul(l['titolo']))} ({mm(d)})" + ("\n\nIn breve:\n" + "\n".join('• ' + p for p in punti) if punti else '')
             with open(f, 'rb') as fh:
-                call('sendVideo', files={'video': (os.path.basename(f), fh, 'video/mp4')}, chat_id=chat, message_thread_id=tid, caption=cap,
+                m_ = call('sendVideo', files={'video': (os.path.basename(f), fh, 'video/mp4')}, chat_id=chat, message_thread_id=tid, caption=cap,
                      supports_streaming='true', width=1920, height=1080, duration=int(d), protect_content='true')
-            st['fatti'].append(l['id']); salva(); print('caricata', l['id'], flush=True); time.sleep(3)
+            st['fatti'].append(l['id']); st.setdefault('msg', {})[l['id']] = m_['message_id']; salva(); print('caricata', l['id'], flush=True); time.sleep(3)
     if 'indice' not in st:
         righe = ['📚 RISKLY · ANALISI FONDAMENTALE', f"{len(L)} lezioni · circa {int(sum(durata(g) for g in glob.glob(build.QUI + '/out/corso/*/*.mp4'))//60)} minuti", '',
                  'Apri gli argomenti in ordine: ogni argomento è un modulo, con le lezioni dalla prima all\'ultima.', '']
@@ -62,5 +63,10 @@ def carica(chat):
         except Exception as e: print('pin non riuscito:', e)
         st['indice'] = msg['message_id']; salva()
     print('FINITO')
+def svuota(chat):
+    # cancella gli argomenti creati dal bot (con tutti i messaggi dentro) e azzera lo stato, per ricaricare da capo
+    st = json.load(open(STATO))
+    for n, tid in st['topic'].items(): call('deleteForumTopic', chat_id=chat, message_thread_id=tid); print('cancellato', n, flush=True); time.sleep(1)
+    os.remove(STATO)
 if __name__ == '__main__':
-    trova() if sys.argv[1] == 'trova' else carica(os.environ['TG_CHAT'])
+    {'trova': lambda: trova(), 'carica': lambda: carica(os.environ['TG_CHAT']), 'svuota': lambda: svuota(os.environ['TG_CHAT'])}[sys.argv[1]]()
