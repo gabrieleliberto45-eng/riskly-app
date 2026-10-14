@@ -41,19 +41,19 @@
    "righe": [
     [
      "Generale, su base annua",
-     "3,6% → __CPI_AA__"
+     "3,6% → 3,7%"
     ],
     [
      "Core, su base annua",
-     "2,5% → __CORE_AA__"
+     "2,5% → 2,6%"
     ],
     [
      "Generale, sul mese",
-     "0,6% → __CPI_MM__"
+     "0,6% → 0,6%"
     ]
    ],
-   "nota": "Fonte: Bureau of Labor Statistics, 14 ottobre 2026. Consenso dal calendario economico.",
-   "voce": "__VOCE_CPI__"
+   "nota": "Fonte: BLS, 14 ottobre 2026 · consenso dal calendario economico.",
+   "voce": "Partiamo dal contesto. Oggi è uscita l'inflazione americana di settembre, ed è stata un po' più alta delle attese. L'indice generale è salito al tre virgola sette per cento su base annua, contro un consenso del tre virgola sei e un precedente del tre virgola quattro. L'inflazione core, quella senza cibo ed energia, è salita al due virgola sei per cento, contro attese del due virgola cinque. Sul mese, l'indice generale è cresciuto dello zero virgola sei per cento, in linea con le attese. Per questo domani il mercato guarderà con ancora più attenzione ai prezzi alla produzione."
   },
   {
    "capitolo": "Cosa si aspetta il mercato",
