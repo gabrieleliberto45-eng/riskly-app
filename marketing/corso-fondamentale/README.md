@@ -1,7 +1,7 @@
 # Corso «Riskly · Analisi fondamentale» · video
 
 Stessa struttura del corso di gestione del rischio (`../corso-video`): lezioni in `lezioni/*.py`, slide 1920×1080 da `slide.html`,
-voce `it-IT-GiuseppeMultilingualNeural` (edge-tts ≥ 7.3: le versioni vecchie vengono rifiutate con errore 403).
+voce `it-IT-DiegoNeural` come il corso di rischio, velocità -2% (edge-tts ≥ 7.3: le versioni vecchie vengono rifiutate con errore 403).
 
 ```bash
 python3 check.py            # voce e slide allineate

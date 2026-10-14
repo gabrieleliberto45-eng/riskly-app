@@ -9,7 +9,7 @@ if os.path.exists('/root/.ccr/ca-bundle.crt'): certifi.where = lambda: '/root/.c
 import edge_tts
 QUI = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, QUI + '/lezioni')
 FF = os.environ.get('FFMPEG') or subprocess.check_output(['python3', '-c', 'import imageio_ffmpeg as i;print(i.get_ffmpeg_exe())']).decode().strip()
-VOCE, RATE, PAUSA, PAUSA_SLIDE = os.environ.get('CORSO_VOCE', 'it-IT-GiuseppeMultilingualNeural'), os.environ.get('CORSO_RATE', '-2%'), 0.35, 0.55
+VOCE, RATE, PAUSA, PAUSA_SLIDE = os.environ.get('CORSO_VOCE', 'it-IT-DiegoNeural'), os.environ.get('CORSO_RATE', '-2%'), 0.35, 0.55
 def carica():
     L = []
     for f in sorted(glob.glob(f'{QUI}/lezioni/m*.py'), key=lambda p: tuple(int(x) for x in re.findall(r'\d+', os.path.basename(p)))):
@@ -56,7 +56,7 @@ def passi(s):
     return [(t, n if j == len(v) - 1 else max(0, min(n, j + 1 - off))) for j, t in enumerate(v)]
 ESPANDI = {'Riassumiamo.': 'Riassumiamo ora i punti principali di questa lezione.'}
 # pronuncia delle sigle (verificata trascrivendo l'audio): solo per la voce, le slide restano uguali
-PRONUNCIA = {'CPI': 'ci-pi-ài', 'PPI': 'P P I', 'PCE': 'P C E', 'CME': 'C M E', 'NFP': 'N F P', 'HICP': 'H I C P', 'ADP': 'A D P', 'BoJ': 'Banca del Giappone', 'BoE': "Banca d'Inghilterra", 'SNB': 'Banca nazionale svizzera', 'PMI': 'P M I'}
+PRONUNCIA = {'CPI': 'ci-pi-ài', 'PPI': 'P P I', 'PCE': 'P C E', 'CME': 'C M E', 'NFP': 'N F P', 'HICP': 'H I C P', 'ADP': 'A D P', 'BoJ': 'Banca del Giappone', 'BoE': "Banca d'Inghilterra", 'SNB': 'Banca nazionale svizzera', 'PMI': 'P M I', 'Non Farm Payrolls': 'non-farm pèiròls'}
 def pronuncia(t):
     for k, v in PRONUNCIA.items(): t = re.sub(r'\b' + re.escape(k) + r'\b', v, t)
     return t
