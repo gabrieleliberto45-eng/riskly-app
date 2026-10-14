@@ -995,6 +995,18 @@
   .acq-stato.attivo{color:var(--up);border-color:rgba(34,197,94,.4);background:rgba(34,197,94,.08)}
   .acq-stato.attesa{color:#F59E0B;border-color:rgba(245,158,11,.4);background:rgba(245,158,11,.08)}
 
+  .acq-conti{flex-basis:100%;background:rgba(255,255,255,.02);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+  .acq-conti .tit{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--dim2);letter-spacing:.04em;margin-bottom:8px}
+  .acq-conti .lista{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+  .acq-conti .ct{font-family:'JetBrains Mono',monospace;font-size:.78rem;padding:4px 10px;border-radius:100px;
+    border:1px solid rgba(34,197,94,.4);color:var(--up);background:rgba(34,197,94,.06)}
+  .acq-conti .riga{display:flex;gap:8px;flex-wrap:wrap}
+  .acq-conti input{flex:1;min-width:150px;background:transparent;border:1px solid var(--line);border-radius:8px;
+    color:var(--text);padding:9px 11px;font-family:'JetBrains Mono',monospace;font-size:.85rem}
+  .acq-conti .nota{font-size:.75rem;color:var(--dim2);margin-top:8px;line-height:1.5}
+  .acq-conti .msg{font-size:.78rem;margin-top:8px}
+  #acc-procedura code{word-break:break-all;font-size:.78rem}
+
   .acc-vuoto{text-align:center;padding:34px 18px;color:var(--dim2)}
   .acc-vuoto strong{display:block;color:var(--text);font-size:1rem;margin-bottom:6px}
 
@@ -1874,7 +1886,7 @@
         <div class="tools">
           <div>
             <h3 style="font-family:'Instrument Sans',-apple-system,system-ui,sans-serif;font-size:.92rem;font-weight:600;margin-bottom:6px">Legata al conto</h3>
-            <p style="color:var(--dim);font-size:.85rem">La licenza è associata ai numeri di conto MetaTrader che ci comunichi, su MT4 o MT5. Puoi cambiarli scrivendo a supporto.</p>
+            <p style="color:var(--dim);font-size:.85rem">La licenza è associata ai numeri di conto MetaTrader che abiliti tu dal tuo account, su MT4 o MT5. Per cambiarli scrivi al supporto.</p>
           </div>
           <div>
             <h3 style="font-family:'Instrument Sans',-apple-system,system-ui,sans-serif;font-size:.92rem;font-weight:600;margin-bottom:6px">Aggiornamenti inclusi</h3>
@@ -2237,10 +2249,10 @@
           <p>Sì. Se il software non parte o non funziona sul tuo broker e non riusciamo a risolvere, ti rimborsiamo. Non rimborsiamo invece i risultati di mercato: nessun software può garantirli, e chi lo promette ti sta mentendo. Per il journal ci sono 7 giorni di prova gratuita senza carta di credito, così provi prima di pagare.</p></details>
 
         <details><summary>Come ricevo i bot dopo l'acquisto?</summary>
-          <p>Dopo il pagamento il tuo account sblocca l'accesso al gruppo Telegram riservato ai clienti. Lì trovi le guide e ci scrivi in privato con l'email dell'acquisto e il numero del tuo conto MetaTrader: ti inviamo i file già abilitati per quel conto, entro 24 ore lavorative. La consegna è manuale di proposito: così ogni licenza è legata al conto giusto e possiamo aiutarti sull'installazione.</p></details>
+          <p>Appena il pagamento è confermato, nel tuo account scrivi il numero del tuo conto MetaTrader e la licenza si attiva da sola. Il tuo account sblocca anche il gruppo Telegram riservato ai clienti: lì trovi i file, le guide all'installazione e ci scrivi se hai bisogno di aiuto.</p></details>
 
         <details><summary>Su quanti conti posso usare un bot?</summary>
-          <p>Due conti per RiskGuard, TradeManager e ScaleIn; tre per Riskly Pro. Puoi usarli su conto demo e reale. Se cambi broker o numero di conto, scrivici e aggiorniamo la licenza senza costi.</p></details>
+          <p>Due conti per RiskGuard, TradeManager e ScaleIn; tre per Riskly Pro. Li abiliti tu dal tuo account e puoi usarli su conto demo e reale. Se cambi broker o numero di conto, scrivici e aggiorniamo la licenza senza costi.</p></details>
 
         <details><summary>Cosa comprende il videocorso?</summary>
           <p>Trenta lezioni video in otto moduli, circa tre ore in tutto: multiplo R, expectancy, profit factor e drawdown; position sizing con fixed fractional, Kelly e ATR; risk of ruin e simulazioni Monte Carlo; protocolli operativi e checklist; le regole delle prop firm; scale-in, heat di portafoglio e multi-account; journal avanzato e piano operativo personale. Non contiene strategie d'ingresso né segnali operativi: quella è una scelta, non una mancanza. Il corso è in preparazione e chi si iscrive alla lista d'attesa lo riceve al prezzo di lancio.</p></details>
@@ -2675,11 +2687,11 @@
         <div id="acc-lista"></div>
 
         <div id="acc-procedura" style="display:none;border-top:1px solid var(--line);margin-top:18px;padding-top:16px">
-          <div class="acq-meta" style="margin-bottom:10px">COME RICEVI I FILE</div>
+          <div class="acq-meta" style="margin-bottom:10px">COME ATTIVI IL BOT</div>
           <ol style="color:var(--dim);font-size:.85rem;line-height:1.75;padding-left:18px">
-            <li>Entra nel gruppo Telegram riservato: la richiesta viene approvata a mano.</li>
-            <li>Scrivici in privato con l'email dell'acquisto e il numero del tuo conto MetaTrader.</li>
-            <li>Ricevi i file abilitati per quel conto, <span id="acc-tempi">entro 24 ore lavorative</span>, con la guida all'installazione.</li>
+            <li>Qui sopra, sotto il bot acquistato, scrivi il numero del tuo conto MetaTrader e premi <b>Abilita</b>: la licenza si attiva da sola.</li>
+            <li>Entra nel gruppo Telegram riservato (la richiesta viene approvata a mano, <span id="acc-tempi">entro 24 ore lavorative</span>): lì trovi i file e la guida all'installazione.</li>
+            <li>In MetaTrader autorizza l'indirizzo <code>https://swlztverwfgdgchgpudt.supabase.co</code> in Strumenti → Opzioni → Consulenti Esperti, poi metti il bot sul grafico.</li>
           </ol>
         </div>
       </div>
@@ -4167,6 +4179,11 @@ try{
 let utente = null;    /* utente connesso */
 let profilo = null;   /* riga di profili */
 let acquisti = [];    /* righe di acquisti */
+let mieiConti = [];   /* conti MetaTrader collegati alle licenze: {prodotto, conto} */
+
+/* bot venduti sul sito: nome dell'ordine -> codice della licenza, e quanti conti */
+const BOT_LICENZA = { 'RiskGuard':'riskguard', 'TradeManager':'trademanager', 'ScaleIn':'scalein', 'Riskly Pro':'risklypro' };
+const BOT_MAX_CONTI = { riskguard:2, trademanager:2, scalein:2, risklypro:3 };
 let modoAccesso = 'entra';   /* 'entra' oppure 'registrati' */
 
 /* ---------- modale ---------- */
@@ -4328,8 +4345,14 @@ async function caricaAccount(){
     const { data: a } = await sb.from('acquisti')
       .select('*').eq('utente', utente.id).order('creato', { ascending:false });
     acquisti = a || [];
+
+    mieiConti = [];
+    if(acquisti.some(x => x.stato === 'attivo' && BOT_LICENZA[x.prodotto])){
+      const { data: c, error: ec } = await sb.rpc('licenza_miei_conti');
+      if(ec) console.error('Conti delle licenze:', ec); else mieiConti = c || [];
+    }
   } else {
-    profilo = null; acquisti = [];
+    profilo = null; acquisti = []; mieiConti = [];
   }
 
   aggiornaNavAccount();
@@ -4354,6 +4377,36 @@ function aggiornaNavAccount(){
 }
 
 const NOMI_STATO = { attivo:'attivo', in_attesa:'in attesa di pagamento' };
+
+/* conti MetaTrader collegati a un bot acquistato: la licenza si attiva da sola */
+function contiLicenza(nome){
+  const cod = BOT_LICENZA[nome], max = BOT_MAX_CONTI[cod] || 2;
+  const miei = mieiConti.filter(c => c.prodotto === cod);
+  const pieno = miei.length >= max;
+  return `<div class="acq-conti">
+      <div class="tit">CONTI METATRADER ABILITATI · ${miei.length} DI ${max}</div>
+      ${miei.length ? `<div class="lista">${miei.map(c => `<span class="ct">${esc(c.conto)}</span>`).join('')}</div>` : ''}
+      ${pieno ? '' : `<div class="riga">
+          <input id="conto-${cod}" inputmode="numeric" placeholder="Numero del conto (es. 12345678)">
+          <button class="btn pri" onclick="aggiungiConto('${esc(nome)}')">Abilita</button>
+        </div>`}
+      <div class="msg" id="conto-msg-${cod}"></div>
+      <div class="nota">${miei.length ? 'Il bot su questi conti si attiva da solo. ' : 'Scrivi il numero del conto su cui userai il bot (lo vedi in MetaTrader, nel Navigatore → Conti). Non serve la password. '}${pieno ? 'Per cambiare un conto scrivi al supporto.' : 'Puoi usare demo e reale.'}</div>
+    </div>`;
+}
+
+async function aggiungiConto(nome){
+  const cod = BOT_LICENZA[nome];
+  const campo = document.getElementById('conto-' + cod), msg = document.getElementById('conto-msg-' + cod);
+  const conto = (campo.value || '').replace(/\D/g, '');
+  if(!conto || conto.length > 11){ msg.style.color = 'var(--down)'; msg.textContent = 'Scrivi solo il numero del conto, senza spazi.'; return; }
+  msg.style.color = 'var(--dim2)'; msg.textContent = 'Salvo…';
+  const { data, error } = await sb.rpc('licenza_aggiungi_conto', { p_prodotto: nome, p_conto: Number(conto) });
+  if(error){ msg.style.color = 'var(--down)'; msg.textContent = 'Non riesco a salvare, riprova tra poco.'; console.error(error); return; }
+  if(data !== 'OK'){ msg.style.color = 'var(--down)'; msg.textContent = data; return; }
+  mieiConti.push({ prodotto: cod, conto: Number(conto) });
+  disegnaAccount();
+}
 
 function disegnaAccount(){
   document.getElementById('acc-email-corrente').textContent = utente ? utente.email : '';
@@ -4382,6 +4435,7 @@ function disegnaAccount(){
             <span class="acq-stato ${attivo?'attivo':'attesa'}">${NOMI_STATO[a.stato] || esc(a.stato)}</span>
             ${attivo ? `<a class="btn pri" href="download.html">Area clienti</a>` : ''}
           </div>
+          ${attivo && BOT_LICENZA[a.prodotto] ? contiLicenza(a.prodotto) : ''}
         </div>`;
     }).join('');
   }
@@ -4607,7 +4661,7 @@ function gsSmonta(){
 
 
 
-let gsOrdini = [], gsAttesa = [], gsUtenti = [], gsVisite = [];
+let gsOrdini = [], gsAttesa = [], gsUtenti = [], gsVisite = [], gsConti = [];
 
 function isAdmin(){
   return !!(utente && ADMIN.includes((utente.email || '').toLowerCase()));
@@ -4644,6 +4698,11 @@ async function gsCarica(){
 
   gsOrdini = a.data || []; gsAttesa = l.data || []; gsUtenti = p.data || []; gsVisite = v.data || [];
 
+  /* conti MetaTrader abilitati dai clienti (licenze) */
+  const c = await sb.rpc('licenza_admin_conti');
+  if(c.error) console.error('Conti delle licenze:', c.error);
+  gsConti = c.data || [];
+
   const settimana = gsVisite.filter(x => new Date(x.creato) > new Date(Date.now()-7*86400000)).length;
   document.getElementById('gs-k1').textContent = gsOrdini.filter(o => o.stato !== 'attivo').length;
   document.getElementById('gs-k2').textContent = gsOrdini.filter(o => o.stato === 'attivo').length;
@@ -4665,6 +4724,7 @@ function gsDisegnaOrdini(){
       <div style="flex:1;min-width:180px">
         <div class="m">${esc(o.prodotto)}${o.prezzo ? ' · €'+esc(o.prezzo) : ''}</div>
         <div class="d">${gsData(o.creato)}${o.conto ? ' · conto '+esc(o.conto) : ''}</div>
+        ${gsContiOrdine(o)}
       </div>
       <div style="display:flex;align-items:center;gap:10px">
         <span class="acq-stato ${att?'attivo':'attesa'}">${att?'attivo':'da confermare'}</span>
@@ -4674,10 +4734,28 @@ function gsDisegnaOrdini(){
   }).join('');
 }
 
+/* conti abilitati dal cliente per il bot di questo ordine, con la x per toglierli */
+function gsContiOrdine(o){
+  const cod = BOT_LICENZA[o.prodotto];
+  if(!cod) return '';
+  const lista = gsConti.filter(c => c.utente === o.utente && c.prodotto === cod);
+  if(!lista.length) return '';
+  return `<div class="d" style="margin-top:6px">Licenza su: ${lista.map(c =>
+    `${esc(c.conto)} <a href="#" style="color:var(--down)" onclick="gsTogliConto(${Number(c.id)});return false" title="Togli">✕</a>`).join(' · ')}</div>`;
+}
+
+async function gsTogliConto(id){
+  if(!confirm('Togliere questo conto? Il bot su quel conto si fermerà entro un giorno.')) return;
+  const { error } = await sb.rpc('licenza_admin_rimuovi', { p_id: id });
+  if(error){ gsFlash('Non sono riuscito a toglierlo: ' + error.message, true); return; }
+  gsFlash('Conto tolto: il cliente può abilitarne un altro.');
+  gsCarica();
+}
+
 async function gsStato(id, nuovo){
   const { error } = await sb.from('acquisti').update({ stato: nuovo }).eq('id', id);
   if(error){ gsFlash('Non sono riuscito a salvare: ' + error.message, true); return; }
-  gsFlash(nuovo === 'attivo' ? 'Ordine confermato: il cliente vede il gruppo Telegram.' : 'Ordine rimesso in attesa.');
+  gsFlash(nuovo === 'attivo' ? 'Ordine confermato: il cliente vede il gruppo Telegram e la sua licenza è attiva.' : 'Ordine rimesso in attesa: la licenza del cliente si ferma.');
   gsCarica();
 }
 
