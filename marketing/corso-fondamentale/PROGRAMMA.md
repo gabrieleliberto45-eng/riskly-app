@@ -66,7 +66,7 @@ Regole (come nel corso di rischio):
 4. Materie prime e valute: petrolio–CAD, metalli–AUD
 5. Indici azionari, risk-on e risk-off
 6. La famiglia dell'oro: argento (XAG), platino (XPT), AUD e NZD, e perché si muovono con l'oro
-7. Oro e borsa americana, e come usare la famiglia dell'oro (leggere il motore, dimensionare, divergenze)
+7. Oro e borsa americana: futures sugli indici (ES, NQ, YM e micro) e CFD, e come usare la famiglia dell'oro (leggere il motore, dimensionare, divergenze)
 8. Correlazioni e rischio: due posizioni "diverse" che sono la stessa
 
 ## Modulo 8 · Beni rifugio
