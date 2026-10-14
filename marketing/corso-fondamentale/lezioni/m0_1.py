@@ -1,0 +1,35 @@
+from h import *
+LEZIONE = L('0.1', 'Introduzione', 'Prima di cominciare', "Cos'è l'analisi fondamentale (e cosa non è)", [
+ T('RISKLY · ANALISI FONDAMENTALE', 'Il prezzo si muove per **un motivo**', "Dati economici, banche centrali, tassi, rifugi ed eventi straordinari: cosa muove i mercati e come comportarti.",
+   "Benvenuto nel corso di analisi fondamentale di Riskly. In queste lezioni vediamo perché i mercati si muovono: i dati economici, le banche centrali, i tassi, i beni rifugio e gli eventi che arrivano all'improvviso. E soprattutto vediamo come comportarti quando succedono, per non farti trovare impreparato."),
+ P("Cos'è l'analisi fondamentale", [
+   ('Il contesto', "lo stato dell'economia, dell'inflazione, del lavoro e dei tassi"),
+   ('Le aspettative', 'cosa si aspetta il mercato prima che un dato esca'),
+   ('Le reazioni', 'come si muovono valute, oro, indici e obbligazioni quando il dato arriva')],
+   ["L'analisi fondamentale studia tre cose.",
+    "Il contesto: com'è messa l'economia, a che punto sono l'inflazione, il lavoro e i tassi di interesse.",
+    "Le aspettative: cosa si aspetta il mercato prima che un dato venga pubblicato.",
+    "E le reazioni: come si muovono valute, oro, indici e obbligazioni quando il dato arriva davvero."]),
+ CF('Cosa non è',
+   dict(t='Non è', punti=[['Previsioni', 'nessuna'], ['Segnali', 'nessuno'], ['Certezze', 'nessuna']]),
+   dict(t='È', punti=[['Mappa', 'cosa muove i prezzi'], ['Allarme', 'quando sale il rischio'], ['Freno', 'lotto ridotto o fuori']]),
+   ["Attenzione però a cosa non è. Non è una previsione del prezzo, non è un segnale di acquisto o di vendita, e non ti dà certezze su come reagirà il mercato.",
+    "È una mappa: ti dice cosa può muovere il prezzo, quando il rischio sale, e quando ha senso ridurre il lotto o restare fuori."]),
+ P('Cosa impari in questo corso', [
+   ('Leggere un dato', 'consenso, sorpresa, revisioni'),
+   ('Capire le banche centrali', 'tassi, comunicati, conferenze stampa'),
+   ('Collegare gli asset', 'dollaro, oro, rendimenti, rifugi'),
+   ('Gestire il rischio intorno alle notizie', 'prima, durante e dopo il dato')],
+   ["Alla fine del corso saprai fare quattro cose.",
+    "Leggere un dato economico: il consenso, la sorpresa e le revisioni.",
+    "Capire cosa fanno le banche centrali e perché le loro parole muovono i mercati.",
+    "Collegare tra loro gli asset: dollaro, oro, rendimenti e beni rifugio.",
+    "E gestire il rischio intorno alle notizie, prima, durante e dopo l'uscita di un dato."]),
+ dict(tipo='avviso', titolo='Un avviso importante', testo=[
+   "**Questo corso è educativo e non è consulenza finanziaria.**",
+   "Il trading con leva, su forex, CFD e futures, comporta un rischio elevato: **puoi perdere tutto il capitale investito**.",
+   "Gli esempi sono illustrativi: non sono previsioni né promesse di guadagno. I dati storici sono indicati con fonte e data.",
+   "Quando parlo di strumenti Riskly lo dichiaro: **sono prodotti miei**."],
+   voce=["Prima di iniziare, un avviso. Questo corso è educativo e non è consulenza finanziaria. Il trading con leva, su forex, CFD e futures, comporta un rischio elevato: puoi perdere tutto il capitale. Gli esempi sono illustrativi, non sono previsioni né promesse di guadagno, e i dati storici sono sempre indicati con fonte e data. Quando parlerò di strumenti Riskly lo dichiarerò: sono prodotti miei."]),
+ Q('Il mercato non lo controlli. **Sapere cosa lo muove** sì.', "Il mercato non lo controlli. Ma puoi sapere cosa lo muove. Cominciamo."),
+])

@@ -1,0 +1,27 @@
+from h import *
+LEZIONE = L('1.1', 'Modulo 1', 'Come il mercato reagisce alle notizie', 'Consenso, dato e sorpresa', [
+ T('MODULO 1 · LEZIONE 1', 'Conta la **sorpresa**, non il numero', "Il mercato reagisce alla differenza tra quello che si aspettava e quello che arriva.",
+   "Ecco la regola più importante di tutto il corso. Il mercato non reagisce al numero in sé. Reagisce alla differenza tra quello che si aspettava e quello che arriva davvero."),
+ F('La sorpresa', 'Sorpresa = Dato effettivo − Consenso', [('Consenso', 'la media delle previsioni degli economisti'), ('Sorpresa positiva', 'il dato è sopra le attese'), ('Sorpresa negativa', 'il dato è sotto le attese')],
+   ["La formula è semplice: la sorpresa è il dato effettivo meno il consenso.",
+    "Il consenso è la media delle previsioni degli economisti, raccolte nei giorni prima.",
+    "Se il dato esce sopra, la sorpresa è positiva.",
+    "Se esce sotto, è negativa. Ed è la sorpresa che muove il prezzo."]),
+ CF('Due mesi, stesso numero (esempio illustrativo)',
+   dict(t='Mese A', punti=[['Consenso', '+150.000 posti'], ['Effettivo', '+200.000'], ['Sorpresa', '+50.000'], ['Lettura', 'meglio del previsto']]),
+   dict(t='Mese B', punti=[['Consenso', '+250.000 posti'], ['Effettivo', '+200.000'], ['Sorpresa', '−50.000'], ['Lettura', 'peggio del previsto']]),
+   ["Guarda questi due mesi, con numeri illustrativi sui nuovi posti di lavoro americani. Nel mese A il mercato si aspettava centocinquantamila posti e ne arrivano duecentomila: una sorpresa positiva di cinquantamila.",
+    "Nel mese B ne arrivano sempre duecentomila, ma il mercato se ne aspettava duecentocinquantamila. Stesso numero, sorpresa negativa. E il mercato può reagire in modo opposto."],
+   risultato=None),
+ P('Quanto conta la sorpresa', [
+   ('Dimensione', 'una sorpresa piccola spesso viene ignorata, una grande muove molto'),
+   ('Contesto', 'conta di più quando il dato è al centro delle decisioni della banca centrale'),
+   ('Le altre voci', "dentro lo stesso dato ci sono più numeri: il mercato li legge tutti")],
+   ["Tre cose decidono quanto conta una sorpresa.",
+    "La dimensione: una sorpresa piccola spesso viene quasi ignorata, una grande può muovere il prezzo in pochi secondi.",
+    "Il contesto: la sorpresa conta di più quando quel dato è al centro delle decisioni della banca centrale, come l'inflazione negli ultimi anni.",
+    "E le altre voci: dentro lo stesso comunicato ci sono più numeri, e il mercato li legge tutti. Un dato principale sopra le attese con il resto deludente può dare una reazione confusa."]),
+ RIEP([('Regola', 'conta la sorpresa: effettivo meno consenso'), ('Stesso numero', 'può dare reazioni opposte'), ('Per il rischio', 'il consenso lo trovi nel calendario, prima del dato')],
+   ["In breve.", "Conta la sorpresa: dato effettivo meno consenso.", "Lo stesso numero può dare reazioni opposte, a seconda di cosa ci si aspettava.",
+    "E per il rischio: il consenso lo trovi nel calendario prima del dato. Guardalo sempre, prima di avere posizioni aperte."]),
+])

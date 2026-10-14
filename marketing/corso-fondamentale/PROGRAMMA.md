@@ -1,4 +1,4 @@
-# Corso «Analisi fondamentale per trader» · programma (bozza)
+# Corso «Riskly · Analisi fondamentale» · programma (bozza)
 
 Stesso formato del corso di gestione del rischio e dei video YouTube: slide 16:9 in stile Riskly, grafici, voce, capitoli.
 Obiettivo: capire **perché** si muovono i mercati e **come comportarsi** intorno ai dati, senza previsioni e senza segnali.

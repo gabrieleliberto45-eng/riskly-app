@@ -1,0 +1,32 @@
+from h import *
+LEZIONE = L('0.2', 'Introduzione', 'Prima di cominciare', 'Fondamentale e tecnica: come convivono', [
+ T('MODULO 0 · LEZIONE 2', 'Il **perché** e il **dove**', "L'analisi fondamentale spiega perché il prezzo si muove, quella tecnica dove e quando entrare.",
+   "Molti trader pensano di dover scegliere: o analisi tecnica, o analisi fondamentale. In realtà rispondono a domande diverse, e nella giornata di un trader convivono."),
+ CF('Due domande diverse',
+   dict(t='Fondamentale', punti=[['Domanda', 'perché si muove?'], ['Tempi', 'settimane, mesi'], ['Usa', 'dati e tassi']]),
+   dict(t='Tecnica', punti=[['Domanda', 'dove e quando entro?'], ['Tempi', 'minuti, ore'], ['Usa', 'grafico e livelli']]),
+   ["L'analisi fondamentale risponde alla domanda: perché il prezzo si muove? Lavora su giorni, settimane e mesi, e usa dati economici, tassi e decisioni delle banche centrali.",
+    "L'analisi tecnica risponde a un'altra domanda: dove e quando entro? Lavora su minuti, ore e giorni, e usa il grafico, i livelli e i volumi."]),
+ P('Come le usa un trader che opera sul breve', [
+   ('Prima della sessione', 'guarda il calendario: quali dati escono oggi e a che ora'),
+   ('Durante la sessione', 'opera con la sua strategia tecnica, lontano dai dati importanti'),
+   ('Intorno al dato', 'riduce il lotto, allarga lo stop o resta fuori'),
+   ('A fine settimana', 'aggiorna il quadro: cosa è cambiato su tassi e inflazione')],
+   ["Ecco come le usa, in pratica, chi opera sul breve periodo.",
+    "Prima della sessione guarda il calendario economico: quali dati escono oggi e a che ora.",
+    "Durante la sessione opera con la sua strategia tecnica, ma lontano dai momenti in cui esce un dato importante.",
+    "Intorno al dato decide in anticipo cosa fare: ridurre il lotto, allargare lo stop, oppure restare fuori.",
+    "E a fine settimana aggiorna il quadro generale: cosa è cambiato sui tassi, sull'inflazione e sulle aspettative."]),
+ EX('Esempio illustrativo', [
+   ['Il grafico dice', 'EURUSD rompe una resistenza: segnale di acquisto'],
+   ['Il calendario dice', 'tra 10 minuti esce un dato USA ad alto impatto'],
+   ['Il rischio dice', 'lo spread può allargarsi e lo stop saltare con slippage'],
+   ['Decisione', 'aspetto la reazione al dato, poi rivaluto']],
+   ["Facciamo un esempio, puramente illustrativo. Sul grafico l'euro dollaro rompe una resistenza: la tua strategia ti dà un segnale di acquisto.",
+    "Ma il calendario dice che tra dieci minuti esce un dato americano ad alto impatto.",
+    "E la gestione del rischio ti ricorda che in quei minuti lo spread può allargarsi e lo stop può essere eseguito a un prezzo peggiore.",
+    "La decisione più sensata? Aspettare la reazione al dato, e poi rivalutare il segnale."], risultato=None, k=[1, 2, 3, 4]),
+ RIEP([('Fondamentale', 'perché si muove'), ('Tecnica', 'dove e quando entrare'), ('Insieme', 'il calendario decide quando il segnale tecnico è troppo rischioso')],
+   ["In breve.", "L'analisi fondamentale ti dice perché il prezzo si muove.", "Quella tecnica ti dice dove e quando entrare.",
+    "E insieme funzionano così: il calendario ti dice quando un segnale tecnico, anche buono, è troppo rischioso da prendere."]),
+])

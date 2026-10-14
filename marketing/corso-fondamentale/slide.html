@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="it"><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0B0D0C;--panel:#151916;--line:#2A312B;--acc:#B6D84F;--text:#E6EDF3;--dim:#8B98A9;--red:#F0716B;--blu:#6FB1E8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:1920px;height:1080px;background:var(--bg);color:var(--text);font-family:'Instrument Sans',sans-serif;position:relative;overflow:hidden}
+.barra{position:absolute;left:0;top:0;height:8px;background:var(--acc)}
+.testa{position:absolute;left:110px;top:56px;right:110px;display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:24px;color:var(--dim);letter-spacing:.04em}
+.testa b{color:var(--acc);font-weight:600}
+.piede{position:absolute;left:110px;right:110px;bottom:40px;display:flex;justify-content:space-between;font-size:20px;color:#5D6B7D}
+.area{position:absolute;left:110px;right:110px;top:130px;bottom:90px}
+h1{font-family:'Instrument Serif',serif;font-weight:400;font-size:84px;line-height:1.05;letter-spacing:-.02em}
+h2{font-family:'Instrument Serif',serif;font-weight:400;font-size:70px;line-height:1.08;letter-spacing:-.02em;margin-bottom:46px}
+h2 em,h1 em{color:var(--acc);font-style:italic}
+.el{opacity:0;transform:translateY(14px);transition:none}
+.el.on{opacity:1;transform:none}
+.pt{display:flex;gap:26px;align-items:flex-start;font-size:46px;line-height:1.28;margin-bottom:30px}
+.pt i{flex:none;width:16px;height:16px;border-radius:50%;background:var(--acc);margin-top:24px}
+.pt small{display:block;font-size:30px;color:var(--dim);margin-top:6px;line-height:1.35}
+.card{background:var(--panel);border:2px solid var(--line);border-radius:26px;padding:34px 40px}
+.form{font-family:'JetBrains Mono',monospace;font-size:62px;color:var(--acc);text-align:center;padding:50px 40px;margin-bottom:34px;font-weight:600;line-height:1.3}
+.leg{display:flex;gap:22px;font-size:36px;margin-bottom:18px;align-items:baseline}
+.leg b{font-family:'JetBrains Mono',monospace;color:var(--acc);font-size:36px;min-width:150px}
+table{border-collapse:collapse;width:100%;font-size:38px}
+th{font-family:'JetBrains Mono',monospace;font-size:28px;color:var(--dim);text-align:right;padding:14px 22px;border-bottom:2px solid var(--line);font-weight:500;letter-spacing:.04em}
+td{padding:17px 22px;text-align:right;border-bottom:1px solid var(--line);font-family:'Instrument Sans',sans-serif;font-weight:500}
+td.n{font-family:'JetBrains Mono',monospace}
+table.fitta{font-size:31px} table.fitta td{padding:9px 22px} table.fitta th{padding:8px 22px;font-size:24px}
+th:first-child,td:first-child{text-align:left;font-family:'Instrument Sans',sans-serif}
+td.ev{color:var(--acc)} td.rs{color:var(--red)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.cols h3{font-size:40px;font-weight:600;margin-bottom:22px}
+.cols .card.a h3{color:var(--acc)} .cols .card.b h3{color:var(--red)}
+.riga{display:flex;justify-content:space-between;font-size:44px;padding:20px 0;border-bottom:1px solid var(--line)}
+.riga span:last-child{font-family:'JetBrains Mono',monospace;font-weight:600}
+.ris{margin-top:34px;font-size:54px;color:var(--acc);font-weight:600;font-family:'Instrument Serif',serif}
+.tit{display:flex;flex-direction:column;justify-content:center;height:100%}
+.tit .k{font-family:'JetBrains Mono',monospace;font-size:30px;color:var(--acc);letter-spacing:.14em;margin-bottom:34px}
+.tit h1{font-size:128px;max-width:1500px}
+.tit p{font-size:44px;color:var(--dim);margin-top:40px;max-width:1300px;line-height:1.35}
+.imgbox{display:flex;justify-content:center}
+.imgbox img{max-height:700px;max-width:1700px;border-radius:20px;border:2px solid var(--line)}
+.did{text-align:center;font-size:34px;color:var(--dim);margin-top:26px}
+.big{font-family:'Instrument Serif',serif;font-size:120px;color:var(--acc);text-align:center;line-height:1.1;margin:20px 0}
+.cit{font-family:'Instrument Serif',serif;font-size:76px;line-height:1.18;text-align:center;max-width:1500px;margin:0 auto}
+.cit em{color:var(--acc)}
+.avv{font-size:38px;line-height:1.45;color:var(--dim)}
+.avv em{color:var(--text);font-style:normal;font-weight:600}
+.el.old{opacity:.5}
+.sch{display:grid;grid-template-columns:520px 1fr;gap:70px;align-items:start}
+.sch .shot{border-radius:22px;border:2px solid var(--line);overflow:hidden;height:700px}
+.sch .shot img{width:100%;display:block}
+svg text{font-family:'Instrument Sans',sans-serif}
+.marchio{position:absolute;right:110px;bottom:34px;font-weight:700;font-size:22px;color:var(--dim)}
+</style></head>
+<body>
+<div class="barra" id="barra"></div>
+<div class="testa"><span id="mod"></span><span id="lez"></span></div>
+<div class="area" id="area"></div>
+<div class="piede"><span>Contenuto educativo, non consulenza finanziaria. Il trading con leva può far perdere tutto il capitale.</span><span>riskly.trade</span></div>
+<script>
+const $ = (h) => { const d = document.createElement('div'); d.innerHTML = h; return d.firstElementChild; };
+const E = (t) => String(t).replace(/\*\*(.+?)\*\*/g,'<em>$1</em>');
+/* mostra(slide, passo, info): passo = quanti elementi sono visibili */
+
+/* ---------- disegni animati ---------- */
+function rng(seed){ return function(){ seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+const AC='#B6D84F', RD='#F0716B', BL='#6FB1E8', TX='#E6EDF3', DM='#8B98A9', LN='#2A312B';
+const T_ = (x,y,t,c,sz,an) => '<text x="'+x+'" y="'+y+'" fill="'+(c||TX)+'" font-size="'+(sz||28)+'" text-anchor="'+(an||'start')+'" font-weight="600">'+t+'</text>';
+const L_ = (x1,y1,x2,y2,c,w,d) => '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="'+c+'" stroke-width="'+(w||3)+'"'+(d?' stroke-dasharray="'+d+'"':'')+'/>';
+function candele(closes, x0, dx, Y, seed, forzaMin){
+  const r = rng(seed); let o = '';
+  closes.forEach((c,i) => { const op = i ? closes[i-1] : c; const hi = Math.max(op,c) + 0.00015 + r()*0.00025, lo = Math.min(op,c) - 0.00015 - r()*0.00025;
+    const x = x0 + i*dx, up = c >= op, col = up ? AC : RD; const l2 = (forzaMin && forzaMin[i]) ? forzaMin[i] : lo;
+    o += L_(x, Y(hi), x, Y(l2), col, 3) + '<rect x="'+(x-dx*0.32)+'" y="'+Y(Math.max(op,c))+'" width="'+(dx*0.64)+'" height="'+Math.max(3, Math.abs(Y(op)-Y(c)))+'" fill="'+col+'"/>'; });
+  return o;
+}
+function lineaPath(pts){ return pts.map((p,i) => (i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' '); }
+function interp(kp, n, seed, amp){ const r = rng(seed); const out = []; for(let i=0;i<n;i++){ let j=0; while(j<kp.length-2 && i>kp[j+1][0]) j++; const a=kp[j], b=kp[j+1]; const t=(i-a[0])/(b[0]-a[0]); out.push(a[1]+(b[1]-a[1])*t + (r()-.5)*amp); } return out; }
+
+const DIAG = {
+ /* grafico di un trade: minimo, ingresso, stop, target, esito */
+ trade(k, passi){
+   const W=1700,H=700, pmax=1.1062, pmin=1.0962, Y = p => 20 + (H-40)*(pmax-p)/(pmax-pmin), x0=70, dx=26;
+   const hist = interp([[0,1.1012],[8,1.0996],[14,1.1009],[20,1.0984],[26,1.0993],[32,1.0990],[39,1.1000]], 40, 11, 0.0003); hist[39]=1.1000;
+   const fut = interp([[0,1.1000],[5,1.1012],[10,1.1006],[16,1.1030],[22,1.1046]], 23, 5, 0.0003); fut[0]=1.1000; fut[22]=1.1047;
+   const fl = {}; fl[20] = 1.0980;
+   const ha = n => passi.indexOf(n) >= 0 && passi.indexOf(n) < k;
+   let o = '<svg viewBox="0 0 '+W+' '+H+'" width="100%">';
+   o += candele(hist, x0, dx, Y, 3, fl);
+   const xe = x0 + 39*dx;
+   if(ha('minimo')) o += L_(x0+17*dx, Y(1.0980), W-420, Y(1.0980), BL, 3, '10 8') + T_(x0, Y(1.0980)+36, 'Ultimo minimo 1,0980', BL, 28);
+   if(ha('ingresso')) o += L_(x0, Y(1.1000), W-420, Y(1.1000), TX, 3, '4 6') + '<circle cx="'+xe+'" cy="'+Y(1.1000)+'" r="11" fill="'+TX+'"/>' + T_(W-410, Y(1.1000)+10, 'Ingresso 1,1000', TX, 30);
+   if(ha('stop')) o += '<rect x="'+xe+'" y="'+Y(1.1000)+'" width="'+(W-420-xe)+'" height="'+(Y(1.0975)-Y(1.1000))+'" fill="'+RD+'" opacity=".18"/>' + L_(x0, Y(1.0975), W-420, Y(1.0975), RD, 4) + T_(W-410, Y(1.0975)+10, 'Stop 1,0975', RD, 30) + T_(W-410, Y(1.0975)+48, '−25 pip', RD, 28);
+   if(ha('target')) o += '<rect x="'+xe+'" y="'+Y(1.1045)+'" width="'+(W-420-xe)+'" height="'+(Y(1.1000)-Y(1.1045))+'" fill="'+AC+'" opacity=".16"/>' + L_(x0, Y(1.1045), W-420, Y(1.1045), AC, 4) + T_(W-410, Y(1.1045)+10, 'Target 1,1045', AC, 30) + T_(W-410, Y(1.1045)+48, '+45 pip', AC, 28);
+   if(ha('esito')) { o += candele(fut.slice(1), xe+dx, dx, Y, 9) ; o += '<circle cx="'+(xe+dx*22)+'" cy="'+Y(1.1045)+'" r="14" fill="none" stroke="'+AC+'" stroke-width="5"/>' ; }
+   return o + '</svg>';
+ },
+ /* curva del conto e drawdown */
+ equity(k, passi){
+   const W=1700,H=640, Y = v => 30 + (H-60)*(13000-v)/(13000-8800), X = i => 80 + i*(W-520)/40;
+   const e = interp([[0,10000],[8,10900],[18,12000],[26,10700],[34,9600],[40,10300]], 41, 4, 260); e[0]=10000; e[18]=12000; e[34]=9600;
+   const ha = n => passi.indexOf(n) < k && passi.indexOf(n) >= 0;
+   let o = '<svg viewBox="0 0 '+W+' '+H+'" width="100%">'; for(const v of [9000,10000,11000,12000,13000]) o += L_(80, Y(v), W-430, Y(v), LN, 2) + T_(76, Y(v)+8, (v/1000)+'k', DM, 22, 'end');
+   o += '<path d="'+lineaPath(e.map((v,i)=>[X(i),Y(v)]))+'" fill="none" stroke="'+AC+'" stroke-width="5" stroke-linejoin="round"/>';
+   if(ha('massimo')) o += '<circle cx="'+X(18)+'" cy="'+Y(12000)+'" r="13" fill="'+AC+'"/>' + L_(X(18), Y(12000), W-430, Y(12000), AC, 3, '8 8') + T_(W-420, Y(12000)+9, 'Massimo 12.000 €', AC, 28);
+   if(ha('minimo')) o += '<circle cx="'+X(34)+'" cy="'+Y(9600)+'" r="13" fill="'+RD+'"/>' + L_(X(34), Y(9600), W-430, Y(9600), RD, 3, '8 8') + T_(W-420, Y(9600)+9, 'Minimo 9.600 €', RD, 28);
+   if(ha('drawdown')) o += L_(W-120, Y(12000), W-120, Y(9600), TX, 4) + T_(W-100, (Y(12000)+Y(9600))/2+10, '−20%', RD, 44);
+   return o + '</svg>';
+ },
+ /* asimmetria del recupero */
+ barre(k, passi){
+   const W=1700,H=640, Y = v => H-60 - (H-140)*v/10000, bw=250;
+   const barre = [['Parti', 10000, TX, 0], ['Perdi il 50%', 5000, RD, 1], ['Guadagni il 50%', 7500, BL, 2], ['Per tornare a 10.000', 10000, AC, 3]];
+   let o = '<svg viewBox="0 0 '+W+' '+H+'" width="100%">' + L_(80, H-60, W-60, H-60, LN, 3);
+   barre.forEach((b,i) => { if(i < k){ const x = 130 + i*400; o += '<rect x="'+x+'" y="'+Y(b[1])+'" width="'+bw+'" height="'+(H-60-Y(b[1]))+'" rx="10" fill="'+b[2]+'" opacity="'+(i==3?0.35:0.9)+'"/>' + T_(x+bw/2, Y(b[1])-16, b[1].toLocaleString('it-IT')+' €', TX, 32, 'middle') + T_(x+bw/2, H-18, b[0], DM, 26, 'middle'); } });
+   if(k>=2) o += T_(130+400+bw/2, 265, '−50%', RD, 60, 'middle');
+   if(k>=3) o += T_(130+800+bw/2, 170, '+50%', BL, 60, 'middle');
+   if(k>=4) o += L_(130, Y(10000), W-60, Y(10000), AC, 3, '10 8') + T_(130+1200+bw/2, 420, '+100%', TX, 60, 'middle');
+   return o + '</svg>';
+ },
+ /* Monte Carlo che si riempie */
+ mc(k, passi){
+   const W=1700,H=640, N=400, T=200; const r = rng(77); const eq = [];
+   for(let p=0;p<N;p++){ let c=100; const a=[c]; for(let t=0;t<T;t++){ c *= 1 + 0.01*(r()<0.45?1.8:-1); a.push(c); } eq.push(a); }
+   const Y = v => 20 + (H-60)*(280-v)/(280-70), X = i => 80 + i*(W-200)/T;
+   let o = '<svg viewBox="0 0 '+W+' '+H+'" width="100%">'; for(const v of [100,150,200,250]) o += L_(80, Y(v), W-120, Y(v), LN, 2) + T_(70, Y(v)+8, v, DM, 22, 'end');
+   const nn = k<=0 ? 0 : (k==1?1:(k==2?6:60));
+   for(let p=0;p<nn;p++) o += '<path d="'+lineaPath(eq[p].map((v,i)=>[X(i),Y(v)]))+'" fill="none" stroke="'+(p==0?AC:DM)+'" stroke-width="'+(p==0?5:2)+'" opacity="'+(p==0?1:.45)+'"/>';
+   if(k>=4){ const q = (t,f) => { const col = eq.map(a=>a[t]).sort((a,b)=>a-b); return col[Math.floor(f*(N-1))]; }; const lo=[],hi=[],md=[]; for(let t=0;t<=T;t+=2){ lo.push([X(t),Y(q(t,.1))]); hi.push([X(t),Y(q(t,.9))]); md.push([X(t),Y(q(t,.5))]); }
+     o += '<path d="'+lineaPath(lo)+' '+hi.slice().reverse().map(p=>'L'+p[0]+' '+p[1]).join(' ')+' Z" fill="'+AC+'" opacity=".16"/><path d="'+lineaPath(md)+'" fill="none" stroke="'+AC+'" stroke-width="6"/><path d="'+lineaPath(lo)+'" fill="none" stroke="'+BL+'" stroke-width="3"/><path d="'+lineaPath(hi)+'" fill="none" stroke="'+BL+'" stroke-width="3"/>' + T_(W-110, Y(q(T,.5))-10, 'mediana', AC, 26, 'end') + T_(W-110, Y(q(T,.9))-10, '90° percentile', BL, 24, 'end') + T_(W-110, Y(q(T,.1))+30, '10° percentile', BL, 24, 'end'); }
+   return o + '</svg>';
+ },
+ /* trailing a scatti, in R */
+ trailing(k, passi){
+   const W=1700,H=680, Y = r => H-90 - (H-170)*(r+1.2)/4.7, X = t => 90 + t*(W-440)/46;
+   const pk = [[0,0],[6,-0.5],[10,1.05],[16,0.7],[20,2.05],[26,1.5],[30,3.05],[36,2.4],[41,2.0]];
+   const price = interp(pk, 42, 8, 0.12); price[0]=0;
+   const stops = [[0,-1],[10,0],[20,1],[30,2]];
+   const upto = [0,6,10,20,30,41][Math.min(k,5)];
+   let o = '<svg viewBox="0 0 '+W+' '+H+'" width="100%">'; for(const r of [-1,0,1,2,3]) o += L_(90, Y(r), W-340, Y(r), r==0?DM:LN, 2, r==0?'6 6':null) + T_(W-320, Y(r)+9, (r>0?'+':(r<0?'−':''))+Math.abs(r*25)+' pip'+(r==0?' (ingresso)':''), r==-1?RD:DM, 24);
+   o += '<path d="'+lineaPath(price.slice(0,upto+1).map((v,i)=>[X(i),Y(v)]))+'" fill="none" stroke="'+TX+'" stroke-width="5" stroke-linejoin="round"/>';
+   if(k>=1){ let lvl = -1, path = 'M'+X(0)+' '+Y(-1); const passa = Math.min(Math.max(k-1,0),3); for(let j=1;j<=passa;j++){ const xj = X(stops[j][0]); path += ' L'+xj+' '+Y(lvl); lvl = stops[j][1]; path += ' L'+xj+' '+Y(lvl); }
+     path += ' L'+X(upto)+' '+Y(lvl); o += '<path d="'+path+'" fill="none" stroke="'+RD+'" stroke-width="5"/>'; }
+   if(k>=5) o += '<circle cx="'+X(41)+'" cy="'+Y(2)+'" r="15" fill="'+AC+'"/>' + T_(X(41), Y(2)+62, 'Uscita +50 pip', AC, 34, 'middle');
+   return o + '</svg>';
+ },
+ /* uscite a scaglioni sul grafico */
+ scaglioni(k, passi){
+   const W=1700,H=680, Y = r => H-90 - (H-170)*(r+1.3)/5, X = t => 90 + t*(W-540)/46;
+   const price = interp([[0,0],[6,-0.3],[12,1.1],[20,0.6],[26,2.1],[34,1.8],[42,3.1],[46,3.05]], 47, 3, 0.1); price[0]=0;
+   const lv = [['TP1  50% a +25 pip',1,AC],['TP2  30% a +50 pip',2,AC],['TP3  20% a +75 pip',3,AC]];
+   const quando = [0, 12, 26, 42];
+   let o = '<svg viewBox="0 0 '+W+' '+H+'" width="100%">';
+   o += L_(90, Y(0), W-420, Y(0), DM, 2, '6 6') + T_(W-410, Y(0)+9, 'Ingresso', DM, 26) + L_(90, Y(-1), W-420, Y(-1), RD, 4) + T_(W-410, Y(-1)+9, 'Stop −25 pip', RD, 26);
+   const upto = [0, 8, 14, 28, 46, 46][Math.min(k,5)];
+   o += '<path d="'+lineaPath(price.slice(0,upto+1).map((v,i)=>[X(i),Y(v)]))+'" fill="none" stroke="'+TX+'" stroke-width="5" stroke-linejoin="round"/>';
+   for(let i=0;i<3;i++){ if(k >= 1){ const hit = k >= 2 + i; o += L_(90, Y(lv[i][1]), W-420, Y(lv[i][1]), hit?AC:BL, 3, hit?null:'10 8') + T_(W-410, Y(lv[i][1])+9, lv[i][0], hit?AC:BL, 26); if(hit) o += '<circle cx="'+X(quando[i+1])+'" cy="'+Y(lv[i][1])+'" r="13" fill="'+AC+'"/>'; } }
+   if(k>=5) o += T_(W-410, Y(4)+10, '0,5·25 + 0,3·50 + 0,2·75', TX, 26) + T_(W-410, Y(4)+50, '= +42,5 pip', AC, 40);
+   return o + '</svg>';
+ },
+ /* ingressi a scaglioni: tre ordini, stop comune, prezzo medio */
+ ingressi(k, passi){
+   const W=1700,H=680, pmax=1.1030, pmin=1.0945, Y = p => 30 + (H-60)*(pmax-p)/(pmax-pmin), x0=70, dx=18;
+   const hist = interp([[0,1.1022],[10,1.1012],[20,1.1004],[28,1.1001],[34,1.0991],[40,1.0982],[44,1.0979],[50,1.0995],[56,1.1015]], 57, 21, 0.00025);
+   const fino = [10, 28, 36, 44, 44, 56][Math.min(k,5)];
+   let o = '<svg viewBox="0 0 '+W+' '+H+'" width="100%">' + candele(hist.slice(0, fino+1), x0, dx, Y, 13);
+   const liv = [[1.1000,'Ingresso 1 · 1,1000 · 0,2 lotti · 40 pip'],[1.0990,'Ingresso 2 · 1,0990 · 0,2 lotti · 30 pip'],[1.0980,'Ingresso 3 · 1,0980 · 0,2 lotti · 20 pip']];
+   liv.forEach((l,i) => { if(k >= 1){ const preso = k >= 2 + i; o += L_(x0, Y(l[0]), W-560, Y(l[0]), preso?TX:BL, 3, preso?'4 6':'10 8') + T_(W-550, Y(l[0])+9, l[1], preso?TX:BL, 25); } });
+   if(k >= 1) o += L_(x0, Y(1.0960), W-560, Y(1.0960), RD, 4) + T_(W-550, Y(1.0960)+9, 'Stop comune 1,0960', RD, 26);
+   if(k >= 5) o += L_(x0, Y(1.0990), W-560, Y(1.0990), AC, 5) + T_(x0, Y(1.0990)-14, 'Prezzo medio 1,0990', AC, 28) + T_(x0+10, 60, 'Rischio totale: 0,2 × 10 € × (40 + 30 + 20) = 180 €', AC, 30);
+   return o + '</svg>';
+ },
+ /* hedging: la perdita viene congelata */
+ hedge(k, passi){
+   const W=1700,H=680, pmax=1.1030, pmin=1.0930, Y = p => 40 + (H-80)*(pmax-p)/(pmax-pmin), x0=70, dx=26;
+   const p = interp([[0,1.1000],[8,1.0992],[14,1.0980],[22,1.0960],[30,1.0985],[38,1.0950],[46,1.0975]], 47, 31, 0.0002); p[0]=1.1000; p[14]=1.0980;
+   const fino = [0, 14, 14, 46, 46][Math.min(k,4)];
+   let o = '<svg viewBox="0 0 '+W+' '+H+'" width="100%">' + candele(p.slice(0, fino+1), x0, dx, Y, 17);
+   if(k>=1) o += L_(x0, Y(1.1000), W-480, Y(1.1000), AC, 3, '4 6') + T_(W-470, Y(1.1000)+9, 'Buy 0,4 lotti a 1,1000', AC, 26);
+   if(k>=2) o += L_(x0+14*dx, Y(1.0980), W-480, Y(1.0980), RD, 3, '4 6') + T_(W-470, Y(1.0980)+9, 'Sell 0,4 lotti a 1,0980', RD, 26) + T_(x0+10, 30, 'Perdita al momento della copertura: −20 pip × 4 € = −80 €', TX, 28);
+   if(k>=3) o += T_(W-470, Y(1.0950)+9, 'Il prezzo si muove…', DM, 26);
+   if(k>=4) o += '<rect x="'+(W-480)+'" y="70" width="440" height="110" rx="14" fill="'+RD+'" opacity=".15"/>' + T_(W-460, 112, 'P/L fermo a −80 €', RD, 32) + T_(W-460, 152, '+ spread e swap', DM, 26);
+   return o + '</svg>';
+ }
+};
+
+window.mostra = function(s, k, info){
+  document.getElementById('mod').innerHTML = '<b>' + info.mod + '</b> ' + info.modTitolo;
+  document.getElementById('lez').textContent = 'Lezione ' + info.lez + ' · ' + info.titolo;
+  document.getElementById('barra').style.width = (info.pct * 100).toFixed(1) + '%';
+  const a = document.getElementById('area'); a.innerHTML = '';
+  const t = s.tipo;
+  let els = [];   // elementi rivelati uno a uno
+  let testa = s.titolo ? '<h2>' + E(s.titolo) + '</h2>' : '';
+  if(t === 'titolo'){
+    a.innerHTML = '<div class="tit"><div class="k">' + (s.kicker||'') + '</div><h1>' + E(s.titolo) + '</h1>' + (s.sotto ? '<p>' + E(s.sotto) + '</p>' : '') + '</div>';
+  } else if(t === 'punti'){
+    a.innerHTML = testa; (s.punti||[]).forEach(p => { const x = typeof p === 'string' ? [p,''] : p;
+      const e = $('<div class="pt el"><i></i><div>' + E(x[0]) + (x[1] ? '<small>' + E(x[1]) + '</small>' : '') + '</div></div>'); a.appendChild(e); els.push(e); });
+  } else if(t === 'formula'){
+    a.innerHTML = testa; const f = $('<div class="card form el">' + (s.formula||'') + '</div>'); a.appendChild(f); els.push(f);
+    (s.legenda||[]).forEach(l => { const e = $('<div class="leg el"><b>' + l[0] + '</b><span>' + E(l[1]) + '</span></div>'); a.appendChild(e); els.push(e); });
+  } else if(t === 'tabella'){
+    a.innerHTML = testa;
+    const tb = $('<div class="card"><table class="' + (s.righe.length > 6 ? 'fitta' : '') + '"><thead><tr>' + s.intest.map(h => '<th>' + h + '</th>').join('') + '</tr></thead><tbody></tbody></table></div>');
+    a.appendChild(tb); const body = tb.querySelector('tbody');
+    s.righe.forEach(r => { const tr = document.createElement('tr'); tr.className = 'el';
+      tr.innerHTML = r.map((c,i) => { let cl = /^[+−~×\d]/.test(String(c)) && String(c).length < 14 ? 'n ' : ''; if(typeof c === 'string' && c.startsWith('+')) cl += 'ev'; if(typeof c === 'string' && c.startsWith('−') && i) cl += 'rs'; return '<td class="' + cl + '">' + E(c) + '</td>'; }).join('');
+      body.appendChild(tr); els.push(tr); });
+    if(s.nota){ const n = $('<div class="did el">' + E(s.nota) + '</div>'); a.appendChild(n); els.push(n); }
+  } else if(t === 'esempio'){
+    a.innerHTML = testa; const c = $('<div class="card"></div>'); a.appendChild(c);
+    s.righe.forEach(r => { const e = $('<div class="riga el"><span>' + E(r[0]) + '</span><span>' + E(r[1]) + '</span></div>'); c.appendChild(e); els.push(e); });
+    if(s.risultato){ const e = $('<div class="ris el">' + E(s.risultato) + '</div>'); a.appendChild(e); els.push(e); }
+  } else if(t === 'confronto'){
+    a.innerHTML = testa; const g = $('<div class="cols"></div>'); a.appendChild(g);
+    [['a', s.sx], ['b', s.dx]].forEach(([c, d]) => { const col = $('<div class="card ' + c + ' el"><h3>' + E(d.t) + '</h3>' + d.punti.map(p => '<div class="riga"><span>' + E(p[0]) + '</span><span>' + E(p[1]||'') + '</span></div>').join('') + '</div>'); g.appendChild(col); els.push(col); });
+    if(s.risultato){ const e = $('<div class="ris el">' + E(s.risultato) + '</div>'); a.appendChild(e); els.push(e); }
+  } else if(t === 'grafico'){
+    a.innerHTML = testa; const b = $('<div class="imgbox el"><img src="grafici/' + s.img + '"></div>'); a.appendChild(b); els.push(b);
+    if(s.didascalia){ const e = $('<div class="did el">' + E(s.didascalia) + '</div>'); a.appendChild(e); els.push(e); }
+  } else if(t === 'numero'){
+    a.innerHTML = testa; const n = $('<div class="big el">' + E(s.numero) + '</div>'); a.appendChild(n); els.push(n);
+    if(s.testo){ const e = $('<div class="cit el" style="font-size:54px">' + E(s.testo) + '</div>'); a.appendChild(e); els.push(e); }
+  } else if(t === 'citazione'){
+    a.innerHTML = '<div style="display:flex;height:100%;align-items:center"><div class="cit el">' + E(s.testo) + '</div></div>'; els.push(a.firstElementChild.firstElementChild);
+  } else if(t === 'disegno'){
+    a.innerHTML = testa; const box = $('<div class="card" style="padding:26px 30px"></div>'); a.appendChild(box);
+    box.innerHTML = DIAG[s.diag](k, s.passi); box.querySelector('svg').style.height = '560px'; els = [];
+    if(s.didascalia){ const e = $('<div class="did">' + E(s.didascalia) + '</div>'); a.appendChild(e); }
+  } else if(t === 'schermata'){
+    a.innerHTML = testa; const g = $('<div class="sch"></div>'); a.appendChild(g);
+    g.appendChild($('<div class="shot"><img src="grafici/' + s.img + '"></div>')); const col = $('<div></div>'); g.appendChild(col);
+    (s.punti||[]).forEach(p => { const x = typeof p === 'string' ? [p,''] : p; const e = $('<div class="pt el"><i></i><div>' + E(x[0]) + (x[1] ? '<small>' + E(x[1]) + '</small>' : '') + '</div></div>'); col.appendChild(e); els.push(e); });
+  } else if(t === 'avviso'){
+    a.innerHTML = testa; const e = $('<div class="card avv el">' + s.testo.map(x => '<p style="margin-bottom:18px">' + E(x) + '</p>').join('') + '</div>'); a.appendChild(e); els.push(e);
+  }
+  els.forEach((e, i) => { if(i < k) e.classList.add('on'); if(els.length > 1 && i < k - 1 && ['punti','esempio','confronto','schermata'].includes(t)) e.classList.add('old'); });
+  if(t === 'titolo' || t === 'citazione') els.forEach(e => e.classList.add('on'));
+  window.nEl = els.length;
+  return els.length;
+};
+</script>
+</body></html>
