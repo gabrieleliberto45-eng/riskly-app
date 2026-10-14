@@ -6,7 +6,7 @@ import edge_tts, re
 # pronuncia delle sigle (verificata trascrivendo l'audio); vale solo per la voce
 PRONUNCIA = {'CPI': 'ci-pi-ài', 'PPI': 'P P I', 'PCE': 'P C E', 'CME': 'C M E', 'NFP': 'N F P', 'PMI': 'P M I', 'BoJ': 'Banca del Giappone', 'BoE': "Banca d'Inghilterra"}
 def pronuncia(t):
-    for k, v in PRONUNCIA.items(): t = re.sub(r'\\b' + re.escape(k) + r'\\b', v, t)
+    for k, v in PRONUNCIA.items(): t = re.sub(r'\b' + re.escape(k) + r'\b', v, t)
     return t
 QUI = os.path.dirname(os.path.abspath(__file__))
 async def main(vid):
