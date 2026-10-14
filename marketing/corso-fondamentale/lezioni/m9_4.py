@@ -1,0 +1,38 @@
+from h import *
+LEZIONE = L('9.4', 'Modulo 9', 'Eventi straordinari', 'Gli interventi sui cambi', [
+ T('MODULO 9 · LEZIONE 4', 'Quando lo Stato **entra nel mercato**', 'Gli interventi del Giappone sullo yen nel 2022 e nel 2024.',
+   "Un altro evento straordinario, ma che si può in parte anticipare, è l'intervento di un governo sul mercato dei cambi. Succede quando una valuta si indebolisce troppo e troppo in fretta. Il caso più studiato degli ultimi anni è quello del Giappone."),
+ TB('Gli interventi del Giappone', ['Periodo', 'Cosa succede'], [
+   ['Settembre 2022', 'dollaro yen intorno a 145: primo intervento dal 1998'],
+   ['Ottobre 2022', 'dollaro yen vicino a 152: nuovo intervento'],
+   ['Aprile e maggio 2024', 'dollaro yen oltre 160: interventi'],
+   ['Luglio 2024', 'nuovo intervento dopo un dato USA']],
+   ["Vediamo i casi principali.",
+    "A settembre del 2022, con il dollaro yen intorno a centoquarantacinque, il governo giapponese interviene vendendo dollari e comprando yen. È il primo intervento a sostegno dello yen dal 1998.",
+    "A ottobre del 2022, con il cambio vicino a centocinquantadue, interviene di nuovo.",
+    "Tra la fine di aprile e l'inizio di maggio del 2024, quando il cambio supera centosessanta, arrivano altri interventi.",
+    "E a luglio del 2024 un nuovo intervento arriva subito dopo un dato americano sull'inflazione, sfruttando il momento in cui il dollaro era già sotto pressione."]),
+ P("Come si riconosce il rischio d'intervento", [
+   ('Livelli tondi e precedenti', 'il mercato ricorda dove si è intervenuti'),
+   ('Le parole delle autorità', 'avvertimenti sempre più forti'),
+   ('Velocità del movimento', 'conta più il ritmo che il livello')],
+   ["Anche se l'intervento arriva a sorpresa, ci sono dei segnali.",
+    "Il mercato ricorda i livelli in cui si è già intervenuti, e diventa nervoso quando il prezzo si avvicina.",
+    "Le autorità usano parole sempre più forti, per esempio dicendo che i movimenti sono eccessivi o che sono pronte ad agire con decisione. È il cosiddetto intervento verbale.",
+    "E conta molto la velocità. Le autorità di solito dicono di non avere un livello preciso, ma di guardare ai movimenti troppo rapidi."]),
+ EX('Cosa succede durante un intervento (esempio illustrativo)', [
+   ['Prima', 'dollaro yen sale da settimane'],
+   ['Intervento', 'in pochi minuti scende di diverse figure'],
+   ['Dopo', 'spesso il prezzo recupera una parte nei giorni successivi'],
+   ['Per chi era lungo', 'stop eseguiti con slippage']],
+   ["Facciamo un esempio illustrativo. Il dollaro yen sale da settimane, e molti trader sono lunghi.",
+    "Arriva l'intervento, e in pochi minuti il cambio scende di diverse figure, cioè di diverse centinaia di pip.",
+    "Spesso, nei giorni successivi, il prezzo recupera una parte del movimento, perché l'intervento da solo non cambia la differenza di tassi tra i due paesi.",
+    "Ma chi era lungo con lotti troppo grandi ha visto i propri stop eseguiti con un forte slippage, e il recupero successivo non lo ha aiutato."],
+   k=[1, 2, 3, 4]),
+ RIEP([('Esempi', 'Giappone 2022 e 2024'), ('Segnali', 'livelli precedenti, parole delle autorità, velocità'), ('Per il rischio', 'vicino ai livelli d\'intervento, lotti più piccoli')],
+   ["Riassumiamo ora i punti principali di questa lezione.",
+    "Il Giappone è intervenuto a sostegno dello yen nel 2022 e nel 2024, con movimenti di diverse figure in pochi minuti.",
+    "I segnali da guardare sono i livelli dei precedenti interventi, le parole delle autorità e la velocità del movimento.",
+    "Sul piano del rischio, quando il prezzo si avvicina alle zone d'intervento, riduci i lotti, soprattutto se sei posizionato nella stessa direzione di tutto il mercato."]),
+])

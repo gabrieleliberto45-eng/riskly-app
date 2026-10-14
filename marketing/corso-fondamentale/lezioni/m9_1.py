@@ -1,0 +1,36 @@
+from h import *
+LEZIONE = L('9.1', 'Modulo 9', 'Eventi straordinari', 'Geopolitica e guerre', [
+ T('MODULO 9 · LEZIONE 1', 'Quando il calendario **non basta**', "Guerre e crisi geopolitiche: l'esempio del 24 febbraio 2022.",
+   "Apriamo il modulo sugli eventi straordinari, cioè tutto quello che non trovi sul calendario economico. Guerre, crisi politiche, decisioni a sorpresa. Non si possono prevedere, ma si può capire come reagiscono i mercati, e soprattutto come proteggersi. Partiamo dalla geopolitica."),
+ TB("24 febbraio 2022: l'invasione dell'Ucraina", ['Mercato', 'Reazione'], [
+   ['Petrolio', 'il Brent supera i 100 dollari, sopra i 130 a inizio marzo'],
+   ['Oro', 'sale subito, sopra i 2.000 dollari a inizio marzo'],
+   ['Borse europee', 'forti cali, più esposte alla crisi'],
+   ['Euro', 'si indebolisce, per la vicinanza al conflitto e l\'energia']],
+   ["Prendiamo l'esempio più recente e chiaro, l'invasione dell'Ucraina da parte della Russia, il ventiquattro febbraio del 2022.",
+    "Il petrolio Brent supera i cento dollari al barile lo stesso giorno, e a inizio marzo arriva sopra i centotrenta, perché la Russia è uno dei maggiori esportatori di energia.",
+    "L'oro sale subito come rifugio, e a inizio marzo supera i duemila dollari l'oncia.",
+    "Le borse europee scendono con forza, perché l'Europa è più esposta alla crisi, sia per la vicinanza sia per la dipendenza dal gas russo.",
+    "E l'euro si indebolisce, per gli stessi motivi."]),
+ P('Come reagiscono i mercati', [
+   ('Prima la paura', 'rifugi su, borse e valute a rischio giù'),
+   ('Poi i canali concreti', 'energia, materie prime, commercio, inflazione'),
+   ('Spesso il rientro', 'se l\'economia non cambia davvero, la paura si sgonfia')],
+   ["In generale, la reazione dei mercati a un evento geopolitico segue spesso tre fasi.",
+    "Prima arriva la paura. I rifugi salgono, mentre borse e valute considerate più rischiose scendono.",
+    "Poi il mercato si chiede quali siano i canali concreti, cioè come l'evento colpisce l'energia, le materie prime, il commercio e l'inflazione. Nel caso dell'Ucraina il canale principale è stato l'energia, con effetti sull'inflazione europea per molti mesi.",
+    "E spesso arriva un rientro. Se l'evento non cambia davvero l'economia, la paura si sgonfia, e una parte dei movimenti iniziali si riassorbe. Molti eventi geopolitici, storicamente, hanno avuto effetti brevi sui mercati."]),
+ P('Come proteggersi', [
+   ('Non inseguire la notizia', 'i primi minuti sono i più caotici'),
+   ('Riduci il rischio', 'quando le tensioni crescono, lotti più piccoli'),
+   ('Guarda le esposizioni', 'petrolio, oro, valute vicine alla crisi')],
+   ["Come ci si protegge, visto che questi eventi non si possono prevedere?",
+    "Prima regola, non inseguire la notizia. I primi minuti dopo un evento sono i più caotici, con spread larghi e movimenti in entrambe le direzioni.",
+    "Seconda regola, quando le tensioni crescono, riduci la dimensione delle posizioni. Spesso i segnali arrivano giorni prima, con notizie sempre più preoccupanti.",
+    "Terza regola, guarda quali delle tue posizioni sono esposte, per esempio su petrolio, oro o valute dei paesi vicini alla crisi, e chiediti cosa succederebbe se l'evento peggiorasse."]),
+ RIEP([('Esempio', '24 febbraio 2022: petrolio e oro su, Europa giù'), ('Fasi', 'paura, canali concreti, spesso rientro'), ('Per il rischio', 'non inseguire, riduci i lotti quando le tensioni crescono')],
+   ["Riassumiamo ora i punti principali di questa lezione.",
+    "Con l'invasione dell'Ucraina, il ventiquattro febbraio del 2022, sono saliti petrolio e oro, mentre sono scesi le borse europee e l'euro.",
+    "La reazione segue spesso tre fasi, cioè paura, canali concreti e, se l'economia non cambia davvero, un rientro.",
+    "Sul piano del rischio, non inseguire la notizia, e riduci i lotti quando le tensioni iniziano a crescere."]),
+])

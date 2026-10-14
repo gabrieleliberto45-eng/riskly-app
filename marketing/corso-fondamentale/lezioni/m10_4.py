@@ -1,0 +1,38 @@
+from h import *
+LEZIONE = L('10.4', 'Modulo 10', 'Dal dato al piano', 'Il diario macro', [
+ T('MODULO 10 · LEZIONE 4', 'Imparare **dai dati passati**', 'Un diario semplice per capire come reagiscono i tuoi strumenti.',
+   "L'analisi fondamentale si impara davvero solo osservando. Ogni dato che esce è una piccola lezione su come ragiona il mercato. In questa lezione vediamo come tenere un diario macro, cioè un registro semplice dei dati e delle reazioni del mercato."),
+ TB('Cosa annotare per ogni dato', ['Campo', 'Esempio'], [
+   ['Dato e data', 'inflazione USA, ottobre'],
+   ['Attese e risultato', 'attese 3,0%, uscito 3,2%'],
+   ['Reazione', 'oro -25 dollari in 15 minuti'],
+   ['Dopo un giorno', 'movimento confermato o rientrato?'],
+   ['Note', 'componenti, revisioni, contesto']],
+   ["Per ogni dato importante, annota cinque cose.",
+    "Il dato e la data.",
+    "Le attese e il risultato, per capire quanto è stata grande la sorpresa.",
+    "La reazione dello strumento che segui, per esempio di quanti dollari si è mosso l'oro nei primi quindici minuti.",
+    "Cosa è successo il giorno dopo, cioè se il movimento è stato confermato oppure è rientrato.",
+    "E alcune note, per esempio sulle componenti, sulle revisioni o sul contesto, come la riunione della banca centrale in arrivo."]),
+ P('Cosa ti insegna dopo qualche mese', [
+   ('Quali dati contano', 'per i tuoi strumenti, adesso'),
+   ('Quanto si muove il prezzo', 'per dimensionare stop e lotti'),
+   ('Come ragiona il mercato', 'quando una sorpresa conta e quando no')],
+   ["Dopo qualche mese, il diario ti insegna tre cose che nessun corso può darti.",
+    "Quali dati contano davvero per gli strumenti che tratti, in questo periodo. Come abbiamo visto, l'importanza dei dati cambia nel tempo.",
+    "Di quanto si muove di solito il prezzo dopo ciascun dato, un'informazione preziosa per decidere stop e lotti.",
+    "E come ragiona il mercato, cioè quando una sorpresa viene presa sul serio e quando invece viene ignorata."]),
+ P('Il collegamento con il diario di trading', [
+   ('Segna il contesto macro', 'su ogni operazione: c\'era un dato?'),
+   ('Confronta i risultati', 'operazioni nei giorni dei dati e negli altri giorni'),
+   ('Correggi le regole', 'se nei giorni dei dati perdi, stai fuori')],
+   ["Il diario macro diventa ancora più utile se lo colleghi al tuo diario di trading.",
+    "Su ogni operazione, segna se c'era un dato importante in quella giornata.",
+    "Dopo un po' di tempo, confronta i risultati delle operazioni fatte nei giorni dei dati con quelle fatte negli altri giorni.",
+    "E correggi le tue regole di conseguenza. Se scopri che nei giorni dei dati perdi più spesso, la soluzione più semplice è restare fuori in quei giorni."]),
+ RIEP([('Annota', 'dato, attese, risultato, reazione, giorno dopo'), ('Impari', 'quali dati contano e quanto muovono'), ('Collega', 'il contesto macro al tuo diario di trading')],
+   ["Riassumiamo ora i punti principali di questa lezione.",
+    "Per ogni dato importante, annota attese, risultato, reazione e cosa è successo il giorno dopo.",
+    "Dopo qualche mese saprai quali dati contano per i tuoi strumenti e quanto muovono il prezzo.",
+    "E collegando il diario macro al tuo diario di trading capirai se nei giorni dei dati è meglio operare o restare fuori."]),
+])

@@ -1,0 +1,33 @@
+from h import *
+LEZIONE = L('8.3', 'Modulo 8', 'I beni rifugio', 'Franco svizzero e yen', [
+ T('MODULO 8 · LEZIONE 3', 'Le valute **della paura**', 'Perché franco svizzero e yen si rafforzano quando i mercati crollano.',
+   "Tra le valute, due hanno la fama di rifugio, il franco svizzero e lo yen giapponese. Quando i mercati hanno paura, tendono a rafforzarsi. In questa lezione vediamo perché, e quali rischi particolari comportano."),
+ CF('Due rifugi, due motivi',
+   dict(t='Franco svizzero', punti=[['Perché', 'stabilità politica e finanziaria'], ['Debito', 'basso'], ['Rischio', 'interventi della banca centrale']]),
+   dict(t='Yen giapponese', punti=[['Perché', 'grande creditore estero'], ['Meccanismo', 'rimpatrio dei capitali'], ['Rischio', 'chiusura del carry trade']]),
+   ["Il franco svizzero è considerato un rifugio per la stabilità politica e finanziaria della Svizzera, per il suo debito pubblico basso e per una lunga tradizione di neutralità. Il rischio particolare, come vedremo, sono gli interventi della banca centrale svizzera, che non ama un franco troppo forte.",
+    "Lo yen ha una storia diversa. Il Giappone è uno dei maggiori creditori del mondo, cioè ha investito enormi somme all'estero. Nei momenti di paura, parte di questi capitali torna in patria e viene convertita in yen. A questo si aggiunge la chiusura delle operazioni di carry trade, che abbiamo visto nel modulo due."]),
+ EX('Lo yen nella fase di paura (esempio illustrativo)', [
+   ['Prima', 'molti investitori sono corti sullo yen per il carry trade'],
+   ['Arriva lo shock', 'le borse scendono in modo violento'],
+   ['Chiusura delle posizioni', 'tutti ricomprano yen nello stesso momento'],
+   ['Effetto', 'lo yen si rafforza di diversi punti in pochi giorni']],
+   ["Vediamo il meccanismo con un esempio illustrativo. Prima della crisi, molti investitori sono corti sullo yen, perché lo prendono in prestito a tassi bassi per comprare valute che rendono di più.",
+    "Arriva uno shock, e le borse scendono in modo violento.",
+    "Gli investitori chiudono le loro posizioni di carry trade, e per farlo devono ricomprare yen, tutti nello stesso momento.",
+    "L'effetto è che lo yen si rafforza di diversi punti percentuali in pochi giorni, sorprendendo chi era posizionato dall'altra parte. Un episodio di questo tipo si è visto per esempio all'inizio di agosto del 2024."],
+   k=[1, 2, 3, 4]),
+ P('Cosa significa nella pratica', [
+   ('Movimenti improvvisi', 'nelle fasi di paura i cambi con yen e franco accelerano'),
+   ('Interventi', 'banca centrale svizzera e governo giapponese possono intervenire'),
+   ('Rischio di coda', 'eventi rari ma molto ampi: stop ampi o lotti piccoli')],
+   ["Cosa significa per chi fa trading su queste valute?",
+    "Che nelle fasi di paura i cambi con yen e franco possono accelerare all'improvviso.",
+    "Che le autorità possono intervenire per frenare un rafforzamento eccessivo, provocando movimenti nella direzione opposta.",
+    "E che queste valute hanno quello che si chiama rischio di coda, cioè eventi rari ma molto ampi. Per gestirlo servono lotti piccoli, perché in quei momenti lo stop può essere eseguito molto lontano."]),
+ RIEP([('Franco', 'stabilità svizzera, interventi della banca centrale'), ('Yen', 'rimpatrio dei capitali e chiusura del carry trade'), ('Per il rischio', 'rischio di coda: lotti piccoli sui cambi con yen e franco')],
+   ["Riassumiamo ora i punti principali di questa lezione.",
+    "Il franco svizzero è un rifugio grazie alla stabilità della Svizzera, ma la sua banca centrale interviene contro un franco troppo forte.",
+    "Lo yen si rafforza nelle fasi di paura per il rimpatrio dei capitali e la chiusura del carry trade.",
+    "Sul piano del rischio, entrambe hanno un rischio di coda importante, quindi è meglio usare lotti piccoli quando operi su questi cambi."]),
+])

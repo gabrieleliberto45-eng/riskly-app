@@ -1,0 +1,36 @@
+from h import *
+LEZIONE = L('8.4', 'Modulo 8', 'I beni rifugio', 'Titoli di Stato USA e dollaro', [
+ T('MODULO 8 · LEZIONE 4', 'Il centro **del sistema**', 'Perché nelle crisi il mondo compra dollari e titoli americani.',
+   "Nelle crisi più gravi, anche quando il problema nasce proprio negli Stati Uniti, il denaro tende a dirigersi verso i titoli di Stato americani e il dollaro. In questa lezione vediamo perché, e cosa comporta per chi fa trading."),
+ P('Perché i titoli di Stato USA', [
+   ('Il mercato più liquido', 'si possono comprare e vendere enormi quantità ogni giorno'),
+   ('Garanzia di riferimento', 'usati come garanzia in tutto il sistema finanziario'),
+   ('Rendimenti che scendono', 'nelle crisi gli acquisti fanno scendere i rendimenti')],
+   ["I titoli di Stato americani sono il rifugio più usato dai grandi investitori, per tre motivi.",
+    "Sono il mercato obbligazionario più liquido del mondo, in cui ogni giorno si scambiano enormi quantità senza difficoltà.",
+    "Sono usati come garanzia in tutto il sistema finanziario, per esempio nei prestiti tra banche, e questo li rende indispensabili.",
+    "Quando arriva una crisi, la forte domanda fa salire i loro prezzi, e quindi scendere i rendimenti. Per questo un calo rapido dei rendimenti americani è spesso un segnale di paura sui mercati."]),
+ P('Perché il dollaro', [
+   ('Valuta di riserva', 'la maggior parte delle riserve mondiali è in dollari'),
+   ('Debiti in dollari', 'molte imprese e governi esteri devono dollari'),
+   ('Corsa al dollaro', 'nelle crisi tutti ne hanno bisogno nello stesso momento')],
+   ["Anche il dollaro si comporta da rifugio, per ragioni in parte diverse.",
+    "È la principale valuta di riserva, e la maggior parte delle riserve delle banche centrali di tutto il mondo è detenuta in dollari.",
+    "Molte imprese e governi fuori dagli Stati Uniti hanno debiti in dollari, e devono quindi procurarseli per pagarli.",
+    "Nelle crisi tutti hanno bisogno di dollari nello stesso momento, e questa corsa al dollaro lo fa rafforzare, anche contro altri rifugi."]),
+ EX('Il dollaro sorride (un\'idea utile)', [
+   ['Economia USA forte', 'dollaro forte per crescita e tassi'],
+   ['Crescita globale ordinata', 'dollaro spesso più debole'],
+   ['Crisi globale', 'dollaro forte come rifugio'],
+   ['Lettura', 'il dollaro può salire sia con buone sia con cattive notizie']],
+   ["Molti analisti descrivono questo comportamento con un'immagine chiamata il sorriso del dollaro. Quando l'economia americana è molto forte, il dollaro si rafforza grazie a crescita e tassi alti.",
+    "Quando invece l'economia mondiale cresce in modo ordinato, gli investitori cercano rendimento altrove, e il dollaro tende a indebolirsi.",
+    "Quando arriva una crisi globale, il dollaro si rafforza di nuovo, questa volta come rifugio.",
+    "Il risultato è che il dollaro può salire sia con notizie molto buone sia con notizie molto cattive, e scendere nelle fasi intermedie. È un'idea semplificata, ma aiuta a non stupirsi di certe reazioni."],
+   k=[1, 2, 3, 4]),
+ RIEP([('Treasury', 'liquidità e garanzia, rendimenti giù nelle crisi'), ('Dollaro', 'valuta di riserva, corsa al dollaro nelle crisi'), ('Per il rischio', 'nelle crisi il dollaro può salire contro quasi tutto')],
+   ["Riassumiamo ora i punti principali di questa lezione.",
+    "I titoli di Stato americani sono il rifugio principale dei grandi investitori, e nelle crisi i loro rendimenti scendono.",
+    "Il dollaro si rafforza nelle crisi perché tutti ne hanno bisogno nello stesso momento.",
+    "Sul piano del rischio, ricorda che nelle crisi globali il dollaro può salire contro quasi tutte le altre valute, comprese quelle che di solito consideriamo rifugi."]),
+])

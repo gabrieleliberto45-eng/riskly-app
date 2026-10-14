@@ -1,0 +1,38 @@
+from h import *
+LEZIONE = L('10.1', 'Modulo 10', 'Dal dato al piano', 'Lo scenario della settimana', [
+ T('MODULO 10 · LEZIONE 1', 'La domenica **si prepara**', 'Come costruire lo scenario della settimana in venti minuti.',
+   "Siamo all'ultimo modulo, quello in cui trasformiamo tutto quello che abbiamo imparato in un metodo di lavoro. Partiamo dalla preparazione della settimana, una routine di circa venti minuti da fare la domenica o il lunedì mattina, prima di aprire qualsiasi operazione."),
+ P('I quattro passi della preparazione', [
+   ('1. Il calendario', 'segna i dati ad alto impatto, giorno e ora'),
+   ('2. Il contesto', 'cosa si aspettano le banche centrali e il mercato'),
+   ('3. Gli scenari', 'cosa succede se il dato è sopra o sotto le attese'),
+   ('4. Il rischio', 'decidi in anticipo quanto rischiare e quando stare fuori')],
+   ["La preparazione si fa in quattro passi.",
+    "Primo passo, il calendario. Apri il calendario economico e segna i dati ad alto impatto della settimana, con giorno e ora italiana, per i paesi degli strumenti che tratti.",
+    "Secondo passo, il contesto. Chiediti cosa si aspettano le banche centrali e il mercato. Per esempio, il mercato prevede un taglio dei tassi alla prossima riunione, oppure no?",
+    "Terzo passo, gli scenari. Per ogni dato importante, scrivi cosa ti aspetti che succeda se esce sopra le attese e cosa se esce sotto, sugli strumenti che segui.",
+    "Quarto passo, il rischio. Decidi in anticipo quanto vuoi rischiare in quella settimana, e in quali momenti preferisci restare fuori dal mercato."]),
+ EX('Esempio illustrativo di scenario', [
+   ['Dato chiave', 'inflazione USA, mercoledì alle 14:30'],
+   ['Contesto', 'il mercato prevede un taglio della Fed'],
+   ['Se sopra le attese', 'meno probabilità di taglio: dollaro su, oro giù'],
+   ['Se sotto le attese', 'taglio più probabile: dollaro giù, oro su']],
+   ["Vediamo un esempio illustrativo. Il dato chiave della settimana è l'inflazione americana, mercoledì alle quattordici e trenta.",
+    "Il contesto è che il mercato prevede un taglio dei tassi alla prossima riunione della Fed.",
+    "Se l'inflazione esce sopra le attese, il taglio diventa meno probabile. Lo scenario più probabile è dollaro in rialzo e oro in calo.",
+    "Se esce sotto le attese, il taglio diventa più probabile, e lo scenario più probabile è dollaro in calo e oro in rialzo. Avere questi due scenari scritti prima ti permette di reagire con calma, invece di improvvisare."],
+   k=[1, 2, 3, 4]),
+ P('Gli errori da evitare', [
+   ('Uno scenario solo', 'prepara sempre entrambe le direzioni'),
+   ('Troppi dati', 'concentrati su quelli ad alto impatto'),
+   ('Scenario come certezza', 'è una mappa, non una previsione')],
+   ["Ci sono alcuni errori comuni da evitare.",
+    "Preparare un solo scenario, quello in cui speri. Prepara sempre entrambe le direzioni.",
+    "Segnare troppi dati. Concentrati su quelli ad alto impatto, perché sono quelli che muovono davvero i prezzi.",
+    "E trattare lo scenario come una certezza. Lo scenario è una mappa che ti aiuta a orientarti, non una previsione su cui scommettere. Come abbiamo visto più volte, il mercato può reagire in modo diverso dal previsto."]),
+ RIEP([('Quattro passi', 'calendario, contesto, scenari, rischio'), ('Scenari', 'sempre entrambe le direzioni, scritte prima'), ('Per il rischio', 'decidi il rischio della settimana prima di iniziare')],
+   ["Riassumiamo ora i punti principali di questa lezione.",
+    "La preparazione della settimana si fa in quattro passi, cioè calendario, contesto, scenari e rischio.",
+    "Gli scenari vanno scritti prima, sempre in entrambe le direzioni.",
+    "Sul piano del rischio, decidi quanto rischiare nella settimana prima di aprire qualsiasi operazione."]),
+])

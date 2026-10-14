@@ -1,0 +1,38 @@
+from h import *
+LEZIONE = L('10.3', 'Modulo 10', 'Dal dato al piano', 'Il rischio nelle settimane cariche', [
+ T('MODULO 10 · LEZIONE 3', 'Settimane diverse, **rischio diverso**', 'Come adattare il rischio al calendario.',
+   "Non tutte le settimane sono uguali. Alcune sono tranquille, altre contengono il rapporto sul lavoro americano, l'inflazione e una riunione della Fed. Usare lo stesso rischio in entrambe è un errore. In questa lezione vediamo come adattarlo."),
+ TB('Classificare la settimana', ['Tipo di settimana', 'Rischio per operazione'], [
+   ['Tranquilla', 'il tuo rischio normale, per esempio 1%'],
+   ['Con un dato forte', 'normale, ma fuori dal mercato intorno al dato'],
+   ['Carica', 'ridotto, per esempio 0,5%'],
+   ['Straordinaria', 'minimo o fuori dal mercato']],
+   ["Il primo passo è classificare la settimana durante la preparazione.",
+    "Una settimana tranquilla, senza dati ad alto impatto sugli strumenti che tratti, permette di usare il tuo rischio normale, per esempio l'uno per cento per operazione.",
+    "In una settimana con un solo dato forte puoi mantenere il rischio normale, ma restando fuori dal mercato nelle ore intorno al dato.",
+    "In una settimana carica, con più dati importanti o una banca centrale, conviene ridurre il rischio, per esempio a mezzo punto percentuale per operazione.",
+    "E in una settimana straordinaria, con elezioni, crisi o eventi imprevedibili, il rischio va ridotto al minimo, oppure si sta fuori."]),
+ EX('Esempio illustrativo: lo stesso stop, rischio diverso', [
+   ['Conto', '10.000 €'],
+   ['Settimana tranquilla', 'rischio 1%: 100 € per operazione'],
+   ['Settimana carica', 'rischio 0,5%: 50 € per operazione'],
+   ['Effetto', 'con lo stesso stop, il lotto si dimezza']],
+   ["Vediamo un esempio illustrativo con un conto da diecimila euro.",
+    "In una settimana tranquilla, con un rischio dell'uno per cento, rischi cento euro per operazione.",
+    "In una settimana carica, con un rischio dello zero virgola cinque per cento, ne rischi cinquanta.",
+    "Con la stessa distanza dello stop, il lotto si dimezza. In pratica, se la volatilità raddoppia, il tuo rischio reale resta sotto controllo."],
+   k=[1, 2, 3, 4]),
+ P('Il tetto settimanale', [
+   ('Perdita massima della settimana', 'per esempio 3%'),
+   ('Raggiunto il tetto', 'ti fermi fino alla settimana dopo'),
+   ('Perché funziona', 'evita di inseguire le perdite nei giorni più caotici')],
+   ["Oltre al rischio per operazione, conviene avere un tetto settimanale.",
+    "Stabilisci una perdita massima per la settimana, per esempio il tre per cento del conto.",
+    "Se la raggiungi, ti fermi fino alla settimana successiva, senza eccezioni.",
+    "Funziona perché nelle settimane più caotiche è facile inseguire le perdite con operazioni sempre più grandi. Il tetto ti protegge proprio da questo."]),
+ RIEP([('Classifica', 'tranquilla, un dato forte, carica, straordinaria'), ('Adatta', 'meno rischio quando il calendario è pieno'), ('Tetto', 'una perdita massima settimanale, poi stop')],
+   ["Riassumiamo ora i punti principali di questa lezione.",
+    "Durante la preparazione, classifica la settimana in base al calendario.",
+    "Riduci il rischio per operazione quando la settimana è carica o straordinaria.",
+    "E stabilisci un tetto di perdita settimanale, raggiunto il quale ti fermi."]),
+])

@@ -1,0 +1,36 @@
+from h import *
+LEZIONE = L('9.2', 'Modulo 9', 'Eventi straordinari', 'Elezioni e referendum', [
+ T('MODULO 9 · LEZIONE 2', 'Il voto che **sorprende**', 'Brexit, 23 giugno 2016: quando il mercato sbaglia la previsione.',
+   "Le elezioni e i referendum sono eventi particolari. La data si conosce in anticipo, ma il risultato no. E quando il mercato si è convinto di un esito e ne arriva un altro, il movimento può essere enorme. L'esempio classico è il referendum sulla Brexit."),
+ EX('Brexit, notte tra il 23 e il 24 giugno 2016', [
+   ['Prima del voto', 'il mercato si aspetta la vittoria del restare'],
+   ['Sterlina la sera', 'intorno a 1,50 contro il dollaro'],
+   ['Durante lo spoglio', 'i risultati indicano l\'uscita'],
+   ['Il mattino dopo', 'sterlina vicino a 1,32, minimi da oltre trent\'anni']],
+   ["Il ventitré giugno del 2016 il Regno Unito vota per decidere se restare o uscire dall'Unione europea. Nei giorni prima del voto, il mercato si aspetta la vittoria del restare.",
+    "La sera del voto, la sterlina contro il dollaro sale intorno a uno virgola cinquanta, proprio perché il mercato è fiducioso.",
+    "Durante la notte, con lo spoglio, i risultati iniziano a indicare l'uscita.",
+    "La mattina dopo la sterlina tocca un minimo vicino a uno virgola trentadue, con un calo di oltre il dieci per cento in poche ore, ai livelli più bassi da oltre trent'anni."],
+   k=[1, 2, 3, 4]),
+ P('Cosa ci insegna', [
+   ('Il prezzo contiene una scommessa', 'più il mercato è sicuro, più forte la sorpresa'),
+   ('Di notte, con poca liquidità', 'i movimenti sono più violenti'),
+   ('Gli stop slittano', 'nessuno compra mentre tutti vendono')],
+   ["Cosa ci insegna questo episodio?",
+    "Che il prezzo prima del voto contiene già una scommessa sul risultato. Più il mercato è sicuro di un esito, più forte è la reazione se arriva quello opposto.",
+    "Che i risultati arrivano spesso di notte, quando la liquidità è bassa, e i movimenti diventano ancora più violenti.",
+    "E che in quei momenti gli stop possono essere eseguiti molto lontano dal livello impostato, perché mentre tutti vendono è difficile trovare qualcuno che compri. Questo si chiama slippage."]),
+ P('Come comportarsi', [
+   ('Segna le date', 'elezioni e referendum dei paesi delle tue valute'),
+   ('Chiudi o riduci prima', 'non tenere posizioni piene durante lo spoglio'),
+   ('Aspetta il giorno dopo', 'il trading migliore arriva quando la situazione è chiara')],
+   ["Come comportarsi, quindi, con elezioni e referendum?",
+    "Segna in calendario le date delle elezioni e dei referendum nei paesi delle valute che tratti.",
+    "Prima del voto, chiudi o riduci molto le posizioni esposte. Tenere una posizione piena durante lo spoglio è una scommessa, non un'operazione pianificata.",
+    "E aspetta il giorno dopo. Le opportunità migliori arrivano spesso quando il risultato è chiaro e la liquidità è tornata normale."]),
+ RIEP([('Esempio', 'Brexit: sterlina oltre il 10% giù in una notte'), ('Lezione', 'più il mercato è sicuro, più forte la sorpresa'), ('Per il rischio', 'riduci o chiudi prima del voto, aspetta il giorno dopo')],
+   ["Riassumiamo ora i punti principali di questa lezione.",
+    "Con la Brexit la sterlina ha perso oltre il dieci per cento in una sola notte, perché il mercato si aspettava l'esito opposto.",
+    "Più il mercato è sicuro di un risultato, più forte è la reazione quando arriva una sorpresa.",
+    "Sul piano del rischio, riduci o chiudi le posizioni prima del voto, e aspetta il giorno dopo per operare."]),
+])

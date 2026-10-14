@@ -1,0 +1,38 @@
+from h import *
+LEZIONE = L('8.2', 'Modulo 8', 'I beni rifugio', "L'oro", [
+ T('MODULO 8 · LEZIONE 2', 'Il rifugio **più antico**', "Cosa muove l'oro: tassi, dollaro, banche centrali e paura.",
+   "L'oro è il bene rifugio per eccellenza, e anche uno degli strumenti più scambiati dai trader retail. In questa lezione mettiamo insieme tutto quello che abbiamo visto finora, e vediamo quali sono i principali motori del suo prezzo."),
+ P("I motori dell'oro", [
+   ('Rendimenti reali', 'più alti pesano sull\'oro, più bassi lo sostengono'),
+   ('Dollaro', 'spesso in direzione opposta'),
+   ('Banche centrali', 'acquisti per diversificare le riserve'),
+   ('Paura e geopolitica', 'domanda di protezione nelle crisi')],
+   ["Il prezzo dell'oro dipende da quattro motori principali.",
+    "I rendimenti reali, che abbiamo visto nel modulo sei. Quando sono alti, tenere oro costa di più in termini di interessi persi, e questo pesa sul prezzo.",
+    "Il dollaro, che spesso si muove in direzione opposta, come abbiamo visto nel modulo sulle correlazioni.",
+    "Le banche centrali, che negli ultimi anni hanno comprato grandi quantità di oro per diversificare le proprie riserve, e che sono diventate un sostegno importante per il prezzo.",
+    "E la paura, legata a crisi finanziarie e tensioni geopolitiche, che spinge gli investitori a cercare protezione."]),
+ TB("I dati che muovono l'oro", ['Dato', 'Perché'], [
+   ['Inflazione USA', 'cambia le attese sui tassi della Fed'],
+   ['Rapporto sul lavoro USA', 'idem, e muove il dollaro'],
+   ['Riunioni della Fed', 'il dot plot e la conferenza stampa'],
+   ['Rendimenti USA', 'il decennale e i rendimenti reali']],
+   ["Quali sono, quindi, i dati da segnare in calendario se fai trading sull'oro?",
+    "L'inflazione americana, perché cambia le attese sui tassi della Fed.",
+    "Il rapporto sul lavoro americano, per lo stesso motivo, e perché muove il dollaro.",
+    "Le riunioni della Fed, con il comunicato, il dot plot e la conferenza stampa.",
+    "E i rendimenti americani, in particolare il decennale e i rendimenti reali, che conviene tenere sempre sott'occhio."]),
+ P("La volatilità dell'oro", [
+   ('Movimenti ampi', 'nei giorni dei dati USA può muoversi di decine di dollari in pochi minuti'),
+   ('Lotto e valore del punto', 'con prezzi alti, ogni dollaro di movimento pesa di più'),
+   ('Spread', 'si allarga molto intorno ai dati e all\'apertura della settimana')],
+   ["Infine, una parola sulla volatilità, che per chi fa trading sull'oro è fondamentale.",
+    "Nei giorni dei dati americani importanti l'oro può muoversi di decine di dollari in pochi minuti, molto più di quanto si muova di solito in un'ora.",
+    "Con prezzi alti, ogni dollaro di movimento pesa di più sul conto. Per questo il calcolo del lotto in base allo stop è ancora più importante che su altri strumenti.",
+    "E lo spread si allarga molto intorno ai dati e alla riapertura dei mercati la domenica sera, quindi conviene evitare ordini molto stretti in quei momenti."]),
+ RIEP([('Motori', 'rendimenti reali, dollaro, banche centrali, paura'), ('Dati', 'inflazione, lavoro e Fed americani'), ('Per il rischio', 'volatilità molto alta nei giorni dei dati: lotti più piccoli')],
+   ["Riassumiamo ora i punti principali di questa lezione.",
+    "I motori principali dell'oro sono i rendimenti reali, il dollaro, gli acquisti delle banche centrali e la paura.",
+    "I dati da segnare sono soprattutto quelli americani, cioè inflazione, lavoro e riunioni della Fed.",
+    "Sul piano del rischio, nei giorni dei dati l'oro può muoversi moltissimo in pochi minuti, quindi conviene ridurre i lotti e tenere conto dello spread più largo."]),
+])

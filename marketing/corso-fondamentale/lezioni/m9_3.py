@@ -1,0 +1,36 @@
+from h import *
+LEZIONE = L('9.3', 'Modulo 9', 'Eventi straordinari', 'Gli shock delle banche centrali', [
+ T('MODULO 9 · LEZIONE 3', 'Il giorno in cui **saltò il tetto**', 'Banca nazionale svizzera, 15 gennaio 2015.',
+   "Di solito le banche centrali preparano il mercato con largo anticipo. Ma qualche volta decidono a sorpresa, e l'effetto può essere devastante. Il caso più famoso è quello della banca centrale svizzera, il quindici gennaio del 2015."),
+ TB('15 gennaio 2015', ['Momento', 'Cosa succede'], [
+   ['Dal 2011', 'la banca centrale svizzera difende un minimo a 1,20 su euro franco'],
+   ['Pochi giorni prima', 'ripete che il minimo resta una priorità'],
+   ['Mattina del 15 gennaio', 'annuncia a sorpresa la fine del minimo'],
+   ['In pochi minuti', 'euro franco crolla fino a circa 0,85, poi risale verso 1,00']],
+   ["Vediamo i fatti in ordine.",
+    "Dal 2011 la banca centrale svizzera difende un livello minimo di uno virgola venti sul cambio euro franco, per impedire al franco di rafforzarsi troppo e danneggiare l'economia svizzera.",
+    "Pochi giorni prima della decisione, i suoi rappresentanti ripetono che quel minimo resta una priorità.",
+    "La mattina del quindici gennaio, invece, la banca annuncia a sorpresa che il minimo viene abbandonato.",
+    "In pochi minuti il cambio euro franco crolla, toccando per un momento livelli vicini a zero virgola ottantacinque, per poi risalire intorno alla parità. Un movimento di quasi il trenta per cento in pochi minuti, su una delle valute più stabili del mondo."]),
+ P('Le conseguenze', [
+   ('Stop non eseguiti', 'il prezzo salta interi livelli senza scambi'),
+   ('Saldi negativi', 'molti conti finiscono sotto zero'),
+   ('Broker in difficoltà', 'alcuni falliscono, altri devono essere salvati')],
+   ["Le conseguenze sono state pesantissime.",
+    "Molti stop non sono stati eseguiti al livello impostato, perché il prezzo ha saltato interi livelli senza che ci fossero scambi.",
+    "Molti conti sono finiti con un saldo negativo, cioè i trader si sono ritrovati a dover denaro al proprio broker.",
+    "E alcuni broker sono falliti, mentre altri hanno avuto bisogno di finanziamenti di emergenza per sopravvivere."]),
+ P('Cosa ci insegna', [
+   ('Nessun livello è garantito', 'neanche quando una banca centrale lo promette'),
+   ('Lo stop non è una garanzia', 'limita il rischio solo se il mercato è continuo'),
+   ('Protezione dal saldo negativo', 'verifica che il tuo broker la offra')],
+   ["Cosa ci insegna questo episodio?",
+    "Che nessun livello è garantito, neanche quando una banca centrale dice di volerlo difendere.",
+    "Che lo stop limita il rischio solo quando il mercato si muove in modo continuo. In un salto improvviso, la perdita può essere molto più grande del previsto. Per questo la dimensione della posizione deve sempre tenere conto di eventi estremi.",
+    "E che conviene verificare se il tuo broker offre la protezione dal saldo negativo, che impedisce al conto di andare sotto zero. In Europa è obbligatoria per i clienti retail dei broker regolamentati."]),
+ RIEP([('Esempio', 'banca centrale svizzera, euro franco giù di quasi il 30%'), ('Conseguenze', 'stop saltati, saldi negativi, broker falliti'), ('Per il rischio', 'leva bassa e protezione dal saldo negativo')],
+   ["Riassumiamo ora i punti principali di questa lezione.",
+    "Il quindici gennaio del 2015 la banca centrale svizzera ha abbandonato a sorpresa il minimo su euro franco, e il cambio è crollato di quasi il trenta per cento in pochi minuti.",
+    "Le conseguenze sono state stop non eseguiti, saldi negativi e broker falliti.",
+    "Sul piano del rischio, usa una leva bassa, e verifica che il tuo broker offra la protezione dal saldo negativo."]),
+])

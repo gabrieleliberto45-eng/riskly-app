@@ -1,0 +1,36 @@
+from h import *
+LEZIONE = L('8.5', 'Modulo 8', 'I beni rifugio', 'Quando i rifugi non funzionano', [
+ T('MODULO 8 · LEZIONE 5', 'Quando **si vende tutto**', 'Marzo 2020: la crisi di liquidità in cui anche l\'oro è sceso.',
+   "Chiudiamo il modulo sui beni rifugio con un caso che ogni trader dovrebbe conoscere. Ci sono momenti in cui la paura è così forte che non si cerca più un rifugio, si cerca solo liquidità. In quei momenti si vende tutto, compresi i rifugi. Il caso più recente e chiaro è il marzo del 2020."),
+ TB('Marzo 2020', ['Periodo', 'Cosa è successo'], [
+   ['Fine febbraio', 'la pandemia si diffonde, le borse iniziano a crollare'],
+   ['Inizio marzo', "l'oro sale, come ci si aspetta da un rifugio"],
+   ['Metà marzo', 'corsa alla liquidità: scendono anche oro e titoli di Stato'],
+   ['23 marzo', 'la Fed annuncia acquisti senza limiti, i mercati iniziano a calmarsi']],
+   ["Vediamo cosa è successo, passo per passo.",
+    "A fine febbraio del 2020 la pandemia si diffonde fuori dalla Cina, e le borse iniziano a crollare.",
+    "All'inizio di marzo l'oro sale, esattamente come ci si aspetta da un rifugio.",
+    "A metà marzo, però, arriva la corsa alla liquidità. Fondi e investitori devono procurarsi contanti per coprire le perdite e le richieste di margine, e vendono quello che riescono a vendere, cioè proprio gli asset più liquidi. Scendono così anche l'oro e perfino alcuni titoli di Stato americani. In pochi giorni l'oro perde oltre il dieci per cento dai massimi di inizio mese.",
+    "Il ventitré marzo la Fed annuncia acquisti di titoli senza un limite prefissato, e da lì i mercati iniziano lentamente a calmarsi. L'oro, nei mesi successivi, raggiungerà nuovi massimi."]),
+ P('Perché succede', [
+   ('Richieste di margine', 'chi perde deve versare denaro subito'),
+   ('Si vende ciò che è liquido', 'i rifugi sono i più facili da vendere'),
+   ('Tutti insieme', 'le correlazioni tendono a uno: tutto scende')],
+   ["Perché succede una cosa del genere?",
+    "Perché chi ha posizioni con leva e subisce forti perdite riceve richieste di margine, cioè deve versare denaro immediatamente.",
+    "Per procurarsi quel denaro vende ciò che è più facile da vendere, e i rifugi, essendo molto liquidi, sono i primi della lista.",
+    "Quando tutti lo fanno nello stesso momento, le correlazioni tendono a uno, cioè quasi tutto scende insieme, e la diversificazione smette temporaneamente di funzionare."]),
+ P('Le lezioni per il rischio', [
+   ('Nessuna protezione automatica', 'un rifugio può scendere proprio quando serve'),
+   ('La liquidità del conto', 'margine libero e leva bassa evitano vendite forzate'),
+   ('Lo stop resta la difesa', 'le correlazioni possono tradire, lo stop no')],
+   ["Quali lezioni ne traiamo?",
+    "Nessun asset ti protegge in modo automatico. Un rifugio può scendere proprio nel momento in cui pensavi che ti proteggesse.",
+    "Avere margine libero sul conto e usare una leva bassa evita di essere costretti a chiudere posizioni nel momento peggiore, come è successo a tanti in quei giorni.",
+    "E la difesa principale resta lo stop, insieme a una dimensione corretta della posizione. Le correlazioni possono tradire, una regola scritta no."]),
+ RIEP([('Marzo 2020', 'corsa alla liquidità, scende anche l\'oro'), ('Perché', 'richieste di margine e vendite forzate'), ('Per il rischio', 'margine libero, leva bassa, stop sempre')],
+   ["Riassumiamo ora i punti principali di questa lezione, che chiude il modulo sui beni rifugio.",
+    "Nel marzo del 2020, durante la corsa alla liquidità, sono scesi per alcuni giorni anche l'oro e alcuni titoli di Stato.",
+    "Succede perché chi subisce perdite con la leva deve vendere ciò che è più liquido, e i rifugi lo sono.",
+    "Sul piano del rischio, tieni margine libero, usa una leva bassa e uno stop sempre. Nel prossimo modulo parliamo degli eventi straordinari."]),
+])
