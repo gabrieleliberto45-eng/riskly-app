@@ -2,7 +2,7 @@
 
 Stesso formato del corso di gestione del rischio e dei video YouTube: slide 16:9 in stile Riskly, grafici, voce, capitoli.
 Obiettivo: capire **perché** si muovono i mercati e **come comportarsi** intorno ai dati, senza previsioni e senza segnali.
-Durata stimata: **11 moduli · 50 lezioni · circa 4 ore** (lezioni da 4–6 minuti).
+Durata stimata: **11 moduli · 55 lezioni · circa 2 ore e mezza** (lezioni da 2–4 minuti).
 
 Regole (come nel corso di rischio):
 - ogni numero storico con fonte e data, verificato; niente previsioni di prezzo, niente "compra/vendi";
