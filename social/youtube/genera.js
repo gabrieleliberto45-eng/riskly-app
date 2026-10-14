@@ -10,6 +10,10 @@ const path = require('path');
 const QUI = __dirname, ID = process.argv[2] || 'v01';
 const FF = execSync(`python3 -c "import imageio_ffmpeg as i;print(i.get_ffmpeg_exe())"`).toString().trim();
 const FPS = 24, ANIM = 0.7, PAUSA = 0.7;          // durata comparsa, silenzio tra le scene
+const MUTO = !!process.env.MUTO;                 // senza voce: sottotitoli a schermo e musica più alta
+/* pezzi di sottotitolo: frasi intere, al massimo ~110 caratteri; tempi in proporzione alle parole */
+const pezzi = t => { const fr = t.match(/[^.!?]+[.!?]+["»]?|[^.!?]+$/g).map(x => x.trim()); const out = []; for(const f of fr){ if(out.length && (out[out.length-1] + ' ' + f).length <= 110) out[out.length-1] += ' ' + f; else out.push(f); } return out; };
+const parole = t => t.split(/\s+/).filter(Boolean).length;
 const durata = f => { const o = spawnSync(FF, ['-i', f]).stderr.toString().match(/Duration: (\d+):(\d+):([\d.]+)/); return +o[1]*3600 + +o[2]*60 + +o[3]; };
 
 (async () => {
@@ -22,7 +26,9 @@ const durata = f => { const o = spawnSync(FF, ['-i', f]).stderr.toString().match
   await p.waitForFunction(() => window.visPronto); await p.evaluate(() => document.fonts.ready);
 
   const voci = spec.scene.map((s, i) => path.join(QUI, 'voce', `${ID}-${String(i + 1).padStart(2, '0')}.mp3`));
-  const durate = voci.map(durata).map(d => d + PAUSA);
+  // senza voce la scena dura il tempo di lettura dei sottotitoli (circa 2,6 parole al secondo)
+  const durate = MUTO ? spec.scene.map(s => Math.max(6, parole(s.voce) / 2.6 + 1.8)) : voci.map(durata).map(d => d + PAUSA);
+  await p.evaluate(m => window.muto(m), MUTO);
   const totale = durate.reduce((a, c) => a + c, 0);
   let inizio = 0, scritti = 0, dovuti = 0; const capitoli = [];
   // i fotogrammi vanno direttamente a ffmpeg (niente migliaia di file su disco), a fotogrammi costanti
@@ -36,21 +42,26 @@ const durata = f => { const o = spawnSync(FF, ['-i', f]).stderr.toString().match
     capitoli.push([inizio, s.capitolo]);
     const n = await p.evaluate(([s, i, N, a]) => window.scena(s, i, N, a), [s, i, spec.scene.length, (inizio + D / 2) / totale]);
     await p.evaluate(() => document.fonts.ready);
+    await p.evaluate(() => Promise.all([...document.images].map(im => im.complete ? 0 : new Promise(r => { im.onload = im.onerror = r; }))));
     // titolo subito, il resto distribuito nel primo 75% della voce
     const tempi = [...Array(n)].map((_, k) => k === 0 ? 0 : Math.min(D - 1, 0.6 + (k / n) * D * 0.75));
+    // sottotitoli: ogni pezzo parte in proporzione alle parole lette prima
+    const pz = MUTO ? pezzi(s.voce) : [], tot = pz.reduce((a, x) => a + parole(x), 0); let acc = 0;
+    const inizi = pz.map(x => { const v = (acc / tot) * (D - 1.2) + 0.3; acc += parole(x); return v; });
+    const sott = async t => { if(MUTO) await p.evaluate(([a, b, t]) => window.sottotitolo(a, b, t), [pz, inizi, t]); };
     if(s.visual){                       // scena 3D: ogni fotogramma è diverso
       const tot = Math.round(D * FPS);
       for(let f = 0; f < tot; f++){
-        await p.evaluate(([t, tempi]) => window.fotogramma(t, tempi), [f / FPS, tempi]);
+        await p.evaluate(([t, tempi]) => window.fotogramma(t, tempi), [f / FPS, tempi]); await sott(f / FPS);
         await lista.push([await scatto(), 1 / FPS]);
       }
     } else {                            // senza 3D: solo le comparse, poi immagine ferma
       let t = 0;
       while(t < D){
-        await p.evaluate(([t, tempi]) => window.fotogramma(t, tempi), [t, tempi]);
+        await p.evaluate(([t, tempi]) => window.fotogramma(t, tempi), [t, tempi]); await sott(t);
         const f = await scatto();
         const inAnim = tempi.some(x => t >= x && t < x + ANIM);
-        const prossimo = inAnim ? t + 1 / FPS : Math.min(D, ...tempi.filter(x => x > t), D);
+        const prossimo = inAnim ? t + 1 / FPS : Math.min(D, ...tempi.filter(x => x > t), ...inizi.filter(x => x > t), D);
         await lista.push([f, Math.max(1 / FPS, prossimo - t)]); t = Math.max(prossimo, t + 1 / FPS);
       }
     }
@@ -63,6 +74,13 @@ const durata = f => { const o = spawnSync(FF, ['-i', f]).stderr.toString().match
   await b.close();
 
   await new Promise(ok => { enc.on('close', ok); enc.stdin.end(); });
+  if(MUTO){                           // solo musica, più alta, con dissolvenza finale
+    const basi = fs.readdirSync(path.join(QUI, '..', 'generatore', 'musica')).filter(f => f.endsWith('.m4a')).sort();
+    const r = spawnSync(FF, ['-y', '-i', path.join(tmp, 'muto.mp4'), '-stream_loop', '-1', '-i', path.join(QUI, '..', 'generatore', 'musica', basi[0]),
+      '-filter_complex', `[1:a]volume=0.5,afade=t=out:st=${(totale - 3).toFixed(2)}:d=3,loudnorm=I=-18:TP=-2[a]`, '-map', '0:v', '-map', '[a]', '-c:v', 'copy',
+      '-c:a', 'aac', '-ar', '48000', '-b:a', '192k', '-movflags', '+faststart', '-t', totale.toFixed(2), path.join(QUI, ID + '.mp4')]);
+    if(r.status) console.error(r.stderr.toString().slice(-1500));
+  } else {
   // voce: tracce in fila con la pausa tra le scene
   const ac = voci.map(v => `file '${v}'\nfile '${path.join(tmp, 'pausa.mp3')}'`).join('\n');
   spawnSync(FF, ['-y', '-f', 'lavfi', '-i', 'anullsrc=r=24000:cl=mono', '-t', String(PAUSA), '-c:a', 'libmp3lame', path.join(tmp, 'pausa.mp3')]);
@@ -77,6 +95,7 @@ const durata = f => { const o = spawnSync(FF, ['-i', f]).stderr.toString().match
     '-map', '0:v', '-map', '[a]', '-c:v', 'copy',
     '-c:a', 'aac', '-ar', '48000', '-b:a', '192k', '-movflags', '+faststart', '-shortest', path.join(QUI, ID + '.mp4')]);
   if(r.status) console.error(r.stderr.toString().slice(-1500));
+  }
   const mmss = t => `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}`;
   fs.writeFileSync(path.join(QUI, ID + '-capitoli.txt'), capitoli.map(([t, c]) => `${mmss(t)} ${c}`).join('\n') + '\n');
   fs.rmSync(tmp, { recursive: true, force: true });

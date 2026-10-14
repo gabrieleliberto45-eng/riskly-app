@@ -68,3 +68,17 @@ A schermo intero, sui telefoni più alti (19,5:9), sia TikTok sia Instagram ingr
 Regola: sui social si pubblica sempre la versione in social/oggino/tiktok/ (contenuto all'80%, margini neri:
 ffmpeg -vf "scale=864:1536,pad=1080:1920:95:110:color=0x000000"), anche negli annunci. Gli originali restano per il sito.
 Post Instagram e TikTok separati alla stessa ora. Già fatto per tutti i video dal 13 al 21 ottobre.
+
+## YouTube dal 14 ottobre: due serie fisse (decise da Gabriele)
+Formato: senza voce (la voce sintetica da qui non funziona), sottotitoli a schermo e musica: `MUTO=1 node social/youtube/genera.js vNN`
+(server: python3 -m http.server 8790 nella cartella social/youtube). Ogni video chiude portando al corso **Riskly · Analisi fondamentale** (in arrivo).
+
+1. **"Domani esce"**: il giorno prima di ogni dato ad alto impatto USA o eurozona (importanza alta nel calendario), alle 18:30.
+   2–3 minuti: cosa esce e a che ora italiana, il contesto, il consenso (precedente → atteso), come può reagire di solito il mercato,
+   il rischio (prima, se resti dentro, dopo), chiusura sul corso. Niente previsioni. Fonte consensi: calendario economico TradingView.
+   Modello: social/youtube/v04.json. Titolo: "Domani alle HH:MM: <dato> (<data>)".
+2. **"La settimana dell'oro"**: ogni sabato alle 11:00. Numeri e grafico da `python3 social/youtube/oro/settimana.py <lunedì>`
+   (oro future COMEX, indice del dollaro, decennale USA), più le notizie della settimana verificate con fonti.
+   Scene: titolo con la variazione della settimana · grafico · i numeri (oro, dollaro, decennale) · cosa l'ha mosso · i dati della settimana prossima · rischio · chiusura sul corso.
+   Niente previsioni di prezzo.
+Attenzione agli orari: dal 25 ottobre al 1° novembre i dati USA delle 8:30 di New York escono alle 13:30 italiane e la Fed del 28 ottobre alle 19:00.
