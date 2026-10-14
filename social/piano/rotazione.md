@@ -71,7 +71,8 @@ Post Instagram e TikTok separati alla stessa ora. Già fatto per tutti i video d
 
 ## YouTube dal 14 ottobre: due serie fisse (decise da Gabriele)
 **Autonomia piena (Gabriele, 14 ottobre): le puntate si scrivono, montano e programmano senza chiedere conferma; a Gabriele solo una riga a cose fatte.**
-Formato: senza voce (la voce sintetica da qui non funziona), sottotitoli a schermo e musica: `MUTO=1 node social/youtube/genera.js vNN`
+Formato: **con la voce** dei video YouTube (edge-tts aggiornato, funziona di nuovo dal 14 ottobre): `python3 social/youtube/voce.py vNN` poi `node social/youtube/genera.js vNN`.
+Se la voce non va: versione senza voce con sottotitoli, `MUTO=1 node social/youtube/genera.js vNN`.
 (server: python3 -m http.server 8790 nella cartella social/youtube). Ogni video chiude portando al corso **Riskly · Analisi fondamentale** (in arrivo): fino al 21 ottobre "iscriviti al canale per sapere quando esce", dal 21 "lista d'attesa su riskly.trade, pagina Corso".
 
 1. **"Domani esce"**: il giorno prima di ogni dato ad alto impatto USA o eurozona (importanza alta nel calendario), alle 18:30.
