@@ -1,0 +1,31 @@
+from h import *
+LEZIONE = L('3.2', 'Modulo 3', "L'inflazione", "Il PCE: l'indice che guarda la Fed", [
+ T('MODULO 3 · LEZIONE 2', "L'inflazione **secondo la Fed**", "Perché la banca centrale americana preferisce un altro indice, e quando esce.",
+   "Nella lezione precedente abbiamo visto il CPI, il dato più famoso. Eppure, quando la Fed parla del suo obiettivo di inflazione al due per cento, non si riferisce al CPI, ma a un altro indice, chiamato PCE. In questa lezione vediamo cos'è e perché conta."),
+ CF('CPI e PCE',
+   dict(t='CPI', punti=[['Chi lo pubblica', 'Bureau of Labor Statistics'], ['Quando', 'a metà mese'], ['Ruolo', 'il più seguito dal mercato']]),
+   dict(t='PCE', punti=[['Chi lo pubblica', 'Bureau of Economic Analysis'], ['Quando', 'a fine mese'], ['Ruolo', 'obiettivo ufficiale della Fed']]),
+   ["Il CPI, come abbiamo visto, viene pubblicato dal Bureau of Labor Statistics a metà mese, ed è il dato a cui il mercato reagisce di più.",
+    "Il PCE, cioè l'indice dei prezzi delle spese per consumi personali, viene pubblicato dal Bureau of Economic Analysis verso la fine del mese successivo, insieme ai dati su redditi e spese delle famiglie. Dal 2012 è il riferimento ufficiale della Fed per il suo obiettivo del due per cento."]),
+ P('Perché la Fed preferisce il PCE', [
+   ('Paniere più ampio', 'include anche spese pagate per conto delle famiglie, come parte della sanità'),
+   ('Pesi aggiornati', 'segue meglio come cambiano le abitudini di spesa'),
+   ('Di solito più basso', 'storicamente un po\' sotto il CPI')],
+   ["Le ragioni principali sono tre.",
+    "Il paniere del PCE è più ampio, perché include anche spese fatte per conto delle famiglie, come una parte delle spese sanitarie pagate da assicurazioni e programmi pubblici.",
+    "I pesi delle varie voci vengono aggiornati più spesso, e seguono meglio il fatto che le persone cambiano abitudini quando i prezzi salgono, per esempio comprando prodotti meno cari.",
+    "Il risultato è che il PCE, storicamente, tende a essere un po' più basso del CPI. Quando senti che la Fed vuole l'inflazione al due per cento, si riferisce a questo indice, e in particolare alla sua versione core."]),
+ P('Perché il mercato reagisce meno', [
+   ('Arriva dopo il CPI', 'gran parte delle informazioni è già nota'),
+   ('Si può stimare', 'gli economisti lo calcolano partendo da CPI e PPI'),
+   ('Ma conta per la Fed', 'una sorpresa sul PCE core può cambiare le attese sui tassi')],
+   ["Allora perché il mercato reagisce meno al PCE che al CPI?",
+    "Perché arriva dopo, quando gran parte delle informazioni sui prezzi del mese è già stata pubblicata.",
+    "Inoltre gli economisti riescono a stimarlo con buona precisione partendo dai dati del CPI e del PPI, per cui le sorprese sono di solito più piccole.",
+    "Questo non significa che vada ignorato. Proprio perché è il dato di riferimento della Fed, una sorpresa sul PCE core può cambiare le attese sui tassi, soprattutto se arriva pochi giorni prima di una riunione."]),
+ RIEP([('PCE', "riferimento ufficiale della Fed per l'obiettivo del 2%"), ('Rispetto al CPI', 'esce dopo, paniere più ampio, di solito più basso'), ('Per il rischio', 'sorprese più rare, ma pesanti se vicine alla riunione')],
+   ["Riassumiamo ora i punti principali di questa lezione.",
+    "Il PCE è l'indice di inflazione che la Fed usa come riferimento ufficiale per il suo obiettivo del due per cento.",
+    "Rispetto al CPI esce più tardi, ha un paniere più ampio, ed è di solito un po' più basso.",
+    "Sul piano del rischio, il PCE sorprende meno spesso del CPI, ma una sorpresa a ridosso di una riunione della Fed può pesare molto."]),
+])

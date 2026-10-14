@@ -1,0 +1,33 @@
+from h import *
+LEZIONE = L('2.5', 'Modulo 2', 'Le banche centrali', 'Forward guidance: quando le parole muovono i prezzi', [
+ T('MODULO 2 · LEZIONE 5', 'Le **parole** come strumento', 'Una banca centrale può muovere il mercato senza toccare i tassi.',
+   "In questa lezione parliamo di uno degli strumenti più potenti delle banche centrali, e anche uno dei più sottovalutati dai trader, cioè le parole. Le banche centrali hanno capito da tempo che possono guidare il mercato semplicemente annunciando cosa intendono fare in futuro. Questo si chiama forward guidance, cioè indicazioni sul futuro."),
+ P('Come funziona', [
+   ('Annunciare', 'la banca centrale indica la direzione futura dei tassi'),
+   ('Anticipare', 'il mercato si adegua subito, senza aspettare la decisione'),
+   ('Evitare shock', 'i cambi di rotta arrivano per gradi, non all\'improvviso')],
+   ["Il meccanismo è semplice.",
+    "La banca centrale indica in anticipo la direzione che intende seguire, per esempio dicendo che i tassi resteranno alti a lungo, oppure che è pronta a tagliarli se i dati lo permetteranno.",
+    "Il mercato si adegua subito, senza aspettare la decisione vera e propria. I rendimenti e le valute si muovono già nel momento in cui le parole vengono pronunciate.",
+    "In questo modo i cambi di rotta arrivano per gradi, e la banca centrale evita di sorprendere il mercato con decisioni improvvise."]),
+ CF('Due toni, due reazioni',
+   dict(t='Tono restrittivo', punti=[['Parole', 'vigilanti, pronti ad agire'], ['Messaggio', 'tassi alti più a lungo'], ['Valuta', 'tende a salire']]),
+   dict(t='Tono espansivo', punti=[['Parole', 'pazienza, dati deboli'], ['Messaggio', 'tagli in arrivo'], ['Valuta', 'tende a scendere']]),
+   ["Nel gergo dei mercati si parla di tono restrittivo quando la banca centrale usa parole che indicano tassi alti più a lungo, come vigilanza o prontezza ad agire contro l'inflazione. In inglese questo tono viene detto hawkish, da falco. Di solito la valuta tende a rafforzarsi.",
+    "Si parla invece di tono espansivo quando le parole indicano pazienza, preoccupazione per la crescita o tagli in arrivo. In inglese si dice dovish, da colomba. In questo caso la valuta tende a indebolirsi."]),
+ EX('Esempio illustrativo: tassi fermi, mercato in movimento', [
+   ['Decisione', 'tassi invariati, come previsto'],
+   ['Comunicato', 'sparisce la frase "ulteriori rialzi possibili"'],
+   ['Lettura del mercato', 'i rialzi sono finiti, i tagli si avvicinano'],
+   ['Reazione', 'la valuta scende, pur senza alcun cambio dei tassi']],
+   ["Un esempio illustrativo. La banca centrale lascia i tassi invariati, esattamente come previsto da tutti.",
+    "Nel comunicato, però, sparisce una frase presente nelle riunioni precedenti, quella che diceva che ulteriori rialzi erano possibili.",
+    "Il mercato legge questa assenza come un segnale che i rialzi sono finiti, e che i tagli potrebbero arrivare prima del previsto.",
+    "Il risultato è che la valuta scende, anche se i tassi non sono cambiati di un millimetro. È per questo che il comunicato viene letto riga per riga."],
+   k=[1, 2, 3, 4]),
+ RIEP([('Forward guidance', 'indicazioni sul futuro dei tassi'), ('Toni', 'restrittivo e espansivo, falchi e colombe'), ('Per il rischio', 'anche un discorso può muovere il mercato come una decisione')],
+   ["Riassumiamo ora i punti principali di questa lezione.",
+    "La forward guidance sono le indicazioni che la banca centrale dà sul futuro dei tassi, e il mercato le anticipa subito.",
+    "Un tono restrittivo tende a rafforzare la valuta, un tono espansivo tende a indebolirla.",
+    "Sul piano del rischio, ricorda che anche un discorso o un'intervista di un banchiere centrale può muovere il mercato quanto una decisione, quindi controlla anche questi appuntamenti nel calendario."]),
+])

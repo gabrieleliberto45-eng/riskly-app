@@ -1,0 +1,38 @@
+from h import *
+LEZIONE = L('2.2', 'Modulo 2', 'Le banche centrali', 'Il tasso di riferimento e come arriva ai mercati', [
+ T('MODULO 2 · LEZIONE 2', 'Un numero che **cambia tutto**', 'Dal tasso della banca centrale ai mutui, ai rendimenti, alle valute.',
+   "In questa lezione seguiamo il viaggio di un singolo numero, il tasso di riferimento della banca centrale, e vediamo come arriva fino al prezzo dell'euro dollaro o dell'oro che vedi sul tuo grafico."),
+ P('Il percorso del tasso', [
+   ('Banca centrale', 'fissa il tasso a cui le banche si prestano denaro'),
+   ('Banche', 'adeguano i tassi di mutui, prestiti e depositi'),
+   ('Titoli di Stato', 'i rendimenti si muovono con le attese sui tassi'),
+   ('Valute e asset', 'i capitali vanno dove il denaro rende di più')],
+   ["Il percorso ha quattro tappe.",
+    "Si parte dalla banca centrale, che fissa il tasso a cui le banche si prestano denaro tra loro per brevi periodi. Negli Stati Uniti si parla di federal funds rate, nell'eurozona del tasso sui depositi presso la BCE.",
+    "Le banche adeguano di conseguenza i tassi che applicano ai mutui, ai prestiti e ai conti di deposito. Se il denaro costa di più a loro, costa di più anche a famiglie e imprese.",
+    "I titoli di Stato reagiscono ancora prima, perché i loro rendimenti si muovono già sulle attese di quello che farà la banca centrale nei prossimi mesi.",
+    "Infine le valute e gli altri asset. I grandi capitali si spostano verso i paesi dove il denaro rende di più a parità di rischio, e questo movimento sposta i cambi."]),
+ EX('Esempio illustrativo', [
+   ['Fed', 'tassi al 4%, attesi stabili'],
+   ['BCE', 'tassi al 2%, attesi in calo'],
+   ['Differenza', 'tenere dollari rende di più che tenere euro'],
+   ['Effetto tipico', 'capitali verso il dollaro, EURUSD sotto pressione']],
+   ["Facciamo un esempio con numeri inventati. La Fed ha i tassi al quattro per cento, e il mercato si aspetta che restino fermi.",
+    "La BCE ha i tassi al due per cento, e il mercato si aspetta altri tagli.",
+    "Per un grande investitore, tenere liquidità in dollari rende quindi di più che tenerla in euro, e la differenza potrebbe crescere ancora.",
+    "L'effetto tipico è che i capitali si spostano verso il dollaro, e l'euro dollaro resta sotto pressione. Se però un giorno i dati americani iniziassero a peggiorare e il mercato prevedesse tagli anche dalla Fed, il quadro potrebbe cambiare rapidamente."],
+   k=[1, 2, 3, 4]),
+ P('Perché conta il futuro, non il presente', [
+   ('Il tasso di oggi', 'è già noto e già nei prezzi'),
+   ('Il percorso atteso', 'è quello che muove il mercato'),
+   ('Le sorprese', 'nascono quando cambia il percorso, non solo il tasso')],
+   ["C'è un punto fondamentale da capire.",
+    "Il tasso di oggi è già noto a tutti, e quindi è già dentro i prezzi.",
+    "Quello che muove davvero il mercato è il percorso atteso dei tassi, cioè quanti tagli o quanti rialzi ci saranno nei prossimi mesi, e con quale velocità.",
+    "Per questo una banca centrale può lasciare i tassi fermi e muovere comunque il mercato, semplicemente cambiando il modo in cui descrive il futuro. Ne parleremo nella lezione sulla forward guidance."]),
+ RIEP([('Il percorso', 'banca centrale, banche, titoli di Stato, valute'), ('Differenziale', 'i capitali vanno dove il denaro rende di più'), ('Per il rischio', 'guarda le attese sui tassi, non solo il tasso di oggi')],
+   ["Riassumiamo ora i punti principali di questa lezione.",
+    "Il tasso di riferimento passa dalla banca centrale alle banche, ai titoli di Stato e infine alle valute.",
+    "I capitali tendono a spostarsi dove il denaro rende di più, e questo muove i cambi.",
+    "Sul piano del rischio, quando valuti una valuta guarda soprattutto le attese sui tassi dei prossimi mesi, perché è lì che nascono i movimenti più forti."]),
+])

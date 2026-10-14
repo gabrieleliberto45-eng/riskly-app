@@ -1,0 +1,33 @@
+from h import *
+LEZIONE = L('3.1', 'Modulo 3', "L'inflazione", 'Il CPI: generale e core', [
+ T('MODULO 3 · LEZIONE 1', "Quanto costa **vivere**", "L'indice dei prezzi al consumo, il dato sull'inflazione più seguito al mondo.",
+   "Apriamo il modulo dedicato all'inflazione con il dato più famoso, l'indice dei prezzi al consumo americano, il CPI. Negli ultimi anni è diventato l'appuntamento più atteso del mese, capace di muovere il dollaro, l'oro e le borse in pochi secondi. Vediamo cosa misura e come si legge."),
+ P('Cosa misura', [
+   ('Un paniere di spesa', 'casa, cibo, energia, trasporti, salute, servizi'),
+   ('Ogni mese', 'pubblicato dal Bureau of Labor Statistics, di solito a metà mese'),
+   ('Due confronti', 'rispetto al mese prima e rispetto a un anno prima')],
+   ["Il CPI misura come cambia il prezzo di un paniere di beni e servizi che rappresenta la spesa tipica delle famiglie americane.",
+    "Nel paniere ci sono la casa, che pesa moltissimo, il cibo, l'energia, i trasporti, la salute e tanti servizi.",
+    "Viene pubblicato ogni mese dal Bureau of Labor Statistics, l'ufficio di statistica del lavoro americano, di solito a metà mese, alle quattordici e trenta ora italiana.",
+    "Ogni dato ha due confronti, uno rispetto al mese precedente e uno rispetto allo stesso mese dell'anno prima. Il secondo è quello che senti citare più spesso nei telegiornali."]),
+ CF('Generale e core',
+   dict(t='CPI generale', punti=[['Contiene', 'tutto il paniere'], ['Pro', 'misura la spesa reale'], ['Contro', 'molto influenzato dall\'energia']]),
+   dict(t='CPI core', punti=[['Esclude', 'cibo ed energia'], ['Pro', 'mostra la tendenza di fondo'], ['Uso', 'il più guardato dalla Fed']]),
+   ["Il CPI generale contiene tutto il paniere, e misura la variazione dei prezzi che le famiglie pagano davvero. Il suo limite è che risente molto dei prezzi dell'energia, che possono salire o scendere di colpo per motivi che la banca centrale non controlla.",
+    "Per questo si guarda anche il CPI core, che esclude cibo ed energia. È più stabile, e mostra la tendenza di fondo dei prezzi. Banche centrali e mercati lo considerano spesso più importante del dato generale, perché dice se l'inflazione si sta radicando nell'economia."]),
+ EX('Come si legge (esempio illustrativo)', [
+   ['Generale, su base annua', 'consenso 3,0% · effettivo 3,1%'],
+   ['Core, su base annua', 'consenso 2,8% · effettivo 3,0%'],
+   ['Core, sul mese', 'consenso 0,2% · effettivo 0,4%'],
+   ['Lettura', 'il core sorprende al rialzo: dato considerato "caldo"']],
+   ["Vediamo come si legge un comunicato, con numeri inventati. Il dato generale su base annua esce al tre virgola uno per cento, contro un consenso del tre. È una sorpresa piccola.",
+    "Il core su base annua esce al tre per cento, contro un consenso del due virgola otto. Qui la sorpresa è più importante.",
+    "Il core sul mese esce allo zero virgola quattro, il doppio delle attese. Molti operatori guardano proprio questo numero, perché mostra la velocità dell'inflazione nell'ultimo mese.",
+    "La lettura complessiva è di un dato caldo, cioè di un'inflazione più forte del previsto. In uno scenario così, di solito, il mercato si aspetta tassi alti più a lungo, il dollaro tende a rafforzarsi e l'oro e le borse tendono a soffrire."],
+   k=[1, 2, 3, 4]),
+ RIEP([('CPI', 'paniere di spesa, ogni mese, ore 14:30'), ('Core', 'senza cibo ed energia, il più osservato'), ('Per il rischio', 'il CPI è tra i dati più volatili del mese')],
+   ["Riassumiamo ora i punti principali di questa lezione.",
+    "Il CPI misura come cambiano i prezzi del paniere di spesa delle famiglie americane, ed esce ogni mese alle quattordici e trenta.",
+    "Il core esclude cibo ed energia, ed è spesso il numero più osservato dal mercato.",
+    "Sul piano del rischio, il CPI è uno dei dati più volatili del mese, quindi conviene arrivarci con posizioni ridotte o senza posizioni."]),
+])

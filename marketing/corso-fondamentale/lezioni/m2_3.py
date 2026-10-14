@@ -1,0 +1,38 @@
+from h import *
+LEZIONE = L('2.3', 'Modulo 2', 'Le banche centrali', 'La Fed: comunicato, dot plot e conferenza stampa', [
+ T('MODULO 2 · LEZIONE 3', 'Una sera della **Fed**', 'Come si svolge una riunione e cosa guardare, minuto per minuto.',
+   "La riunione della banca centrale americana è l'evento più seguito dai mercati di tutto il mondo. In questa lezione vediamo come si svolge, cosa viene pubblicato e in quale ordine, così la prossima volta saprai esattamente cosa guardare."),
+ TB('Come funziona una riunione', ['Momento', 'Cosa succede'], [
+   ['8 volte l\'anno', 'il comitato FOMC si riunisce per due giorni'],
+   ['Ore 20:00 italiane', 'esce il comunicato con la decisione sui tassi'],
+   ['Ore 20:30 italiane', 'conferenza stampa del presidente della Fed'],
+   ['4 volte l\'anno', 'insieme al comunicato escono le proiezioni e il dot plot'],
+   ['3 settimane dopo', 'escono i verbali della riunione']],
+   ["Vediamo i passaggi uno alla volta.",
+    "Il comitato che decide i tassi si chiama FOMC, e si riunisce otto volte l'anno, di solito per due giorni.",
+    "Alle due del pomeriggio di Washington, cioè alle venti ora italiana nella maggior parte dell'anno, esce il comunicato con la decisione. È un testo breve, e il mercato lo legge parola per parola, confrontandolo con quello della riunione precedente.",
+    "Mezz'ora dopo inizia la conferenza stampa del presidente della Fed, che spiega la decisione e risponde alle domande dei giornalisti. Spesso è il momento più volatile della serata.",
+    "In quattro riunioni all'anno, a marzo, giugno, settembre e dicembre, escono anche le proiezioni economiche e il cosiddetto dot plot, che vedremo tra poco.",
+    "Circa tre settimane dopo vengono pubblicati i verbali, che raccontano la discussione interna e possono muovere di nuovo il mercato."]),
+ P('Il dot plot', [
+   ('Cos\'è', 'un grafico a punti: ogni punto è un membro del comitato'),
+   ('Cosa mostra', 'dove ciascuno vede i tassi a fine anno e negli anni successivi'),
+   ('Come si legge', 'la mediana dei punti è il percorso atteso dalla Fed')],
+   ["Il dot plot merita una spiegazione a parte.",
+    "È un grafico a punti in cui ogni punto rappresenta un membro del comitato, in forma anonima.",
+    "Ogni punto indica dove quel membro pensa che saranno i tassi alla fine dell'anno in corso e degli anni successivi.",
+    "Il mercato guarda soprattutto la mediana, cioè il valore centrale, perché descrive il percorso dei tassi che la Fed considera più probabile. Se la mediana indica meno tagli di quanti il mercato si aspettava, il dollaro tende a rafforzarsi, anche se quel giorno i tassi non sono cambiati."]),
+ P('Cosa fare quella sera', [
+   ('Prima delle 20:00', 'niente posizioni nuove, lotti ridotti su quelle aperte'),
+   ('Tra 20:00 e 21:30', 'due ondate di volatilità: comunicato e conferenza'),
+   ('Il giorno dopo', 'il mercato digerisce: spesso la direzione vera arriva lì')],
+   ["Vediamo, in pratica, come gestire quella sera.",
+    "Prima delle venti evita di aprire posizioni nuove sui mercati legati al dollaro, e valuta di ridurre il lotto su quelle già aperte.",
+    "Tra le venti e le ventuno e trenta ci sono di solito due ondate di volatilità, una al comunicato e una durante la conferenza stampa, che possono andare anche in direzioni opposte.",
+    "Il giorno dopo il mercato ha avuto il tempo di riflettere, e spesso la direzione più duratura si vede proprio lì, con spread normali e meno rumore."]),
+ RIEP([('Comunicato', 'ore 20:00, confrontato parola per parola'), ('Dot plot', 'quattro volte l\'anno, conta la mediana'), ('Per il rischio', 'due ondate di volatilità, poi il giorno dopo')],
+   ["Riassumiamo ora i punti principali di questa lezione.",
+    "Il comunicato della Fed esce alle venti ora italiana, e il mercato lo confronta con quello precedente parola per parola.",
+    "Quattro volte l'anno esce il dot plot, e conta soprattutto la mediana dei punti.",
+    "Sul piano del rischio, la sera della Fed ha due ondate di volatilità, e la direzione più affidabile spesso arriva il giorno dopo. Attenzione al cambio dell'ora, quando il comunicato può uscire alle diciannove."]),
+])

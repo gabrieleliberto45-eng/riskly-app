@@ -1,0 +1,35 @@
+from h import *
+LEZIONE = L('3.3', 'Modulo 3', "L'inflazione", 'Il PPI e i prezzi alla produzione', [
+ T('MODULO 3 · LEZIONE 3', "L'inflazione **prima** dei negozi", 'I prezzi pagati dalle imprese anticipano quelli pagati dalle famiglie.',
+   "Prima di arrivare sugli scaffali dei negozi, i prezzi passano dalle imprese. Quanto paga un'azienda per le materie prime, per l'energia, per i semilavorati? È quello che misura l'indice dei prezzi alla produzione, il PPI. In questa lezione vediamo perché viene considerato un segnale anticipatore dell'inflazione."),
+ P('Cosa misura il PPI', [
+   ('I prezzi di vendita delle imprese', 'per beni e servizi venduti ad altre imprese'),
+   ('Lungo la filiera', 'dalle materie prime ai prodotti finiti'),
+   ('Ogni mese', 'pubblicato dal Bureau of Labor Statistics, vicino al CPI')],
+   ["Il PPI misura come cambiano i prezzi che le imprese ricevono quando vendono i loro beni e servizi, spesso ad altre imprese.",
+    "Segue tutta la filiera, dalle materie prime come metalli ed energia, fino ai prodotti finiti pronti per la vendita.",
+    "Viene pubblicato ogni mese dallo stesso ufficio che pubblica il CPI, di solito a pochi giorni di distanza, prima o dopo, alle quattordici e trenta ora italiana."]),
+ EX('Perché anticipa (esempio illustrativo)', [
+   ['Mese 1', "l'energia e le materie prime aumentano"],
+   ['Mese 2', 'le imprese pagano di più: il PPI sale'],
+   ['Mesi successivi', 'parte dei costi viene girata ai clienti'],
+   ['Risultato', 'il CPI sale con qualche mese di ritardo']],
+   ["Vediamo il meccanismo con un esempio semplificato. Nel primo mese aumentano i prezzi dell'energia e delle materie prime.",
+    "Nel secondo mese le imprese pagano di più per produrre, e il PPI sale.",
+    "Nei mesi successivi le imprese cercano di proteggere i propri margini, girando almeno una parte dei costi ai clienti.",
+    "Il risultato è che l'inflazione al consumo, il CPI, sale con qualche mese di ritardo. Per questo un PPI in forte aumento viene spesso letto come un campanello d'allarme. Attenzione però, non sempre le imprese riescono a trasferire i costi, soprattutto quando la domanda è debole."],
+   k=[1, 2, 3, 4]),
+ P('Come lo usa il mercato', [
+   ('Conferma o smentisce il CPI', 'se esce dopo, aiuta a capire se il dato era un caso'),
+   ('Alimenta le stime del PCE', 'alcune voci del PPI entrano nel calcolo del PCE'),
+   ('Di solito pesa meno', 'ma una grande sorpresa muove comunque il mercato')],
+   ["Il mercato usa il PPI in tre modi.",
+    "Quando esce dopo il CPI, serve a confermare o smentire il dato sull'inflazione al consumo, e a capire se una sorpresa era un caso isolato.",
+    "Alcune voci del PPI, come i prezzi di alcuni servizi sanitari e finanziari, entrano nel calcolo del PCE, quindi gli economisti lo usano per affinare le stime dell'indice preferito dalla Fed.",
+    "In genere il PPI pesa meno del CPI, ma una sorpresa grande può comunque muovere il mercato in modo deciso, soprattutto nei periodi in cui l'inflazione è al centro dell'attenzione."]),
+ RIEP([('PPI', 'prezzi pagati e incassati dalle imprese'), ('Anticipa', 'i costi delle imprese arrivano ai consumatori con ritardo'), ('Per il rischio', 'esce alle 14:30, spesso vicino al CPI')],
+   ["Riassumiamo ora i punti principali di questa lezione.",
+    "Il PPI misura i prezzi lungo la filiera produttiva, dalle materie prime ai prodotti finiti.",
+    "Tende ad anticipare l'inflazione al consumo, perché le imprese girano parte dei costi ai clienti con qualche mese di ritardo.",
+    "Sul piano del rischio, esce alle quattordici e trenta, spesso nella stessa settimana del CPI, e insieme possono rendere quei giorni particolarmente movimentati."]),
+])

@@ -1,0 +1,33 @@
+from h import *
+LEZIONE = L('2.6', 'Modulo 2', 'Le banche centrali', 'QE e QT: stampare e ritirare liquidità', [
+ T('MODULO 2 · LEZIONE 6', 'Quando i tassi **non bastano**', 'Quantitative easing e quantitative tightening: cosa sono e cosa fanno ai mercati.',
+   "Cosa succede quando una banca centrale ha già portato i tassi vicino allo zero, ma l'economia ha ancora bisogno di aiuto? In questa lezione vediamo gli strumenti nati proprio per questi casi, il quantitative easing e il suo contrario, il quantitative tightening."),
+ CF('QE e QT',
+   dict(t='QE · quantitative easing', punti=[['Cosa fa', 'compra titoli sul mercato'], ['Liquidità', 'aumenta'], ['Rendimenti', 'tendono a scendere']]),
+   dict(t='QT · quantitative tightening', punti=[['Cosa fa', 'riduce i titoli in bilancio'], ['Liquidità', 'diminuisce'], ['Rendimenti', 'tendono a salire']]),
+   ["Con il quantitative easing la banca centrale compra grandi quantità di titoli di Stato, e a volte altri titoli, pagandoli con moneta di nuova creazione. In questo modo aumenta la liquidità nel sistema, e la forte domanda di titoli spinge i loro rendimenti verso il basso.",
+    "Con il quantitative tightening fa il percorso inverso. Smette di reinvestire i titoli che scadono, o in alcuni casi li vende, e il suo bilancio si riduce. La liquidità diminuisce, e i rendimenti tendono a salire."]),
+ TB('Qualche data', ['Quando', 'Cosa è successo'], [
+   ['Novembre 2008', 'la Fed avvia il primo programma di acquisti dopo la crisi finanziaria'],
+   ['Marzo 2015', 'la BCE avvia il suo grande programma di acquisti di titoli di Stato'],
+   ['Marzo 2020', 'con la pandemia la Fed annuncia acquisti senza un limite prefissato'],
+   ['2022–2023', 'Fed e BCE iniziano a ridurre i titoli in bilancio']],
+   ["Vediamo alcune date importanti.",
+    "Nel novembre del 2008, dopo il fallimento di Lehman Brothers, la Fed avvia il suo primo grande programma di acquisti di titoli.",
+    "Nel marzo del 2015 la BCE avvia il suo programma di acquisto di titoli di Stato, per combattere un'inflazione troppo bassa nell'eurozona.",
+    "Nel marzo del 2020, con lo scoppio della pandemia, la Fed annuncia acquisti senza un limite prefissato, per calmare mercati nel panico.",
+    "Tra il 2022 e il 2023, con l'inflazione in forte crescita, prima la Fed e poi la BCE iniziano a ridurre i titoli in bilancio, avviando il quantitative tightening."]),
+ P('Effetti sui mercati, in generale', [
+   ('Più liquidità', 'di solito sostiene borse e asset rischiosi'),
+   ('Rendimenti più bassi', 'rendono meno costoso tenere oro, che non paga interessi'),
+   ('Valuta', 'tende a indebolirsi quando la banca centrale stampa di più delle altre')],
+   ["Quali effetti hanno questi programmi sui mercati? In generale, e con molte eccezioni, se ne osservano tre.",
+    "Più liquidità di solito sostiene le borse e gli asset più rischiosi, perché il denaro in eccesso cerca rendimento.",
+    "Rendimenti più bassi rendono meno costoso tenere oro, che non paga interessi, e questo tende a sostenerne il prezzo.",
+    "La valuta, infine, tende a indebolirsi quando la sua banca centrale crea più moneta delle altre. Con il quantitative tightening, invece, questi effetti tendono a invertirsi."]),
+ RIEP([('QE', 'acquisti di titoli, più liquidità, rendimenti giù'), ('QT', 'bilancio che si riduce, meno liquidità'), ('Per il rischio', 'gli annunci su QE e QT pesano quanto quelli sui tassi')],
+   ["Riassumiamo ora i punti principali di questa lezione.",
+    "Con il quantitative easing la banca centrale compra titoli, aumenta la liquidità e spinge giù i rendimenti.",
+    "Con il quantitative tightening il bilancio si riduce, la liquidità diminuisce e i rendimenti tendono a salire.",
+    "Sul piano del rischio, quando una banca centrale annuncia cambiamenti a questi programmi, la reazione dei mercati può essere forte quanto quella a una decisione sui tassi."]),
+])

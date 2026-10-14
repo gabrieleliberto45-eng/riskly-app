@@ -1,0 +1,36 @@
+from h import *
+LEZIONE = L('3.5', 'Modulo 3', "L'inflazione", "Le aspettative di inflazione", [
+ T('MODULO 3 · LEZIONE 5', "L'inflazione **che verrà**", 'Perché le banche centrali guardano quello che la gente si aspetta, e come si misura.',
+   "Chiudiamo il modulo sull'inflazione con un concetto che sembra astratto, ma che le banche centrali considerano fondamentale, cioè le aspettative di inflazione. Quanto pensano le persone e i mercati che saliranno i prezzi nei prossimi anni? La risposta influenza i prezzi di oggi."),
+ P('Perché contano', [
+   ('Si autoalimentano', 'se tutti si aspettano prezzi più alti, li chiedono e li accettano'),
+   ('Salari e prezzi', 'lavoratori e imprese li fissano guardando al futuro'),
+   ("L'ancora", 'le banche centrali vogliono aspettative stabili vicino al 2%')],
+   ["Le aspettative contano per tre motivi.",
+    "Il primo è che tendono ad autoalimentarsi. Se tutti si aspettano prezzi più alti, le imprese alzano i listini con più facilità, e i consumatori accettano gli aumenti come normali.",
+    "Il secondo riguarda salari e prezzi. Lavoratori e imprese fissano stipendi e listini guardando al futuro, e se si aspettano un'inflazione alta cercano di proteggersi in anticipo.",
+    "Il terzo è che le banche centrali vogliono aspettative ancorate, cioè stabili vicino al due per cento. Quando le aspettative iniziano a salire, è un segnale che la banca centrale sta perdendo credibilità, e di solito reagisce con decisione."]),
+ TB('Come si misurano', ['Fonte', 'Cosa misura'], [
+   ['Sondaggi alle famiglie', "per esempio quello dell'Università del Michigan, ogni mese"],
+   ['Sondaggi agli economisti', 'previsioni dei professionisti'],
+   ['Prezzi di mercato', 'differenza tra titoli di Stato normali e indicizzati all\'inflazione']],
+   ["Le aspettative si misurano in tre modi.",
+    "Con i sondaggi alle famiglie. Negli Stati Uniti il più famoso è quello dell'Università del Michigan, che ogni mese chiede ai consumatori quanta inflazione si aspettano per il prossimo anno e per i prossimi cinque anni.",
+    "Con i sondaggi agli economisti, che raccolgono le previsioni dei professionisti.",
+    "E con i prezzi di mercato. Confrontando il rendimento di un titolo di Stato normale con quello di un titolo indicizzato all'inflazione, si ottiene l'inflazione che il mercato sta prezzando. Questa misura si chiama breakeven."]),
+ EX('Esempio illustrativo', [
+   ['Sondaggio sulle famiglie', 'aspettative a 5 anni da 3,0% a 3,4%'],
+   ['Lettura', "il pubblico si aspetta più inflazione: rischio che si radichi"],
+   ['Possibile reazione', 'il mercato teme una banca centrale più dura'],
+   ['Effetto tipico', 'rendimenti su, valuta più forte']],
+   ["Un esempio illustrativo. Il sondaggio sulle famiglie mostra che le aspettative di inflazione a cinque anni salgono dal tre al tre virgola quattro per cento.",
+    "La lettura è che il pubblico si aspetta più inflazione, e c'è il rischio che questa si radichi nei comportamenti.",
+    "Il mercato teme quindi che la banca centrale debba essere più dura, mantenendo i tassi alti più a lungo.",
+    "L'effetto tipico è un aumento dei rendimenti e un rafforzamento della valuta, anche se il dato di per sé non riguarda i prezzi di oggi."],
+   k=[1, 2, 3, 4]),
+ RIEP([('Aspettative', 'si autoalimentano e guidano salari e prezzi'), ('Misure', 'sondaggi e prezzi di mercato'), ('Per il rischio', 'anche un sondaggio può muovere il mercato')],
+   ["Riassumiamo ora i punti principali di questa lezione, che chiude il modulo sull'inflazione.",
+    "Le aspettative di inflazione tendono ad autoalimentarsi, e le banche centrali vogliono che restino ancorate vicino al due per cento.",
+    "Si misurano con sondaggi a famiglie ed economisti, e con i prezzi dei titoli di Stato.",
+    "Sul piano del rischio, ricorda che anche un sondaggio, come quello del Michigan, può muovere il mercato se mostra aspettative in forte cambiamento. Nel prossimo modulo parliamo del lavoro."]),
+])

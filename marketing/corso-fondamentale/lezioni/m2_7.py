@@ -1,0 +1,31 @@
+from h import *
+LEZIONE = L('2.7', 'Modulo 2', 'Le banche centrali', 'Il differenziale dei tassi e le valute', [
+ T('MODULO 2 · LEZIONE 7', 'Perché un cambio **sale o scende**', 'La differenza tra i tassi di due paesi, e le attese su come cambierà.',
+   "Chiudiamo il modulo sulle banche centrali mettendo insieme tutto quello che abbiamo visto, e rispondendo a una domanda semplice. Perché un cambio sale o scende nel corso di settimane e mesi? Una delle risposte più importanti è il differenziale dei tassi."),
+ F('Il differenziale', 'Differenziale = Tasso paese A − Tasso paese B', [('Più ampio a favore di A', 'la valuta di A tende a essere più richiesta'), ('Più stretto', 'il vantaggio si riduce'), ('Atteso, non solo attuale', 'contano i tassi dei prossimi mesi')],
+   ["Il differenziale è la differenza tra il tasso di interesse di un paese e quello di un altro.",
+    "Quando il differenziale si allarga a favore di un paese, la sua valuta tende a essere più richiesta, perché tenere denaro in quella valuta rende di più.",
+    "Quando il differenziale si restringe, quel vantaggio si riduce, e la valuta può perdere forza.",
+    "Ricorda però che non conta solo il differenziale di oggi, ma soprattutto quello atteso nei prossimi mesi, che il mercato legge nei rendimenti dei titoli di Stato a breve scadenza."]),
+ P('Il carry trade', [
+   ('Come funziona', 'prendo in prestito una valuta a tasso basso e compro una valuta a tasso alto'),
+   ('Il guadagno', 'la differenza di interesse, giorno dopo giorno'),
+   ('Il rischio', 'quando il mercato ha paura, queste posizioni si chiudono tutte insieme')],
+   ["Il differenziale dei tassi è alla base di una strategia molto diffusa tra i grandi investitori, chiamata carry trade.",
+    "Funziona così. Si prende in prestito una valuta con tassi bassi, per esempio lo yen negli anni in cui i tassi giapponesi erano sotto zero, e si compra una valuta con tassi più alti.",
+    "Il guadagno è la differenza di interesse, che si incassa giorno dopo giorno finché il cambio resta stabile.",
+    "Il rischio è che, nei momenti di paura, tutti chiudano queste posizioni nello stesso momento, ricomprando la valuta presa in prestito. In quei casi la valuta a tassi bassi può rafforzarsi molto in pochi giorni, come è successo allo yen in diversi episodi di forte tensione sui mercati."]),
+ P('Il differenziale non è tutto', [
+   ('Rischio e paura', 'nei momenti di crisi contano di più i rifugi'),
+   ('Crescita relativa', 'un\'economia più forte attira investimenti'),
+   ('Interventi', 'governi e banche centrali possono intervenire sul cambio')],
+   ["Attenzione però, il differenziale non spiega tutto.",
+    "Nei momenti di paura il mercato guarda soprattutto alla sicurezza, e i capitali vanno verso i beni rifugio, indipendentemente dai tassi.",
+    "Anche la crescita relativa conta, perché un'economia più dinamica attira investimenti in azioni e imprese, non solo in titoli.",
+    "Infine, governi e banche centrali possono intervenire direttamente sul mercato per frenare un movimento del cambio, come vedremo nel modulo sugli eventi straordinari."]),
+ RIEP([('Differenziale', 'differenza tra i tassi, attuale e soprattutto attesa'), ('Carry trade', 'guadagno sul differenziale, rischio nelle fasi di panico'), ('Per il rischio', 'le valute a tassi bassi possono salire di colpo quando il mercato ha paura')],
+   ["Riassumiamo ora i punti principali di questa lezione, che chiude il modulo sulle banche centrali.",
+    "Il differenziale dei tassi, soprattutto quello atteso, è uno dei motori principali dei cambi nel medio periodo.",
+    "Il carry trade sfrutta il differenziale, ma nei momenti di panico le posizioni si chiudono tutte insieme.",
+    "Sul piano del rischio, ricorda che le valute a tassi bassi possono rafforzarsi di colpo quando il mercato ha paura. Nel prossimo modulo entriamo nel dettaglio dei dati sull'inflazione."]),
+])
