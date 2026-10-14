@@ -1,0 +1,30 @@
+from h import *
+LEZIONE = L('5.1', 'Modulo 5', 'La crescita', 'Il PIL: stime, revisioni e recessione', [
+ T('MODULO 5 · LEZIONE 1', "La misura di **tutta** l'economia", 'Cosa misura il PIL, come si legge negli Stati Uniti e in Europa, e cosa vuol dire recessione.',
+   "Apriamo il modulo sulla crescita con il dato più completo di tutti, il prodotto interno lordo, il PIL. Misura il valore di tutto quello che un paese produce in un certo periodo. In questa lezione vediamo come si legge, e una differenza tra Stati Uniti ed Europa che confonde molti trader."),
+ P('Cosa misura', [
+   ('Il valore della produzione', 'beni e servizi prodotti nel trimestre'),
+   ('Le componenti', 'consumi, investimenti, spesa pubblica, esportazioni nette'),
+   ('Al netto dei prezzi', 'si guarda il PIL reale, depurato dall\'inflazione')],
+   ["Il PIL misura il valore di tutti i beni e servizi prodotti in un paese in un certo periodo, di solito un trimestre.",
+    "Si può scomporre in quattro parti, cioè i consumi delle famiglie, gli investimenti delle imprese, la spesa pubblica, e le esportazioni meno le importazioni. Negli Stati Uniti i consumi pesano per circa due terzi.",
+    "Si guarda sempre il PIL reale, cioè depurato dall'inflazione, altrimenti un aumento dei prezzi sembrerebbe crescita."]),
+ CF('Stati Uniti ed Europa: attenzione al numero',
+   dict(t='Stati Uniti', punti=[['Come si esprime', 'tasso annualizzato'], ['Esempio', '+2,0% annualizzato'], ['Equivale a', 'circa +0,5% nel trimestre']]),
+   dict(t='Eurozona', punti=[['Come si esprime', 'variazione sul trimestre'], ['Esempio', '+0,5% sul trimestre'], ['Equivale a', 'circa +2,0% annualizzato']]),
+   ["Ecco la differenza che confonde molti. Negli Stati Uniti la crescita trimestrale viene espressa come tasso annualizzato, cioè come se quel ritmo continuasse per un anno intero. Un più due per cento annualizzato corrisponde a circa lo zero virgola cinque per cento nel trimestre.",
+    "Nell'eurozona, invece, si pubblica di solito la variazione sul trimestre precedente, non annualizzata. Quindi un più zero virgola cinque europeo e un più due americano descrivono più o meno lo stesso ritmo di crescita. Confrontarli senza saperlo porta a conclusioni sbagliate."]),
+ P('Stime e recessione', [
+   ('Tre stime negli USA', 'preliminare, seconda e terza, a distanza di un mese'),
+   ('Recessione tecnica', 'due trimestri di fila con PIL in calo'),
+   ('Negli USA', 'la data ufficiale la stabilisce un comitato di economisti, il NBER')],
+   ["Due cose da sapere su stime e recessione.",
+    "Negli Stati Uniti il PIL esce in tre stime successive, la preliminare circa un mese dopo la fine del trimestre, poi la seconda e la terza a distanza di un mese l'una dall'altra. La preliminare è quella che muove di più il mercato.",
+    "In Europa si parla spesso di recessione tecnica quando il PIL cala per due trimestri consecutivi.",
+    "Negli Stati Uniti, invece, l'inizio e la fine ufficiali di una recessione vengono stabiliti da un comitato di economisti di un istituto di ricerca, il NBER, che guarda molti indicatori, e spesso lo fa con mesi di ritardo."]),
+ RIEP([('PIL', 'valore della produzione, al netto dei prezzi'), ('USA ed Europa', 'annualizzato contro trimestrale'), ('Per il rischio', 'la stima preliminare è quella che muove il mercato')],
+   ["Riassumiamo ora i punti principali di questa lezione.",
+    "Il PIL misura il valore di tutto ciò che un'economia produce, e si guarda sempre al netto dell'inflazione.",
+    "Il dato americano è annualizzato, quello europeo è trimestrale, e non vanno confrontati direttamente.",
+    "Sul piano del rischio, la stima preliminare del PIL americano esce alle quattordici e trenta ed è quella con più impatto, mentre le successive di solito muovono meno."]),
+])

@@ -1,0 +1,36 @@
+from h import *
+LEZIONE = L('7.6', 'Modulo 7', 'Correlazioni tra asset', 'Correlazioni e rischio: la stessa scommessa due volte', [
+ T('MODULO 7 · LEZIONE 6', 'Tre operazioni, **un solo** rischio', 'Come le correlazioni moltiplicano il rischio senza che te ne accorga.',
+   "Chiudiamo il modulo sulle correlazioni con la lezione più importante per la gestione del rischio. Molti trader pensano di essere diversificati perché hanno posizioni su strumenti diversi, e invece stanno facendo la stessa scommessa più volte. Vediamo come accorgersene, e cosa fare."),
+ EX('Esempio illustrativo: tre posizioni, un\'unica idea', [
+   ['Posizione 1', 'lungo EURUSD, rischio 1%'],
+   ['Posizione 2', 'lungo GBPUSD, rischio 1%'],
+   ['Posizione 3', 'lungo oro, rischio 1%'],
+   ['In realtà', 'tre scommesse contro il dollaro: rischio vicino al 3% su un solo dato USA']],
+   ["Facciamo un esempio. Hai una posizione lunga sull'euro dollaro, con un rischio dell'uno per cento del conto.",
+    "Hai anche una posizione lunga sulla sterlina dollaro, con un altro uno per cento.",
+    "E una posizione lunga sull'oro, sempre con l'uno per cento.",
+    "Sembrano tre operazioni diverse, ma in realtà sono tre scommesse contro il dollaro. Se esce un dato americano molto forte, è probabile che vadano male tutte e tre insieme, e il tuo rischio reale si avvicina al tre per cento su un unico evento."],
+   k=[1, 2, 3, 4]),
+ P('Come accorgersene', [
+   ('Chiediti qual è l\'idea', 'cosa deve succedere perché ogni posizione funzioni?'),
+   ('Raggruppa per fattore', 'dollaro, rischio globale, tassi, petrolio'),
+   ('Somma il rischio del gruppo', 'trattalo come un\'unica posizione')],
+   ["Come ci si accorge di questo problema? Con tre domande semplici.",
+    "Per ogni posizione chiediti qual è l'idea di fondo, cioè cosa deve succedere perché funzioni.",
+    "Raggruppa le posizioni per fattore comune, per esempio il dollaro, l'umore dei mercati, i tassi o il petrolio.",
+    "E somma il rischio di ogni gruppo, trattandolo come se fosse un'unica posizione."]),
+ P('Cosa fare', [
+   ('Un tetto per fattore', 'per esempio massimo 2% sullo stesso fattore'),
+   ('Lotti ridotti', 'se vuoi più posizioni correlate, dividi il rischio'),
+   ('Attenzione ai dati', 'un solo dato può colpire tutto il gruppo')],
+   ["Una volta capito il problema, la soluzione è semplice.",
+    "Stabilisci un tetto di rischio per ogni fattore, per esempio non più del due per cento complessivo su posizioni che dipendono dal dollaro.",
+    "Se vuoi comunque avere più posizioni correlate, dividi il rischio tra loro, per esempio tre posizioni con lo zero virgola sei per cento ciascuna invece dell'uno.",
+    "E ricorda che un solo dato può colpire tutto il gruppo nello stesso momento, quindi la regola diventa ancora più importante nei giorni del calendario più carichi."]),
+ RIEP([('Il problema', 'posizioni diverse, stessa scommessa'), ('La soluzione', 'raggruppa per fattore e somma il rischio'), ('Regola pratica', 'un tetto di rischio per fattore')],
+   ["Riassumiamo ora i punti principali di questa lezione, che chiude il modulo sulle correlazioni.",
+    "Posizioni su strumenti diversi possono essere la stessa scommessa, e moltiplicare il rischio.",
+    "Per accorgertene, raggruppa le posizioni per fattore comune e somma il loro rischio.",
+    "La regola pratica è fissare un tetto di rischio per ogni fattore. Nel prossimo modulo parliamo dei beni rifugio."]),
+])

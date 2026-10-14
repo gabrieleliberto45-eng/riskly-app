@@ -1,0 +1,36 @@
+from h import *
+LEZIONE = L('5.4', 'Modulo 5', 'La crescita', 'La fiducia di consumatori e imprese', [
+ T('MODULO 5 · LEZIONE 4', "L'**umore** dell'economia", 'Cosa dicono i sondaggi sulla fiducia, e perché vanno presi con cautela.',
+   "Oltre ai dati su quanto si produce e si spende, il mercato guarda anche come si sentono famiglie e imprese. È il cosiddetto umore dell'economia, misurato con i sondaggi sulla fiducia. In questa lezione vediamo i principali, e come leggerli senza farsi ingannare."),
+ TB('I principali sondaggi', ['Sondaggio', 'Paese', 'Quando'], [
+   ['Università del Michigan', 'USA', 'preliminare a metà mese, finale a fine mese'],
+   ['Conference Board', 'USA', "ultimo martedì del mese"],
+   ['Istituto Ifo', 'Germania', 'ogni mese, sulle imprese'],
+   ['ZEW', 'Germania', 'ogni mese, sugli analisti finanziari']],
+   ["Questi sono i sondaggi più seguiti.",
+    "L'indice dell'Università del Michigan, negli Stati Uniti, con una lettura preliminare a metà mese e una finale a fine mese. Contiene anche le aspettative di inflazione, che abbiamo visto nel modulo tre.",
+    "L'indice del Conference Board, sempre negli Stati Uniti, che esce di solito l'ultimo martedì del mese, e dà più peso al mercato del lavoro.",
+    "L'indice Ifo, in Germania, che misura la fiducia delle imprese tedesche ed è molto seguito per l'euro.",
+    "E l'indice ZEW, sempre in Germania, che raccoglie le aspettative degli analisti finanziari."]),
+ P('Perché contano', [
+   ('Anticipano i comportamenti', 'chi è pessimista spende e investe meno'),
+   ('Arrivano presto', 'escono prima dei dati su consumi e produzione'),
+   ('Svelano le aspettative', "anche quelle di inflazione")],
+   ["I sondaggi sulla fiducia contano per tre motivi.",
+    "Possono anticipare i comportamenti, perché una famiglia preoccupata per il futuro tende a rimandare gli acquisti importanti, e un'impresa pessimista rimanda gli investimenti.",
+    "Arrivano presto, prima dei dati su consumi e produzione dello stesso mese.",
+    "E rivelano le aspettative, comprese quelle di inflazione, che come abbiamo visto le banche centrali seguono con attenzione."]),
+ P('Perché vanno presi con cautela', [
+   ('Quello che si dice e quello che si fa', 'la fiducia può crollare mentre i consumi tengono'),
+   ('Influenzati dalle notizie', 'prezzi della benzina, politica, borsa'),
+   ('Meglio la tendenza', 'più mesi nella stessa direzione contano più di uno solo')],
+   ["Allo stesso tempo, vanno presi con cautela.",
+    "Quello che le persone dicono non coincide sempre con quello che fanno. Ci sono stati periodi in cui la fiducia dei consumatori era molto bassa, mentre i consumi continuavano a crescere.",
+    "Le risposte sono influenzate dalle notizie del momento, come il prezzo della benzina, la politica o l'andamento della borsa.",
+    "Per questo conta più la tendenza di diversi mesi nella stessa direzione che un singolo dato."]),
+ RIEP([('Sondaggi', 'Michigan, Conference Board, Ifo, ZEW'), ('Valore', 'anticipano comportamenti e aspettative'), ('Per il rischio', 'impatto di solito medio, maggiore se contengono sorprese sull\'inflazione')],
+   ["Riassumiamo ora i punti principali di questa lezione.",
+    "I principali sondaggi sulla fiducia sono quello del Michigan e del Conference Board negli Stati Uniti, e quelli dell'Ifo e dello ZEW in Germania.",
+    "Sono utili perché arrivano presto e anticipano comportamenti e aspettative, ma vanno letti nella loro tendenza.",
+    "Sul piano del rischio, il loro impatto è di solito medio, ma può diventare forte quando contengono sorprese sulle aspettative di inflazione."]),
+])

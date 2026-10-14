@@ -1,0 +1,33 @@
+from h import *
+LEZIONE = L('4.2', 'Modulo 4', 'Il lavoro', 'Disoccupazione e partecipazione', [
+ T('MODULO 4 · LEZIONE 2', 'Dietro il **tasso** di disoccupazione', 'Cosa misura davvero, e perché a volte scende per i motivi sbagliati.',
+   "Il tasso di disoccupazione sembra il numero più semplice da capire. In realtà nasconde un paio di trappole, e un trader che le conosce legge il dato in modo molto più preciso. Vediamole insieme."),
+ F('Come si calcola', 'Disoccupazione = Disoccupati ÷ Forza lavoro', [('Disoccupati', 'chi non lavora e cerca attivamente un lavoro'), ('Forza lavoro', 'chi lavora più chi cerca lavoro'), ('Fuori dal conto', 'chi non lavora e non cerca')],
+   ["Il tasso di disoccupazione è il rapporto tra i disoccupati e la forza lavoro.",
+    "I disoccupati sono le persone che non lavorano e stanno cercando attivamente un lavoro.",
+    "La forza lavoro è la somma di chi lavora e di chi cerca lavoro.",
+    "E qui c'è il punto importante. Chi non lavora e ha smesso di cercare, per esempio perché scoraggiato, non viene contato tra i disoccupati, e non fa parte della forza lavoro."]),
+ EX('La trappola (esempio illustrativo)', [
+   ['Mese 1', 'disoccupazione al 4,2%'],
+   ['Mese 2', 'molti disoccupati smettono di cercare lavoro'],
+   ['Effetto', 'escono dalla forza lavoro: la disoccupazione scende al 4,0%'],
+   ['Lettura corretta', 'non è una buona notizia: guarda la partecipazione']],
+   ["Ecco la trappola, con un esempio illustrativo. Nel primo mese la disoccupazione è al quattro virgola due per cento.",
+    "Nel secondo mese molte persone senza lavoro si scoraggiano, e smettono di cercarlo.",
+    "Uscendo dalla forza lavoro, non vengono più contate come disoccupate, e il tasso scende al quattro per cento.",
+    "A prima vista sembra una buona notizia, ma non lo è. Per questo bisogna sempre guardare anche il tasso di partecipazione, cioè la quota di persone in età da lavoro che fa parte della forza lavoro."],
+   k=[1, 2, 3, 4]),
+ P('Perché la Fed lo guarda', [
+   ('Il mandato', 'la massima occupazione è uno dei due obiettivi'),
+   ('Mercato teso', 'disoccupazione molto bassa può spingere su i salari'),
+   ('Disoccupazione in aumento', 'segnale di rallentamento, apre la strada ai tagli')],
+   ["La Fed guarda la disoccupazione con grande attenzione, per tre motivi.",
+    "Il primo è il suo mandato, perché la massima occupazione è uno dei due obiettivi fissati dalla legge.",
+    "Il secondo è che una disoccupazione molto bassa indica un mercato del lavoro teso, in cui le imprese faticano a trovare personale e alzano i salari, con il rischio di alimentare l'inflazione.",
+    "Il terzo è che una disoccupazione in aumento rapido è uno dei segnali più affidabili di un rallentamento dell'economia, e di solito apre la strada a tagli dei tassi."]),
+ RIEP([('Calcolo', 'disoccupati diviso forza lavoro'), ('Trappola', 'scende anche quando la gente smette di cercare'), ('Per il rischio', 'una salita rapida della disoccupazione cambia le attese sui tassi')],
+   ["Riassumiamo ora i punti principali di questa lezione.",
+    "Il tasso di disoccupazione è il rapporto tra i disoccupati e la forza lavoro.",
+    "Può scendere anche per un motivo negativo, quando le persone smettono di cercare lavoro, e per questo va letto insieme al tasso di partecipazione.",
+    "Sul piano del rischio, una salita rapida della disoccupazione può cambiare in poche ore le attese sui tassi, e con loro il dollaro e l'oro."]),
+])

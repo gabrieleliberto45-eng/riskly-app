@@ -1,0 +1,36 @@
+from h import *
+LEZIONE = L('7.3', 'Modulo 7', 'Correlazioni tra asset', 'I rendimenti e lo yen', [
+ T('MODULO 7 · LEZIONE 3', 'Il cambio **dei tassi**', 'Perché il dollaro yen segue così da vicino i rendimenti americani.',
+   "Tra tutti i cambi, il dollaro yen è forse quello più legato ai tassi di interesse. Per anni il Giappone ha avuto tassi vicini allo zero o negativi, mentre quelli americani salivano e scendevano. In questa lezione vediamo come questo crea uno dei legami più chiari dei mercati."),
+ P('Il meccanismo', [
+   ('Tassi giapponesi fermi', 'per anni vicini allo zero o sotto zero'),
+   ('Tassi USA che si muovono', 'decidono quanto è ampio il differenziale'),
+   ('USDJPY segue', 'rendimenti USA su, dollaro yen su, e viceversa')],
+   ["Il meccanismo è legato al differenziale dei tassi, che abbiamo visto nel modulo due.",
+    "Per molti anni i tassi giapponesi sono rimasti vicini allo zero, o addirittura sotto zero tra il 2016 e il 2024.",
+    "Con i tassi giapponesi quasi fermi, è stato soprattutto il movimento dei tassi americani a decidere quanto fosse ampio il differenziale.",
+    "Il risultato è che il dollaro yen ha seguito molto da vicino i rendimenti americani. Quando i rendimenti salivano, il dollaro yen tendeva a salire, e quando scendevano tendeva a scendere."]),
+ EX('Un esempio reale: il 2022', [
+   ['Fed', 'tassi alzati rapidamente durante il 2022'],
+   ['Banca del Giappone', 'tassi negativi e controllo dei rendimenti'],
+   ['Differenziale', 'in forte aumento'],
+   ['USDJPY', 'da circa 115 a oltre 150 in pochi mesi']],
+   ["Il 2022 ne è un esempio molto chiaro. Durante quell'anno la Fed ha alzato i tassi molto rapidamente per combattere l'inflazione.",
+    "La Banca del Giappone, invece, ha mantenuto i tassi negativi e ha continuato a controllare i rendimenti dei titoli giapponesi.",
+    "Il differenziale tra i due paesi è quindi aumentato in modo molto forte.",
+    "Il dollaro yen è passato da circa centoquindici, all'inizio dell'anno, a oltre centocinquanta in ottobre, ai massimi da più di trent'anni. A quel punto il governo giapponese è intervenuto sul mercato per sostenere lo yen, come vedremo nel modulo sugli eventi straordinari."],
+   k=[1, 2, 3, 4]),
+ P('Cosa significa nella pratica', [
+   ('Guarda i rendimenti', 'prima di operare su USDJPY, guarda il decennale USA'),
+   ('Dati USA', 'muovono USDJPY quasi quanto EURUSD'),
+   ('Banca del Giappone', 'ogni cambio di politica può dare movimenti molto ampi')],
+   ["Cosa significa per chi fa trading su questo cambio?",
+    "Prima di operare sul dollaro yen, conviene dare un'occhiata al rendimento del decennale americano, perché spesso anticipa o accompagna il movimento.",
+    "I dati americani muovono il dollaro yen quasi quanto l'euro dollaro, proprio perché passano dai rendimenti.",
+    "E le riunioni della Banca del Giappone possono dare movimenti molto ampi, soprattutto quando cambia la politica dopo anni di immobilità."]),
+ RIEP([('Legame', 'USDJPY segue spesso i rendimenti USA'), ('Motivo', 'tassi giapponesi a lungo fermi vicino allo zero'), ('Per il rischio', 'possibili interventi del governo giapponese ai livelli estremi')],
+   ["Riassumiamo ora i punti principali di questa lezione.",
+    "Il dollaro yen tende a seguire i rendimenti americani, perché per anni i tassi giapponesi sono rimasti fermi vicino allo zero.",
+    "Nel 2022 il forte aumento dei tassi americani lo ha spinto ai massimi da oltre trent'anni.",
+    "Sul piano del rischio, ricorda che ai livelli estremi il governo giapponese può intervenire sul cambio, provocando movimenti improvvisi di diversi punti in pochi minuti."]),
+])

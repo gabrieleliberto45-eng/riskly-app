@@ -1,0 +1,31 @@
+from h import *
+LEZIONE = L('7.5', 'Modulo 7', 'Correlazioni tra asset', 'Risk on e risk off', [
+ T('MODULO 7 · LEZIONE 5', "L'**umore** dei mercati", 'Quando il mercato cerca rendimento e quando cerca sicurezza.',
+   "Nei commenti di mercato senti spesso due espressioni inglesi, risk on e risk off. Descrivono l'umore generale dei mercati, cioè se gli investitori sono disposti a prendere rischi o se cercano sicurezza. In questa lezione vediamo cosa succede ai vari asset nelle due fasi."),
+ CF('Le due fasi',
+   dict(t='Risk on · propensione al rischio', punti=[['Borse', 'su'], ['AUD, NZD, CAD', 'su'], ['Yen, franco', 'giù'], ['Rendimenti', 'tendono a salire']]),
+   dict(t='Risk off · avversione al rischio', punti=[['Borse', 'giù'], ['AUD, NZD, CAD', 'giù'], ['Yen, franco, oro', 'su'], ['Titoli di Stato', 'comprati come rifugio']]),
+   ["Nella fase di risk on, cioè di propensione al rischio, gli investitori sono ottimisti e cercano rendimento. Le borse salgono, le valute legate alla crescita come il dollaro australiano, neozelandese e canadese si rafforzano, mentre yen e franco svizzero tendono a indebolirsi. I rendimenti dei titoli di Stato tendono a salire, perché si vendono titoli sicuri per comprare asset più rischiosi.",
+    "Nella fase di risk off, cioè di avversione al rischio, succede il contrario. Le borse scendono, le valute legate alla crescita perdono terreno, mentre yen, franco svizzero e spesso oro si rafforzano. I titoli di Stato più sicuri vengono comprati come rifugio, e i loro rendimenti scendono."]),
+ P('Cosa provoca il cambio di umore', [
+   ('Dati economici', 'una serie di dati deboli fa temere una recessione'),
+   ('Eventi improvvisi', 'guerre, crisi bancarie, shock politici'),
+   ('Banche centrali', 'una banca centrale più dura del previsto può spaventare')],
+   ["Cosa provoca il passaggio da una fase all'altra?",
+    "Possono essere i dati economici. Una serie di dati deboli fa temere una recessione, e il mercato passa in modalità risk off.",
+    "Possono essere eventi improvvisi, come una guerra, il fallimento di una banca o uno shock politico.",
+    "E possono essere le banche centrali. Una banca centrale molto più dura del previsto può spaventare i mercati, mentre segnali di tagli possono riaccendere la propensione al rischio."]),
+ P('Come usarlo', [
+   ('Lettura del contesto', 'un colpo d\'occhio a borse, yen e oro'),
+   ('Coerenza delle posizioni', 'molte posizioni possono dipendere dallo stesso umore'),
+   ('Cambi bruschi', 'nel passaggio a risk off i movimenti sono più veloci')],
+   ["Come si usa questo concetto in pratica?",
+    "Come lettura del contesto. Un colpo d'occhio agli indici azionari, allo yen e all'oro ti dice in pochi secondi qual è l'umore del giorno.",
+    "Come controllo della coerenza delle tue posizioni. Se sei lungo sul dollaro australiano, lungo sull'indice americano e corto sullo yen, in realtà hai tre posizioni che dipendono tutte dallo stesso umore.",
+    "E come avvertimento. Il passaggio al risk off è di solito più rapido e violento del passaggio al risk on, perché la paura si diffonde più velocemente della fiducia."]),
+ RIEP([('Risk on', 'borse e valute cicliche su, rifugi giù'), ('Risk off', 'borse giù, yen, franco e oro su'), ('Per il rischio', 'il risk off arriva più veloce, e colpisce tutte le posizioni dello stesso tipo')],
+   ["Riassumiamo ora i punti principali di questa lezione.",
+    "In fase di risk on salgono le borse e le valute legate alla crescita, mentre i rifugi perdono terreno.",
+    "In fase di risk off succede il contrario, con yen, franco svizzero, oro e titoli di Stato che si rafforzano.",
+    "Sul piano del rischio, ricorda che il risk off arriva in modo più rapido, e colpisce contemporaneamente tutte le posizioni che dipendono dall'ottimismo dei mercati."]),
+])

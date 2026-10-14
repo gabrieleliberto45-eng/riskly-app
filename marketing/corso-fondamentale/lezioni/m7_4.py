@@ -1,0 +1,36 @@
+from h import *
+LEZIONE = L('7.4', 'Modulo 7', 'Correlazioni tra asset', 'Materie prime e valute', [
+ T('MODULO 7 · LEZIONE 4', 'Le valute **delle materie prime**', 'Petrolio e dollaro canadese, metalli e dollaro australiano.',
+   "Alcuni paesi esportano grandi quantità di materie prime, e le loro valute tendono a seguire i prezzi di ciò che vendono. In questa lezione vediamo i due casi più noti, il dollaro canadese e il dollaro australiano, e cosa significano per chi fa trading."),
+ TB('Le principali', ['Valuta', 'Legata a', 'Perché'], [
+   ['Dollaro canadese (CAD)', 'petrolio', 'il Canada è un grande esportatore di petrolio'],
+   ['Dollaro australiano (AUD)', 'minerale di ferro, metalli', 'l\'Australia esporta molte materie prime, soprattutto in Cina'],
+   ['Dollaro neozelandese (NZD)', 'prodotti agricoli e latticini', 'esportazioni alimentari'],
+   ['Corona norvegese (NOK)', 'petrolio e gas', 'grande produttore europeo di energia']],
+   ["Queste sono le valute più legate alle materie prime.",
+    "Il dollaro canadese è legato al petrolio, perché il Canada è uno dei maggiori esportatori di petrolio al mondo, e in gran parte lo vende agli Stati Uniti.",
+    "Il dollaro australiano è legato al minerale di ferro e ad altri metalli, che l'Australia esporta in grandi quantità, soprattutto verso la Cina.",
+    "Il dollaro neozelandese è legato ai prodotti agricoli e ai latticini.",
+    "La corona norvegese, infine, è legata al petrolio e al gas del Mare del Nord."]),
+ P('Come funziona il legame', [
+   ('Prezzi in salita', 'entrano più dollari americani nel paese esportatore'),
+   ('Domanda di valuta', 'le imprese convertono gli incassi in valuta locale'),
+   ('Crescita e tassi', 'economia più forte, banca centrale meno propensa a tagliare')],
+   ["Il legame funziona così.",
+    "Quando i prezzi delle materie prime salgono, il paese esportatore incassa più denaro dalle vendite all'estero.",
+    "Le imprese convertono questi incassi nella valuta locale, e questo aumenta la domanda della valuta.",
+    "Inoltre l'economia ne beneficia, e la banca centrale è meno propensa a tagliare i tassi. Tutti questi fattori tendono a rafforzare la valuta."]),
+ P('I limiti', [
+   ('Non è automatico', 'tassi e dati interni contano di più nel breve'),
+   ('La Cina per l\'Australia', 'i dati cinesi muovono l\'AUD anche senza variazioni dei prezzi'),
+   ('Rischio globale', 'queste valute scendono nelle fasi di paura')],
+   ["Anche qui ci sono dei limiti da conoscere.",
+    "Il legame non è automatico. Nel breve periodo contano di più le decisioni della banca centrale e i dati interni, come lavoro e inflazione.",
+    "Per il dollaro australiano, contano molto i dati sull'economia cinese, perché la Cina è il principale cliente dell'Australia.",
+    "Infine queste valute tendono a scendere nelle fasi di paura sui mercati, perché sono legate alla crescita globale. Ne parleremo nella prossima lezione, dedicata al risk on e al risk off."]),
+ RIEP([('Legami', 'CAD e petrolio, AUD e metalli, NZD e agricoltura'), ('Meccanismo', 'export, domanda di valuta, crescita'), ('Per il rischio', 'su queste valute segui anche le scorte di petrolio e i dati cinesi')],
+   ["Riassumiamo ora i punti principali di questa lezione.",
+    "Il dollaro canadese è legato al petrolio, il dollaro australiano ai metalli e alla Cina, il neozelandese all'agricoltura.",
+    "Il legame passa dalle esportazioni, dalla domanda di valuta e dalla crescita, ma non è automatico.",
+    "Sul piano del rischio, se fai trading su queste valute aggiungi al tuo calendario i dati sulle scorte di petrolio americane e i principali dati cinesi."]),
+])

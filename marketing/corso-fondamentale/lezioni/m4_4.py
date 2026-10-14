@@ -1,0 +1,38 @@
+from h import *
+LEZIONE = L('4.4', 'Modulo 4', 'Il lavoro', 'I dati che anticipano il rapporto', [
+ T('MODULO 4 · LEZIONE 4', 'Gli **indizi** della settimana', 'Posti vacanti, sussidi settimanali e dati privati: come arrivare preparati al venerdì.',
+   "Il rapporto sul lavoro esce una volta al mese, ma durante il mese escono altri dati che danno indizi su come andrà. In questa lezione vediamo i principali, e come usarli per arrivare preparati al venerdì del rapporto."),
+ TB('Gli indizi', ['Dato', 'Quando', 'Cosa dice'], [
+   ['Posti vacanti (JOLTS)', 'inizio mese, ore 16:00', 'quante offerte di lavoro sono aperte'],
+   ['Rapporto ADP', 'mercoledì prima del rapporto, ore 14:15', 'stima dei posti nel settore privato'],
+   ['Sussidi di disoccupazione', 'ogni giovedì, ore 14:30', 'quante persone chiedono il sussidio'],
+   ['ISM, sezione occupazione', 'primi giorni del mese', 'se le imprese assumono o licenziano']],
+   ["Questi sono gli indizi principali, con gli orari italiani nei periodi normali.",
+    "Il rapporto sui posti vacanti, chiamato JOLTS, esce all'inizio del mese alle sedici, e misura quante offerte di lavoro sono aperte. Si riferisce però a due mesi prima, quindi è un indizio sulla tendenza, non sul mese in corso.",
+    "Il rapporto ADP, pubblicato da una società privata che gestisce le buste paga, esce di solito il mercoledì prima del rapporto ufficiale, e stima i posti creati nel settore privato.",
+    "I sussidi di disoccupazione escono ogni giovedì alle quattordici e trenta, e dicono quante persone hanno chiesto per la prima volta il sussidio nell'ultima settimana. Sono il dato sul lavoro più frequente e più aggiornato.",
+    "Infine gli indici ISM, nei primi giorni del mese, contengono una sezione sull'occupazione, che indica se le imprese stanno assumendo o licenziando."]),
+ P('Come usarli, senza illusioni', [
+   ('ADP e rapporto ufficiale', 'spesso divergono: non è una previsione affidabile'),
+   ('Sussidi', 'utili per vedere una tendenza su più settimane'),
+   ('Il consenso', 'si aggiorna anche in base a questi indizi')],
+   ["Attenzione però a come li usi.",
+    "Il rapporto ADP e quello ufficiale spesso danno numeri molto diversi, anche di decine di migliaia di posti. L'ADP non va preso come una previsione affidabile del venerdì.",
+    "I sussidi settimanali sono utili soprattutto per vedere una tendenza su più settimane. Un singolo dato alto può dipendere da festività o eventi locali, mentre una salita costante per un mese è un segnale più serio.",
+    "Ricorda infine che il consenso del rapporto ufficiale si aggiorna anche in base a questi indizi, quindi in parte sono già nelle attese."]),
+ EX('La settimana del rapporto (esempio)', [
+   ['Martedì', 'posti vacanti in calo: tendenza al rallentamento'],
+   ['Mercoledì', 'ADP sotto le attese'],
+   ['Giovedì', 'sussidi in aumento per la terza settimana'],
+   ['Venerdì', 'il mercato teme un dato debole: le sorprese possono essere violente in entrambe le direzioni']],
+   ["Vediamo una settimana tipo, con un esempio illustrativo. Martedì i posti vacanti risultano in calo, segno di un mercato del lavoro che rallenta.",
+    "Mercoledì il rapporto ADP esce sotto le attese.",
+    "Giovedì i sussidi di disoccupazione aumentano per la terza settimana di fila.",
+    "Venerdì il mercato arriva al rapporto ufficiale aspettandosi un dato debole. Se il dato esce davvero debole, la reazione può essere contenuta perché era atteso, mentre se esce forte la sorpresa può essere molto violenta. In entrambi i casi il rischio è alto."],
+   k=[1, 2, 3, 4]),
+ RIEP([('Indizi', 'JOLTS, ADP, sussidi, ISM'), ('Uso corretto', 'tendenze, non previsioni precise'), ('Per il rischio', 'quando tutti si aspettano un dato, la sorpresa opposta fa più male')],
+   ["Riassumiamo ora i punti principali di questa lezione, che chiude il modulo sul lavoro.",
+    "Durante il mese escono diversi indizi sul mercato del lavoro, come i posti vacanti, il rapporto ADP, i sussidi settimanali e gli indici ISM.",
+    "Vanno usati per capire la tendenza, non per prevedere il numero esatto del venerdì.",
+    "Sul piano del rischio, ricorda che quando tutto il mercato si aspetta un dato in una certa direzione, una sorpresa nella direzione opposta fa ancora più male. Nel prossimo modulo parliamo della crescita."]),
+])

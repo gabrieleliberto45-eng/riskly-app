@@ -1,0 +1,36 @@
+from h import *
+LEZIONE = L('5.5', 'Modulo 5', 'La crescita', 'Produzione industriale e ordini', [
+ T('MODULO 5 · LEZIONE 5', "L'economia **delle fabbriche**", 'Produzione industriale e ordini di beni durevoli: cosa dicono e quanto pesano.',
+   "Chiudiamo il modulo sulla crescita con i dati che riguardano le fabbriche, cioè la produzione industriale e gli ordini di beni durevoli. Negli Stati Uniti l'industria pesa meno dei servizi, ma questi dati sono molto sensibili ai cambiamenti del ciclo economico."),
+ P('Produzione industriale', [
+   ('Cosa misura', 'quanto producono fabbriche, miniere e servizi energetici'),
+   ('Chi la pubblica', 'negli USA la Fed, a metà mese'),
+   ('In Europa', 'molto seguita quella tedesca, cuore industriale dell\'eurozona')],
+   ["Iniziamo dalla produzione industriale.",
+    "Misura quanto producono le fabbriche, le miniere e le aziende che forniscono energia.",
+    "Negli Stati Uniti viene pubblicata dalla Fed, verso metà mese.",
+    "In Europa è molto seguita la produzione industriale tedesca, perché la Germania è il cuore industriale dell'eurozona, e un suo calo si riflette sull'euro."]),
+ P('Ordini di beni durevoli', [
+   ('Cosa sono', 'ordini di beni che durano almeno tre anni'),
+   ('Molto variabili', 'basta un grande ordine di aerei per cambiare il dato'),
+   ('La voce da guardare', 'ordini esclusi trasporti e beni capitali esclusa la difesa')],
+   ["Passiamo agli ordini di beni durevoli.",
+    "Sono gli ordini di beni pensati per durare almeno tre anni, come macchinari, elettrodomestici, automobili e aerei.",
+    "Il dato è molto variabile, perché basta un grande ordine di aerei commerciali per farlo salire o scendere di diversi punti in un solo mese.",
+    "Per questo il mercato guarda soprattutto gli ordini esclusi i trasporti, e gli ordini di beni capitali esclusa la difesa, che sono un buon indizio degli investimenti futuri delle imprese."]),
+ EX('Un titolo che inganna (esempio illustrativo)', [
+   ['Ordini totali', '−5%, molto sotto le attese'],
+   ['Motivo', 'un grande ordine di aerei nel mese precedente'],
+   ['Esclusi i trasporti', '+0,4%, sopra le attese'],
+   ['Lettura', 'la domanda di fondo è buona']],
+   ["Un esempio illustrativo. Gli ordini totali crollano del cinque per cento, molto sotto le attese, e il titolo sembra pessimo.",
+    "Il motivo è che nel mese precedente c'era stato un grande ordine di aerei, che non si è ripetuto.",
+    "Gli ordini esclusi i trasporti, invece, salgono dello zero virgola quattro per cento, sopra le attese.",
+    "La lettura corretta è che la domanda di fondo delle imprese è buona. Ancora una volta, il titolo da solo può portarti fuori strada."],
+   k=[1, 2, 3, 4]),
+ RIEP([('Produzione industriale', 'fabbriche, miniere, energia'), ('Beni durevoli', 'guarda la voce senza trasporti'), ('Per il rischio', 'dati di impatto medio, più forti in Germania per l\'euro')],
+   ["Riassumiamo ora i punti principali di questa lezione, che chiude il modulo sulla crescita.",
+    "La produzione industriale misura quanto producono fabbriche, miniere ed energia, e in Europa conta molto quella tedesca.",
+    "Negli ordini di beni durevoli conviene guardare la voce senza trasporti, perché il totale è molto variabile.",
+    "Sul piano del rischio, sono dati di impatto medio, ma i dati industriali tedeschi possono muovere l'euro in modo significativo. Nel prossimo modulo parliamo di obbligazioni e tassi di mercato."]),
+])

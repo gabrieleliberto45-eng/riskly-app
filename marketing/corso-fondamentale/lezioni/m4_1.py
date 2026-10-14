@@ -1,0 +1,33 @@
+from h import *
+LEZIONE = L('4.1', 'Modulo 4', 'Il lavoro', 'Il rapporto sul lavoro americano', [
+ T('MODULO 4 · LEZIONE 1', 'Il venerdì **più nervoso** del mese', 'Il rapporto sul lavoro americano: cosa contiene e perché muove tutto.',
+   "Apriamo il modulo sul lavoro con l'appuntamento che molti trader considerano il più nervoso del mese, il rapporto sul lavoro americano, che esce di solito il primo venerdì del mese. Vediamo cosa contiene, perché è così importante, e come si legge."),
+ P('Cosa contiene', [
+   ('Nuovi posti di lavoro', 'quanti posti hanno creato le imprese, esclusa l\'agricoltura'),
+   ('Tasso di disoccupazione', 'quante persone cercano lavoro senza trovarlo'),
+   ('Salari orari', 'quanto è aumentata la paga media'),
+   ('Revisioni', 'le correzioni dei due mesi precedenti')],
+   ["Il rapporto, pubblicato dal Bureau of Labor Statistics, contiene quattro numeri principali.",
+    "Il primo sono i nuovi posti di lavoro creati dalle imprese, escluso il settore agricolo. In inglese si chiamano Non Farm Payrolls, ed è il numero che compare per primo sugli schermi.",
+    "Il secondo è il tasso di disoccupazione, cioè la percentuale di persone che cercano lavoro senza trovarlo.",
+    "Il terzo sono i salari orari medi, cioè quanto è aumentata la paga. Lo vedremo meglio nella lezione tre, perché è legato all'inflazione.",
+    "Il quarto sono le revisioni dei due mesi precedenti, che come abbiamo visto nel modulo uno possono cambiare completamente la lettura del dato."]),
+ CF('Due indagini diverse',
+   dict(t='Indagine sulle imprese', punti=[['Chi risponde', 'le aziende'], ['Cosa dà', 'i nuovi posti di lavoro'], ['Campione', 'molto ampio']]),
+   dict(t='Indagine sulle famiglie', punti=[['Chi risponde', 'le famiglie'], ['Cosa dà', 'il tasso di disoccupazione'], ['Campione', 'più piccolo, più variabile']]),
+   ["Una cosa che pochi sanno è che il rapporto nasce da due indagini diverse. La prima è rivolta alle imprese, che dichiarano quante persone hanno a libro paga. Da qui nasce il numero dei nuovi posti di lavoro.",
+    "La seconda è rivolta alle famiglie, a cui si chiede se i loro componenti lavorano o cercano lavoro. Da qui nasce il tasso di disoccupazione. Le due indagini possono a volte dare segnali diversi nello stesso mese, e questo è uno dei motivi per cui le reazioni sono spesso confuse."]),
+ P('Come reagisce di solito il mercato', [
+   ('Dati forti', 'economia solida, meno urgenza di tagliare i tassi, dollaro su'),
+   ('Dati deboli', 'più probabilità di tagli, dollaro giù, oro spesso su'),
+   ('Segnali misti', 'reazioni a zig zag nei primi minuti')],
+   ["Vediamo come reagisce, di solito, il mercato.",
+    "Con dati forti, cioè molti posti di lavoro e disoccupazione bassa, il mercato vede un'economia solida e meno urgenza di tagliare i tassi, e il dollaro tende a salire.",
+    "Con dati deboli, aumenta la probabilità di tagli dei tassi, il dollaro tende a scendere, e l'oro spesso sale.",
+    "Quando i segnali sono misti, per esempio molti posti di lavoro ma salari deboli e revisioni negative, nei primi minuti il prezzo può muoversi a zig zag, colpendo gli stop da entrambe le parti."]),
+ RIEP([('Quando', 'di solito il primo venerdì del mese, ore 14:30'), ('Quattro numeri', 'posti, disoccupazione, salari, revisioni'), ('Per il rischio', 'il venerdì del rapporto meglio stare leggeri, anche sull\'oro')],
+   ["Riassumiamo ora i punti principali di questa lezione.",
+    "Il rapporto sul lavoro americano esce di solito il primo venerdì del mese, alle quattordici e trenta ora italiana.",
+    "Contiene quattro numeri da leggere insieme, cioè posti di lavoro, disoccupazione, salari e revisioni.",
+    "Sul piano del rischio, il venerdì del rapporto conviene arrivare leggeri, anche sull'oro e sugli indici, non solo sul dollaro. E ricorda che è venerdì, quindi una posizione sbagliata rischia di restare aperta per tutto il fine settimana."]),
+])

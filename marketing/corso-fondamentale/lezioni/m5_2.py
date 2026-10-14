@@ -1,0 +1,36 @@
+from h import *
+LEZIONE = L('5.2', 'Modulo 5', 'La crescita', 'PMI e ISM: la fotografia delle imprese', [
+ T('MODULO 5 · LEZIONE 2', 'Sopra o sotto **50**', 'I sondaggi alle imprese che arrivano prima di tutti gli altri dati.',
+   "Il PIL arriva con un mese di ritardo rispetto alla fine del trimestre. Per capire prima dove sta andando l'economia, il mercato guarda i sondaggi alle imprese, i PMI e gli ISM. Sono tra i primi dati a uscire ogni mese, e si leggono in un modo molto semplice."),
+ P('Come funzionano', [
+   ('Un sondaggio', 'ai responsabili degli acquisti delle aziende'),
+   ('Domande semplici', 'ordini, produzione, occupazione, prezzi: meglio, uguale o peggio?'),
+   ('Un indice', 'sopra 50 espansione, sotto 50 contrazione')],
+   ["Vediamo come funzionano.",
+    "Ogni mese si intervistano i responsabili degli acquisti di centinaia di aziende, persone che sanno bene quanto lavoro sta arrivando.",
+    "Le domande sono semplici. Gli ordini, la produzione, l'occupazione e i prezzi pagati, rispetto al mese prima, sono migliorati, rimasti uguali o peggiorati?",
+    "Le risposte vengono trasformate in un indice. Il cinquanta è lo spartiacque. Sopra il cinquanta l'attività è in espansione, sotto il cinquanta è in contrazione, e più ci si allontana dal cinquanta più il movimento è forte."]),
+ TB('I principali', ['Indice', 'Chi', 'Quando'], [
+   ['ISM manifatturiero', 'USA', 'primo giorno lavorativo del mese, 16:00'],
+   ['ISM servizi', 'USA', 'terzo giorno lavorativo del mese, 16:00'],
+   ['PMI flash', 'USA, eurozona, Regno Unito', 'verso il 20 del mese stesso'],
+   ['PMI finali', 'USA, eurozona, Regno Unito', 'primi giorni del mese successivo']],
+   ["Questi sono gli indici principali.",
+    "L'ISM manifatturiero americano esce il primo giorno lavorativo del mese, alle sedici ora italiana.",
+    "L'ISM dei servizi esce di solito il terzo giorno lavorativo, sempre alle sedici. Negli Stati Uniti i servizi pesano molto più dell'industria, quindi questo dato è molto seguito.",
+    "I PMI flash, pubblicati da S&P Global, escono verso il venti del mese stesso, e sono quindi tra i dati più tempestivi in assoluto. Per l'eurozona sono particolarmente importanti.",
+    "I PMI finali escono nei primi giorni del mese successivo, e di solito confermano la flash."]),
+ P('Le voci da guardare dentro l\'indice', [
+   ('Nuovi ordini', 'anticipano la produzione dei prossimi mesi'),
+   ('Prezzi pagati', 'anticipano l\'inflazione'),
+   ('Occupazione', 'anticipa il rapporto sul lavoro')],
+   ["Oltre al numero principale, conviene guardare tre voci interne.",
+    "I nuovi ordini, che anticipano la produzione dei mesi successivi. Se gli ordini crollano, la produzione seguirà.",
+    "I prezzi pagati, che anticipano l'inflazione, e che il mercato guarda molto nei periodi in cui l'inflazione è al centro dell'attenzione.",
+    "E l'occupazione, che dà un indizio sul rapporto sul lavoro, come abbiamo visto nel modulo precedente."]),
+ RIEP([('Lettura', 'sopra 50 espansione, sotto 50 contrazione'), ('Tempestivi', 'i PMI flash escono a fine mese stesso'), ('Per il rischio', 'gli ISM escono alle 16:00, quando molti non se li aspettano')],
+   ["Riassumiamo ora i punti principali di questa lezione.",
+    "PMI e ISM sono sondaggi alle imprese, e si leggono rispetto al cinquanta, sopra espansione, sotto contrazione.",
+    "Sono tra i dati più tempestivi, e le voci interne su ordini, prezzi e occupazione anticipano altri dati.",
+    "Sul piano del rischio, ricorda che gli ISM escono alle sedici ora italiana, in un orario in cui molti trader pensano che i dati della giornata siano finiti."]),
+])

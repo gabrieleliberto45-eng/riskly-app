@@ -1,0 +1,31 @@
+from h import *
+LEZIONE = L('6.2', 'Modulo 6', 'Obbligazioni e tassi di mercato', "La curva dei rendimenti e l'inversione", [
+ T('MODULO 6 · LEZIONE 2', 'Quando il breve rende **più** del lungo', 'La forma della curva dei rendimenti, e perché l\'inversione è un segnale seguito da tutti.',
+   "Se metti in fila i rendimenti dei titoli di Stato dalla scadenza più breve alla più lunga, ottieni una linea chiamata curva dei rendimenti. La sua forma racconta molto su cosa si aspetta il mercato. In questa lezione vediamo come si legge, e perché la sua inversione è uno dei segnali più famosi della finanza."),
+ CF('Curva normale e curva invertita',
+   dict(t='Normale', punti=[['Forma', 'sale con la scadenza'], ['Perché', 'prestare a lungo rende di più'], ['Messaggio', 'crescita attesa']]),
+   dict(t='Invertita', punti=[['Forma', 'il breve rende più del lungo'], ['Perché', 'si attendono tagli dei tassi'], ['Messaggio', 'rallentamento atteso']]),
+   ["In condizioni normali la curva sale con la scadenza. Prestare denaro per dieci anni è più rischioso che prestarlo per due, e quindi rende di più. Una curva di questo tipo descrive un'economia che il mercato si aspetta in crescita.",
+    "A volte però la curva si inverte, e i titoli a breve scadenza rendono più di quelli a lunga scadenza. Succede quando la banca centrale tiene i tassi alti oggi, ma il mercato si aspetta che dovrà tagliarli in futuro, di solito perché prevede un rallentamento dell'economia."]),
+ P("L'inversione come segnale", [
+   ('Due contro dieci anni', 'la misura più citata è la differenza tra i due rendimenti'),
+   ('Storicamente', 'molte recessioni americane sono state precedute da un\'inversione'),
+   ('Con molti limiti', 'i tempi sono lunghi e variabili, e non sempre funziona')],
+   ["Vediamo perché l'inversione è così seguita.",
+    "La misura più citata è la differenza tra il rendimento a dieci anni e quello a due anni americani. Quando diventa negativa, la curva è invertita.",
+    "Storicamente molte recessioni americane sono state precedute da un'inversione di questa curva, ed è per questo che i giornali ne parlano tanto.",
+    "Ha però molti limiti. Il tempo tra l'inversione e un'eventuale recessione è stato molto variabile, a volte più di un anno, e la curva americana è rimasta invertita per gran parte del 2022, del 2023 e del 2024 senza che arrivasse subito una recessione. È un segnale da conoscere, non un orologio."]),
+ P('Come si muove la curva', [
+   ('Irripidimento', 'la differenza tra lungo e breve aumenta'),
+   ('Appiattimento', 'la differenza si riduce'),
+   ('Perché ti interessa', 'dice se il mercato teme più l\'inflazione o il rallentamento')],
+   ["Nel linguaggio dei mercati ci sono due movimenti della curva da conoscere.",
+    "Si parla di irripidimento quando la differenza tra i rendimenti lunghi e quelli brevi aumenta, per esempio perché il mercato si aspetta tagli dei tassi a breve.",
+    "Si parla di appiattimento quando la differenza si riduce, per esempio quando la banca centrale alza i tassi a breve.",
+    "Ti interessa perché la forma della curva ti dice se il mercato, in quel momento, è più preoccupato dall'inflazione o dal rallentamento dell'economia, e questo cambia il modo in cui reagiscono valute e oro ai dati."]),
+ RIEP([('Curva', 'rendimenti messi in fila per scadenza'), ('Inversione', 'il breve rende più del lungo, si attendono tagli'), ('Per il rischio', 'segnale di contesto, non un segnale operativo')],
+   ["Riassumiamo ora i punti principali di questa lezione.",
+    "La curva dei rendimenti mette in fila i rendimenti per scadenza, e normalmente sale.",
+    "Quando si inverte, il mercato si aspetta tagli dei tassi e un rallentamento, anche se i tempi sono incerti.",
+    "Sul piano del rischio, l'inversione è un'informazione di contesto, utile per capire il clima dei mercati, e non un segnale per aprire o chiudere operazioni."]),
+])

@@ -1,0 +1,36 @@
+from h import *
+LEZIONE = L('4.3', 'Modulo 4', 'Il lavoro', "Salari: il ponte tra lavoro e inflazione", [
+ T('MODULO 4 · LEZIONE 3', 'Il numero che **unisce** i due mandati', "Perché la crescita dei salari interessa la banca centrale quanto l'occupazione.",
+   "Nel rapporto sul lavoro c'è un numero che spesso passa in secondo piano rispetto ai posti di lavoro, ma che la banca centrale guarda con grande attenzione, cioè la crescita dei salari. È il ponte tra i due obiettivi della Fed, il lavoro e l'inflazione."),
+ P('Perché i salari contano', [
+   ('Costo per le imprese', 'salari più alti fanno salire i costi'),
+   ('Prezzi dei servizi', 'nei servizi il lavoro è la voce di costo principale'),
+   ('Spesa delle famiglie', 'più reddito sostiene i consumi e la domanda')],
+   ["I salari contano per tre ragioni collegate.",
+    "Sono un costo per le imprese, e quando salgono molto le imprese tendono ad alzare i prezzi per difendere i margini.",
+    "Nei servizi, come ristoranti, sanità o trasporti, il lavoro è la voce di costo principale, e per questo i salari influenzano molto l'inflazione dei servizi, che è anche la più difficile da far scendere.",
+    "Infine, salari più alti significano più reddito per le famiglie, che sostiene i consumi e quindi la domanda."]),
+ EX('Salari e produttività (esempio illustrativo)', [
+   ['Salari', '+4,5% in un anno'],
+   ['Produttività', '+1,5% in un anno'],
+   ['Differenza', 'il costo del lavoro per unità prodotta sale di circa il 3%'],
+   ['Lettura', 'pressione sui prezzi compatibile con un\'inflazione sopra il 2%']],
+   ["Facciamo un ragionamento con numeri inventati. Supponiamo che i salari crescano del quattro virgola cinque per cento in un anno.",
+    "Nello stesso periodo la produttività, cioè quanto produce ogni lavoratore, cresce dell'uno virgola cinque per cento.",
+    "La differenza, circa il tre per cento, è l'aumento del costo del lavoro per ogni unità prodotta.",
+    "Se le imprese girano questo aumento ai clienti, ne risulta una pressione sui prezzi compatibile con un'inflazione sopra il due per cento. Per questo una crescita dei salari molto forte preoccupa la banca centrale, anche quando l'inflazione sembra sotto controllo."],
+   k=[1, 2, 3, 4]),
+ P('Come si legge nel rapporto', [
+   ('Sul mese', '0,3% al mese equivale a circa il 3,6% annuo'),
+   ('Sull\'anno', 'la tendenza di fondo'),
+   ('Insieme ai posti', 'pochi posti ma salari forti: segnale misto')],
+   ["Nel rapporto sul lavoro, i salari orari medi si leggono in due modi.",
+    "La variazione sul mese, che il mercato guarda subito. Un aumento dello zero virgola tre per cento al mese, ripetuto per dodici mesi, equivale a circa il tre virgola sei per cento all'anno.",
+    "La variazione sull'anno, che mostra la tendenza di fondo.",
+    "E vanno sempre letti insieme ai posti di lavoro. Pochi posti di lavoro con salari forti sono un segnale misto, che può dare reazioni contraddittorie nei primi minuti."]),
+ RIEP([('Salari', 'il ponte tra lavoro e inflazione'), ('Servizi', "il lavoro guida l'inflazione dei servizi"), ('Per il rischio', 'una sorpresa sui salari può contare quanto quella sui posti')],
+   ["Riassumiamo ora i punti principali di questa lezione.",
+    "I salari sono il ponte tra il mercato del lavoro e l'inflazione.",
+    "Influenzano soprattutto l'inflazione dei servizi, che è quella più persistente.",
+    "Sul piano del rischio, una sorpresa sui salari può muovere il mercato quanto una sorpresa sui posti di lavoro, quindi quando esce il rapporto guarda sempre anche questo numero."]),
+])

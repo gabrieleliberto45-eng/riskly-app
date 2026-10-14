@@ -1,0 +1,37 @@
+from h import *
+LEZIONE = L('5.3', 'Modulo 5', 'La crescita', 'Vendite al dettaglio e consumi', [
+ T('MODULO 5 · LEZIONE 3', 'Quanto **spendono** le famiglie', "Il motore dell'economia americana, misurato ogni mese.",
+   "Negli Stati Uniti i consumi delle famiglie valgono circa due terzi dell'economia. Capire quanto spendono gli americani significa capire, in buona parte, dove va l'economia. In questa lezione vediamo il dato più seguito sui consumi, le vendite al dettaglio."),
+ P('Cosa misurano', [
+   ('Le vendite dei negozi', 'fisici e online, ogni mese'),
+   ('In valore', 'non al netto dei prezzi: risentono dell\'inflazione'),
+   ('Pubblicate a metà mese', 'dal Census Bureau, alle 14:30 italiane')],
+   ["Le vendite al dettaglio misurano quanto hanno incassato i negozi americani in un mese, sia quelli fisici sia quelli online.",
+    "Attenzione a un dettaglio. Il dato è espresso in valore, non al netto dei prezzi, quindi un aumento può dipendere anche dall'inflazione e non solo da maggiori acquisti.",
+    "Viene pubblicato a metà mese dal Census Bureau, l'ufficio del censimento americano, alle quattordici e trenta ora italiana."]),
+ TB('Le voci del comunicato', ['Voce', 'Perché conta'], [
+   ['Vendite totali', 'il titolo, ma risente di auto e carburanti'],
+   ['Senza auto', 'toglie le vendite di automobili, molto variabili'],
+   ['Gruppo di controllo', 'la parte che entra nel calcolo del PIL'],
+   ['Revisione del mese prima', 'spesso ampia']],
+   ["Il comunicato contiene diverse voci.",
+    "Le vendite totali, che sono il titolo, ma risentono molto delle auto e dei carburanti, i cui prezzi e volumi cambiano molto da un mese all'altro.",
+    "Le vendite senza auto, che tolgono la componente più variabile.",
+    "Il gruppo di controllo, che esclude auto, carburanti, materiali da costruzione e ristorazione. È la parte che entra nel calcolo dei consumi del PIL, ed è spesso la voce più importante per il mercato.",
+    "E la revisione del mese precedente, che come abbiamo visto può essere ampia e cambiare la lettura del dato."]),
+ EX('Un caso da leggere bene (esempio illustrativo)', [
+   ['Vendite totali', '+0,8%, sopra le attese'],
+   ['Carburanti', 'prezzi della benzina in forte aumento'],
+   ['Gruppo di controllo', '0,0%, sotto le attese'],
+   ['Lettura', 'si spende di più per la benzina, non per altro']],
+   ["Vediamo un caso con numeri inventati. Le vendite totali salgono dello zero virgola otto per cento, sopra le attese, e il titolo sembra positivo.",
+    "Nello stesso mese però il prezzo della benzina è salito molto.",
+    "Il gruppo di controllo, che esclude i carburanti, è fermo a zero, sotto le attese.",
+    "La lettura corretta è che le famiglie spendono di più per il carburante, non perché consumano di più. Dopo la prima reazione al titolo, il mercato potrebbe correggere nella direzione opposta."],
+   k=[1, 2, 3, 4]),
+ RIEP([('Vendite al dettaglio', 'quanto spendono le famiglie, a metà mese'), ('Gruppo di controllo', 'la voce che entra nel PIL'), ('Per il rischio', 'il titolo può ingannare, guarda le voci interne')],
+   ["Riassumiamo ora i punti principali di questa lezione.",
+    "Le vendite al dettaglio misurano la spesa delle famiglie americane, ed escono a metà mese alle quattordici e trenta.",
+    "Il gruppo di controllo è la voce più importante, perché entra nel calcolo del PIL.",
+    "Sul piano del rischio, ricorda che il titolo può ingannare, soprattutto quando cambiano i prezzi dei carburanti, e che la prima reazione può correggersi rapidamente."]),
+])

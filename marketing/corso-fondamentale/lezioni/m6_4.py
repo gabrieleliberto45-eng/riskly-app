@@ -1,0 +1,31 @@
+from h import *
+LEZIONE = L('6.4', 'Modulo 6', 'Obbligazioni e tassi di mercato', 'Lo spread e il rischio sovrano', [
+ T('MODULO 6 · LEZIONE 4', 'Lo **spread** che conosciamo bene', 'La differenza tra BTP e Bund, e cosa racconta sul rischio di un paese.',
+   "In Italia la parola spread è diventata famosa nel 2011, quando aprì i telegiornali per settimane. In questa lezione vediamo cosa significa, perché conta per l'euro e per le borse, e cosa insegna sul rischio."),
+ F('Lo spread BTP–Bund', 'Spread = Rendimento BTP 10 anni − Rendimento Bund 10 anni', [('BTP', 'titolo di Stato italiano'), ('Bund', 'titolo di Stato tedesco, considerato il più sicuro dell\'eurozona'), ('Punti base', '100 punti base = 1%')],
+   ["Lo spread è la differenza tra il rendimento del titolo di Stato italiano a dieci anni, il BTP, e quello tedesco, il Bund.",
+    "Il BTP è il titolo con cui l'Italia si finanzia sul mercato.",
+    "Il Bund è considerato il titolo più sicuro dell'eurozona, ed è il termine di paragone per tutti gli altri paesi.",
+    "Lo spread si misura in punti base, dove cento punti base equivalgono all'uno per cento. Uno spread di duecento punti significa che l'Italia paga il due per cento in più della Germania per prendere denaro in prestito."]),
+ P('Cosa racconta', [
+   ('Il rischio percepito', 'più è alto, più il mercato chiede un premio per prestare all\'Italia'),
+   ('La tenuta dell\'eurozona', 'spread in forte salita: timori sull\'unione monetaria'),
+   ('Il costo per lo Stato', 'nel tempo pesa sui conti pubblici')],
+   ["Lo spread racconta tre cose.",
+    "Il rischio percepito dal mercato. Più lo spread è alto, più gli investitori chiedono un premio per prestare denaro all'Italia invece che alla Germania.",
+    "La tenuta dell'eurozona. Quando gli spread dei paesi più indebitati salgono tutti insieme, il mercato inizia a temere per la stabilità dell'unione monetaria, e l'euro ne risente.",
+    "E il costo per lo Stato, perché nel tempo un rendimento più alto significa più interessi da pagare sul debito, e quindi meno risorse per altre spese."]),
+ TB('Un caso storico', ['Quando', 'Cosa è successo'], [
+   ['Novembre 2011', 'spread vicino ai 575 punti base, crisi del debito europeo'],
+   ['Luglio 2012', 'la BCE annuncia di fare "tutto il necessario" per l\'euro'],
+   ['Mesi successivi', 'lo spread scende in modo deciso']],
+   ["Vediamo il caso più famoso.",
+    "Nel novembre del 2011, durante la crisi del debito europeo, lo spread tra BTP e Bund arrivò vicino ai cinquecentosettantacinque punti base. Il mercato temeva che l'Italia non riuscisse a rifinanziare il suo debito.",
+    "Nel luglio del 2012 il presidente della BCE, Mario Draghi, dichiarò che la banca centrale avrebbe fatto tutto il necessario per preservare l'euro. Fu uno degli esempi più potenti di forward guidance della storia.",
+    "Nei mesi successivi lo spread scese in modo deciso, senza che la BCE dovesse acquistare titoli con quel nuovo strumento. Bastarono le parole, sostenute dalla credibilità della banca centrale."]),
+ RIEP([('Spread', 'differenza di rendimento tra BTP e Bund'), ('Segnale', 'rischio paese e tenuta dell\'eurozona'), ('Per il rischio', 'spread in forte salita: euro e banche sotto pressione')],
+   ["Riassumiamo ora i punti principali di questa lezione, che chiude il modulo sulle obbligazioni.",
+    "Lo spread è la differenza di rendimento tra il BTP italiano e il Bund tedesco, misurata in punti base.",
+    "Racconta il rischio percepito sull'Italia e, nei momenti di crisi, la fiducia nell'eurozona.",
+    "Sul piano del rischio, quando gli spread salgono rapidamente, l'euro e le azioni bancarie europee tendono a essere sotto pressione. Nel prossimo modulo parliamo di correlazioni tra asset."]),
+])

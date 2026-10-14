@@ -1,0 +1,37 @@
+from h import *
+LEZIONE = L('6.1', 'Modulo 6', 'Obbligazioni e tassi di mercato', 'I rendimenti dei titoli di Stato', [
+ T('MODULO 6 · LEZIONE 1', 'Il mercato **più grande** del mondo', 'Come funzionano i titoli di Stato, e perché prezzo e rendimento vanno in direzioni opposte.',
+   "Il mercato delle obbligazioni è molto più grande di quello delle azioni, e i suoi movimenti influenzano valute, oro e borse. Molti trader retail lo ignorano, ma i rendimenti dei titoli di Stato sono una delle informazioni più utili che esistano. In questa lezione vediamo come si leggono."),
+ P('Come funziona un titolo di Stato', [
+   ('Un prestito allo Stato', 'compri il titolo e presti denaro'),
+   ('Una cedola', 'ricevi interessi fissi nel tempo'),
+   ('Il rimborso', 'alla scadenza riavrai il valore nominale')],
+   ["Comprare un titolo di Stato significa prestare denaro allo Stato.",
+    "In cambio ricevi degli interessi, chiamati cedola, di solito fissi per tutta la durata del titolo.",
+    "Alla scadenza lo Stato ti restituisce il valore nominale, cioè la somma prestata. Nel frattempo, però, il titolo si può comprare e vendere sul mercato, e il suo prezzo cambia ogni giorno."]),
+ EX('Prezzo e rendimento: la regola (esempio semplificato)', [
+   ['Titolo', 'valore 100, cedola 4 all\'anno: rende il 4%'],
+   ['I tassi di mercato salgono al 5%', 'nessuno compra più al 4% a prezzo 100'],
+   ['Il prezzo scende', 'finché il rendimento si avvicina al 5%'],
+   ['Regola', 'prezzo giù, rendimento su, e viceversa']],
+   ["Vediamo la regola più importante con un esempio semplificato. Un titolo vale cento e paga una cedola di quattro all'anno, quindi rende il quattro per cento.",
+    "Supponiamo che i tassi di mercato salgano al cinque per cento, per esempio perché la banca centrale ha alzato i tassi. Nessuno vorrà più pagare cento per un titolo che rende solo il quattro.",
+    "Il prezzo del vecchio titolo scende, fino a quando il suo rendimento effettivo, considerando la cedola e il guadagno al rimborso, si avvicina al cinque per cento.",
+    "La regola quindi è che prezzo e rendimento si muovono sempre in direzioni opposte. Quando senti dire che i rendimenti salgono, vuol dire che i prezzi dei titoli scendono."],
+   k=[1, 2, 3, 4]),
+ TB('I rendimenti da guardare', ['Titolo', 'Cosa riflette'], [
+   ['Treasury USA a 2 anni', 'le attese sui tassi della Fed nei prossimi anni'],
+   ['Treasury USA a 10 anni', 'crescita, inflazione e rischio di lungo periodo'],
+   ['Bund tedesco a 10 anni', 'il riferimento per l\'eurozona'],
+   ['BTP italiano a 10 anni', 'il costo del debito italiano']],
+   ["Questi sono i rendimenti più seguiti.",
+    "Il titolo di Stato americano a due anni, molto sensibile alle attese sui tassi della Fed. Se il mercato prevede più tagli, il suo rendimento scende.",
+    "Il titolo americano a dieci anni, il riferimento mondiale, che riflette le attese su crescita, inflazione e rischio di lungo periodo. Influenza i tassi dei mutui e il valore delle azioni.",
+    "Il Bund tedesco a dieci anni, il riferimento per l'eurozona.",
+    "E il BTP italiano a dieci anni, che indica quanto costa all'Italia finanziarsi, e di cui parleremo nella lezione sullo spread."]),
+ RIEP([('Regola', 'prezzo e rendimento in direzioni opposte'), ('Due anni', 'attese sulla banca centrale'), ('Per il rischio', 'rendimenti in rapida salita spesso rafforzano il dollaro e pesano sull\'oro')],
+   ["Riassumiamo ora i punti principali di questa lezione.",
+    "Prezzo e rendimento di un titolo di Stato si muovono sempre in direzioni opposte.",
+    "Il rendimento a due anni riflette le attese sulla banca centrale, quello a dieci anni le attese di lungo periodo.",
+    "Sul piano del rischio, ricorda che quando i rendimenti americani salgono rapidamente, spesso il dollaro si rafforza e l'oro è sotto pressione."]),
+])

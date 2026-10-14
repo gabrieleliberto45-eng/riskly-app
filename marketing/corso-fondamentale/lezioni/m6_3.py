@@ -1,0 +1,31 @@
+from h import *
+LEZIONE = L('6.3', 'Modulo 6', 'Obbligazioni e tassi di mercato', 'I rendimenti reali', [
+ T('MODULO 6 · LEZIONE 3', 'Il prezzo **vero** del denaro', "Il rendimento al netto dell'inflazione, e il suo legame con l'oro.",
+   "Un rendimento del cinque per cento è alto o basso? Dipende dall'inflazione. Se i prezzi salgono del sei per cento all'anno, in realtà stai perdendo potere d'acquisto. In questa lezione vediamo il rendimento reale, che molti considerano il prezzo vero del denaro, e il suo legame storico con l'oro."),
+ F('Il rendimento reale', 'Rendimento reale ≈ Rendimento nominale − Inflazione attesa', [('Nominale', 'quello che leggi sul titolo'), ('Inflazione attesa', 'quella prevista per la durata del titolo'), ('Reale', 'quanto guadagni davvero in potere d\'acquisto')],
+   ["Il rendimento reale è, in modo approssimato, il rendimento nominale meno l'inflazione attesa.",
+    "Il rendimento nominale è quello che leggi sul titolo, per esempio il quattro per cento.",
+    "L'inflazione attesa è quella prevista per tutta la durata del titolo, per esempio il due e mezzo per cento.",
+    "Il rendimento reale, in questo caso circa l'uno e mezzo per cento, è quanto guadagni davvero in potere d'acquisto. Negli Stati Uniti si osserva direttamente nei titoli indicizzati all'inflazione, chiamati TIPS."]),
+ P("Il legame con l'oro", [
+   ('L\'oro non paga interessi', 'tenerlo ha un costo opportunità'),
+   ('Rendimenti reali alti', 'tenere oro costa di più: pressione al ribasso'),
+   ('Rendimenti reali bassi o negativi', 'tenere oro costa poco: sostegno al prezzo')],
+   ["Il rendimento reale è importante soprattutto per chi fa trading sull'oro.",
+    "L'oro non paga interessi. Tenerlo, quindi, ha un costo opportunità, cioè quello che rinunci a guadagnare non tenendo un titolo che rende.",
+    "Quando i rendimenti reali sono alti, quel costo è alto, e molti investitori preferiscono i titoli all'oro. Questo tende a mettere pressione sul prezzo dell'oro.",
+    "Quando i rendimenti reali sono bassi, o addirittura negativi come in parte del 2020 e del 2021, tenere oro costa poco, e questo tende a sostenerne il prezzo."]),
+ P('Un legame che può rompersi', [
+   ('Per molti anni', 'relazione inversa abbastanza stretta'),
+   ('Dal 2022', 'oro in forte salita nonostante rendimenti reali alti'),
+   ('Perché', 'acquisti delle banche centrali, geopolitica, ricerca di sicurezza')],
+   ["Attenzione però, questo legame non è una legge fisica.",
+    "Per molti anni la relazione inversa tra oro e rendimenti reali è stata abbastanza stretta.",
+    "Dal 2022 in poi, però, l'oro è salito con forza anche quando i rendimenti reali erano alti, cosa che secondo la relazione storica non sarebbe dovuta accadere.",
+    "Tra i motivi più citati ci sono gli acquisti di oro da parte di molte banche centrali, le tensioni geopolitiche e la ricerca di sicurezza. È un buon esempio di come le correlazioni possano cambiare, e lo vedremo meglio nel prossimo modulo."]),
+ RIEP([('Reale', 'rendimento nominale meno inflazione attesa'), ('Oro', 'storicamente sensibile ai rendimenti reali'), ('Per il rischio', 'le relazioni storiche possono smettere di funzionare')],
+   ["Riassumiamo ora i punti principali di questa lezione.",
+    "Il rendimento reale è il rendimento nominale meno l'inflazione attesa, ed è il prezzo vero del denaro.",
+    "L'oro è stato storicamente sensibile ai rendimenti reali, perché non paga interessi.",
+    "Sul piano del rischio, ricorda che anche le relazioni più consolidate possono smettere di funzionare per anni, quindi non basare mai una posizione su una sola correlazione."]),
+])

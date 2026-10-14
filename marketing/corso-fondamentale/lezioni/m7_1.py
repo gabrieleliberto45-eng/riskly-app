@@ -1,0 +1,38 @@
+from h import *
+LEZIONE = L('7.1', 'Modulo 7', 'Correlazioni tra asset', 'Cos\'è una correlazione e perché cambia', [
+ T('MODULO 7 · LEZIONE 1', 'Mercati che si muovono **insieme**', 'Cosa vuol dire che due asset sono correlati, e perché non bisogna fidarsi troppo.',
+   "In questo modulo vediamo come si muovono i mercati gli uni rispetto agli altri. Perché quando sale il dollaro spesso scende l'oro? Perché lo yen sale quando le borse crollano? Prima di entrare nei singoli casi, in questa lezione capiamo cos'è una correlazione, e perché non va mai presa come una certezza."),
+ TB('La correlazione in un numero', ['Valore', 'Significato'], [
+   ['+1', 'si muovono sempre nella stessa direzione'],
+   ['0', 'nessun legame stabile'],
+   ['−1', 'si muovono sempre in direzioni opposte'],
+   ['Nella pratica', 'valori intermedi, che cambiano nel tempo']],
+   ["La correlazione si misura con un numero che va da meno uno a più uno.",
+    "Più uno significa che due asset si muovono sempre nella stessa direzione, nello stesso momento.",
+    "Zero significa che non c'è un legame stabile tra i due movimenti.",
+    "Meno uno significa che si muovono sempre in direzioni opposte.",
+    "Nella pratica si vedono quasi sempre valori intermedi, come più zero virgola sei o meno zero virgola quattro, e soprattutto valori che cambiano nel tempo."]),
+ P('Perché le correlazioni cambiano', [
+   ('Cambia il motore del mercato', 'inflazione, crescita o paura: ognuno crea legami diversi'),
+   ('Eventi straordinari', 'nelle crisi molte correlazioni saltano'),
+   ('Nuovi protagonisti', 'per esempio gli acquisti di oro delle banche centrali')],
+   ["Le correlazioni cambiano per tre motivi principali.",
+    "Il primo è che cambia il motore del mercato. Nei periodi dominati dall'inflazione certi asset si muovono insieme, nei periodi dominati dalla paura di una recessione se ne muovono insieme altri.",
+    "Il secondo sono gli eventi straordinari. Nelle crisi più acute molte correlazioni saltano, perché tutti vendono tutto per procurarsi liquidità, come vedremo nel modulo sui beni rifugio.",
+    "Il terzo sono i nuovi protagonisti. Quando un grande operatore inizia a comprare o vendere in modo costante, come le banche centrali con l'oro negli ultimi anni, i legami storici possono indebolirsi."]),
+ EX('Un esempio reale: il 2022', [
+   ['Normalmente', 'quando le azioni scendono, i titoli di Stato salgono'],
+   ['Nel 2022', 'inflazione alta e tassi in forte rialzo'],
+   ['Risultato', 'azioni e obbligazioni scendono insieme'],
+   ['Lezione', 'una diversificazione basata sul passato può non proteggere']],
+   ["Vediamo un esempio reale. Per molti anni, quando le azioni scendevano, i titoli di Stato tendevano a salire, e questo rendeva i portafogli misti più stabili.",
+    "Nel 2022, però, il motore del mercato era l'inflazione, con le banche centrali che alzavano i tassi rapidamente.",
+    "Il risultato è stato che azioni e obbligazioni sono scese insieme, e molti portafogli considerati prudenti hanno subito perdite importanti.",
+    "La lezione è che una protezione basata sulle correlazioni del passato può non funzionare proprio quando serve di più."],
+   k=[1, 2, 3, 4]),
+ RIEP([('Correlazione', 'da −1 a +1, quasi sempre intermedia'), ('Cambia', 'con il motore del mercato e nelle crisi'), ('Per il rischio', 'non contare su una correlazione per proteggerti')],
+   ["Riassumiamo ora i punti principali di questa lezione.",
+    "La correlazione misura quanto due asset si muovono insieme, da meno uno a più uno.",
+    "Cambia nel tempo, a seconda di cosa guida il mercato, e nelle crisi può saltare del tutto.",
+    "Sul piano del rischio, non contare mai su una correlazione per proteggere una posizione. Lo stop e il dimensionamento restano la tua difesa principale."]),
+])
