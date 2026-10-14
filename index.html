@@ -3344,7 +3344,7 @@ function b_renderStato(){
   document.getElementById('jbotGriglia').innerHTML = b_stati.map(s => {
     const d = s.dati || {};
     const minuti = (Date.now() - new Date(s.aggiornato).getTime()) / 60000;
-    const offline = minuti > 3;
+    const offline = minuti > 5;      // il bot manda lo stato ogni 30 s: 5 minuti = davvero fermo
     let stato = ['ok','pausa','bloccato'].includes(d.stato) ? d.stato : 'ok';
 
     let etichetta = { ok:'Operativo', pausa:'In pausa', bloccato:'Bloccato' }[stato];
