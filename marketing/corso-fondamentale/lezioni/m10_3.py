@@ -19,7 +19,7 @@ LEZIONE = L('10.3', 'Modulo 10', 'Dal dato al piano', 'Il rischio nelle settiman
    ['Effetto', 'con lo stesso stop, il lotto si dimezza']],
    ["Vediamo un esempio illustrativo con un conto da diecimila euro.",
     "In una settimana tranquilla, con un rischio dell'uno per cento, rischi cento euro per operazione.",
-    "In una settimana carica, con un rischio dello zero virgola cinque per cento, ne rischi cinquanta.",
+    "In una settimana carica, con un rischio dello zero virgola cinque per cento, rischi cinquanta euro.",
     "Con la stessa distanza dello stop, il lotto si dimezza. In pratica, se la volatilità raddoppia, il tuo rischio reale resta sotto controllo."],
    k=[1, 2, 3, 4]),
  P('Il tetto settimanale', [

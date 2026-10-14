@@ -28,6 +28,6 @@ LEZIONE = L('2.5', 'Modulo 2', 'Le banche centrali', 'Forward guidance: quando l
  RIEP([('Forward guidance', 'indicazioni sul futuro dei tassi'), ('Toni', 'restrittivo e espansivo, falchi e colombe'), ('Per il rischio', 'anche un discorso può muovere il mercato come una decisione')],
    ["Riassumiamo ora i punti principali di questa lezione.",
     "La forward guidance sono le indicazioni che la banca centrale dà sul futuro dei tassi, e il mercato le anticipa subito.",
-    "Un tono restrittivo tende a rafforzare la valuta, un tono espansivo tende a indebolirla.",
+    "Quando il tono è restrittivo, di solito la valuta si rafforza. Quando invece è espansivo, di solito si indebolisce.",
     "Sul piano del rischio, ricorda che anche un discorso o un'intervista di un banchiere centrale può muovere il mercato quanto una decisione, quindi controlla anche questi appuntamenti nel calendario."]),
 ])

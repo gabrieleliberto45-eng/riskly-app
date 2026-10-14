@@ -27,7 +27,7 @@ LEZIONE = L('6.1', 'Modulo 6', 'Obbligazioni e tassi di mercato', 'I rendimenti 
    ["Questi sono i rendimenti più seguiti.",
     "Il titolo di Stato americano a due anni, molto sensibile alle attese sui tassi della Fed. Se il mercato prevede più tagli, il suo rendimento scende.",
     "Il titolo americano a dieci anni, il riferimento mondiale, che riflette le attese su crescita, inflazione e rischio di lungo periodo. Influenza i tassi dei mutui e il valore delle azioni.",
-    "Il Bund tedesco a dieci anni, il riferimento per l'eurozona.",
+    "Il Bund, cioè il titolo di Stato tedesco a dieci anni, che è il riferimento per l'eurozona.",
     "E il BTP italiano a dieci anni, che indica quanto costa all'Italia finanziarsi, e di cui parleremo nella lezione sullo spread."]),
  RIEP([('Regola', 'prezzo e rendimento in direzioni opposte'), ('Due anni', 'attese sulla banca centrale'), ('Per il rischio', 'rendimenti in rapida salita spesso rafforzano il dollaro e pesano sull\'oro')],
    ["Riassumiamo ora i punti principali di questa lezione.",

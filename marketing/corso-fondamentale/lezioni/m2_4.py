@@ -8,7 +8,7 @@ LEZIONE = L('2.4', 'Modulo 2', 'Le banche centrali', 'BCE, Inghilterra, Giappone
    ['Banca del Giappone', '8 l\'anno', 'di solito in mattinata, ora italiana'],
    ['Banca nazionale svizzera', '4 l\'anno', '9:30']],
    ["Vediamo gli orari, sempre in ora italiana.",
-    "La BCE si riunisce otto volte l'anno, pubblica la decisione alle quattordici e quindici e tiene la conferenza stampa alle quattordici e quarantacinque.",
+    "La BCE si riunisce otto volte all'anno, pubblica la decisione alle quattordici e quindici e tiene la conferenza stampa alle quattordici e quarantacinque.",
     "La Banca d'Inghilterra si riunisce anche lei otto volte l'anno, e annuncia la decisione alle tredici.",
     "La Banca del Giappone ha otto riunioni all'anno, e la decisione arriva senza un orario fisso, di solito durante la mattinata italiana, quando in Giappone è pomeriggio.",
     "La Banca nazionale svizzera si riunisce solo quattro volte l'anno, e annuncia la decisione alle nove e trenta del mattino."]),

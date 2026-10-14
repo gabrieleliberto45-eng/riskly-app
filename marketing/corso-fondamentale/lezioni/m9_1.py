@@ -19,7 +19,7 @@ LEZIONE = L('9.1', 'Modulo 9', 'Eventi straordinari', 'Geopolitica e guerre', [
    ["In generale, la reazione dei mercati a un evento geopolitico segue spesso tre fasi.",
     "Prima arriva la paura. I rifugi salgono, mentre borse e valute considerate più rischiose scendono.",
     "Poi il mercato si chiede quali siano i canali concreti, cioè come l'evento colpisce l'energia, le materie prime, il commercio e l'inflazione. Nel caso dell'Ucraina il canale principale è stato l'energia, con effetti sull'inflazione europea per molti mesi.",
-    "E spesso arriva un rientro. Se l'evento non cambia davvero l'economia, la paura si sgonfia, e una parte dei movimenti iniziali si riassorbe. Molti eventi geopolitici, storicamente, hanno avuto effetti brevi sui mercati."]),
+    "Spesso, infine, arriva un rientro. Se l'evento non cambia davvero l'economia, la paura si sgonfia, e una parte dei movimenti iniziali si riassorbe. Molti eventi geopolitici, storicamente, hanno avuto effetti brevi sui mercati."]),
  P('Come proteggersi', [
    ('Non inseguire la notizia', 'i primi minuti sono i più caotici'),
    ('Riduci il rischio', 'quando le tensioni crescono, lotti più piccoli'),

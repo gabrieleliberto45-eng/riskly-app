@@ -19,7 +19,7 @@ LEZIONE = L('3.2', 'Modulo 3', "L'inflazione", "Il PCE: l'indice che guarda la F
    ('Arriva dopo il CPI', 'gran parte delle informazioni è già nota'),
    ('Si può stimare', 'gli economisti lo calcolano partendo da CPI e PPI'),
    ('Ma conta per la Fed', 'una sorpresa sul PCE core può cambiare le attese sui tassi')],
-   ["Allora perché il mercato reagisce meno al PCE che al CPI?",
+   ["Allora perché il mercato reagisce di meno al PCE rispetto al CPI?",
     "Perché arriva dopo, quando gran parte delle informazioni sui prezzi del mese è già stata pubblicata.",
     "Inoltre gli economisti riescono a stimarlo con buona precisione partendo dai dati del CPI e del PPI, per cui le sorprese sono di solito più piccole.",
     "Questo non significa che vada ignorato. Proprio perché è il dato di riferimento della Fed, una sorpresa sul PCE core può cambiare le attese sui tassi, soprattutto se arriva pochi giorni prima di una riunione."]),
