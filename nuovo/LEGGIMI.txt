@@ -1,0 +1,6 @@
+Siti separati in stile chiaro (NON ancora pubblicati).
+- nuovo/riskly/     -> riskly.trade (bot, corso, prezzi, metodo, FAQ, account, legali, download, link). Journal e strumenti: link ai sottositi, go('app')/go('calc') reindirizzano.
+- nuovo/strumenti/  -> strumenti.riskly.trade (calcolatori e calendario). Si rigenera con strumenti/costruisci.py + nuovo/tema.py + nuovo/override.css.
+- journal: index.html e demo.html nella radice del repository (app.riskly.trade). demo.html si rigenera con nuovo/demo_journal.py.
+Tema: nuovo/tema.py converte i colori del vecchio tema scuro; nuovo/override.css aggiunge caratteri, pulsanti, menu classico.
+Pubblicazione: zip della cartella -> API Netlify (serve un token valido).

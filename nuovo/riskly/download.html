@@ -12,10 +12,10 @@
 <link href="/fonts.css" rel="stylesheet">
 <style>
   :root{
-    --bg:#0B0D0C; --bg2:#101311; --panel:#151916; --line:#252B26;
-    --text:#E6EDF3; --dim:#8B98A9; --dim2:#5D6B7D;
-    --up:#22C55E; --accent:#B6D84F; --accent-2:#0EA5E9;
-    --grad:linear-gradient(135deg,#CBE46E 0%,#A9D14A 55%,#7DBE4A 100%);
+    --bg:#F3F4F1; --bg2:#ECEEEA; --panel:#FBFBF9; --line:#CDD1D4;
+    --text:#15181B; --dim:#5E656D; --dim2:#5E656D;
+    --up:#1E7F45; --accent:#B97C00; --accent-2:#1F5FD6;
+    --grad:linear-gradient(135deg,#15181B 0%,#15181B 55%,#15181B 100%);
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--text);font-family:'Instrument Sans',sans-serif;
@@ -23,15 +23,15 @@
   .box{max-width:460px;width:100%}
   h1{font-family:'Instrument Serif',serif;font-weight:400;font-size:1.9rem;margin:0 0 8px}
   p{color:var(--dim);line-height:1.55;font-size:.92rem}
-  .gate{background:linear-gradient(160deg,rgba(182,216,79,.07),transparent 60%),var(--panel);border:1px solid var(--line);border-radius:18px;padding:28px}
+  .gate{background:linear-gradient(160deg,rgba(233,161,15,.07),transparent 60%),var(--panel);border:1px solid var(--line);border-radius:18px;padding:28px}
   input{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:12px;
     color:var(--text);font-family:'JetBrains Mono',monospace;font-size:1rem;padding:13px 14px;margin:14px 0}
   input:focus{outline:none;border-color:var(--accent)}
-  button{width:100%;background:var(--grad);border:none;border-radius:100px;color:#08110c;
+  button{width:100%;background:var(--grad);border:none;border-radius:100px;color:#FBFBF9;
     font-family:'Instrument Sans',sans-serif;font-weight:700;font-size:.95rem;padding:14px;cursor:pointer}
-  .err{color:#EF4444;font-size:.82rem;display:none;margin-top:-4px;margin-bottom:10px}
+  .err{color:#C2361F;font-size:.82rem;display:none;margin-top:-4px;margin-bottom:10px}
   .lista{display:none}
-  .grp{background:linear-gradient(160deg,rgba(182,216,79,.06),transparent 60%),var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:14px}
+  .grp{background:linear-gradient(160deg,rgba(233,161,15,.06),transparent 60%),var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:14px}
   .grp h3{margin:0 0 4px;font-size:1.05rem}
   .grp .sub{font-size:.78rem;color:var(--dim2);margin-bottom:14px}
   .file-row{display:flex;align-items:center;justify-content:space-between;
@@ -40,19 +40,67 @@
   .file-row span{font-family:'JetBrains Mono',monospace;font-size:.84rem;color:var(--text)}
   .file-row a{color:var(--accent);text-decoration:none;font-size:.82rem;font-weight:600}
   .file-row a:hover{text-decoration:underline}
-  .guida{background:rgba(182,216,79,.07);border:1px solid rgba(182,216,79,.25);border-radius:14px;
+  .guida{background:rgba(233,161,15,.07);border:1px solid rgba(233,161,15,.25);border-radius:14px;
     padding:16px 18px;margin-bottom:18px;font-size:.85rem}
   .guida a{color:var(--accent)}
-  .btn-link{display:inline-block;background:var(--grad);border-radius:100px;color:#08110c;
+  .btn-link{display:inline-block;background:var(--grad);border-radius:100px;color:#FBFBF9;
     font-weight:700;font-size:.9rem;padding:13px 24px;text-decoration:none;margin-top:16px}
   .note{font-size:.76rem;color:var(--dim2);margin-top:22px;line-height:1.6}
   #nl-badge-frame{display:none!important}
 
   /* sfumature */
   .card,.glass,.tool,.bot,.plan,.capture,.jkpi,.jcard,.vetrina,.lancio-box,.bot-rimando,.acc-card,.acc-box,.pz,.gs-kpi{
-    background:linear-gradient(160deg,rgba(182,216,79,.06) 0%,rgba(255,255,255,.012) 38%,transparent 70%),var(--panel)}
+    background:linear-gradient(160deg,rgba(233,161,15,.06) 0%,rgba(21,24,27,.012) 38%,transparent 70%),var(--panel)}
   .hero-new h1 .gr{background:linear-gradient(100deg,#D2E97A,#9FCB47 55%,#6FBF5A);-webkit-background-clip:text;background-clip:text;color:transparent}
-  nav{background:linear-gradient(180deg,rgba(14,17,15,.94),rgba(11,13,12,.86))}
+  nav{background:linear-gradient(180deg,rgba(14,17,15,.94),rgba(243,244,241,.86))}
+/* TEMA CHIARO RISKLY */
+@font-face{font-family:'Archivo';src:url(/fonts/archivo.woff2) format('woff2');font-weight:100 900;font-stretch:62% 125%;font-display:swap}
+@font-face{font-family:'Martian Mono';src:url(/fonts/martian-mono.woff2) format('woff2');font-weight:100 800;font-stretch:75% 112.5%;font-display:swap}
+:root{--paper:#F3F4F1;--sheet:#FBFBF9;--ink:#15181B;--ink-2:#4B525A;--ink-3:#5E656D;--rule:#CDD1D4;--amber:#E9A10F;--amber-deep:#B97C00;--amber-ink:#2B1E00;--focus:#1F5FD6;--ease-out:cubic-bezier(.23,1,.32,1);
+  --r:4px;--line-hi:#15181B;--accent:#B97C00;--grad:#15181B}
+html{background:var(--paper)}
+body{background:var(--paper)!important;color:var(--ink);font-family:'Archivo',system-ui,sans-serif!important;font-size:17px;font-feature-settings:normal}
+body::before{display:none!important}
+::selection{background:var(--amber);color:var(--amber-ink)}
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+h1,h2,h3{font-family:'Archivo',system-ui,sans-serif!important;font-weight:760;font-stretch:80%;letter-spacing:-.015em;color:var(--ink)}
+h1{font-weight:780;font-stretch:78%;letter-spacing:-.025em}
+em{color:var(--ink-3)}
+.mono,.meta,.kicker{font-family:'Martian Mono',ui-monospace,monospace!important;font-stretch:88%}
+.kicker{color:var(--amber-deep)!important;letter-spacing:.02em}
+.lead,.dim{color:var(--ink-2)}
+/* niente bagliori, ombre colorate o sollevamenti */
+*{text-shadow:none!important}
+.card,.glass{background:var(--sheet)!important;border:1px solid var(--rule)!important;border-radius:4px!important;box-shadow:none!important}
+.card:hover{transform:none!important;border-color:var(--ink)!important;box-shadow:none!important}
+.btn{border-radius:4px!important;box-shadow:none!important;padding:13px 22px;border-color:var(--ink)!important;color:var(--ink)!important;background:transparent!important;filter:none!important}
+.btn:hover{background:var(--sheet)!important;transform:none!important}
+.btn.pri{background:var(--ink)!important;color:var(--sheet)!important;border-color:var(--ink)!important}
+.btn.pri:hover{background:#000!important}
+.btn:active{transform:scale(.97)!important}
+.btn.lg{padding:15px 26px}
+/* barra superiore classica, niente barre in basso */
+.dbarra,.sbarra,.saltro,#tornaSu,#progressoLettura{display:none!important}
+body{padding-bottom:0!important}
+nav{background:color-mix(in srgb,var(--paper) 94%,transparent)!important;border-bottom:1px solid var(--rule)!important}
+nav .brand{color:var(--ink)}
+.tabs{display:flex!important;background:none!important;border:none!important;padding:0!important;gap:22px!important;border-radius:0!important}
+.tabs button,.tabs a{padding:6px 0!important;border-radius:0!important;background:none!important;box-shadow:none!important;color:var(--ink-2)!important;font-size:15px!important;font-weight:500!important;text-decoration:none;font-family:inherit}
+.tabs button:hover,.tabs a:hover{color:var(--ink)!important}
+.tabs button.on{color:var(--ink)!important;font-weight:700!important;box-shadow:inset 0 -2px 0 var(--amber)!important}
+.nav-link{color:var(--ink-2)!important}
+.lancio-bar{background:var(--amber)!important;color:var(--amber-ink)!important;border:none!important}
+.lancio-bar *{color:var(--amber-ink)!important;font-family:'Archivo',sans-serif!important}
+/* assistente: un pulsante discreto */
+#chatBtn{border-radius:4px!important;background:var(--sheet)!important;color:var(--ink)!important;border:1px solid var(--ink)!important;box-shadow:0 8px 24px -12px rgba(21,24,27,.4)!important}
+#chatBox{border-radius:6px!important;background:var(--sheet)!important;border:1px solid var(--ink)!important}
+/* menu del telefono */
+.apri-menu{display:none;height:40px;padding:0 14px;border:1px solid var(--ink);border-radius:4px;background:transparent;font:600 15px 'Archivo',sans-serif;color:var(--ink);cursor:pointer}
+#menu-mobile{border-top:1px solid var(--rule);background:var(--paper)}
+#menu-mobile a,#menu-mobile button{display:block;width:100%;text-align:left;padding:14px 24px;border:0;border-bottom:1px solid var(--rule);background:none;text-decoration:none;font:600 16px 'Archivo',sans-serif;color:var(--ink)}
+@media (max-width:960px){.tabs{display:none!important}.apri-menu{display:inline-flex;align-items:center}}
+@media (min-width:961px){#menu-mobile{display:none!important}}
+input,select,textarea{border-radius:3px!important}
 </style>
 </head>
 <body>
@@ -68,13 +116,13 @@
     <h1>Area clienti</h1>
     <p id="lista-intro">Grazie per l'acquisto. I bot, la guida all'installazione e tutti gli aggiornamenti li trovi nel gruppo Telegram riservato ai clienti.</p>
 
-    <div class="grp" id="corso-box" style="border-color:rgba(182,216,79,.45);display:none">
+    <div class="grp" id="corso-box" style="border-color:rgba(233,161,15,.45);display:none">
       <h3>Il tuo videocorso</h3>
       <div class="sub">Il corso è in un gruppo Telegram privato, con una cartella per ogni modulo e le lezioni in ordine. Tocca il pulsante e chiedi di entrare: approviamo le richieste a mano, di solito in poche ore. L'accesso è a vita.</div>
       <div id="corso-tg"></div>
     </div>
 
-    <div class="grp" id="journal-box" style="border-color:rgba(182,216,79,.45);display:none">
+    <div class="grp" id="journal-box" style="border-color:rgba(233,161,15,.45);display:none">
       <h3>Il tuo journal</h3>
       <div class="sub" id="journal-sub">Il piano è attivo sul tuo account: accedi al journal con la stessa email e lo trovi già sbloccato.</div>
       <a class="btn-link" href="https://app.riskly.trade">Apri il journal</a>
@@ -93,7 +141,7 @@
     </div>
 
     <div id="bot-box">
-    <div class="grp" style="border-color:rgba(182,216,79,.45)">
+    <div class="grp" style="border-color:rgba(233,161,15,.45)">
       <h3>1 · Entra nel gruppo clienti</h3>
       <div class="sub">Riservato a chi ha acquistato. Le richieste di accesso sono approvate a mano, di solito entro poche ore.</div>
       <div id="tg-box"></div>

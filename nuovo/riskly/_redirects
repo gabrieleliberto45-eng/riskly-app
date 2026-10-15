@@ -22,9 +22,13 @@
 /privacy         /privacy.html    200
 /privacy/        /privacy.html    200
 
-# calendario economico in pagina propria
-/calendario      /calendario.html  200
-/calendario/     /calendario.html  200
+# calendario e calcolatori hanno ora il loro sito
+/calendario      https://strumenti.riskly.trade/#calendario   301
+/calendario/     https://strumenti.riskly.trade/#calendario   301
+/strumenti       https://strumenti.riskly.trade/              301
+/calcolatori     https://strumenti.riskly.trade/              301
+/journal         https://app.riskly.trade/                    301
+/demo            https://app.riskly.trade/demo.html           301
 
 # qualsiasi altro indirizzo (es. link delle email di conferma) apre il sito invece di "Page not found"
 /*    /index.html   200
