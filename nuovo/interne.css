@@ -37,7 +37,8 @@
 .slot-bar{height:6px!important;border-radius:0!important;background:var(--rule)!important}
 .slot-bar i{border-radius:0!important;background:var(--amber)!important}
 .slot-lbl{font-size:13px!important;color:var(--ink-3)!important}
-.corso-cop{display:none!important}
+.corso-cop{display:block!important;margin:0 0 22px}
+.corso-cop img{display:block;width:100%;height:auto;border-radius:0!important;border:1px solid var(--ink)!important;margin:0!important}
 .lancio-riga{gap:24px!important}
 
 /* scheda di ogni bot: riga con tre colonne */
