@@ -110,6 +110,29 @@ section{padding:clamp(64px,9vw,128px) 0}
 h2{font-weight:760;font-stretch:80%;font-size:clamp(34px,4.2vw,58px);line-height:1;letter-spacing:-.02em;text-wrap:balance;max-width:18ch}
 .intro{margin-top:18px;max-width:58ch;color:var(--ink-2);font-size:18px}
 
+
+/* catalogo prodotti */
+.catalogo-sez{padding-top:clamp(56px,8vw,112px)}
+.catalogo{margin-top:clamp(32px,4vw,52px);display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(20px,2.4vw,32px);align-items:start}
+.colonna{display:grid;gap:clamp(20px,2.4vw,32px)}
+.blocco{background:var(--sheet);border:1px solid var(--ink);scroll-margin-top:84px}
+.blocco-testa{display:flex;justify-content:space-between;align-items:baseline;gap:12px;background:var(--ink);color:var(--sheet);padding:12px 18px}
+.blocco-testa h3{font-weight:760;font-stretch:80%;font-size:clamp(20px,1.9vw,24px);letter-spacing:.01em;text-transform:uppercase;line-height:1.1}
+.blocco-testa .stato{font-size:13.5px;font-weight:600;color:var(--amber);white-space:nowrap}
+.blocco-corpo{padding:6px 18px 18px}
+.blocco-corpo>p{padding-top:12px;color:var(--ink-2);font-size:16px;max-width:52ch}
+.prodotti{list-style:none}
+.prodotto{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 16px;padding:14px 0;border-bottom:1px solid var(--rule)}
+.prodotto:last-child{border-bottom:none}
+.prodotto b{font-size:17.5px;font-weight:700}
+.prodotto .etichetta{font-size:12.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--amber-deep);margin-left:8px}
+.prodotto .prezzo{text-align:right;font:600 16px/1.2 'Martian Mono',monospace;font-stretch:88%;white-space:nowrap}
+.prodotto .dopo{grid-column:2;text-align:right;font-size:12.5px;color:var(--ink-3);white-space:nowrap}
+.prodotto p{grid-column:1;grid-row:2 / span 2;color:var(--ink-2);font-size:15px;max-width:54ch}
+.blocco-piede{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;padding:14px 18px;border-top:1px solid var(--rule)}
+.blocco-piede span{font-size:13.5px;color:var(--ink-3)}
+@media (max-width:960px){.catalogo{grid-template-columns:1fr}}
+
 /* procedura prima / durante / dopo */
 .procedura{margin-top:clamp(36px,5vw,64px);border-top:3px solid var(--ink)}
 .fase{display:grid;grid-template-columns:minmax(150px,.7fr) minmax(0,1.6fr) minmax(0,1fr);gap:clamp(20px,4vw,56px);padding:clamp(24px,3vw,36px) 0;border-bottom:1px solid var(--rule)}
@@ -205,11 +228,11 @@ footer .legale{margin-top:16px;font-size:13px;color:var(--ink-3)}
       Riskly
     </a>
     <ul class="menu">
-      <li><a href="#procedura">Bot</a></li>
-      <li><a href="#procedura">Journal</a></li>
-      <li><a href="#apertura">Calcolatori</a></li>
-      <li><a href="#aree">Videocorso</a></li>
-      <li><a href="#aree">Prezzi</a></li>
+      <li><a href="#bot">Bot</a></li>
+      <li><a href="#corsi">Videocorsi</a></li>
+      <li><a href="#journal">Journal</a></li>
+      <li><a href="#calcolatori">Calcolatori</a></li>
+      <li><a href="#prodotti">Prezzi</a></li>
       <li><a href="#dietro">Chi siamo</a></li>
     </ul>
     <div class="azioni">
@@ -219,7 +242,7 @@ footer .legale{margin-top:16px;font-size:13px;color:var(--ink-3)}
     </div>
   </div>
   <nav id="menu-mobile" hidden>
-    <a href="#procedura">Bot</a><a href="#procedura">Journal</a><a href="#apertura">Calcolatori</a><a href="#aree">Videocorso</a><a href="#aree">Prezzi</a><a href="#dietro">Chi siamo</a><a href="#">Accedi</a>
+    <a href="#bot">Bot</a><a href="#corsi">Videocorsi</a><a href="#journal">Journal</a><a href="#calcolatori">Calcolatori</a><a href="#prodotti">Prezzi</a><a href="#dietro">Chi siamo</a><a href="#">Accedi</a>
   </nav>
 </header>
 
@@ -267,6 +290,58 @@ footer .legale{margin-top:16px;font-size:13px;color:var(--ink-3)}
     </div>
   </div>
 
+
+  <section class="catalogo-sez" id="prodotti">
+    <div class="wrap">
+      <h2>Cosa trovi su Riskly</h2>
+      <p class="intro">Software per MetaTrader, un journal, due videocorsi e cinque calcolatori. Ognuno ha la sua pagina.</p>
+      <div class="catalogo">
+        <div class="blocco" id="bot">
+          <div class="blocco-testa"><h3>Bot per MT4 e MT5</h3><span class="stato">Dal 23 ottobre</span></div>
+          <div class="blocco-corpo">
+            <ol class="prodotti">
+              <li class="prodotto"><b>RiskGuard<span class="etichetta">Per iniziare</span></b><span class="prezzo">99 €</span><span class="dopo">poi 149 €</span>
+                <p>Ti ferma dopo le perdite consecutive e ai limiti giornalieri, quando il conto è ancora sano.</p></li>
+              <li class="prodotto"><b>TradeManager</b><span class="prezzo">49 €</span><span class="dopo">poi 79 €</span>
+                <p>Stop loss, break-even e trailing stop automatici sulle posizioni aperte, tutto in pip.</p></li>
+              <li class="prodotto"><b>ScaleIn</b><span class="prezzo">79 €</span><span class="dopo">poi 129 €</span>
+                <p>Apri una posizione e il bot apre le altre con take profit scaglionati.</p></li>
+              <li class="prodotto"><b>Riskly Pro<span class="etichetta">Il più completo</span></b><span class="prezzo">199 €</span><span class="dopo">poi 299 €</span>
+                <p>I tre bot in uno, con il rischio calcolato sull'insieme delle posizioni.</p></li>
+              <li class="prodotto"><b>RisklyCopy<span class="etichetta">In arrivo</span></b><span class="prezzo">69 €</span><span class="dopo">poi 129 €</span>
+                <p>Copia le operazioni dal conto principale ad altri tre, con il lotto ricalcolato sul saldo di ognuno.</p></li>
+            </ol>
+          </div>
+          <div class="blocco-piede"><a class="btn btn-pieno btn-piccolo" href="#">Vedi i bot</a><span>Pagamento una tantum, aggiornamenti inclusi. Prezzo di lancio bloccato a vita per i primi 10.</span></div>
+        </div>
+        <div class="colonna">
+          <div class="blocco" id="corsi">
+            <div class="blocco-testa"><h3>Videocorsi</h3></div>
+            <div class="blocco-corpo">
+              <ol class="prodotti">
+                <li class="prodotto"><b>Gestione del rischio</b><span class="prezzo">199 €</span><span class="dopo">poi 249 €</span>
+                  <p>47 lezioni in dieci moduli, quasi tre ore. Disponibile subito.</p></li>
+                <li class="prodotto"><b>Analisi fondamentale<span class="etichetta">In arrivo</span></b><span class="prezzo">-</span>
+                  <p>Indicatori economici, banche centrali, correlazioni e beni rifugio.</p></li>
+              </ol>
+            </div>
+            <div class="blocco-piede"><a class="btn btn-pieno btn-piccolo" href="#">Vedi i corsi</a></div>
+          </div>
+          <div class="blocco" id="journal">
+            <div class="blocco-testa"><h3>Journal</h3><span class="stato">7 giorni di prova</span></div>
+            <div class="blocco-corpo"><p>Registra le operazioni e misura winrate, drawdown e disciplina. Da 29 € l'anno.</p></div>
+            <div class="blocco-piede"><a class="btn btn-pieno btn-piccolo" href="#">Prova il journal</a></div>
+          </div>
+          <div class="blocco" id="calcolatori">
+            <div class="blocco-testa"><h3>Calcolatori</h3><span class="stato">Gratis</span></div>
+            <div class="blocco-corpo"><p>Dimensione della posizione, rischio di rovina, margine sulla challenge, recupero del drawdown.</p></div>
+            <div class="blocco-piede"><a class="btn btn-linea btn-piccolo" href="#">Apri i calcolatori</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="procedura">
     <div class="wrap">
       <h2>La disciplina non è forza di volontà</h2>
@@ -291,29 +366,6 @@ footer .legale{margin-top:16px;font-size:13px;color:var(--ink-3)}
     </div>
   </section>
 
-  <section class="indice-sez" id="aree">
-    <div class="wrap">
-      <h2>Cinque aree, un solo obiettivo</h2>
-      <p class="intro">Tenere sotto controllo tutto quello che dipende da te. Nessuno strumento ti dice cosa comprare.</p>
-      <ol class="indice">
-        <li><div class="riga"><span class="area">Rischio</span><i></i><span class="stato">Gratis</span></div>
-          <h3>Quanto puoi permetterti di perdere</h3>
-          <p>Dimensione della posizione, rischio di rovina, margine residuo sulla challenge, quanto serve per recuperare un drawdown.</p></li>
-        <li><div class="riga"><span class="area">Emozioni</span><i></i><span class="stato attesa">Dal 23 ottobre</span></div>
-          <h3>Le regole che non riesci a rispettare da solo</h3>
-          <p>Pausa obbligatoria dopo una perdita, stop dopo N perdite consecutive, limite di operazioni giornaliere. Decidi a mente fredda, il bot esegue.</p></li>
-        <li><div class="riga"><span class="area">Posizioni</span><i></i><span class="stato attesa">Dal 23 ottobre</span></div>
-          <h3>Gestite mentre tu fai altro</h3>
-          <p>Break-even automatico, trailing stop, scaglionamento con target diversi. Tutto in pip, valori chiari e configurabili.</p></li>
-        <li><div class="riga"><span class="area">Metodo</span><i></i><span class="stato">Disponibile</span></div>
-          <h3>Imparare prima di rischiare</h3>
-          <p>Videocorso di quasi tre ore, 47 lezioni in dieci moduli: dal position sizing al Monte Carlo, fino alle prop firm. Nessuna strategia, nessun segnale.</p></li>
-        <li><div class="riga"><span class="area">Dati</span><i></i><span class="stato">Disponibile</span></div>
-          <h3>Quello che i numeri dicono di te</h3>
-          <p>Winrate, profit factor, drawdown, performance per strategia e per orario. E i pattern che da solo non vedi.</p></li>
-      </ol>
-    </div>
-  </section>
 
   <div class="frase">
     <div class="wrap">
