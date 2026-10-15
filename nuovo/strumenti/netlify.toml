@@ -1,0 +1,7 @@
+# il calendario economico legge i dati di TradingView passando da qui (stesso dominio, nessuna richiesta del browser a terzi)
+[[redirects]]
+  from = "/api/calendario"
+  to = "https://economic-calendar.tradingview.com/events"
+  status = 200
+  force = true
+  headers = {Origin = "https://www.tradingview.com"}
