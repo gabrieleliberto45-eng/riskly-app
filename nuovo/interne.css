@@ -251,6 +251,9 @@
 @media (max-width:640px){.siti-barra .sb-testo{display:none}.siti-barra a{flex:1;justify-content:space-between;padding:0 12px}.siti-barra a:first-of-type{border-left:0}.siti-barra a span{display:none}.siti-barra a b{font-size:14.5px}}
 
 .pz-sez + .lancio-box{border-top:0!important;padding-top:4px!important;margin-top:16px!important}
+.nh .of-arrivo{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 28px;padding:18px 0;border-bottom:1px solid var(--rule)}
+.nh .of-arrivo span:not(.of-tipo){font-size:15.5px;color:var(--ink-2)}
+.nh .of-arrivo b{color:var(--ink)}
 /* ecosistema in home */
 .nh .offerta{padding:clamp(56px,8vw,104px) 0 clamp(40px,6vw,72px)}
 .nh .of-griglia{margin-top:clamp(28px,4vw,48px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:3px solid var(--ink)}

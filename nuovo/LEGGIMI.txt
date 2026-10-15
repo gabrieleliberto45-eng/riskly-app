@@ -5,3 +5,4 @@ Siti separati in stile chiaro (PUBBLICATI il 15 ottobre 2026).
 Tema: nuovo/tema.py converte i colori del vecchio tema scuro; nuovo/override.css aggiunge caratteri, pulsanti, menu classico.
 Pubblicazione: zip della cartella -> API Netlify (serve un token valido).
 - Pagine interne: nuovo/interne.css, inserito in nuovo/riskly/index.html dopo il blocco TEMA CHIARO. Il journal (index.html, demo.html) e' andato su main con la PR #27.
+- Prossimamente (annunciati in home, sezione L'ecosistema Riskly): indicatori per MetaTrader e corso di analisi tecnica. Quando escono diventano schede vere della griglia .of-griglia.
