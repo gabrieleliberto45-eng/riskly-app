@@ -1906,6 +1906,18 @@ nav .brand{text-decoration:none}
 .nh .of-arrivo span:not(.of-tipo){font-size:15.5px;color:var(--ink-2)}
 .nh .of-arrivo b{color:var(--ink)}
 .nh .of-img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border:1px solid var(--ink);margin-bottom:10px;background:#0B0D0C}
+.programma{margin-top:clamp(28px,4vw,44px);border-top:3px solid var(--ink)}
+.programma summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 0;font-weight:700;font-size:18px;color:var(--ink);border-bottom:1px solid var(--rule)}
+.programma summary::-webkit-details-marker{display:none}
+.programma summary::after{content:'+';font:400 26px/1 'Archivo',sans-serif}
+.programma[open] summary::after{content:'−'}
+.programma .corsi{margin-top:0!important;border-top:0!important}
+.nh .of-chiedi{display:flex;align-items:center;justify-content:space-between;gap:16px 32px;flex-wrap:wrap;margin-top:28px;padding:22px 24px;background:var(--ink);color:var(--sheet)}
+.nh .of-chiedi b{display:block;font-weight:760;font-stretch:80%;font-size:clamp(22px,2.2vw,28px);line-height:1.1}
+.nh .of-chiedi span{display:block;margin-top:6px;color:#C9CDD1;font-size:15.5px;max-width:60ch}
+.nh .of-chiedi .btn{background:var(--amber)!important;color:var(--amber-ink)!important;border-color:var(--amber)!important}
+.nh .of-chiedi .btn:hover{background:#F2B32E!important}
+@media (max-width:760px){#chatBtn span{display:inline!important}#chatBtn{padding:0 14px 0 12px!important}}
 /* ecosistema in home */
 .nh .offerta{padding:clamp(56px,8vw,104px) 0 clamp(40px,6vw,72px)}
 .nh .of-griglia{margin-top:clamp(28px,4vw,48px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:3px solid var(--ink)}
@@ -2072,6 +2084,10 @@ nav .brand{text-decoration:none}
         <span class="of-tipo">Prossimamente</span>
         <span><b>Indicatori per TradingView</b> · strumenti da aggiungere ai tuoi grafici, con lo stesso metodo dei bot</span>
         <span><b>Corso di analisi tecnica</b> · il terzo corso, dopo rischio e fondamentale</span>
+      </div>
+      <div class="of-chiedi">
+        <div><b>Hai una domanda su bot, corsi o journal?</b><span>L'assistente di Riskly risponde subito, a qualsiasi ora: prezzi, prop firm, installazione, pagamenti.</span></div>
+        <button type="button" class="btn btn-pieno" onclick="chatApri()">Chiedi all'assistente</button>
       </div>
     </div>
   </section>
@@ -3370,6 +3386,8 @@ nav .brand{text-decoration:none}
         </div>
       </div>
 
+      <details class="programma">
+        <summary>Programma completo · 47 lezioni</summary>
       <div class="corsi">
         <article class="corso">
           <div class="c-num">00</div>
@@ -3470,6 +3488,7 @@ nav .brand{text-decoration:none}
           <span class="c-durata">2 lezioni</span>
         </article>
       </div>
+      </details>
 
       <div class="corso-info">
         <div class="ci-voce">
@@ -3504,6 +3523,8 @@ nav .brand{text-decoration:none}
           <button class="btn pri" onclick="azioneProdotto('Corso Analisi fondamentale')">Avvisami quando esce</button>
         </div>
       </div>
+      <details class="programma">
+        <summary>Programma completo · 57 lezioni</summary>
       <div class="corsi">
         <article class="corso">
           <div class="c-num">00</div>
@@ -3594,6 +3615,7 @@ nav .brand{text-decoration:none}
           <span class="c-durata">5 lezioni</span>
         </article>
       </div>
+      </details>
       <div class="corso-info">
         <div class="ci-voce"><div class="ci-n">57</div><div class="ci-e">lezioni video</div></div>
         <div class="ci-voce"><div class="ci-n">11</div><div class="ci-e">moduli</div></div>
