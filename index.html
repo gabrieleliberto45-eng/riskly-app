@@ -1136,6 +1136,11 @@ body{padding-top:0}
 .jbot-motivo{font-size:.8rem;color:var(--down);margin-top:8px}
 .jbot-news{font-size:.78rem;color:var(--gold);margin-top:6px}
 .jbot-agg{font-size:.68rem;color:var(--dim2);margin-top:10px;font-family:'JetBrains Mono','SF Mono',Menlo,monospace}
+.jbot-piede{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;flex-wrap:wrap}
+.jbot-scollega{background:none;border:1px solid var(--line);color:var(--dim);font:inherit;font-size:.74rem;padding:5px 10px;border-radius:4px;cursor:pointer;margin-top:10px}
+.jbot-scollega:hover{color:var(--down);border-color:var(--down)}
+.jbot-scollegati{display:grid;gap:8px}
+.jbot-scollegati div{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:.86rem}
 .pill.bot{background:rgba(59,130,246,.14);color:#7FB0FF;margin-left:6px;font-size:.6rem;padding:2px 7px}
 .mod-box.largo{max-width:560px}
 .jchiave{display:flex;gap:8px}
@@ -1762,6 +1767,11 @@ input,select,textarea{border-radius:3px!important}
       <li>Metti il bot sul grafico e incolla la chiave nel parametro <code>InpChiaveJournal</code></li>
       <li>Nel pannello del bot compare <b>Journal collegato</b>: da quel momento le operazioni chiuse arrivano qui da sole</li>
     </ol>
+
+    <div class="mod-aiuto" style="margin:-4px 0 18px"><b>Cambi conto?</b> Usa la stessa chiave nel bot del nuovo conto, poi premi <b>Scollega</b> sul riquadro del conto vecchio in "I tuoi bot".</div>
+
+    <div class="jbot-sez" id="bScollegatiSez" hidden>CONTI SCOLLEGATI</div>
+    <div class="jbot-scollegati" id="bScollegati" hidden style="margin-bottom:18px"></div>
 
     <div class="jbot-sez">3 · COSA ARRIVA NEL JOURNAL</div>
     <form id="bImp" onsubmit="b_salvaImp(event)">
@@ -4784,7 +4794,10 @@ function b_renderStato(){
       <div class="jbot-riga"><span>Saldo · equity</span><b>${(Number(d.saldo) || 0).toFixed(2)} · ${(Number(d.equity) || 0).toFixed(2)} ${esc(d.valuta || '')}</b></div>
       ${stato === 'bloccato' && d.motivo ? `<div class="jbot-motivo">${esc(d.motivo)}</div>` : ''}
       ${d.notizia ? `<div class="jbot-news">Notizia: ${esc(d.notizia)}</div>` : ''}
-      <div class="jbot-agg">Aggiornato ${b_quandoFa(s.aggiornato)} · conto ${esc(s.conto)}${d.piattaforma ? ' · ' + esc(d.piattaforma) : ''}</div>
+      <div class="jbot-piede">
+        <div class="jbot-agg">Aggiornato ${b_quandoFa(s.aggiornato)} · conto ${esc(s.conto)}${d.piattaforma ? ' · ' + esc(d.piattaforma) : ''}</div>
+        <button type="button" class="jbot-scollega" onclick="b_scollega('${esc(s.conto)}')" aria-label="Scollega il conto ${esc(s.conto)}">Scollega</button>
+      </div>
     </div>`;
   }).join('');
 }
@@ -4807,10 +4820,49 @@ async function b_apri(){
   b_chiave = data ? data.chiave : '';
   b_mostraImp(Object.assign({}, B_PREDEF, data ? data.impostazioni : {}));
   b_renderChiave();
+  b_caricaScollegati();
 }
 
 function b_chiudi(){
   document.getElementById('modBot').classList.remove('on');
+}
+
+/* ---------- Scollegare un conto (per esempio quando cambi conto) ---------- */
+
+async function b_scollega(conto){
+  if(!sb || !utente || !/^\d+$/.test(String(conto))) return;
+  if(!confirm(`Scollego il conto ${conto} dal journal?\n\nIl riquadro sparisce e il bot di questo conto non manda più né stato né operazioni, anche se resta acceso. Le operazioni già arrivate restano nel journal. Puoi ricollegarlo da "Collega i tuoi bot".`)) return;
+  const { error } = await sb.rpc('bot_scollega', { p_conto: Number(conto) });
+  if(error){
+    if(!b_sqlMancante(error)){ console.error(error); j_flash('Non riesco a scollegare il conto. Riprova.', true); return; }
+    /* bot-scollega.sql non ancora eseguito: tolgo solo il riquadro */
+    const { error: e2 } = await sb.from('bot_stato').delete().eq('utente', utente.id).eq('conto', Number(conto));
+    if(e2){ console.error(e2); j_flash('Non riesco a togliere il riquadro. Riprova.', true); return; }
+    j_flash('Riquadro tolto. Se il bot resta acceso su quel conto, ricompare: toglilo dal grafico.');
+  } else {
+    j_flash(`Conto ${conto} scollegato.`);
+  }
+  b_stati = b_stati.filter(x => String(x.conto) !== String(conto));
+  b_renderStato();
+}
+
+async function b_caricaScollegati(){
+  const box = document.getElementById('bScollegati'), sez = document.getElementById('bScollegatiSez');
+  if(!box || !sb || !utente) return;
+  const { data, error } = await sb.from('bot_scollegati').select('conto, scollegato')
+    .eq('utente', utente.id).order('scollegato', { ascending: false });
+  const righe = error ? [] : (data || []);
+  sez.hidden = box.hidden = !righe.length;
+  box.innerHTML = righe.map(r => `<div><span>Conto <b>${esc(r.conto)}</b> · scollegato il ${new Date(r.scollegato).toLocaleDateString('it-IT')}</span>
+    <button type="button" class="btn" onclick="b_ricollega('${esc(r.conto)}')">Ricollega</button></div>`).join('');
+}
+
+async function b_ricollega(conto){
+  if(!sb || !utente || !/^\d+$/.test(String(conto))) return;
+  const { error } = await sb.rpc('bot_ricollega', { p_conto: Number(conto) });
+  if(error){ console.error(error); j_flash('Non riesco a ricollegare il conto. Riprova.', true); return; }
+  j_flash(`Conto ${conto} ricollegato: il riquadro torna appena il bot invia il suo stato.`);
+  b_caricaScollegati();
 }
 
 function b_renderChiave(){
