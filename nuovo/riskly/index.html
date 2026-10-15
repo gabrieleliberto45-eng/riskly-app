@@ -24,6 +24,40 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'><rect width='44' height='44' rx='10' fill='%230A0E14'/><path d='M10 30 L17 20 L23 25 L34 12' stroke='%2322C55E' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round' fill='none'/><path d='M10 34.5 H34' stroke='%238B98A9' stroke-width='3.6' stroke-linecap='round'/></svg>">
 <link href="/fonts.css" rel="stylesheet">
+<script>
+/* RISKLY TRACCIA · conteggio anonimo di visite e azioni, senza cookie.
+   Una riga per sessione nella tabella "visite": percorso = pagina (es. "strumenti") oppure "#azione", referer = provenienza o sito. */
+(function(){
+  var URL = 'https://swlztverwfgdgchgpudt.supabase.co/rest/v1/visite',
+      KEY = 'sb_publishable_j9bujIvCEz6x21yYoCODPw_lIZCJrIR',
+      sito = location.hostname.replace(/^www\./, '').split('.')[0] || 'locale';
+  function invia(percorso, referer){
+    try{ fetch(URL, { method:'POST', keepalive:true, headers:{ apikey:KEY, 'Content-Type':'application/json', Prefer:'return=minimal' },
+                      body: JSON.stringify({ percorso: String(percorso).slice(0, 80), referer: String(referer).slice(0, 80) }) }).catch(function(){}); }catch(e){}
+  }
+  function unaVolta(k){ try{ if(sessionStorage.getItem(k)) return false; sessionStorage.setItem(k, '1'); }catch(e){} return true; }
+  window.traccia = function(ev){ if(unaVolta('riskly_ev_' + ev)) invia('#' + ev, sito); };
+  window.tracciaVisita = function(nome){
+    if(!unaVolta('riskly_visita_' + nome)) return;
+    var da = ''; try{ da = document.referrer ? new URL(document.referrer).hostname.replace(/^www\./, '') : ''; }catch(e){}
+    var q = new URLSearchParams(location.search);
+    invia(nome, q.get('da') || q.get('utm_source') || da || 'diretto');
+  };
+  /* passaggi da un sito Riskly all'altro */
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href]'); if(!a) return;
+    var h = a.href, qui = location.hostname;
+    if(/\/\/app\.riskly\.trade/.test(h) && qui.indexOf('app.') !== 0) traccia(/demo/.test(h) ? 'vai-journal-demo' : 'vai-journal');
+    else if(/\/\/strumenti\.riskly\.trade/.test(h) && qui.indexOf('strumenti.') !== 0) traccia('vai-strumenti');
+    else if(/\/\/(www\.)?riskly\.trade/.test(h) && qui.replace(/^www\./, '') !== 'riskly.trade') traccia('vai-negozio');
+  }, true);
+  /* avvolge una funzione globale per contare quando viene usata */
+  window.tracciaFunzione = function(nome, evento){
+    var f = window[nome]; if(typeof f !== 'function') return;
+    window[nome] = function(){ try{ traccia(typeof evento === 'function' ? evento.apply(null, arguments) : evento); }catch(e){} return f.apply(this, arguments); };
+  };
+})();
+</script>
 <script src="/js/supabase.js"></script>
 <style>
   :root{
@@ -4768,7 +4802,7 @@ async function inviaAccesso(e){
   const bottone = document.getElementById('acc-invia');
   const testoOrig = bottone.textContent;
   bottone.disabled = true; bottone.textContent = 'Attendi…';
-  document.getElementById('acc-errore').textContent = '';
+  document.getElementById('acc-errore').textContent = ''; document.getElementById('acc-errore').style.color = '';
 
   const email = document.getElementById('acc-email').value.trim();
   const pass  = document.getElementById('acc-pass').value;
@@ -4806,8 +4840,7 @@ async function inviaAccesso(e){
       });
       if(error) throw error;
       if(!data.session){
-        document.getElementById('acc-errore').textContent =
-          'Ti abbiamo mandato una email di conferma. Aprila per completare.';
+        mostraConferma(email);
         bottone.disabled = false; bottone.textContent = testoOrig;
         return;
       }
@@ -4821,10 +4854,27 @@ async function inviaAccesso(e){
     go('account');
 
   }catch(err){
+    if(/not confirmed/i.test(err.message || '')){ mostraConferma(email, true); bottone.disabled = false; bottone.textContent = testoOrig; return; }
     document.getElementById('acc-errore').textContent = messaggioErrore(err.message || String(err));
   }
 
   bottone.disabled = false; bottone.textContent = testoOrig;
+}
+
+/* dopo la registrazione: dove guardare e come farsi rimandare l'email */
+function mostraConferma(email, daConfermare){
+  const box = document.getElementById('acc-errore');
+  box.style.color = 'var(--text)';
+  box.innerHTML = (daConfermare ? 'Prima di accedere devi confermare l\'email.' : 'Ci siamo quasi: ti abbiamo mandato un\'email')
+    + ` a <b>${esc(email)}</b> con il link per confermare l'account. Se non arriva entro 2 minuti guarda in <b>Spam</b> o <b>Promozioni</b>.`
+    + ` <button type="button" class="btn" style="margin-top:10px;width:100%" onclick="rinviaConferma('${esc(email).replace(/'/g, '')}', this)">Rinvia l'email</button>`;
+}
+async function rinviaConferma(email, b){
+  if(!sb || !email) return;
+  b.disabled = true; b.textContent = 'Invio…';
+  const { error } = await sb.auth.resend({ type: 'signup', email, options: { emailRedirectTo: location.origin + '/' } });
+  b.textContent = error ? (/rate|seconds|too many/i.test(error.message || '') ? 'Aspetta un minuto e riprova' : 'Non riesco a inviarla, riprova') : 'Email inviata di nuovo';
+  setTimeout(() => { b.disabled = false; b.textContent = 'Rinvia l\'email'; }, 60000);
 }
 
 function messaggioErrore(m){
@@ -5189,6 +5239,16 @@ function gsMonta(){
           <div class="gs-bars-l" id="gs-bars-l"></div>
         </div>
         <div class="acc-card">
+          <h3>Visite per sito</h3>
+          <div class="sub">Negozio, strumenti e journal, ultimi 14 giorni.</div>
+          <div id="gs-siti"><div class="gs-vuoto">Caricamento…</div></div>
+        </div>
+        <div class="acc-card">
+          <h3>Cosa fanno</h3>
+          <div class="sub">Azioni contate una volta per sessione: pagine aperte, calcolatori usati, iscrizioni, clic verso gli altri siti.</div>
+          <div id="gs-azioni"><div class="gs-vuoto">Caricamento…</div></div>
+        </div>
+        <div class="acc-card">
           <h3>Da dove arrivano</h3>
           <div class="sub">Chi apre il sito dall'app di TikTok o Instagram spesso risulta "diretto".</div>
           <div id="gs-fonti"><div class="gs-vuoto">Caricamento…</div></div>
@@ -5258,7 +5318,7 @@ async function gsCarica(){
   const c = await sb.rpc('ordini_clienti');
   if(!c.error) (c.data || []).forEach(x => gsClienti[x.id] = x);
 
-  const settimana = gsVisite.filter(x => new Date(x.creato) > new Date(Date.now()-7*86400000)).length;
+  const settimana = gsVisite.filter(x => !String(x.percorso||'').startsWith('#') && new Date(x.creato) > new Date(Date.now()-7*86400000)).length;
   document.getElementById('gs-k1').textContent = gsOrdini.filter(o => o.stato === 'in_attesa').length;
   document.getElementById('gs-k2').textContent = gsOrdini.filter(o => o.stato === 'attivo').length;
   document.getElementById('gs-k3').textContent = gsAttesa.length;
@@ -5375,7 +5435,8 @@ function gsDisegnaVisite(){
     const d = new Date(Date.now() - i*86400000);
     giorni.push({ chiave: d.toISOString().slice(0,10), etichetta: d.getDate(), n: 0 });
   }
-  gsVisite.forEach(v => {
+  const soloVisite = gsVisite.filter(v => !String(v.percorso||'').startsWith('#'));
+  soloVisite.forEach(v => {
     const k = (v.creato || '').slice(0,10);
     const g = giorni.find(x => x.chiave === k);
     if(g) g.n++;
@@ -5388,7 +5449,13 @@ function gsDisegnaVisite(){
     giorni.map(g => `<div>${g.etichetta}</div>`).join('');
 
   const conteggio = {};
-  gsVisite.forEach(v => { const f = v.referer || 'diretto'; conteggio[f] = (conteggio[f] || 0) + 1; });
+  soloVisite.forEach(v => { const f = v.referer || 'diretto'; conteggio[f] = (conteggio[f] || 0) + 1; });
+  /* visite per sito e azioni fatte (ultimi 14 giorni) */
+  const conta = lista => { const c = {}; lista.forEach(k => c[k] = (c[k] || 0) + 1); return Object.entries(c).sort((a,b) => b[1]-a[1]); };
+  const sitoDi = p => /^app\/demo/.test(p) ? 'Journal · versione dimostrativa' : /^app/.test(p) ? 'Journal (app.riskly.trade)' : /^strumenti/.test(p) ? 'Strumenti (strumenti.riskly.trade)' : 'Negozio (riskly.trade)';
+  const righe = l => l.length ? l.map(([f,n]) => `<div class="gs-fonte"><span>${esc(f)}</span><b>${n}</b></div>`).join('') : '<div class="gs-vuoto">Ancora niente.</div>';
+  const bs = document.getElementById('gs-siti'); if(bs) bs.innerHTML = righe(conta(soloVisite.map(v => sitoDi(v.percorso || ''))));
+  const ba = document.getElementById('gs-azioni'); if(ba) ba.innerHTML = righe(conta(gsVisite.filter(v => String(v.percorso||'').startsWith('#')).map(v => v.percorso.slice(1) + ' · ' + (v.referer || ''))));
   const ordinate = Object.entries(conteggio).sort((a,b) => b[1]-a[1]);
   const box = document.getElementById('gs-fonti');
   box.innerHTML = ordinate.length
@@ -6442,6 +6509,19 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape') chatChiudi();
 </script>
 
 <script src="scene.js" defer></script>
+<script>
+/* azioni contate sul negozio (vedi nuovo/traccia.html) */
+(function(){ var s=function(n){return String(n||'').toLowerCase().normalize('NFD').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')};
+  tracciaFunzione('go', function(id){ return 'pagina-' + s(id); });
+  tracciaFunzione('azioneProdotto', function(n){ return 'prodotto-' + s(n); });
+  tracciaFunzione('apriModulo', function(t, p){ return 'lista-attesa-aperta'; });
+  tracciaFunzione('inviaRichiesta', 'lista-attesa-inviata');
+  tracciaFunzione('iscrivi', 'guida-7-regole');
+  tracciaFunzione('chatApri', 'assistente');
+  tracciaFunzione('apriAccesso', function(m){ return 'accesso-aperto-' + s(m || 'entra'); });
+  tracciaFunzione('inviaAccesso', function(){ return 'accesso-inviato-' + s(typeof modoAccesso !== 'undefined' ? modoAccesso : ''); });
+})();
+</script>
 </body>
 </html>
 

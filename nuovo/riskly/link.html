@@ -155,5 +155,39 @@ input,select,textarea{border-radius:3px!important}
   }catch(e){}
 })();
 </script>
+<script>
+/* RISKLY TRACCIA · conteggio anonimo di visite e azioni, senza cookie.
+   Una riga per sessione nella tabella "visite": percorso = pagina (es. "strumenti") oppure "#azione", referer = provenienza o sito. */
+(function(){
+  var URL = 'https://swlztverwfgdgchgpudt.supabase.co/rest/v1/visite',
+      KEY = 'sb_publishable_j9bujIvCEz6x21yYoCODPw_lIZCJrIR',
+      sito = location.hostname.replace(/^www\./, '').split('.')[0] || 'locale';
+  function invia(percorso, referer){
+    try{ fetch(URL, { method:'POST', keepalive:true, headers:{ apikey:KEY, 'Content-Type':'application/json', Prefer:'return=minimal' },
+                      body: JSON.stringify({ percorso: String(percorso).slice(0, 80), referer: String(referer).slice(0, 80) }) }).catch(function(){}); }catch(e){}
+  }
+  function unaVolta(k){ try{ if(sessionStorage.getItem(k)) return false; sessionStorage.setItem(k, '1'); }catch(e){} return true; }
+  window.traccia = function(ev){ if(unaVolta('riskly_ev_' + ev)) invia('#' + ev, sito); };
+  window.tracciaVisita = function(nome){
+    if(!unaVolta('riskly_visita_' + nome)) return;
+    var da = ''; try{ da = document.referrer ? new URL(document.referrer).hostname.replace(/^www\./, '') : ''; }catch(e){}
+    var q = new URLSearchParams(location.search);
+    invia(nome, q.get('da') || q.get('utm_source') || da || 'diretto');
+  };
+  /* passaggi da un sito Riskly all'altro */
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href]'); if(!a) return;
+    var h = a.href, qui = location.hostname;
+    if(/\/\/app\.riskly\.trade/.test(h) && qui.indexOf('app.') !== 0) traccia(/demo/.test(h) ? 'vai-journal-demo' : 'vai-journal');
+    else if(/\/\/strumenti\.riskly\.trade/.test(h) && qui.indexOf('strumenti.') !== 0) traccia('vai-strumenti');
+    else if(/\/\/(www\.)?riskly\.trade/.test(h) && qui.replace(/^www\./, '') !== 'riskly.trade') traccia('vai-negozio');
+  }, true);
+  /* avvolge una funzione globale per contare quando viene usata */
+  window.tracciaFunzione = function(nome, evento){
+    var f = window[nome]; if(typeof f !== 'function') return;
+    window[nome] = function(){ try{ traccia(typeof evento === 'function' ? evento.apply(null, arguments) : evento); }catch(e){} return f.apply(this, arguments); };
+  };
+})();
+</script>
 </body>
 </html>
