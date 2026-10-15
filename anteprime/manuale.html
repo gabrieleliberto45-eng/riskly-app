@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Riskly · Gestione del rischio per il trading</title>
+<title>Riskly · Bot per la gestione del rischio su MetaTrader</title>
 <meta name="robots" content="noindex">
 <style>
 @font-face{font-family:'Archivo';src:url(fonts/archivo.woff2) format('woff2');font-weight:100 900;font-stretch:62% 125%;font-display:swap}
@@ -111,28 +111,6 @@ h2{font-weight:760;font-stretch:80%;font-size:clamp(34px,4.2vw,58px);line-height
 .intro{margin-top:18px;max-width:58ch;color:var(--ink-2);font-size:18px}
 
 
-/* catalogo prodotti */
-.catalogo-sez{padding-top:clamp(56px,8vw,112px)}
-.catalogo{margin-top:clamp(32px,4vw,52px);display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(20px,2.4vw,32px);align-items:start}
-.colonna{display:grid;gap:clamp(20px,2.4vw,32px)}
-.blocco{background:var(--sheet);border:1px solid var(--ink);scroll-margin-top:84px}
-.blocco-testa{display:flex;justify-content:space-between;align-items:baseline;gap:12px;background:var(--ink);color:var(--sheet);padding:12px 18px}
-.blocco-testa h3{font-weight:760;font-stretch:80%;font-size:clamp(20px,1.9vw,24px);letter-spacing:.01em;text-transform:uppercase;line-height:1.1}
-.blocco-testa .stato{font-size:13.5px;font-weight:600;color:var(--amber);white-space:nowrap}
-.blocco-corpo{padding:6px 18px 18px}
-.blocco-corpo>p{padding-top:12px;color:var(--ink-2);font-size:16px;max-width:52ch}
-.prodotti{list-style:none}
-.prodotto{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 16px;padding:14px 0;border-bottom:1px solid var(--rule)}
-.prodotto:last-child{border-bottom:none}
-.prodotto b{font-size:17.5px;font-weight:700}
-.prodotto .etichetta{font-size:12.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--amber-deep);margin-left:8px}
-.prodotto .prezzo{text-align:right;font:600 16px/1.2 'Martian Mono',monospace;font-stretch:88%;white-space:nowrap}
-.prodotto .dopo{grid-column:2;text-align:right;font-size:12.5px;color:var(--ink-3);white-space:nowrap}
-.prodotto p{grid-column:1;grid-row:2 / span 2;color:var(--ink-2);font-size:15px;max-width:54ch}
-.blocco-piede{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;padding:14px 18px;border-top:1px solid var(--rule)}
-.blocco-piede span{font-size:13.5px;color:var(--ink-3)}
-@media (max-width:960px){.catalogo{grid-template-columns:1fr}}
-
 /* procedura prima / durante / dopo */
 .procedura{margin-top:clamp(36px,5vw,64px);border-top:3px solid var(--ink)}
 .fase{display:grid;grid-template-columns:minmax(150px,.7fr) minmax(0,1.6fr) minmax(0,1fr);gap:clamp(20px,4vw,56px);padding:clamp(24px,3vw,36px) 0;border-bottom:1px solid var(--rule)}
@@ -144,18 +122,6 @@ h2{font-weight:760;font-stretch:80%;font-size:clamp(34px,4.2vw,58px);line-height
 .fase .strumento a{margin-top:8px;font-weight:600;font-size:15px}
 .fase .poster{display:flex;gap:16px;align-items:flex-start}
 .fase .poster img{width:84px;aspect-ratio:9/16;object-fit:cover;border:1px solid var(--ink);flex:none}
-
-/* indice delle aree */
-.indice-sez{background:var(--sheet);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
-.indice{margin-top:clamp(36px,5vw,64px);list-style:none;columns:2;column-gap:clamp(32px,6vw,96px)}
-.indice li{break-inside:avoid;padding:20px 0 22px;border-top:1px solid var(--ink)}
-.indice .riga{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:baseline}
-.indice .area{font-weight:700;font-stretch:80%;text-transform:uppercase;letter-spacing:.05em;font-size:14px}
-.indice .riga i{border-bottom:2px dotted var(--rule);transform:translateY(-4px)}
-.indice .stato{font-size:14px;font-weight:600}
-.indice .stato.attesa{color:var(--amber-deep)}
-.indice h3{margin-top:8px;font-weight:650;font-size:21px;line-height:1.2;letter-spacing:-.005em}
-.indice p{margin-top:6px;color:var(--ink-2);font-size:16px;max-width:52ch}
 
 /* frase */
 .frase{padding:clamp(72px,10vw,140px) 0}
@@ -217,6 +183,59 @@ footer .legale{margin-top:16px;font-size:13px;color:var(--ink-3)}
   .cta .btn{flex:1 1 100%}
   footer .colonne{grid-template-columns:1fr}
 }
+
+/* simulazione RiskGuard nella scheda */
+.contatore{display:flex;gap:6px}
+.contatore i{width:22px;height:22px;border:1.5px solid var(--ink);border-radius:2px;transition:background-color .2s ease}
+.contatore i.piena{background:var(--ink)}
+.stato-riga{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0;padding:16px 18px;background:var(--sheet);border-top:1px solid var(--rule);transition:background-color .25s ease,color .25s ease}
+.stato-riga b{font-weight:700;font-size:16px}
+.stato-riga span{font-size:14px;color:var(--ink-2)}
+.stato-riga.pausa{background:var(--amber);color:var(--amber-ink)}
+.stato-riga.pausa span{color:var(--amber-ink)}
+.stato-riga.blocco{background:var(--ink);color:var(--sheet)}
+.stato-riga.blocco span{color:#C9CDD1}
+.scheda-azioni{display:flex;gap:10px;padding:14px 18px 18px;border-top:1px solid var(--rule);flex-wrap:wrap;align-items:center}
+.scheda-azioni small{font-size:13px;color:var(--ink-3);flex:1 1 180px}
+
+/* elenco dei bot */
+.bot-sez{padding-top:clamp(56px,8vw,112px)}
+.bots{margin-top:clamp(32px,4vw,52px);list-style:none;border-top:3px solid var(--ink)}
+.bot{display:grid;grid-template-columns:96px minmax(0,1.5fr) minmax(0,1fr) auto;gap:clamp(18px,3vw,40px);align-items:start;padding:clamp(22px,2.6vw,32px) 0;border-bottom:1px solid var(--rule);scroll-margin-top:84px}
+.bot img{width:96px;aspect-ratio:9/16;object-fit:cover;border:1px solid var(--ink)}
+.bot h3{font-weight:780;font-stretch:78%;font-size:clamp(28px,2.8vw,38px);line-height:1;letter-spacing:-.01em}
+.bot .ruolo{display:inline-block;margin-top:8px;font-size:12.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--amber-deep)}
+.bot .cosa{margin-top:10px;color:var(--ink-2);max-width:48ch}
+.bot ul{list-style:none;display:grid;gap:8px;padding-top:4px}
+.bot ul li{display:grid;grid-template-columns:16px 1fr;gap:8px;font-size:15px;color:var(--ink-2);line-height:1.4}
+.bot ul svg{width:14px;height:14px;margin-top:3px;fill:var(--ink)}
+.bot .acquisto{display:grid;gap:4px;justify-items:end;text-align:right;min-width:170px}
+.bot .prezzo{font:600 28px/1 'Martian Mono',monospace;font-stretch:88%}
+.bot .dopo{font-size:13px;color:var(--ink-3)}
+.bot .licenza{font-size:13px;color:var(--ink-3);max-width:24ch}
+.bot .acquisto .btn{margin-top:10px}
+.bots-nota{margin-top:20px;font-size:14.5px;color:var(--ink-2);max-width:80ch}
+
+/* gli altri siti */
+.siti{margin-top:clamp(32px,4vw,52px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:3px solid var(--ink)}
+.sito{display:grid;gap:8px;align-content:start;padding:24px clamp(16px,2vw,28px) 26px 0;text-decoration:none;border-bottom:1px solid var(--rule)}
+.sito+.sito{padding-left:clamp(16px,2vw,28px);border-left:1px solid var(--rule)}
+.sito .indirizzo{font:500 13px/1 'Martian Mono',monospace;font-stretch:88%;color:var(--amber-deep)}
+.sito b{font-weight:760;font-stretch:80%;font-size:26px;line-height:1.05}
+.sito p{color:var(--ink-2);font-size:15.5px;max-width:40ch}
+.sito .vai{margin-top:6px;font-weight:600;font-size:15px;text-decoration:underline;text-underline-offset:3px}
+.sito:hover .vai{text-decoration-thickness:2px}
+
+@media (max-width:960px){
+  .bot{grid-template-columns:80px minmax(0,1fr)}
+  .bot img{width:80px;grid-row:span 3}
+  .bot ul,.bot .acquisto{grid-column:2}
+  .bot .acquisto{justify-items:start;text-align:left}
+  .siti{grid-template-columns:1fr}
+  .sito+.sito{padding-left:0;border-left:none}
+}
+
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
 </style>
 </head>
 <body>
@@ -229,20 +248,20 @@ footer .legale{margin-top:16px;font-size:13px;color:var(--ink-3)}
     </a>
     <ul class="menu">
       <li><a href="#bot">Bot</a></li>
-      <li><a href="#corsi">Videocorsi</a></li>
-      <li><a href="#journal">Journal</a></li>
-      <li><a href="#calcolatori">Calcolatori</a></li>
-      <li><a href="#prodotti">Prezzi</a></li>
+      <li><a href="#procedura">Come funzionano</a></li>
+      <li><a href="#siti">Videocorsi</a></li>
+      <li><a href="#siti">Journal</a></li>
+      <li><a href="#siti">Strumenti gratuiti</a></li>
       <li><a href="#dietro">Chi siamo</a></li>
     </ul>
     <div class="azioni">
       <a class="accedi" href="#">Accedi</a>
-      <a class="btn btn-pieno btn-piccolo" href="#">Prova il journal</a>
+      <a class="btn btn-pieno btn-piccolo" href="#bot">Scegli il bot</a>
       <button class="apri-menu" type="button" aria-expanded="false" aria-controls="menu-mobile" onclick="const a=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',!a);document.getElementById('menu-mobile').hidden=a">Menu</button>
     </div>
   </div>
   <nav id="menu-mobile" hidden>
-    <a href="#bot">Bot</a><a href="#corsi">Videocorsi</a><a href="#journal">Journal</a><a href="#calcolatori">Calcolatori</a><a href="#prodotti">Prezzi</a><a href="#dietro">Chi siamo</a><a href="#">Accedi</a>
+    <a href="#bot">Bot</a><a href="#procedura">Come funzionano</a><a href="#siti">Videocorsi</a><a href="#siti">Journal</a><a href="#siti">Strumenti gratuiti</a><a href="#dietro">Chi siamo</a><a href="#">Accedi</a>
   </nav>
 </header>
 
@@ -251,94 +270,80 @@ footer .legale{margin-top:16px;font-size:13px;color:var(--ink-3)}
     <div class="wrap">
       <div>
         <h1>Il mercato non lo controlli. <span class="seconda">Tutto il resto sì.</span></h1>
-        <p class="sotto">Quanto rischiare, quando fermarti, come gestire una posizione aperta. Il trading si decide qui, non nella previsione del prossimo movimento.</p>
+        <p class="sotto">Bot per MetaTrader 4 e 5 che applicano le tue regole di rischio: ti fermano dopo le perdite, gestiscono stop e trailing, scaglionano le posizioni.</p>
         <div class="cta">
-          <a class="btn btn-pieno" href="#">Prova il journal</a>
-          <a class="btn btn-linea" href="#">Apri i calcolatori</a>
+          <a class="btn btn-pieno" href="#bot">Scegli il bot</a>
+          <a class="btn btn-linea" href="#procedura">Come funzionano</a>
         </div>
       </div>
 
-      <form class="scheda" id="scheda" aria-labelledby="scheda-titolo" onsubmit="return false">
-        <div class="scheda-testa"><span id="scheda-titolo">Prima del trade</span><span class="num">EURUSD</span></div>
+      <div class="scheda" id="sim" aria-labelledby="sim-titolo">
+        <div class="scheda-testa"><span id="sim-titolo">RiskGuard · regole attive</span><span class="num">SIMULAZIONE</span></div>
         <ol>
-          <li class="voce" data-voce="saldo"><span class="spunta"><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></svg></span>
-            <label class="nome" for="saldo">Saldo del conto</label><i class="puntini"></i>
-            <span class="valore"><input id="saldo" inputmode="decimal" value="10.000" autocomplete="off"><span class="unita">$</span></span></li>
-          <li class="voce" data-voce="rischio"><span class="spunta"><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></svg></span>
-            <label class="nome" for="rischio">Rischio per operazione</label><i class="puntini"></i>
-            <span class="valore"><input id="rischio" inputmode="decimal" value="1" autocomplete="off"><span class="unita">%</span></span></li>
-          <li class="voce" data-voce="stop"><span class="spunta"><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></svg></span>
-            <label class="nome" for="stop">Stop loss</label><i class="puntini"></i>
-            <span class="valore"><input id="stop" inputmode="decimal" value="30" autocomplete="off"><span class="unita">pip</span></span></li>
-          <li class="voce" data-voce="euro"><span class="spunta"><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></svg></span>
-            <span class="nome">Perdita massima se tocca lo stop</span><i class="puntini"></i>
-            <span class="valore"><span class="calcolato" id="perdita">100 $</span></span></li>
-          <li class="voce risultato" data-voce="lotti" aria-live="polite"><span class="spunta"><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></svg></span>
-            <span class="nome">Lotti da aprire</span><i class="puntini"></i>
-            <span class="valore"><span class="calcolato" id="lotti">0,33</span></span></li>
+          <li class="voce ok"><span class="spunta"><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></svg></span>
+            <span class="nome">Pausa dopo una perdita</span><i class="puntini"></i><span class="valore"><span class="calcolato">12 min</span></span></li>
+          <li class="voce ok"><span class="spunta"><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></svg></span>
+            <span class="nome">Perdite consecutive</span><i class="puntini"></i><span class="valore"><span class="contatore" id="contatore" aria-label="0 perdite su 3"><i></i><i></i><i></i></span></span></li>
+          <li class="voce ok"><span class="spunta"><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></svg></span>
+            <span class="nome">Perdita del giorno</span><i class="puntini"></i><span class="valore"><span class="calcolato" id="perdita">0,0% di 2%</span></span></li>
+          <li class="voce ok"><span class="spunta"><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></svg></span>
+            <span class="nome">Stop loss obbligatorio</span><i class="puntini"></i><span class="valore"><span class="calcolato">sì</span></span></li>
         </ol>
-        <div class="scheda-nota"><span>Esempio su EURUSD con conto in dollari: un pip vale 10 $ per lotto.</span><a href="#">Altri strumenti</a></div>
-      </form>
+        <div class="stato-riga" id="stato" aria-live="polite"><b id="stato-t">Operativo</b><span id="stato-d">Puoi aprire operazioni</span></div>
+        <div class="scheda-azioni">
+          <button class="btn btn-pieno btn-piccolo" type="button" id="perdi">Registra una perdita</button>
+          <button class="btn btn-linea btn-piccolo" type="button" id="azzera">Ricomincia</button>
+          <small>Prova cosa fa RiskGuard quando le perdite si sommano.</small>
+        </div>
+      </div>
     </div>
   </div>
 
   <div class="lancio">
     <div class="wrap">
       <div class="data">23 ottobre</div>
-      <p>Escono i bot per <b>MetaTrader 4 e 5</b>. Ai primi 10 iscritti il prezzo di lancio resta bloccato a vita. Journal, videocorso e calcolatori sono già disponibili.</p>
-      <a class="btn btn-ambra" href="#">Blocca il prezzo</a>
+      <p>Escono i bot per <b>MetaTrader 4 e 5</b>. Ai primi 10 iscritti il prezzo di lancio resta bloccato a vita. Si paga una volta sola.</p>
+      <a class="btn btn-ambra" href="#bot">Blocca il prezzo</a>
     </div>
   </div>
 
-
-  <section class="catalogo-sez" id="prodotti">
+  <section class="bot-sez" id="bot">
     <div class="wrap">
-      <h2>Cosa trovi su Riskly</h2>
-      <p class="intro">Software per MetaTrader, un journal, due videocorsi e cinque calcolatori. Ognuno ha la sua pagina.</p>
-      <div class="catalogo">
-        <div class="blocco" id="bot">
-          <div class="blocco-testa"><h3>Bot per MT4 e MT5</h3><span class="stato">Dal 23 ottobre</span></div>
-          <div class="blocco-corpo">
-            <ol class="prodotti">
-              <li class="prodotto"><b>RiskGuard<span class="etichetta">Per iniziare</span></b><span class="prezzo">99 €</span><span class="dopo">poi 149 €</span>
-                <p>Ti ferma dopo le perdite consecutive e ai limiti giornalieri, quando il conto è ancora sano.</p></li>
-              <li class="prodotto"><b>TradeManager</b><span class="prezzo">49 €</span><span class="dopo">poi 79 €</span>
-                <p>Stop loss, break-even e trailing stop automatici sulle posizioni aperte, tutto in pip.</p></li>
-              <li class="prodotto"><b>ScaleIn</b><span class="prezzo">79 €</span><span class="dopo">poi 129 €</span>
-                <p>Apri una posizione e il bot apre le altre con take profit scaglionati.</p></li>
-              <li class="prodotto"><b>Riskly Pro<span class="etichetta">Il più completo</span></b><span class="prezzo">199 €</span><span class="dopo">poi 299 €</span>
-                <p>I tre bot in uno, con il rischio calcolato sull'insieme delle posizioni.</p></li>
-              <li class="prodotto"><b>RisklyCopy<span class="etichetta">In arrivo</span></b><span class="prezzo">69 €</span><span class="dopo">poi 129 €</span>
-                <p>Copia le operazioni dal conto principale ad altri tre, con il lotto ricalcolato sul saldo di ognuno.</p></li>
-            </ol>
-          </div>
-          <div class="blocco-piede"><a class="btn btn-pieno btn-piccolo" href="#">Vedi i bot</a><span>Pagamento una tantum, aggiornamenti inclusi. Prezzo di lancio bloccato a vita per i primi 10.</span></div>
-        </div>
-        <div class="colonna">
-          <div class="blocco" id="corsi">
-            <div class="blocco-testa"><h3>Videocorsi</h3></div>
-            <div class="blocco-corpo">
-              <ol class="prodotti">
-                <li class="prodotto"><b>Gestione del rischio</b><span class="prezzo">199 €</span><span class="dopo">poi 249 €</span>
-                  <p>47 lezioni in dieci moduli, quasi tre ore. Disponibile subito.</p></li>
-                <li class="prodotto"><b>Analisi fondamentale<span class="etichetta">In arrivo</span></b><span class="prezzo">-</span>
-                  <p>Indicatori economici, banche centrali, correlazioni e beni rifugio.</p></li>
-              </ol>
-            </div>
-            <div class="blocco-piede"><a class="btn btn-pieno btn-piccolo" href="#">Vedi i corsi</a></div>
-          </div>
-          <div class="blocco" id="journal">
-            <div class="blocco-testa"><h3>Journal</h3><span class="stato">7 giorni di prova</span></div>
-            <div class="blocco-corpo"><p>Registra le operazioni e misura winrate, drawdown e disciplina. Da 29 € l'anno.</p></div>
-            <div class="blocco-piede"><a class="btn btn-pieno btn-piccolo" href="#">Prova il journal</a></div>
-          </div>
-          <div class="blocco" id="calcolatori">
-            <div class="blocco-testa"><h3>Calcolatori</h3><span class="stato">Gratis</span></div>
-            <div class="blocco-corpo"><p>Dimensione della posizione, rischio di rovina, margine sulla challenge, recupero del drawdown.</p></div>
-            <div class="blocco-piede"><a class="btn btn-linea btn-piccolo" href="#">Apri i calcolatori</a></div>
-          </div>
-        </div>
-      </div>
+      <h2>Cinque bot per MT4 e MT5</h2>
+      <p class="intro">Imposti le regole a mente fredda, il bot le applica quando sei sotto pressione.</p>
+      <ol class="bots">
+        <li class="bot">
+          <img src="../pubblicazione-21-ottobre/video/riskguard.jpg" alt="Copertina del video dimostrativo di RiskGuard" loading="lazy">
+          <div><h3>RiskGuard</h3><span class="ruolo">Per iniziare</span><p class="cosa">Ti ferma dopo le perdite consecutive, quando il conto è ancora sano. Se ti blocca, chiude MetaTrader fino a mezzanotte.</p></div>
+          <ul><li><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></svg><span>Pausa obbligatoria dopo una perdita</span></li><li><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></svg><span>Limite di perdita e di operazioni giornaliere</span></li><li><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></svg><span>Riduce il lotto se rischi più del limite</span></li></ul>
+          <div class="acquisto"><span class="prezzo">99 €</span><span class="dopo">poi 149 €</span><span class="licenza">una tantum, 2 conti, aggiornamenti inclusi</span><a class="btn btn-pieno btn-piccolo" href="#">Riserva RiskGuard</a></div>
+        </li>
+        <li class="bot">
+          <img src="../pubblicazione-21-ottobre/video/trademanager.jpg" alt="Copertina del video dimostrativo di TradeManager" loading="lazy">
+          <div><h3>TradeManager</h3><span class="ruolo">Il più semplice</span><p class="cosa">Gestisce le posizioni aperte al posto tuo: stop loss, break-even e trailing stop. Tutto in pip.</p></div>
+          <ul><li><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></svg><span>Stop loss e take profit automatici se mancano</span></li><li><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></svg><span>Break-even dopo N pip, con margine</span></li><li><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></svg><span>Trailing stop: avvio, distanza e passo</span></li></ul>
+          <div class="acquisto"><span class="prezzo">49 €</span><span class="dopo">poi 79 €</span><span class="licenza">una tantum, 2 conti, aggiornamenti inclusi</span><a class="btn btn-pieno btn-piccolo" href="#">Riserva TradeManager</a></div>
+        </li>
+        <li class="bot">
+          <img src="../pubblicazione-21-ottobre/video/scalein.jpg" alt="Copertina del video dimostrativo di ScaleIn" loading="lazy">
+          <div><h3>ScaleIn</h3><span class="ruolo">Per chi scala</span><p class="cosa">Apri una posizione a mano, il bot apre le altre con take profit scaglionati in pip, per esempio 20, 40 e 60.</p></div>
+          <ul><li><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></svg><span>Replica la posizione in N scaglioni</span></li><li><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></svg><span>Take profit e volumi diversi per ogni scaglione</span></li><li><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></svg><span>Blocco se il rischio totale è eccessivo</span></li></ul>
+          <div class="acquisto"><span class="prezzo">79 €</span><span class="dopo">poi 129 €</span><span class="licenza">una tantum, 2 conti, aggiornamenti inclusi</span><a class="btn btn-pieno btn-piccolo" href="#">Riserva ScaleIn</a></div>
+        </li>
+        <li class="bot">
+          <img src="../pubblicazione-21-ottobre/video/risklypro.jpg" alt="Copertina del video dimostrativo di Riskly Pro" loading="lazy">
+          <div><h3>Riskly Pro</h3><span class="ruolo">Il più completo</span><p class="cosa">I tre bot in uno, con il rischio calcolato sull'insieme delle posizioni e non su ciascuna separatamente.</p></div>
+          <ul><li><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></svg><span>Tutto di RiskGuard, TradeManager e ScaleIn</span></li><li><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></svg><span>Pulsanti BUY e SELL con il lotto già calcolato</span></li><li><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></svg><span>50% di sconto sul videocorso</span></li></ul>
+          <div class="acquisto"><span class="prezzo">199 €</span><span class="dopo">poi 299 €</span><span class="licenza">una tantum, 3 conti, aggiornamenti a vita</span><a class="btn btn-pieno btn-piccolo" href="#">Riserva Riskly Pro</a></div>
+        </li>
+        <li class="bot">
+          <img src="../pubblicazione-21-ottobre/video/risklycopy.jpg" alt="Copertina del video dimostrativo di RisklyCopy" loading="lazy">
+          <div><h3>RisklyCopy</h3><span class="ruolo">In arrivo</span><p class="cosa">Apri sul conto principale e gli altri copiano. Il lotto si ricalcola sul saldo di ogni conto: stesso rischio, non lo stesso lotto.</p></div>
+          <ul><li><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></svg><span>Copia aperture, chiusure, stop e take profit</span></li><li><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></svg><span>Tra MT4 e MT5, sullo stesso computer o VPS</span></li><li><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></svg><span>Se il principale si spegne, non chiude niente per sbaglio</span></li></ul>
+          <div class="acquisto"><span class="prezzo">69 €</span><span class="dopo">poi 129 €</span><span class="licenza">una tantum, 1 conto principale e 3 che ricevono</span><a class="btn btn-linea btn-piccolo" href="#">Entra in lista d'attesa</a></div>
+        </li>
+      </ol>
+      <p class="bots-nota">Prova sempre i bot su un conto demo prima di usarli su un conto reale. I bot applicano le regole che imposti tu: non scelgono le operazioni.</p>
     </div>
   </section>
 
@@ -349,23 +354,33 @@ footer .legale{margin-top:16px;font-size:13px;color:var(--ink-3)}
       <div class="procedura">
         <div class="fase">
           <h3>Prima</h3>
-          <p>Decidi a mente fredda quanto rischiare, dove mettere lo stop, quante operazioni al giorno. I calcolatori tolgono la sensazione dall'equazione.</p>
-          <div class="strumento"><b>Calcolatori</b><span>Cinque strumenti, sempre gratuiti</span><a href="#">Apri i calcolatori</a></div>
+          <p>Decidi a mente fredda quanto rischiare, dove mettere lo stop, quante operazioni al giorno.</p>
+          <div class="strumento"><b>Calcolatori gratuiti</b><span>su strumenti.riskly.trade</span></div>
         </div>
         <div class="fase">
           <h3>Durante</h3>
-          <p>I bot eseguono quelle regole al posto tuo: gestiscono la posizione, spostano lo stop, e ti fermano quando stai per infrangere i limiti che avevi fissato.</p>
-          <div class="strumento poster"><img src="../pubblicazione-21-ottobre/video/riskguard.jpg" alt="Copertina del video dimostrativo di RiskGuard" loading="lazy"><div class="strumento"><b>Bot per MT4 e MT5</b><span>RiskGuard, TradeManager, ScaleIn, Riskly Pro. Dal 23 ottobre.</span><a href="#">Come funzionano</a></div></div>
+          <p>I bot eseguono quelle regole al posto tuo: gestiscono la posizione, spostano lo stop, e ti fermano quando stai per infrangere i limiti.</p>
+          <div class="strumento"><b>Bot per MT4 e MT5</b><span>su questo sito</span></div>
         </div>
         <div class="fase">
           <h3>Dopo</h3>
-          <p>Il journal misura tutto. Non se avevi ragione sul mercato, ma se hai rispettato il tuo sistema e quali abitudini ti stanno costando.</p>
-          <div class="strumento"><b>Journal</b><span>7 giorni di prova, nessuna carta richiesta</span><a href="#">Prova il journal</a></div>
+          <p>Il journal misura tutto: non se avevi ragione sul mercato, ma se hai rispettato il tuo sistema.</p>
+          <div class="strumento"><b>Journal</b><span>su app.riskly.trade</span></div>
         </div>
       </div>
     </div>
   </section>
 
+  <section class="indice-sez" id="siti">
+    <div class="wrap">
+      <h2>Anche da Riskly</h2>
+      <div class="siti">
+        <a class="sito" href="#"><span class="indirizzo">app.riskly.trade</span><b>Journal</b><p>Registra le operazioni e misura winrate, drawdown e disciplina. 7 giorni di prova, poi da 29 € l'anno.</p><span class="vai">Apri il journal</span></a>
+        <a class="sito" href="#"><span class="indirizzo">strumenti.riskly.trade</span><b>Strumenti gratuiti</b><p>Calcolatori del lotto, rischio di rovina, margine sulla challenge e calendario economico.</p><span class="vai">Apri gli strumenti</span></a>
+        <a class="sito" href="#"><span class="indirizzo">riskly.trade/corso</span><b>Videocorsi</b><p>Gestione del rischio, 47 lezioni, 199 € (poi 249 €). Analisi fondamentale in arrivo.</p><span class="vai">Vedi i corsi</span></a>
+      </div>
+    </div>
+  </section>
 
   <div class="frase">
     <div class="wrap">
@@ -389,7 +404,7 @@ footer .legale{margin-top:16px;font-size:13px;color:var(--ink-3)}
         <label class="etichetta" for="email">La tua email</label>
         <input type="email" id="email" placeholder="nome@esempio.it" required>
         <button class="btn btn-pieno" type="submit">Ricevi la guida</button>
-        <label class="consenso"><input type="checkbox"><span>Voglio ricevere via email anche le novità di Riskly e l'avviso del lancio (facoltativo, ti cancelli quando vuoi). <a href="#">Informativa privacy</a></span></label>
+        <label class="consenso"><input type="checkbox" id="consenso"><span>Voglio ricevere via email anche le novità di Riskly e l'avviso del lancio (facoltativo, ti cancelli quando vuoi). <a href="#">Informativa privacy</a></span></label>
       </form>
     </div>
   </section>
@@ -399,37 +414,38 @@ footer .legale{margin-top:16px;font-size:13px;color:var(--ink-3)}
   <div class="wrap">
     <div class="colonne">
       <div><a class="marchio" href="#"><svg width="26" height="26" viewBox="0 0 44 44" fill="none" aria-hidden="true"><path d="M9 31 L17 19.5 L23.5 25 L35 11" stroke="#15181B" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 36 H35" stroke="#E9A10F" stroke-width="3.6" stroke-linecap="round"/></svg>Riskly</a>
-        <p style="margin-top:12px;max-width:34ch">Strumenti per la gestione del rischio, della disciplina e delle posizioni. Nessun segnale, nessuna promessa di guadagno.</p></div>
-      <div><h4>Prodotti</h4><ul><li><a href="#">Bot MT4 e MT5</a></li><li><a href="#">Journal</a></li><li><a href="#">Calcolatori</a></li><li><a href="#">Videocorso</a></li><li><a href="#">Prezzi</a></li></ul></div>
-      <div><h4>Informazioni</h4><ul><li><a href="#">Il metodo</a></li><li><a href="#">Domande frequenti</a></li><li><a href="#">Assistenza</a></li><li><a href="#">info@riskly.trade</a></li></ul></div>
+        <p style="margin-top:12px;max-width:34ch">Bot per la gestione del rischio su MetaTrader 4 e 5. Nessun segnale, nessuna promessa di guadagno.</p></div>
+      <div><h4>Bot</h4><ul><li><a href="#">RiskGuard</a></li><li><a href="#">TradeManager</a></li><li><a href="#">ScaleIn</a></li><li><a href="#">Riskly Pro</a></li><li><a href="#">RisklyCopy</a></li></ul></div>
+      <div><h4>Altri siti</h4><ul><li><a href="#">Journal</a></li><li><a href="#">Strumenti gratuiti</a></li><li><a href="#">Videocorsi</a></li><li><a href="#">Domande frequenti</a></li><li><a href="#">info@riskly.trade</a></li></ul></div>
       <div><h4>Legale</h4><ul><li><a href="#">Privacy</a></li><li><a href="#">Termini di servizio</a></li><li><a href="#">Recesso</a></li></ul></div>
     </div>
-    <p class="avviso">Riskly fornisce strumenti software per la gestione del rischio e l'analisi delle operazioni. Non fornisce consulenza in materia di investimenti, raccomandazioni personalizzate, segnali operativi né gestione di portafogli. Il trading su strumenti finanziari con leva comporta un elevato rischio di perdita del capitale e non è adatto a tutti gli investitori. MetaTrader è un marchio registrato di MetaQuotes Ltd., non affiliata a Riskly.</p>
+    <p class="avviso">Riskly fornisce strumenti software per la gestione del rischio e l'analisi delle operazioni. Non fornisce consulenza in materia di investimenti, raccomandazioni personalizzate, segnali operativi né gestione di portafogli. Il trading su strumenti finanziari con leva comporta un elevato rischio di perdita del capitale e non è adatto a tutti gli investitori. Gli Expert Advisor vanno testati su conto demo prima dell'utilizzo su conto reale. MetaTrader è un marchio registrato di MetaQuotes Ltd., non affiliata a Riskly.</p>
     <p class="legale">© 2026 Riskly · Gabriele Liberto, ditta individuale · P. IVA 04948840162 · C.F. LBRGRL04D19F899W</p>
   </div>
 </footer>
 
 <script>
 (function(){
-  const leggi = id => parseFloat(document.getElementById(id).value.replace(/\./g,'').replace(',','.'));
-  const fmt = (n, d) => n.toLocaleString('it-IT', { minimumFractionDigits: d, maximumFractionDigits: d });
-  const voce = n => document.querySelector('[data-voce="' + n + '"]');
-  const lampo = el => { el.classList.remove('cambio'); void el.offsetWidth; el.classList.add('cambio'); };
-  function calcola(){
-    const s = leggi('saldo'), r = leggi('rischio'), p = leggi('stop');
-    const okS = s > 0, okR = r > 0 && r <= 10, okP = p > 0;
-    voce('saldo').classList.toggle('ok', okS); voce('rischio').classList.toggle('ok', okR); voce('stop').classList.toggle('ok', okP);
-    const perdita = document.getElementById('perdita'), lotti = document.getElementById('lotti');
-    if(okS && okR){ perdita.textContent = fmt(s * r / 100, 0) + ' $'; voce('euro').classList.add('ok'); } else { perdita.textContent = '-'; voce('euro').classList.remove('ok'); }
-    if(okS && okR && okP){
-      const v = Math.floor(s * r / 100 / (p * 10) * 100) / 100;      // arrotondato per difetto: mai oltre il rischio deciso
-      const t = fmt(v, 2); if(lotti.textContent !== t){ lotti.textContent = t; lampo(lotti); }
-      voce('lotti').classList.add('ok');
-    } else { lotti.textContent = '-'; voce('lotti').classList.remove('ok'); }
+  const LIM = 3, PERDITA = 0.6, MAX = 2;
+  let n = 0;
+  const caselle = document.querySelectorAll('#contatore i');
+  const stato = document.getElementById('stato'), t = document.getElementById('stato-t'), d = document.getElementById('stato-d');
+  const perdi = document.getElementById('perdi');
+  const fmt = v => v.toLocaleString('it-IT', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  function disegna(){
+    caselle.forEach((c, i) => c.classList.toggle('piena', i < n));
+    document.getElementById('contatore').setAttribute('aria-label', n + ' perdite su ' + LIM);
+    document.getElementById('perdita').textContent = fmt(Math.min(n * PERDITA, MAX)) + '% di 2%';
+    stato.classList.remove('pausa', 'blocco');
+    if(n === 0){ t.textContent = 'Operativo'; d.textContent = 'Puoi aprire operazioni'; perdi.disabled = false; }
+    else if(n < LIM){ stato.classList.add('pausa'); t.textContent = 'Pausa di 12 minuti'; d.textContent = 'Nuove operazioni bloccate fino alla fine della pausa'; perdi.disabled = false; }
+    else { stato.classList.add('blocco'); t.textContent = 'Blocco fino a mezzanotte'; d.textContent = '3 perdite di fila: MetaTrader viene chiuso'; perdi.disabled = true; }
   }
-  ['saldo','rischio','stop'].forEach(id => document.getElementById(id).addEventListener('input', calcola));
-  setTimeout(calcola, 380);
+  perdi.addEventListener('click', () => { if(n < LIM){ n++; disegna(); } });
+  document.getElementById('azzera').addEventListener('click', () => { n = 0; disegna(); });
+  disegna();
 })();
 </script>
+
 </body>
 </html>
