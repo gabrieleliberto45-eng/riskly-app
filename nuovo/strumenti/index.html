@@ -1389,6 +1389,14 @@
   .cal-rapidi{display:flex;flex-wrap:wrap;gap:4px 14px;border-top:1px solid var(--line);padding-top:10px}
   .cal-rapidi button{appearance:none;border:0;background:none;color:var(--accent);font-family:inherit;font-weight:500;font-size:.84rem;cursor:pointer;padding:3px 0}
   .cal-rapidi button:hover{text-decoration:underline}
+  .cal-barra{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+  .cal-apri{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 14px;border:1px solid var(--ink,#15181B);border-radius:4px;background:transparent;color:var(--ink,#15181B);font:600 15px 'Archivo',sans-serif;cursor:pointer}
+  .cal-apri[aria-expanded="true"]{background:var(--ink,#15181B);color:#FBFBF9}
+  .cal-apri:active{transform:scale(.97)}
+  .cal-riassunto{font-size:.88rem;color:var(--dim)}
+  .cal-filtri[hidden]{display:none!important}
+  .cal-filtri{border-radius:4px!important}
+  .cal-fatto{display:flex;justify-content:flex-end;border-top:1px solid var(--line);padding-top:10px}
   .cal-cornice{height:min(74vh,780px);min-height:480px;border:1px solid var(--line);border-radius:12px;overflow:hidden;position:relative}
   .cal-cornice .vuoto{position:absolute;inset:0;display:grid;place-items:center;color:var(--dim);text-align:center;padding:24px}
   .cal-cornice .tradingview-widget-container,.cal-cornice .tradingview-widget-container__widget{height:100%}
@@ -1484,7 +1492,12 @@ input,select,textarea{border-radius:3px!important}
         <div class="card cal-card">
           <div class="card-head"><h3>Calendario economico</h3><span class="meta cal-live"><i></i>in tempo reale</span></div>
           <p class="cal-sotto">I dati che muovono forex, oro e indici. Il valore effettivo compare appena il dato esce; gli orari sono nella tua ora locale.</p>
-          <div class="cal-filtri">
+          <div class="cal-barra">
+            <button type="button" class="cal-apri" id="calApri" aria-expanded="false" aria-controls="calFiltri" onclick="calFiltriApri()">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M7 12h10M10 18h4"/></svg>Filtri</button>
+            <span class="cal-riassunto" id="calRiassunto"></span>
+          </div>
+          <div class="cal-filtri" id="calFiltri" hidden>
             <div class="cal-gruppo" id="calImp"><span>Importanza</span>
               <button class="cal-chip alta" data-v="1"><span class="tori"><b></b><b></b><b></b></span>Alta</button>
               <button class="cal-chip media" data-v="0"><span class="tori"><b></b><b></b><b></b></span>Media</button>
@@ -1495,6 +1508,7 @@ input,select,textarea{border-radius:3px!important}
               <button class="cal-chip" data-v="ch">🇨🇭 Svizzera</button><button class="cal-chip" data-v="ca">🇨🇦 Canada</button><button class="cal-chip" data-v="au">🇦🇺 Australia</button>
               <button class="cal-chip" data-v="nz">🇳🇿 Nuova Zelanda</button><button class="cal-chip" data-v="cn">🇨🇳 Cina</button></div>
             <div class="cal-rapidi"><button data-preset="forex">Solo quello che muove il forex</button><button data-preset="usa">Solo USA, alta importanza</button><button data-preset="tutto">Mostra tutto</button></div>
+            <div class="cal-fatto"><button type="button" class="btn pri" onclick="calFiltriApri(false)">Fatto</button></div>
           </div>
           <div class="cal-cornice" id="calCornice"></div>
           <p class="cal-nota">Dati forniti da <a href="https://it.tradingview.com/economic-calendar/" rel="noopener" target="_blank">TradingView</a>. Orari e valori possono cambiare: verifica sempre prima di operare. Nei minuti intorno ai dati importanti spread e slippage possono farti perdere più del previsto: Riskly Pro non apre operazioni vicino alle notizie.</p>
@@ -1914,8 +1928,21 @@ const CAL_PRESET = { forex: { imp: ['1', '0'], paesi: ['us', 'eu', 'gb', 'jp', '
 let calStato = CAL_PREDEF, calChiave = '', calAttesa;
 try { calStato = JSON.parse(localStorage.getItem('riskly-calendario')) || CAL_PREDEF; } catch(e) {}
 function calSegna(){
+  calRiassunto();
   document.querySelectorAll('#calImp .cal-chip').forEach(b => b.setAttribute('aria-pressed', calStato.imp.includes(b.dataset.v)));
   document.querySelectorAll('#calPaesi .cal-chip').forEach(b => b.setAttribute('aria-pressed', calStato.paesi.includes(b.dataset.v)));
+}
+function calFiltriApri(apri){
+  const f = document.getElementById('calFiltri'), b = document.getElementById('calApri'); if(!f) return;
+  const on = apri === undefined ? f.hidden : !!apri;
+  f.hidden = !on; b.setAttribute('aria-expanded', on);
+}
+function calRiassunto(){
+  const el = document.getElementById('calRiassunto'); if(!el) return;
+  const nomi = { '1':'alta', '0':'media', '-1':'bassa' };
+  const imp = ['1','0','-1'].filter(v => calStato.imp.includes(v)).map(v => nomi[v]);
+  const n = calStato.paesi.length;
+  el.textContent = (imp.length ? 'Importanza ' + imp.join(', ') : 'Nessuna importanza') + ' · ' + (n === 11 ? 'tutti i paesi' : n === 1 ? '1 paese' : n + ' paesi');
 }
 function calConsenti(){ try { localStorage.setItem('riskly-tv-ok', '1'); } catch(e) {} window.rtvOk = true; calDisegna(); }
 function calDisegna(){
