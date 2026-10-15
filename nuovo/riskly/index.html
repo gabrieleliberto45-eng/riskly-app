@@ -1952,6 +1952,16 @@ nav .brand{text-decoration:none}
 .nh .of-chiedi .btn{background:var(--amber)!important;color:var(--amber-ink)!important;border-color:var(--amber)!important}
 .nh .of-chiedi .btn:hover{background:#F2B32E!important}
 @media (max-width:760px){#chatBtn{width:44px!important;height:44px!important;padding:0!important;justify-content:center;right:12px!important;bottom:calc(14px + env(safe-area-inset-bottom))!important;border-radius:50%!important;background:var(--ink)!important;color:var(--sheet)!important;border-color:var(--ink)!important}#chatBtn span{display:none!important}#chatBtn svg{width:20px!important;height:20px!important}}
+.nh .lavoro{padding:0 0 clamp(48px,7vw,88px)}
+.nh .lav-fila{margin-top:clamp(24px,3vw,40px);display:grid;grid-auto-flow:column;grid-auto-columns:minmax(200px,1fr);gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;scrollbar-width:thin}
+.nh .lav{margin:0;scroll-snap-align:start}
+.nh .lav video{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;background:#0B0D0C;border:1px solid var(--ink)}
+.nh .lav figcaption{margin-top:10px;display:grid;gap:4px}
+.nh .lav figcaption b{font-weight:760;font-stretch:80%;font-size:20px}
+.nh .lav figcaption span{font-size:14.5px;color:var(--ink-2);line-height:1.45}
+.nh .lav-nota{margin-top:14px;font-size:13.5px;color:var(--ink-3);max-width:80ch}
+.nh .lav-nota a{color:var(--ink);font-weight:600}
+@media (max-width:700px){.nh .lav-fila{grid-auto-columns:62%}}
 /* ecosistema in home */
 .nh .offerta{padding:clamp(56px,8vw,104px) 0 clamp(40px,6vw,72px)}
 .nh .of-griglia{margin-top:clamp(28px,4vw,48px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:3px solid var(--ink)}
@@ -2123,6 +2133,36 @@ nav .brand{text-decoration:none}
         <div><b>Hai una domanda su bot, corsi o journal?</b><span>L'assistente di Riskly risponde subito, a qualsiasi ora: prezzi, prop firm, installazione, pagamenti.</span></div>
         <button type="button" class="btn btn-pieno" onclick="chatApri()">Chiedi all'assistente</button>
       </div>
+    </div>
+  </section>
+
+  <section class="lavoro" id="lavoro">
+    <div class="wrap">
+      <h2>I bot al lavoro</h2>
+      <p class="intro">Gli stessi video che pubblichiamo su TikTok e Instagram: il grafico si muove e vedi passo passo cosa fa ogni bot. Tocca un video per farlo partire con l'audio.</p>
+      <div class="lav-fila">
+        <figure class="lav">
+          <video src="/video/riskguard.mp4" poster="/video/riskguard.jpg" muted loop playsinline preload="none" controls aria-label="Video dimostrativo di RiskGuard"></video>
+          <figcaption><b>RiskGuard</b><span>Alla terza perdita di fila mette in pausa: la quarta operazione non parte.</span></figcaption>
+        </figure>
+        <figure class="lav">
+          <video src="/video/risklypro.mp4" poster="/video/risklypro.jpg" muted loop playsinline preload="none" controls aria-label="Video dimostrativo di Riskly Pro"></video>
+          <figcaption><b>Riskly Pro</b><span>Lotto calcolato sul rischio, niente aperture vicino alle notizie, uscite a scaglioni.</span></figcaption>
+        </figure>
+        <figure class="lav">
+          <video src="/video/trademanager.mp4" poster="/video/trademanager.jpg" muted loop playsinline preload="none" controls aria-label="Video dimostrativo di TradeManager"></video>
+          <figcaption><b>TradeManager</b><span>Stop e take profit automatici, pareggio a +20 pip, poi lo stop segue il prezzo.</span></figcaption>
+        </figure>
+        <figure class="lav">
+          <video src="/video/scalein.mp4" poster="/video/scalein.jpg" muted loop playsinline preload="none" controls aria-label="Video dimostrativo di ScaleIn"></video>
+          <figcaption><b>ScaleIn</b><span>Apri una posizione: lui apre le altre parti con take profit scaglionati.</span></figcaption>
+        </figure>
+        <figure class="lav">
+          <video src="/video/risklycopy.mp4" poster="/video/risklycopy.jpg" muted loop playsinline preload="none" controls aria-label="Video dimostrativo di RisklyCopy"></video>
+          <figcaption><b>RisklyCopy</b><span>Copia sugli altri conti con il lotto ricalcolato sul saldo di ognuno.</span></figcaption>
+        </figure>
+      </div>
+      <p class="lav-nota">Simulazioni illustrative, non registrazioni di operazioni reali e non rappresentative di risultati ottenibili. <a href="#" onclick="go('bot');return false">Tutti i dettagli dei bot →</a></p>
     </div>
   </section>
 
@@ -6521,6 +6561,10 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape') chatChiudi();
   tracciaFunzione('apriAccesso', function(m){ return 'accesso-aperto-' + s(m || 'entra'); });
   tracciaFunzione('inviaAccesso', function(){ return 'accesso-inviato-' + s(typeof modoAccesso !== 'undefined' ? modoAccesso : ''); });
 })();
+</script>
+<script>
+/* home: parte un video alla volta, con l'audio */
+document.addEventListener('play', e => { if(e.target.tagName !== 'VIDEO') return; document.querySelectorAll('video').forEach(v => { if(v !== e.target) v.pause(); }); if(e.target.closest('.lav')){ e.target.muted = false; try{ traccia('video-' + (e.target.src.split('/').pop().replace('.mp4',''))); }catch(x){} } }, true);
 </script>
 </body>
 </html>

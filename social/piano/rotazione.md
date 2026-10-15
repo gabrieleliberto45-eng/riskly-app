@@ -46,7 +46,7 @@ Stili grafici: bianco "foglio" · scuro marchio · rosso "notiziario" (attualit�
 | 18 ott | 18:00 | Storia s05 · Knight Capital |
 | 19 ott | 13:00 / 18:00 | carosello c05 frasi · **Oggi no.** p03 lo stop spostato |
 | 20 ott | 13:00 / 18:00 | conto alla rovescia "Mancano 3 giorni" (IG / TikTok) |
-| 21 ott | 13:00 / 18:00 | carosello c06 operazioni al giorno (scuro) · **Oggi no.** p06 copia tra conti (RisklyCopy) |
+| 21 ott | 13:00 / 18:00 | carosello c06 operazioni al giorno (bianco: dal 15 ottobre i caroselli sono bianchi come il sito) · **Oggi no.** p06 copia tra conti (RisklyCopy) |
 | 22 ott | 13:00 / 18:00 | "Domani escono i bot" (IG / TikTok) |
 | 23 ott | 13:00 / 18:00 | lancio bot (IG + YouTube / TikTok) |
 
