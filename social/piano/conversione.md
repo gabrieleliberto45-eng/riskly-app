@@ -32,3 +32,8 @@ Rispondere in DM con il link corto (a mano finché i numeri sono piccoli).
 Pannello Gestione (riskly.trade, account admin) → Visite: "Visite per sito", "Cosa fanno", "Da dove arrivano".
 Azioni contate: pagine aperte, calcolatori usati, giorni del calendario, registrazione aperta/inviata/email inviata,
 ingresso nel journal, lista d'attesa aperta/inviata, guida scaricata, assistente, passaggi tra i siti.
+
+## Fatto il 15 ottobre
+- Didascalie dei 27 post programmati dal 15 al 23 ottobre aggiornate con il link corto del tema
+  (Oggi no → /lotto, Storie di rischio e overtrading → /rovina, prop → /prop, video bot e lancio → /bot, frasi → guida su riskly.trade).
+- Routine aggiornate con la REGOLA LINK: social del venerdì, "Domani esce" e "La settimana dell'oro".
