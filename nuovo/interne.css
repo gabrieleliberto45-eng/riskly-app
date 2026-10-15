@@ -310,3 +310,51 @@
 .nh .of:hover .of-vai{text-decoration-thickness:2px}
 @media (max-width:960px){.nh .of-griglia{grid-template-columns:1fr 1fr}.nh .of:nth-child(3n){border-right:1px solid var(--rule)}.nh .of:nth-child(2n){border-right:0}}
 @media (max-width:600px){.nh .of-griglia{grid-template-columns:1fr}.nh .of{border-right:0!important;padding-left:0!important;padding-right:0}}
+
+/* ═══ CARATTERE 2: forme morbide e movimento ═══ */
+:root{--r-s:10px;--r-m:16px;--r-l:22px;--ombra:0 1px 2px rgba(21,24,27,.06),0 12px 32px -14px rgba(21,24,27,.22);--ombra-su:0 2px 4px rgba(21,24,27,.06),0 22px 44px -16px rgba(21,24,27,.32)}
+.btn,.nh .btn,.cal-apri,.apri-menu{border-radius:var(--r-s)!important;transition:transform .2s var(--ease-out),background-color .15s ease,box-shadow .2s ease!important}
+.btn:hover{transform:translateY(-1px)!important}
+.btn.pri:hover,.nh .btn-pieno:hover{box-shadow:0 10px 22px -12px rgba(21,24,27,.6)!important}
+.btn:active{transform:scale(.97)!important}
+#chatBtn{border-radius:999px!important}
+nav .btn.pri{border-radius:999px!important}
+.lancio-bar{border-radius:0!important}
+/* simulazione in apertura */
+.nh .scheda{border-radius:var(--r-l);overflow:hidden;box-shadow:var(--ombra-su);border:1px solid var(--rule)}
+.nh .voce input{border-radius:8px}
+/* ecosistema: schede vere */
+.nh .of-griglia{border-top:0;gap:clamp(14px,1.8vw,22px)}
+.nh .of,.nh .of:nth-child(3n),.nh .of:nth-child(2n){border:1px solid var(--rule)!important;border-radius:var(--r-l);background:var(--sheet);padding:14px 14px 22px!important;box-shadow:var(--ombra);transition:transform .35s var(--ease-out),box-shadow .35s var(--ease-out),border-color .2s ease}
+.nh .of:hover{transform:translateY(-4px);box-shadow:var(--ombra-su);border-color:var(--ink)!important;background:var(--sheet)}
+.nh .of::after{display:none}
+.nh .of>*:not(.of-img){margin-left:6px;margin-right:6px}
+.nh .of-img{border-radius:calc(var(--r-l) - 8px)!important;border:0!important;margin-bottom:14px!important;transition:transform .5s var(--ease-out)}
+.nh .of:hover .of-img{transform:scale(1.02)}
+.nh .of-vai{display:inline-flex;align-items:center;gap:6px}
+.nh .of-arrivo{border:1px dashed var(--rule);border-radius:var(--r-m);padding:16px 20px;margin-top:18px}
+.nh .of-chiedi{border-radius:var(--r-l)}
+.nh .of-chiedi .btn{border-radius:999px!important}
+/* numeri */
+.nh .cifre{margin-left:clamp(0px,2vw,24px);margin-right:clamp(0px,2vw,24px);border-radius:0 0 var(--r-l) var(--r-l)}
+.nh .cifre .candele rect,.nh .cifre .candele line:not(.stop){transform-box:fill-box;transform-origin:50% 100%}
+/* video */
+.nh .lav video{border-radius:var(--r-m)!important;border:0!important;box-shadow:var(--ombra)}
+/* prima / durante / dopo e frase */
+.nh .fase{border-radius:var(--r-m)}
+.nh .frase blockquote mark{background:linear-gradient(transparent 14%,var(--amber) 14%,var(--amber) 90%,transparent 90%);color:var(--ink)}
+/* pagine interne */
+.page:not(.nh) .bot>button,.page:not(.nh) .pz .btn,.page:not(.nh) .plan .btn{border-radius:999px!important}
+.corso-cop img,.vb video{border-radius:var(--r-m)!important}
+.prova,.cap-slim,.capture{border-radius:var(--r-m)}
+.cal-cornice,.cal-filtri{border-radius:var(--r-m)!important}
+/* comparsa allo scorrimento */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out);transition-delay:calc(var(--i,0) * 70ms)}
+.rv.visto{opacity:1;transform:none}
+.nh h1 mark{background-size:0% 100%;background-repeat:no-repeat;background-image:linear-gradient(transparent 12%,var(--amber) 12%,var(--amber) 92%,transparent 92%);background-color:transparent!important;transition:background-size .9s .35s var(--ease-out)}
+.nh h1.acceso mark{background-size:100% 100%}
+.cifre .candele .c{opacity:0;transform:scaleY(.2);transition:opacity .35s ease,transform .45s var(--ease-out);transition-delay:calc(var(--i) * 28ms)}
+.cifre.visto .candele .c{opacity:1;transform:none}
+.cifre .candele .stop{stroke-dashoffset:0;animation:scorri 1.6s linear infinite}
+@keyframes scorri{to{stroke-dashoffset:-32}}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.cifre .candele .c{opacity:1;transform:none;transition:none}.cifre .candele .stop{animation:none}.nh h1 mark{background-size:100% 100%;transition:none}.nh .of,.nh .of-img,.btn{transition:none!important}}
