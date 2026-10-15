@@ -8,3 +8,11 @@ Pubblicazione: zip del contenuto di questa cartella (senza questo file) -> POST 
 RisklyCopy: scheda prodotto (pagina Bot e listino nel Journal) come "in arrivo", lancio 69 € poi 129 €, 1 conto principale + 3 che ricevono.
 Il pulsante apre la lista d'attesa. Per venderlo: crea il link Stripe da 69 €, aggiungilo in STRIPE['RisklyCopy'] (con VENDITA_ATTIVA = true diventa "Acquista").
 Pagina Corso: riquadro "In arrivo · Riskly · Analisi fondamentale" con lista d'attesa (prodotto 'Corso Analisi fondamentale').
+
+Controlli "sito a norma" (15 ottobre):
+- caratteri e libreria Supabase ospitati qui (fonts/, fonts.css, js/supabase.js): nessuna richiesta a Google Fonts o jsdelivr;
+- calendario TradingView caricato solo dopo il clic su "Mostra il calendario" (scelta ricordata nel browser);
+- moduli della guida: casella facoltativa per le novità (vuota) e link alla privacy; con la spunta il prodotto in lista_attesa è "Guida 7 regole · consenso novità";
+- lista d'attesa: link all'informativa privacy;
+- privacy (pagina e copia nel sito): fornitori nominati, trasferimenti extra UE, statistiche di visita, caratteri locali.
+Pubblicare SEMPRE l'intera cartella (fonts/, js/, video/ compresi).

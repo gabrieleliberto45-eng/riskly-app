@@ -7,8 +7,7 @@
 <meta name="description" content="Calendario economico in tempo reale: dati e notizie che muovono forex, oro e indici, con filtri per importanza e paese. Orari nella tua ora locale.">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="/fonts.css" rel="stylesheet">
 <style>
   :root{--bg:#0B0D0C;--panel:#151916;--panel-hi:#1B201C;--line:#252B26;--text:#E6EDF3;--dim:#8B98A9;--dim2:#5D6B7D;
         --accent:#B6D84F;--accent-soft:rgba(182,216,79,.1);--down:#EF4444;--gold:#F59E0B;--r:14px}
@@ -142,11 +141,14 @@
     gPaesi.querySelectorAll('.chip').forEach(b => b.setAttribute('aria-pressed', stato.paesi.includes(b.dataset.v)));
   }
 
+  window.calConsenti = function(){ try { localStorage.setItem('riskly-tv-ok', '1'); } catch(e) {} window.rtvOk = true; disegna(); };
   let attesa;
   function disegna(){
     clearTimeout(attesa);
     attesa = setTimeout(() => {
       try { localStorage.setItem('riskly-calendario', JSON.stringify(stato)); } catch(e) {}
+      let tvOk = !!window.rtvOk; try { tvOk = tvOk || localStorage.getItem('riskly-tv-ok') === '1'; } catch(e) {}
+      if(!tvOk){ cornice.innerHTML = '<div class="vuoto"><div style="max-width:460px"><p style="margin:0 0 14px">Il calendario è fornito da <b>TradingView</b> e si carica dai suoi server: TradingView riceve il tuo indirizzo IP e può usare cookie propri (<a href="/privacy.html#calendario" style="color:var(--accent)">privacy</a>).</p><button type="button" class="btn pri" style="flex:none;width:auto" onclick="calConsenti()">Mostra il calendario</button></div></div>'; return; }
       cornice.innerHTML = '';
       if(!stato.imp.length || !stato.paesi.length){
         cornice.innerHTML = '<div class="vuoto">Scegli almeno un livello di importanza e un paese.</div>';
