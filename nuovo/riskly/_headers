@@ -1,0 +1,12 @@
+# la guida si scarica dal modulo email: non deve comparire nei motori di ricerca
+/guida-7-regole.pdf
+  X-Robots-Tag: noindex, nofollow
+
+/download.html
+  X-Robots-Tag: noindex, nofollow
+
+# protezioni di base per tutte le pagine
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
