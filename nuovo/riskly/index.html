@@ -1905,12 +1905,12 @@ nav .brand{text-decoration:none}
 .nh .of-arrivo{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 28px;padding:18px 0;border-bottom:1px solid var(--rule)}
 .nh .of-arrivo span:not(.of-tipo){font-size:15.5px;color:var(--ink-2)}
 .nh .of-arrivo b{color:var(--ink)}
+.nh .of-img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border:1px solid var(--ink);margin-bottom:10px;background:#0B0D0C}
 /* ecosistema in home */
 .nh .offerta{padding:clamp(56px,8vw,104px) 0 clamp(40px,6vw,72px)}
 .nh .of-griglia{margin-top:clamp(28px,4vw,48px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:3px solid var(--ink)}
 .nh .of{display:flex;flex-direction:column;gap:8px;padding:24px clamp(16px,2vw,28px) 26px;border-bottom:1px solid var(--rule);border-right:1px solid var(--rule);text-decoration:none;color:var(--ink);transition:background-color .15s ease}
 .nh .of:nth-child(3n){border-right:0}
-.nh .of:nth-child(3n+1){padding-left:0}
 .nh .of:hover{background:var(--sheet)}
 .nh .of-n{font:600 13px 'Martian Mono',monospace;font-stretch:88%;color:var(--amber-deep)}
 .nh .of-tipo{font-size:12.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3)}
@@ -1919,7 +1919,7 @@ nav .brand{text-decoration:none}
 .nh .of-prezzo{font:500 13px 'Martian Mono',monospace;font-stretch:88%;color:var(--ink)}
 .nh .of-vai{font-weight:700;font-size:15px;text-decoration:underline;text-underline-offset:3px;margin-top:4px}
 .nh .of:hover .of-vai{text-decoration-thickness:2px}
-@media (max-width:960px){.nh .of-griglia{grid-template-columns:1fr 1fr}.nh .of:nth-child(3n){border-right:1px solid var(--rule)}.nh .of:nth-child(2n){border-right:0}.nh .of:nth-child(3n+1){padding-left:clamp(16px,2vw,28px)}.nh .of:nth-child(2n+1){padding-left:0}}
+@media (max-width:960px){.nh .of-griglia{grid-template-columns:1fr 1fr}.nh .of:nth-child(3n){border-right:1px solid var(--rule)}.nh .of:nth-child(2n){border-right:0}}
 @media (max-width:600px){.nh .of-griglia{grid-template-columns:1fr}.nh .of{border-right:0!important;padding-left:0!important;padding-right:0}}
 </style>
 <script>
@@ -2026,36 +2026,42 @@ nav .brand{text-decoration:none}
       <p class="intro">Prima di entrare, mentre sei dentro, dopo che sei uscito: uno strumento per ogni momento del trading.</p>
       <div class="of-griglia">
         <a class="of" href="#" onclick="go('bot');return false">
+          <img class="of-img" src="/img/eco-bot.webp" width="1200" height="675" loading="lazy" alt="I bot RiskGuard, Riskly Pro e TradeManager">
           <span class="of-n">01</span><span class="of-tipo">Software · MT4 e MT5</span>
           <b>Bot di gestione</b>
           <p>Cinque bot che applicano le tue regole: blocco dopo le perdite, stop e trailing automatici, scaglioni, copia tra conti.</p>
           <span class="of-prezzo">da 49 € · una tantum · dal 23 ottobre</span><span class="of-vai">Vedi i bot →</span>
         </a>
         <a class="of" href="#" onclick="go('corso');return false">
+          <img class="of-img" src="/img/eco-corso-rischio.webp" width="1200" height="675" loading="lazy" alt="Copertina del videocorso Gestione del rischio">
           <span class="of-n">02</span><span class="of-tipo">Videocorso · disponibile</span>
           <b>Gestione del rischio</b>
           <p>47 lezioni in 10 moduli: rischio per trade, drawdown, position sizing, Monte Carlo, prop firm, trailing e hedging.</p>
           <span class="of-prezzo">199 € al lancio · accesso a vita</span><span class="of-vai">Vedi il corso →</span>
         </a>
         <a class="of" href="#" onclick="go('corso');setTimeout(()=>{const x=document.getElementById('corso-fondamentale');if(x)x.scrollIntoView({behavior:'smooth'})},80);return false">
+          <img class="of-img" src="/img/eco-corso-fondamentale.webp" width="1200" height="675" loading="lazy" alt="Slide di apertura del corso Analisi fondamentale">
           <span class="of-n">03</span><span class="of-tipo">Videocorso · nuovo</span>
           <b>Analisi fondamentale</b>
           <p>57 lezioni in 11 moduli: banche centrali, inflazione, lavoro, obbligazioni, correlazioni, beni rifugio ed eventi straordinari.</p>
           <span class="of-prezzo">in uscita · lista d'attesa aperta</span><span class="of-vai">Vedi il programma →</span>
         </a>
         <a class="of" href="https://app.riskly.trade">
+          <img class="of-img" src="/img/eco-journal.webp" width="1200" height="675" loading="lazy" alt="Schermata del journal con le statistiche del conto">
           <span class="of-n">04</span><span class="of-tipo">App · app.riskly.trade</span>
           <b>Journal di trading</b>
           <p>Registra le operazioni, anche in automatico dai bot, e misura winrate, drawdown e disciplina. Dal telefono vedi lo stato dei bot.</p>
           <span class="of-prezzo">da 29 € l'anno · 7 giorni di prova</span><span class="of-vai">Apri il journal ↗</span>
         </a>
         <a class="of" href="https://strumenti.riskly.trade/#posizione">
+          <img class="of-img" src="/img/eco-calcolatori.webp" width="1200" height="675" loading="lazy" alt="Calcolatore della dimensione della posizione">
           <span class="of-n">05</span><span class="of-tipo">Gratis · strumenti.riskly.trade</span>
           <b>Calcolatori</b>
           <p>Dimensione della posizione, rischio di rovina con Monte Carlo, tracker per le prop firm, recupero e crescita del conto.</p>
           <span class="of-prezzo">gratis · senza registrazione</span><span class="of-vai">Usa i calcolatori ↗</span>
         </a>
         <a class="of" href="https://strumenti.riskly.trade/#calendario">
+          <img class="of-img" src="/img/eco-calendario.webp" width="1200" height="675" loading="lazy" alt="Calendario economico con i dati di oggi">
           <span class="of-n">06</span><span class="of-tipo">Gratis · strumenti.riskly.trade</span>
           <b>Calendario economico</b>
           <p>I dati di oggi, domani e della settimana, con previsto, precedente ed effettivo appena esce. Filtri per importanza e paese.</p>
