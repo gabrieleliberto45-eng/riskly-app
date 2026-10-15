@@ -277,6 +277,24 @@
 .nh .lav-nota{margin-top:14px;font-size:13.5px;color:var(--ink-3);max-width:80ch}
 .nh .lav-nota a{color:var(--ink);font-weight:600}
 @media (max-width:700px){.nh .lav-fila{grid-auto-columns:62%}}
+/* carattere: evidenziatore ambra, numeri grandi, candele */
+.nh h1 .seconda{color:var(--ink)}
+.nh h1 mark,.nh h2 mark{background:linear-gradient(transparent 12%,var(--amber) 12%,var(--amber) 92%,transparent 92%);color:var(--ink);padding:0 .08em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.nh .cifre{position:relative;margin-top:calc(-1 * clamp(24px,4vw,64px));background:var(--ink);color:#FBFBF9;overflow:hidden}
+.nh .cifre .candele{display:block;width:100%;height:clamp(90px,11vw,150px);background:var(--paper);border-bottom:3px solid var(--ink)}
+.nh .cifre .wrap{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;padding-top:clamp(26px,3.5vw,44px);padding-bottom:clamp(28px,3.5vw,46px)}
+.nh .cifre .wrap>div{display:grid;gap:8px;align-content:start;padding:0 clamp(10px,1.6vw,22px)}
+.nh .cifre .wrap>div+div{border-left:1px solid #3A3F44}
+.nh .cifre .wrap>div:first-child{padding-left:0}
+.nh .cifre b{font:600 clamp(40px,5.4vw,76px)/.95 'Martian Mono',monospace;font-stretch:84%;color:var(--amber);letter-spacing:-.03em}
+.nh .cifre span{font-size:15px;color:#C9CDD1;line-height:1.35}
+.nh .offerta h2,.nh .lavoro h2{position:relative;padding-top:18px}
+.nh .offerta h2::before,.nh .lavoro h2::before{content:'';position:absolute;left:0;top:0;width:56px;height:6px;background:var(--amber)}
+.nh .of{position:relative}
+.nh .of::after{content:'';position:absolute;left:0;right:0;top:-3px;height:3px;background:var(--amber);transform:scaleX(0);transform-origin:left;transition:transform .25s var(--ease-out)}
+.nh .of:hover::after{transform:scaleX(1)}
+@media (max-width:760px){.nh .cifre .wrap{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:22px}.nh .cifre .wrap>div{padding:0 12px 0 0;border-left:0!important}.nh .cifre .wrap>div:nth-child(even){padding-left:14px;border-left:1px solid #3A3F44!important}.nh .cifre .wrap>div:last-child{grid-column:1/-1;padding-left:0;border-left:0!important}}
+@media (prefers-reduced-motion:reduce){.nh .of::after{transition:none}}
 /* ecosistema in home */
 .nh .offerta{padding:clamp(56px,8vw,104px) 0 clamp(40px,6vw,72px)}
 .nh .of-griglia{margin-top:clamp(28px,4vw,48px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:3px solid var(--ink)}
