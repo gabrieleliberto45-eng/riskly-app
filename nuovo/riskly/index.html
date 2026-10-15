@@ -7,8 +7,8 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Riskly — Software per la gestione del rischio nel trading</title>
-<meta name="description" content="Software di gestione del rischio per il trading: journal, calcolatori e bot per MetaTrader. Strumenti per proteggere il conto e rispettare le tue regole. Nessun segnale.">
+<title>Riskly — Bot, corsi, journal e strumenti per il trading</title>
+<meta name="description" content="Tutto quello che serve a un trader: bot di gestione per MetaTrader 4 e 5, corsi di gestione del rischio e di analisi fondamentale, journal, calcolatori e calendario economico. Nessun segnale.">
 <link rel="canonical" href="https://riskly.trade/">
 <!-- anteprima quando il link viene condiviso (WhatsApp, Telegram, Instagram, Facebook, X) -->
 <meta property="og:type" content="website">
@@ -16,7 +16,7 @@
 <meta property="og:locale" content="it_IT">
 <meta property="og:url" content="https://riskly.trade/">
 <meta property="og:title" content="Riskly — Il mercato non lo controlli. Tutto il resto sì.">
-<meta property="og:description" content="Bot per MT4 e MT5 che ti fermano prima dei danni. Calcolatori e journal gratis. Nessun segnale, nessuna promessa di guadagno.">
+<meta property="og:description" content="Bot per MT4 e MT5, corsi di gestione del rischio e analisi fondamentale, journal, calcolatori e calendario economico. Nessun segnale, nessuna promessa di guadagno.">
 <meta property="og:image" content="https://riskly.trade/anteprima.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -1900,6 +1900,24 @@ nav .brand{text-decoration:none}
 .siti-barra a span{font:500 12px 'Martian Mono',monospace;font-stretch:88%;color:var(--ink-3)}
 .siti-barra a i{font-style:normal;font-weight:700}
 @media (max-width:640px){.siti-barra .sb-testo{display:none}.siti-barra a{flex:1;justify-content:space-between;padding:0 12px}.siti-barra a:first-of-type{border-left:0}.siti-barra a span{display:none}.siti-barra a b{font-size:14.5px}}
+
+.pz-sez + .lancio-box{border-top:0!important;padding-top:4px!important;margin-top:16px!important}
+/* ecosistema in home */
+.nh .offerta{padding:clamp(56px,8vw,104px) 0 clamp(40px,6vw,72px)}
+.nh .of-griglia{margin-top:clamp(28px,4vw,48px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:3px solid var(--ink)}
+.nh .of{display:flex;flex-direction:column;gap:8px;padding:24px clamp(16px,2vw,28px) 26px;border-bottom:1px solid var(--rule);border-right:1px solid var(--rule);text-decoration:none;color:var(--ink);transition:background-color .15s ease}
+.nh .of:nth-child(3n){border-right:0}
+.nh .of:nth-child(3n+1){padding-left:0}
+.nh .of:hover{background:var(--sheet)}
+.nh .of-n{font:600 13px 'Martian Mono',monospace;font-stretch:88%;color:var(--amber-deep)}
+.nh .of-tipo{font-size:12.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3)}
+.nh .of b{font-weight:780;font-stretch:78%;font-size:clamp(26px,2.4vw,34px);line-height:1;letter-spacing:-.01em;margin-top:2px}
+.nh .of p{color:var(--ink-2);font-size:15.5px;line-height:1.5;flex:1}
+.nh .of-prezzo{font:500 13px 'Martian Mono',monospace;font-stretch:88%;color:var(--ink)}
+.nh .of-vai{font-weight:700;font-size:15px;text-decoration:underline;text-underline-offset:3px;margin-top:4px}
+.nh .of:hover .of-vai{text-decoration-thickness:2px}
+@media (max-width:960px){.nh .of-griglia{grid-template-columns:1fr 1fr}.nh .of:nth-child(3n){border-right:1px solid var(--rule)}.nh .of:nth-child(2n){border-right:0}.nh .of:nth-child(3n+1){padding-left:clamp(16px,2vw,28px)}.nh .of:nth-child(2n+1){padding-left:0}}
+@media (max-width:600px){.nh .of-griglia{grid-template-columns:1fr}.nh .of{border-right:0!important;padding-left:0!important;padding-right:0}}
 </style>
 <script>
 /* ritorno da Stripe: qualunque indirizzo usi Stripe, chi ha appena pagato va all'area clienti */
@@ -1937,7 +1955,7 @@ nav .brand{text-decoration:none}
     <div class="tabs">
       <button class="on" onclick="go('home',this)">Home</button>
       <button onclick="go('bot',this)">Bot</button>
-      <button onclick="go('corso',this)">Corso</button>
+      <button onclick="go('corso',this)">Corsi</button>
       <button onclick="go('journal',this)">Prezzi</button>
       <button onclick="go('metodo',this)">Metodo</button>
       <button onclick="go('faq',this)">FAQ</button>
@@ -1950,7 +1968,7 @@ nav .brand{text-decoration:none}
     </div>
   </div>
   <div id="menu-mobile" hidden>
-    <button onclick="go('home');chiudiMenu()">Home</button><button onclick="go('bot');chiudiMenu()">Bot</button><button onclick="go('corso');chiudiMenu()">Corso</button><button onclick="go('journal');chiudiMenu()">Prezzi</button><button onclick="go('metodo');chiudiMenu()">Metodo</button><button onclick="go('faq');chiudiMenu()">FAQ</button><a href="https://app.riskly.trade">Journal</a><a href="https://strumenti.riskly.trade">Strumenti gratuiti</a><button onclick="apriAccesso('entra');chiudiMenu()">Accedi</button>
+    <button onclick="go('home');chiudiMenu()">Home</button><button onclick="go('bot');chiudiMenu()">Bot</button><button onclick="go('corso');chiudiMenu()">Corsi</button><button onclick="go('journal');chiudiMenu()">Prezzi</button><button onclick="go('metodo');chiudiMenu()">Metodo</button><button onclick="go('faq');chiudiMenu()">FAQ</button><a href="https://app.riskly.trade">Journal</a><a href="https://strumenti.riskly.trade">Strumenti gratuiti</a><button onclick="apriAccesso('entra');chiudiMenu()">Accedi</button>
   </div>
   <div class="siti-barra"><div class="wrap">
     <span class="sb-testo">Riskly ha anche</span>
@@ -1969,10 +1987,10 @@ nav .brand{text-decoration:none}
     <div class="wrap">
       <div>
         <h1>Il mercato non lo controlli. <span class="seconda">Tutto il resto sì.</span></h1>
-        <p class="sotto">Bot per MetaTrader 4 e 5 che applicano le tue regole di rischio: ti fermano dopo le perdite, gestiscono stop e trailing, scaglionano le posizioni.</p>
+        <p class="sotto">Tutto quello che serve a un trader, in un posto solo: bot per MetaTrader, corsi di gestione del rischio e di analisi fondamentale, journal, calcolatori e calendario economico. Niente segnali, niente promesse.</p>
         <div class="cta">
-          <a class="btn btn-pieno" href="#" onclick="go('bot');return false">Scegli il bot</a>
-          <a class="btn btn-linea" href="#" onclick="go('bot');setTimeout(()=>botTab('come'),60);return false">Come funzionano</a>
+          <a class="btn btn-pieno" href="#offerta" onclick="document.getElementById('offerta').scrollIntoView({behavior:'smooth'});return false">Scopri cosa offriamo</a>
+          <a class="btn btn-linea" href="#" onclick="go('bot');return false">Scegli il bot</a>
         </div>
       </div>
 
@@ -1997,6 +2015,52 @@ nav .brand{text-decoration:none}
       </div>
     </div>
   </div>
+
+
+  <section class="offerta" id="offerta">
+    <div class="wrap">
+      <h2>L'ecosistema Riskly</h2>
+      <p class="intro">Prima di entrare, mentre sei dentro, dopo che sei uscito: uno strumento per ogni momento del trading.</p>
+      <div class="of-griglia">
+        <a class="of" href="#" onclick="go('bot');return false">
+          <span class="of-n">01</span><span class="of-tipo">Software · MT4 e MT5</span>
+          <b>Bot di gestione</b>
+          <p>Cinque bot che applicano le tue regole: blocco dopo le perdite, stop e trailing automatici, scaglioni, copia tra conti.</p>
+          <span class="of-prezzo">da 49 € · una tantum · dal 23 ottobre</span><span class="of-vai">Vedi i bot →</span>
+        </a>
+        <a class="of" href="#" onclick="go('corso');return false">
+          <span class="of-n">02</span><span class="of-tipo">Videocorso · disponibile</span>
+          <b>Gestione del rischio</b>
+          <p>47 lezioni in 10 moduli: rischio per trade, drawdown, position sizing, Monte Carlo, prop firm, trailing e hedging.</p>
+          <span class="of-prezzo">199 € al lancio · accesso a vita</span><span class="of-vai">Vedi il corso →</span>
+        </a>
+        <a class="of" href="#" onclick="go('corso');setTimeout(()=>{const x=document.getElementById('corso-fondamentale');if(x)x.scrollIntoView({behavior:'smooth'})},80);return false">
+          <span class="of-n">03</span><span class="of-tipo">Videocorso · nuovo</span>
+          <b>Analisi fondamentale</b>
+          <p>57 lezioni in 11 moduli: banche centrali, inflazione, lavoro, obbligazioni, correlazioni, beni rifugio ed eventi straordinari.</p>
+          <span class="of-prezzo">in uscita · lista d'attesa aperta</span><span class="of-vai">Vedi il programma →</span>
+        </a>
+        <a class="of" href="https://app.riskly.trade">
+          <span class="of-n">04</span><span class="of-tipo">App · app.riskly.trade</span>
+          <b>Journal di trading</b>
+          <p>Registra le operazioni, anche in automatico dai bot, e misura winrate, drawdown e disciplina. Dal telefono vedi lo stato dei bot.</p>
+          <span class="of-prezzo">da 29 € l'anno · 7 giorni di prova</span><span class="of-vai">Apri il journal ↗</span>
+        </a>
+        <a class="of" href="https://strumenti.riskly.trade/#posizione">
+          <span class="of-n">05</span><span class="of-tipo">Gratis · strumenti.riskly.trade</span>
+          <b>Calcolatori</b>
+          <p>Dimensione della posizione, rischio di rovina con Monte Carlo, tracker per le prop firm, recupero e crescita del conto.</p>
+          <span class="of-prezzo">gratis · senza registrazione</span><span class="of-vai">Usa i calcolatori ↗</span>
+        </a>
+        <a class="of" href="https://strumenti.riskly.trade/#calendario">
+          <span class="of-n">06</span><span class="of-tipo">Gratis · strumenti.riskly.trade</span>
+          <b>Calendario economico</b>
+          <p>I dati di oggi, domani e della settimana, con previsto, precedente ed effettivo appena esce. Filtri per importanza e paese.</p>
+          <span class="of-prezzo">gratis · aggiornato ogni minuto</span><span class="of-vai">Apri il calendario ↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
 
   <div class="lancio">
     <div class="wrap">
@@ -3250,10 +3314,13 @@ nav .brand{text-decoration:none}
   <section>
     <div class="wrap">
       <div class="sez-titolo pagina">
-        <span class="sez-num">Videocorso</span>
-        <h2>Gestione del rischio,<br>dalla teoria alla regola</h2>
-        <p class="lead">Quarantasette lezioni in dieci moduli, quasi tre ore. Dalle basi del rischio per trade al Monte Carlo, dalle regole delle prop firm al trailing, agli scaglioni e all'hedging. Spiegato come a lezione, con esempi in euro e pip. Niente strategie, niente segnali: solo la parte che nessuno ti insegna.</p>
+        <span class="sez-num">Videocorsi</span>
+        <h2>Due corsi, <em>una sola domanda: cosa cambia per il rischio</em></h2>
+        <p class="lead">La gestione del rischio ti insegna quanto rischiare e quando fermarti. L'analisi fondamentale ti spiega perché i mercati si muovono e come comportarti intorno ai dati. Spiegati come a lezione, con esempi in euro e pip. Niente strategie, niente segnali.</p>
+        <p class="lead" style="margin-top:14px!important"><a href="#corso-rischio" onclick="document.getElementById('corso-rischio').scrollIntoView({behavior:'smooth'});return false" style="color:var(--ink);font-weight:700">Gestione del rischio ↓</a> &nbsp;·&nbsp; <a href="#corso-fondamentale" onclick="document.getElementById('corso-fondamentale').scrollIntoView({behavior:'smooth'});return false" style="color:var(--ink);font-weight:700">Analisi fondamentale ↓</a></p>
       </div>
+
+      <div class="pz-sez" id="corso-rischio" style="margin-top:0!important;scroll-margin-top:90px"><h3>Riskly · Gestione del rischio</h3><span>47 LEZIONI · 10 MODULI · QUASI 3 ORE · DISPONIBILE</span></div>
 
       
 
@@ -3271,15 +3338,6 @@ nav .brand{text-decoration:none}
         </div>
       </div>
 
-      <div class="lancio-box" style="margin-top:18px">
-        <div class="lancio-riga">
-          <div>
-            <h3>In arrivo · Riskly · Analisi fondamentale</h3>
-            <p>Il secondo corso: indicatori economici (inflazione, lavoro, PIL, PMI), banche centrali, tassi e obbligazioni, correlazioni tra asset, beni rifugio ed eventi straordinari. Sempre con la stessa domanda: cosa cambia per il rischio. Iscriviti alla lista d'attesa e ti avvisiamo quando esce.</p>
-          </div>
-          <button class="btn" onclick="azioneProdotto('Corso Analisi fondamentale')">Avvisami quando esce</button>
-        </div>
-      </div>
 
       <div class="valore-corso">
         <div class="vc-cifra">
@@ -3418,9 +3476,116 @@ nav .brand{text-decoration:none}
         </div>
       </div>
 
+
+      <div class="pz-sez" id="corso-fondamentale" style="scroll-margin-top:90px"><h3>Riskly · Analisi fondamentale</h3><span>57 LEZIONI · 11 MODULI · OLTRE 2 ORE · NUOVO</span></div>
+      <div class="lancio-box" style="margin-top:24px">
+        <div class="lancio-riga">
+          <div>
+            <h3>Il secondo corso: capire perché si muovono i mercati</h3>
+            <p>Banche centrali, inflazione, lavoro, crescita, obbligazioni, correlazioni tra asset, beni rifugio ed eventi straordinari. Per ogni dato: cosa misura, cosa si aspetta il mercato, come reagisce di solito e cosa cambia per lotto, stop e orari. Si guarda su Telegram come il primo corso, accesso a vita. Iscriviti alla lista d'attesa: ti avvisiamo per primo quando apre la vendita.</p>
+          </div>
+          <button class="btn pri" onclick="azioneProdotto('Corso Analisi fondamentale')">Avvisami quando esce</button>
+        </div>
+      </div>
+      <div class="corsi">
+        <article class="corso">
+          <div class="c-num">00</div>
+          <div class="c-testo">
+            <h3>Introduzione</h3>
+            <p>Cos'è l'analisi fondamentale · Fondamentale e tecnica · Il calendario economico · Il metodo del corso</p>
+          </div>
+          <span class="c-durata">4 lezioni</span>
+        </article>
+        <article class="corso">
+          <div class="c-num">01</div>
+          <div class="c-testo">
+            <h3>Come il mercato reagisce alle notizie</h3>
+            <p>Consenso, dato e sorpresa · Le revisioni · Il prezzo anticipa · Spread, slippage e gap · Quali dati guardare</p>
+          </div>
+          <span class="c-durata">5 lezioni</span>
+        </article>
+        <article class="corso">
+          <div class="c-num">02</div>
+          <div class="c-testo">
+            <h3>Le banche centrali</h3>
+            <p>A cosa servono · Il tasso di riferimento · La Fed · BCE, Inghilterra, Giappone e Svizzera · Forward guidance · QE e QT · Differenziale dei tassi</p>
+          </div>
+          <span class="c-durata">7 lezioni</span>
+        </article>
+        <article class="corso">
+          <div class="c-num">03</div>
+          <div class="c-testo">
+            <h3>L'inflazione</h3>
+            <p>CPI generale e core · PCE · PPI · Eurozona e Italia · Aspettative di inflazione</p>
+          </div>
+          <span class="c-durata">5 lezioni</span>
+        </article>
+        <article class="corso">
+          <div class="c-num">04</div>
+          <div class="c-testo">
+            <h3>Lavoro</h3>
+            <p>Il rapporto sul lavoro americano · Disoccupazione e partecipazione · Salari · I dati che anticipano il rapporto</p>
+          </div>
+          <span class="c-durata">4 lezioni</span>
+        </article>
+        <article class="corso">
+          <div class="c-num">05</div>
+          <div class="c-testo">
+            <h3>Crescita ed economia reale</h3>
+            <p>PIL e recessione · PMI e ISM · Vendite al dettaglio · Fiducia · Produzione industriale e ordini</p>
+          </div>
+          <span class="c-durata">5 lezioni</span>
+        </article>
+        <article class="corso">
+          <div class="c-num">06</div>
+          <div class="c-testo">
+            <h3>Obbligazioni e tassi di mercato</h3>
+            <p>Rendimenti dei titoli di Stato · Curva e inversione · Rendimenti reali · Spread e rischio sovrano</p>
+          </div>
+          <span class="c-durata">4 lezioni</span>
+        </article>
+        <article class="corso">
+          <div class="c-num">07</div>
+          <div class="c-testo">
+            <h3>Correlazioni tra asset</h3>
+            <p>Dollaro e oro · Rendimenti e yen · Materie prime e valute · Risk on e risk off · La famiglia dell'oro · Oro e Wall Street · Correlazioni e rischio</p>
+          </div>
+          <span class="c-durata">8 lezioni</span>
+        </article>
+        <article class="corso">
+          <div class="c-num">08</div>
+          <div class="c-testo">
+            <h3>Beni rifugio</h3>
+            <p>Cosa rende un bene un rifugio · L'oro · Franco svizzero e yen · Titoli di Stato USA e dollaro · Quando i rifugi non funzionano</p>
+          </div>
+          <span class="c-durata">5 lezioni</span>
+        </article>
+        <article class="corso">
+          <div class="c-num">09</div>
+          <div class="c-testo">
+            <h3>Eventi straordinari</h3>
+            <p>Geopolitica e guerre · Elezioni e referendum · Shock delle banche centrali · Interventi sui cambi · Crisi finanziarie e gap del weekend</p>
+          </div>
+          <span class="c-durata">5 lezioni</span>
+        </article>
+        <article class="corso">
+          <div class="c-num">10</div>
+          <div class="c-testo">
+            <h3>Dal dato al piano operativo</h3>
+            <p>Lo scenario della settimana · Prima, durante e dopo il dato · Il rischio nelle settimane cariche · Il diario macro · Il piano personale</p>
+          </div>
+          <span class="c-durata">5 lezioni</span>
+        </article>
+      </div>
+      <div class="corso-info">
+        <div class="ci-voce"><div class="ci-n">57</div><div class="ci-e">lezioni video</div></div>
+        <div class="ci-voce"><div class="ci-n">11</div><div class="ci-e">moduli</div></div>
+        <div class="ci-voce"><div class="ci-n">∞</div><div class="ci-e">accesso a vita</div></div>
+        <div class="ci-voce"><div class="ci-n">TG</div><div class="ci-e">gruppo Telegram per moduli</div></div>
+      </div>
       <div class="capture" style="margin-top:34px">
-        <h3>Cosa non troverai nel corso</h3>
-        <p>Nessuna strategia d'ingresso, nessun setup, nessuna promessa di rendimento. Il corso parla solo di gestione: è la parte che determina se resti sul mercato abbastanza a lungo da far funzionare una strategia.</p>
+        <h3>Cosa non troverai nei corsi</h3>
+        <p>Nessuna strategia d'ingresso, nessun setup, nessuna previsione e nessuna promessa di rendimento. I corsi ti danno il contesto e le regole: è la parte che determina se resti sul mercato abbastanza a lungo da far funzionare una strategia.</p>
         <button class="btn pri" style="margin-top:18px" data-prodotto="Videocorso" onclick="azioneProdotto('Videocorso')">Acquista il corso · 199 €</button>
       </div>
     </div>

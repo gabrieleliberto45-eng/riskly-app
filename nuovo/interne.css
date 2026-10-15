@@ -249,3 +249,21 @@
 .siti-barra a span{font:500 12px 'Martian Mono',monospace;font-stretch:88%;color:var(--ink-3)}
 .siti-barra a i{font-style:normal;font-weight:700}
 @media (max-width:640px){.siti-barra .sb-testo{display:none}.siti-barra a{flex:1;justify-content:space-between;padding:0 12px}.siti-barra a:first-of-type{border-left:0}.siti-barra a span{display:none}.siti-barra a b{font-size:14.5px}}
+
+.pz-sez + .lancio-box{border-top:0!important;padding-top:4px!important;margin-top:16px!important}
+/* ecosistema in home */
+.nh .offerta{padding:clamp(56px,8vw,104px) 0 clamp(40px,6vw,72px)}
+.nh .of-griglia{margin-top:clamp(28px,4vw,48px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:3px solid var(--ink)}
+.nh .of{display:flex;flex-direction:column;gap:8px;padding:24px clamp(16px,2vw,28px) 26px;border-bottom:1px solid var(--rule);border-right:1px solid var(--rule);text-decoration:none;color:var(--ink);transition:background-color .15s ease}
+.nh .of:nth-child(3n){border-right:0}
+.nh .of:nth-child(3n+1){padding-left:0}
+.nh .of:hover{background:var(--sheet)}
+.nh .of-n{font:600 13px 'Martian Mono',monospace;font-stretch:88%;color:var(--amber-deep)}
+.nh .of-tipo{font-size:12.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3)}
+.nh .of b{font-weight:780;font-stretch:78%;font-size:clamp(26px,2.4vw,34px);line-height:1;letter-spacing:-.01em;margin-top:2px}
+.nh .of p{color:var(--ink-2);font-size:15.5px;line-height:1.5;flex:1}
+.nh .of-prezzo{font:500 13px 'Martian Mono',monospace;font-stretch:88%;color:var(--ink)}
+.nh .of-vai{font-weight:700;font-size:15px;text-decoration:underline;text-underline-offset:3px;margin-top:4px}
+.nh .of:hover .of-vai{text-decoration-thickness:2px}
+@media (max-width:960px){.nh .of-griglia{grid-template-columns:1fr 1fr}.nh .of:nth-child(3n){border-right:1px solid var(--rule)}.nh .of:nth-child(2n){border-right:0}.nh .of:nth-child(3n+1){padding-left:clamp(16px,2vw,28px)}.nh .of:nth-child(2n+1){padding-left:0}}
+@media (max-width:600px){.nh .of-griglia{grid-template-columns:1fr}.nh .of{border-right:0!important;padding-left:0!important;padding-right:0}}
