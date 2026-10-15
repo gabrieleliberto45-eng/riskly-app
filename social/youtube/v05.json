@@ -1,0 +1,136 @@
+{
+ "id": "v05",
+ "serie": "Domani esce",
+ "titolo": "Domani alle 05:30: parla Warsh, il presidente della Fed (16 ottobre 2026)",
+ "scene": [
+  {
+   "capitolo": "Introduzione",
+   "tipo": "titolo",
+   "grande": "Domani alle 05:30<br><mark>parla Warsh</mark>",
+   "piccolo": "Il presidente della Fed a Bangkok venerdì 16 ottobre: perché conta e come gestire il rischio",
+   "voce": "Domani, venerdì sedici ottobre, alle cinque e trenta del mattino ora italiana, parla Kevin Warsh, il presidente della Federal Reserve. Non è una decisione sui tassi, ma arriva in un momento delicato. In tre minuti vediamo perché il mercato lo ascolterà con attenzione e come gestire il rischio. Niente previsioni."
+  },
+  {
+   "capitolo": "Cosa succede domani",
+   "tipo": "punti",
+   "titolo": "Cosa succede domani",
+   "punti": [
+    [
+     "05:30 ora italiana",
+     "Warsh a Bangkok, alle riunioni annuali del Fondo monetario internazionale"
+    ],
+    [
+     "Il formato",
+     "una conversazione di mezz'ora con la direttrice del Fondo, Kristalina Georgieva"
+    ],
+    [
+     "Più tardi",
+     "alle 11:00 l'inflazione finale dell'area euro, alle 14:30 i prezzi all'importazione USA"
+    ]
+   ],
+   "nota": "Fonte: programma delle riunioni annuali FMI e Banca mondiale, Bangkok, 10:30–11:00 ora locale.",
+   "voce": "Warsh interviene a Bangkok, alle riunioni annuali del Fondo monetario internazionale e della Banca mondiale. Non è un discorso scritto, ma una conversazione di mezz'ora con la direttrice del Fondo, Kristalina Georgieva. A Bangkok saranno le dieci e trenta, da noi le cinque e trenta del mattino. Più tardi, alle undici, esce il dato finale sull'inflazione dell'area euro, e alle quattordici e trenta i prezzi all'importazione americani."
+  },
+  {
+   "capitolo": "Il contesto: la Fed",
+   "tipo": "numeri",
+   "titolo": "Il contesto: la Fed",
+   "colonne": [
+    "Fatto",
+    "Quando"
+   ],
+   "righe": [
+    [
+     "Tassi alzati dal 3,75% al 4%",
+     "16 settembre"
+    ],
+    [
+     "Verbali: la maggioranza vede un altro rialzo entro fine anno",
+     "7 ottobre"
+    ],
+    [
+     "Prossima decisione sui tassi",
+     "28 ottobre, ore 19:00"
+    ]
+   ],
+   "nota": "Fonti: Federal Reserve, verbali della riunione di settembre · calendario economico.",
+   "voce": "Partiamo dal contesto. Il sedici settembre la Federal Reserve ha alzato i tassi dal tre virgola settantacinque al quattro per cento. Nei verbali di quella riunione, usciti il sette ottobre, la maggioranza dei membri vede appropriato un altro rialzo entro la fine dell'anno, ma i tempi dipendono dai dati. La prossima decisione è il ventotto ottobre, alle diciannove ora italiana: attenzione, perché il venticinque in Italia torna l'ora solare. Domani quindi è una delle ultime occasioni per sentire Warsh prima della riunione."
+  },
+  {
+   "capitolo": "I dati di questa settimana",
+   "tipo": "numeri",
+   "titolo": "I dati di questa settimana",
+   "colonne": [
+    "Dato USA di settembre",
+    "Consenso → effettivo"
+   ],
+   "righe": [
+    [
+     "Inflazione, su base annua",
+     "3,6% → 3,7%"
+    ],
+    [
+     "Inflazione core, su base annua",
+     "2,5% → 2,6%"
+    ],
+    [
+     "Prezzi alla produzione, sul mese",
+     "0,5% → 1,3%"
+    ],
+    [
+     "Vendite al dettaglio, sul mese",
+     "0,3% → 0,8%"
+    ]
+   ],
+   "nota": "Fonti: BLS e Census Bureau, 14 e 15 ottobre 2026 · consenso dal calendario economico.",
+   "voce": "E i dati di questa settimana. Mercoledì l'inflazione americana è salita al tre virgola sette per cento, sopra le attese del tre virgola sei, e la core al due virgola sei. Oggi i prezzi alla produzione sono cresciuti dell'uno virgola tre per cento in un solo mese, contro attese dello zero virgola cinque: su base annua sono al sei virgola tre. E le vendite al dettaglio sono salite dello zero virgola otto, più delle attese. Tutti numeri sopra il consenso, ed è per questo che le parole di Warsh domani pesano di più."
+  },
+  {
+   "capitolo": "Cosa ascolta il mercato",
+   "tipo": "punti",
+   "titolo": "Cosa ascolta il mercato (di solito)",
+   "punti": [
+    [
+     "Toni più duri",
+     "se insiste sul rischio inflazione: di solito dollaro più forte, oro e indici sotto pressione"
+    ],
+    [
+     "Toni più prudenti",
+     "se parla di aspettare altri dati: di solito il contrario"
+    ],
+    [
+     "Nessuna novità",
+     "spesso il mercato si muove poco: in una conversazione le frasi vanno pesate"
+    ]
+   ],
+   "voce": "Cosa ascolta il mercato? Di solito, se il presidente della Fed insiste sul rischio inflazione, il mercato legge più probabile un altro rialzo dei tassi: il dollaro tende a rafforzarsi, mentre oro e indici possono scendere. Se invece parla di aspettare altri dati, di solito succede il contrario. E se non dice niente di nuovo, spesso il mercato si muove poco. Ricorda che in una conversazione le frasi sono meno preparate di un discorso scritto, e un titolo di agenzia può muovere il prezzo prima che si capisca il senso completo. Sono tendenze, non regole."
+  },
+  {
+   "capitolo": "Il rischio",
+   "tipo": "punti",
+   "titolo": "Il rischio domani mattina",
+   "punti": [
+    [
+     "Di notte",
+     "alle 05:30 il mercato è più sottile: spread più larghi, movimenti più bruschi"
+    ],
+    [
+     "Posizioni aperte",
+     "chi le tiene la notte ha uno stop vero, non mentale, e il lotto giusto"
+    ],
+    [
+     "Al mattino",
+     "guarda cosa è successo prima di entrare: niente rincorse sul movimento della notte"
+    ]
+   ],
+   "voce": "E il rischio. Alle cinque e trenta del mattino il mercato europeo è chiuso e la liquidità è più bassa: gli spread possono allargarsi e i movimenti essere più bruschi. Se tieni posizioni aperte durante la notte, metti uno stop vero sulla piattaforma, non uno stop mentale, perché a quell'ora stai dormendo, e calcola il lotto su quello stop. E la mattina, prima di entrare, guarda cosa è successo durante la notte: non rincorrere un movimento che è già avvenuto."
+  },
+  {
+   "capitolo": "Per approfondire",
+   "tipo": "chiusura",
+   "grande": "Capire la Fed<br><mark>da zero</mark>",
+   "piccolo": "In arrivo il corso Riskly · Analisi fondamentale: banche centrali, tassi, indicatori, correlazioni. Iscriviti al canale per sapere quando esce.",
+   "voce": "Vuoi capire come ragiona una banca centrale e perché le sue parole muovono i mercati? Sta arrivando il corso Riskly Analisi fondamentale: banche centrali, tassi, indicatori economici e correlazioni tra asset, sempre con un occhio al rischio. Iscriviti al canale per sapere quando esce. Contenuto educativo, non consulenza finanziaria: il trading con leva può farti perdere tutto il capitale."
+  }
+ ]
+}
