@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Riskly · Gestione del rischio per il trading</title>
+<meta name="robots" content="noindex">
+<style>
+@font-face{font-family:'Archivo';src:url(fonts/archivo.woff2) format('woff2');font-weight:100 900;font-stretch:62% 125%;font-display:swap}
+@font-face{font-family:'Martian Mono';src:url(fonts/martian-mono.woff2) format('woff2');font-weight:100 800;font-stretch:75% 112.5%;font-display:swap}
+
+:root{
+  --paper:#F3F4F1;
+  --sheet:#FBFBF9;
+  --ink:#15181B;
+  --ink-2:#4B525A;
+  --ink-3:#5E656D;
+  --rule:#CDD1D4;
+  --rule-strong:#15181B;
+  --amber:#E9A10F;
+  --amber-deep:#B97C00;
+  --amber-ink:#2B1E00;
+  --focus:#1F5FD6;
+  --ease-out:cubic-bezier(.23,1,.32,1);
+  --wrap:1240px;
+  --gutter:clamp(16px,4vw,48px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:'Archivo',system-ui,sans-serif;font-size:17px;line-height:1.55;font-variant-numeric:tabular-nums}
+::selection{background:var(--amber);color:var(--amber-ink)}
+a{color:inherit;text-underline-offset:3px;text-decoration-thickness:1px}
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px;border-radius:2px}
+img{display:block;max-width:100%}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gutter)}
+.num{font-family:'Martian Mono',ui-monospace,monospace;font-stretch:88%;letter-spacing:-.01em}
+
+/* ── barra superiore ─────────────────────────── */
+.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 94%,transparent);border-bottom:1px solid var(--rule);backdrop-filter:saturate(1.4) blur(8px)}
+.top .wrap{display:flex;align-items:center;gap:32px;height:68px}
+.marchio{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:20px;letter-spacing:-.01em}
+.menu{display:flex;gap:26px;margin-left:8px;list-style:none}
+.menu a{text-decoration:none;font-size:15px;color:var(--ink-2);font-weight:500;transition:color .15s ease}
+.menu a:hover{color:var(--ink)}
+.top .azioni{margin-left:auto;display:flex;align-items:center;gap:18px}
+.top .accedi{font-size:15px;text-decoration:none;color:var(--ink-2);font-weight:500}
+
+.apri-menu{display:none;height:40px;padding:0 14px;border:1px solid var(--ink);border-radius:4px;background:transparent;font:600 15px 'Archivo',sans-serif;color:var(--ink);cursor:pointer}
+.apri-menu:active{transform:scale(.97)}
+#menu-mobile{border-top:1px solid var(--rule);background:var(--paper)}
+#menu-mobile a{display:block;padding:14px var(--gutter);border-bottom:1px solid var(--rule);text-decoration:none;font-weight:600}
+@media (min-width:961px){#menu-mobile{display:none}}
+/* ── pulsanti ────────────────────────────────── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:48px;padding:0 22px;border-radius:4px;font:600 16px/1 'Archivo',sans-serif;text-decoration:none;white-space:nowrap;cursor:pointer;border:1px solid transparent;transition:transform .16s var(--ease-out),background-color .15s ease,border-color .15s ease}
+.btn:active{transform:scale(.97)}
+.btn-pieno{background:var(--ink);color:var(--sheet)}
+.btn-pieno:hover{background:#000}
+.btn-linea{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn-linea:hover{background:var(--sheet)}
+.btn-ambra{background:var(--ink);color:var(--amber)}
+.btn-piccolo{height:40px;padding:0 16px;font-size:15px}
+
+/* ── apertura ────────────────────────────────── */
+.apertura{padding:clamp(40px,7vw,88px) 0 clamp(48px,7vw,96px)}
+.apertura .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(32px,6vw,88px);align-items:center}
+h1{font-weight:780;font-stretch:78%;font-size:clamp(46px,6.4vw,92px);line-height:.96;letter-spacing:-.025em;text-wrap:balance}
+h1 .seconda{display:block;color:var(--ink-3)}
+.sotto{margin-top:26px;max-width:46ch;font-size:clamp(17px,1.4vw,19px);color:var(--ink-2)}
+.cta{margin-top:34px;display:flex;flex-wrap:wrap;gap:12px}
+
+/* ── la scheda "prima del trade" ─────────────── */
+.scheda{background:var(--sheet);border:1px solid var(--rule-strong);box-shadow:0 1px 0 var(--rule-strong),0 18px 40px -24px rgba(21,24,27,.35)}
+.scheda-testa{display:flex;justify-content:space-between;align-items:baseline;background:var(--ink);color:var(--sheet);padding:12px 18px;font-weight:700;font-stretch:80%;font-size:15px;letter-spacing:.06em;text-transform:uppercase}
+.scheda-testa .num{font-size:12px;letter-spacing:0;color:var(--amber);text-transform:none}
+.scheda ol{list-style:none;padding:6px 18px}
+.voce{display:grid;grid-template-columns:22px minmax(0,auto) 1fr auto;align-items:center;gap:10px;padding:13px 0;border-bottom:1px solid var(--rule)}
+.voce:last-child{border-bottom:none}
+.voce .spunta{width:18px;height:18px;border:1.5px solid var(--ink);border-radius:2px;display:grid;place-items:center;transition:background-color .2s ease}
+.voce .spunta svg{width:12px;height:12px;fill:var(--sheet);opacity:0;transform:scale(.6);transition:opacity .2s var(--ease-out),transform .25s var(--ease-out)}
+.voce.ok .spunta{background:var(--ink)}
+.voce.ok .spunta svg{opacity:1;transform:scale(1)}
+.voce .nome{font-size:16px;white-space:nowrap}
+.voce .puntini{border-bottom:2px dotted var(--rule);height:0;align-self:end;margin-bottom:7px}
+.voce .valore{display:flex;align-items:baseline;gap:6px;justify-self:end}
+.voce input{width:92px;height:36px;border:1px solid var(--ink);border-radius:3px;background:#fff;padding:0 8px;text-align:right;font:500 16px/1 'Martian Mono',monospace;font-stretch:88%;color:var(--ink)}
+.voce input:focus{outline:2px solid var(--focus);outline-offset:1px}
+.voce .unita{font-size:14px;color:var(--ink-3);width:24px}
+.voce .calcolato{font:500 16px/1 'Martian Mono',monospace;font-stretch:88%}
+.voce.risultato{background:var(--amber);margin:6px -18px -6px;padding:16px 18px;border-bottom:none}
+.voce.risultato .nome{font-weight:700;color:var(--amber-ink)}
+.voce.risultato .puntini{border-color:color-mix(in srgb,var(--amber-ink) 35%,transparent)}
+.voce.risultato .calcolato{font-size:26px;font-weight:600;color:var(--amber-ink)}
+.voce.risultato .spunta{border-color:var(--amber-ink)}
+.voce.risultato.ok .spunta{background:var(--amber-ink)}
+.voce.risultato.ok .spunta svg{fill:var(--amber)}
+.scheda-nota{padding:12px 18px 16px;font-size:13.5px;color:var(--ink-3);border-top:1px solid var(--rule);display:flex;justify-content:space-between;gap:16px;align-items:center}
+.scheda-nota a{color:var(--ink);font-weight:600;white-space:nowrap}
+.cambio{animation:cambio .5s var(--ease-out)}
+@keyframes cambio{from{filter:blur(3px);opacity:.4}to{filter:none;opacity:1}}
+
+/* ── fascia del lancio ───────────────────────── */
+.lancio{background:var(--amber);color:var(--amber-ink)}
+.lancio .wrap{display:grid;grid-template-columns:auto 1fr auto;gap:clamp(20px,4vw,56px);align-items:center;padding-top:28px;padding-bottom:28px}
+.lancio .data{font-weight:800;font-stretch:72%;font-size:clamp(34px,4vw,52px);line-height:.9;letter-spacing:-.02em;text-transform:uppercase}
+.lancio p{font-size:18px;max-width:52ch}
+.lancio p b{font-weight:700}
+
+/* ── sezioni ─────────────────────────────────── */
+section{padding:clamp(64px,9vw,128px) 0}
+h2{font-weight:760;font-stretch:80%;font-size:clamp(34px,4.2vw,58px);line-height:1;letter-spacing:-.02em;text-wrap:balance;max-width:18ch}
+.intro{margin-top:18px;max-width:58ch;color:var(--ink-2);font-size:18px}
+
+/* procedura prima / durante / dopo */
+.procedura{margin-top:clamp(36px,5vw,64px);border-top:3px solid var(--ink)}
+.fase{display:grid;grid-template-columns:minmax(150px,.7fr) minmax(0,1.6fr) minmax(0,1fr);gap:clamp(20px,4vw,56px);padding:clamp(24px,3vw,36px) 0;border-bottom:1px solid var(--rule)}
+.fase h3{font-weight:800;font-stretch:72%;font-size:clamp(30px,3.4vw,46px);line-height:.9;text-transform:uppercase;letter-spacing:-.01em}
+.fase p{color:var(--ink-2);max-width:56ch;font-size:17.5px}
+.fase .strumento{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.fase .strumento b{font-weight:700;font-size:17px}
+.fase .strumento span{font-size:14.5px;color:var(--ink-3)}
+.fase .strumento a{margin-top:8px;font-weight:600;font-size:15px}
+.fase .poster{display:flex;gap:16px;align-items:flex-start}
+.fase .poster img{width:84px;aspect-ratio:9/16;object-fit:cover;border:1px solid var(--ink);flex:none}
+
+/* indice delle aree */
+.indice-sez{background:var(--sheet);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.indice{margin-top:clamp(36px,5vw,64px);list-style:none;columns:2;column-gap:clamp(32px,6vw,96px)}
+.indice li{break-inside:avoid;padding:20px 0 22px;border-top:1px solid var(--ink)}
+.indice .riga{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:baseline}
+.indice .area{font-weight:700;font-stretch:80%;text-transform:uppercase;letter-spacing:.05em;font-size:14px}
+.indice .riga i{border-bottom:2px dotted var(--rule);transform:translateY(-4px)}
+.indice .stato{font-size:14px;font-weight:600}
+.indice .stato.attesa{color:var(--amber-deep)}
+.indice h3{margin-top:8px;font-weight:650;font-size:21px;line-height:1.2;letter-spacing:-.005em}
+.indice p{margin-top:6px;color:var(--ink-2);font-size:16px;max-width:52ch}
+
+/* frase */
+.frase{padding:clamp(72px,10vw,140px) 0}
+.frase blockquote{font-weight:780;font-stretch:76%;font-size:clamp(36px,5.2vw,76px);line-height:.98;letter-spacing:-.02em;max-width:20ch;text-wrap:balance}
+.frase blockquote span{color:var(--ink-3)}
+
+/* chi c'è dietro + guida */
+.dietro .wrap{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(36px,6vw,96px);align-items:start}
+.dietro .testo p{margin-top:16px;color:var(--ink-2);max-width:60ch}
+.dietro .testo p:first-of-type{margin-top:22px}
+.dietro .firma{margin-top:22px;font-size:14px;color:var(--ink-3)}
+.dietro .link{margin-top:20px;display:flex;gap:22px;font-weight:600}
+.modulo{background:var(--sheet);border:1px solid var(--ink);padding:26px}
+.modulo h3{font-weight:760;font-stretch:80%;font-size:28px;line-height:1.02;letter-spacing:-.01em}
+.modulo p{margin-top:10px;color:var(--ink-2);font-size:15.5px}
+.modulo label.etichetta{display:block;margin-top:20px;font-size:14px;font-weight:600}
+.modulo input[type=email]{margin-top:6px;width:100%;height:48px;border:1px solid var(--ink);border-radius:3px;background:#fff;padding:0 12px;font:400 16px 'Archivo',sans-serif;color:var(--ink)}
+.modulo input[type=email]::placeholder{color:var(--ink-3)}
+.modulo .btn{margin-top:12px;width:100%}
+.consenso{margin-top:14px;display:flex;gap:10px;font-size:13.5px;color:var(--ink-2);line-height:1.45}
+.consenso input{flex:none;width:17px;height:17px;margin-top:2px;accent-color:var(--ink)}
+
+/* piede */
+footer{border-top:3px solid var(--ink);padding:48px 0 40px;font-size:14.5px;color:var(--ink-2)}
+footer .colonne{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:32px}
+footer h4{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);margin-bottom:12px}
+footer ul{list-style:none;display:grid;gap:8px}
+footer a{text-decoration:none}
+footer a:hover{text-decoration:underline}
+footer .avviso{margin-top:40px;padding-top:20px;border-top:1px solid var(--rule);font-size:13px;color:var(--ink-3);max-width:110ch}
+footer .legale{margin-top:16px;font-size:13px;color:var(--ink-3)}
+
+/* entrata della scheda: le voci si spuntano in ordine, una sola volta */
+@media (prefers-reduced-motion:no-preference){
+  .scheda .voce{animation:entra .5s var(--ease-out) both}
+  .scheda .voce:nth-child(2){animation-delay:60ms}.scheda .voce:nth-child(3){animation-delay:120ms}
+  .scheda .voce:nth-child(4){animation-delay:180ms}.scheda .voce:nth-child(5){animation-delay:240ms}.scheda .voce:nth-child(6){animation-delay:300ms}
+  @keyframes entra{from{opacity:0;transform:translateY(6px)}}
+}
+
+/* ── telefono ────────────────────────────────── */
+@media (max-width:960px){
+  .menu{display:none}
+  .apri-menu{display:inline-flex;align-items:center}
+  .apertura .wrap{grid-template-columns:1fr}
+  .lancio .wrap{grid-template-columns:1fr;gap:14px}
+  .fase{grid-template-columns:1fr;gap:12px}
+  .indice{columns:1}
+  .dietro .wrap{grid-template-columns:1fr}
+  footer .colonne{grid-template-columns:1fr 1fr}
+}
+@media (max-width:520px){
+  body{font-size:16px}
+  .top .accedi{display:none}
+  .voce{grid-template-columns:22px minmax(0,1fr) auto}
+  .voce .puntini{display:none}
+  .voce input{width:84px}
+  .scheda-nota{flex-direction:column;align-items:flex-start}
+  .cta .btn{flex:1 1 100%}
+  footer .colonne{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="marchio" href="#" aria-label="Riskly, home">
+      <svg width="30" height="30" viewBox="0 0 44 44" fill="none" aria-hidden="true"><path d="M9 31 L17 19.5 L23.5 25 L35 11" stroke="#15181B" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 36 H35" stroke="#E9A10F" stroke-width="3.6" stroke-linecap="round"/></svg>
+      Riskly
+    </a>
+    <ul class="menu">
+      <li><a href="#procedura">Bot</a></li>
+      <li><a href="#procedura">Journal</a></li>
+      <li><a href="#apertura">Calcolatori</a></li>
+      <li><a href="#aree">Videocorso</a></li>
+      <li><a href="#aree">Prezzi</a></li>
+      <li><a href="#dietro">Chi siamo</a></li>
+    </ul>
+    <div class="azioni">
+      <a class="accedi" href="#">Accedi</a>
+      <a class="btn btn-pieno btn-piccolo" href="#">Prova il journal</a>
+      <button class="apri-menu" type="button" aria-expanded="false" aria-controls="menu-mobile" onclick="const a=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',!a);document.getElementById('menu-mobile').hidden=a">Menu</button>
+    </div>
+  </div>
+  <nav id="menu-mobile" hidden>
+    <a href="#procedura">Bot</a><a href="#procedura">Journal</a><a href="#apertura">Calcolatori</a><a href="#aree">Videocorso</a><a href="#aree">Prezzi</a><a href="#dietro">Chi siamo</a><a href="#">Accedi</a>
+  </nav>
+</header>
+
+<main>
+  <div class="apertura" id="apertura">
+    <div class="wrap">
+      <div>
+        <h1>Il mercato non lo controlli. <span class="seconda">Tutto il resto sì.</span></h1>
+        <p class="sotto">Quanto rischiare, quando fermarti, come gestire una posizione aperta. Il trading si decide qui, non nella previsione del prossimo movimento.</p>
+        <div class="cta">
+          <a class="btn btn-pieno" href="#">Prova il journal</a>
+          <a class="btn btn-linea" href="#">Apri i calcolatori</a>
+        </div>
+      </div>
+
+      <form class="scheda" id="scheda" aria-labelledby="scheda-titolo" onsubmit="return false">
+        <div class="scheda-testa"><span id="scheda-titolo">Prima del trade</span><span class="num">EURUSD</span></div>
+        <ol>
+          <li class="voce" data-voce="saldo"><span class="spunta"><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></svg></span>
+            <label class="nome" for="saldo">Saldo del conto</label><i class="puntini"></i>
+            <span class="valore"><input id="saldo" inputmode="decimal" value="10.000" autocomplete="off"><span class="unita">$</span></span></li>
+          <li class="voce" data-voce="rischio"><span class="spunta"><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></svg></span>
+            <label class="nome" for="rischio">Rischio per operazione</label><i class="puntini"></i>
+            <span class="valore"><input id="rischio" inputmode="decimal" value="1" autocomplete="off"><span class="unita">%</span></span></li>
+          <li class="voce" data-voce="stop"><span class="spunta"><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></svg></span>
+            <label class="nome" for="stop">Stop loss</label><i class="puntini"></i>
+            <span class="valore"><input id="stop" inputmode="decimal" value="30" autocomplete="off"><span class="unita">pip</span></span></li>
+          <li class="voce" data-voce="euro"><span class="spunta"><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></svg></span>
+            <span class="nome">Perdita massima se tocca lo stop</span><i class="puntini"></i>
+            <span class="valore"><span class="calcolato" id="perdita">100 $</span></span></li>
+          <li class="voce risultato" data-voce="lotti" aria-live="polite"><span class="spunta"><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></svg></span>
+            <span class="nome">Lotti da aprire</span><i class="puntini"></i>
+            <span class="valore"><span class="calcolato" id="lotti">0,33</span></span></li>
+        </ol>
+        <div class="scheda-nota"><span>Esempio su EURUSD con conto in dollari: un pip vale 10 $ per lotto.</span><a href="#">Altri strumenti</a></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="lancio">
+    <div class="wrap">
+      <div class="data">23 ottobre</div>
+      <p>Escono i bot per <b>MetaTrader 4 e 5</b>. Ai primi 10 iscritti il prezzo di lancio resta bloccato a vita. Journal, videocorso e calcolatori sono già disponibili.</p>
+      <a class="btn btn-ambra" href="#">Blocca il prezzo</a>
+    </div>
+  </div>
+
+  <section id="procedura">
+    <div class="wrap">
+      <h2>La disciplina non è forza di volontà</h2>
+      <p class="intro">È un sistema che interviene nei tre momenti in cui i conti si bruciano. Nessuno dei tre riguarda la scelta del trade.</p>
+      <div class="procedura">
+        <div class="fase">
+          <h3>Prima</h3>
+          <p>Decidi a mente fredda quanto rischiare, dove mettere lo stop, quante operazioni al giorno. I calcolatori tolgono la sensazione dall'equazione.</p>
+          <div class="strumento"><b>Calcolatori</b><span>Cinque strumenti, sempre gratuiti</span><a href="#">Apri i calcolatori</a></div>
+        </div>
+        <div class="fase">
+          <h3>Durante</h3>
+          <p>I bot eseguono quelle regole al posto tuo: gestiscono la posizione, spostano lo stop, e ti fermano quando stai per infrangere i limiti che avevi fissato.</p>
+          <div class="strumento poster"><img src="../pubblicazione-21-ottobre/video/riskguard.jpg" alt="Copertina del video dimostrativo di RiskGuard" loading="lazy"><div class="strumento"><b>Bot per MT4 e MT5</b><span>RiskGuard, TradeManager, ScaleIn, Riskly Pro. Dal 23 ottobre.</span><a href="#">Come funzionano</a></div></div>
+        </div>
+        <div class="fase">
+          <h3>Dopo</h3>
+          <p>Il journal misura tutto. Non se avevi ragione sul mercato, ma se hai rispettato il tuo sistema e quali abitudini ti stanno costando.</p>
+          <div class="strumento"><b>Journal</b><span>7 giorni di prova, nessuna carta richiesta</span><a href="#">Prova il journal</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="indice-sez" id="aree">
+    <div class="wrap">
+      <h2>Cinque aree, un solo obiettivo</h2>
+      <p class="intro">Tenere sotto controllo tutto quello che dipende da te. Nessuno strumento ti dice cosa comprare.</p>
+      <ol class="indice">
+        <li><div class="riga"><span class="area">Rischio</span><i></i><span class="stato">Gratis</span></div>
+          <h3>Quanto puoi permetterti di perdere</h3>
+          <p>Dimensione della posizione, rischio di rovina, margine residuo sulla challenge, quanto serve per recuperare un drawdown.</p></li>
+        <li><div class="riga"><span class="area">Emozioni</span><i></i><span class="stato attesa">Dal 23 ottobre</span></div>
+          <h3>Le regole che non riesci a rispettare da solo</h3>
+          <p>Pausa obbligatoria dopo una perdita, stop dopo N perdite consecutive, limite di operazioni giornaliere. Decidi a mente fredda, il bot esegue.</p></li>
+        <li><div class="riga"><span class="area">Posizioni</span><i></i><span class="stato attesa">Dal 23 ottobre</span></div>
+          <h3>Gestite mentre tu fai altro</h3>
+          <p>Break-even automatico, trailing stop, scaglionamento con target diversi. Tutto in pip, valori chiari e configurabili.</p></li>
+        <li><div class="riga"><span class="area">Metodo</span><i></i><span class="stato">Disponibile</span></div>
+          <h3>Imparare prima di rischiare</h3>
+          <p>Videocorso di quasi tre ore, 47 lezioni in dieci moduli: dal position sizing al Monte Carlo, fino alle prop firm. Nessuna strategia, nessun segnale.</p></li>
+        <li><div class="riga"><span class="area">Dati</span><i></i><span class="stato">Disponibile</span></div>
+          <h3>Quello che i numeri dicono di te</h3>
+          <p>Winrate, profit factor, drawdown, performance per strategia e per orario. E i pattern che da solo non vedi.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <div class="frase">
+    <div class="wrap">
+      <blockquote>Nessuno perde il conto perché ha sbagliato previsione. <span>Lo perde perché ha sbagliato a gestire.</span></blockquote>
+    </div>
+  </div>
+
+  <section class="dietro" id="dietro">
+    <div class="wrap">
+      <div class="testo">
+        <h2>Chi c'è dietro Riskly</h2>
+        <p>Sono <b>Gabriele Liberto</b>, trader e sviluppatore. Riskly nasce da un problema mio e di molti colleghi con cui lavoro ogni giorno.</p>
+        <p>Nel trading il mercato non lo controlli, il rischio sì, ed è l'unica variabile che quasi nessuno gestisce con regole scritte. Sapevo cosa mi serviva per fermarmi al momento giusto, e sapevo scriverlo. Così l'ho costruito.</p>
+        <p>Non vendo segnali e non prometto rendimenti. I bot sono in test su conto demo MT5: pubblico gli screenshot datati sul canale Telegram.</p>
+        <div class="link"><a href="#">Canale Telegram</a><a href="#">Scrivimi</a></div>
+        <p class="firma">Gabriele Liberto, ditta individuale, P. IVA 04948840162</p>
+      </div>
+      <form class="modulo" onsubmit="return false">
+        <h3>Le 7 regole di rischio che salvano un conto</h3>
+        <p>Una guida breve in PDF. Niente strategie, niente promesse.</p>
+        <label class="etichetta" for="email">La tua email</label>
+        <input type="email" id="email" placeholder="nome@esempio.it" required>
+        <button class="btn btn-pieno" type="submit">Ricevi la guida</button>
+        <label class="consenso"><input type="checkbox"><span>Voglio ricevere via email anche le novità di Riskly e l'avviso del lancio (facoltativo, ti cancelli quando vuoi). <a href="#">Informativa privacy</a></span></label>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="colonne">
+      <div><a class="marchio" href="#"><svg width="26" height="26" viewBox="0 0 44 44" fill="none" aria-hidden="true"><path d="M9 31 L17 19.5 L23.5 25 L35 11" stroke="#15181B" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 36 H35" stroke="#E9A10F" stroke-width="3.6" stroke-linecap="round"/></svg>Riskly</a>
+        <p style="margin-top:12px;max-width:34ch">Strumenti per la gestione del rischio, della disciplina e delle posizioni. Nessun segnale, nessuna promessa di guadagno.</p></div>
+      <div><h4>Prodotti</h4><ul><li><a href="#">Bot MT4 e MT5</a></li><li><a href="#">Journal</a></li><li><a href="#">Calcolatori</a></li><li><a href="#">Videocorso</a></li><li><a href="#">Prezzi</a></li></ul></div>
+      <div><h4>Informazioni</h4><ul><li><a href="#">Il metodo</a></li><li><a href="#">Domande frequenti</a></li><li><a href="#">Assistenza</a></li><li><a href="#">info@riskly.trade</a></li></ul></div>
+      <div><h4>Legale</h4><ul><li><a href="#">Privacy</a></li><li><a href="#">Termini di servizio</a></li><li><a href="#">Recesso</a></li></ul></div>
+    </div>
+    <p class="avviso">Riskly fornisce strumenti software per la gestione del rischio e l'analisi delle operazioni. Non fornisce consulenza in materia di investimenti, raccomandazioni personalizzate, segnali operativi né gestione di portafogli. Il trading su strumenti finanziari con leva comporta un elevato rischio di perdita del capitale e non è adatto a tutti gli investitori. MetaTrader è un marchio registrato di MetaQuotes Ltd., non affiliata a Riskly.</p>
+    <p class="legale">© 2026 Riskly · Gabriele Liberto, ditta individuale · P. IVA 04948840162 · C.F. LBRGRL04D19F899W</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const leggi = id => parseFloat(document.getElementById(id).value.replace(/\./g,'').replace(',','.'));
+  const fmt = (n, d) => n.toLocaleString('it-IT', { minimumFractionDigits: d, maximumFractionDigits: d });
+  const voce = n => document.querySelector('[data-voce="' + n + '"]');
+  const lampo = el => { el.classList.remove('cambio'); void el.offsetWidth; el.classList.add('cambio'); };
+  function calcola(){
+    const s = leggi('saldo'), r = leggi('rischio'), p = leggi('stop');
+    const okS = s > 0, okR = r > 0 && r <= 10, okP = p > 0;
+    voce('saldo').classList.toggle('ok', okS); voce('rischio').classList.toggle('ok', okR); voce('stop').classList.toggle('ok', okP);
+    const perdita = document.getElementById('perdita'), lotti = document.getElementById('lotti');
+    if(okS && okR){ perdita.textContent = fmt(s * r / 100, 0) + ' $'; voce('euro').classList.add('ok'); } else { perdita.textContent = '-'; voce('euro').classList.remove('ok'); }
+    if(okS && okR && okP){
+      const v = Math.floor(s * r / 100 / (p * 10) * 100) / 100;      // arrotondato per difetto: mai oltre il rischio deciso
+      const t = fmt(v, 2); if(lotti.textContent !== t){ lotti.textContent = t; lampo(lotti); }
+      voce('lotti').classList.add('ok');
+    } else { lotti.textContent = '-'; voce('lotti').classList.remove('ok'); }
+  }
+  ['saldo','rischio','stop'].forEach(id => document.getElementById(id).addEventListener('input', calcola));
+  setTimeout(calcola, 380);
+})();
+</script>
+</body>
+</html>
