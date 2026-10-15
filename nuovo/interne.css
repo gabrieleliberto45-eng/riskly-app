@@ -237,3 +237,14 @@
   .ci-voce:nth-child(3){padding-left:0!important;border-left:0!important}
   .ci-voce:nth-child(n+3){border-top:1px solid var(--rule)}
 }
+
+/* barra dei siti Riskly */
+.siti-barra{border-top:1px solid var(--rule);background:var(--sheet)}
+.siti-barra .wrap{display:flex!important;justify-content:flex-start!important;align-items:stretch;gap:0;height:auto!important;min-height:46px;overflow-x:auto;scrollbar-width:none}
+.siti-barra .sb-testo{display:flex;align-items:center;padding-right:18px;font-size:13.5px;color:var(--ink-3);white-space:nowrap}
+.siti-barra a{flex:none;display:flex;align-items:center;gap:10px;padding:0 18px;border-left:1px solid var(--rule);text-decoration:none;color:var(--ink);white-space:nowrap;transition:background-color .15s ease}
+.siti-barra a:hover{background:var(--paper)}
+.siti-barra a b{font-weight:700;font-size:15px}
+.siti-barra a span{font:500 12px 'Martian Mono',monospace;font-stretch:88%;color:var(--ink-3)}
+.siti-barra a i{font-style:normal;font-weight:700}
+@media (max-width:640px){.siti-barra .sb-testo{display:none}.siti-barra a{flex:1;justify-content:space-between;padding:0 12px}.siti-barra a:first-of-type{border-left:0}.siti-barra a span{display:none}.siti-barra a b{font-size:14.5px}}

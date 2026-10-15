@@ -1888,6 +1888,17 @@ nav .brand{text-decoration:none}
   .ci-voce:nth-child(3){padding-left:0!important;border-left:0!important}
   .ci-voce:nth-child(n+3){border-top:1px solid var(--rule)}
 }
+
+/* barra dei siti Riskly */
+.siti-barra{border-top:1px solid var(--rule);background:var(--sheet)}
+.siti-barra .wrap{display:flex!important;justify-content:flex-start!important;align-items:stretch;gap:0;height:auto!important;min-height:46px;overflow-x:auto;scrollbar-width:none}
+.siti-barra .sb-testo{display:flex;align-items:center;padding-right:18px;font-size:13.5px;color:var(--ink-3);white-space:nowrap}
+.siti-barra a{flex:none;display:flex;align-items:center;gap:10px;padding:0 18px;border-left:1px solid var(--rule);text-decoration:none;color:var(--ink);white-space:nowrap;transition:background-color .15s ease}
+.siti-barra a:hover{background:var(--paper)}
+.siti-barra a b{font-weight:700;font-size:15px}
+.siti-barra a span{font:500 12px 'Martian Mono',monospace;font-stretch:88%;color:var(--ink-3)}
+.siti-barra a i{font-style:normal;font-weight:700}
+@media (max-width:640px){.siti-barra .sb-testo{display:none}.siti-barra a{flex:1;justify-content:space-between;padding:0 12px}.siti-barra a:first-of-type{border-left:0}.siti-barra a span{display:none}.siti-barra a b{font-size:14.5px}}
 </style>
 <script>
 /* ritorno da Stripe: qualunque indirizzo usi Stripe, chi ha appena pagato va all'area clienti */
@@ -1929,8 +1940,6 @@ nav .brand{text-decoration:none}
       <button onclick="go('journal',this)">Prezzi</button>
       <button onclick="go('metodo',this)">Metodo</button>
       <button onclick="go('faq',this)">FAQ</button>
-      <a href="https://app.riskly.trade">Journal</a>
-      <a href="https://strumenti.riskly.trade">Strumenti</a>
     </div>
     <div class="nav-azioni">
       <button class="nav-link" id="nav-gestione" style="display:none;color:var(--accent)" onclick="go('gestione')">Gestione</button>
@@ -1942,6 +1951,11 @@ nav .brand{text-decoration:none}
   <div id="menu-mobile" hidden>
     <button onclick="go('home');chiudiMenu()">Home</button><button onclick="go('bot');chiudiMenu()">Bot</button><button onclick="go('corso');chiudiMenu()">Corso</button><button onclick="go('journal');chiudiMenu()">Prezzi</button><button onclick="go('metodo');chiudiMenu()">Metodo</button><button onclick="go('faq');chiudiMenu()">FAQ</button><a href="https://app.riskly.trade">Journal</a><a href="https://strumenti.riskly.trade">Strumenti gratuiti</a><button onclick="apriAccesso('entra');chiudiMenu()">Accedi</button>
   </div>
+  <div class="siti-barra"><div class="wrap">
+    <span class="sb-testo">Riskly ha anche</span>
+    <a href="https://app.riskly.trade"><b>Journal</b><span>app.riskly.trade</span><i aria-hidden="true">↗</i></a>
+    <a href="https://strumenti.riskly.trade"><b>Calcolatori e calendario</b><span>strumenti.riskly.trade</span><i aria-hidden="true">↗</i></a>
+  </div></div>
 </nav>
 <script>function chiudiMenu(){const m=document.getElementById('menu-mobile');if(m)m.hidden=true;const b=document.querySelector('.apri-menu');if(b)b.setAttribute('aria-expanded','false');}</script>
 
@@ -2840,7 +2854,7 @@ nav .brand{text-decoration:none}
       </div>
 
       <p class="fine" style="text-align:center;margin-top:18px">Ogni piano parte con 7 giorni di prova gratuita, senza carta di credito. Puoi annullare quando vuoi.
-        <a onclick="go('app')" style="color:var(--accent);cursor:pointer;text-decoration:underline">Prova la demo</a>.</p>
+        <a href="https://app.riskly.trade/demo.html" style="color:var(--accent);text-decoration:underline">Prova la demo</a>.</p>
 
       <!-- CORSO -->
       <div class="pz-sez"><h3>Videocorso</h3><span>47 LEZIONI · 10 MODULI · QUASI 3 ORE · €199 AL LANCIO · POI €249</span></div>
@@ -3576,8 +3590,8 @@ nav .brand{text-decoration:none}
 <div class="cta">
   <div class="wrap">
     <h2>Il rischio si gestisce prima, non dopo</h2>
-    <button class="btn pri lg" onclick="go('app')">Prova il journal</button>
-    <button class="btn lg" onclick="go('calc')" style="margin-left:9px">Calcolatori gratuiti</button>
+    <button class="btn pri lg" onclick="go('bot')">Scegli il bot</button>
+    <button class="btn lg" onclick="go('corso')" style="margin-left:9px">Vedi il corso</button>
   </div>
 </div>
 
@@ -3602,8 +3616,8 @@ nav .brand{text-decoration:none}
       <div class="f-col">
         <h4>Prodotti</h4>
         <a onclick="go('bot')">Bot MT4 e MT5</a>
-        <a onclick="go('app')">Journal</a>
-        <a onclick="go('calc')">Strumenti</a>
+        <a href="https://app.riskly.trade">Journal ↗</a>
+        <a href="https://strumenti.riskly.trade">Calcolatori e calendario ↗</a>
         <a onclick="go('corso')">Videocorso</a>
         <a onclick="go('journal')">Prezzi</a>
       </div>
@@ -6083,7 +6097,6 @@ function calDisegna(){
     <hr>
     <button id="sa-accedi" onclick="chiudiAltro();document.getElementById('nav-accedi').click()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span>Accedi</span></button>
     <button id="sa-gestione" data-p="gestione" style="display:none" onclick="chiudiAltro();go('gestione')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Gestione</button>
-    <button onclick="location.href='https://app.riskly.trade'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6"/><path d="M20 4 11 13"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>Il mio journal</button>
   </div>
 </div>
 <script>
