@@ -30,5 +30,14 @@
 /journal         https://app.riskly.trade/                    301
 /demo            https://app.riskly.trade/demo.html           301
 
+# link corti per i social: portano dritti allo strumento e dicono da dove arriva la visita
+/lotto       https://strumenti.riskly.trade/?da=link-lotto#posizione      302
+/rovina      https://strumenti.riskly.trade/?da=link-rovina#montecarlo    302
+/prop        https://strumenti.riskly.trade/?da=link-prop#prop            302
+/dati        https://strumenti.riskly.trade/?da=link-dati#calendario      302
+/prova       https://app.riskly.trade/demo.html?da=link-prova             302
+/corsi       /?vai=corso&da=link-corsi                                     302
+/bot         /?vai=bot&da=link-bot                                         302
+
 # qualsiasi altro indirizzo (es. link delle email di conferma) apre il sito invece di "Page not found"
 /*    /index.html   200
