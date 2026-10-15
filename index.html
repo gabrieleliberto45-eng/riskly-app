@@ -12,6 +12,40 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-title" content="Riskly">
 <link href="/fonts.css" rel="stylesheet">
+<script>
+/* RISKLY TRACCIA · conteggio anonimo di visite e azioni, senza cookie.
+   Una riga per sessione nella tabella "visite": percorso = pagina (es. "strumenti") oppure "#azione", referer = provenienza o sito. */
+(function(){
+  var URL = 'https://swlztverwfgdgchgpudt.supabase.co/rest/v1/visite',
+      KEY = 'sb_publishable_j9bujIvCEz6x21yYoCODPw_lIZCJrIR',
+      sito = location.hostname.replace(/^www\./, '').split('.')[0] || 'locale';
+  function invia(percorso, referer){
+    try{ fetch(URL, { method:'POST', keepalive:true, headers:{ apikey:KEY, 'Content-Type':'application/json', Prefer:'return=minimal' },
+                      body: JSON.stringify({ percorso: String(percorso).slice(0, 80), referer: String(referer).slice(0, 80) }) }).catch(function(){}); }catch(e){}
+  }
+  function unaVolta(k){ try{ if(sessionStorage.getItem(k)) return false; sessionStorage.setItem(k, '1'); }catch(e){} return true; }
+  window.traccia = function(ev){ if(unaVolta('riskly_ev_' + ev)) invia('#' + ev, sito); };
+  window.tracciaVisita = function(nome){
+    if(!unaVolta('riskly_visita_' + nome)) return;
+    var da = ''; try{ da = document.referrer ? new URL(document.referrer).hostname.replace(/^www\./, '') : ''; }catch(e){}
+    var q = new URLSearchParams(location.search);
+    invia(nome, q.get('da') || q.get('utm_source') || da || 'diretto');
+  };
+  /* passaggi da un sito Riskly all'altro */
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href]'); if(!a) return;
+    var h = a.href, qui = location.hostname;
+    if(/\/\/app\.riskly\.trade/.test(h) && qui.indexOf('app.') !== 0) traccia(/demo/.test(h) ? 'vai-journal-demo' : 'vai-journal');
+    else if(/\/\/strumenti\.riskly\.trade/.test(h) && qui.indexOf('strumenti.') !== 0) traccia('vai-strumenti');
+    else if(/\/\/(www\.)?riskly\.trade/.test(h) && qui.replace(/^www\./, '') !== 'riskly.trade') traccia('vai-negozio');
+  }, true);
+  /* avvolge una funzione globale per contare quando viene usata */
+  window.tracciaFunzione = function(nome, evento){
+    var f = window[nome]; if(typeof f !== 'function') return;
+    window[nome] = function(){ try{ traccia(typeof evento === 'function' ? evento.apply(null, arguments) : evento); }catch(e){} return f.apply(this, arguments); };
+  };
+})();
+</script>
 <script src="/js/supabase.js"></script>
 <style>
 
@@ -1925,13 +1959,14 @@ async function inviaAccesso(e){
     if(accModo === 'registrati'){
       const { data, error } = await sb.auth.signUp({
         email, password: pass,
-        options: { data: { nome, metodo: document.getElementById('a-metodo').value || 'generale' } }
+        options: { emailRedirectTo: location.origin + '/', data: { nome, metodo: document.getElementById('a-metodo').value || 'generale' } }
       });
       if(error) throw error;
       try{ localStorage.setItem('riskly-metodo', document.getElementById('a-metodo').value || 'generale'); localStorage.setItem('riskly-metodo-chiesto', '1'); }catch{}
 
       if(!data.session){
-        mostraErrore('Ti abbiamo inviato una email di conferma. Aprila per completare.');
+        traccia('registrazione-email-inviata');
+        mostraConferma(email);
         bottone.disabled = false; bottone.textContent = testoOriginale;
         return;
       }
@@ -1946,10 +1981,26 @@ async function inviaAccesso(e){
 
   } catch(err){
     console.error('Errore accesso:', err);
+    if(/not confirmed/i.test(err.message || '')){ mostraConferma(email, true); bottone.disabled = false; bottone.textContent = testoOriginale; return; }
     mostraErrore(traduciErrore(err.message || String(err)));
     bottone.disabled = false;
     bottone.textContent = testoOriginale;
   }
+}
+
+/* dopo la registrazione: dove guardare e come farsi rimandare l'email */
+function mostraConferma(email, daConfermare){
+  const e = document.getElementById('acc-errore'); if(!e) return;
+  e.innerHTML = (daConfermare ? 'Prima di accedere devi confermare l\'email.' : 'Ci siamo quasi: ti abbiamo mandato un\'email')
+    + ` a <b>${esc(email)}</b> con il link per confermare l'account. Se non arriva entro 2 minuti guarda in <b>Spam</b> o <b>Promozioni</b>.`
+    + ` <button type="button" class="btn" style="margin-top:10px;width:100%" onclick="rinviaConferma('${esc(email).replace(/'/g, '')}', this)">Rinvia l'email</button>`;
+}
+async function rinviaConferma(email, b){
+  if(!sb || !email) return;
+  b.disabled = true; b.textContent = 'Invio…';
+  const { error } = await sb.auth.resend({ type: 'signup', email, options: { emailRedirectTo: location.origin + '/' } });
+  b.textContent = error ? (/rate|seconds|too many/i.test(error.message || '') ? 'Aspetta un minuto e riprova' : 'Non riesco a inviarla, riprova') : 'Email inviata di nuovo';
+  setTimeout(() => { b.disabled = false; b.textContent = 'Rinvia l\'email'; }, 60000);
 }
 
 function mostraErrore(t){
@@ -5003,6 +5054,15 @@ if(sb){
 })();
 
 document.addEventListener('click', () => { const m = document.getElementById('jaltro'); if(m) m.classList.remove('on'); });
+</script>
+<script>
+/* azioni contate sul journal (vedi nuovo/traccia.html sul ramo del sito) */
+(function(){
+  tracciaVisita('app');
+  tracciaFunzione('apriAccesso', function(t){ return (t || 'registrati') === 'registrati' ? 'registrazione-aperta' : 'accesso-aperto'; });
+  tracciaFunzione('inviaAccesso', function(){ return accModo === 'registrati' ? 'registrazione-inviata' : 'accesso-inviato'; });
+  try{ if(typeof sb !== 'undefined' && sb) sb.auth.onAuthStateChange(function(ev){ if(ev === 'SIGNED_IN') traccia('dentro-il-journal'); }); }catch(e){}
+})();
 </script>
 </body>
 </html>
