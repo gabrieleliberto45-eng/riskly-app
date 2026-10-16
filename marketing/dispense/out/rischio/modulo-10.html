@@ -1,0 +1,104 @@
+<!DOCTYPE html><html lang="it"><head><meta charset="utf-8"><title>Riskly · Gestione del rischio · Modulo 10</title>
+<style>@font-face{font-family:'Instrument Sans';font-weight:400;src:url(../../../../nuovo/riskly/fonts/InstrumentSans-400-normal-latin.woff2)}
+@font-face{font-family:'Instrument Sans';font-weight:400;src:url(../../../../nuovo/riskly/fonts/InstrumentSans-400-normal-latin-ext.woff2);unicode-range:U+0100-02BA,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Instrument Sans';font-weight:500;src:url(../../../../nuovo/riskly/fonts/InstrumentSans-500-normal-latin.woff2)}
+@font-face{font-family:'Instrument Sans';font-weight:500;src:url(../../../../nuovo/riskly/fonts/InstrumentSans-500-normal-latin-ext.woff2);unicode-range:U+0100-02BA,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Instrument Sans';font-weight:600;src:url(../../../../nuovo/riskly/fonts/InstrumentSans-600-normal-latin.woff2)}
+@font-face{font-family:'Instrument Sans';font-weight:600;src:url(../../../../nuovo/riskly/fonts/InstrumentSans-600-normal-latin-ext.woff2);unicode-range:U+0100-02BA,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Instrument Sans';font-weight:700;src:url(../../../../nuovo/riskly/fonts/InstrumentSans-700-normal-latin.woff2)}
+@font-face{font-family:'Instrument Sans';font-weight:700;src:url(../../../../nuovo/riskly/fonts/InstrumentSans-700-normal-latin-ext.woff2);unicode-range:U+0100-02BA,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Instrument Serif';src:url(../../../../nuovo/riskly/fonts/InstrumentSerif-400-normal-latin.woff2)}
+@font-face{font-family:'Instrument Serif';font-style:italic;src:url(../../../../nuovo/riskly/fonts/InstrumentSerif-400-italic-latin.woff2)}
+@font-face{font-family:'JetBrains Mono';font-weight:500;src:url(../../../../nuovo/riskly/fonts/JetBrainsMono-500-normal-latin.woff2)}
+@font-face{font-family:'JetBrains Mono';font-weight:600;src:url(../../../../nuovo/riskly/fonts/JetBrainsMono-600-normal-latin.woff2)}
+:root{--carta:#FBFBF9;--fondo:#F3F4F1;--ink:#15181B;--dim:#5E656D;--riga:#CDD1D4;--oro:#B97C00;--oro-hi:#E9A10F;--su:#1E7F45;--giu:#C2361F}
+@page{size:A4;margin:16mm 16mm 18mm}
+@page:first{margin:0}
+*{box-sizing:border-box}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{margin:0;font-family:'Instrument Sans',Arial,sans-serif;color:var(--ink);font-size:10.6pt;line-height:1.55;background:#fff}
+b{font-weight:600}
+.copertina{height:297mm;padding:22mm 20mm 18mm;background:radial-gradient(110mm 90mm at 100% 0%,rgba(233,161,15,.22),transparent 70%),var(--fondo);position:relative;page-break-after:always;display:flex;flex-direction:column}
+.marca{font-weight:700;font-size:17pt;letter-spacing:-.02em}.marca span{color:var(--oro)}
+.kicker,.lk,.bk{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:8pt;letter-spacing:.12em;color:var(--oro)}
+.copertina .kicker{margin-top:38mm}
+.modn{font-family:'JetBrains Mono',monospace;font-size:11pt;color:var(--dim);margin-top:6mm}
+h1{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:46pt;line-height:1;margin:2mm 0 12mm;letter-spacing:-.01em}
+h1 b,h2 b{font-weight:400;font-style:italic;color:var(--oro)}
+.indice{list-style:none;padding:0;margin:0 0 10mm;border-top:1px solid var(--ink)}
+.indice li{padding:3mm 0;border-bottom:1px solid var(--riga);font-size:12pt;display:flex;gap:6mm}
+.indice span{font-family:'JetBrains Mono',monospace;color:var(--oro);font-weight:600;min-width:12mm}
+.contiene{background:#fff;border:1px solid var(--riga);border-left:4px solid var(--oro-hi);border-radius:8px;padding:4mm 5mm;font-size:10pt}
+.avv{font-size:8pt;color:var(--dim);line-height:1.45}
+.copertina .avv{margin-top:auto}
+.fine{margin-top:10mm;border-top:1px solid var(--riga);padding-top:3mm}
+section.lezione,section.esercizi,section.soluzioni,section.check{page-break-before:always}
+h2{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:28pt;line-height:1.05;margin:1.5mm 0 3mm;letter-spacing:-.01em}
+.lead{color:var(--dim);font-size:11.5pt;margin:0 0 5mm}
+h3{font-size:12.5pt;font-weight:700;margin:7mm 0 2.5mm;letter-spacing:-.01em;break-after:avoid}
+h3::before{content:"";display:inline-block;width:7px;height:7px;background:var(--oro-hi);border-radius:2px;margin:0 7px 2px 0}
+.blocco{break-inside:auto}
+.voce{margin:2mm 0 0;color:#2a2f34;text-align:left}
+ul.punti{margin:0;padding:0;list-style:none}
+ul.punti li{padding:1.6mm 0 1.6mm 6mm;position:relative;border-bottom:1px dashed #e1e3e5;break-inside:avoid}
+ul.punti li::before{content:"→";position:absolute;left:0;color:var(--oro);font-weight:700}
+.spieg{color:var(--dim)}
+.formula{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:13pt;background:var(--ink);color:#fff;border-radius:10px;padding:5mm 6mm;text-align:center;margin:2mm 0 3mm;break-inside:avoid}
+.legenda{display:grid;grid-template-columns:auto 1fr;gap:1.2mm 5mm;margin:0 0 2mm;font-size:10pt}
+.legenda dt{font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--oro)}.legenda dd{margin:0}
+table{width:100%;table-layout:fixed;border-collapse:separate;border-spacing:0;margin:2mm 0;font-size:10pt;background:#fff;border-radius:8px;border:1px solid var(--riga)}
+tr{break-inside:avoid}
+th{background:var(--ink);color:#fff;text-align:left;font-weight:600;padding:2mm 3mm}
+td{padding:1.8mm 3mm;border-top:1px solid #e6e8ea}
+table.es td:last-child{font-family:'JetBrains Mono',monospace;font-weight:500;text-align:right;white-space:nowrap}
+table.es td:first-child{color:var(--dim);width:62%}
+.ris{background:rgba(233,161,15,.14);border:1px solid rgba(185,124,0,.35);border-radius:8px;padding:2.5mm 4mm;font-weight:600;margin:2mm 0;break-inside:avoid}
+.nota{font-size:9.5pt;color:var(--dim);font-style:italic;margin:1mm 0}
+.confronto{display:grid;grid-template-columns:1fr 1fr;gap:4mm;break-inside:avoid}
+.ct{font-weight:700;margin-bottom:1mm}
+.numero{font-family:'Instrument Serif',Georgia,serif;font-size:40pt;color:var(--oro);line-height:1}
+figure{margin:2mm 0;break-inside:avoid}
+figure img{width:100%;border-radius:10px;display:block}
+figcaption{font-size:9pt;color:var(--dim);margin-top:1.5mm}
+blockquote{margin:8mm 0 2mm;padding:5mm 6mm;border-left:4px solid var(--oro-hi);font-family:'Instrument Serif',Georgia,serif;font-size:17pt;line-height:1.2;background:#fff;border-radius:0 10px 10px 0;break-inside:avoid}
+blockquote b{font-weight:400;font-style:italic;color:var(--oro)}
+.avviso{background:#fff;border:1px solid var(--riga);border-radius:10px;padding:3mm 5mm}
+.avviso p{margin:1.5mm 0}
+.rimando{margin:6mm 0 2mm;padding:3mm 4mm;border:1.5px dashed var(--oro);border-radius:8px;font-size:10pt;color:#6b4a00;break-inside:avoid}
+.breve{margin:7mm 0 2mm;background:var(--ink);color:#fff;border-radius:12px;padding:5mm 6mm;break-inside:avoid}
+.breve .bk{color:var(--oro-hi);margin-bottom:2mm}
+.breve ul{margin:0;padding-left:5mm}.breve li{margin:1.2mm 0}
+.esr{display:grid;grid-template-columns:9mm 1fr;gap:3mm;margin:0 0 6mm;break-inside:avoid}
+.esn{width:8mm;height:8mm;border-radius:50%;background:var(--oro-hi);color:#2B1E00;font-family:'JetBrains Mono',monospace;font-weight:600;display:grid;place-items:center;font-size:10pt}
+.est{font-weight:700;margin-bottom:1mm}.est span{font-weight:400;color:var(--dim);font-size:9.5pt}
+.cl{margin:0 0 4mm;break-inside:avoid}
+.clt{font-family:'JetBrains Mono',monospace;font-size:9pt;color:var(--oro);font-weight:600;margin-bottom:1mm}
+.cl ul{list-style:none;margin:0;padding:0}
+.cl li{padding:1.4mm 0 1.4mm 8mm;position:relative;border-bottom:1px solid #e6e8ea}
+.cl li::before{content:"";position:absolute;left:0;top:2.2mm;width:4mm;height:4mm;border:1.5px solid var(--ink);border-radius:3px}
+</style></head><body><section class="copertina">
+<div class="marca">Riskly<span>.trade</span></div>
+<div class="kicker">CORSO DI GESTIONE DEL RISCHIO · DISPENSA</div>
+<div class="modn">Modulo 10</div>
+<h1>Il tuo piano</h1>
+<ol class="indice"><li><span>10.1</span>Scrivere il piano di gestione del rischio</li><li><span>10.2</span>La revisione mensile e il punto di arrivo</li></ol>
+<div class="contiene"><b>In questa dispensa</b> il testo di ogni lezione, le formule, gli esempi svolti, 1 esercizi con soluzioni e la checklist del modulo.</div>
+<p class="avv">Materiale educativo, non consulenza finanziaria. Il trading con leva su forex, CFD e futures comporta un rischio elevato: puoi perdere tutto il capitale. Numeri, esempi e simulazioni non prevedono risultati futuri.</p></section><section class="lezione"><div class="lk">LEZIONE 10.1</div><h2>Scrivere il piano di gestione del rischio</h2>
+<p class="lead">Una pagina, con i numeri, scritta prima di operare.</p>
+<div class="blocco"><h3>Perché una pagina</h3><ul class="punti"><li><b>Un piano lungo non si rilegge</b><span class="spieg"> — una pagina sì, ogni mattina</span></li><li><b>Ogni riga è un numero o una regola</b><span class="spieg"> — niente aggettivi</span></li><li><b>Si firma e si data</b><span class="spieg"> — è un impegno con te stesso</span></li></ul><p class="voce">Perché una sola pagina? Un piano lungo non si rilegge. Una pagina sì, ogni mattina. Ogni riga è un numero o una regola, niente aggettivi. E la firmi e la data: è un impegno con te stesso.</p></div>
+<div class="blocco"><h3>Le sette sezioni del piano</h3><table class=""><thead><tr><th>Sezione</th><th>Cosa contiene</th></tr></thead><tbody><tr><td>1 · Il sistema</td><td>win rate, RR medio, expectancy, numero di trade misurati</td></tr><tr><td>2 · Il rischio</td><td>rischio per trade, rischio aperto massimo, metodo di calcolo del lotto</td></tr><tr><td>3 · I limiti</td><td>perdita giornaliera, perdite di fila → stop, trade massimi</td></tr><tr><td>4 · Drawdown</td><td>soglie per ridurre il rischio e per fermarsi</td></tr><tr><td>5 · La gestione</td><td>break-even, trailing, scaglioni, aggiunte</td></tr><tr><td>6 · La checklist</td><td>le domande prima di ogni ingresso</td></tr><tr><td>7 · La revisione</td><td>quando e come controllo il piano</td></tr></tbody></table></div>
+<div class="blocco"><h3>Un piano compilato (valori di esempio)</h3><table class=""><thead><tr><th>Voce</th><th>Valore</th></tr></thead><tbody><tr><td>Sistema</td><td>WR 45%, RR 1,8, E = +0,26 R (200 trade)</td></tr><tr><td>Rischio per trade</td><td>1% del capitale corrente</td></tr><tr><td>Rischio aperto massimo</td><td>3%</td></tr><tr><td>Stop giornaliero</td><td>−3% o 3 perdite di fila</td></tr><tr><td>Trade massimi al giorno</td><td>3</td></tr><tr><td>Drawdown &gt; 10%</td><td>rischio 0,5%</td></tr><tr><td>Drawdown &gt; 15%</td><td>sospendo e rivedo il sistema</td></tr></tbody></table><p class="nota">Esempio: non è un consiglio. I tuoi valori dipendono dal tuo sistema.</p></div>
+<div class="blocco"><h3>Prima di firmare, tre verifiche</h3><ul class="punti"><li><b>Ogni numero è coerente con il drawdown che sopporto?</b><span class="spieg"> — usa la tabella della lezione 3.5</span></li><li><b>Il piano regge lo stress test?</b><span class="spieg"> — prova con win rate più basso e costi più alti</span></li><li><b>Posso rispettarlo anche nel giorno peggiore?</b><span class="spieg"> — se no, è troppo ambizioso</span></li></ul><p class="voce">Prima di firmare, tre verifiche. Ogni numero è coerente con il drawdown che sopporti? Usa la tabella della lezione tre punto cinque. Il piano regge lo stress test? Prova con un win rate più basso e costi più alti. E puoi rispettarlo anche nel giorno peggiore? Se no, è troppo ambizioso: riducilo ora, non dopo.</p></div>
+<div class="rimando">✎ Esercizio 1 · il tuo piano — lo trovi in fondo al modulo, con la soluzione.</div>
+<div class="breve"><div class="bk">IN BREVE</div><ul><li>Il piano sta in una pagina e ogni riga è un numero</li><li>Sette sezioni: sistema, rischio, limiti, drawdown, gestione, checklist, revisione</li><li>Verifica coerenza, stress test e giorno peggiore prima di firmare</li></ul></div>
+<div class="blocco"><blockquote>Un piano che non hai <b>scritto</b> non esiste.</blockquote></div>
+</section><section class="lezione"><div class="lk">LEZIONE 10.2</div><h2>La revisione mensile e il punto di arrivo</h2>
+<p class="lead">Come tenere vivo il piano e cosa ricordare del corso.</p>
+<div class="blocco"><h3>Una revisione al mese</h3><ul class="punti"><li><b>Stessa ora, stesso formato</b><span class="spieg"> — quindici minuti, con i dati del journal</span></li><li><b>Guardi i numeri, non le sensazioni</b><span class="spieg"> — expectancy, profit factor, drawdown, regole rispettate</span></li><li><b>Decidi solo cambiamenti piccoli e documentati</b><span class="spieg"> — mai dopo una singola giornata storta</span></li></ul><p class="voce">Una volta al mese fai una revisione. Stessa ora, stesso formato, quindici minuti, con i dati del journal. Guardi i numeri, non le sensazioni: expectancy, profit factor, drawdown e regole rispettate. E decidi solo cambiamenti piccoli e documentati, mai dopo una singola giornata storta.</p></div>
+<div class="blocco"><h3>Gli indicatori della revisione</h3><table class=""><thead><tr><th>Indicatore</th><th>Cosa ti dice</th></tr></thead><tbody><tr><td>Expectancy in R</td><td>il sistema ha ancora un vantaggio?</td></tr><tr><td>Profit factor</td><td>guadagni contro perdite</td></tr><tr><td>Drawdown massimo del mese</td><td>ho rispettato i limiti?</td></tr><tr><td>R previsto contro realizzato</td><td>sto eseguendo il piano?</td></tr><tr><td>% di checklist rispettata</td><td>quanto sono disciplinato?</td></tr><tr><td>Trade fuori piano</td><td>quanto mi costano?</td></tr></tbody></table></div>
+<div class="blocco"><h3>Quando cambiare il piano</h3><table class=""><thead><tr><th>Situazione</th><th>Azione</th></tr></thead><tbody><tr><td>Poche operazioni (meno di ~100)</td><td>nessun cambiamento sul sistema</td></tr><tr><td>Errori di esecuzione</td><td>lavora sulle regole, non sul sistema</td></tr><tr><td>Expectancy negativa su 100+ trade</td><td>sospendi e rivedi il sistema</td></tr><tr><td>Drawdown oltre la soglia scritta</td><td>applica la regola già decisa</td></tr></tbody></table></div>
+<div class="blocco"><h3>Le tre domande, con le tue risposte</h3><ul class="punti"><li><b>Quanto posso perdere al massimo su un trade?</b><span class="spieg"> — il tuo rischio per trade</span></li><li><b>Quante perdite di fila posso reggere?</b><span class="spieg"> — il tuo limite e il tuo rischio, dalla lezione 3.3</span></li><li><b>Quando mi fermo?</b><span class="spieg"> — i tuoi stop giornalieri e di drawdown</span></li></ul><p class="voce">Ricordi le tre domande della prima lezione? Ora hai le risposte. Quanto posso perdere al massimo su un trade? Il tuo rischio per trade. Quante perdite di fila posso reggere? Il tuo limite e il tuo rischio, calcolati con la composizione. E quando mi fermo? I tuoi stop giornalieri e di drawdown.</p></div>
+<div class="blocco"><h3>Cosa portare via</h3><ul class="punti"><li><b>Il rischio viene prima della strategia</b><span class="spieg"> — decide se sopravvivi e quanto soffri</span></li><li><b>Misura tutto in R</b><span class="spieg"> — e tienilo in un journal</span></li><li><b>Dimensiona con numeri, non con l&#x27;umore</b><span class="spieg"> — rischio fisso, volatilità, Kelly come tetto</span></li><li><b>Scrivi le regole prima</b><span class="spieg"> — e rivedile con calma, una volta al mese</span></li></ul><p class="voce">Cosa portare via da questo corso. Il rischio viene prima della strategia: decide se sopravvivi e quanto soffri. Misura tutto in R e tienilo in un journal. Dimensiona con i numeri, non con l&#x27;umore: rischio fisso, volatilità e Kelly come tetto. Scrivi le regole prima, e rivedile con calma, una volta al mese.</p></div>
+<div class="blocco"><h3>Un ultimo avviso</h3><div class="avviso"><p><b>Questo corso è educativo e non è consulenza finanziaria.</b></p><p>Il trading con leva comporta un rischio elevato: <b>puoi perdere tutto il capitale</b>.</p><p>Numeri, tabelle e simulazioni sono esempi: <b>non prevedono risultati futuri</b>.</p><p>Gli strumenti Riskly citati sono <b>prodotti miei</b>: non sono necessari per applicare quanto hai imparato.</p></div></div>
+<div class="blocco"><blockquote>Non puoi controllare il mercato. Puoi controllare <b>quanto rischi</b>.</blockquote></div>
+</section><section class="esercizi"><div class="lk">ALLENATI</div><h2>Esercizi</h2><p class="lead">Prova a risolverli senza guardare: le soluzioni sono nella pagina successiva.</p><div class="esr"><div class="esn">1</div><div><div class="est">il tuo piano <span>· lezione 10.1</span></div><table class="es"><tbody><tr><td>Compito</td><td>compila le sette sezioni con i TUOI numeri</td></tr><tr><td>Tempo</td><td>30 minuti</td></tr><tr><td>Poi</td><td>stampa, firma, data</td></tr></tbody></table></div></div></section><section class="soluzioni"><div class="lk">SOLUZIONI</div><h2>Soluzioni</h2><div class="esr"><div class="esn">1</div><div><div class="est">il tuo piano</div><table class="es"><tbody><tr><td>Controlla</td><td>drawdown tollerabile</td></tr><tr><td></td><td>stress test</td></tr><tr><td></td><td>giorno peggiore</td></tr></tbody></table><div class="ris">Un piano firmato vale più di cento buoni propositi</div><p class="voce">Controlla tre cose: il drawdown tollerabile, lo stress test e se puoi rispettarlo nel giorno peggiore. Un piano firmato vale più di cento buoni propositi.</p></div></div></section><section class="check"><div class="lk">PRIMA DI PASSARE AL MODULO SUCCESSIVO</div><h2>Checklist del modulo</h2><p class="lead">Spunta ogni punto solo se sapresti spiegarlo a voce a un altro trader.</p><div class="cl"><div class="clt">10.1 · Scrivere il piano di gestione del rischio</div><ul><li>Il piano sta in una pagina e ogni riga è un numero</li><li>Sette sezioni: sistema, rischio, limiti, drawdown, gestione, checklist, revisione</li><li>Verifica coerenza, stress test e giorno peggiore prima di firmare</li></ul></div></section><p class="avv fine">Materiale educativo, non consulenza finanziaria. Il trading con leva su forex, CFD e futures comporta un rischio elevato: puoi perdere tutto il capitale. Numeri, esempi e simulazioni non prevedono risultati futuri. · riskly.trade</p></body></html>

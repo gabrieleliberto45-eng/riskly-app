@@ -1,0 +1,94 @@
+<!DOCTYPE html><html lang="it"><head><meta charset="utf-8"><title>Riskly · Gestione del rischio · Introduzione</title>
+<style>@font-face{font-family:'Instrument Sans';font-weight:400;src:url(../../../../nuovo/riskly/fonts/InstrumentSans-400-normal-latin.woff2)}
+@font-face{font-family:'Instrument Sans';font-weight:400;src:url(../../../../nuovo/riskly/fonts/InstrumentSans-400-normal-latin-ext.woff2);unicode-range:U+0100-02BA,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Instrument Sans';font-weight:500;src:url(../../../../nuovo/riskly/fonts/InstrumentSans-500-normal-latin.woff2)}
+@font-face{font-family:'Instrument Sans';font-weight:500;src:url(../../../../nuovo/riskly/fonts/InstrumentSans-500-normal-latin-ext.woff2);unicode-range:U+0100-02BA,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Instrument Sans';font-weight:600;src:url(../../../../nuovo/riskly/fonts/InstrumentSans-600-normal-latin.woff2)}
+@font-face{font-family:'Instrument Sans';font-weight:600;src:url(../../../../nuovo/riskly/fonts/InstrumentSans-600-normal-latin-ext.woff2);unicode-range:U+0100-02BA,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Instrument Sans';font-weight:700;src:url(../../../../nuovo/riskly/fonts/InstrumentSans-700-normal-latin.woff2)}
+@font-face{font-family:'Instrument Sans';font-weight:700;src:url(../../../../nuovo/riskly/fonts/InstrumentSans-700-normal-latin-ext.woff2);unicode-range:U+0100-02BA,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Instrument Serif';src:url(../../../../nuovo/riskly/fonts/InstrumentSerif-400-normal-latin.woff2)}
+@font-face{font-family:'Instrument Serif';font-style:italic;src:url(../../../../nuovo/riskly/fonts/InstrumentSerif-400-italic-latin.woff2)}
+@font-face{font-family:'JetBrains Mono';font-weight:500;src:url(../../../../nuovo/riskly/fonts/JetBrainsMono-500-normal-latin.woff2)}
+@font-face{font-family:'JetBrains Mono';font-weight:600;src:url(../../../../nuovo/riskly/fonts/JetBrainsMono-600-normal-latin.woff2)}
+:root{--carta:#FBFBF9;--fondo:#F3F4F1;--ink:#15181B;--dim:#5E656D;--riga:#CDD1D4;--oro:#B97C00;--oro-hi:#E9A10F;--su:#1E7F45;--giu:#C2361F}
+@page{size:A4;margin:16mm 16mm 18mm}
+@page:first{margin:0}
+*{box-sizing:border-box}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{margin:0;font-family:'Instrument Sans',Arial,sans-serif;color:var(--ink);font-size:10.6pt;line-height:1.55;background:#fff}
+b{font-weight:600}
+.copertina{height:297mm;padding:22mm 20mm 18mm;background:radial-gradient(110mm 90mm at 100% 0%,rgba(233,161,15,.22),transparent 70%),var(--fondo);position:relative;page-break-after:always;display:flex;flex-direction:column}
+.marca{font-weight:700;font-size:17pt;letter-spacing:-.02em}.marca span{color:var(--oro)}
+.kicker,.lk,.bk{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:8pt;letter-spacing:.12em;color:var(--oro)}
+.copertina .kicker{margin-top:38mm}
+.modn{font-family:'JetBrains Mono',monospace;font-size:11pt;color:var(--dim);margin-top:6mm}
+h1{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:46pt;line-height:1;margin:2mm 0 12mm;letter-spacing:-.01em}
+h1 b,h2 b{font-weight:400;font-style:italic;color:var(--oro)}
+.indice{list-style:none;padding:0;margin:0 0 10mm;border-top:1px solid var(--ink)}
+.indice li{padding:3mm 0;border-bottom:1px solid var(--riga);font-size:12pt;display:flex;gap:6mm}
+.indice span{font-family:'JetBrains Mono',monospace;color:var(--oro);font-weight:600;min-width:12mm}
+.contiene{background:#fff;border:1px solid var(--riga);border-left:4px solid var(--oro-hi);border-radius:8px;padding:4mm 5mm;font-size:10pt}
+.avv{font-size:8pt;color:var(--dim);line-height:1.45}
+.copertina .avv{margin-top:auto}
+.fine{margin-top:10mm;border-top:1px solid var(--riga);padding-top:3mm}
+section.lezione,section.esercizi,section.soluzioni,section.check{page-break-before:always}
+h2{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:28pt;line-height:1.05;margin:1.5mm 0 3mm;letter-spacing:-.01em}
+.lead{color:var(--dim);font-size:11.5pt;margin:0 0 5mm}
+h3{font-size:12.5pt;font-weight:700;margin:7mm 0 2.5mm;letter-spacing:-.01em;break-after:avoid}
+h3::before{content:"";display:inline-block;width:7px;height:7px;background:var(--oro-hi);border-radius:2px;margin:0 7px 2px 0}
+.blocco{break-inside:auto}
+.voce{margin:2mm 0 0;color:#2a2f34;text-align:left}
+ul.punti{margin:0;padding:0;list-style:none}
+ul.punti li{padding:1.6mm 0 1.6mm 6mm;position:relative;border-bottom:1px dashed #e1e3e5;break-inside:avoid}
+ul.punti li::before{content:"→";position:absolute;left:0;color:var(--oro);font-weight:700}
+.spieg{color:var(--dim)}
+.formula{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:13pt;background:var(--ink);color:#fff;border-radius:10px;padding:5mm 6mm;text-align:center;margin:2mm 0 3mm;break-inside:avoid}
+.legenda{display:grid;grid-template-columns:auto 1fr;gap:1.2mm 5mm;margin:0 0 2mm;font-size:10pt}
+.legenda dt{font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--oro)}.legenda dd{margin:0}
+table{width:100%;table-layout:fixed;border-collapse:separate;border-spacing:0;margin:2mm 0;font-size:10pt;background:#fff;border-radius:8px;border:1px solid var(--riga)}
+tr{break-inside:avoid}
+th{background:var(--ink);color:#fff;text-align:left;font-weight:600;padding:2mm 3mm}
+td{padding:1.8mm 3mm;border-top:1px solid #e6e8ea}
+table.es td:last-child{font-family:'JetBrains Mono',monospace;font-weight:500;text-align:right;white-space:nowrap}
+table.es td:first-child{color:var(--dim);width:62%}
+.ris{background:rgba(233,161,15,.14);border:1px solid rgba(185,124,0,.35);border-radius:8px;padding:2.5mm 4mm;font-weight:600;margin:2mm 0;break-inside:avoid}
+.nota{font-size:9.5pt;color:var(--dim);font-style:italic;margin:1mm 0}
+.confronto{display:grid;grid-template-columns:1fr 1fr;gap:4mm;break-inside:avoid}
+.ct{font-weight:700;margin-bottom:1mm}
+.numero{font-family:'Instrument Serif',Georgia,serif;font-size:40pt;color:var(--oro);line-height:1}
+figure{margin:2mm 0;break-inside:avoid}
+figure img{width:100%;border-radius:10px;display:block}
+figcaption{font-size:9pt;color:var(--dim);margin-top:1.5mm}
+blockquote{margin:8mm 0 2mm;padding:5mm 6mm;border-left:4px solid var(--oro-hi);font-family:'Instrument Serif',Georgia,serif;font-size:17pt;line-height:1.2;background:#fff;border-radius:0 10px 10px 0;break-inside:avoid}
+blockquote b{font-weight:400;font-style:italic;color:var(--oro)}
+.avviso{background:#fff;border:1px solid var(--riga);border-radius:10px;padding:3mm 5mm}
+.avviso p{margin:1.5mm 0}
+.rimando{margin:6mm 0 2mm;padding:3mm 4mm;border:1.5px dashed var(--oro);border-radius:8px;font-size:10pt;color:#6b4a00;break-inside:avoid}
+.breve{margin:7mm 0 2mm;background:var(--ink);color:#fff;border-radius:12px;padding:5mm 6mm;break-inside:avoid}
+.breve .bk{color:var(--oro-hi);margin-bottom:2mm}
+.breve ul{margin:0;padding-left:5mm}.breve li{margin:1.2mm 0}
+.esr{display:grid;grid-template-columns:9mm 1fr;gap:3mm;margin:0 0 6mm;break-inside:avoid}
+.esn{width:8mm;height:8mm;border-radius:50%;background:var(--oro-hi);color:#2B1E00;font-family:'JetBrains Mono',monospace;font-weight:600;display:grid;place-items:center;font-size:10pt}
+.est{font-weight:700;margin-bottom:1mm}.est span{font-weight:400;color:var(--dim);font-size:9.5pt}
+.cl{margin:0 0 4mm;break-inside:avoid}
+.clt{font-family:'JetBrains Mono',monospace;font-size:9pt;color:var(--oro);font-weight:600;margin-bottom:1mm}
+.cl ul{list-style:none;margin:0;padding:0}
+.cl li{padding:1.4mm 0 1.4mm 8mm;position:relative;border-bottom:1px solid #e6e8ea}
+.cl li::before{content:"";position:absolute;left:0;top:2.2mm;width:4mm;height:4mm;border:1.5px solid var(--ink);border-radius:3px}
+</style></head><body><section class="copertina">
+<div class="marca">Riskly<span>.trade</span></div>
+<div class="kicker">CORSO DI GESTIONE DEL RISCHIO · DISPENSA</div>
+<div class="modn">Introduzione</div>
+<h1>Prima di cominciare</h1>
+<ol class="indice"><li><span>0.0</span>Benvenuto e come usare il corso</li></ol>
+<div class="contiene"><b>In questa dispensa</b> il testo di ogni lezione, le formule, gli esempi svolti e la checklist del modulo.</div>
+<p class="avv">Materiale educativo, non consulenza finanziaria. Il trading con leva su forex, CFD e futures comporta un rischio elevato: puoi perdere tutto il capitale. Numeri, esempi e simulazioni non prevedono risultati futuri.</p></section><section class="lezione"><div class="lk">LEZIONE 0.0</div><h2>Benvenuto e come usare il corso</h2>
+<p class="lead">Dalle basi alla gestione avanzata, con numeri veri e un piano scritto alla fine.</p>
+<p class="voce">Benvenuto. In questo corso impari a gestire il rischio nel trading, partendo da zero e arrivando fino agli strumenti dei professionisti. Il filo conduttore è uno solo: non puoi controllare il mercato, ma puoi controllare quanto rischi.</p>
+<div class="blocco"><h3>A chi serve questo corso</h3><ul class="punti"><li><b>A chi inizia</b><span class="spieg"> — e vuole partire con le regole giuste, prima di perdere i primi soldi</span></li><li><b>A chi ha già un conto</b><span class="spieg"> — e sente che i risultati dipendono troppo dall&#x27;umore del giorno</span></li><li><b>A chi fa una prova di prop firm</b><span class="spieg"> — e non vuole bruciare la sfida per un limite superato</span></li></ul><p class="voce">Il corso serve a tre tipi di persone. A chi inizia, e vuole partire con le regole giuste prima di perdere i primi soldi. A chi ha già un conto, ma sente che i risultati dipendono troppo dall&#x27;umore del giorno. E a chi affronta la sfida di una prop firm, e non vuole perderla per un limite superato di un soffio.</p></div>
+<div class="blocco"><h3>Come è fatto</h3><ul class="punti"><li><b>Dieci moduli, quarantasei lezioni</b><span class="spieg"> — ogni lezione dura pochi minuti e tratta un solo concetto</span></li><li><b>Prima il perché, poi i numeri</b><span class="spieg"> — ogni formula arriva con un esempio svolto</span></li><li><b>Alla fine un piano scritto</b><span class="spieg"> — il tuo piano di gestione del rischio, su una pagina</span></li></ul><p class="voce">Il corso è diviso in dieci moduli e quarantasei lezioni. Ogni lezione dura pochi minuti e tratta un solo concetto. Prima ti spiego il perché, poi arrivano i numeri. Ogni formula è accompagnata da un esempio svolto, passo per passo. E alla fine del percorso avrai scritto il tuo piano di gestione del rischio, su una sola pagina.</p></div>
+<div class="blocco"><h3>I dieci moduli</h3><table class=""><thead><tr><th>Modulo</th><th>Di cosa parla</th></tr></thead><tbody><tr><td>1 · Le basi</td><td>rischio per trade, stop, lotto, R</td></tr><tr><td>2 · Misurare un sistema</td><td>expectancy, profit factor, campione</td></tr><tr><td>3 · Drawdown e perdite</td><td>recuperi, serie, composizione</td></tr><tr><td>4 · Dimensionare</td><td>rischio fisso, ATR, Kelly, correlazione</td></tr><tr><td>5 · Simulare</td><td>Monte Carlo e probabilità di rovina</td></tr><tr><td>6 · Disciplina</td><td>regole, limiti, checklist</td></tr><tr><td>7 · Prop firm</td><td>limiti giornalieri e trailing</td></tr><tr><td>8 · Gestire la posizione</td><td>break-even, scaglioni, strumenti</td></tr><tr><td>9 · Tecniche avanzate</td><td>compounding, trailing, scaglioni, mitigazione, hedging</td></tr><tr><td>10 · Il tuo piano</td><td>scrittura e revisione</td></tr></tbody></table></div>
+<div class="blocco"><h3>Un avviso importante</h3><div class="avviso"><p><b>Questo corso è educativo e non è consulenza finanziaria.</b></p><p>Il trading con leva, su forex, CFD e futures, comporta un rischio elevato: <b>puoi perdere tutto il capitale investito</b>.</p><p>I numeri che vedrai sono esempi e simulazioni: non sono promesse di guadagno e non indicano risultati futuri.</p><p>Nelle lezioni in cui parlo di strumenti Riskly lo dichiaro: <b>sono prodotti miei</b>.</p></div></div>
+<div class="blocco"><blockquote>Non controlli il mercato. Controlli <b>quanto rischi</b>.</blockquote></div>
+</section><p class="avv fine">Materiale educativo, non consulenza finanziaria. Il trading con leva su forex, CFD e futures comporta un rischio elevato: puoi perdere tutto il capitale. Numeri, esempi e simulazioni non prevedono risultati futuri. · riskly.trade</p></body></html>
