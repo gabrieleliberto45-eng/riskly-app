@@ -1,0 +1,242 @@
+{
+ "id": "v06",
+ "serie": "Guida pratica",
+ "titolo": "Lotto sull'oro: l'errore che ti fa rischiare 10 volte di più",
+ "scene": [
+  {
+   "capitolo": "Introduzione",
+   "tipo": "titolo",
+   "grande": "Lotto sull'oro:<br><mark>pip o dollari?</mark>",
+   "piccolo": "Lo stesso stop di \"30\" può voler dire 3 dollari o 30 dollari. E il lotto cambia di dieci volte.",
+   "voce": "Se fai trading sull'oro, prima o poi ti succede: scrivi trenta come distanza dello stop, il calcolatore ti dice zero virgola trentatré lotti, e tu pensavi zero virgola zero tre. Chi ha ragione? Dipende da cosa intendi con trenta: trenta pip o trenta dollari. In questo video facciamo il calcolo del lotto da zero, prima sull'euro dollaro e poi sull'oro, e vediamo l'errore che può farti rischiare dieci volte più del previsto. Niente segnali, solo numeri."
+  },
+  {
+   "capitolo": "La formula",
+   "tipo": "punti",
+   "titolo": "La formula, sempre la stessa",
+   "punti": [
+    [
+     "Rischio in denaro",
+     "capitale × percentuale, per esempio 1%"
+    ],
+    [
+     "Stop in pip",
+     "dall'ingresso allo stop"
+    ],
+    [
+     "Valore del pip",
+     "con un lotto intero"
+    ],
+    [
+     "Lotti",
+     "rischio ÷ (stop × valore del pip)"
+    ]
+   ],
+   "voce": "La formula è sempre la stessa, su qualunque strumento. Primo: il rischio in denaro, cioè il capitale per la percentuale che decidi, per esempio l'uno per cento. Secondo: la distanza dello stop in pip, dal prezzo di ingresso allo stop, scelta guardando il grafico. Terzo: il valore del pip, cioè quanto vale un pip con un lotto intero. E i lotti sono il rischio diviso lo stop in pip per il valore del pip. Il problema non è la formula: è sapere quanto vale davvero un pip."
+  },
+  {
+   "capitolo": "Esempio su EURUSD",
+   "tipo": "numeri",
+   "titolo": "Esempio su EURUSD",
+   "colonne": [
+    "Dato",
+    "Valore"
+   ],
+   "righe": [
+    [
+     "Rischio 1% di 10.000 $",
+     "100 $"
+    ],
+    [
+     "Stop",
+     "25 pip"
+    ],
+    [
+     "Valore del pip per 1 lotto",
+     "10 $"
+    ],
+    [
+     "Lotti",
+     "100 ÷ (25 × 10) = 0,40"
+    ]
+   ],
+   "nota": "Esempio illustrativo con conto in dollari. Con un conto in euro il valore del pip cambia un po' con il cambio.",
+   "voce": "Partiamo dal caso più semplice, l'euro dollaro, con un conto in dollari per non complicare i conti. Capitale diecimila dollari, rischio l'uno per cento: cento dollari. Entri a uno virgola uno zero zero zero e metti lo stop a uno virgola zero nove sette cinque: sono venticinque pip. Sull'euro dollaro un pip è la quarta cifra decimale, e con un lotto intero vale dieci dollari. Quindi cento diviso venticinque per dieci: zero virgola quaranta lotti. Se lo stop scatta, perdi cento dollari. Esattamente quello che avevi deciso."
+  },
+  {
+   "capitolo": "L'oro in pip",
+   "tipo": "numeri",
+   "titolo": "L'oro, in pip",
+   "colonne": [
+    "Dato",
+    "Valore"
+   ],
+   "righe": [
+    [
+     "1 lotto · 1 pip",
+     "100 once · 0,10 $"
+    ],
+    [
+     "Valore del pip per 1 lotto",
+     "10 $"
+    ],
+    [
+     "Stop di 30 pip",
+     "3 $ di prezzo"
+    ],
+    [
+     "Lotti per 100 $",
+     "100 ÷ (30 × 10) = 0,33"
+    ]
+   ],
+   "nota": "Convenzione più diffusa: controlla le specifiche del tuo broker.",
+   "voce": "Ora l'oro. Su quasi tutti i broker un lotto di oro sono cento once. Con la convenzione più diffusa, un pip sull'oro è dieci centesimi di prezzo: da duemilaseicentocinquanta virgola zero a duemilaseicentocinquanta virgola uno. Con un lotto, dieci centesimi per cento once fanno dieci dollari: un pip vale dieci dollari, come sull'euro dollaro. Uno stop di trenta pip è quindi una distanza di tre dollari sul prezzo. E per rischiare cento dollari ti servono cento diviso trenta per dieci: zero virgola trentatré lotti."
+  },
+  {
+   "capitolo": "L'oro in dollari",
+   "tipo": "numeri",
+   "titolo": "L'oro, in dollari",
+   "colonne": [
+    "Dato",
+    "Valore"
+   ],
+   "righe": [
+    [
+     "Stop di 30 $ di prezzo",
+     "2650 → 2620"
+    ],
+    [
+     "In pip",
+     "30 ÷ 0,10 = 300 pip"
+    ],
+    [
+     "Perdita con 1 lotto",
+     "30 × 100 once = 3.000 $"
+    ],
+    [
+     "Lotti per rischiare 100 $",
+     "100 ÷ 3.000 = 0,03"
+    ]
+   ],
+   "nota": "Molti trader dicono \"30 pip\" intendendo 30 dollari di prezzo: è qui che nasce la confusione.",
+   "voce": "Ma molti trader, quando dicono trenta sull'oro, intendono trenta dollari di prezzo: da duemilaseicentocinquanta a duemilaseicentoventi. Quella è una distanza dieci volte più grande: trecento pip. Con un lotto, trenta dollari per cento once fanno tremila dollari di perdita. Per rischiare cento dollari ti servono cento diviso tremila: zero virgola zero tre lotti. Ecco perché lo stesso numero, trenta, porta a due lotti diversi di dieci volte."
+  },
+  {
+   "capitolo": "L'errore che costa caro",
+   "tipo": "numeri",
+   "titolo": "L'errore che costa caro",
+   "colonne": [
+    "Cosa succede",
+    "Numeri"
+   ],
+   "righe": [
+    [
+     "Stop vero sul grafico",
+     "30 $ di prezzo"
+    ],
+    [
+     "Lotto calcolato per \"30 pip\"",
+     "0,33"
+    ],
+    [
+     "Perdita se scatta lo stop",
+     "0,33 × 3.000 = 990 $"
+    ],
+    [
+     "Sul conto da 10.000 $",
+     "<mark>circa −10% invece di −1%</mark>"
+    ]
+   ],
+   "voce": "Ed ecco l'errore che costa caro. Sul grafico metti lo stop a trenta dollari di distanza, ma nel calcolatore scrivi trenta pip. Il calcolatore ti dà zero virgola trentatré lotti. Se lo stop scatta, perdi zero virgola trentatré per tremila: novecentonovanta dollari. Su un conto da diecimila, quasi il dieci per cento in un solo trade, invece dell'uno per cento che avevi deciso. L'errore opposto è meno grave ma fastidioso: se lo stop è di tre dollari e apri zero virgola zero tre lotti, perdi solo nove dollari, e il trade non conta quasi nulla."
+  },
+  {
+   "capitolo": "E con un conto in euro?",
+   "tipo": "numeri",
+   "titolo": "Con un conto in euro",
+   "colonne": [
+    "Dato",
+    "Valore"
+   ],
+   "righe": [
+    [
+     "Rischio 1% di 10.000 €",
+     "100 € ≈ 115 $"
+    ],
+    [
+     "Cambio EURUSD (esempio)",
+     "1,15"
+    ],
+    [
+     "Oro, stop 30 $ di prezzo",
+     "115 ÷ 3.000 = 0,038"
+    ],
+    [
+     "Arrotondato per difetto",
+     "0,03 lotti"
+    ]
+   ],
+   "nota": "Esempio illustrativo: il cambio cambia ogni giorno. Arrotonda sempre per difetto.",
+   "voce": "E se il conto è in euro? L'oro è quotato in dollari, quindi devi portare il rischio nella stessa valuta. Con diecimila euro e l'uno per cento rischi cento euro. Con un cambio di esempio a uno virgola quindici, cento euro sono centoquindici dollari. Con uno stop di trenta dollari di prezzo, un lotto perde tremila dollari: centoquindici diviso tremila fa zero virgola zero trentotto lotti. Il lotto minimo di solito è zero virgola zero uno, quindi arrotondi per difetto a zero virgola zero tre. Arrotondare per difetto significa rischiare un po' meno, mai un po' di più."
+  },
+  {
+   "capitolo": "Stesso rischio, strumenti diversi",
+   "tipo": "numeri",
+   "titolo": "Stesso rischio, stop diversi",
+   "colonne": [
+    "Strumento e stop",
+    "Lotti per rischiare 100 $"
+   ],
+   "righe": [
+    [
+     "EURUSD, 25 pip",
+     "0,40"
+    ],
+    [
+     "EURUSD, 50 pip",
+     "0,20"
+    ],
+    [
+     "Oro, 3 $ di prezzo",
+     "0,33"
+    ],
+    [
+     "Oro, 30 $ di prezzo",
+     "0,03"
+    ]
+   ],
+   "nota": "Valori per conto in dollari, 10 $ a pip per lotto su EURUSD e oro (100 once). Esempi illustrativi.",
+   "voce": "Mettiamo tutto in una tabella, sempre rischiando cento dollari. Sull'euro dollaro con venticinque pip di stop servono zero virgola quaranta lotti, con cinquanta pip la metà, zero virgola venti. Sull'oro, con tre dollari di prezzo servono zero virgola trentatré lotti, con trenta dollari zero virgola zero tre. Guarda la regola che c'è sotto: più lo stop è lontano, più il lotto è piccolo, e il rischio resta sempre cento dollari. È il lotto che si adatta allo stop, mai il contrario. Lo stop lo decide il grafico, non il portafoglio."
+  },
+  {
+   "capitolo": "Come non sbagliare",
+   "tipo": "punti",
+   "titolo": "Come non sbagliare più",
+   "punti": [
+    [
+     "Distanza in prezzo",
+     "quanti dollari tra ingresso e stop"
+    ],
+    [
+     "Specifiche del simbolo",
+     "dimensione del contratto su MetaTrader"
+    ],
+    [
+     "Conversione visibile",
+     "\"30 pip = 3 $\": se non torna, fermati"
+    ],
+    [
+     "Prova su demo",
+     "lotto minimo, guarda la perdita"
+    ]
+   ],
+   "voce": "Come non sbagliare più. Primo: guarda sempre la distanza in prezzo, cioè quanti dollari ci sono tra ingresso e stop. È l'unico numero che non dipende dalle convenzioni. Secondo: controlla le specifiche del simbolo sul tuo MetaTrader, tasto destro sul simbolo, specifiche: la dimensione del contratto ti dice quante once vale un lotto. Terzo: usa un calcolatore che ti mostri la conversione, per esempio trenta pip uguale tre dollari di prezzo. Se il numero non torna con quello che vedi sul grafico, fermati. Quarto: su un conto demo apri un lotto minimo con lo stop e guarda quanto perderesti. In un minuto sai quanto vale davvero un pip sul tuo conto."
+  },
+  {
+   "capitolo": "Per calcolarlo",
+   "tipo": "chiusura",
+   "grande": "Il lotto giusto<br><mark>in 5 secondi</mark>",
+   "piccolo": "Calcolatore gratuito su riskly.trade/lotto: scegli XAUUSD e scrivi lo stop in pip o in dollari di prezzo. Ti mostra sempre la conversione.",
+   "voce": "Per non doverci pensare ogni volta, sul sito riskly punto trade barra lotto trovi un calcolatore gratuito, senza registrazione. È un mio strumento, lo dichiaro. Scegli l'oro, scrivi lo stop in pip oppure in dollari di prezzo, e ti dice il lotto e la conversione, così vedi subito se stai parlando di tre dollari o di trenta. Se il video ti è stato utile, iscriviti al canale: ogni settimana una guida pratica sulla gestione del rischio. Contenuto educativo, non consulenza finanziaria: il trading con leva può farti perdere tutto il capitale."
+  }
+ ]
+}
