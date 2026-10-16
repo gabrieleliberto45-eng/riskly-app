@@ -40,4 +40,5 @@
 /bot         /?vai=bot&da=link-bot                                         302
 
 # qualsiasi altro indirizzo (es. link delle email di conferma) apre il sito invece di "Page not found"
+/quiz /quiz.html?da=link-quiz 302
 /*    /index.html   200

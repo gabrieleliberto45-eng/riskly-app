@@ -158,6 +158,7 @@ def modulo(corso, cdir, out, lezioni, mod):
         for lid, tit, punti in checklist:
             fine.append(f'<div class="cl"><div class="clt">{lid} · {md(tit)}</div><ul>' + ''.join(f'<li>{md(p)}</li>' for p in punti) + '</ul></div>')
         fine.append('</section>')
+    if num != '0': fine.append(f'<div class="contiene" style="margin-top:8mm"><b>Quiz del modulo:</b> 5 domande su riskly.trade/quiz. Superati tutti i moduli, scarichi l\'attestato di completamento.</div>')
     fine.append(f'<p class="avv fine">{AVVISO} · riskly.trade</p>')
     doc = f'''<!DOCTYPE html><html lang="it"><head><meta charset="utf-8"><title>Riskly · {html.escape(CORSI[corso]["breve"])} · {html.escape(m0["modulo"])}</title>
 <style>{CSS}</style></head><body>{copertina}{"".join(corpo)}{"".join(fine)}</body></html>'''

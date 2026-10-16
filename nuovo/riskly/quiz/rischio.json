@@ -1,0 +1,615 @@
+{
+ "corso": "Gestione del rischio",
+ "moduli": [
+  {
+   "n": 1,
+   "titolo": "Le basi",
+   "domande": [
+    {
+     "q": "Hai 10.000 € e rischi l'1% per trade. Quanto perdi al massimo se il prezzo tocca lo stop?",
+     "o": [
+      "10 €",
+      "100 €",
+      "1.000 €",
+      "Dipende dal lotto"
+     ],
+     "c": 1,
+     "s": "Il rischio si decide in percentuale del capitale prima di entrare: 1% di 10.000 € = 100 €. Il lotto si calcola dopo, per rispettare quei 100 €."
+    },
+    {
+     "q": "Dove si mette lo stop loss?",
+     "o": [
+      "Dove la perdita non mi fa troppo male",
+      "A una distanza fissa per tutti i trade",
+      "Nel prezzo in cui l'idea del trade è sbagliata",
+      "Il più vicino possibile all'ingresso"
+     ],
+     "c": 2,
+     "s": "Lo stop si sceglie dal grafico, dove l'idea è invalidata. Poi è il lotto ad adattarsi al rischio."
+    },
+    {
+     "q": "Rischio 100 €, stop 25 pip, 10 € a pip per lotto. Quanti lotti apri?",
+     "o": [
+      "0,25",
+      "0,40",
+      "2,5",
+      "4"
+     ],
+     "c": 1,
+     "s": "Lotti = rischio ÷ (stop × valore del pip) = 100 ÷ (25 × 10) = 0,40."
+    },
+    {
+     "q": "Con un RR di 2 (guadagni 2 per ogni 1 rischiato), qual è il win rate di pareggio?",
+     "o": [
+      "50%",
+      "40%",
+      "33%",
+      "25%"
+     ],
+     "c": 2,
+     "s": "Pareggio = 1 ÷ (1 + RR) = 1 ÷ 3 ≈ 33%. Sopra questo win rate il sistema guadagna, prima dei costi."
+    },
+    {
+     "q": "Cosa vale 1 R?",
+     "o": [
+      "L'1% del conto",
+      "Il rischio iniziale del trade",
+      "Il guadagno medio",
+      "Un pip"
+     ],
+     "c": 1,
+     "s": "1 R è il rischio iniziale del trade: lo stop preso vale −1 R e ogni risultato si misura in multipli di R."
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "titolo": "Misurare un sistema",
+   "domande": [
+    {
+     "q": "Win rate 45%, guadagno medio 1,8 R, perdita media 1 R. Qual è l'expectancy?",
+     "o": [
+      "+0,26 R",
+      "+0,81 R",
+      "−0,10 R",
+      "+0,45 R"
+     ],
+     "c": 0,
+     "s": "0,45 × 1,8 − 0,55 × 1 = 0,81 − 0,55 = +0,26 R per trade."
+    },
+    {
+     "q": "Se l'expectancy è negativa, la gestione del rischio può rendere il sistema profittevole?",
+     "o": [
+      "Sì, con il lotto giusto",
+      "Sì, con il trailing stop",
+      "No: la gestione del rischio protegge un vantaggio, non lo crea",
+      "Sì, rischiando di più nelle fasi buone"
+     ],
+     "c": 2,
+     "s": "Senza un vantaggio (expectancy positiva) nessuna gestione del rischio salva il sistema nel tempo."
+    },
+    {
+     "q": "Un profit factor di 1,5 significa che…",
+     "o": [
+      "vinci il 50% dei trade",
+      "i guadagni lordi sono 1,5 volte le perdite lorde",
+      "il RR medio è 1,5",
+      "il sistema è in perdita"
+     ],
+     "c": 1,
+     "s": "PF = guadagni lordi ÷ perdite lorde. Sopra 1 il sistema è in attivo; 1,3–2 è una zona sana."
+    },
+    {
+     "q": "Quanti trade servono, almeno, per iniziare a giudicare un sistema?",
+     "o": [
+      "10",
+      "30",
+      "Circa 100, meglio 200 o più",
+      "Basta una settimana di trading"
+     ],
+     "c": 2,
+     "s": "Con pochi trade il rumore domina: servono almeno circa 100 trade, meglio 200+."
+    },
+    {
+     "q": "Perché gli stop molto corti sono più colpiti dai costi?",
+     "o": [
+      "Perché i broker li penalizzano",
+      "Perché lo stesso costo in pip pesa di più in R",
+      "Perché lo spread è più alto",
+      "Non è vero"
+     ],
+     "c": 1,
+     "s": "I costi si convertono in R dividendo per lo stop: 1,5 pip su uno stop di 10 pip sono 0,15 R, su 50 pip solo 0,03 R."
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "titolo": "Drawdown e perdite",
+   "domande": [
+    {
+     "q": "Il conto scende del 50%. Quanto devi guadagnare per tornare in pari?",
+     "o": [
+      "50%",
+      "75%",
+      "100%",
+      "150%"
+     ],
+     "c": 2,
+     "s": "Recupero = 1 ÷ (1 − 0,5) − 1 = 100%. Più perdi, più la salita è ripida."
+    },
+    {
+     "q": "Come si misura il drawdown?",
+     "o": [
+      "Perdita dal capitale iniziale",
+      "Calo percentuale dal massimo raggiunto",
+      "Somma delle perdite del mese",
+      "Numero di stop di fila"
+     ],
+     "c": 1,
+     "s": "Il drawdown è il calo percentuale dall'ultimo massimo del conto."
+    },
+    {
+     "q": "Rischi il 5% e perdi 8 trade di fila. Quanto hai perso?",
+     "o": [
+      "40%",
+      "Circa 34%",
+      "Circa 20%",
+      "8%"
+     ],
+     "c": 1,
+     "s": "Le perdite si compongono: 1 − 0,95⁸ ≈ 33,7%, non 40%."
+    },
+    {
+     "q": "Con win rate 45% su 200 trade, una serie di 8 perdite di fila è…",
+     "o": [
+      "praticamente impossibile",
+      "rara, una su cento",
+      "piuttosto normale, circa una volta su due",
+      "certa"
+     ],
+     "c": 2,
+     "s": "Le serie di perdite sono normali in ogni sistema: con il 45% di vincite, 8 di fila su 200 trade capitano circa una volta su due."
+    },
+    {
+     "q": "Come scegli il rischio per trade partendo dal drawdown?",
+     "o": [
+      "Prima il rischio, poi vedi il drawdown",
+      "Parti dalla perdita che sopporti e scegli il rischio di conseguenza",
+      "Il drawdown non dipende dal rischio",
+      "Rischi sempre il 2%"
+     ],
+     "c": 1,
+     "s": "Rischio e drawdown crescono insieme: decidi quale drawdown sopporti e da lì ricavi il rischio per trade."
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "titolo": "Dimensionare la posizione",
+   "domande": [
+    {
+     "q": "Perché il rischio fisso in percentuale protegge il conto?",
+     "o": [
+      "Perché aumenta le posizioni quando perdi",
+      "Perché riduce le posizioni quando il conto scende",
+      "Perché elimina le perdite",
+      "Perché fissa il lotto"
+     ],
+     "c": 1,
+     "s": "Con la percentuale fissa il rischio in euro si adatta al capitale: quando perdi le posizioni si rimpiccioliscono da sole."
+    },
+    {
+     "q": "Se la volatilità (ATR) raddoppia e mantieni lo stesso rischio, cosa succede al lotto?",
+     "o": [
+      "Raddoppia",
+      "Resta uguale",
+      "Si dimezza circa, perché lo stop è più largo",
+      "Va a zero"
+     ],
+     "c": 2,
+     "s": "Stop = k × ATR: con ATR doppio lo stop raddoppia e, a rischio costante, il lotto si dimezza."
+    },
+    {
+     "q": "Cosa succede se rischi molto più del Kelly pieno?",
+     "o": [
+      "Cresci più in fretta",
+      "La crescita diminuisce fino ad azzerarsi o diventare negativa",
+      "Non cambia nulla",
+      "Il win rate aumenta"
+     ],
+     "c": 1,
+     "s": "Oltre il Kelly la crescita cala; verso due volte il Kelly è quasi nulla e poi diventa negativa. In pratica si usa un quarto o metà Kelly."
+    },
+    {
+     "q": "Dopo una perdita, cosa dice il corso sul raddoppiare il rischio?",
+     "o": [
+      "È il modo più veloce per recuperare",
+      "Va fatto solo una volta",
+      "Mai raddoppiare dopo una perdita",
+      "Va bene se il setup è buono"
+     ],
+     "c": 2,
+     "s": "Cambiare il rischio per umore è il modo più rapido di rovinarsi: si riduce dopo un drawdown, si aumenta solo con regole scritte."
+    },
+    {
+     "q": "Hai tre posizioni aperte su EURUSD, GBPUSD e AUDUSD, tutte long, rischio 1% ciascuna. Cosa devi considerare?",
+     "o": [
+      "Sono tre scommesse indipendenti",
+      "Sono in gran parte la stessa scommessa contro il dollaro: il rischio aperto è circa 3%",
+      "Il rischio totale è 1%",
+      "Il rischio si annulla"
+     ],
+     "c": 1,
+     "s": "Strumenti correlati sono una sola scommessa: somma il rischio aperto e fissa un limite per tesi."
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "titolo": "Simulare",
+   "domande": [
+    {
+     "q": "Cosa mostra una simulazione Monte Carlo?",
+     "o": [
+      "Il risultato futuro esatto",
+      "La gamma di esiti possibili con le statistiche del sistema",
+      "Il miglior trade",
+      "Il prezzo di domani"
+     ],
+     "c": 1,
+     "s": "Monte Carlo rimescola migliaia di sequenze: mostra la gamma di esiti, non una previsione."
+    },
+    {
+     "q": "Il 10° percentile del ventaglio rappresenta…",
+     "o": [
+      "il caso peggiore possibile",
+      "un caso sfortunato, ma non il peggiore",
+      "la mediana",
+      "il risultato del backtest"
+     ],
+     "c": 1,
+     "s": "Il 10° percentile è il risultato sotto il quale finisce solo il 10% dei percorsi: sfortunato, non il peggiore."
+    },
+    {
+     "q": "Raddoppiando il rischio per trade, il drawdown tipico…",
+     "o": [
+      "resta uguale",
+      "si dimezza",
+      "circa raddoppia",
+      "sparisce"
+     ],
+     "c": 2,
+     "s": "Raddoppiare il rischio raddoppia circa il drawdown: la scelta va fatta in base a quanto drawdown sopporti."
+    },
+    {
+     "q": "La probabilità di rovina va definita…",
+     "o": [
+      "dopo aver perso",
+      "in anticipo, decidendo quale perdita è 'rovina' per te",
+      "solo per le prop firm",
+      "non serve definirla"
+     ],
+     "c": 1,
+     "s": "La rovina si definisce prima: per esempio −50% del conto o il limite totale della prop."
+    },
+    {
+     "q": "Cosa fa uno stress test del piano?",
+     "o": [
+      "Peggiora le ipotesi (win rate più basso, costi più alti) e controlla se il piano regge",
+      "Aumenta il rischio per vedere quanto guadagni",
+      "Ripete il backtest",
+      "Elimina i trade peggiori"
+     ],
+     "c": 0,
+     "s": "Un buon piano regge anche lo scenario brutto; dimezzare il rischio riduce molto la rovina."
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "titolo": "Disciplina",
+   "domande": [
+    {
+     "q": "Qual è il formato di una buona regola scritta?",
+     "o": [
+      "Una frase motivazionale",
+      "SE condizione ALLORA azione, con un numero",
+      "Una lista di indicatori",
+      "Un obiettivo di guadagno"
+     ],
+     "c": 1,
+     "s": "Una regola ha un numero, una condizione e un'azione: SE… ALLORA…"
+    },
+    {
+     "q": "Limite giornaliero 3%, rischio per trade 1%. Quanti stop pieni puoi prendere prima di fermarti?",
+     "o": [
+      "1",
+      "3",
+      "6",
+      "Nessuno"
+     ],
+     "c": 1,
+     "s": "Perdite pienamente prese = limite ÷ rischio per trade = 3% ÷ 1% = 3."
+    },
+    {
+     "q": "Che cos'è il revenge trading?",
+     "o": [
+      "Operare troppe volte",
+      "Entrare subito per rifarsi dopo una perdita",
+      "Usare la leva alta",
+      "Seguire un segnale"
+     ],
+     "c": 1,
+     "s": "Revenge trading è rifarsi subito; overtrading è fare troppe operazioni. Contromisure: tetto di trade, pausa, limite giornaliero."
+    },
+    {
+     "q": "A cosa serve la checklist pre-trade?",
+     "o": [
+      "A trovare più trade",
+      "A rallentarti di un minuto e far rispettare il piano",
+      "A sostituire lo stop",
+      "A prevedere il prezzo"
+     ],
+     "c": 1,
+     "s": "La checklist ti rallenta di un minuto: otto domande e ogni 'no' ha già una conseguenza decisa."
+    },
+    {
+     "q": "Perché registrare i trade fuori piano?",
+     "o": [
+      "Per nasconderli",
+      "Per vederne il costo reale nel tempo",
+      "Per aumentare il rischio",
+      "Non serve"
+     ],
+     "c": 1,
+     "s": "Solo misurando i trade fuori piano scopri quanto ti costano davvero."
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "titolo": "Prop firm",
+   "domande": [
+    {
+     "q": "Quali sono i due limiti che contano di più in una prova di prop firm?",
+     "o": [
+      "Profitto minimo e numero di trade",
+      "Perdita giornaliera e perdita totale",
+      "Leva e spread",
+      "Orari e strumenti"
+     ],
+     "c": 1,
+     "s": "Perdita giornaliera e totale chiudono la prova: tutto il resto viene dopo."
+    },
+    {
+     "q": "Il limite giornaliero della prop è il 5%. Dove metti il tuo?",
+     "o": [
+      "Al 5%",
+      "Al 6%",
+      "Sotto, per esempio al 4%, con un margine",
+      "Non serve un limite"
+     ],
+     "c": 2,
+     "s": "Il tuo limite sta dentro il loro, con margine: slippage e costi possono farti superare il limite."
+    },
+    {
+     "q": "Come funziona un drawdown trailing?",
+     "o": [
+      "Resta fisso al capitale iniziale",
+      "Sale con i massimi del conto e non scende",
+      "Si azzera ogni giorno",
+      "Dipende dal broker"
+     ],
+     "c": 1,
+     "s": "Il trailing segue i massimi e non torna giù: i guadagni restringono lo spazio per le perdite."
+    },
+    {
+     "q": "Rischio alto in una prova significa…",
+     "o": [
+      "prova più lenta e più sicura",
+      "prova più veloce ma più fragile",
+      "nessuna differenza",
+      "più probabilità di passare sempre"
+     ],
+     "c": 1,
+     "s": "Rischio alto = più veloce ma fragile; rischio basso = più lento ma molto più sicuro, se il vantaggio è reale."
+    },
+    {
+     "q": "Hai tre conti prop e lo stesso trade su tutti. Cosa devi calcolare?",
+     "o": [
+      "Solo il rischio del conto più grande",
+      "Il rischio totale in euro sommando i conti",
+      "Niente: i conti sono separati",
+      "Solo il rischio in pip"
+     ],
+     "c": 1,
+     "s": "Lo stesso segnale su più conti è un rischio che si somma: calcola il totale e verifica il regolamento."
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "titolo": "Gestire la posizione",
+   "domande": [
+    {
+     "q": "Cosa significa portare lo stop a break-even?",
+     "o": [
+      "Chiudere metà posizione",
+      "Spostare lo stop al prezzo di ingresso",
+      "Allargare lo stop",
+      "Aggiungere lotti"
+     ],
+     "c": 1,
+     "s": "Break-even = stop al prezzo di ingresso: il trade non può più perdere (salvo slippage e costi)."
+    },
+    {
+     "q": "Perché il break-even troppo presto può costare?",
+     "o": [
+      "Non costa mai",
+      "Perché tanti trade vengono chiusi a zero prima di andare a target",
+      "Perché aumenta il rischio",
+      "Perché lo vieta il broker"
+     ],
+     "c": 1,
+     "s": "Proteggere troppo presto taglia i profitti: le regole vanno provate sui tuoi dati."
+    },
+    {
+     "q": "Con le uscite a scaglioni il rischio iniziale…",
+     "o": [
+      "si dimezza",
+      "non cambia",
+      "raddoppia",
+      "dipende dal target"
+     ],
+     "c": 1,
+     "s": "Gli scaglioni distribuiscono il risultato, ma il rischio iniziale resta quello dello stop."
+    },
+    {
+     "q": "Piramidare significa…",
+     "o": [
+      "aggiungere a un trade in perdita",
+      "aggiungere a un trade in guadagno, con aggiunte più piccole",
+      "chiudere in più parti",
+      "aprire su più strumenti"
+     ],
+     "c": 1,
+     "s": "Si aggiunge solo a un trade in guadagno, mai in perdita, con uno stop che protegge il rischio totale."
+    },
+    {
+     "q": "Cosa ha senso automatizzare?",
+     "o": [
+      "La decisione di entrare",
+      "L'esecuzione delle regole già decise",
+      "La scelta dello strumento",
+      "Niente"
+     ],
+     "c": 1,
+     "s": "Si automatizza l'esecuzione delle regole (stop, limiti, pause), non la decisione di entrare. Automatizza il tuo punto debole."
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "titolo": "Tecniche avanzate",
+   "domande": [
+    {
+     "q": "Perché il compounding funziona da solo con il rischio in percentuale?",
+     "o": [
+      "Perché il lotto cresce con il conto",
+      "Perché il win rate aumenta",
+      "Perché gli spread scendono",
+      "Non funziona"
+     ],
+     "c": 0,
+     "s": "Con il rischio in % il lotto cresce quando il conto sale: i guadagni lavorano sui guadagni."
+    },
+    {
+     "q": "Negli ingressi a scaglioni con stop unico, come calcoli il rischio?",
+     "o": [
+      "Solo sul primo ingresso",
+      "Come se entrassero tutti gli ordini",
+      "Sulla media degli ingressi",
+      "Non si calcola"
+     ],
+     "c": 1,
+     "s": "Il rischio si calcola come se entrassero tutti: è pianificato prima, non è mediare in perdita."
+    },
+    {
+     "q": "Quale di queste NON è una mitigazione del rischio?",
+     "o": [
+      "Chiusura parziale",
+      "Stop a pareggio",
+      "Allargare lo stop",
+      "Stop temporale"
+     ],
+     "c": 2,
+     "s": "Allargare lo stop o mediare in perdita aumenta il rischio: mitigare è ridurlo con una regola decisa prima."
+    },
+    {
+     "q": "L'hedging sullo stesso strumento (long e short insieme)…",
+     "o": [
+      "cancella la perdita",
+      "equivale a chiudere, con più costi",
+      "raddoppia il guadagno",
+      "è sempre consentito dalle prop"
+     ],
+     "c": 1,
+     "s": "L'hedging congela l'esposizione ma non cancella la perdita; sullo stesso strumento equivale a chiudere, con più costi."
+    },
+    {
+     "q": "Quale di questi è un tipo di trailing stop visto nel corso?",
+     "o": [
+      "Trailing basato sull'ATR",
+      "Trailing sul win rate",
+      "Trailing sul profit factor",
+      "Trailing sul calendario"
+     ],
+     "c": 0,
+     "s": "Cinque tipi: distanza fissa, a scatti, strutturale, basato sull'ATR, temporale."
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "titolo": "Il tuo piano",
+   "domande": [
+    {
+     "q": "Come dev'essere il piano di gestione del rischio?",
+     "o": [
+      "Lungo e dettagliato",
+      "Una pagina, con un numero per ogni regola",
+      "Solo nella testa",
+      "Uguale a quello di un altro trader"
+     ],
+     "c": 1,
+     "s": "Il piano sta in una pagina e ogni riga è un numero."
+    },
+    {
+     "q": "Quale di queste NON è una delle sette sezioni del piano?",
+     "o": [
+      "Limiti",
+      "Checklist",
+      "Previsioni di prezzo",
+      "Revisione"
+     ],
+     "c": 2,
+     "s": "Le sezioni sono: sistema, rischio, limiti, drawdown, gestione, checklist, revisione. Nessuna previsione."
+    },
+    {
+     "q": "Prima di 'firmare' il piano cosa controlli?",
+     "o": [
+      "Coerenza dei numeri, stress test e giorno peggiore",
+      "Solo il guadagno atteso",
+      "Il parere di un gruppo Telegram",
+      "Niente"
+     ],
+     "c": 0,
+     "s": "Verifica che i limiti siano coerenti tra loro, che il piano regga lo stress test e che il giorno peggiore sia sopportabile."
+    },
+    {
+     "q": "Ogni quanto si rivede il piano?",
+     "o": [
+      "Dopo ogni perdita",
+      "Con una revisione periodica, per esempio mensile",
+      "Mai",
+      "Ogni giorno"
+     ],
+     "c": 1,
+     "s": "La revisione è programmata (mensile), non emotiva dopo una perdita."
+    },
+    {
+     "q": "Qual è l'idea che il corso ripete dall'inizio alla fine?",
+     "o": [
+      "Trova la strategia perfetta",
+      "Il mercato non lo controlli, quanto rischi sì",
+      "Più trade fai, più guadagni",
+      "La leva alta accelera i risultati"
+     ],
+     "c": 1,
+     "s": "Non controlli il mercato, ma controlli quanto rischi."
+    }
+   ]
+  }
+ ]
+}

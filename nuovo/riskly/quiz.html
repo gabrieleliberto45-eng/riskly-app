@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Riskly — Quiz e attestato</title>
+<meta name="robots" content="noindex">
+<link href="/fonts.css" rel="stylesheet">
+<!-- Quiz di fine modulo dei corsi Riskly e attestato di completamento.
+     Domande in /quiz/<corso>.json. I progressi restano nel browser (localStorage), nessun dato viene inviato tranne il conteggio anonimo. -->
+<style>
+  :root{--bg:#F3F4F1;--bg2:#ECEEEA;--panel:#FBFBF9;--line:#CDD1D4;--text:#15181B;--dim:#5E656D;--oro:#B97C00;--amber:#E9A10F;--su:#1E7F45;--giu:#C2361F}
+  *{box-sizing:border-box}
+  body{margin:0;background:radial-gradient(520px 380px at 100% 0%,rgba(233,161,15,.16),transparent 70%),var(--bg);color:var(--text);font-family:'Instrument Sans',sans-serif;min-height:100vh}
+  .wrap{max-width:640px;margin:0 auto;padding:22px 16px 60px}
+  .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:26px}
+  .marca{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.15rem;color:var(--text);text-decoration:none}
+  .marca svg{width:30px;height:30px}
+  .kick{font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.14em;color:var(--oro);font-weight:600}
+  h1{font-family:'Instrument Serif',serif;font-weight:400;font-size:2.1rem;line-height:1.08;margin:6px 0 10px}
+  h1 em{color:var(--oro)}
+  p{color:var(--dim);line-height:1.55;font-size:.95rem;margin:0 0 14px}
+  .scelta{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0 22px}
+  .scelta button{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;font:inherit;font-weight:600;cursor:pointer;color:var(--text);text-align:left}
+  .scelta button.on{border-color:var(--text);box-shadow:inset 0 0 0 1px var(--text)}
+  .scelta small{display:block;font-weight:400;color:var(--dim);font-size:.78rem;margin-top:3px}
+  .barra{height:8px;background:var(--bg2);border-radius:8px;overflow:hidden;margin:6px 0 18px}
+  .barra i{display:block;height:100%;background:var(--amber);border-radius:8px;transition:width .4s}
+  .mod{display:flex;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:9px;cursor:pointer;width:100%;font:inherit;text-align:left;color:var(--text)}
+  .mod .n{font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--oro);min-width:28px}
+  .mod .t{flex:1;font-weight:600}
+  .mod .st{font-size:.78rem;color:var(--dim);white-space:nowrap}
+  .mod.ok{border-color:rgba(30,127,69,.4)} .mod.ok .st{color:var(--su);font-weight:700}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px}
+  .domanda{font-weight:700;font-size:1.12rem;line-height:1.35;margin:4px 0 16px}
+  .opz{display:block;width:100%;text-align:left;background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 14px;margin-bottom:9px;font:inherit;font-size:.95rem;cursor:pointer;color:var(--text)}
+  .opz:disabled{cursor:default}
+  .opz.giusta{border-color:var(--su);background:rgba(30,127,69,.08);font-weight:600}
+  .opz.sbagliata{border-color:var(--giu);background:rgba(194,54,31,.07)}
+  .spieg{display:none;margin-top:10px;padding:12px 14px;border-radius:12px;background:rgba(233,161,15,.12);border:1px solid rgba(185,124,0,.3);font-size:.9rem;line-height:1.5}
+  .btn{display:inline-block;background:#15181B;color:#FBFBF9;border:none;border-radius:100px;padding:13px 22px;font:inherit;font-weight:700;cursor:pointer;text-decoration:none}
+  .btn.sec{background:transparent;color:var(--text);border:1px solid var(--text)}
+  .riga{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;align-items:center}
+  .esito{margin-top:12px;font-family:'Instrument Serif',serif;font-size:3rem;line-height:1}
+  input{width:100%;background:#fff;border:1px solid var(--line);border-radius:12px;font:inherit;font-size:1rem;padding:13px 14px;margin:6px 0 12px}
+  canvas{width:100%;height:auto;border-radius:10px;border:1px solid var(--line);margin-top:14px;display:none}
+  .nota{font-size:.78rem;color:var(--dim);margin-top:18px;line-height:1.5}
+  .nascosto{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="marca" href="/"><svg viewBox="0 0 44 44"><rect width="44" height="44" rx="10" fill="#FBFBF9"/><path d="M10 30 L17 20 L23 25 L34 12" stroke="#B97C00" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M10 34.5 H34" stroke="#5E656D" stroke-width="3.6" stroke-linecap="round"/></svg>Riskly</a>
+    <span class="kick">QUIZ E ATTESTATO</span>
+  </div>
+
+  <!-- elenco moduli -->
+  <section id="v-elenco">
+    <div class="kick">FINE MODULO</div>
+    <h1>Verifica quello che <em>hai imparato.</em></h1>
+    <p>5 domande per modulo. Passi il modulo con almeno 4 risposte giuste. Superati tutti i 10 moduli, scarichi l'attestato di completamento con il tuo nome.</p>
+    <div class="scelta">
+      <button data-corso="rischio">Gestione del rischio<small>10 moduli · 50 domande</small></button>
+      <button data-corso="fondamentale">Analisi fondamentale<small>10 moduli · 50 domande</small></button>
+    </div>
+    <div style="display:flex;justify-content:space-between;font-size:.82rem;color:var(--dim)"><span id="prog-t">0 di 10 moduli superati</span><span id="prog-p">0%</span></div>
+    <div class="barra"><i id="prog-b" style="width:0"></i></div>
+    <div id="moduli"></div>
+    <div id="att-box" class="card nascosto" style="margin-top:16px">
+      <div class="kick">COMPLIMENTI</div>
+      <h1 style="font-size:1.7rem">Hai superato <em>tutti i moduli.</em></h1>
+      <p>Scrivi il nome da mettere sull'attestato.</p>
+      <input id="att-nome" maxlength="60" placeholder="Nome e cognome" autocomplete="name">
+      <button class="btn" id="att-crea">Crea l'attestato</button>
+      <canvas id="att-c" width="2000" height="1414"></canvas>
+      <div class="riga nascosto" id="att-az"><a class="btn" id="att-scarica" download>Scarica l'attestato</a><button class="btn sec" id="att-cond">Condividi</button></div>
+    </div>
+    <p class="nota">Attestato di completamento del corso Riskly: certifica che hai superato i quiz, non è un titolo professionale né un'abilitazione. Contenuto educativo, non consulenza finanziaria. I tuoi progressi restano solo su questo dispositivo.</p>
+  </section>
+
+  <!-- quiz di un modulo -->
+  <section id="v-quiz" class="nascosto">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div class="kick" id="q-kick"></div><div class="kick" id="q-num"></div>
+    </div>
+    <div class="barra"><i id="q-b" style="width:0"></i></div>
+    <div class="card">
+      <div class="domanda" id="q-testo"></div>
+      <div id="q-opz"></div>
+      <div class="spieg" id="q-spieg"></div>
+      <div class="riga"><button class="btn nascosto" id="q-avanti">Avanti</button><button class="btn sec" id="q-esci">Torna ai moduli</button></div>
+    </div>
+  </section>
+
+  <!-- risultato -->
+  <section id="v-esito" class="nascosto">
+    <div class="card" style="text-align:center">
+      <div class="kick" id="e-kick"></div>
+      <div class="esito" id="e-punti"></div>
+      <h1 style="font-size:1.6rem" id="e-titolo"></h1>
+      <p id="e-testo"></p>
+      <div class="riga" style="justify-content:center"><button class="btn" id="e-avanti"></button><button class="btn sec" id="e-rifai">Rifai il quiz</button></div>
+    </div>
+  </section>
+</div>
+
+<script>
+/* conteggio anonimo come sugli altri siti (nessun cookie) */
+(function(){
+  var URL='https://swlztverwfgdgchgpudt.supabase.co/rest/v1/visite', KEY='sb_publishable_j9bujIvCEz6x21yYoCODPw_lIZCJrIR';
+  function invia(p,r){ try{ fetch(URL,{method:'POST',keepalive:true,headers:{apikey:KEY,'Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify({percorso:String(p).slice(0,80),referer:String(r).slice(0,80)})}).catch(function(){}); }catch(e){} }
+  function unaVolta(k){ try{ if(sessionStorage.getItem(k)) return false; sessionStorage.setItem(k,'1'); }catch(e){} return true; }
+  window.traccia=function(ev){ if(unaVolta('riskly_ev_'+ev)) invia('#'+ev,'riskly'); };
+  if(unaVolta('riskly_visita_quiz')) invia('quiz', new URLSearchParams(location.search).get('da') || 'diretto');
+})();
+
+const $ = id => document.getElementById(id);
+const NOMI = { rischio: 'Gestione del rischio', fondamentale: 'Analisi fondamentale' };
+let corso = new URLSearchParams(location.search).get('corso') === 'fondamentale' ? 'fondamentale' : 'rischio';
+let dati = null, mod = null, ordine = [], i = 0, giuste = 0;
+
+const chiave = c => 'riskly-quiz-' + c;
+function progressi(c){ try{ return JSON.parse(localStorage.getItem(chiave(c)) || '{}'); }catch(e){ return {}; } }
+function salva(c, p){ try{ localStorage.setItem(chiave(c), JSON.stringify(p)); }catch(e){} }
+function vista(v){ ['v-elenco','v-quiz','v-esito'].forEach(x => $(x).classList.toggle('nascosto', x !== v)); scrollTo(0, 0); }
+function mescola(a){ a = a.slice(); for(let k = a.length - 1; k > 0; k--){ const j = Math.floor(Math.random() * (k + 1)); [a[k], a[j]] = [a[j], a[k]]; } return a; }
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+async function carica(){
+  document.querySelectorAll('.scelta button').forEach(b => b.classList.toggle('on', b.dataset.corso === corso));
+  dati = await (await fetch('/quiz/' + corso + '.json')).json();
+  elenco();
+}
+function elenco(){
+  const p = progressi(corso); let fatti = 0;
+  $('moduli').innerHTML = dati.moduli.map(m => {
+    const r = p[m.n]; const ok = r && r.ok; if(ok) fatti++;
+    return `<button class="mod ${ok ? 'ok' : ''}" data-n="${m.n}"><span class="n">${String(m.n).padStart(2,'0')}</span><span class="t">${esc(m.titolo)}</span><span class="st">${ok ? '✓ ' + r.punti + '/5' : r ? r.punti + '/5 · riprova' : 'Inizia'}</span></button>`;
+  }).join('');
+  const tot = dati.moduli.length;
+  $('prog-t').textContent = `${fatti} di ${tot} moduli superati`; $('prog-p').textContent = Math.round(fatti / tot * 100) + '%';
+  $('prog-b').style.width = (fatti / tot * 100) + '%';
+  $('att-box').classList.toggle('nascosto', fatti < tot);
+  document.querySelectorAll('.mod').forEach(b => b.onclick = () => inizia(+b.dataset.n));
+  vista('v-elenco');
+}
+function inizia(n){
+  mod = dati.moduli.find(m => m.n === n); ordine = mescola(mod.domande); i = 0; giuste = 0;
+  traccia('quiz-' + corso + '-' + n); domanda();
+}
+function domanda(){
+  const d = ordine[i];
+  $('q-kick').textContent = NOMI[corso].toUpperCase() + ' · MODULO ' + mod.n;
+  $('q-num').textContent = (i + 1) + ' / ' + ordine.length;
+  $('q-b').style.width = (i / ordine.length * 100) + '%';
+  $('q-testo').textContent = d.q;
+  const opz = mescola(d.o.map((t, k) => ({ t, k })));
+  $('q-opz').innerHTML = opz.map(o => `<button class="opz" data-k="${o.k}">${esc(o.t)}</button>`).join('');
+  $('q-spieg').style.display = 'none'; $('q-avanti').classList.add('nascosto');
+  document.querySelectorAll('.opz').forEach(b => b.onclick = () => rispondi(b, d));
+  vista('v-quiz');
+}
+function rispondi(b, d){
+  const k = +b.dataset.k, ok = k === d.c; if(ok) giuste++;
+  document.querySelectorAll('.opz').forEach(x => { x.disabled = true; if(+x.dataset.k === d.c) x.classList.add('giusta'); });
+  if(!ok) b.classList.add('sbagliata');
+  $('q-spieg').innerHTML = (ok ? '<b>Giusto.</b> ' : '<b>Non è questa.</b> ') + esc(d.s); $('q-spieg').style.display = 'block';
+  $('q-avanti').textContent = i + 1 < ordine.length ? 'Avanti' : 'Vedi il risultato'; $('q-avanti').classList.remove('nascosto');
+}
+$('q-avanti').onclick = () => { i++; if(i < ordine.length) domanda(); else esito(); };
+$('q-esci').onclick = () => elenco();
+function esito(){
+  const passato = giuste >= 4, p = progressi(corso), prima = p[mod.n];
+  p[mod.n] = { punti: Math.max(giuste, prima ? prima.punti : 0), ok: passato || !!(prima && prima.ok), data: new Date().toISOString().slice(0, 10) };
+  salva(corso, p); if(passato) traccia('quiz-ok-' + corso + '-' + mod.n);
+  $('e-kick').textContent = 'MODULO ' + mod.n + ' · ' + mod.titolo.toUpperCase();
+  $('e-punti').textContent = giuste + '/5';
+  $('e-titolo').textContent = passato ? 'Modulo superato.' : 'Quasi: ne servono almeno 4.';
+  $('e-testo').textContent = passato ? 'Passa al modulo successivo. Quando li superi tutti, scarichi l\'attestato.' : 'Riguarda la dispensa del modulo e riprova: le domande cambiano ordine ogni volta.';
+  const prossimo = dati.moduli.find(m => m.n > mod.n && !(p[m.n] && p[m.n].ok));
+  $('e-avanti').textContent = passato && prossimo ? 'Modulo ' + prossimo.n : 'Torna ai moduli';
+  $('e-avanti').onclick = () => passato && prossimo ? inizia(prossimo.n) : elenco();
+  $('e-rifai').onclick = () => inizia(mod.n);
+  vista('v-esito');
+}
+document.querySelectorAll('.scelta button').forEach(b => b.onclick = () => { corso = b.dataset.corso; history.replaceState(null, '', '?corso=' + corso); carica(); });
+
+/* ---------- attestato (disegnato nel browser) ---------- */
+function codice(s){ let h = 2166136261; for(const ch of s){ h ^= ch.charCodeAt(0); h = Math.imul(h, 16777619); } return ('RSK-' + (h >>> 0).toString(36).toUpperCase()).slice(0, 11); }
+$('att-crea').onclick = async () => {
+  const nome = $('att-nome').value.trim(); if(nome.length < 3){ $('att-nome').focus(); return; }
+  await document.fonts.ready;
+  const c = $('att-c'), x = c.getContext('2d'), W = c.width, H = c.height;
+  const oggi = new Date(), data = oggi.toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
+  const cod = codice(nome.toLowerCase() + '|' + corso + '|' + oggi.toISOString().slice(0, 10));
+  x.fillStyle = '#FBFBF9'; x.fillRect(0, 0, W, H);
+  const g = x.createRadialGradient(W * .92, 0, 0, W * .92, 0, 900); g.addColorStop(0, 'rgba(233,161,15,.22)'); g.addColorStop(1, 'rgba(233,161,15,0)'); x.fillStyle = g; x.fillRect(0, 0, W, H);
+  x.strokeStyle = '#15181B'; x.lineWidth = 6; x.strokeRect(60, 60, W - 120, H - 120);
+  x.strokeStyle = '#E9A10F'; x.lineWidth = 2; x.strokeRect(84, 84, W - 168, H - 168);
+  /* logo */
+  x.save(); x.translate(160, 150); x.scale(2.6, 2.6);
+  x.fillStyle = '#FBFBF9'; x.strokeStyle = '#CDD1D4'; x.lineWidth = .6; x.beginPath(); x.roundRect(0, 0, 44, 44, 10); x.fill(); x.stroke();
+  x.lineCap = 'round'; x.lineJoin = 'round'; x.strokeStyle = '#B97C00'; x.lineWidth = 3.4; x.beginPath(); x.moveTo(10, 30); x.lineTo(17, 20); x.lineTo(23, 25); x.lineTo(34, 12); x.stroke();
+  x.strokeStyle = '#5E656D'; x.lineWidth = 3.6; x.beginPath(); x.moveTo(10, 34.5); x.lineTo(34, 34.5); x.stroke(); x.restore();
+  x.fillStyle = '#15181B'; x.font = '700 64px "Instrument Sans"'; x.textBaseline = 'middle'; x.fillText('Riskly', 300, 208);
+  x.textAlign = 'center';
+  x.fillStyle = '#B97C00'; x.font = '600 34px "JetBrains Mono"'; x.fillText('ATTESTATO DI COMPLETAMENTO', W / 2, 420);
+  x.fillStyle = '#5E656D'; x.font = '400 40px "Instrument Sans"'; x.fillText('Si attesta che', W / 2, 520);
+  x.fillStyle = '#15181B'; let fs = 128; x.font = `italic 400 ${fs}px "Instrument Serif"`; while(x.measureText(nome).width > W - 400 && fs > 60){ fs -= 6; x.font = `italic 400 ${fs}px "Instrument Serif"`; }
+  x.fillText(nome, W / 2, 650);
+  x.fillStyle = '#E9A10F'; x.fillRect(W / 2 - 260, 730, 520, 6);
+  x.fillStyle = '#5E656D'; x.font = '400 40px "Instrument Sans"'; x.fillText('ha completato il corso', W / 2, 820);
+  x.fillStyle = '#15181B'; x.font = '700 76px "Instrument Sans"'; x.fillText('Riskly · ' + NOMI[corso], W / 2, 915);
+  x.fillStyle = '#5E656D'; x.font = '400 34px "Instrument Sans"'; x.fillText('superando i quiz di fine modulo di tutti i 10 moduli del programma', W / 2, 995);
+  x.textAlign = 'left'; x.fillStyle = '#15181B'; x.font = '600 32px "JetBrains Mono"'; x.fillText(data, 160, H - 210);
+  x.fillStyle = '#5E656D'; x.font = '400 26px "Instrument Sans"'; x.fillText('Data', 160, H - 165);
+  x.textAlign = 'right'; x.fillStyle = '#15181B'; x.font = '600 32px "JetBrains Mono"'; x.fillText(cod, W - 160, H - 210);
+  x.fillStyle = '#5E656D'; x.font = '400 26px "Instrument Sans"'; x.fillText('Codice attestato · riskly.trade', W - 160, H - 165);
+  x.textAlign = 'center'; x.fillStyle = '#8A9097'; x.font = '400 22px "Instrument Sans"';
+  x.fillText('Attestato di completamento di un corso educativo: non è un titolo professionale né un\'abilitazione. Non costituisce consulenza finanziaria.', W / 2, H - 112);
+  c.style.display = 'block';
+  const url = c.toDataURL('image/png'); const a = $('att-scarica'); a.href = url; a.download = 'Attestato-Riskly-' + corso + '.png';
+  $('att-az').classList.remove('nascosto'); traccia('attestato-' + corso);
+  $('att-cond').onclick = async () => {
+    try{ const blob = await (await fetch(url)).blob(); const f = new File([blob], a.download, { type: 'image/png' });
+      if(navigator.canShare && navigator.canShare({ files: [f] })) await navigator.share({ files: [f], title: 'Il mio attestato Riskly' }); else a.click(); }catch(e){}
+  };
+};
+carica();
+</script>
+</body>
+</html>
