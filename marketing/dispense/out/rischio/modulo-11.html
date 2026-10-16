@@ -1,0 +1,111 @@
+<!DOCTYPE html><html lang="it"><head><meta charset="utf-8"><title>Riskly · Gestione del rischio · Modulo 11</title>
+<style>@font-face{font-family:'Instrument Sans';font-weight:400;src:url(../../../../nuovo/riskly/fonts/InstrumentSans-400-normal-latin.woff2)}
+@font-face{font-family:'Instrument Sans';font-weight:400;src:url(../../../../nuovo/riskly/fonts/InstrumentSans-400-normal-latin-ext.woff2);unicode-range:U+0100-02BA,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Instrument Sans';font-weight:500;src:url(../../../../nuovo/riskly/fonts/InstrumentSans-500-normal-latin.woff2)}
+@font-face{font-family:'Instrument Sans';font-weight:500;src:url(../../../../nuovo/riskly/fonts/InstrumentSans-500-normal-latin-ext.woff2);unicode-range:U+0100-02BA,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Instrument Sans';font-weight:600;src:url(../../../../nuovo/riskly/fonts/InstrumentSans-600-normal-latin.woff2)}
+@font-face{font-family:'Instrument Sans';font-weight:600;src:url(../../../../nuovo/riskly/fonts/InstrumentSans-600-normal-latin-ext.woff2);unicode-range:U+0100-02BA,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Instrument Sans';font-weight:700;src:url(../../../../nuovo/riskly/fonts/InstrumentSans-700-normal-latin.woff2)}
+@font-face{font-family:'Instrument Sans';font-weight:700;src:url(../../../../nuovo/riskly/fonts/InstrumentSans-700-normal-latin-ext.woff2);unicode-range:U+0100-02BA,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Instrument Serif';src:url(../../../../nuovo/riskly/fonts/InstrumentSerif-400-normal-latin.woff2)}
+@font-face{font-family:'Instrument Serif';font-style:italic;src:url(../../../../nuovo/riskly/fonts/InstrumentSerif-400-italic-latin.woff2)}
+@font-face{font-family:'JetBrains Mono';font-weight:500;src:url(../../../../nuovo/riskly/fonts/JetBrainsMono-500-normal-latin.woff2)}
+@font-face{font-family:'JetBrains Mono';font-weight:600;src:url(../../../../nuovo/riskly/fonts/JetBrainsMono-600-normal-latin.woff2)}
+:root{--carta:#FBFBF9;--fondo:#F3F4F1;--ink:#15181B;--dim:#5E656D;--riga:#CDD1D4;--oro:#B97C00;--oro-hi:#E9A10F;--su:#1E7F45;--giu:#C2361F}
+@page{size:A4;margin:16mm 16mm 18mm}
+@page:first{margin:0}
+*{box-sizing:border-box}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{margin:0;font-family:'Instrument Sans',Arial,sans-serif;color:var(--ink);font-size:10.6pt;line-height:1.55;background:#fff}
+b{font-weight:600}
+.copertina{height:297mm;padding:22mm 20mm 18mm;background:radial-gradient(110mm 90mm at 100% 0%,rgba(233,161,15,.22),transparent 70%),var(--fondo);position:relative;page-break-after:always;display:flex;flex-direction:column}
+.marca{font-weight:700;font-size:17pt;letter-spacing:-.02em}.marca span{color:var(--oro)}
+.kicker,.lk,.bk{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:8pt;letter-spacing:.12em;color:var(--oro)}
+.copertina .kicker{margin-top:38mm}
+.modn{font-family:'JetBrains Mono',monospace;font-size:11pt;color:var(--dim);margin-top:6mm}
+h1{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:46pt;line-height:1;margin:2mm 0 12mm;letter-spacing:-.01em}
+h1 b,h2 b{font-weight:400;font-style:italic;color:var(--oro)}
+.indice{list-style:none;padding:0;margin:0 0 10mm;border-top:1px solid var(--ink)}
+.indice li{padding:3mm 0;border-bottom:1px solid var(--riga);font-size:12pt;display:flex;gap:6mm}
+.indice span{font-family:'JetBrains Mono',monospace;color:var(--oro);font-weight:600;min-width:12mm}
+.contiene{background:#fff;border:1px solid var(--riga);border-left:4px solid var(--oro-hi);border-radius:8px;padding:4mm 5mm;font-size:10pt}
+.avv{font-size:8pt;color:var(--dim);line-height:1.45}
+.copertina .avv{margin-top:auto}
+.fine{margin-top:10mm;border-top:1px solid var(--riga);padding-top:3mm}
+section.lezione,section.esercizi,section.soluzioni,section.check{page-break-before:always}
+h2{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:28pt;line-height:1.05;margin:1.5mm 0 3mm;letter-spacing:-.01em}
+.lead{color:var(--dim);font-size:11.5pt;margin:0 0 5mm}
+h3{font-size:12.5pt;font-weight:700;margin:7mm 0 2.5mm;letter-spacing:-.01em;break-after:avoid}
+h3::before{content:"";display:inline-block;width:7px;height:7px;background:var(--oro-hi);border-radius:2px;margin:0 7px 2px 0}
+.blocco{break-inside:auto}
+.voce{margin:2mm 0 0;color:#2a2f34;text-align:left}
+ul.punti{margin:0;padding:0;list-style:none}
+ul.punti li{padding:1.6mm 0 1.6mm 6mm;position:relative;border-bottom:1px dashed #e1e3e5;break-inside:avoid}
+ul.punti li::before{content:"→";position:absolute;left:0;color:var(--oro);font-weight:700}
+.spieg{color:var(--dim)}
+.formula{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:13pt;background:var(--ink);color:#fff;border-radius:10px;padding:5mm 6mm;text-align:center;margin:2mm 0 3mm;break-inside:avoid}
+.legenda{display:grid;grid-template-columns:auto 1fr;gap:1.2mm 5mm;margin:0 0 2mm;font-size:10pt}
+.legenda dt{font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--oro)}.legenda dd{margin:0}
+table{width:100%;table-layout:fixed;border-collapse:separate;border-spacing:0;margin:2mm 0;font-size:10pt;background:#fff;border-radius:8px;border:1px solid var(--riga)}
+tr{break-inside:avoid}
+th{background:var(--ink);color:#fff;text-align:left;font-weight:600;padding:2mm 3mm}
+td{padding:1.8mm 3mm;border-top:1px solid #e6e8ea}
+table.es td:last-child{font-family:'JetBrains Mono',monospace;font-weight:500;text-align:right}
+table.es td:first-child{color:var(--dim);width:48%}
+.ris{background:rgba(233,161,15,.14);border:1px solid rgba(185,124,0,.35);border-radius:8px;padding:2.5mm 4mm;font-weight:600;margin:2mm 0;break-inside:avoid}
+.nota{font-size:9.5pt;color:var(--dim);font-style:italic;margin:1mm 0}
+.confronto{display:grid;grid-template-columns:1fr 1fr;gap:4mm;break-inside:avoid}
+.ct{font-weight:700;margin-bottom:1mm}
+.numero{font-family:'Instrument Serif',Georgia,serif;font-size:40pt;color:var(--oro);line-height:1}
+figure{margin:2mm 0;break-inside:avoid}
+figure img{width:100%;border-radius:10px;display:block}
+figcaption{font-size:9pt;color:var(--dim);margin-top:1.5mm}
+blockquote{margin:8mm 0 2mm;padding:5mm 6mm;border-left:4px solid var(--oro-hi);font-family:'Instrument Serif',Georgia,serif;font-size:17pt;line-height:1.2;background:#fff;border-radius:0 10px 10px 0;break-inside:avoid}
+blockquote b{font-weight:400;font-style:italic;color:var(--oro)}
+.avviso{background:#fff;border:1px solid var(--riga);border-radius:10px;padding:3mm 5mm}
+.avviso p{margin:1.5mm 0}
+.rimando{margin:6mm 0 2mm;padding:3mm 4mm;border:1.5px dashed var(--oro);border-radius:8px;font-size:10pt;color:#6b4a00;break-inside:avoid}
+.breve{margin:7mm 0 2mm;background:var(--ink);color:#fff;border-radius:12px;padding:5mm 6mm;break-inside:avoid}
+.breve .bk{color:var(--oro-hi);margin-bottom:2mm}
+.breve ul{margin:0;padding-left:5mm}.breve li{margin:1.2mm 0}
+.esr{display:grid;grid-template-columns:9mm 1fr;gap:3mm;margin:0 0 6mm;break-inside:avoid}
+.esn{width:8mm;height:8mm;border-radius:50%;background:var(--oro-hi);color:#2B1E00;font-family:'JetBrains Mono',monospace;font-weight:600;display:grid;place-items:center;font-size:10pt}
+.est{font-weight:700;margin-bottom:1mm}.est span{font-weight:400;color:var(--dim);font-size:9.5pt}
+.cl{margin:0 0 4mm;break-inside:avoid}
+.clt{font-family:'JetBrains Mono',monospace;font-size:9pt;color:var(--oro);font-weight:600;margin-bottom:1mm}
+.cl ul{list-style:none;margin:0;padding:0}
+.cl li{padding:1.4mm 0 1.4mm 8mm;position:relative;border-bottom:1px solid #e6e8ea}
+.cl li::before{content:"";position:absolute;left:0;top:2.2mm;width:4mm;height:4mm;border:1.5px solid var(--ink);border-radius:3px}
+</style></head><body><section class="copertina">
+<div class="marca">Riskly<span>.trade</span></div>
+<div class="kicker">CORSO DI GESTIONE DEL RISCHIO · DISPENSA</div>
+<div class="modn">Modulo 11</div>
+<h1>Extra: mente, margine e costi</h1>
+<ol class="indice"><li><span>11.1</span>Le trappole della mente</li><li><span>11.2</span>Margine, leva e stop out</li><li><span>11.3</span>Swap e costi di tenere aperto</li></ol>
+<div class="contiene"><b>In questa dispensa</b> il testo di ogni lezione, le formule, gli esempi svolti e la checklist del modulo.</div>
+<p class="avv">Materiale educativo, non consulenza finanziaria. Il trading con leva su forex, CFD e futures comporta un rischio elevato: puoi perdere tutto il capitale. Numeri, esempi e simulazioni non prevedono risultati futuri.</p></section><section class="lezione"><div class="lk">LEZIONE 11.1</div><h2>Le trappole della mente</h2>
+<p class="lead">Perché un piano giusto si rompe proprio quando serve.</p>
+<p class="voce">Lezione undici punto uno. Le trappole della mente. In questo modulo extra vediamo tre cose che fanno saltare anche un buon piano: la testa, il margine e i costi nascosti. Partiamo dalla testa.</p>
+<div class="blocco"><h3>Perdere fa più male che vincere</h3><ul class="punti"><li><b>Avversione alla perdita</b><span class="spieg"> — una perdita pesa circa il doppio di un guadagno uguale</span></li><li><b>Effetto disposizione</b><span class="spieg"> — chiudi presto i trade in guadagno e tieni quelli in perdita</span></li><li><b>Risultato</b><span class="spieg"> — guadagni piccoli, perdite grandi: il contrario del piano</span></li></ul><p class="voce">Gli studi di economia comportamentale mostrano una cosa semplice: perdere cento euro fa più male di quanto faccia piacere guadagnarne cento. Di solito si stima circa il doppio. Nel trading questo diventa l&#x27;effetto disposizione: chiudi in fretta i trade in guadagno, per paura di restituire il profitto, e tieni aperti quelli in perdita, sperando che tornino. Il risultato è il contrario di quello che vuoi: guadagni piccoli e perdite grandi. Con un rapporto rischio rendimento rovesciato, anche un buon win rate non basta.</p></div>
+<div class="blocco"><h3>Quattro trappole e la loro contromisura</h3><table class=""><thead><tr><th>Trappola</th><th>Cosa succede</th><th>Contromisura</th></tr></thead><tbody><tr><td>Avversione alla perdita</td><td>sposti lo stop per non prenderlo</td><td>stop sul server, mai allargato</td></tr><tr><td>Recency</td><td>cambi sistema dopo 3 perdite</td><td>giudica solo su 100+ trade</td></tr><tr><td>Eccesso di fiducia</td><td>dopo 5 vincite aumenti il lotto</td><td>rischio fisso, cambi solo con regole scritte</td></tr><tr><td>Costo affondato</td><td>&quot;ormai ho perso tanto, resto dentro&quot;</td><td>la domanda è: entrerei adesso?</td></tr></tbody></table></div>
+<div class="blocco"><h3>Come accorgersene in tempo</h3><ul class="punti"><li><b>Annota l&#x27;emozione</b><span class="spieg"> — nel journal, a ogni trade: calmo, nervoso, euforico, arrabbiato</span></li><li><b>Confronta i numeri</b><span class="spieg"> — quanto rendono i trade &quot;nervosi&quot; rispetto a quelli &quot;calmi&quot;</span></li><li><b>Decidi prima</b><span class="spieg"> — cosa fai quando ti senti così: pausa, lotto dimezzato, stop per oggi</span></li></ul><p class="voce">Le trappole non si vedono mentre ci sei dentro. Si vedono nei dati. Per questo, nel journal, a ogni trade annota anche come ti sentivi: calmo, nervoso, euforico, arrabbiato. Bastano due secondi. Dopo qualche settimana confronta i numeri: quasi sempre i trade nervosi o arrabbiati hanno una expectancy molto peggiore. A quel punto la regola si scrive da sola: quando mi sento così, faccio una pausa, dimezzo il lotto o chiudo per oggi.</p></div>
+<div class="breve"><div class="bk">IN BREVE</div><ul><li>Una perdita pesa circa il doppio di un guadagno: per questo si tagliano i vincenti e si tengono i perdenti</li><li>Ogni trappola ha una contromisura già scritta nel piano</li><li>Annota l&#x27;emozione nel journal e misura quanto ti costa</li></ul></div>
+<div class="blocco"><blockquote>Il piano lo scrivi a mente fredda. <b>Lo segui</b> quando la mente è calda.</blockquote></div>
+</section><section class="lezione"><div class="lk">LEZIONE 11.2</div><h2>Margine, leva e stop out</h2>
+<p class="lead">Quando il broker chiude prima del tuo stop.</p>
+<p class="voce">Lezione undici punto due. Margine, leva e stop out. Abbiamo detto che la leva non decide quanto perdi sullo stop. Ma c&#x27;è un caso in cui decide tutto: quando il margine finisce prima dello stop.</p>
+<div class="blocco"><h3>Tre parole da conoscere</h3><ul class="punti"><li><b>Margine</b><span class="spieg"> — il deposito che il broker blocca per tenere aperta la posizione</span></li><li><b>Margine libero</b><span class="spieg"> — quello che resta disponibile per le perdite e per nuove posizioni</span></li><li><b>Livello di margine</b><span class="spieg"> — capitale ÷ margine usato × 100: se scende troppo, il broker chiude</span></li></ul><p class="voce">Tre parole che trovi in basso nella piattaforma. Il margine è il deposito che il broker blocca per tenere aperta una posizione. Non è un costo: è una garanzia. Il margine libero è quello che resta: serve ad assorbire le perdite e ad aprire altre posizioni. E il livello di margine è il capitale diviso il margine usato, per cento. Se scende sotto una certa soglia, il broker chiude le posizioni da solo.</p></div>
+<div class="blocco"><h3>Un esempio con il conto in euro</h3><table class="es"><tbody><tr><td>Capitale</td><td>10.000 €</td></tr><tr><td>Posizione</td><td>2 lotti EURUSD</td></tr><tr><td>Leva</td><td>1:30</td></tr><tr><td>Margine usato</td><td>2 × 100.000 € ÷ 30 = 6.667 €</td></tr><tr><td>Livello di margine</td><td>10.000 ÷ 6.667 = 150%</td></tr></tbody></table><div class="ris">Margine libero: 3.333 €</div></div>
+<div class="blocco"><h3>Quando scatta lo stop out</h3><table class="es"><tbody><tr><td>Stop out per i clienti privati (UE)</td><td>livello di margine al 50%</td></tr><tr><td>Capitale al 50%</td><td>3.333 €</td></tr><tr><td>Perdita che lo fa scattare</td><td>6.667 €</td></tr><tr><td>Con 2 lotti, circa 20 € a pip</td><td>circa 333 pip</td></tr></tbody></table><div class="ris">Senza stop, il broker chiude per te a −67%</div></div>
+<div class="blocco"><h3>Leve massime per i clienti privati nell&#x27;UE</h3><table class=""><thead><tr><th>Strumento</th><th>Leva massima</th></tr></thead><tbody><tr><td>Valute principali</td><td>1:30</td></tr><tr><td>Altre valute, oro, indici principali</td><td>1:20</td></tr><tr><td>Materie prime (non oro), altri indici</td><td>1:10</td></tr><tr><td>Azioni</td><td>1:5</td></tr><tr><td>Cripto</td><td>1:2</td></tr></tbody></table><p class="nota">Regole ESMA per i CFD ai clienti al dettaglio, con protezione dal saldo negativo.</p></div>
+<div class="breve"><div class="bk">IN BREVE</div><ul><li>Il margine è una garanzia, non un costo</li><li>Livello di margine = capitale ÷ margine usato × 100; in UE lo stop out è al 50%</li><li>Lo stop decide la perdita; il margine libero deve restare ampio perché lo stop arrivi prima dello stop out</li></ul></div>
+<div class="blocco"><blockquote>La leva non decide quanto perdi. Decide <b>quanto puoi sbagliare</b> prima che decida il broker.</blockquote></div>
+</section><section class="lezione"><div class="lk">LEZIONE 11.3</div><h2>Swap e costi di tenere aperto</h2>
+<p class="lead">Quanto costa tenere una posizione aperta per giorni.</p>
+<p class="voce">Lezione undici punto tre. Lo swap, il costo di tenere aperta una posizione durante la notte. Nel modulo due abbiamo visto spread, commissioni e slippage. Manca un costo che si paga piano piano, e per questo si dimentica.</p>
+<div class="blocco"><h3>Cos&#x27;è lo swap</h3><ul class="punti"><li><b>Un interesse giornaliero</b><span class="spieg"> — pagato o incassato per ogni notte in cui la posizione resta aperta</span></li><li><b>Dipende dai tassi</b><span class="spieg"> — dal differenziale tra le due valute, più il ricarico del broker</span></li><li><b>Spesso triplo</b><span class="spieg"> — di solito il mercoledì notte sulle valute, per coprire il weekend</span></li></ul><p class="voce">Che cos&#x27;è lo swap. È un interesse giornaliero: lo paghi, o a volte lo incassi, per ogni notte in cui la posizione resta aperta oltre la chiusura della giornata di trading. Dipende dal differenziale dei tassi tra le due valute della coppia, più il ricarico del broker. Per questo spesso è negativo in entrambe le direzioni. E di solito, sulle valute, il mercoledì notte lo swap è triplo, per coprire il fine settimana. Il giorno esatto lo trovi nelle specifiche del simbolo.</p></div>
+<div class="blocco"><h3>Quanto costa davvero</h3><table class="es"><tbody><tr><td>Swap</td><td>−7 € per lotto a notte</td></tr><tr><td>Posizione</td><td>0,40 lotti</td></tr><tr><td>Tenuta</td><td>10 notti, con 2 mercoledì</td></tr><tr><td>Notti pagate</td><td>10 + 2 × 2 = 14</td></tr><tr><td>Costo</td><td>0,40 × 7 × 14 = 39,20 €</td></tr><tr><td>Rischio del trade</td><td>100 € = 1 R</td></tr></tbody></table><div class="ris">Costo dello swap: circa 0,4 R</div></div>
+<div class="blocco"><h3>Cosa fare</h3><ul class="punti"><li><b>Leggi le specifiche</b><span class="spieg"> — tasto destro sul simbolo → Specifiche: swap long, swap short, giorno triplo</span></li><li><b>Mettilo nel calcolo</b><span class="spieg"> — nei trade lunghi lo swap si somma ai costi, in R</span></li><li><b>Prop firm e conti islamici</b><span class="spieg"> — regole diverse: alcune prop vietano di tenere nel weekend</span></li></ul><p class="voce">Cosa fare in pratica. Leggi le specifiche del simbolo sulla piattaforma: trovi lo swap per le posizioni long, per quelle short e il giorno in cui è triplo. Se fai trade che durano giorni, metti lo swap nel calcolo dei costi, convertito in R come abbiamo fatto per spread e commissioni. E controlla le regole del tuo conto: alcuni conti non applicano lo swap, ma hanno altre commissioni, e alcune prop firm vietano di tenere posizioni nel fine settimana.</p></div>
+<div class="breve"><div class="bk">IN BREVE</div><ul><li>Lo swap è un interesse per ogni notte di posizione aperta, spesso negativo in entrambe le direzioni</li><li>Di solito triplo il mercoledì sulle valute: controlla le specifiche</li><li>Nei trade lunghi va nel calcolo dei costi, in R</li></ul></div>
+<div class="blocco"><blockquote>Il costo che non vedi <b>lo paghi lo stesso</b>.</blockquote></div>
+</section><section class="check"><div class="lk">PRIMA DI PASSARE AL MODULO SUCCESSIVO</div><h2>Checklist del modulo</h2><p class="lead">Spunta ogni punto solo se sapresti spiegarlo a voce a un altro trader.</p><div class="cl"><div class="clt">11.1 · Le trappole della mente</div><ul><li>Una perdita pesa circa il doppio di un guadagno: per questo si tagliano i vincenti e si tengono i perdenti</li><li>Ogni trappola ha una contromisura già scritta nel piano</li><li>Annota l&#x27;emozione nel journal e misura quanto ti costa</li></ul></div><div class="cl"><div class="clt">11.2 · Margine, leva e stop out</div><ul><li>Il margine è una garanzia, non un costo</li><li>Livello di margine = capitale ÷ margine usato × 100; in UE lo stop out è al 50%</li><li>Lo stop decide la perdita; il margine libero deve restare ampio perché lo stop arrivi prima dello stop out</li></ul></div><div class="cl"><div class="clt">11.3 · Swap e costi di tenere aperto</div><ul><li>Lo swap è un interesse per ogni notte di posizione aperta, spesso negativo in entrambe le direzioni</li><li>Di solito triplo il mercoledì sulle valute: controlla le specifiche</li><li>Nei trade lunghi va nel calcolo dei costi, in R</li></ul></div></section><div class="contiene" style="margin-top:8mm"><b>Quiz del modulo:</b> 5 domande su riskly.trade/quiz. Superati tutti i moduli, scarichi l'attestato di completamento.</div><p class="avv fine">Materiale educativo, non consulenza finanziaria. Il trading con leva su forex, CFD e futures comporta un rischio elevato: puoi perdere tutto il capitale. Numeri, esempi e simulazioni non prevedono risultati futuri. · riskly.trade</p></body></html>

@@ -1,6 +1,7 @@
 # Carica il corso Riskly · Analisi fondamentale in un gruppo Telegram con gli Argomenti: un argomento per modulo, video in ordine con didascalia.
 # uso: TG_TOKEN=... python3 telegram_carica.py trova          → mostra i gruppi visti dal bot
 #      TG_TOKEN=... TG_CHAT=-100... python3 telegram_carica.py carica   (riprende da dove si è fermato: stato in out/telegram_stato.json)
+#      TG_TOKEN=... TG_CHAT=-100... python3 telegram_carica.py aggiorna 3.1 3.2   (sostituisce il video nei messaggi già pubblicati)
 #      TG_TOKEN=... TG_CHAT=-100... python3 telegram_carica.py svuota   (cancella gli argomenti del bot per ricaricare da capo)
 import os, sys, json, re, glob, time, subprocess, requests, build
 T = os.environ['TG_TOKEN']; API = f'https://api.telegram.org/bot{T}/'; STATO = build.QUI + '/out/telegram_stato.json'
@@ -63,10 +64,23 @@ def carica(chat):
         except Exception as e: print('pin non riuscito:', e)
         st['indice'] = msg['message_id']; salva()
     print('FINITO')
+def aggiorna(chat, ids):
+    # sostituisce il video di lezioni già caricate (stesso messaggio, stessa posizione nell'argomento), con didascalia ricalcolata
+    L = {l['id']: l for l in build.carica()}; st = json.load(open(STATO))
+    for i in ids:
+        l = L[i]; f = glob.glob(f"{build.QUI}/out/corso/*/{i}_*.mp4")[0]; d = durata(f)
+        riep = next((s for s in l['slide'] if s.get('titolo') == 'In breve'), None)
+        punti = RITOCCHI.get(i) or [pul(p) if isinstance(p, str) else f'{pul(p[0])} — {pul(p[1])}' for p in (riep['punti'] if riep else [])]
+        cap = f"🎬 Lezione {i} · {TITOLI.get(i, pul(l['titolo']))} ({mm(d)})" + ("\n\nIn breve:\n" + "\n".join('• ' + p for p in punti) if punti else '')
+        media = json.dumps({'type': 'video', 'media': 'attach://video', 'caption': cap, 'supports_streaming': True, 'width': 1920, 'height': 1080, 'duration': int(d)})
+        with open(f, 'rb') as fh:
+            call('editMessageMedia', files={'video': (os.path.basename(f), fh, 'video/mp4')}, chat_id=chat, message_id=st['msg'][i], media=media)
+        print('aggiornata', i, flush=True); time.sleep(3)
 def svuota(chat):
     # cancella gli argomenti creati dal bot (con tutti i messaggi dentro) e azzera lo stato, per ricaricare da capo
     st = json.load(open(STATO))
     for n, tid in st['topic'].items(): call('deleteForumTopic', chat_id=chat, message_thread_id=tid); print('cancellato', n, flush=True); time.sleep(1)
     os.remove(STATO)
 if __name__ == '__main__':
-    {'trova': lambda: trova(), 'carica': lambda: carica(os.environ['TG_CHAT']), 'svuota': lambda: svuota(os.environ['TG_CHAT'])}[sys.argv[1]]()
+    {'trova': lambda: trova(), 'carica': lambda: carica(os.environ['TG_CHAT']), 'svuota': lambda: svuota(os.environ['TG_CHAT']),
+     'aggiorna': lambda: aggiorna(os.environ['TG_CHAT'], sys.argv[2:])}[sys.argv[1]]()

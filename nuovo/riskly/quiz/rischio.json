@@ -610,6 +610,67 @@
      "s": "Non controlli il mercato, ma controlli quanto rischi."
     }
    ]
+  },
+  {
+   "n": 11,
+   "titolo": "Extra: mente, margine e costi",
+   "domande": [
+    {
+     "q": "Che cos'è l'effetto disposizione?",
+     "o": [
+      "Chiudere presto i trade in guadagno e tenere quelli in perdita",
+      "Aprire troppe posizioni",
+      "Usare troppa leva",
+      "Seguire i segnali degli altri"
+     ],
+     "c": 0,
+     "s": "Per l'avversione alla perdita si tagliano i vincenti e si tengono i perdenti: guadagni piccoli, perdite grandi."
+    },
+    {
+     "q": "Dopo cinque vincite di fila ti senti in forma e vuoi aumentare il lotto. Che trappola è?",
+     "o": [
+      "Recency",
+      "Eccesso di fiducia",
+      "Costo affondato",
+      "Nessuna"
+     ],
+     "c": 1,
+     "s": "È eccesso di fiducia: il rischio si cambia solo con regole scritte prima, non per umore."
+    },
+    {
+     "q": "Capitale 10.000 €, margine usato 6.667 €. Qual è il livello di margine?",
+     "o": [
+      "67%",
+      "100%",
+      "150%",
+      "300%"
+     ],
+     "c": 2,
+     "s": "Livello di margine = capitale ÷ margine usato × 100 = 10.000 ÷ 6.667 × 100 ≈ 150%."
+    },
+    {
+     "q": "Per i clienti privati nell'UE, a quale livello di margine il broker deve chiudere le posizioni?",
+     "o": [
+      "100%",
+      "80%",
+      "50%",
+      "0%"
+     ],
+     "c": 2,
+     "s": "Le regole ESMA prevedono la chiusura quando il livello di margine scende al 50%."
+    },
+    {
+     "q": "Swap di −7 € per lotto a notte, 0,40 lotti, 10 notti con 2 mercoledì (swap triplo). Quanto paghi?",
+     "o": [
+      "28 €",
+      "33,60 €",
+      "39,20 €",
+      "70 €"
+     ],
+     "c": 2,
+     "s": "Notti pagate = 10 + 2 × 2 = 14. Costo = 0,40 × 7 × 14 = 39,20 €."
+    }
+   ]
   }
  ]
 }

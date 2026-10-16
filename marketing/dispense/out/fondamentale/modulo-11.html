@@ -1,0 +1,110 @@
+<!DOCTYPE html><html lang="it"><head><meta charset="utf-8"><title>Riskly · Analisi fondamentale · Modulo 11</title>
+<style>@font-face{font-family:'Instrument Sans';font-weight:400;src:url(../../../../nuovo/riskly/fonts/InstrumentSans-400-normal-latin.woff2)}
+@font-face{font-family:'Instrument Sans';font-weight:400;src:url(../../../../nuovo/riskly/fonts/InstrumentSans-400-normal-latin-ext.woff2);unicode-range:U+0100-02BA,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Instrument Sans';font-weight:500;src:url(../../../../nuovo/riskly/fonts/InstrumentSans-500-normal-latin.woff2)}
+@font-face{font-family:'Instrument Sans';font-weight:500;src:url(../../../../nuovo/riskly/fonts/InstrumentSans-500-normal-latin-ext.woff2);unicode-range:U+0100-02BA,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Instrument Sans';font-weight:600;src:url(../../../../nuovo/riskly/fonts/InstrumentSans-600-normal-latin.woff2)}
+@font-face{font-family:'Instrument Sans';font-weight:600;src:url(../../../../nuovo/riskly/fonts/InstrumentSans-600-normal-latin-ext.woff2);unicode-range:U+0100-02BA,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Instrument Sans';font-weight:700;src:url(../../../../nuovo/riskly/fonts/InstrumentSans-700-normal-latin.woff2)}
+@font-face{font-family:'Instrument Sans';font-weight:700;src:url(../../../../nuovo/riskly/fonts/InstrumentSans-700-normal-latin-ext.woff2);unicode-range:U+0100-02BA,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Instrument Serif';src:url(../../../../nuovo/riskly/fonts/InstrumentSerif-400-normal-latin.woff2)}
+@font-face{font-family:'Instrument Serif';font-style:italic;src:url(../../../../nuovo/riskly/fonts/InstrumentSerif-400-italic-latin.woff2)}
+@font-face{font-family:'JetBrains Mono';font-weight:500;src:url(../../../../nuovo/riskly/fonts/JetBrainsMono-500-normal-latin.woff2)}
+@font-face{font-family:'JetBrains Mono';font-weight:600;src:url(../../../../nuovo/riskly/fonts/JetBrainsMono-600-normal-latin.woff2)}
+:root{--carta:#FBFBF9;--fondo:#F3F4F1;--ink:#15181B;--dim:#5E656D;--riga:#CDD1D4;--oro:#B97C00;--oro-hi:#E9A10F;--su:#1E7F45;--giu:#C2361F}
+@page{size:A4;margin:16mm 16mm 18mm}
+@page:first{margin:0}
+*{box-sizing:border-box}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{margin:0;font-family:'Instrument Sans',Arial,sans-serif;color:var(--ink);font-size:10.6pt;line-height:1.55;background:#fff}
+b{font-weight:600}
+.copertina{height:297mm;padding:22mm 20mm 18mm;background:radial-gradient(110mm 90mm at 100% 0%,rgba(233,161,15,.22),transparent 70%),var(--fondo);position:relative;page-break-after:always;display:flex;flex-direction:column}
+.marca{font-weight:700;font-size:17pt;letter-spacing:-.02em}.marca span{color:var(--oro)}
+.kicker,.lk,.bk{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:8pt;letter-spacing:.12em;color:var(--oro)}
+.copertina .kicker{margin-top:38mm}
+.modn{font-family:'JetBrains Mono',monospace;font-size:11pt;color:var(--dim);margin-top:6mm}
+h1{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:46pt;line-height:1;margin:2mm 0 12mm;letter-spacing:-.01em}
+h1 b,h2 b{font-weight:400;font-style:italic;color:var(--oro)}
+.indice{list-style:none;padding:0;margin:0 0 10mm;border-top:1px solid var(--ink)}
+.indice li{padding:3mm 0;border-bottom:1px solid var(--riga);font-size:12pt;display:flex;gap:6mm}
+.indice span{font-family:'JetBrains Mono',monospace;color:var(--oro);font-weight:600;min-width:12mm}
+.contiene{background:#fff;border:1px solid var(--riga);border-left:4px solid var(--oro-hi);border-radius:8px;padding:4mm 5mm;font-size:10pt}
+.avv{font-size:8pt;color:var(--dim);line-height:1.45}
+.copertina .avv{margin-top:auto}
+.fine{margin-top:10mm;border-top:1px solid var(--riga);padding-top:3mm}
+section.lezione,section.esercizi,section.soluzioni,section.check{page-break-before:always}
+h2{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:28pt;line-height:1.05;margin:1.5mm 0 3mm;letter-spacing:-.01em}
+.lead{color:var(--dim);font-size:11.5pt;margin:0 0 5mm}
+h3{font-size:12.5pt;font-weight:700;margin:7mm 0 2.5mm;letter-spacing:-.01em;break-after:avoid}
+h3::before{content:"";display:inline-block;width:7px;height:7px;background:var(--oro-hi);border-radius:2px;margin:0 7px 2px 0}
+.blocco{break-inside:auto}
+.voce{margin:2mm 0 0;color:#2a2f34;text-align:left}
+ul.punti{margin:0;padding:0;list-style:none}
+ul.punti li{padding:1.6mm 0 1.6mm 6mm;position:relative;border-bottom:1px dashed #e1e3e5;break-inside:avoid}
+ul.punti li::before{content:"→";position:absolute;left:0;color:var(--oro);font-weight:700}
+.spieg{color:var(--dim)}
+.formula{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:13pt;background:var(--ink);color:#fff;border-radius:10px;padding:5mm 6mm;text-align:center;margin:2mm 0 3mm;break-inside:avoid}
+.legenda{display:grid;grid-template-columns:auto 1fr;gap:1.2mm 5mm;margin:0 0 2mm;font-size:10pt}
+.legenda dt{font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--oro)}.legenda dd{margin:0}
+table{width:100%;table-layout:fixed;border-collapse:separate;border-spacing:0;margin:2mm 0;font-size:10pt;background:#fff;border-radius:8px;border:1px solid var(--riga)}
+tr{break-inside:avoid}
+th{background:var(--ink);color:#fff;text-align:left;font-weight:600;padding:2mm 3mm}
+td{padding:1.8mm 3mm;border-top:1px solid #e6e8ea}
+table.es td:last-child{font-family:'JetBrains Mono',monospace;font-weight:500;text-align:right}
+table.es td:first-child{color:var(--dim);width:48%}
+.ris{background:rgba(233,161,15,.14);border:1px solid rgba(185,124,0,.35);border-radius:8px;padding:2.5mm 4mm;font-weight:600;margin:2mm 0;break-inside:avoid}
+.nota{font-size:9.5pt;color:var(--dim);font-style:italic;margin:1mm 0}
+.confronto{display:grid;grid-template-columns:1fr 1fr;gap:4mm;break-inside:avoid}
+.ct{font-weight:700;margin-bottom:1mm}
+.numero{font-family:'Instrument Serif',Georgia,serif;font-size:40pt;color:var(--oro);line-height:1}
+figure{margin:2mm 0;break-inside:avoid}
+figure img{width:100%;border-radius:10px;display:block}
+figcaption{font-size:9pt;color:var(--dim);margin-top:1.5mm}
+blockquote{margin:8mm 0 2mm;padding:5mm 6mm;border-left:4px solid var(--oro-hi);font-family:'Instrument Serif',Georgia,serif;font-size:17pt;line-height:1.2;background:#fff;border-radius:0 10px 10px 0;break-inside:avoid}
+blockquote b{font-weight:400;font-style:italic;color:var(--oro)}
+.avviso{background:#fff;border:1px solid var(--riga);border-radius:10px;padding:3mm 5mm}
+.avviso p{margin:1.5mm 0}
+.rimando{margin:6mm 0 2mm;padding:3mm 4mm;border:1.5px dashed var(--oro);border-radius:8px;font-size:10pt;color:#6b4a00;break-inside:avoid}
+.breve{margin:7mm 0 2mm;background:var(--ink);color:#fff;border-radius:12px;padding:5mm 6mm;break-inside:avoid}
+.breve .bk{color:var(--oro-hi);margin-bottom:2mm}
+.breve ul{margin:0;padding-left:5mm}.breve li{margin:1.2mm 0}
+.esr{display:grid;grid-template-columns:9mm 1fr;gap:3mm;margin:0 0 6mm;break-inside:avoid}
+.esn{width:8mm;height:8mm;border-radius:50%;background:var(--oro-hi);color:#2B1E00;font-family:'JetBrains Mono',monospace;font-weight:600;display:grid;place-items:center;font-size:10pt}
+.est{font-weight:700;margin-bottom:1mm}.est span{font-weight:400;color:var(--dim);font-size:9.5pt}
+.cl{margin:0 0 4mm;break-inside:avoid}
+.clt{font-family:'JetBrains Mono',monospace;font-size:9pt;color:var(--oro);font-weight:600;margin-bottom:1mm}
+.cl ul{list-style:none;margin:0;padding:0}
+.cl li{padding:1.4mm 0 1.4mm 8mm;position:relative;border-bottom:1px solid #e6e8ea}
+.cl li::before{content:"";position:absolute;left:0;top:2.2mm;width:4mm;height:4mm;border:1.5px solid var(--ink);border-radius:3px}
+</style></head><body><section class="copertina">
+<div class="marca">Riskly<span>.trade</span></div>
+<div class="kicker">CORSO DI ANALISI FONDAMENTALE · DISPENSA</div>
+<div class="modn">Modulo 11</div>
+<h1>Extra: petrolio, posizionamento e stagionalità</h1>
+<ol class="indice"><li><span>11.1</span>Il petrolio: OPEC, scorte e prezzo</li><li><span>11.2</span>Il COT: come sono posizionati i grandi</li><li><span>11.3</span>Calendario e liquidità: quando il mercato è sottile</li></ol>
+<div class="contiene"><b>In questa dispensa</b> il testo di ogni lezione, le formule, gli esempi svolti e la checklist del modulo.</div>
+<p class="avv">Materiale educativo, non consulenza finanziaria. Il trading con leva su forex, CFD e futures comporta un rischio elevato: puoi perdere tutto il capitale. Numeri, esempi e simulazioni non prevedono risultati futuri.</p></section><section class="lezione"><div class="lk">LEZIONE 11.1</div><h2>Il petrolio: OPEC, scorte e prezzo</h2>
+<p class="lead">OPEC, scorte settimanali e perché il petrolio arriva fino al tuo cambio.</p>
+<p class="voce">In questo modulo extra vediamo tre argomenti che completano il quadro: il petrolio, il posizionamento dei grandi operatori e la stagionalità. Cominciamo dal petrolio, la materia prima che entra nell&#x27;inflazione, nei conti con l&#x27;estero e perfino nel valore di alcune valute.</p>
+<div class="blocco"><h3>Chi muove il prezzo</h3><ul class="punti"><li><b>OPEC+</b><span class="spieg"> — i paesi produttori decidono quote di produzione nelle loro riunioni</span></li><li><b>Le scorte americane</b><span class="spieg"> — ogni mercoledì alle 16:30 ora italiana, il dato dell&#x27;EIA</span></li><li><b>Domanda e geopolitica</b><span class="spieg"> — crescita cinese, stagione estiva, tensioni nelle zone di produzione</span></li></ul><p class="voce">Tre forze muovono il prezzo del petrolio. La prima è l&#x27;OPEC più, il gruppo dei principali paesi produttori, che nelle sue riunioni decide quanto produrre. Un taglio a sorpresa può spostare il prezzo di diversi punti percentuali in pochi minuti. La seconda sono le scorte americane: ogni mercoledì alle sedici e trenta ora italiana l&#x27;agenzia per l&#x27;energia americana, l&#x27;EIA, pubblica le scorte di greggio. Un calo più forte del previsto di solito spinge il prezzo in su. Il martedì sera escono stime private dell&#x27;API. La terza è la domanda, che dipende dalla crescita mondiale e soprattutto dalla Cina, e la geopolitica: le tensioni nelle zone di produzione o lungo le rotte del petrolio fanno salire il prezzo per paura di interruzioni.</p></div>
+<div class="blocco"><h3>Dati veri: il petrolio dal 2000</h3><figure><img src="fig/11.1_02.jpg"><figcaption>Fonte: EIA via FRED, medie mensili</figcaption></figure><p class="voce">Ecco il prezzo del petrolio americano, il WTI, dal 2000, in media mensile. A giugno 2008 arriva intorno ai centotrentaquattro dollari, poi la crisi lo dimezza in pochi mesi. Tra il 2014 e l&#x27;inizio del 2016 crolla di nuovo, fino a circa trenta dollari a febbraio 2016. E il venti aprile 2020 succede una cosa mai vista: il contratto future in scadenza chiude a meno trentasette dollari, perché nessuno sapeva dove stoccare il petrolio. Nel 2022 torna sopra i cento dollari. Sono dati storici: raccontano cosa è successo, non dove andrà il prezzo.</p></div>
+<div class="blocco"><h3>Cosa significa per il rischio</h3><ul class="punti"><li><b>Mercoledì alle 16:30</b><span class="spieg"> — sul petrolio e sul dollaro canadese, niente ordini stretti in quei minuti</span></li><li><b>Riunioni OPEC+</b><span class="spieg"> — segnale in agenda come un dato ad alto impatto</span></li><li><b>Lotto più piccolo</b><span class="spieg"> — il petrolio può muoversi del 5% in un giorno: stesso rischio, meno lotti</span></li></ul><p class="voce">Cosa significa per il rischio. Il mercoledì alle sedici e trenta, se operi sul petrolio o sul dollaro canadese, evita ordini con stop molto stretti nei minuti del dato. Segna le riunioni dell&#x27;OPEC più in agenda come un dato ad alto impatto: le decisioni a sorpresa arrivano spesso nel fine settimana, e il lunedì il mercato può aprire con un gap. E ricorda che il petrolio può muoversi del cinque per cento o più in una sola giornata: a parità di rischio, lo stop è più largo e il lotto deve essere più piccolo.</p></div>
+<div class="breve"><div class="bk">IN BREVE</div><ul><li>Tre motori — OPEC+, scorte settimanali, domanda e geopolitica</li><li>Scorte EIA — ogni mercoledì alle 16:30 ora italiana</li><li>Per il rischio — stop larghi, lotti piccoli, attenzione ai gap dopo le riunioni OPEC+</li></ul></div>
+<div class="blocco"><blockquote>Il petrolio non si prevede. <b>Si rispetta</b>.</blockquote></div>
+</section><section class="lezione"><div class="lk">LEZIONE 11.2</div><h2>Il COT: come sono posizionati i grandi</h2>
+<p class="lead">Il rapporto settimanale sulle posizioni nei future americani.</p>
+<p class="voce">In questa lezione vediamo il rapporto COT, Commitments of Traders, che ogni settimana mostra come sono posizionati i grandi operatori nei mercati future americani. Non è un segnale, ma racconta quanto è affollata una scommessa.</p>
+<div class="blocco"><h3>Cos&#x27;è e quando esce</h3><ul class="punti"><li><b>Chi lo pubblica</b><span class="spieg"> — la CFTC, l&#x27;autorità americana dei future</span></li><li><b>Quando</b><span class="spieg"> — il venerdì alle 21:30 ora italiana, con le posizioni del martedì</span></li><li><b>Cosa mostra</b><span class="spieg"> — posizioni lunghe e corte per categoria di operatori</span></li></ul><p class="voce">Il rapporto lo pubblica la CFTC, l&#x27;autorità americana che vigila sui mercati dei future. Esce ogni venerdì alle ventuno e trenta ora italiana, ma fotografa le posizioni del martedì precedente: quando lo leggi, ha già tre giorni. Mostra quante posizioni lunghe e corte hanno le diverse categorie di operatori, su valute, oro, petrolio, indici e titoli di Stato.</p></div>
+<div class="blocco"><h3>Le categorie principali</h3><table class=""><thead><tr><th>Categoria</th><th>Chi sono</th><th>Come leggerli</th></tr></thead><tbody><tr><td>Operatori commerciali</td><td>produttori e utilizzatori che si coprono</td><td>si coprono dal rischio, non scommettono</td></tr><tr><td>Fondi speculativi</td><td>hedge fund e gestori</td><td>seguono le tendenze: la loro posizione netta è la più osservata</td></tr><tr><td>Piccoli operatori</td><td>posizioni sotto le soglie di segnalazione</td><td>spesso arrivano tardi</td></tr></tbody></table></div>
+<div class="blocco"><h3>Come usarlo, con cautela</h3><ul class="punti"><li><b>Posizionamento estremo</b><span class="spieg"> — quando i fondi sono tutti dalla stessa parte, la scommessa è affollata</span></li><li><b>Non è un segnale di inversione</b><span class="spieg"> — un estremo può durare mesi</span></li><li><b>Per il rischio</b><span class="spieg"> — su una scommessa affollata, una sorpresa fa più male: lotti più piccoli</span></li></ul><p class="voce">Come si usa il COT, con cautela. Il dato più utile sono gli estremi: quando i fondi speculativi hanno una posizione netta vicina ai massimi degli ultimi anni, tutti sono dalla stessa parte. È una scommessa affollata. Questo non significa che il prezzo stia per invertire: un posizionamento estremo può restare tale per mesi, mentre il prezzo continua nella stessa direzione. Il punto è il rischio: quando una scommessa è affollata e arriva una sorpresa, molti devono chiudere insieme, e il movimento contrario è più violento. In quelle fasi, lotti più piccoli.</p></div>
+<div class="breve"><div class="bk">IN BREVE</div><ul><li>COT — posizioni nei future americani, ogni venerdì alle 21:30</li><li>Ritardo — fotografa il martedì: è un dato di contesto</li><li>Per il rischio — scommessa affollata = movimenti contrari più violenti</li></ul></div>
+<div class="blocco"><blockquote>Quando tutti sono dalla stessa parte, <b>l&#x27;uscita è stretta</b>.</blockquote></div>
+</section><section class="lezione"><div class="lk">LEZIONE 11.3</div><h2>Calendario e liquidità: quando il mercato è sottile</h2>
+<p class="lead">Fine mese, festività, agosto e cambio dell&#x27;ora: i giorni in cui gli spread cambiano.</p>
+<p class="voce">Nell&#x27;ultima lezione del modulo extra parliamo di calendario, ma non dei dati: dei giorni in cui il mercato ha meno operatori, gli spread si allargano e i movimenti diventano strani. Non sono previsioni, sono condizioni da conoscere.</p>
+<div class="blocco"><h3>I momenti da conoscere</h3><table class=""><thead><tr><th>Quando</th><th>Cosa succede di solito</th></tr></thead><tbody><tr><td>Ogni giorno, verso le 23:00</td><td>cambio di giornata dei broker: spread larghi per qualche minuto</td></tr><tr><td>Fine mese e fine trimestre</td><td>ribilanciamenti dei grandi fondi, movimenti senza notizie</td></tr><tr><td>Festività (USA, Regno Unito, Giappone)</td><td>meno scambi, movimenti più irregolari</td></tr><tr><td>Agosto e fine dicembre</td><td>liquidità bassa per settimane</td></tr><tr><td>Settimane del cambio dell&#x27;ora</td><td>i dati americani escono un&#x27;ora prima o dopo del solito</td></tr></tbody></table></div>
+<div class="blocco"><h3>Esempio: la settimana del cambio dell&#x27;ora</h3><table class="es"><tbody><tr><td>Italia: ora solare</td><td>domenica 25 ottobre 2026</td></tr><tr><td>USA: ora solare</td><td>domenica 1 novembre 2026</td></tr><tr><td>Dati USA delle 8:30 di New York</td><td>13:30 italiane invece delle 14:30</td></tr><tr><td>Fed del 28 ottobre</td><td>19:00 italiane invece delle 20:00</td></tr></tbody></table><div class="ris">Una settimana con orari diversi: controlla il calendario</div></div>
+<div class="blocco"><h3>Cosa fare</h3><ul class="punti"><li><b>Segna questi giorni</b><span class="spieg"> — nel diario macro e nello scenario della settimana</span></li><li><b>Niente stop troppo stretti</b><span class="spieg"> — nei momenti di liquidità bassa</span></li><li><b>Meno operazioni</b><span class="spieg"> — nelle settimane sottili non serve forzare</span></li></ul><p class="voce">Cosa fare in pratica. Segna questi giorni nel diario macro e nello scenario della settimana, come fai con i dati. Nei momenti di liquidità bassa evita gli stop troppo stretti: lo spread da solo può bastare a farli scattare. E nelle settimane sottili non serve forzare: meno operazioni, e solo quelle che rispettano tutte le regole.</p></div>
+<div class="breve"><div class="bk">IN BREVE</div><ul><li>Liquidità — cambio di giornata, fine mese, festività, agosto e dicembre</li><li>Cambio dell&#x27;ora — per una settimana i dati USA si spostano di un&#x27;ora</li><li>Per il rischio — spread più larghi: niente stop stretti, meno operazioni</li></ul></div>
+<div class="blocco"><blockquote>Non è solo <b>cosa</b> esce. È anche <b>quando</b> il mercato è pronto ad ascoltare.</blockquote></div>
+</section><section class="check"><div class="lk">PRIMA DI PASSARE AL MODULO SUCCESSIVO</div><h2>Checklist del modulo</h2><p class="lead">Spunta ogni punto solo se sapresti spiegarlo a voce a un altro trader.</p><div class="cl"><div class="clt">11.1 · Il petrolio: OPEC, scorte e prezzo</div><ul><li>Tre motori — OPEC+, scorte settimanali, domanda e geopolitica</li><li>Scorte EIA — ogni mercoledì alle 16:30 ora italiana</li><li>Per il rischio — stop larghi, lotti piccoli, attenzione ai gap dopo le riunioni OPEC+</li></ul></div><div class="cl"><div class="clt">11.2 · Il COT: come sono posizionati i grandi</div><ul><li>COT — posizioni nei future americani, ogni venerdì alle 21:30</li><li>Ritardo — fotografa il martedì: è un dato di contesto</li><li>Per il rischio — scommessa affollata = movimenti contrari più violenti</li></ul></div><div class="cl"><div class="clt">11.3 · Calendario e liquidità: quando il mercato è sottile</div><ul><li>Liquidità — cambio di giornata, fine mese, festività, agosto e dicembre</li><li>Cambio dell&#x27;ora — per una settimana i dati USA si spostano di un&#x27;ora</li><li>Per il rischio — spread più larghi: niente stop stretti, meno operazioni</li></ul></div></section><div class="contiene" style="margin-top:8mm"><b>Quiz del modulo:</b> 5 domande su riskly.trade/quiz. Superati tutti i moduli, scarichi l'attestato di completamento.</div><p class="avv fine">Materiale educativo, non consulenza finanziaria. Il trading con leva su forex, CFD e futures comporta un rischio elevato: puoi perdere tutto il capitale. Numeri, esempi e simulazioni non prevedono risultati futuri. · riskly.trade</p></body></html>

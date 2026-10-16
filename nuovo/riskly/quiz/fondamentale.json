@@ -1,75 +1,676 @@
 {
  "corso": "Analisi fondamentale",
  "moduli": [
-  {"n": 1, "titolo": "Come il mercato reagisce alle notizie", "domande": [
-   {"q": "Cosa muove davvero il prezzo quando esce un dato?", "o": ["Il numero in sé", "La sorpresa: dato effettivo meno consenso", "Il dato del mese prima", "L'orario di uscita"], "c": 1, "s": "Conta la sorpresa rispetto al consenso: lo stesso numero può dare reazioni opposte a seconda delle attese."},
-   {"q": "Il consenso del CPI è 3,0%, il dato esce al 3,0% ma il mese precedente viene rivisto molto al rialzo. Cosa può succedere?", "o": ["Niente, il dato è in linea", "Il mercato può reagire come a una sorpresa, per la revisione", "Il dato viene annullato", "Si muove solo il giorno dopo"], "c": 1, "s": "Le revisioni sono la metà della notizia: un dato in linea con una revisione forte può muovere il prezzo."},
-   {"q": "Cosa succede spesso a spread e stop nei minuti del dato?", "o": ["Gli spread si stringono", "Gli spread si allargano e lo stop può essere eseguito peggio (slippage)", "Gli ordini vengono sospesi", "Nulla di diverso"], "c": 1, "s": "Nei minuti del dato la liquidità cala: spread larghi, slippage e a volte gap."},
-   {"q": "Quale di questi è un dato ad alto impatto?", "o": ["Fiducia delle imprese di un piccolo paese", "Rapporto sul lavoro americano", "Scorte all'ingrosso", "Vendite di case nuove in una regione"], "c": 1, "s": "Alto impatto: banche centrali, lavoro, inflazione, PIL, PMI."},
-   {"q": "'Buy the rumor, sell the news' significa che…", "o": ["il prezzo spesso anticipa la notizia e reagisce al contrario quando esce", "bisogna comprare sempre le notizie", "le notizie non contano", "si vende prima del dato"], "c": 0, "s": "Il prezzo anticipa le notizie attese: quando escono, chi aveva già comprato può incassare."}
-  ]},
-  {"n": 2, "titolo": "Le banche centrali", "domande": [
-   {"q": "Una politica monetaria restrittiva (tassi in salita) di solito rende la valuta…", "o": ["più debole", "più forte", "indifferente", "instabile"], "c": 1, "s": "Tassi più alti attirano capitali: la valuta tende a rafforzarsi."},
-   {"q": "Perché conta più il tasso atteso del tasso di oggi?", "o": ["Perché il tasso di oggi è segreto", "Perché il mercato prezza in anticipo le decisioni future", "Perché le banche centrali cambiano idea ogni giorno", "Non è vero"], "c": 1, "s": "Il mercato guarda avanti: sono le attese sui tassi a muovere valute e rendimenti."},
-   {"q": "A che ora italiana esce di solito il comunicato della Fed (con l'ora legale in entrambi i paesi)?", "o": ["14:15", "16:00", "20:00", "22:00"], "c": 2, "s": "Il comunicato della Fed esce alle 20:00 italiane; nella settimana del cambio dell'ora può essere alle 19:00."},
-   {"q": "Che cos'è il QE?", "o": ["Un rialzo dei tassi", "Acquisti di titoli da parte della banca centrale che aggiungono liquidità", "Una tassa sulle banche", "Un indice di inflazione"], "c": 1, "s": "QE: la banca centrale compra titoli, più liquidità e rendimenti più bassi. Il QT fa il contrario."},
-   {"q": "Il carry trade guadagna sul differenziale dei tassi. Quando è più rischioso?", "o": ["Nelle fasi tranquille", "Nelle fasi di panico, quando le valute a tassi bassi salgono di colpo", "Il venerdì", "Mai"], "c": 1, "s": "Nel panico il carry trade si chiude in fretta: yen e franco possono salire di colpo."}
-  ]},
-  {"n": 3, "titolo": "L'inflazione", "domande": [
-   {"q": "Cosa esclude il CPI 'core'?", "o": ["Affitti e servizi", "Cibo ed energia", "Sanità", "Trasporti"], "c": 1, "s": "Il core esclude cibo ed energia, più volatili: è il dato più osservato."},
-   {"q": "Quale indice usa la Fed come riferimento ufficiale per l'obiettivo del 2%?", "o": ["CPI", "PPI", "PCE", "HICP"], "c": 2, "s": "Il riferimento della Fed è il PCE, in particolare il core; di solito è un po' più basso del CPI."},
-   {"q": "Nei dati veri del corso, quando ha toccato il picco l'inflazione americana generale?", "o": ["Luglio 2009", "Giugno 2022, intorno al 9%", "Gennaio 2020", "Ottobre 2026"], "c": 1, "s": "Il CPI generale ha toccato il 9% a giugno 2022, il massimo da oltre quarant'anni."},
-   {"q": "Perché il PPI può anticipare il CPI?", "o": ["Perché esce prima nel mese", "Perché i costi delle imprese arrivano ai consumatori con ritardo", "Perché lo calcola la Fed", "Non lo anticipa mai"], "c": 1, "s": "Il PPI misura i prezzi pagati e incassati dalle imprese: i rincari arrivano al consumo dopo, con ritardi variabili."},
-   {"q": "Qual è il dato sull'inflazione dell'eurozona che muove di più l'euro?", "o": ["Il dato finale", "La stima flash delle 11:00", "Il dato tedesco annuale", "Le aspettative della BCE"], "c": 1, "s": "La stima flash dell'HICP alle 11:00 è il dato che muove l'euro; i dati dei singoli paesi la anticipano."}
-  ]},
-  {"n": 4, "titolo": "Il lavoro", "domande": [
-   {"q": "Quando esce di solito il rapporto sul lavoro americano?", "o": ["Il primo lunedì del mese alle 16:00", "Il primo venerdì del mese alle 14:30", "Ogni giovedì alle 14:30", "A fine mese alle 20:00"], "c": 1, "s": "Di solito il primo venerdì del mese alle 14:30 italiane."},
-   {"q": "Il tasso di disoccupazione può scendere anche quando…", "o": ["le persone smettono di cercare lavoro", "aumentano i licenziamenti", "il PIL cala", "mai"], "c": 0, "s": "Disoccupazione = disoccupati ÷ forza lavoro: se la gente smette di cercare esce dalla forza lavoro e il tasso scende."},
-   {"q": "Perché i salari sono importanti per la banca centrale?", "o": ["Sono il ponte tra lavoro e inflazione, soprattutto nei servizi", "Perché li decide la Fed", "Non lo sono", "Perché influenzano solo le borse"], "c": 0, "s": "Salari in crescita alimentano l'inflazione dei servizi: una sorpresa sui salari può contare quanto quella sui posti."},
-   {"q": "Quale dato esce ogni giovedì e mostra per primo i cambi nel mercato del lavoro?", "o": ["JOLTS", "Richieste settimanali di sussidio", "PIL", "CPI"], "c": 1, "s": "Le richieste di sussidio escono ogni settimana: nel 2020 hanno mostrato la crisi prima di ogni altro dato."},
-   {"q": "Come vanno usati ADP, JOLTS e sussidi prima del rapporto?", "o": ["Per prevedere il numero esatto", "Come indizi di tendenza, non previsioni precise", "Per entrare prima del dato", "Non servono"], "c": 1, "s": "Sono indizi di tendenza; quando tutti si aspettano un risultato, la sorpresa opposta fa più male."}
-  ]},
-  {"n": 5, "titolo": "La crescita", "domande": [
-   {"q": "Che differenza c'è tra il PIL americano e quello europeo come viene comunicato?", "o": ["Nessuna", "Gli USA lo annualizzano, l'Europa lo dà sul trimestre", "L'Europa lo annualizza", "Gli USA lo danno solo a fine anno"], "c": 1, "s": "Il PIL USA è annualizzato: per questo nel 2020 si sono visti numeri come −28% e +34,9%."},
-   {"q": "Un PMI a 48 indica…", "o": ["espansione", "contrazione", "inflazione alta", "nulla"], "c": 1, "s": "Sopra 50 espansione, sotto 50 contrazione."},
-   {"q": "Nelle vendite al dettaglio, quale voce entra nel calcolo del PIL?", "o": ["Auto", "Benzina", "Gruppo di controllo", "Ristoranti"], "c": 2, "s": "Il gruppo di controllo esclude le voci più volatili ed entra nel PIL: il titolo può ingannare."},
-   {"q": "Nei dati veri, a maggio 2026 la fiducia dei consumatori del Michigan…", "o": ["era al massimo storico", "ha toccato il minimo storico, senza una recessione in corso", "non è stata pubblicata", "era sopra 100"], "c": 1, "s": "Il minimo storico (44,8) senza recessione mostra perché i sondaggi vanno presi con cautela."},
-   {"q": "Negli ordini di beni durevoli quale voce conviene guardare?", "o": ["Quella con i trasporti", "Quella senza trasporti", "Solo gli aerei", "Il totale annuo"], "c": 1, "s": "Gli ordini di aerei rendono il dato molto volatile: si guarda la voce senza trasporti."}
-  ]},
-  {"n": 6, "titolo": "Obbligazioni e tassi di mercato", "domande": [
-   {"q": "Se il prezzo di un titolo di Stato sale, il suo rendimento…", "o": ["sale", "scende", "resta uguale", "raddoppia"], "c": 1, "s": "Prezzo e rendimento vanno in direzioni opposte."},
-   {"q": "Il rendimento a 2 anni riflette soprattutto…", "o": ["le attese sulla banca centrale", "il prezzo del petrolio", "l'inflazione tra 30 anni", "la borsa"], "c": 0, "s": "Il 2 anni segue da vicino le attese sui tassi della banca centrale."},
-   {"q": "Una curva dei rendimenti invertita significa che…", "o": ["il lungo rende più del breve", "il breve rende più del lungo", "i tassi sono negativi", "la borsa sale"], "c": 1, "s": "Inversione: il breve rende più del lungo, il mercato si attende tagli. È un segnale di contesto, non operativo."},
-   {"q": "Rendimento reale ≈ …", "o": ["rendimento nominale + inflazione attesa", "rendimento nominale − inflazione attesa", "tasso della banca centrale × 2", "rendimento del Bund"], "c": 1, "s": "Reale ≈ nominale meno inflazione attesa. L'oro ne è storicamente sensibile, ma il legame può rompersi (come dal 2022)."},
-   {"q": "Lo spread BTP–Bund in forte salita segnala…", "o": ["fiducia nell'Italia", "rischio paese e pressione su euro e banche", "inflazione bassa", "nulla"], "c": 1, "s": "Lo spread misura il rischio sovrano: a novembre 2011 ha superato i 500 punti in media mensile."}
-  ]},
-  {"n": 7, "titolo": "Correlazioni tra asset", "domande": [
-   {"q": "Una correlazione di −1 significa che due asset…", "o": ["si muovono sempre insieme", "si muovono sempre in direzioni opposte", "non hanno legame", "hanno lo stesso prezzo"], "c": 1, "s": "La correlazione va da −1 (opposti) a +1 (insieme); quasi sempre è intermedia e cambia nel tempo."},
-   {"q": "Di solito, se il dollaro si rafforza, l'oro…", "o": ["tende a scendere", "tende a salire", "non cambia", "raddoppia"], "c": 0, "s": "Il legame è spesso inverso, ma non sempre: dal 2022 l'oro è salito anche con il dollaro forte."},
-   {"q": "Quale valuta è legata soprattutto al petrolio?", "o": ["Yen", "Dollaro canadese", "Franco svizzero", "Sterlina"], "c": 1, "s": "CAD e petrolio, AUD e metalli, NZD e agricoltura."},
-   {"q": "In una fase di risk off cosa tende a salire?", "o": ["Borse e valute cicliche", "Yen, franco e oro", "Petrolio e AUD", "Bitcoin"], "c": 1, "s": "Nel risk off scendono le borse e salgono i rifugi; arriva più veloce del risk on."},
-   {"q": "Hai long su oro, argento e AUDUSD. Cosa dice il corso?", "o": ["Sono tre scommesse indipendenti", "Sono in gran parte la stessa scommessa: somma il rischio per fattore", "Il rischio si annulla", "Conta solo l'oro"], "c": 1, "s": "La famiglia dell'oro ha un motore comune: raggruppa per fattore e metti un tetto di rischio per fattore."}
-  ]},
-  {"n": 8, "titolo": "I beni rifugio", "domande": [
-   {"q": "Quale caratteristica NON serve a un bene rifugio?", "o": ["Liquidità", "Fiducia", "Rendimento alto garantito", "Storia"], "c": 2, "s": "Liquidità, stabilità, storia e fiducia: un rifugio non garantisce rendimenti."},
-   {"q": "Cosa è successo all'oro a marzo 2020?", "o": ["È salito senza sosta", "È sceso anche lui per alcuni giorni, per la corsa alla liquidità", "È stato sospeso", "È rimasto fermo"], "c": 1, "s": "Dal 9 al 18 marzo 2020 l'oro ha perso quasi il 12%: richieste di margine e vendite forzate."},
-   {"q": "Perché lo yen tende a salire nelle fasi di paura?", "o": ["Per il rimpatrio dei capitali e la chiusura del carry trade", "Perché la Banca del Giappone alza i tassi", "Perché il Giappone esporta petrolio", "Non sale"], "c": 0, "s": "Rimpatrio dei capitali e chiusura del carry trade spingono lo yen nelle crisi."},
-   {"q": "Nelle crisi il dollaro…", "o": ["scende sempre", "può salire contro quasi tutto", "resta fermo", "viene sospeso"], "c": 1, "s": "È la valuta di riserva: nelle crisi c'è corsa al dollaro."},
-   {"q": "Con un bene rifugio, stop e dimensione della posizione…", "o": ["non servono", "restano obbligatori: anche un rifugio può muoversi molto", "servono solo sull'oro", "si raddoppiano"], "c": 1, "s": "Rifugio non vuol dire sicuro: l'oro ha perso circa il 40% tra il 2011 e il 2015."}
-  ]},
-  {"n": 9, "titolo": "Eventi straordinari", "domande": [
-   {"q": "Il 15 gennaio 2015 la banca centrale svizzera…", "o": ["alzò i tassi", "abbandonò la soglia minima di 1,20 su euro franco", "comprò dollari", "chiuse le banche"], "c": 1, "s": "Abbandonò a sorpresa la soglia: euro franco crollò, stop saltati, saldi negativi e broker falliti."},
-   {"q": "Con un gap del weekend, lo stop viene eseguito…", "o": ["esattamente al prezzo impostato", "al primo prezzo disponibile, anche molto peggiore", "mai", "il lunedì sera"], "c": 1, "s": "Lo stop diventa un ordine a mercato: esegue al primo prezzo disponibile dopo il gap."},
-   {"q": "Prima di un voto importante (elezioni, referendum) cosa suggerisce il corso?", "o": ["Aumentare la posizione", "Ridurre o chiudere prima del voto e aspettare il giorno dopo", "Entrare durante lo spoglio", "Usare più leva"], "c": 1, "s": "Brexit: sterlina giù di oltre il 10% in una notte. Più il mercato è sicuro, più la sorpresa è forte."},
-   {"q": "Come si riconosce il rischio di un intervento sui cambi (per esempio del Giappone)?", "o": ["Livelli già difesi in passato, parole delle autorità, movimento molto veloce", "Dal calendario economico", "Dal PMI", "Non si riconosce"], "c": 0, "s": "Livelli precedenti, dichiarazioni delle autorità e velocità del movimento: vicino a quei livelli, lotti più piccoli."},
-   {"q": "Quando le tensioni geopolitiche crescono, cosa conviene fare?", "o": ["Inseguire il movimento", "Ridurre i lotti e non inseguire", "Aprire su tutti gli strumenti", "Togliere gli stop"], "c": 1, "s": "Le fasi sono paura, canali concreti, spesso rientro: non inseguire e riduci i lotti."}
-  ]},
-  {"n": 10, "titolo": "Dal dato al piano", "domande": [
-   {"q": "Quali sono i quattro passi dello scenario della settimana?", "o": ["Calendario, contesto, scenari, rischio", "Grafico, indicatori, entrata, uscita", "Notizie, segnali, leva, profitto", "Solo il calendario"], "c": 0, "s": "Calendario, contesto, scenari (in entrambe le direzioni, scritti prima) e rischio della settimana."},
-   {"q": "Durante l'uscita di un dato ad alto impatto cosa fai?", "o": ["Entri subito sul primo movimento", "Non entri e leggi tutto il dato", "Sposti lo stop", "Raddoppi la posizione"], "c": 1, "s": "Durante: non entrare, leggi tutto il dato. Dopo: spread normale, piano preciso, annota."},
-   {"q": "In una settimana 'carica' (Fed, BCE, PIL e inflazione) il rischio…", "o": ["si aumenta", "si riduce", "resta uguale per forza", "non conta"], "c": 1, "s": "Meno rischio quando il calendario è pieno, con un tetto di perdita settimanale."},
-   {"q": "Cosa si annota nel diario macro?", "o": ["Solo i profitti", "Dato, attese, risultato, reazione e giorno dopo", "Le previsioni degli analisti", "Niente"], "c": 1, "s": "Annotando dato, attese, risultato e reazione impari quali dati contano e quanto muovono."},
-   {"q": "Qual è il principio finale del corso?", "o": ["Prevedere i dati", "Capire i dati e dimensionare sempre il rischio", "Operare solo sulle notizie", "Seguire le banche centrali"], "c": 1, "s": "L'analisi fondamentale dà il contesto, non le previsioni: il rischio si dimensiona sempre."}
-  ]}
+  {
+   "n": 1,
+   "titolo": "Come il mercato reagisce alle notizie",
+   "domande": [
+    {
+     "q": "Cosa muove davvero il prezzo quando esce un dato?",
+     "o": [
+      "Il numero in sé",
+      "La sorpresa: dato effettivo meno consenso",
+      "Il dato del mese prima",
+      "L'orario di uscita"
+     ],
+     "c": 1,
+     "s": "Conta la sorpresa rispetto al consenso: lo stesso numero può dare reazioni opposte a seconda delle attese."
+    },
+    {
+     "q": "Il consenso del CPI è 3,0%, il dato esce al 3,0% ma il mese precedente viene rivisto molto al rialzo. Cosa può succedere?",
+     "o": [
+      "Niente, il dato è in linea",
+      "Il mercato può reagire come a una sorpresa, per la revisione",
+      "Il dato viene annullato",
+      "Si muove solo il giorno dopo"
+     ],
+     "c": 1,
+     "s": "Le revisioni sono la metà della notizia: un dato in linea con una revisione forte può muovere il prezzo."
+    },
+    {
+     "q": "Cosa succede spesso a spread e stop nei minuti del dato?",
+     "o": [
+      "Gli spread si stringono",
+      "Gli spread si allargano e lo stop può essere eseguito peggio (slippage)",
+      "Gli ordini vengono sospesi",
+      "Nulla di diverso"
+     ],
+     "c": 1,
+     "s": "Nei minuti del dato la liquidità cala: spread larghi, slippage e a volte gap."
+    },
+    {
+     "q": "Quale di questi è un dato ad alto impatto?",
+     "o": [
+      "Fiducia delle imprese di un piccolo paese",
+      "Rapporto sul lavoro americano",
+      "Scorte all'ingrosso",
+      "Vendite di case nuove in una regione"
+     ],
+     "c": 1,
+     "s": "Alto impatto: banche centrali, lavoro, inflazione, PIL, PMI."
+    },
+    {
+     "q": "'Buy the rumor, sell the news' significa che…",
+     "o": [
+      "il prezzo spesso anticipa la notizia e reagisce al contrario quando esce",
+      "bisogna comprare sempre le notizie",
+      "le notizie non contano",
+      "si vende prima del dato"
+     ],
+     "c": 0,
+     "s": "Il prezzo anticipa le notizie attese: quando escono, chi aveva già comprato può incassare."
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "titolo": "Le banche centrali",
+   "domande": [
+    {
+     "q": "Una politica monetaria restrittiva (tassi in salita) di solito rende la valuta…",
+     "o": [
+      "più debole",
+      "più forte",
+      "indifferente",
+      "instabile"
+     ],
+     "c": 1,
+     "s": "Tassi più alti attirano capitali: la valuta tende a rafforzarsi."
+    },
+    {
+     "q": "Perché conta più il tasso atteso del tasso di oggi?",
+     "o": [
+      "Perché il tasso di oggi è segreto",
+      "Perché il mercato prezza in anticipo le decisioni future",
+      "Perché le banche centrali cambiano idea ogni giorno",
+      "Non è vero"
+     ],
+     "c": 1,
+     "s": "Il mercato guarda avanti: sono le attese sui tassi a muovere valute e rendimenti."
+    },
+    {
+     "q": "A che ora italiana esce di solito il comunicato della Fed (con l'ora legale in entrambi i paesi)?",
+     "o": [
+      "14:15",
+      "16:00",
+      "20:00",
+      "22:00"
+     ],
+     "c": 2,
+     "s": "Il comunicato della Fed esce alle 20:00 italiane; nella settimana del cambio dell'ora può essere alle 19:00."
+    },
+    {
+     "q": "Che cos'è il QE?",
+     "o": [
+      "Un rialzo dei tassi",
+      "Acquisti di titoli da parte della banca centrale che aggiungono liquidità",
+      "Una tassa sulle banche",
+      "Un indice di inflazione"
+     ],
+     "c": 1,
+     "s": "QE: la banca centrale compra titoli, più liquidità e rendimenti più bassi. Il QT fa il contrario."
+    },
+    {
+     "q": "Il carry trade guadagna sul differenziale dei tassi. Quando è più rischioso?",
+     "o": [
+      "Nelle fasi tranquille",
+      "Nelle fasi di panico, quando le valute a tassi bassi salgono di colpo",
+      "Il venerdì",
+      "Mai"
+     ],
+     "c": 1,
+     "s": "Nel panico il carry trade si chiude in fretta: yen e franco possono salire di colpo."
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "titolo": "L'inflazione",
+   "domande": [
+    {
+     "q": "Cosa esclude il CPI 'core'?",
+     "o": [
+      "Affitti e servizi",
+      "Cibo ed energia",
+      "Sanità",
+      "Trasporti"
+     ],
+     "c": 1,
+     "s": "Il core esclude cibo ed energia, più volatili: è il dato più osservato."
+    },
+    {
+     "q": "Quale indice usa la Fed come riferimento ufficiale per l'obiettivo del 2%?",
+     "o": [
+      "CPI",
+      "PPI",
+      "PCE",
+      "HICP"
+     ],
+     "c": 2,
+     "s": "Il riferimento della Fed è il PCE, in particolare il core; di solito è un po' più basso del CPI."
+    },
+    {
+     "q": "Nei dati veri del corso, quando ha toccato il picco l'inflazione americana generale?",
+     "o": [
+      "Luglio 2009",
+      "Giugno 2022, intorno al 9%",
+      "Gennaio 2020",
+      "Ottobre 2026"
+     ],
+     "c": 1,
+     "s": "Il CPI generale ha toccato il 9% a giugno 2022, il massimo da oltre quarant'anni."
+    },
+    {
+     "q": "Perché il PPI può anticipare il CPI?",
+     "o": [
+      "Perché esce prima nel mese",
+      "Perché i costi delle imprese arrivano ai consumatori con ritardo",
+      "Perché lo calcola la Fed",
+      "Non lo anticipa mai"
+     ],
+     "c": 1,
+     "s": "Il PPI misura i prezzi pagati e incassati dalle imprese: i rincari arrivano al consumo dopo, con ritardi variabili."
+    },
+    {
+     "q": "Qual è il dato sull'inflazione dell'eurozona che muove di più l'euro?",
+     "o": [
+      "Il dato finale",
+      "La stima flash delle 11:00",
+      "Il dato tedesco annuale",
+      "Le aspettative della BCE"
+     ],
+     "c": 1,
+     "s": "La stima flash dell'HICP alle 11:00 è il dato che muove l'euro; i dati dei singoli paesi la anticipano."
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "titolo": "Il lavoro",
+   "domande": [
+    {
+     "q": "Quando esce di solito il rapporto sul lavoro americano?",
+     "o": [
+      "Il primo lunedì del mese alle 16:00",
+      "Il primo venerdì del mese alle 14:30",
+      "Ogni giovedì alle 14:30",
+      "A fine mese alle 20:00"
+     ],
+     "c": 1,
+     "s": "Di solito il primo venerdì del mese alle 14:30 italiane."
+    },
+    {
+     "q": "Il tasso di disoccupazione può scendere anche quando…",
+     "o": [
+      "le persone smettono di cercare lavoro",
+      "aumentano i licenziamenti",
+      "il PIL cala",
+      "mai"
+     ],
+     "c": 0,
+     "s": "Disoccupazione = disoccupati ÷ forza lavoro: se la gente smette di cercare esce dalla forza lavoro e il tasso scende."
+    },
+    {
+     "q": "Perché i salari sono importanti per la banca centrale?",
+     "o": [
+      "Sono il ponte tra lavoro e inflazione, soprattutto nei servizi",
+      "Perché li decide la Fed",
+      "Non lo sono",
+      "Perché influenzano solo le borse"
+     ],
+     "c": 0,
+     "s": "Salari in crescita alimentano l'inflazione dei servizi: una sorpresa sui salari può contare quanto quella sui posti."
+    },
+    {
+     "q": "Quale dato esce ogni giovedì e mostra per primo i cambi nel mercato del lavoro?",
+     "o": [
+      "JOLTS",
+      "Richieste settimanali di sussidio",
+      "PIL",
+      "CPI"
+     ],
+     "c": 1,
+     "s": "Le richieste di sussidio escono ogni settimana: nel 2020 hanno mostrato la crisi prima di ogni altro dato."
+    },
+    {
+     "q": "Come vanno usati ADP, JOLTS e sussidi prima del rapporto?",
+     "o": [
+      "Per prevedere il numero esatto",
+      "Come indizi di tendenza, non previsioni precise",
+      "Per entrare prima del dato",
+      "Non servono"
+     ],
+     "c": 1,
+     "s": "Sono indizi di tendenza; quando tutti si aspettano un risultato, la sorpresa opposta fa più male."
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "titolo": "La crescita",
+   "domande": [
+    {
+     "q": "Che differenza c'è tra il PIL americano e quello europeo come viene comunicato?",
+     "o": [
+      "Nessuna",
+      "Gli USA lo annualizzano, l'Europa lo dà sul trimestre",
+      "L'Europa lo annualizza",
+      "Gli USA lo danno solo a fine anno"
+     ],
+     "c": 1,
+     "s": "Il PIL USA è annualizzato: per questo nel 2020 si sono visti numeri come −28% e +34,9%."
+    },
+    {
+     "q": "Un PMI a 48 indica…",
+     "o": [
+      "espansione",
+      "contrazione",
+      "inflazione alta",
+      "nulla"
+     ],
+     "c": 1,
+     "s": "Sopra 50 espansione, sotto 50 contrazione."
+    },
+    {
+     "q": "Nelle vendite al dettaglio, quale voce entra nel calcolo del PIL?",
+     "o": [
+      "Auto",
+      "Benzina",
+      "Gruppo di controllo",
+      "Ristoranti"
+     ],
+     "c": 2,
+     "s": "Il gruppo di controllo esclude le voci più volatili ed entra nel PIL: il titolo può ingannare."
+    },
+    {
+     "q": "Nei dati veri, a maggio 2026 la fiducia dei consumatori del Michigan…",
+     "o": [
+      "era al massimo storico",
+      "ha toccato il minimo storico, senza una recessione in corso",
+      "non è stata pubblicata",
+      "era sopra 100"
+     ],
+     "c": 1,
+     "s": "Il minimo storico (44,8) senza recessione mostra perché i sondaggi vanno presi con cautela."
+    },
+    {
+     "q": "Negli ordini di beni durevoli quale voce conviene guardare?",
+     "o": [
+      "Quella con i trasporti",
+      "Quella senza trasporti",
+      "Solo gli aerei",
+      "Il totale annuo"
+     ],
+     "c": 1,
+     "s": "Gli ordini di aerei rendono il dato molto volatile: si guarda la voce senza trasporti."
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "titolo": "Obbligazioni e tassi di mercato",
+   "domande": [
+    {
+     "q": "Se il prezzo di un titolo di Stato sale, il suo rendimento…",
+     "o": [
+      "sale",
+      "scende",
+      "resta uguale",
+      "raddoppia"
+     ],
+     "c": 1,
+     "s": "Prezzo e rendimento vanno in direzioni opposte."
+    },
+    {
+     "q": "Il rendimento a 2 anni riflette soprattutto…",
+     "o": [
+      "le attese sulla banca centrale",
+      "il prezzo del petrolio",
+      "l'inflazione tra 30 anni",
+      "la borsa"
+     ],
+     "c": 0,
+     "s": "Il 2 anni segue da vicino le attese sui tassi della banca centrale."
+    },
+    {
+     "q": "Una curva dei rendimenti invertita significa che…",
+     "o": [
+      "il lungo rende più del breve",
+      "il breve rende più del lungo",
+      "i tassi sono negativi",
+      "la borsa sale"
+     ],
+     "c": 1,
+     "s": "Inversione: il breve rende più del lungo, il mercato si attende tagli. È un segnale di contesto, non operativo."
+    },
+    {
+     "q": "Rendimento reale ≈ …",
+     "o": [
+      "rendimento nominale + inflazione attesa",
+      "rendimento nominale − inflazione attesa",
+      "tasso della banca centrale × 2",
+      "rendimento del Bund"
+     ],
+     "c": 1,
+     "s": "Reale ≈ nominale meno inflazione attesa. L'oro ne è storicamente sensibile, ma il legame può rompersi (come dal 2022)."
+    },
+    {
+     "q": "Lo spread BTP–Bund in forte salita segnala…",
+     "o": [
+      "fiducia nell'Italia",
+      "rischio paese e pressione su euro e banche",
+      "inflazione bassa",
+      "nulla"
+     ],
+     "c": 1,
+     "s": "Lo spread misura il rischio sovrano: a novembre 2011 ha superato i 500 punti in media mensile."
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "titolo": "Correlazioni tra asset",
+   "domande": [
+    {
+     "q": "Una correlazione di −1 significa che due asset…",
+     "o": [
+      "si muovono sempre insieme",
+      "si muovono sempre in direzioni opposte",
+      "non hanno legame",
+      "hanno lo stesso prezzo"
+     ],
+     "c": 1,
+     "s": "La correlazione va da −1 (opposti) a +1 (insieme); quasi sempre è intermedia e cambia nel tempo."
+    },
+    {
+     "q": "Di solito, se il dollaro si rafforza, l'oro…",
+     "o": [
+      "tende a scendere",
+      "tende a salire",
+      "non cambia",
+      "raddoppia"
+     ],
+     "c": 0,
+     "s": "Il legame è spesso inverso, ma non sempre: dal 2022 l'oro è salito anche con il dollaro forte."
+    },
+    {
+     "q": "Quale valuta è legata soprattutto al petrolio?",
+     "o": [
+      "Yen",
+      "Dollaro canadese",
+      "Franco svizzero",
+      "Sterlina"
+     ],
+     "c": 1,
+     "s": "CAD e petrolio, AUD e metalli, NZD e agricoltura."
+    },
+    {
+     "q": "In una fase di risk off cosa tende a salire?",
+     "o": [
+      "Borse e valute cicliche",
+      "Yen, franco e oro",
+      "Petrolio e AUD",
+      "Bitcoin"
+     ],
+     "c": 1,
+     "s": "Nel risk off scendono le borse e salgono i rifugi; arriva più veloce del risk on."
+    },
+    {
+     "q": "Hai long su oro, argento e AUDUSD. Cosa dice il corso?",
+     "o": [
+      "Sono tre scommesse indipendenti",
+      "Sono in gran parte la stessa scommessa: somma il rischio per fattore",
+      "Il rischio si annulla",
+      "Conta solo l'oro"
+     ],
+     "c": 1,
+     "s": "La famiglia dell'oro ha un motore comune: raggruppa per fattore e metti un tetto di rischio per fattore."
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "titolo": "I beni rifugio",
+   "domande": [
+    {
+     "q": "Quale caratteristica NON serve a un bene rifugio?",
+     "o": [
+      "Liquidità",
+      "Fiducia",
+      "Rendimento alto garantito",
+      "Storia"
+     ],
+     "c": 2,
+     "s": "Liquidità, stabilità, storia e fiducia: un rifugio non garantisce rendimenti."
+    },
+    {
+     "q": "Cosa è successo all'oro a marzo 2020?",
+     "o": [
+      "È salito senza sosta",
+      "È sceso anche lui per alcuni giorni, per la corsa alla liquidità",
+      "È stato sospeso",
+      "È rimasto fermo"
+     ],
+     "c": 1,
+     "s": "Dal 9 al 18 marzo 2020 l'oro ha perso quasi il 12%: richieste di margine e vendite forzate."
+    },
+    {
+     "q": "Perché lo yen tende a salire nelle fasi di paura?",
+     "o": [
+      "Per il rimpatrio dei capitali e la chiusura del carry trade",
+      "Perché la Banca del Giappone alza i tassi",
+      "Perché il Giappone esporta petrolio",
+      "Non sale"
+     ],
+     "c": 0,
+     "s": "Rimpatrio dei capitali e chiusura del carry trade spingono lo yen nelle crisi."
+    },
+    {
+     "q": "Nelle crisi il dollaro…",
+     "o": [
+      "scende sempre",
+      "può salire contro quasi tutto",
+      "resta fermo",
+      "viene sospeso"
+     ],
+     "c": 1,
+     "s": "È la valuta di riserva: nelle crisi c'è corsa al dollaro."
+    },
+    {
+     "q": "Con un bene rifugio, stop e dimensione della posizione…",
+     "o": [
+      "non servono",
+      "restano obbligatori: anche un rifugio può muoversi molto",
+      "servono solo sull'oro",
+      "si raddoppiano"
+     ],
+     "c": 1,
+     "s": "Rifugio non vuol dire sicuro: l'oro ha perso circa il 40% tra il 2011 e il 2015."
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "titolo": "Eventi straordinari",
+   "domande": [
+    {
+     "q": "Il 15 gennaio 2015 la banca centrale svizzera…",
+     "o": [
+      "alzò i tassi",
+      "abbandonò la soglia minima di 1,20 su euro franco",
+      "comprò dollari",
+      "chiuse le banche"
+     ],
+     "c": 1,
+     "s": "Abbandonò a sorpresa la soglia: euro franco crollò, stop saltati, saldi negativi e broker falliti."
+    },
+    {
+     "q": "Con un gap del weekend, lo stop viene eseguito…",
+     "o": [
+      "esattamente al prezzo impostato",
+      "al primo prezzo disponibile, anche molto peggiore",
+      "mai",
+      "il lunedì sera"
+     ],
+     "c": 1,
+     "s": "Lo stop diventa un ordine a mercato: esegue al primo prezzo disponibile dopo il gap."
+    },
+    {
+     "q": "Prima di un voto importante (elezioni, referendum) cosa suggerisce il corso?",
+     "o": [
+      "Aumentare la posizione",
+      "Ridurre o chiudere prima del voto e aspettare il giorno dopo",
+      "Entrare durante lo spoglio",
+      "Usare più leva"
+     ],
+     "c": 1,
+     "s": "Brexit: sterlina giù di oltre il 10% in una notte. Più il mercato è sicuro, più la sorpresa è forte."
+    },
+    {
+     "q": "Come si riconosce il rischio di un intervento sui cambi (per esempio del Giappone)?",
+     "o": [
+      "Livelli già difesi in passato, parole delle autorità, movimento molto veloce",
+      "Dal calendario economico",
+      "Dal PMI",
+      "Non si riconosce"
+     ],
+     "c": 0,
+     "s": "Livelli precedenti, dichiarazioni delle autorità e velocità del movimento: vicino a quei livelli, lotti più piccoli."
+    },
+    {
+     "q": "Quando le tensioni geopolitiche crescono, cosa conviene fare?",
+     "o": [
+      "Inseguire il movimento",
+      "Ridurre i lotti e non inseguire",
+      "Aprire su tutti gli strumenti",
+      "Togliere gli stop"
+     ],
+     "c": 1,
+     "s": "Le fasi sono paura, canali concreti, spesso rientro: non inseguire e riduci i lotti."
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "titolo": "Dal dato al piano",
+   "domande": [
+    {
+     "q": "Quali sono i quattro passi dello scenario della settimana?",
+     "o": [
+      "Calendario, contesto, scenari, rischio",
+      "Grafico, indicatori, entrata, uscita",
+      "Notizie, segnali, leva, profitto",
+      "Solo il calendario"
+     ],
+     "c": 0,
+     "s": "Calendario, contesto, scenari (in entrambe le direzioni, scritti prima) e rischio della settimana."
+    },
+    {
+     "q": "Durante l'uscita di un dato ad alto impatto cosa fai?",
+     "o": [
+      "Entri subito sul primo movimento",
+      "Non entri e leggi tutto il dato",
+      "Sposti lo stop",
+      "Raddoppi la posizione"
+     ],
+     "c": 1,
+     "s": "Durante: non entrare, leggi tutto il dato. Dopo: spread normale, piano preciso, annota."
+    },
+    {
+     "q": "In una settimana 'carica' (Fed, BCE, PIL e inflazione) il rischio…",
+     "o": [
+      "si aumenta",
+      "si riduce",
+      "resta uguale per forza",
+      "non conta"
+     ],
+     "c": 1,
+     "s": "Meno rischio quando il calendario è pieno, con un tetto di perdita settimanale."
+    },
+    {
+     "q": "Cosa si annota nel diario macro?",
+     "o": [
+      "Solo i profitti",
+      "Dato, attese, risultato, reazione e giorno dopo",
+      "Le previsioni degli analisti",
+      "Niente"
+     ],
+     "c": 1,
+     "s": "Annotando dato, attese, risultato e reazione impari quali dati contano e quanto muovono."
+    },
+    {
+     "q": "Qual è il principio finale del corso?",
+     "o": [
+      "Prevedere i dati",
+      "Capire i dati e dimensionare sempre il rischio",
+      "Operare solo sulle notizie",
+      "Seguire le banche centrali"
+     ],
+     "c": 1,
+     "s": "L'analisi fondamentale dà il contesto, non le previsioni: il rischio si dimensiona sempre."
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "titolo": "Extra: petrolio, posizionamento e stagionalità",
+   "domande": [
+    {
+     "q": "Quando escono le scorte settimanali di greggio dell'EIA?",
+     "o": [
+      "Il lunedì alle 14:30",
+      "Il mercoledì alle 16:30 ora italiana",
+      "Il venerdì alle 21:30",
+      "Ogni giorno alle 23:00"
+     ],
+     "c": 1,
+     "s": "L'EIA pubblica le scorte ogni mercoledì alle 16:30 ora italiana; il martedì sera escono le stime dell'API."
+    },
+    {
+     "q": "Cosa è successo al future WTI in scadenza il 20 aprile 2020?",
+     "o": [
+      "È salito a 150 $",
+      "Ha chiuso sotto zero, intorno a −37 $",
+      "È stato sospeso per un mese",
+      "Nulla di insolito"
+     ],
+     "c": 1,
+     "s": "Il contratto in scadenza chiuse a circa −37 $: nessuno sapeva dove stoccare il petrolio."
+    },
+    {
+     "q": "Il rapporto COT esce il venerdì sera. Le posizioni a che giorno si riferiscono?",
+     "o": [
+      "Al venerdì stesso",
+      "Al martedì precedente",
+      "Al lunedì successivo",
+      "Al mese prima"
+     ],
+     "c": 1,
+     "s": "Il COT fotografa il martedì: quando lo leggi ha già tre giorni, è un dato di contesto."
+    },
+    {
+     "q": "I fondi speculativi hanno una posizione netta lunga vicina ai massimi da anni. Cosa significa?",
+     "o": [
+      "Il prezzo invertirà domani",
+      "La scommessa è affollata: una sorpresa contraria può fare più male",
+      "Bisogna comprare subito",
+      "Nulla"
+     ],
+     "c": 1,
+     "s": "Un estremo può durare mesi; il punto è il rischio: se tutti sono dalla stessa parte, l'uscita è stretta."
+    },
+    {
+     "q": "Verso le 23:00 ora italiana, al cambio di giornata dei broker, cosa succede spesso?",
+     "o": [
+      "Gli spread si allargano per qualche minuto",
+      "Escono i dati americani",
+      "Il mercato chiude per un'ora",
+      "Lo swap si azzera"
+     ],
+     "c": 0,
+     "s": "Al cambio di giornata gli spread possono allargarsi molto: niente stop troppo stretti in quei minuti."
+    }
+   ]
+  }
  ]
 }

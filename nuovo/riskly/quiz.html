@@ -62,12 +62,12 @@
   <section id="v-elenco">
     <div class="kick">FINE MODULO</div>
     <h1>Verifica quello che <em>hai imparato.</em></h1>
-    <p>5 domande per modulo. Passi il modulo con almeno 4 risposte giuste. Superati tutti i 10 moduli, scarichi l'attestato di completamento con il tuo nome.</p>
+    <p>5 domande per modulo. Passi il modulo con almeno 4 risposte giuste. Superati tutti i moduli, scarichi l'attestato di completamento con il tuo nome.</p>
     <div class="scelta">
-      <button data-corso="rischio">Gestione del rischio<small>10 moduli · 50 domande</small></button>
-      <button data-corso="fondamentale">Analisi fondamentale<small>10 moduli · 50 domande</small></button>
+      <button data-corso="rischio">Gestione del rischio<small>11 moduli · 55 domande</small></button>
+      <button data-corso="fondamentale">Analisi fondamentale<small>11 moduli · 55 domande</small></button>
     </div>
-    <div style="display:flex;justify-content:space-between;font-size:.82rem;color:var(--dim)"><span id="prog-t">0 di 10 moduli superati</span><span id="prog-p">0%</span></div>
+    <div style="display:flex;justify-content:space-between;font-size:.82rem;color:var(--dim)"><span id="prog-t">0 moduli superati</span><span id="prog-p">0%</span></div>
     <div class="barra"><i id="prog-b" style="width:0"></i></div>
     <div id="moduli"></div>
     <div id="att-box" class="card nascosto" style="margin-top:16px">
@@ -215,7 +215,7 @@ $('att-crea').onclick = async () => {
   x.fillStyle = '#E9A10F'; x.fillRect(W / 2 - 260, 730, 520, 6);
   x.fillStyle = '#5E656D'; x.font = '400 40px "Instrument Sans"'; x.fillText('ha completato il corso', W / 2, 820);
   x.fillStyle = '#15181B'; x.font = '700 76px "Instrument Sans"'; x.fillText('Riskly · ' + NOMI[corso], W / 2, 915);
-  x.fillStyle = '#5E656D'; x.font = '400 34px "Instrument Sans"'; x.fillText('superando i quiz di fine modulo di tutti i 10 moduli del programma', W / 2, 995);
+  x.fillStyle = '#5E656D'; x.font = '400 34px "Instrument Sans"'; x.fillText('superando i quiz di fine modulo di tutti gli ' + dati.moduli.length + ' moduli del programma', W / 2, 995);
   x.textAlign = 'left'; x.fillStyle = '#15181B'; x.font = '600 32px "JetBrains Mono"'; x.fillText(data, 160, H - 210);
   x.fillStyle = '#5E656D'; x.font = '400 26px "Instrument Sans"'; x.fillText('Data', 160, H - 165);
   x.textAlign = 'right'; x.fillStyle = '#15181B'; x.font = '600 32px "JetBrains Mono"'; x.fillText(cod, W - 160, H - 210);

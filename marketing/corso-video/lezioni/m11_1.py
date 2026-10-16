@@ -1,0 +1,26 @@
+from h import *
+LEZIONE = L('11.1', 'Modulo 11', 'Extra: mente, margine e costi', 'Le trappole della mente', [
+ T('LEZIONE 11.1', 'Le trappole **della mente**', 'Perché un piano giusto si rompe proprio quando serve.', "Lezione undici punto uno. Le trappole della mente. In questo modulo extra vediamo tre cose che fanno saltare anche un buon piano: la testa, il margine e i costi nascosti. Partiamo dalla testa."),
+ P('Perdere fa più male che vincere', [('Avversione alla perdita', 'una perdita pesa circa il doppio di un guadagno uguale'), ('Effetto disposizione', 'chiudi presto i trade in guadagno e tieni quelli in perdita'), ('Risultato', 'guadagni piccoli, perdite grandi: il contrario del piano')],
+  ["Gli studi di economia comportamentale mostrano una cosa semplice: perdere cento euro fa più male di quanto faccia piacere guadagnarne cento. Di solito si stima circa il doppio.",
+   "Nel trading questo diventa l'effetto disposizione: chiudi in fretta i trade in guadagno, per paura di restituire il profitto, e tieni aperti quelli in perdita, sperando che tornino.",
+   "Il risultato è il contrario di quello che vuoi: guadagni piccoli e perdite grandi. Con un rapporto rischio rendimento rovesciato, anche un buon win rate non basta."]),
+ TB('Quattro trappole e la loro contromisura', ['Trappola', 'Cosa succede', 'Contromisura'], [
+   ['Avversione alla perdita', 'sposti lo stop per non prenderlo', 'stop sul server, mai allargato'],
+   ['Recency', 'cambi sistema dopo 3 perdite', 'giudica solo su 100+ trade'],
+   ['Eccesso di fiducia', 'dopo 5 vincite aumenti il lotto', 'rischio fisso, cambi solo con regole scritte'],
+   ['Costo affondato', '"ormai ho perso tanto, resto dentro"', 'la domanda è: entrerei adesso?']],
+  ["Vediamo quattro trappole, una per una, con la contromisura che abbiamo già costruito nel corso.",
+   "L'avversione alla perdita ti spinge a spostare lo stop pur di non prenderlo. Contromisura: lo stop sta sul server della piattaforma e si può solo stringere.",
+   "La recency è il peso eccessivo degli ultimi risultati: tre perdite di fila e vuoi cambiare sistema. Contromisura: un sistema si giudica su almeno cento trade.",
+   "L'eccesso di fiducia arriva dopo una serie di vincite: ti senti in forma e aumenti il lotto. Contromisura: rischio fisso in percentuale, e lo cambi solo con una regola scritta prima.",
+   "Il costo affondato è il ragionamento: ormai ho perso tanto, tanto vale restare dentro. Contromisura: chiediti se apriresti quel trade adesso, da zero. Se la risposta è no, esci."]),
+ P('Come accorgersene in tempo', [('Annota l\'emozione', 'nel journal, a ogni trade: calmo, nervoso, euforico, arrabbiato'), ('Confronta i numeri', 'quanto rendono i trade "nervosi" rispetto a quelli "calmi"'), ('Decidi prima', 'cosa fai quando ti senti così: pausa, lotto dimezzato, stop per oggi')],
+  ["Le trappole non si vedono mentre ci sei dentro. Si vedono nei dati.",
+   "Per questo, nel journal, a ogni trade annota anche come ti sentivi: calmo, nervoso, euforico, arrabbiato. Bastano due secondi.",
+   "Dopo qualche settimana confronta i numeri: quasi sempre i trade nervosi o arrabbiati hanno una expectancy molto peggiore.",
+   "A quel punto la regola si scrive da sola: quando mi sento così, faccio una pausa, dimezzo il lotto o chiudo per oggi."]),
+ RIEP(['Una perdita pesa circa il doppio di un guadagno: per questo si tagliano i vincenti e si tengono i perdenti', 'Ogni trappola ha una contromisura già scritta nel piano', 'Annota l\'emozione nel journal e misura quanto ti costa'],
+  ["Riassumiamo.", "Una perdita pesa circa il doppio di un guadagno, e per questo si tende a tagliare i vincenti e tenere i perdenti.", "Ogni trappola ha una contromisura, e sono le regole che hai già nel piano.", "E annotando l'emozione nel journal scopri quanto ti costa davvero."]),
+ Q('Il piano lo scrivi a mente fredda. **Lo segui** quando la mente è calda.', "Il piano lo scrivi a mente fredda. Lo segui quando la mente è calda."),
+])

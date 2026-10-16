@@ -279,3 +279,16 @@ salva(f, 'v_franco2015', dict(prima=round(ec[:'2015-01-14'].iloc[-1], 4), chiusu
 
 json.dump(FATTI, open(f'{QUI}/grafici/fatti.json', 'w'), indent=1, ensure_ascii=False, default=str)
 print(json.dumps(FATTI, indent=1, ensure_ascii=False, default=str))
+
+# ---------- Modulo 11 · petrolio (aggiunto con il modulo extra) ----------
+FATTI.clear()
+wd = s('DCOILWTICO')['2000':]; wm = mese(wd)
+f, ax = fig(); ax.plot(wm, color=GI, lw=3); ax.axhline(0, color=DM, lw=1)
+for t_, dx, dy in ((wm['2008'].idxmax(), -250, 0), (wm['2015':'2016'].idxmin(), 20, -40)):
+    punta(ax, t_, wm[t_], f'{mm(t_)}: {wm[t_]:.0f} $', dx, dy, GI)
+neg = wd.idxmin(); ax.annotate(f'{neg.day} aprile 2020: chiusura a {it(wd[neg], 2)} $ (future in scadenza)', (wm.index[wm.index.get_indexer([neg], method="nearest")[0]], wm.min()), textcoords='offset points', xytext=(-40, -38), fontsize=16, color=RD, ha='center'); ax.set_ylim(-28, 145)
+ax.set_ylabel('Petrolio WTI, $ al barile (media mensile)'); anni(ax); fonte(ax, 'EIA via FRED · medie mensili, minimo giornaliero indicato a parte')
+salva(f, 'v_petrolio', dict(max_2008=(mm(wm['2008'].idxmax()), round(wm['2008'].max())), min_2016=(mm(wm['2015':'2016'].idxmin()), round(wm['2015':'2016'].min())),
+                            negativo=(str(neg.date()), round(wd[neg], 2)), max_2022=(mm(wm['2022'].idxmax()), round(wm['2022'].max())), ultimo=(mm(wm.index[-1]), round(wm.iloc[-1]))))
+json.dump(FATTI, open(f'{QUI}/grafici/fatti-petrolio.json', 'w'), indent=1, ensure_ascii=False, default=str)
+print(json.dumps(FATTI, indent=1, ensure_ascii=False, default=str))

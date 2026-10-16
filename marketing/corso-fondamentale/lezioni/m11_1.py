@@ -1,0 +1,30 @@
+from h import *
+LEZIONE = L('11.1', 'Modulo 11', 'Extra: petrolio, posizionamento e stagionalità', 'Il petrolio: OPEC, scorte e prezzo', [
+ T('MODULO 11 · LEZIONE 1', 'Il petrolio, **la materia prima** che muove tutto', "OPEC, scorte settimanali e perché il petrolio arriva fino al tuo cambio.",
+   "In questo modulo extra vediamo tre argomenti che completano il quadro: il petrolio, il posizionamento dei grandi operatori e la stagionalità. Cominciamo dal petrolio, la materia prima che entra nell'inflazione, nei conti con l'estero e perfino nel valore di alcune valute."),
+ P('Chi muove il prezzo', [
+   ('OPEC+', "i paesi produttori decidono quote di produzione nelle loro riunioni"),
+   ('Le scorte americane', "ogni mercoledì alle 16:30 ora italiana, il dato dell'EIA"),
+   ('Domanda e geopolitica', 'crescita cinese, stagione estiva, tensioni nelle zone di produzione')],
+   ["Tre forze muovono il prezzo del petrolio.",
+    "La prima è l'OPEC più, il gruppo dei principali paesi produttori, che nelle sue riunioni decide quanto produrre. Un taglio a sorpresa può spostare il prezzo di diversi punti percentuali in pochi minuti.",
+    "La seconda sono le scorte americane: ogni mercoledì alle sedici e trenta ora italiana l'agenzia per l'energia americana, l'EIA, pubblica le scorte di greggio. Un calo più forte del previsto di solito spinge il prezzo in su. Il martedì sera escono stime private dell'API.",
+    "La terza è la domanda, che dipende dalla crescita mondiale e soprattutto dalla Cina, e la geopolitica: le tensioni nelle zone di produzione o lungo le rotte del petrolio fanno salire il prezzo per paura di interruzioni."]),
+ G('Dati veri: il petrolio dal 2000', 'v_petrolio',
+   ["Ecco il prezzo del petrolio americano, il WTI, dal 2000, in media mensile. A giugno 2008 arriva intorno ai centotrentaquattro dollari, poi la crisi lo dimezza in pochi mesi. Tra il 2014 e l'inizio del 2016 crolla di nuovo, fino a circa trenta dollari a febbraio 2016. E il venti aprile 2020 succede una cosa mai vista: il contratto future in scadenza chiude a meno trentasette dollari, perché nessuno sapeva dove stoccare il petrolio. Nel 2022 torna sopra i cento dollari.",
+    "Sono dati storici: raccontano cosa è successo, non dove andrà il prezzo."], 'Fonte: EIA via FRED, medie mensili'),
+ P('Cosa significa per il rischio', [
+   ('Mercoledì alle 16:30', 'sul petrolio e sul dollaro canadese, niente ordini stretti in quei minuti'),
+   ('Riunioni OPEC+', 'segnale in agenda come un dato ad alto impatto'),
+   ('Lotto più piccolo', 'il petrolio può muoversi del 5% in un giorno: stesso rischio, meno lotti')],
+   ["Cosa significa per il rischio.",
+    "Il mercoledì alle sedici e trenta, se operi sul petrolio o sul dollaro canadese, evita ordini con stop molto stretti nei minuti del dato.",
+    "Segna le riunioni dell'OPEC più in agenda come un dato ad alto impatto: le decisioni a sorpresa arrivano spesso nel fine settimana, e il lunedì il mercato può aprire con un gap.",
+    "E ricorda che il petrolio può muoversi del cinque per cento o più in una sola giornata: a parità di rischio, lo stop è più largo e il lotto deve essere più piccolo."]),
+ RIEP([('Tre motori', 'OPEC+, scorte settimanali, domanda e geopolitica'), ('Scorte EIA', 'ogni mercoledì alle 16:30 ora italiana'), ('Per il rischio', 'stop larghi, lotti piccoli, attenzione ai gap dopo le riunioni OPEC+')],
+   ["Riassumiamo ora i punti principali di questa lezione.",
+    "Il petrolio è mosso dalle decisioni dell'OPEC più, dalle scorte settimanali e dalla domanda, con la geopolitica sempre sullo sfondo.",
+    "Le scorte dell'EIA escono ogni mercoledì alle sedici e trenta ora italiana.",
+    "E sul rischio: stop più larghi, lotti più piccoli, e attenzione ai gap dopo le riunioni dell'OPEC più."]),
+ Q('Il petrolio non si prevede. **Si rispetta**.', "Il petrolio non si prevede. Si rispetta."),
+])
