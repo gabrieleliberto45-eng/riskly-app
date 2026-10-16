@@ -416,5 +416,152 @@
     "link": "RiskGuard: massimo di operazioni al giorno, dal 23 ottobre"
    }
   ]
+ },
+ {
+  "id": "n02-settimana",
+  "stile": "notizie",
+  "titolo": "La settimana dei mercati · 19–25 ottobre",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "Settimana tranquilla. <mark>Quella dopo no.</mark>",
+    "sotto": "19–25 ottobre · orari italiani"
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "1 · I dati della settimana",
+    "righe": [
+     [
+      "Cina, PIL",
+      "lun 19 · 04:00"
+     ],
+     [
+      "Regno Unito, inflazione",
+      "mer 21 · 08:00"
+     ],
+     [
+      "PMI Europa / USA",
+      "ven 23 · 10:00 / 15:45"
+     ],
+     [
+      "USA, fiducia Michigan",
+      "ven 23 · 16:00"
+     ]
+    ],
+    "nota": "Nessun dato USA di primo piano: settimana più calma."
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "2 · Da dove arriviamo",
+    "righe": [
+     [
+      "Inflazione USA di settembre",
+      "3,7%"
+     ],
+     [
+      "Rendimento Treasury 10 anni (14 ott)",
+      "5,19%"
+     ],
+     [
+      "Petrolio WTI (14 ott)",
+      "circa 102 $"
+     ]
+    ],
+    "nota": "Fonti: BLS (14 ottobre), Tesoro USA e EIA via FRED. Inflazione sopra le attese e tassi alti: il mercato resta sensibile a ogni parola della Fed."
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "3 · Domenica 25 cambia l'ora",
+    "righe": [
+     [
+      "Italia: ora solare",
+      "dom 25 ott"
+     ],
+     [
+      "Fed, tassi",
+      "<mark>mer 28 · 19:00</mark>"
+     ],
+     [
+      "BCE, tassi",
+      "gio 29 · 14:15"
+     ],
+     [
+      "USA: PIL e PCE",
+      "gio 29 · 13:30"
+     ]
+    ],
+    "nota": "Gli USA cambiano l'ora il 1° novembre: fino ad allora i loro dati escono un'ora prima del solito."
+   },
+   {
+    "tipo": "domanda",
+    "testo": "La settimana di Fed e BCE <mark>riduci il lotto o no?</mark>",
+    "sotto": "Scrivi DATI nei commenti e ti mando il calendario 👇",
+    "link": "I dati di domani, gratis: riskly.trade/dati"
+   }
+  ]
+ },
+ {
+  "id": "c07-leva",
+  "titolo": "La leva non è il rischio",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "La leva non decide quanto perdi. <mark>Il lotto sì.</mark>",
+    "sotto": "Scorri →"
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "Stesso trade, due leve",
+    "righe": [
+     [
+      "Conto",
+      "10.000 $"
+     ],
+     [
+      "EURUSD, 1 lotto, stop 25 pip",
+      "−250 $ se va male"
+     ],
+     [
+      "Margine con leva 1:30",
+      "3.833 $"
+     ],
+     [
+      "Margine con leva 1:100",
+      "1.150 $"
+     ]
+    ],
+    "nota": "La perdita sullo stop è uguale: 250 $, cioè il 2,5% del conto. Cambia solo quanto denaro resta bloccato come margine. Esempio con EURUSD a 1,15 e 10 $ a pip per lotto."
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "Dove la leva diventa pericolosa",
+    "righe": [
+     [
+      "Con 1:100 il margine permette",
+      "fino a 8 lotti"
+     ],
+     [
+      "8 lotti × 25 pip × 10 $",
+      "−2.000 $"
+     ],
+     [
+      "Sul conto da 10.000 $",
+      "<mark>−20% in un solo stop</mark>"
+     ]
+    ],
+    "nota": "La leva alta non fa perdere di più da sola: ti permette di aprire lotti che il conto non regge."
+   },
+   {
+    "tipo": "testo",
+    "titolo": "La regola",
+    "testo": "Prima decidi quanto rischiare, per esempio l'1%. Poi calcoli il lotto dallo stop. La leva serve solo a far stare quella posizione nel margine, non a sceglierla."
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Che leva usi <mark>e quanto rischi a trade?</mark>",
+    "sotto": "Scrivi ROVINA nei commenti e ti mando il simulatore 👇",
+    "link": "Quanto rischi di bruciare il conto? riskly.trade/rovina"
+   }
+  ]
  }
 ]

@@ -1052,5 +1052,234 @@
     ]
    }
   ]
+ },
+ {
+  "id": "s06-nichel",
+  "titolo": "Il nichel che triplicò in due giorni",
+  "segmenti": [
+   {
+    "cartello": "8 MARZO 2022 · LONDRA",
+    "voce": "In due giorni di borsa il prezzo del nichel passa da circa trentamila a oltre centomila dollari a tonnellata. Più che triplicato.",
+    "battute": [
+     {
+      "su": "nichel",
+      "azione": "grafico",
+      "tipo": "sale",
+      "livello": 5,
+      "x": 0,
+      "id": "g",
+      "camera": {
+       "pos": [
+        0,
+        6.5,
+        17
+       ],
+       "guarda": [
+        0,
+        6.3,
+        0
+       ]
+      }
+     },
+     {
+      "su": "trentamila",
+      "azione": "contatore",
+      "a": 30,
+      "suffisso": " MILA $",
+      "prefisso": "",
+      "y": 8.2,
+      "alto": 1.0,
+      "colore": "bianco"
+     },
+     {
+      "su": "centomila",
+      "azione": "contatore",
+      "a": 100,
+      "suffisso": " MILA $",
+      "prefisso": "OLTRE ",
+      "y": 9.9,
+      "alto": 1.4,
+      "colore": "rosso",
+      "id": "top"
+     }
+    ]
+   },
+   {
+    "voce": "Dall'altra parte c'è un gigante cinese dell'acciaio, Tsingshan, con una enorme posizione al ribasso. Ogni dollaro in più è una perdita, e le banche chiedono garanzie che non arrivano.",
+    "battute": [
+     {
+      "su": "gigante",
+      "azione": "palazzi",
+      "nomi": [
+       "TSINGSHAN"
+      ],
+      "x": 40,
+      "id": "ts",
+      "camera": {
+       "pos": [
+        40,
+        6.5,
+        17
+       ],
+       "guarda": [
+        40,
+        6.3,
+        0
+       ]
+      }
+     },
+     {
+      "su": "ribasso",
+      "azione": "testo",
+      "testo": "POSIZIONE SHORT ENORME",
+      "x": 40,
+      "y": 9.8,
+      "colore": "rosso",
+      "alto": 1
+     },
+     {
+      "su": "garanzie",
+      "azione": "testo",
+      "testo": "MARGIN CALL",
+      "x": 40,
+      "y": 8.4,
+      "colore": "oro",
+      "alto": 1.0
+     }
+    ]
+   },
+   {
+    "cartello": "LONDON METAL EXCHANGE",
+    "voce": "Allora la borsa dei metalli di Londra fa una cosa quasi mai vista: sospende le contrattazioni e cancella le operazioni di quella mattina, circa tre virgola nove miliardi di dollari. Il mercato resta chiuso per una settimana.",
+    "battute": [
+     {
+      "su": "borsa",
+      "azione": "palazzi",
+      "nomi": [
+       "LME"
+      ],
+      "x": -20,
+      "id": "lme",
+      "camera": {
+       "pos": [
+        -20,
+        6.5,
+        17
+       ],
+       "guarda": [
+        -20,
+        6.3,
+        0
+       ]
+      }
+     },
+     {
+      "su": "sospende",
+      "azione": "testo",
+      "testo": "TRADING SOSPESO",
+      "x": -20,
+      "y": 9.8,
+      "colore": "rosso",
+      "alto": 1.1
+     },
+     {
+      "su": "cancella",
+      "azione": "testo",
+      "testo": "3,9 MLD $ CANCELLATI",
+      "x": -20,
+      "y": 8.4,
+      "colore": "oro",
+      "alto": 1
+     }
+    ]
+   },
+   {
+    "voce": "Chi aveva comprato vede sparire il guadagno. Chi era al ribasso con uno stop, quello stop non lo ha mai visto eseguito al suo prezzo.",
+    "battute": [
+     {
+      "su": "sparire",
+      "azione": "crolla",
+      "gruppo": "lme",
+      "nome": "LME",
+      "camera": {
+       "pos": [
+        -20,
+        6.5,
+        17
+       ],
+       "guarda": [
+        -20,
+        6.3,
+        0
+       ]
+      }
+     },
+     {
+      "su": "stop",
+      "azione": "gap",
+      "da": 6.6,
+      "a": 4.8,
+      "x": -14,
+      "stop": "STOP IMPOSTATO",
+      "eseguito": "MERCATO CHIUSO",
+      "id": "gap",
+      "camera": {
+       "pos": [
+        -15,
+        6.5,
+        17
+       ],
+       "guarda": [
+        -15,
+        6.3,
+        0
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "voce": "La lezione: lo stop non è una garanzia. Il prezzo può saltare, e il mercato può persino chiudere. La vera difesa è la dimensione della posizione. Quanto rischi di bruciare il conto? Lo calcoli gratis su riskly punto trade barra rovina.",
+    "battute": [
+     {
+      "su": "lezione",
+      "azione": "testo",
+      "testo": "LO STOP NON È UNA GARANZIA",
+      "x": 80,
+      "y": 10.6,
+      "colore": "bianco",
+      "alto": 0.9,
+      "camera": {
+       "pos": [
+        80,
+        6.5,
+        17
+       ],
+       "guarda": [
+        80,
+        6.3,
+        0
+       ]
+      }
+     },
+     {
+      "su": "dimensione",
+      "azione": "scudo",
+      "nome": " ",
+      "x": 80,
+      "y": 7.0
+     },
+     {
+      "su": "rovina",
+      "azione": "testo",
+      "testo": "RISKLY.TRADE/ROVINA",
+      "x": 80,
+      "y": 9.3,
+      "colore": "oro",
+      "alto": 0.9
+     }
+    ]
+   }
+  ]
  }
 ]
