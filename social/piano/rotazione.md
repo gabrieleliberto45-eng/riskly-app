@@ -84,3 +84,16 @@ Se la voce non va: versione senza voce con sottotitoli, `MUTO=1 node social/yout
    Scene: titolo con la variazione della settimana · grafico · i numeri (oro, dollaro, decennale) · cosa l'ha mosso · i dati della settimana prossima · rischio · chiusura sul corso.
    Niente previsioni di prezzo.
 Attenzione agli orari: dal 25 ottobre al 1° novembre i dati USA delle 8:30 di New York escono alle 13:30 italiane e la Fed del 28 ottobre alle 19:00.
+
+## Turno del 16 ottobre (settimana 19–25 ottobre)
+Dati Metricool 8–16 ottobre (TikTok, visualizzazioni): storie 259–417 (franco 417, Barings 294), clip attualità 257–343, "Oggi no." 260–264,
+caroselli 219–241 ma con più like (9–10). Instagram: reel 3–43 visualizzazioni, caroselli 16–29 di copertura. Follower quasi fermi, 0 salvataggi.
+Cosa ho cambiato: chiusure con parola chiave nei commenti (DATI, ROVINA) e link corto in tutti i nuovi post; storia più "sorprendente" (mercato chiuso, operazioni cancellate).
+
+| Data | Ora | Contenuto |
+|---|---|---|
+| 19 ott | 09:00 | n02 La settimana dei mercati (19–25 ott, cambio dell'ora, Fed e BCE della settimana dopo) · IG + TikTok · riskly.trade/dati |
+| 24 ott | 18:00 | Storia s06 · nichel al London Metal Exchange (8 marzo 2022) · IG + TikTok separati · riskly.trade/rovina |
+| 25 ott | 13:00 | carosello c07 La leva non è il rischio (bianco) · IG + TikTok · riskly.trade/rovina |
+Il resto della settimana era già programmato (conto alla rovescia, lancio del 23, Oggi no., RisklyCopy).
+YouTube: in questo turno nessun nuovo video lungo; restano le routine "Domani esce" e "La settimana dell'oro".
