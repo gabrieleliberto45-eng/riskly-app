@@ -56,9 +56,9 @@ def passi(s):
     return [(t, n if j == len(v) - 1 else max(0, min(n, j + 1 - off))) for j, t in enumerate(v)]
 ESPANDI = {'Riassumiamo.': 'Riassumiamo ora i punti principali di questa lezione.'}
 # pronuncia delle sigle (verificata trascrivendo l'audio): solo per la voce, le slide restano uguali
-PRONUNCIA = {'CPI': 'ci-pi-ài', 'PPI': 'P P I', 'PCE': 'P C E', 'CME': 'C M E', 'NFP': 'N F P', 'HICP': 'H I C P', 'ADP': 'A D P', 'BoJ': 'Banca del Giappone', 'BoE': "Banca d'Inghilterra", 'SNB': 'Banca nazionale svizzera', 'PMI': 'P M I'}
+PRONUNCIA = {'CPI': 'ci-pi-ài', 'PPI': 'P P I', 'PCE': 'P C E', 'CME': 'C M E', 'NFP': 'N F P', 'HICP': 'H I C P', 'ADP': 'A D P', 'BoJ': 'Banca del Giappone', 'BoE': "Banca d'Inghilterra", 'SNB': 'Banca nazionale svizzera', 'PMI': 'P M I', 'S&P': 'esse e pi', 'VIX': 'vics'}
 def pronuncia(t):
-    for k, v in PRONUNCIA.items(): t = re.sub(r'\b' + re.escape(k) + r'\b', v, t)
+    for k, v in PRONUNCIA.items(): t = re.sub(r'(?<!\w)' + re.escape(k) + r'(?!\w)', v, t)
     return t
 def testo_tts(t):
     """Per la voce multilingue: evita frasi di 1-3 parole (la lingua viene riconosciuta male) unendole alla successiva."""

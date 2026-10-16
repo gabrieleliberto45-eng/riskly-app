@@ -1,0 +1,46 @@
+# Fonti dei dati
+
+Scaricati con `scarica_dati.py` il 16/10/2026.
+
+- `CPIAUCSL.csv`: CPI USA, indice · FRED, Federal Reserve Bank of St. Louis (fonte originale: BLS, BEA, Fed, BCE, Eurostat, OCSE, Università del Michigan, Cboe, S&P)
+- `CPILFESL.csv`: CPI core USA, indice · FRED, Federal Reserve Bank of St. Louis (fonte originale: BLS, BEA, Fed, BCE, Eurostat, OCSE, Università del Michigan, Cboe, S&P)
+- `PCEPILFE.csv`: PCE core USA, indice · FRED, Federal Reserve Bank of St. Louis (fonte originale: BLS, BEA, Fed, BCE, Eurostat, OCSE, Università del Michigan, Cboe, S&P)
+- `PCEPI.csv`: PCE USA, indice · FRED, Federal Reserve Bank of St. Louis (fonte originale: BLS, BEA, Fed, BCE, Eurostat, OCSE, Università del Michigan, Cboe, S&P)
+- `PPIFIS.csv`: PPI domanda finale USA, indice · FRED, Federal Reserve Bank of St. Louis (fonte originale: BLS, BEA, Fed, BCE, Eurostat, OCSE, Università del Michigan, Cboe, S&P)
+- `CP0000EZ19M086NEST.csv`: HICP area euro, indice · FRED, Federal Reserve Bank of St. Louis (fonte originale: BLS, BEA, Fed, BCE, Eurostat, OCSE, Università del Michigan, Cboe, S&P)
+- `CP0000ITM086NEST.csv`: HICP Italia, indice · FRED, Federal Reserve Bank of St. Louis (fonte originale: BLS, BEA, Fed, BCE, Eurostat, OCSE, Università del Michigan, Cboe, S&P)
+- `T5YIE.csv`: Breakeven 5 anni USA, % · FRED, Federal Reserve Bank of St. Louis (fonte originale: BLS, BEA, Fed, BCE, Eurostat, OCSE, Università del Michigan, Cboe, S&P)
+- `MICH.csv`: Aspettative inflazione 1 anno Michigan, % · FRED, Federal Reserve Bank of St. Louis (fonte originale: BLS, BEA, Fed, BCE, Eurostat, OCSE, Università del Michigan, Cboe, S&P)
+- `FEDFUNDS.csv`: Fed funds effettivo, % · FRED, Federal Reserve Bank of St. Louis (fonte originale: BLS, BEA, Fed, BCE, Eurostat, OCSE, Università del Michigan, Cboe, S&P)
+- `ECBDFR.csv`: Tasso BCE sui depositi, % · FRED, Federal Reserve Bank of St. Louis (fonte originale: BLS, BEA, Fed, BCE, Eurostat, OCSE, Università del Michigan, Cboe, S&P)
+- `WALCL.csv`: Bilancio Fed, milioni $ · FRED, Federal Reserve Bank of St. Louis (fonte originale: BLS, BEA, Fed, BCE, Eurostat, OCSE, Università del Michigan, Cboe, S&P)
+- `PAYEMS.csv`: Occupati non agricoli USA, migliaia · FRED, Federal Reserve Bank of St. Louis (fonte originale: BLS, BEA, Fed, BCE, Eurostat, OCSE, Università del Michigan, Cboe, S&P)
+- `UNRATE.csv`: Disoccupazione USA, % · FRED, Federal Reserve Bank of St. Louis (fonte originale: BLS, BEA, Fed, BCE, Eurostat, OCSE, Università del Michigan, Cboe, S&P)
+- `CIVPART.csv`: Partecipazione USA, % · FRED, Federal Reserve Bank of St. Louis (fonte originale: BLS, BEA, Fed, BCE, Eurostat, OCSE, Università del Michigan, Cboe, S&P)
+- `CES0500000003.csv`: Salario orario medio USA, $ · FRED, Federal Reserve Bank of St. Louis (fonte originale: BLS, BEA, Fed, BCE, Eurostat, OCSE, Università del Michigan, Cboe, S&P)
+- `ICSA.csv`: Richieste sussidi settimanali USA · FRED, Federal Reserve Bank of St. Louis (fonte originale: BLS, BEA, Fed, BCE, Eurostat, OCSE, Università del Michigan, Cboe, S&P)
+- `A191RL1Q225SBEA.csv`: PIL USA trimestrale annualizzato, % · FRED, Federal Reserve Bank of St. Louis (fonte originale: BLS, BEA, Fed, BCE, Eurostat, OCSE, Università del Michigan, Cboe, S&P)
+- `USREC.csv`: Recessioni USA (NBER) · FRED, Federal Reserve Bank of St. Louis (fonte originale: BLS, BEA, Fed, BCE, Eurostat, OCSE, Università del Michigan, Cboe, S&P)
+- `RSAFS.csv`: Vendite al dettaglio USA, milioni $ · FRED, Federal Reserve Bank of St. Louis (fonte originale: BLS, BEA, Fed, BCE, Eurostat, OCSE, Università del Michigan, Cboe, S&P)
+- `UMCSENT.csv`: Fiducia consumatori Michigan · FRED, Federal Reserve Bank of St. Louis (fonte originale: BLS, BEA, Fed, BCE, Eurostat, OCSE, Università del Michigan, Cboe, S&P)
+- `INDPRO.csv`: Produzione industriale USA, indice · FRED, Federal Reserve Bank of St. Louis (fonte originale: BLS, BEA, Fed, BCE, Eurostat, OCSE, Università del Michigan, Cboe, S&P)
+- `DGS10.csv`: Rendimento Treasury 10 anni, % · FRED, Federal Reserve Bank of St. Louis (fonte originale: BLS, BEA, Fed, BCE, Eurostat, OCSE, Università del Michigan, Cboe, S&P)
+- `DGS2.csv`: Rendimento Treasury 2 anni, % · FRED, Federal Reserve Bank of St. Louis (fonte originale: BLS, BEA, Fed, BCE, Eurostat, OCSE, Università del Michigan, Cboe, S&P)
+- `T10Y2Y.csv`: Differenza 10 anni − 2 anni, punti % · FRED, Federal Reserve Bank of St. Louis (fonte originale: BLS, BEA, Fed, BCE, Eurostat, OCSE, Università del Michigan, Cboe, S&P)
+- `DFII10.csv`: Rendimento reale 10 anni (TIPS), % · FRED, Federal Reserve Bank of St. Louis (fonte originale: BLS, BEA, Fed, BCE, Eurostat, OCSE, Università del Michigan, Cboe, S&P)
+- `IRLTLT01ITM156N.csv`: Rendimento 10 anni Italia, % · FRED, Federal Reserve Bank of St. Louis (fonte originale: BLS, BEA, Fed, BCE, Eurostat, OCSE, Università del Michigan, Cboe, S&P)
+- `IRLTLT01DEM156N.csv`: Rendimento 10 anni Germania, % · FRED, Federal Reserve Bank of St. Louis (fonte originale: BLS, BEA, Fed, BCE, Eurostat, OCSE, Università del Michigan, Cboe, S&P)
+- `EXUSEU.csv`: EUR/USD mensile · FRED, Federal Reserve Bank of St. Louis (fonte originale: BLS, BEA, Fed, BCE, Eurostat, OCSE, Università del Michigan, Cboe, S&P)
+- `DEXJPUS.csv`: USD/JPY giornaliero · FRED, Federal Reserve Bank of St. Louis (fonte originale: BLS, BEA, Fed, BCE, Eurostat, OCSE, Università del Michigan, Cboe, S&P)
+- `DEXCAUS.csv`: USD/CAD giornaliero · FRED, Federal Reserve Bank of St. Louis (fonte originale: BLS, BEA, Fed, BCE, Eurostat, OCSE, Università del Michigan, Cboe, S&P)
+- `DCOILWTICO.csv`: Petrolio WTI, $ · FRED, Federal Reserve Bank of St. Louis (fonte originale: BLS, BEA, Fed, BCE, Eurostat, OCSE, Università del Michigan, Cboe, S&P)
+- `VIXCLS.csv`: VIX · FRED, Federal Reserve Bank of St. Louis (fonte originale: BLS, BEA, Fed, BCE, Eurostat, OCSE, Università del Michigan, Cboe, S&P)
+- `SP500.csv`: S&P 500 · FRED, Federal Reserve Bank of St. Louis (fonte originale: BLS, BEA, Fed, BCE, Eurostat, OCSE, Università del Michigan, Cboe, S&P)
+- `DTWEXBGS.csv`: Dollaro ponderato (broad) · FRED, Federal Reserve Bank of St. Louis (fonte originale: BLS, BEA, Fed, BCE, Eurostat, OCSE, Università del Michigan, Cboe, S&P)
+- `GCF.csv`: Oro (future COMEX), $ · Yahoo Finance
+- `EURCHFX.csv`: EUR/CHF · Yahoo Finance
+- `USDJPYX.csv`: USD/JPY · Yahoo Finance
+- `GSPC.csv`: S&P 500 · Yahoo Finance
+- `GBPUSDX.csv`: GBP/USD · Yahoo Finance
+- `AUDUSDX.csv`: AUD/USD · Yahoo Finance
+- `SIF.csv`: Argento (future), $ · Yahoo Finance

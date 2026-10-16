@@ -1,0 +1,427 @@
+{
+ "v_cpi": {
+  "picco": [
+   "giu 2022",
+   9.0
+  ],
+  "core_picco": [
+   "set 2022",
+   6.6
+  ],
+  "minimo_2009": [
+   "lug 2009",
+   -2.0
+  ],
+  "ultimo": [
+   "set 2026",
+   4.0
+  ],
+  "core_ultimo": 2.8
+ },
+ "v_cpi_pce": {
+  "diff_media": 0.37,
+  "pce_picco": [
+   "set 2022",
+   5.6
+  ],
+  "cpi_core_picco": [
+   "set 2022",
+   6.6
+  ],
+  "pce_ultimo": [
+   "ago 2026",
+   3.0
+  ],
+  "cpi_core_stesso_mese": 2.8
+ },
+ "v_ppi": {
+  "ppi_picco": [
+   "mar 2022",
+   11.6
+  ],
+  "cpi_picco": [
+   "giu 2022",
+   9.0
+  ],
+  "ppi_ultimo": [
+   "set 2026",
+   6.3
+  ],
+  "ppi_min_2020": [
+   "apr 2020",
+   -1.4
+  ]
+ },
+ "v_hicp": {
+  "ez_picco": [
+   "ott 2022",
+   10.6
+  ],
+  "it_picco": [
+   "ott 2022",
+   12.6
+  ],
+  "ez_ultimo": [
+   "ago 2026",
+   3.2
+  ],
+  "it_ultimo": 3.2,
+  "it_min": [
+   "set 2020",
+   -1.1
+  ]
+ },
+ "v_aspettative": {
+  "be_max": [
+   "mar 2022",
+   3.41
+  ],
+  "be_min": [
+   "nov 2008",
+   -1.4
+  ],
+  "be_ultimo": [
+   "ott 2026",
+   2.36
+  ],
+  "mich_max": [
+   "mag 2025",
+   6.6
+  ],
+  "mich_ultimo": [
+   "ago 2026",
+   4.0
+  ]
+ },
+ "v_tassi": {
+  "fed_ultimo": [
+   "set 2026",
+   3.75
+  ],
+  "bce_ultimo": 2.5,
+  "bce_min": -0.5,
+  "bce_negativo": [
+   "giu 2014",
+   "lug 2022"
+  ],
+  "fed_2007": 5.26,
+  "fed_max_2023": 5.33
+ },
+ "v_bilancio_fed": {
+  "pre_2008": 0.91,
+  "picco": [
+   "apr 2022",
+   8.97
+  ],
+  "ultimo": [
+   "ott 2026",
+   6.76
+  ],
+  "fine_2019": 4.17
+ },
+ "v_differenziale": {
+  "corr_2000": -0.32,
+  "corr_2021_2023": -0.85,
+  "eurusd_min_2022": [
+   "ott 2022",
+   0.9853
+  ],
+  "diff_2022_fine": 2.42,
+  "eurusd_max": [
+   "lug 2008",
+   1.5759
+  ]
+ },
+ "v_nfp": {
+  "media_2023": 210,
+  "media_ultimi_12": 41,
+  "ultimo": [
+   "set 2026",
+   29
+  ],
+  "mesi_negativi": [
+   "gen 2025",
+   "giu 2025",
+   "ago 2025",
+   "ott 2025",
+   "dic 2025",
+   "feb 2026",
+   "lug 2026"
+  ],
+  "max": [
+   "gen 2023",
+   434
+  ]
+ },
+ "v_disoccupazione": {
+  "picco": [
+   "apr 2020",
+   14.8
+  ],
+  "max_2009": [
+   "ott 2009",
+   10.0
+  ],
+  "ultimo": [
+   "set 2026",
+   4.2
+  ],
+  "min_post_2019": [
+   "apr 2023",
+   3.4
+  ],
+  "part_2000": 67.3,
+  "part_ultimo": 61.8
+ },
+ "v_salari": {
+  "sal_ultimo": [
+   "set 2026",
+   3.0
+  ],
+  "cpi_stesso": 4.0,
+  "sal_max_post2021": [
+   "mar 2022",
+   5.9
+  ],
+  "negativi_da": "apr 2021",
+  "negativi_a": "set 2026"
+ },
+ "v_sussidi": {
+  "picco": [
+   "4 apr 2020",
+   6137
+  ],
+  "media_2019": 218,
+  "ultimo": [
+   "10 ott 2026",
+   199
+  ],
+  "media_ultimi_3m": 201
+ },
+ "v_pil": {
+  "min": [
+   "2020-04-01",
+   -28.0
+  ],
+  "max": [
+   "2020-07-01",
+   34.9
+  ],
+  "ultimo": [
+   "2026-04-01",
+   2.2
+  ],
+  "neg_2022": [
+   "2022-01-01"
+  ],
+  "neg_2025": []
+ },
+ "v_vendite": {
+  "min_2020": [
+   "apr 2020",
+   -19.5
+  ],
+  "max_2021": [
+   "apr 2021",
+   51.5
+  ],
+  "ultimo": [
+   "set 2026",
+   6.3
+  ]
+ },
+ "v_fiducia": {
+  "min": [
+   "mag 2026",
+   44.8
+  ],
+  "max": [
+   "gen 2000",
+   112.0
+  ],
+  "ultimo": [
+   "ago 2026",
+   51.7
+  ]
+ },
+ "v_produzione": {
+  "min": [
+   "apr 2020",
+   -17.3
+  ],
+  "ultimo": [
+   "ago 2026",
+   1.4
+  ]
+ },
+ "v_rendimenti": {
+  "min10": [
+   "lug 2020",
+   0.62
+  ],
+  "ultimo10": [
+   "ott 2026",
+   5.25
+  ],
+  "ultimo2": 4.8,
+  "max10_post2020": [
+   "ott 2026",
+   5.25
+  ]
+ },
+ "v_curva": {
+  "inv_2022_da": "lug 2022",
+  "inv_2022_a": "ago 2024",
+  "min_2023": [
+   "lug 2023",
+   -0.93
+  ],
+  "ultimo": [
+   "ott 2026",
+   0.44
+  ]
+ },
+ "v_reali_oro": {
+  "corr_2006_2021": -0.94,
+  "corr_2022_oggi": 0.5,
+  "reale_ultimo": [
+   "ott 2026",
+   2.9
+  ],
+  "reale_min": [
+   "ago 2021",
+   -1.07
+  ],
+  "oro_2022": 1673,
+  "oro_ultimo": 4172
+ },
+ "v_spread": {
+  "picco": [
+   "nov 2011",
+   518
+  ],
+  "max_2018": [
+   "nov 2018",
+   308
+  ],
+  "max_2022": [
+   "ott 2022",
+   235
+  ],
+  "ultimo": [
+   "ago 2026",
+   80
+  ],
+  "min_2000s": 13
+ },
+ "v_corr_mobile": {
+  "min": [
+   "lug 2018",
+   -0.73
+  ],
+  "max": [
+   "lug 2014",
+   -0.18
+  ],
+  "ultimo": [
+   "ott 2026",
+   -0.44
+  ],
+  "media": -0.47
+ },
+ "v_dollaro_oro": {
+  "oro_2015": 1253,
+  "oro_ultimo": 4172,
+  "dol_2022_max": [
+   "ott 2022",
+   127.5
+  ],
+  "dol_ultimo": 121.4
+ },
+ "v_yen": {
+  "corr": 0.97,
+  "jp_2021": 103.8,
+  "jp_max": [
+   "lug 2026",
+   162.3
+  ],
+  "jp_ultimo": [
+   "ott 2026",
+   158.0
+  ],
+  "y_2021": 1.08
+ },
+ "v_petrolio_cad": {
+  "corr_2010_2016": -0.9,
+  "corr_2020_oggi": -0.1,
+  "wti_2014": 106,
+  "wti_2016": [
+   "feb 2016",
+   30
+  ],
+  "cad_2014": 1.08,
+  "cad_2016": 1.42,
+  "wti_ultimo": [
+   "ott 2026",
+   98
+  ]
+ },
+ "v_vix": {
+  "vix_2008": [
+   "2008-11-20",
+   80.9
+  ],
+  "vix_2020": [
+   "2020-03-16",
+   82.7
+  ],
+  "vix_media": 19.7,
+  "vix_ultimo": [
+   "2026-10-14",
+   16.9
+  ],
+  "spx_2020_calo": -33.9
+ },
+ "v_oro_argento": {
+  "oro_x": 3.33,
+  "ag_x": 3.45,
+  "corr_rend": 0.72,
+  "rapporto_ultimo": 70,
+  "rapporto_max": [
+   "apr 2020",
+   112
+  ]
+ },
+ "v_oro": {
+  "o2000": 265,
+  "max2011": [
+   "set 2011",
+   1762
+  ],
+  "min2015": [
+   "dic 2015",
+   1070
+  ],
+  "calo": -39,
+  "ultimo": [
+   "ott 2026",
+   4172
+  ]
+ },
+ "v_marzo2020": {
+  "oro_calo": -11.8,
+  "oro_min": "2020-03-18",
+  "oro_max": "2020-03-09",
+  "spx_calo": -33.8,
+  "spx_min": "2020-03-23"
+ },
+ "v_franco2015": {
+  "prima": 1.2008,
+  "chiusura_15": 1.2008,
+  "min_chiusura": [
+   "2015-01-26",
+   0.9805
+  ],
+  "fine_feb": 1.0674
+ }
+}

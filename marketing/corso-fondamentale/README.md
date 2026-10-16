@@ -12,4 +12,8 @@ RIFAI=1 python3 build.py png
 python3 build.py video      # out/<id>.mp4 + out/corso-completo.mp4
 ```
 Pronuncia delle sigle: dizionario PRONUNCIA in build.py (vale solo per la voce, le slide restano uguali).
+Grafici con dati veri (29, nei moduli 2–9): `python3 scarica_dati.py` scarica le serie (FRED e Yahoo Finance, fonti in `dati/FONTI.md`),
+`python3 grafici_veri.py` disegna `grafici/v_*.png` e scrive `grafici/fatti.json` con i numeri citati dalla voce.
+Le slide stanno in `lezioni/dati_veri.py` (inserite da `extra.py`). Quando i dati si aggiornano: rifare i due script, ricontrollare i numeri nella voce con `fatti.json`, poi voce, png e video.
+
 Regole: esempi dichiarati illustrativi, dati storici con fonte e data, niente previsioni né segnali, ogni lezione chiude sul rischio.
