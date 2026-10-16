@@ -4780,7 +4780,10 @@ const PREZZO_DOPO_LANCIO = { 'RiskGuard':149, 'TradeManager':79, 'ScaleIn':129, 
 /* ═══ CONFIGURAZIONE VENDITA ═══
    Quando hai Partita IVA e i link Stripe pronti:
    1. incolla i link qui sotto  2. metti VENDITA_ATTIVA = true  3. ricarica il sito su Netlify */
-const VENDITA_ATTIVA = false;
+/* dal lancio del 23 ottobre alle 18:00 i bot passano in vendita da soli (serve solo che la pagina venga ricaricata);
+   per anticipare o bloccare la vendita: VENDITA_FORZATA = true / false (null = segue la data) */
+const VENDITA_FORZATA = null;
+const VENDITA_ATTIVA = VENDITA_FORZATA !== null ? VENDITA_FORZATA : Date.now() >= new Date('2026-10-23T18:00:00+02:00').getTime();
 /* prodotti già in vendita anche prima del lancio generale */
 const IN_VENDITA_ORA = ['Videocorso'];
 /* il journal è in vendita da subito: restano in attesa solo i bot */
@@ -5166,6 +5169,8 @@ function aggiornaCountdown(){
   let resto = DATA_LANCIO - new Date();
 
   if(resto <= 0){
+    /* la pagina era aperta prima del lancio: si ricarica una volta e i pulsanti diventano "Acquista" */
+    if(!VENDITA_ATTIVA && VENDITA_FORZATA === null){ location.reload(); return; }
     box.forEach(b => {
       b.innerHTML = `<div class="cd-box" style="min-width:auto;padding:11px 22px">
           <div class="cd-n" style="color:var(--accent)">Disponibili ora</div>
@@ -5277,8 +5282,23 @@ function etichettaProdotto(nome){
   return inVendita(nome) ? 'Acquista' : 'Disponibile dal 23 ottobre · blocca il posto';
 }
 
+/* dal lancio: i testi "in arrivo" diventano "disponibili" (tutto il resto della pagina resta uguale) */
+function testiLancio(){
+  if(!VENDITA_ATTIVA) return;
+  const testo = (sel, t) => document.querySelectorAll(sel).forEach(e => { e.innerHTML = t; });
+  testo('.lancio-bar .wrap > span:first-child', '<b>I bot per MT4 e MT5 sono disponibili</b>');
+  document.querySelectorAll('.of-prezzo').forEach(e => { e.textContent = e.textContent.replace('dal 23 ottobre', 'disponibili ora'); });
+  testo('.lancio .data', 'Disponibili');
+  document.querySelectorAll('.lancio p').forEach(e => { if(/Escono i bot/.test(e.textContent)) e.innerHTML = 'I bot per <b>MetaTrader 4 e 5</b> sono in vendita. Ai primi 10 acquisti il prezzo di lancio resta bloccato a vita. Si paga una volta sola.'; });
+  document.querySelectorAll('h3').forEach(h => { if(h.textContent.trim() === 'Non sono ancora in vendita'){ h.textContent = 'Disponibili ora';
+    const p = h.parentElement.querySelector('p'); if(p) p.textContent = 'I primi 10 acquisti hanno il prezzo di lancio, bloccato per sempre. Paghi una volta sola, ricevi file, licenza e guida.'; } });
+  document.querySelectorAll('.faq summary').forEach(sm => { if(/Quando saranno disponibili i bot/.test(sm.textContent)){ sm.textContent = 'Quando sono disponibili i bot?';
+    const p = sm.parentElement.querySelector('p'); if(p) p.textContent = 'Sono in vendita dal 23 ottobre 2026. Dopo il pagamento ricevi file, licenza e guida all\'installazione per MetaTrader 4 o 5.'; } });
+}
+
 /* aggiorna le scritte dei pulsanti all'avvio */
 function aggiornaPulsantiProdotto(){
+  testiLancio();
   document.querySelectorAll('[data-prodotto]').forEach(b => {
     b.textContent = etichettaProdotto(b.dataset.prodotto);
   });
