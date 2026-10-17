@@ -4,7 +4,7 @@
 import os, json, subprocess, time, urllib.request, urllib.error
 
 VOCE_ID = os.environ.get('ELEVEN_VOCE', 'JBFqnCBsd6RMkjVDRZzb')   # George
-MODELLO = os.environ.get('ELEVEN_MODELLO', 'eleven_multilingual_v2')
+MODELLO = os.environ.get('ELEVEN_MODELLO', 'eleven_v4')   # scelto da Gabriele (prova 4)
 IMPOSTAZIONI = dict(stability=0.4, similarity_boost=0.8, style=0.3, use_speaker_boost=True)
 # il filtro della prova 1c, senza loudnorm (la normalizzazione la fa già il montaggio del video)
 STANZA = 'equalizer=f=180:t=q:w=1:g=2,equalizer=f=6500:t=q:w=1.5:g=-2,aecho=0.8:0.85:28|47:0.10|0.06'
