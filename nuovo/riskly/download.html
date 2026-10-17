@@ -117,9 +117,15 @@ input,select,textarea{border-radius:3px!important}
     <p id="lista-intro">Grazie per l'acquisto. I bot, la guida all'installazione e tutti gli aggiornamenti li trovi nel gruppo Telegram riservato ai clienti.</p>
 
     <div class="grp" id="corso-box" style="border-color:rgba(233,161,15,.45);display:none">
-      <h3>Il tuo videocorso</h3>
+      <h3>Il corso di gestione del rischio</h3>
       <div class="sub">Il corso è in un gruppo Telegram privato, con una cartella per ogni modulo e le lezioni in ordine. Tocca il pulsante e chiedi di entrare: approviamo le richieste a mano, di solito in poche ore. L'accesso è a vita.</div>
       <div id="corso-tg"></div>
+    </div>
+
+    <div class="grp" id="fond-box" style="border-color:rgba(233,161,15,.45);display:none">
+      <h3>Il corso di analisi fondamentale</h3>
+      <div class="sub">Anche questo corso è in un gruppo Telegram privato, un argomento per modulo. Tocca il pulsante e chiedi di entrare: approviamo le richieste a mano, di solito in poche ore. Dispense, quiz e attestato su riskly.trade/quiz.</div>
+      <div id="fond-tg"></div>
     </div>
 
     <div class="grp" id="journal-box" style="border-color:rgba(233,161,15,.45);display:none">
@@ -218,8 +224,11 @@ input,select,textarea{border-radius:3px!important}
   async function sblocca(prodotti){
     document.getElementById('gate').style.display = 'none';
     document.getElementById('lista').style.display = 'block';
-    const haCorso = prodotti.some(p => /corso/i.test(p));
-    const haBot = prodotti.some(p => !/corso/i.test(p) && !/^journal/i.test(p));
+    /* Videocorso = gestione del rischio · "Corso Analisi fondamentale" · "Pacchetto corsi" = tutti e due */
+    const pacchetto = prodotti.some(p => /pacchetto/i.test(p));
+    const haCorso = pacchetto || prodotti.some(p => /^videocorso/i.test(p));
+    const haFond = pacchetto || prodotti.some(p => /fondamentale/i.test(p));
+    const haBot = prodotti.some(p => !/corso|pacchetto|fondamentale/i.test(p) && !/^journal/i.test(p));
     const journal = prodotti.find(p => /^journal/i.test(p));
     if(journal){
       document.getElementById('journal-box').style.display = 'block';
@@ -231,7 +240,7 @@ input,select,textarea{border-radius:3px!important}
         if(data){ document.getElementById('premium-codice').textContent = data; document.getElementById('premium-box').style.display = 'block'; }
       }catch(e){}
     }
-    if(!haCorso && !haBot && journal) document.getElementById('lista-intro').textContent = 'Grazie per l\'acquisto. Il tuo piano del journal è attivo.';
+    if(!haCorso && !haFond && !haBot && journal) document.getElementById('lista-intro').textContent = 'Grazie per l\'acquisto. Il tuo piano del journal è attivo.';
     if(haBot && !haCorso){
       try{
         const { data } = await sb.rpc('codice_sconto_corso');
@@ -239,9 +248,11 @@ input,select,textarea{border-radius:3px!important}
       }catch(e){}
     }
     document.getElementById('corso-box').style.display = haCorso ? 'block' : 'none';
+    document.getElementById('fond-box').style.display = haFond ? 'block' : 'none';
     document.getElementById('bot-box').style.display = haBot ? 'block' : 'none';
-    if(haCorso && !haBot) document.getElementById('lista-intro').textContent = 'Grazie per l\'acquisto. Qui sotto trovi l\'accesso al tuo videocorso.';
+    if((haCorso || haFond) && !haBot) document.getElementById('lista-intro').textContent = 'Grazie per l\'acquisto. Qui sotto trovi l\'accesso ai tuoi corsi.';
     if(haCorso) pulsante(document.getElementById('corso-tg'), await linkDa('link_gruppo_corso'), 'Entra nel corso su Telegram');
+    if(haFond) pulsante(document.getElementById('fond-tg'), await linkDa('link_gruppo_fondamentale'), 'Entra nel corso su Telegram');
     if(haBot) pulsante(document.getElementById('tg-box'), await linkDa('link_gruppo_clienti'), 'Entra nel gruppo Telegram');
   }
 

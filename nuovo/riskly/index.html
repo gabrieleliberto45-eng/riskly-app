@@ -4755,7 +4755,12 @@ function apriModulo(tipo, prodotto, prezzo){
   // riepilogo
   const rg = document.getElementById('mod-riepilogo');
   const dopoLancio = PREZZO_DOPO_LANCIO[prodotto];
-  if(attesa && prezzo > 0){
+  if(attesa && /Corso|Pacchetto/.test(prodotto)){
+    rg.innerHTML = `
+      <div class="rg-riga"><span>${esc(prodotto)}</span><b>in arrivo</b></div>
+      <div class="rg-riga rg-tot"><span>Prezzo</span><b>€${prezzo} · pagamento unico</b></div>`;
+    rg.style.display = 'block';
+  } else if(attesa && prezzo > 0){
     rg.innerHTML = `
       <div class="rg-riga"><span>${esc(prodotto)}</span><b>in arrivo</b></div>
       ${dopoLancio ? `<div class="rg-riga"><span>Prezzo dopo il lancio</span><b style="color:var(--dim2)">€${dopoLancio}</b></div>` : ''}
