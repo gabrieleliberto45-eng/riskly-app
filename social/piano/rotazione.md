@@ -97,3 +97,7 @@ Cosa ho cambiato: chiusure con parola chiave nei commenti (DATI, ROVINA) e link 
 | 25 ott | 13:00 | carosello c07 La leva non è il rischio (bianco) · IG + TikTok · riskly.trade/rovina |
 Il resto della settimana era già programmato (conto alla rovescia, lancio del 23, Oggi no., RisklyCopy).
 YouTube: in questo turno nessun nuovo video lungo; restano le routine "Domani esce" e "La settimana dell'oro".
+
+## Regola dal 19 ottobre 2026 (decisa da Gabriele)
+- Al massimo **un contenuto al giorno per social** (Instagram, TikTok, YouTube; X se verrà collegato). Niente più 2–4 uscite nello stesso giorno.
+- Riorganizzazione fatta il 17/10: in bozza i reel pre-lancio superati (bot 19/10 e 21/10, carosello overtrading); spostati "Oggi no · stop" al 26/10, "Oggi no · copia tra conti" al 27/10 (testo aggiornato: RisklyCopy disponibile ora), carosello "5 frasi" al 28/10, video YouTube sul lotto dell'oro al 24/10.
