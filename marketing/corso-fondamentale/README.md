@@ -17,3 +17,7 @@ Grafici con dati veri (29, nei moduli 2–9): `python3 scarica_dati.py` scarica 
 Le slide stanno in `lezioni/dati_veri.py` (inserite da `extra.py`). Quando i dati si aggiornano: rifare i due script, ricontrollare i numeri nella voce con `fatti.json`, poi voce, png e video.
 
 Regole: esempi dichiarati illustrativi, dati storici con fonte e data, niente previsioni né segnali, ogni lezione chiude sul rischio.
+
+## Testi "a tu per tu" e voce ElevenLabs
+- `lezioni/umano/m*.py`: i testi parlati riscritti come una spiegazione a tu per tu (UMANO[id] = una lista di passaggi per ogni slide, stesso numero di passaggi). Hanno la precedenza su `parlato_*.py`; `check.py` e `build.py` controllano che i passaggi tornino.
+- Voce scelta: ElevenLabs "George" con leggero effetto stanza (`../voce_eleven.py`). Si attiva con `CORSO_TTS=eleven ELEVEN_API_KEY=... python3 build.py voce`; la chiave non va mai nel repository. Gli mp3 hanno un nome diverso da quelli edge-tts, quindi le due voci convivono nella cartella `voce/`.

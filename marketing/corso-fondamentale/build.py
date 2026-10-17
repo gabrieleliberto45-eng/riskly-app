@@ -8,6 +8,8 @@ import sys, os, json, hashlib, asyncio, subprocess, re, glob, importlib.util, ce
 if os.path.exists('/root/.ccr/ca-bundle.crt'): certifi.where = lambda: '/root/.ccr/ca-bundle.crt'
 import edge_tts
 QUI = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, QUI + '/lezioni')
+sys.path.insert(1, os.path.dirname(QUI)); ELEVEN = os.environ.get('CORSO_TTS') == 'eleven'
+if ELEVEN: import voce_eleven
 FF = os.environ.get('FFMPEG') or subprocess.check_output(['python3', '-c', 'import imageio_ffmpeg as i;print(i.get_ffmpeg_exe())']).decode().strip()
 VOCE, RATE, PAUSA, PAUSA_SLIDE = os.environ.get('CORSO_VOCE', 'it-IT-GiuseppeMultilingualNeural'), os.environ.get('CORSO_RATE', '+0%'), 0.35, 0.55
 def carica():
@@ -84,7 +86,7 @@ def testo_tts(t):
     if len(out) > 1 and len(out[-1].split()) <= 3 and out[-2][-1:] in '.?!':
         u = out.pop(); out[-1] = out[-1][:-1] + ', ' + u[0].lower() + u[1:]
     return ' '.join(out)
-def fname(t): return f"{QUI}/voce/{hashlib.md5((VOCE+RATE+testo_tts(t)).encode()).hexdigest()[:16]}.mp3"
+def fname(t): return f"{QUI}/voce/{hashlib.md5(((voce_eleven.firma() if ELEVEN else VOCE+RATE)+testo_tts(t)).encode()).hexdigest()[:16]}.mp3"
 def durata(f):
     r = subprocess.run([FF, '-i', f, '-f', 'null', '-'], capture_output=True, text=True).stderr
     m = re.findall(r'time=(\d+):(\d+):([\d.]+)', r)[-1]; return int(m[0]) * 3600 + int(m[1]) * 60 + float(m[2])
@@ -95,10 +97,11 @@ def tutti_i_passi(L):
             for pj, (t, k) in enumerate(passi(s)): out.append((li, si, pj, t, k))
     return out
 async def voce(L):
-    sem = asyncio.Semaphore(6); todo = [t for _, _, _, t, _ in tutti_i_passi(L) if not os.path.exists(fname(t))]
+    sem = asyncio.Semaphore(3 if ELEVEN else 6); todo = [t for _, _, _, t, _ in tutti_i_passi(L) if not os.path.exists(fname(t))]
     todo = list(dict.fromkeys(todo)); print(len(todo), 'passaggi da sintetizzare')
     async def una(t):
         async with sem:
+            if ELEVEN: return await asyncio.to_thread(voce_eleven.sintetizza, testo_tts(t), fname(t), FF)
             for tent in range(4):
                 try:
                     c = edge_tts.Communicate(testo_tts(t), VOCE, rate=RATE); tmp = fname(t) + '.tmp'

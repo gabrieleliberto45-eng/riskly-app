@@ -21,3 +21,7 @@ Per ricontrollare i numeri citati: `python3 sim_numeri.py`.
 - Ogni numero di simulazione viene da `sim_numeri.py` (sistema d'esempio: 45% di vincite, +1,8 R / −1 R, 200 trade, 40.000 percorsi).
 - Avviso «educativo, non consulenza» in apertura, in chiusura e nel piè di pagina di ogni slide.
 - I prodotti Riskly compaiono nelle lezioni 1.4, 2.5, 5.2, 8.4 e 9.4 e sono sempre dichiarati come «miei prodotti».
+
+## Testi "a tu per tu" e voce ElevenLabs
+- `lezioni/umano/m*.py`: i testi parlati riscritti come una spiegazione a tu per tu (UMANO[id] = una lista di passaggi per ogni slide, stesso numero di passaggi). Hanno la precedenza su `parlato_*.py`; `check.py` e `build.py` controllano che i passaggi tornino.
+- Voce scelta: ElevenLabs "George" con leggero effetto stanza (`../voce_eleven.py`). Si attiva con `CORSO_TTS=eleven ELEVEN_API_KEY=... python3 build.py voce`; la chiave non va mai nel repository. Gli mp3 hanno un nome diverso da quelli edge-tts, quindi le due voci convivono nella cartella `voce/`.
