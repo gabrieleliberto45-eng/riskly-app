@@ -1,0 +1,126 @@
+{
+ "id": "v07",
+ "serie": "La settimana dell'oro",
+ "titolo": "La settimana dell'oro: −0,8% tra inflazione calda e Warsh prudente (12–16 ottobre 2026)",
+ "scene": [
+  {
+   "capitolo": "Introduzione",
+   "tipo": "titolo",
+   "grande": "Oro: <mark>−0,8%</mark><br>in settimana",
+   "piccolo": "Dal 12 al 16 ottobre 2026: l'inflazione americana sopra le attese, poi il recupero con dollaro e rendimenti in calo",
+   "voce": "Benvenuto alla settimana dell'oro. Dal dodici al sedici ottobre il future sull'oro ha perso lo zero virgola otto per cento: una settimana con un forte scivolone mercoledì, dopo l'inflazione americana, e un recupero nei giorni successivi. Vediamo i numeri, cosa ha mosso il prezzo e cosa esce la settimana prossima. Niente previsioni: solo fatti e rischio."
+  },
+  {
+   "capitolo": "Il grafico della settimana",
+   "tipo": "grafico",
+   "titolo": "Oro, future COMEX, dati orari",
+   "img": "oro/2026-10-12.png",
+   "nota": "Fonte: Yahoo Finance (GC=F). Orari del grafico in UTC.",
+   "voce": "Ecco il grafico della settimana, con i dati orari del future sull'oro. Il massimo arriva subito, lunedì nella notte, a quattromiladuecentoquarantadue dollari. Poi il prezzo scende piano fino a mercoledì, quando, nel pomeriggio, dopo il dato sull'inflazione americana, cade fino a quattromilanovantacinque dollari, il minimo della settimana. Da giovedì riparte e venerdì chiude intorno ai quattromilacentottanta."
+  },
+  {
+   "capitolo": "I numeri",
+   "tipo": "numeri",
+   "titolo": "I numeri della settimana",
+   "colonne": [
+    "Mercato",
+    "Variazione"
+   ],
+   "righe": [
+    [
+     "Oro (future COMEX)",
+     "4.216,7 → 4.181,1 $ · −0,8%"
+    ],
+    [
+     "Massimo · minimo",
+     "4.242,3 · 4.095,0 $"
+    ],
+    [
+     "Indice del dollaro",
+     "102,30 → 101,78 · −0,5%"
+    ],
+    [
+     "Treasury 10 anni",
+     "5,24% → 5,10% · −14 punti base"
+    ]
+   ],
+   "nota": "Fonte: Yahoo Finance, dati orari dal 12 al 16 ottobre 2026.",
+   "voce": "I numeri. L'oro apre la settimana a quattromiladuecentosedici dollari e settanta e chiude a quattromilacentottantuno e dieci: meno zero virgola otto per cento. Tra massimo e minimo ci sono quasi centocinquanta dollari. L'indice del dollaro scende dello zero virgola cinque per cento, e il rendimento del Treasury a dieci anni cala di quattordici punti base, dal cinque virgola ventiquattro al cinque virgola dieci per cento. Dollaro e rendimenti in calo di solito aiutano l'oro, ed è quello che si è visto nella seconda parte della settimana."
+  },
+  {
+   "capitolo": "Cosa l'ha mosso",
+   "tipo": "punti",
+   "titolo": "Cosa ha mosso l'oro",
+   "punti": [
+    [
+     "Mercoledì: inflazione USA",
+     "3,7% contro 3,6% atteso: oro giù di circa 60 $ in pochi minuti"
+    ],
+    [
+     "Giovedì: prezzi alla produzione",
+     "+1,3% sul mese, ma rendimenti e dollaro in calo"
+    ],
+    [
+     "Venerdì: Warsh a Bangkok",
+     "non anticipa la prossima decisione: scendono le attese di un rialzo a ottobre"
+    ]
+   ],
+   "voce": "Cosa ha mosso l'oro. Mercoledì l'inflazione americana di settembre esce al tre virgola sette per cento contro il tre virgola sei atteso: il mercato vede più probabile un altro rialzo dei tassi, e l'oro perde circa sessanta dollari in pochi minuti. Giovedì i prezzi alla produzione salgono dell'uno virgola tre per cento in un mese, ancora sopra le attese, ma i rendimenti e il dollaro scendono e l'oro recupera: nelle cronache è stata la miglior giornata da oltre due settimane. Venerdì il presidente della Fed, Kevin Warsh, in una conversazione a Bangkok, non anticipa la prossima decisione: secondo i mercati dei future, la probabilità di un rialzo a ottobre scende intorno al sedici per cento."
+  },
+  {
+   "capitolo": "La settimana prossima",
+   "tipo": "numeri",
+   "titolo": "La settimana prossima",
+   "colonne": [
+    "Ora italiana",
+    "Cosa"
+   ],
+   "righe": [
+    [
+     "lun 19 · 04:00",
+     "Cina: PIL"
+    ],
+    [
+     "gio 22 · 14:30",
+     "USA: sussidi"
+    ],
+    [
+     "ven 23 · 15:45",
+     "USA: PMI e fiducia"
+    ],
+    [
+     "mer 28 · 19:00",
+     "Fed (dopo il cambio d'ora)"
+    ]
+   ],
+   "voce": "La settimana prossima è più tranquilla. Lunedì alle quattro del mattino il PIL cinese del terzo trimestre. Giovedì alle quattordici e trenta le richieste di sussidio americane. Venerdì alle quindici e quarantacinque gli indici PMI americani, e alle sedici la fiducia del Michigan. Domenica venticinque in Italia torna l'ora solare. E attenzione alla settimana dopo: mercoledì ventotto la Fed decide alle diciannove ora italiana, non alle venti, e giovedì ventinove arrivano BCE e PIL americano."
+  },
+  {
+   "capitolo": "Il rischio",
+   "tipo": "punti",
+   "titolo": "Il rischio sull'oro",
+   "punti": [
+    [
+     "Movimenti ampi",
+     "quasi 150 $ tra massimo e minimo in cinque giorni"
+    ],
+    [
+     "Nei minuti del dato",
+     "60 $ in un quarto d'ora: spread larghi, stop eseguiti peggio"
+    ],
+    [
+     "Lotto sul prezzo",
+     "conta lo stop in dollari, non in \"pip\": è lì che si sbaglia"
+    ]
+   ],
+   "voce": "Il rischio. Questa settimana tra massimo e minimo ci sono stati quasi centocinquanta dollari, e mercoledì sessanta dollari in un quarto d'ora. In quei minuti gli spread si allargano e lo stop può essere eseguito molto peggio del livello impostato. E quando calcoli il lotto sull'oro, guarda la distanza dello stop in dollari di prezzo: confondere pip e dollari significa rischiare dieci volte più del previsto. Ne parlo nel video di mercoledì."
+  },
+  {
+   "capitolo": "Per approfondire",
+   "tipo": "chiusura",
+   "grande": "I dati della settimana,<br><mark>gratis</mark>",
+   "piccolo": "Calendario in tempo reale su riskly.trade/dati · Corso Riskly · Analisi fondamentale: banche centrali, inflazione, rendimenti, oro",
+   "voce": "I dati della settimana prossima, con orari italiani e consenso, li trovi gratis su riskly punto trade barra dati. E se vuoi capire come inflazione, tassi e rendimenti muovono l'oro, c'è il corso Riskly Analisi fondamentale, con grafici sui dati veri: lo trovi su riskly punto trade barra corsi. Sono miei prodotti. Contenuto informativo ed educativo, non consulenza finanziaria: il trading con leva può farti perdere tutto il capitale."
+  }
+ ]
+}
