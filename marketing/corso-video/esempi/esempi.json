@@ -1,0 +1,42 @@
+{
+ "vinto": {
+  "minimo": [
+   "13/08/2026 08:00",
+   1.15154
+  ],
+  "ingresso": [
+   "13/08/2026 12:00",
+   1.15393
+  ],
+  "stop": 1.15104,
+  "pip_stop": 28.9,
+  "target": 1.15915,
+  "pip_target": 52.1,
+  "valore_pip_eur": 8.67,
+  "lotti": 0.39,
+  "esito": "target",
+  "quando": "17/08/2026 06:00",
+  "ore": 41,
+  "euro": 176.12
+ },
+ "perso": {
+  "minimo": [
+   "14/09/2026 15:00",
+   1.15274
+  ],
+  "ingresso": [
+   "14/09/2026 19:00",
+   1.15594
+  ],
+  "stop": 1.15224,
+  "pip_stop": 37.0,
+  "target": 1.16259,
+  "pip_target": 66.5,
+  "valore_pip_eur": 8.65,
+  "lotti": 0.31,
+  "esito": "stop",
+  "quando": "16/09/2026 20:00",
+  "ore": 49,
+  "euro": -99.11
+ }
+}

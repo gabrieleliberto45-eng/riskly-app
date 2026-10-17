@@ -98,13 +98,13 @@ PARLATO['1.3'] = {
      "Quindi lo stop va a uno virgola zero nove sette cinque.",
      "Che significa venticinque pip di distanza dal tuo ingresso.",
      "E ancora una volta, nota l'ordine: hai deciso lo stop guardando il grafico, non pensando a quanto avresti voluto rischiare."],
- 7: ["Ora proviamo un esercizio. Supponi di voler rischiare sessanta euro, e il tuo stop, deciso dal grafico, è a trenta pip. Secondo te, quanto deve valere ogni pip perché, se va male, perdi esattamente sessanta euro?"],
- 8: ["Vediamo. Sessanta euro diviso trenta pip fa due euro per pip. E siccome su molti conti un lotto intero vale circa dieci euro a pip, ti serve un quinto di lotto, cioè zero virgola due lotti. Nella prossima lezione trasformiamo proprio questo ragionamento in un calcolo semplice da usare ogni giorno."],
- 9: ["Ricapitoliamo quello che abbiamo visto sullo stop loss.",
+ 11: ["Ora proviamo un esercizio. Supponi di voler rischiare sessanta euro, e il tuo stop, deciso dal grafico, è a trenta pip. Secondo te, quanto deve valere ogni pip perché, se va male, perdi esattamente sessanta euro?"],
+ 12: ["Vediamo. Sessanta euro diviso trenta pip fa due euro per pip. E siccome su molti conti un lotto intero vale circa dieci euro a pip, ti serve un quinto di lotto, cioè zero virgola due lotti. Nella prossima lezione trasformiamo proprio questo ragionamento in un calcolo semplice da usare ogni giorno."],
+ 13: ["Ricapitoliamo quello che abbiamo visto sullo stop loss.",
      "Lo stop è il punto in cui la tua idea si rivela sbagliata.",
      "Si sceglie guardando il grafico, e poi il lotto si adatta al rischio che vuoi correre.",
      "E si può avvicinare, ma non si allontana mai."],
- 10: ["Ricordati: lo stop non è il costo del trading. È il biglietto d'ingresso per fare trading."],
+ 14: ["Ricordati: lo stop non è il costo del trading. È il biglietto d'ingresso per fare trading."],
 }
 PARLATO['1.4'] = {
  0: ["Benvenuto in questa lezione. Oggi rispondiamo a una domanda pratica: quanto devo comprare? Cioè, come si calcola il lotto giusto per ogni operazione."],
