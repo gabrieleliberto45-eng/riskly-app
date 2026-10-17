@@ -1,6 +1,7 @@
 # Carica il corso in un gruppo Telegram con gli Argomenti: un argomento per modulo, video in ordine con didascalia.
 # uso: TG_TOKEN=... python3 telegram_carica.py trova          → mostra i gruppi visti dal bot
 #      TG_TOKEN=... TG_CHAT=-100... python3 telegram_carica.py carica   (riprende da dove si è fermato: stato in out/telegram_stato.json)
+#      TG_TOKEN=... TG_CHAT=-100... python3 telegram_carica.py svuota   (cancella gli argomenti del bot per ricaricare da capo)
 import os, sys, json, re, glob, time, subprocess, requests, build
 T = os.environ['TG_TOKEN']; API = f'https://api.telegram.org/bot{T}/'; STATO = build.QUI + '/out/telegram_stato.json'
 def call(m, files=None, **p):
@@ -61,5 +62,10 @@ def carica(chat):
         except Exception as e: print('pin non riuscito:', e)
         st['indice'] = msg['message_id']; salva()
     print('FINITO')
+def svuota(chat):
+    # cancella gli argomenti creati dal bot (con tutti i messaggi dentro, indice compreso) e azzera lo stato, per ricaricare da capo
+    st = json.load(open(STATO))
+    for n, tid in st['topic'].items(): call('deleteForumTopic', chat_id=chat, message_thread_id=tid); print('cancellato', n, flush=True); time.sleep(1)
+    os.remove(STATO)
 if __name__ == '__main__':
-    trova() if sys.argv[1] == 'trova' else carica(os.environ['TG_CHAT'])
+    {'trova': lambda: trova(), 'carica': lambda: carica(os.environ['TG_CHAT']), 'svuota': lambda: svuota(os.environ['TG_CHAT'])}[sys.argv[1]]()
