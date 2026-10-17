@@ -30,6 +30,16 @@ def carica():
                 s_ = l['slide'][i]
                 assert len(v) == len(s_['voce']), f"parlato {l['id']} slide {i}: {len(v)} passaggi invece di {len(s_['voce'])}"
                 s_['voce'] = v
+    # testi riscritti "a tu per tu" (lezioni/umano/m*.py): UMANO[id] = una lista di passaggi per ogni slide, stesso numero di passaggi
+    for f in sorted(glob.glob(f'{QUI}/lezioni/umano/m*.py')):
+        sp = importlib.util.spec_from_file_location('u', f); m = importlib.util.module_from_spec(sp); sp.loader.exec_module(m)
+        for l in L:
+            if l['id'] not in m.UMANO: continue
+            U = m.UMANO[l['id']]
+            assert len(U) == len(l['slide']), f"umano {l['id']}: {len(U)} slide invece di {len(l['slide'])}"
+            for i, (s_, v) in enumerate(zip(l['slide'], U)):
+                assert len(v) == len(s_['voce']), f"umano {l['id']} slide {i}: {len(v)} passaggi invece di {len(s_['voce'])}"
+                s_['voce'] = v
     return L
 def n_el(s):
     t = s['tipo']
