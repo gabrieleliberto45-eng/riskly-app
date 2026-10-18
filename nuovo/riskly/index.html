@@ -2117,6 +2117,32 @@ body.fuori-home #vaiHome{display:inline-flex}
 .siti-barra a.sb-clienti{background:rgba(233,161,15,.14)}
 .siti-barra a.sb-clienti i{color:#B97C00}
 @media (max-width:640px){.siti-barra b .sb-lungo{display:none}.siti-barra b .sb-corto{display:inline!important;font:inherit!important;color:inherit!important}}
+.cp-griglia{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;align-items:start;margin-top:clamp(20px,3vw,36px)}
+.cp{background:#FBFBF9;border:1.5px solid #C9CDD1;border-radius:20px;overflow:hidden;box-shadow:0 14px 32px -20px rgba(21,24,27,.4);scroll-margin-top:90px}
+.cp-pacchetto{border-color:#E9A10F;box-shadow:0 0 0 3px rgba(233,161,15,.18),0 14px 32px -20px rgba(21,24,27,.4)}
+.cp-img{display:block;aspect-ratio:16/9;background:#0B0D0C;overflow:hidden}
+.cp-img img{display:block;width:100%;height:100%;object-fit:cover}
+.cp-doppia{position:relative;background:linear-gradient(135deg,#15181B,#2A2F33)}
+.cp-doppia picture{position:absolute;width:62%;top:12%;border-radius:10px;overflow:hidden;box-shadow:0 12px 26px -8px rgba(0,0,0,.7);border:2px solid rgba(255,255,255,.15)}
+.cp-doppia picture:first-child{left:5%;transform:rotate(-4deg)}
+.cp-doppia picture:nth-child(2){right:5%;top:26%;transform:rotate(4deg)}
+.cp-doppia img{aspect-ratio:16/9}
+.cp-risparmio{position:absolute;left:12px;bottom:12px;background:#E9A10F;color:#2B1E00;font:800 13px 'Archivo',sans-serif;padding:5px 11px;border-radius:999px}
+.cp-corpo{padding:18px 20px 20px;display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.cp-tag{font:700 11.5px 'Archivo',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#B97C00}
+.cp h3{margin:0;font-weight:780;font-stretch:80%;font-size:clamp(24px,2.4vw,30px);line-height:1.05}
+.cp-num{font:500 12.5px 'Martian Mono',monospace;color:#5E656D}
+.cp p{margin:2px 0;font-size:15px;line-height:1.5;color:#4B525A}
+.cp-prezzo{font:700 26px 'Martian Mono',monospace;font-stretch:88%;color:#15181B;margin-top:4px}
+.cp-prezzo small{display:block;font:500 12.5px 'Archivo',sans-serif;color:#5E656D;margin-top:2px}
+.cp .btn{width:100%;justify-content:center;text-align:center}
+.cp-prog{width:100%;margin-top:6px!important;border-top:1px solid #E1E4E6}
+.cp-prog summary{padding:12px 0 4px;font-weight:700;cursor:pointer}
+.cp-prog .corsi{max-height:none}
+.cp-perche{margin-top:28px;border:1.5px solid #C9CDD1;border-radius:16px;padding:0 18px;background:#FBFBF9}
+.cp-perche>summary{padding:16px 0;font-weight:700;cursor:pointer}
+.cp-perche .valore-corso{margin:0 0 18px!important;border:0!important;padding:0!important;background:none!important}
+.cp-nota{margin-top:22px;font-size:15px;color:#4B525A;line-height:1.55}
 /* telefono: home più corta, l'ecosistema diventa un elenco senza foto */
 .nh .salta{display:none}
 @media (max-width:600px){
@@ -3545,49 +3571,20 @@ body.fuori-home #vaiHome{display:inline-flex}
         <span class="sez-num">Videocorsi</span>
         <h2>Due corsi, <em>una sola domanda: cosa cambia per il rischio</em></h2>
         <p class="lead">La gestione del rischio ti insegna quanto rischiare e quando fermarti. L'analisi fondamentale ti spiega perché i mercati si muovono e come comportarti intorno ai dati. Spiegati come a lezione, con esempi in euro e pip. Niente strategie, niente segnali.</p>
-        <p class="lead" style="margin-top:14px!important"><a href="#corso-rischio" onclick="document.getElementById('corso-rischio').scrollIntoView({behavior:'smooth'});return false" style="color:var(--ink);font-weight:700">Gestione del rischio ↓</a> &nbsp;·&nbsp; <a href="#corso-fondamentale" onclick="document.getElementById('corso-fondamentale').scrollIntoView({behavior:'smooth'});return false" style="color:var(--ink);font-weight:700">Analisi fondamentale ↓</a></p>
       </div>
 
-      <div class="pz-sez" id="corso-rischio" style="margin-top:0!important;scroll-margin-top:90px"><h3>Riskly · Gestione del rischio</h3><span>50 LEZIONI · 11 MODULI · OLTRE 3 ORE · DISPONIBILE</span></div>
-
-      
-
-      <div class="lancio-box">
-        <picture class="corso-cop">
-          <source srcset="corso-copertina.webp" type="image/webp">
-          <img src="corso-copertina.jpg" width="1200" height="675" loading="lazy" alt="Videocorso Riskly sulla gestione del rischio: 50 lezioni, 11 moduli, circa 3 ore">
-        </picture>
-        <div class="lancio-riga">
-          <div>
-            <h3>Il corso è disponibile · 199 € al lancio</h3>
-            <p>Pagamento unico, accesso a vita. Dopo l'acquisto entri nel gruppo Telegram del corso, con una cartella per ogni modulo e le lezioni in ordine. Prezzo di lancio 199 €, poi 249 €. Chi ha acquistato un software Riskly ha il <b>50% di sconto sul corso</b>.</p>
-          </div>
-          <button class="btn pri" data-prodotto="Videocorso" onclick="azioneProdotto('Videocorso')">Acquista il corso · 199 €</button>
-        </div>
-      </div>
-
-
-      <div class="valore-corso">
-        <div class="vc-cifra">
-          <div class="vc-k">VALORE REALE DI MERCATO</div>
-          <div class="vc-n">999 €</div>
-          <div class="vc-s">oggi al lancio <b>199 €</b></div>
-        </div>
-        <div class="vc-testo">
-          <h3>Quello che ti porti via vale molto più di tre ore di video</h3>
-          <p>Il valore reale di mercato di questo corso è di <b>999 €</b>: è quello che costa imparare le stesse cose tra percorsi a pagamento, consulenze individuali e, soprattutto, errori pagati sul conto. Il valore che ti trasmette è enorme, perché non riguarda un singolo trade ma <b>ogni operazione che farai da qui in avanti</b>.</p>
-          <ul>
-            <li><b>Un solo errore evitato lo ripaga.</b> Con 1.000 € sul conto, rischiare il 10% invece dell'1% vuol dire che quattro perdite di fila ti portano via un terzo del capitale. Sapere quanto rischiare prima di entrare vale più di qualsiasi segnale.</li>
-            <li><b>È un metodo, non un'informazione.</b> Position sizing, drawdown, Monte Carlo, regole delle prop firm, trailing, scaglioni e hedging: impari a costruire regole che reggono anche nei giorni peggiori.</li>
-            <li><b>Resta tuo per sempre.</b> Pagamento unico, accesso a vita alle lezioni e a ogni aggiornamento del corso.</li>
-            <li><b>Non solo video.</b> Dispensa PDF per ogni modulo con esercizi e soluzioni, kit Excel (lotto, piano di rischio, drawdown, journal), quiz di fine modulo e attestato di completamento.</li>
-          </ul>
-        </div>
-      </div>
-
-      <details class="programma">
-        <summary>Programma completo · 50 lezioni</summary>
-      <div class="corsi">
+      <div class="cp-griglia">
+        <article class="cp" id="corso-rischio">
+          <picture class="cp-img"><source srcset="corso-copertina.webp" type="image/webp"><img src="corso-copertina.jpg" width="1200" height="675" loading="lazy" alt="Videocorso Riskly sulla gestione del rischio"></picture>
+          <div class="cp-corpo">
+            <span class="cp-tag">Disponibile</span>
+            <h3>Gestione del rischio</h3>
+            <div class="cp-num">50 lezioni · 11 moduli · 3h 16'</div>
+            <p>Quanto rischiare, come calcolare il lotto, drawdown, Monte Carlo, prop firm, trailing e scaglioni. Con dispense PDF, kit Excel, quiz e attestato. Chi ha un software Riskly ha il <b>50% di sconto</b>.</p>
+            <div class="cp-prezzo">199 € <small>al lancio · poi 249 € · accesso a vita</small></div>
+            <button class="btn pri" data-prodotto="Videocorso" onclick="azioneProdotto('Videocorso')">Acquista</button>
+            <details class="programma cp-prog"><summary>Programma completo · 50 lezioni</summary>
+<div class="corsi">
         <article class="corso">
           <div class="c-num">00</div>
           <div class="c-testo">
@@ -3696,55 +3693,19 @@ body.fuori-home #vaiHome{display:inline-flex}
         </article>
       </div>
       </details>
-
-      <div class="corso-info">
-        <div class="ci-voce">
-          <div class="ci-n">50</div>
-          <div class="ci-e">lezioni video</div>
-        </div>
-        <div class="ci-voce">
-          <div class="ci-n">3h 16'</div>
-          <div class="ci-e">durata totale</div>
-        </div>
-        <div class="ci-voce">
-          <div class="ci-n">∞</div>
-          <div class="ci-e">accesso a vita</div>
-        </div>
-        <div class="ci-voce">
-          <div class="ci-n">TG</div>
-          <div class="ci-e">gruppo Telegram per moduli</div>
-        </div>
-      </div>
-
-
-      <div class="pz-sez" id="corso-fondamentale" style="scroll-margin-top:90px"><h3>Riskly · Analisi fondamentale</h3><span>60 LEZIONI · 12 MODULI · OLTRE 3 ORE · 299 €</span></div>
-      <div class="lancio-box" style="margin-top:24px">
-        <picture class="corso-cop">
-          <img src="/img/eco-corso-fondamentale.webp" width="1200" height="675" loading="lazy" alt="Videocorso Riskly Analisi fondamentale: 60 lezioni, 12 moduli">
-        </picture>
-        <div class="lancio-riga">
-          <div>
-            <h3>Il secondo corso: capire perché si muovono i mercati</h3>
-            <p>Banche centrali, inflazione, lavoro, crescita, obbligazioni, correlazioni tra asset, beni rifugio ed eventi straordinari. Per ogni dato: cosa misura, cosa si aspetta il mercato, come reagisce di solito e cosa cambia per lotto, stop e orari. Si guarda su Telegram come il primo corso, accesso a vita. Iscriviti alla lista d'attesa: ti avvisiamo per primo quando apre la vendita.</p>
           </div>
-          <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-start">
-            <div style="font-family:'JetBrains Mono',monospace;font-weight:600;font-size:1.3rem">299 € <span style="font-size:.78rem;color:var(--dim);font-weight:500">pagamento unico · accesso a vita</span></div>
-            <button class="btn pri" data-prodotto="Corso Analisi fondamentale" onclick="azioneProdotto('Corso Analisi fondamentale')">Avvisami quando esce</button>
-          </div>
-        </div>
-      </div>
-      <div class="lancio-box" id="pacchetto-corsi" style="margin-top:16px;border:2px solid var(--amber,#E9A10F)">
-        <div class="lancio-riga">
-          <div>
-            <h3>Pacchetto: i due corsi insieme</h3>
-            <p>Gestione del rischio + Analisi fondamentale: 110 lezioni, dispense PDF, kit Excel, quiz e attestati. <b>399 € invece di 498 €</b>, pagamento unico e accesso a vita.</p>
-          </div>
-          <button class="btn pri" data-prodotto="Pacchetto corsi" onclick="azioneProdotto('Pacchetto corsi')">Avvisami quando esce</button>
-        </div>
-      </div>
-      <details class="programma">
-        <summary>Programma completo · 60 lezioni</summary>
-      <div class="corsi">
+        </article>
+        <article class="cp" id="corso-fondamentale">
+          <picture class="cp-img"><img src="/img/eco-corso-fondamentale.webp" width="1200" height="675" loading="lazy" alt="Videocorso Riskly di analisi fondamentale"></picture>
+          <div class="cp-corpo">
+            <span class="cp-tag">Nuovo</span>
+            <h3>Analisi fondamentale</h3>
+            <div class="cp-num">60 lezioni · 12 moduli · 3h 02'</div>
+            <p>Banche centrali, inflazione, lavoro, obbligazioni, correlazioni, beni rifugio ed eventi straordinari. Per ogni dato: cosa misura, come reagisce il mercato e cosa cambia per lotto, stop e orari.</p>
+            <div class="cp-prezzo">299 € <small>pagamento unico · accesso a vita</small></div>
+            <button class="btn pri" data-prodotto="Corso Analisi fondamentale" onclick="azioneProdotto('Corso Analisi fondamentale')">Acquista</button>
+            <details class="programma cp-prog"><summary>Programma completo · 60 lezioni</summary>
+<div class="corsi">
         <article class="corso">
           <div class="c-num">00</div>
           <div class="c-testo">
@@ -3843,17 +3804,44 @@ body.fuori-home #vaiHome{display:inline-flex}
         </article>
       </div>
       </details>
-      <div class="corso-info">
-        <div class="ci-voce"><div class="ci-n">60</div><div class="ci-e">lezioni video</div></div>
-        <div class="ci-voce"><div class="ci-n">12</div><div class="ci-e">moduli</div></div>
-        <div class="ci-voce"><div class="ci-n">∞</div><div class="ci-e">accesso a vita</div></div>
-        <div class="ci-voce"><div class="ci-n">TG</div><div class="ci-e">gruppo Telegram per moduli</div></div>
+          </div>
+        </article>
+        <article class="cp cp-pacchetto" id="pacchetto-corsi">
+          <div class="cp-img cp-doppia" aria-hidden="true"><picture><source srcset="corso-copertina.webp" type="image/webp"><img src="corso-copertina.jpg" width="1200" height="675" loading="lazy" alt=""></picture><picture><img src="/img/eco-corso-fondamentale.webp" width="1200" height="675" loading="lazy" alt=""></picture><span class="cp-risparmio">risparmi 99 €</span></div>
+          <div class="cp-corpo">
+            <span class="cp-tag">Conviene</span>
+            <h3>Pacchetto: i due corsi</h3>
+            <div class="cp-num">110 lezioni · 23 moduli · oltre 6 ore</div>
+            <p>Gestione del rischio + Analisi fondamentale insieme: accesso a vita a tutti e due i gruppi Telegram, con dispense, kit Excel, quiz e attestati.</p>
+            <div class="cp-prezzo">399 € <small><s>498 €</s> · pagamento unico</small></div>
+            <button class="btn pri" data-prodotto="Pacchetto corsi" onclick="azioneProdotto('Pacchetto corsi')">Acquista</button>
+            
+          </div>
+        </article>
       </div>
-      <div class="capture" style="margin-top:34px">
-        <h3>Cosa non troverai nei corsi</h3>
-        <p>Nessuna strategia d'ingresso, nessun setup, nessuna previsione e nessuna promessa di rendimento. I corsi ti danno il contesto e le regole: è la parte che determina se resti sul mercato abbastanza a lungo da far funzionare una strategia.</p>
-        <button class="btn pri" style="margin-top:18px" data-prodotto="Videocorso" onclick="azioneProdotto('Videocorso')">Acquista il corso · 199 €</button>
+
+      <details class="cp-perche">
+        <summary>Perché il corso di rischio vale molto più di quanto costa</summary>
+        <div class="valore-corso">
+        <div class="vc-cifra">
+          <div class="vc-k">VALORE REALE DI MERCATO</div>
+          <div class="vc-n">999 €</div>
+          <div class="vc-s">oggi al lancio <b>199 €</b></div>
+        </div>
+        <div class="vc-testo">
+          <h3>Quello che ti porti via vale molto più di tre ore di video</h3>
+          <p>Il valore reale di mercato di questo corso è di <b>999 €</b>: è quello che costa imparare le stesse cose tra percorsi a pagamento, consulenze individuali e, soprattutto, errori pagati sul conto. Il valore che ti trasmette è enorme, perché non riguarda un singolo trade ma <b>ogni operazione che farai da qui in avanti</b>.</p>
+          <ul>
+            <li><b>Un solo errore evitato lo ripaga.</b> Con 1.000 € sul conto, rischiare il 10% invece dell'1% vuol dire che quattro perdite di fila ti portano via un terzo del capitale. Sapere quanto rischiare prima di entrare vale più di qualsiasi segnale.</li>
+            <li><b>È un metodo, non un'informazione.</b> Position sizing, drawdown, Monte Carlo, regole delle prop firm, trailing, scaglioni e hedging: impari a costruire regole che reggono anche nei giorni peggiori.</li>
+            <li><b>Resta tuo per sempre.</b> Pagamento unico, accesso a vita alle lezioni e a ogni aggiornamento del corso.</li>
+            <li><b>Non solo video.</b> Dispensa PDF per ogni modulo con esercizi e soluzioni, kit Excel (lotto, piano di rischio, drawdown, journal), quiz di fine modulo e attestato di completamento.</li>
+          </ul>
+        </div>
       </div>
+      </details>
+
+      <p class="cp-nota"><b>Cosa non troverai nei corsi:</b> strategie d'ingresso, setup, previsioni o promesse di rendimento. I corsi ti danno il contesto e le regole, cioè la parte che decide se resti sul mercato abbastanza a lungo.</p>
     </div>
   </section>
 </div>
