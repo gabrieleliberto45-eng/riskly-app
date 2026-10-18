@@ -45,29 +45,58 @@ function pianoDa(prodotto: string): string | null {
   return m ? m[1].toLowerCase() : null;
 }
 
-/* l'ordine in attesa che corrisponde alla sessione: stesso cliente, stesso
-   prezzo (prima degli sconti) se c'è, altrimenti il più recente */
-async function ordineDi(utente: string, importo: number | null) {
+/* Quale prodotto è stato pagato lo dice Stripe (il link di pagamento usato), mai l'ordine
+   scritto dal sito: così nessuno può registrare un ordine "Pacchetto corsi" e poi pagare un
+   prodotto più economico. Se si aggiunge un link di pagamento nuovo, va aggiunto qui. */
+const PRODOTTO_DEL_LINK: Record<string, string> = {
+  "plink_1UKhOcC4UovOoFaViANPN5Mb": "RiskGuard",
+  "plink_1UNIISC4UovOoFaVZXl81nzK": "TradeManager",
+  "plink_1UNIIUC4UovOoFaV9ay6TNvd": "ScaleIn",
+  "plink_1UNIIVC4UovOoFaVKuWKL9K8": "Riskly Pro",
+  "plink_1UMnafC4UovOoFaVmg2vfWjr": "Videocorso",
+  "plink_1US0PWC4UovOoFaVtAXaxLlA": "Corso Analisi fondamentale",
+  "plink_1US0PXC4UovOoFaVpYdUys4l": "Pacchetto corsi",
+  "plink_1UKhSEC4UovOoFaV0BuMbyu5": "Journal Base mensile",
+  "plink_1UKhSFC4UovOoFaVxE2MhVGY": "Journal Base annuale",
+  "plink_1UKhSHC4UovOoFaVrMoqepFq": "Journal Base a vita",
+  "plink_1UKhSKC4UovOoFaVadAY1pUv": "Journal Pro mensile",
+  "plink_1UKhSMC4UovOoFaVZ3qDfCCj": "Journal Pro annuale",
+  "plink_1UKhSOC4UovOoFaVnGMgu50o": "Journal Pro a vita",
+  "plink_1UKhSpC4UovOoFaV1rsuVXYt": "Journal Premium mensile",
+  "plink_1UKhSqC4UovOoFaVUwcAf1SB": "Journal Premium annuale",
+  "plink_1UKhSsC4UovOoFaVMKHFTaLQ": "Journal Premium a vita",
+};
+
+/* l'ordine in attesa dello stesso cliente e dello stesso prodotto, il più recente */
+async function ordineDi(utente: string, prodotto: string) {
   const { data } = await db.from("acquisti").select("*")
-    .eq("utente", utente).eq("stato", "in_attesa")
-    .order("creato", { ascending: false });
-  if (!data || !data.length) return null;
-  if (importo != null) {
-    const uguale = data.find((o) => Math.abs(Number(o.prezzo) - importo) < 0.01);
-    if (uguale) return uguale;
-  }
-  return data[0];
+    .eq("utente", utente).eq("stato", "in_attesa").eq("prodotto", prodotto)
+    .order("creato", { ascending: false }).limit(1);
+  return data && data.length ? data[0] : null;
 }
 
 async function pagato(s: any) {
   const utente = s.client_reference_id;
   if (!utente) return "nessun client_reference_id";
+  const prodotto = PRODOTTO_DEL_LINK[s.payment_link];
+  if (!prodotto) return "link di pagamento sconosciuto: " + s.payment_link + " (nessun prodotto attivato)";
   const importo = s.amount_subtotal != null ? s.amount_subtotal / 100 : null;
-  const o = await ordineDi(utente, importo);
-  if (!o) return "nessun ordine in attesa";
-  await db.from("acquisti").update({ stato: "attivo" }).eq("id", o.id);
 
-  const piano = pianoDa(o.prodotto);
+  /* Stripe può mandare lo stesso evento più volte: una sessione attiva un solo acquisto */
+  const { data: gia } = await db.from("acquisti").select("id").eq("stripe_sessione", s.id).limit(1);
+  if (gia && gia.length) return "sessione già registrata";
+
+  const o = await ordineDi(utente, prodotto);
+  if (o) {
+    const { error } = await db.from("acquisti").update({ stato: "attivo", prezzo: importo ?? o.prezzo, stripe_sessione: s.id }).eq("id", o.id);
+    if (error) throw new Error(error.message);
+  } else {
+    /* pagato senza ordine sul sito (es. link aperto da un'altra scheda): lo registriamo noi */
+    const { error } = await db.from("acquisti").insert({ utente, prodotto, prezzo: importo, stato: "attivo", stripe_sessione: s.id });
+    if (error) throw new Error(error.message);
+  }
+
+  const piano = pianoDa(prodotto);
   if (piano) {
     const agg: Record<string, unknown> = { piano };
     if (s.customer) agg.stripe_cliente = s.customer;
@@ -77,14 +106,15 @@ async function pagato(s: any) {
     }
     if (error) return "piano non assegnato: " + error.message;
   }
-  return "ordine " + o.id + " attivo";
+  return prodotto + " attivo";
 }
 
 async function scaduto(s: any) {
   const utente = s.client_reference_id;
   if (!utente) return "nessun client_reference_id";
-  const importo = s.amount_subtotal != null ? s.amount_subtotal / 100 : null;
-  const o = await ordineDi(utente, importo);
+  const prodotto = PRODOTTO_DEL_LINK[s.payment_link];
+  if (!prodotto) return "link di pagamento sconosciuto";
+  const o = await ordineDi(utente, prodotto);
   if (!o) return "nessun ordine in attesa";
   await db.from("acquisti").update({ stato: "rifiutato" }).eq("id", o.id);
   return "ordine " + o.id + " rifiutato";
@@ -110,7 +140,8 @@ Deno.serve(async (req) => {
     if (evento.type === "checkout.session.completed" ||
         evento.type === "checkout.session.async_payment_succeeded") {
       const s = evento.data.object;
-      esito = s.payment_status === "unpaid" ? "pagamento in sospeso" : await pagato(s);
+      /* "paid" = pagato; "no_payment_required" = totale 0 € con un codice al 100%; "unpaid" = non ancora */
+      esito = (s.payment_status === "paid" || s.payment_status === "no_payment_required") ? await pagato(s) : "pagamento in sospeso";
     } else if (evento.type === "checkout.session.expired") {
       esito = await scaduto(evento.data.object);
     } else if (evento.type === "customer.subscription.deleted") {
