@@ -2154,6 +2154,10 @@ body.fuori-home #vaiHome{display:inline-flex}
 .page:not(.nh) .bot>button{width:100%!important;max-width:none!important;margin-top:10px!important}
 .page:not(.nh) .bot .cp-prog ul,.plan .cp-prog ul{grid-column:auto!important;grid-row:auto!important;margin:6px 0 4px!important}
 .plan .cp-prog{margin-top:10px!important}
+.salta-pz{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px}
+.salta-pz button{appearance:none;border:1.5px solid #15181B;background:#FBFBF9;color:#15181B;border-radius:999px;padding:9px 16px;font:700 15px 'Archivo',sans-serif;cursor:pointer}
+.salta-pz button:nth-child(2){background:#E9A10F;border-color:#E9A10F;color:#2B1E00}
+#pz-bot,#pz-journal,#pz-corsi{scroll-margin-top:84px}
 /* telefono: home più corta, l'ecosistema diventa un elenco senza foto */
 .nh .salta{display:none}
 @media (max-width:600px){
@@ -2223,7 +2227,7 @@ body.fuori-home #vaiHome{display:inline-flex}
     </div>
   </div>
   <div id="menu-mobile" hidden>
-    <button onclick="go('home');chiudiMenu()">Home</button><button onclick="go('bot');chiudiMenu()">Bot</button><button onclick="go('corso');chiudiMenu()">Corsi</button><button onclick="go('journal');chiudiMenu()">Prezzi</button><button onclick="go('metodo');chiudiMenu()">Metodo</button><button onclick="go('faq');chiudiMenu()">FAQ</button><a href="https://app.riskly.trade">Journal</a><a href="https://strumenti.riskly.trade">Strumenti gratuiti</a><a href="/download.html" style="font-weight:800">Area clienti</a><button id="menu-accedi" onclick="if(utente){go('account')}else{apriAccesso('entra')};chiudiMenu()">Accedi</button>
+    <button onclick="go('home');chiudiMenu()">Home</button><button onclick="go('bot');chiudiMenu()">Bot</button><button onclick="go('corso');chiudiMenu()">Corsi</button><button onclick="go('journal');chiudiMenu()">Prezzi</button><button onclick="vaiA('journal','pz-journal');chiudiMenu()">Piani del journal</button><button onclick="go('metodo');chiudiMenu()">Metodo</button><button onclick="go('faq');chiudiMenu()">FAQ</button><a href="https://app.riskly.trade">Journal</a><a href="https://strumenti.riskly.trade">Strumenti gratuiti</a><a href="/download.html" style="font-weight:800">Area clienti</a><button id="menu-accedi" onclick="if(utente){go('account')}else{apriAccesso('entra')};chiudiMenu()">Accedi</button>
   </div>
   <div class="siti-barra"><div class="wrap">
     <span class="sb-testo">Riskly ha anche</span>
@@ -2254,7 +2258,7 @@ body.fuori-home #vaiHome{display:inline-flex}
             <b>Bot per MT4 e MT5</b><span class="tile-d">Ti fermano dopo le perdite, gestiscono stop e lotto al posto tuo.</span>
             <span class="tile-vai" aria-hidden="true">→</span>
           </a>
-          <a class="tile t-big" href="https://app.riskly.trade">
+          <a class="tile t-big" href="#" onclick="vaiA('journal','pz-journal');return false">
             <span class="tile-ic"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h11a3 3 0 0 1 3 3v15H8a3 3 0 0 1-3-3z"/><path d="M5 18a3 3 0 0 1 3-3h11"/><path d="M9 7h6M9 10.5h4"/></svg></span>
             <span class="tile-badge">prova gratis</span>
             <b>Journal</b><span class="tile-d">Misura winrate, drawdown e disciplina. I bot lo aggiornano da soli.</span>
@@ -3031,6 +3035,12 @@ body.fuori-home #vaiHome{display:inline-flex}
         <p class="lead">Software per MetaTrader, journal e videocorso. Nessun segnale, nessun abbonamento obbligatorio sui bot: paghi una volta e sono tuoi.</p>
       </div>
 
+      <div class="salta-pz" aria-label="Vai a">
+        <button type="button" onclick="vaiA('journal','pz-bot')">Bot</button>
+        <button type="button" onclick="vaiA('journal','pz-journal')">Piani del journal</button>
+        <button type="button" onclick="vaiA('journal','pz-corsi')">Videocorsi</button>
+      </div>
+
       <div class="pz-hook">
         <div class="c r">
           <div class="k">UNA CHALLENGE FALLITA</div>
@@ -3077,7 +3087,7 @@ body.fuori-home #vaiHome{display:inline-flex}
       </div>
 
       <!-- BOT -->
-      <div class="pz-sez"><h3>Software per MetaTrader</h3><span>MT4 · MT5 · UNA TANTUM</span></div>
+      <div class="pz-sez" id="pz-bot"><h3>Software per MetaTrader</h3><span>MT4 · MT5 · UNA TANTUM</span></div>
       <div class="pz-grid">
         <div class="pz hi">
           <div class="tg">CONSIGLIATO PER INIZIARE</div>
@@ -3122,7 +3132,7 @@ body.fuori-home #vaiHome{display:inline-flex}
       <p class="fine" style="margin-top:12px">Dettagli e simulazioni di ogni software nella sezione <a onclick="go('bot')" style="color:var(--accent);cursor:pointer;text-decoration:underline">Bot</a>.</p>
 
       <!-- JOURNAL -->
-      <div class="pz-sez"><h3>Journal</h3><span>7 GIORNI DI PROVA · SENZA CARTA</span></div>
+      <div class="pz-sez" id="pz-journal"><h3>Piani del journal</h3><span>7 GIORNI DI PROVA · SENZA CARTA</span></div>
       <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:22px">
         <button class="btn" id="bt-m" onclick="setCiclo('m')">Mensile</button>
         <button class="btn pri" id="bt-a" onclick="setCiclo('a')">Annuale</button>
@@ -3189,7 +3199,7 @@ body.fuori-home #vaiHome{display:inline-flex}
         <a href="https://app.riskly.trade/demo.html" style="color:var(--accent);text-decoration:underline">Prova la demo</a>.</p>
 
       <!-- CORSO -->
-      <div class="pz-sez"><h3>Videocorsi</h3><span>DISPONIBILI SUBITO · PAGAMENTO UNICO · ACCESSO A VITA</span></div>
+      <div class="pz-sez" id="pz-corsi"><h3>Videocorsi</h3><span>DISPONIBILI SUBITO · PAGAMENTO UNICO · ACCESSO A VITA</span></div>
       <div class="pz-corso">
         <div>
           <h4 style="font-size:1.08rem;font-weight:600;margin-bottom:6px">Gestione del rischio, dalla teoria alla regola</h4><div class="pl" style="margin-bottom:6px">50 LEZIONI · 11 MODULI · €199 AL LANCIO</div>
@@ -6000,6 +6010,11 @@ const SCHEDA = {home:0, bot:1, corso:2, journal:3, metodo:4, faq:5,
   aggiorna();
 })();
 
+/* apre una pagina e scorre fino a una sezione */
+function vaiA(pagina, sezione){
+  go(pagina);
+  setTimeout(() => { const x = document.getElementById(sezione); if(x) x.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 120);
+}
 function go(id, btn, idx){
   /* journal e strumenti hanno ora un sito tutto loro */
   if(id === 'app'){ location.href = 'https://app.riskly.trade'; return; }
