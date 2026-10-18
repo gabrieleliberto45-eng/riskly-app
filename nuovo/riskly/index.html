@@ -2143,6 +2143,17 @@ body.fuori-home #vaiHome{display:inline-flex}
 .cp-perche>summary{padding:16px 0;font-weight:700;cursor:pointer}
 .cp-perche .valore-corso{margin:0 0 18px!important;border:0!important;padding:0!important;background:none!important}
 .cp-nota{margin-top:22px;font-size:15px;color:#4B525A;line-height:1.55}
+/* bot e piani come le schede dei corsi: una colonna, dettagli nella tendina */
+.page:not(.nh) .bots{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))!important;gap:20px!important;align-items:start}
+.page:not(.nh) .bot,.page:not(.nh) .bot.hi{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:6px!important;margin:0!important}
+.page:not(.nh) .bot>*{grid-column:auto!important;grid-row:auto!important;text-align:left!important;justify-self:auto!important;margin-left:0!important}
+.page:not(.nh) .bot h3{font-size:clamp(26px,2.6vw,32px)!important;margin:0!important}
+.page:not(.nh) .bot .sub{grid-row:auto!important;margin:4px 0!important;font-size:15px!important}
+.page:not(.nh) .bot .price{margin-top:8px!important;font-size:32px!important}
+.page:not(.nh) .bot .price-off,.page:not(.nh) .bot .plabel{margin:0!important}
+.page:not(.nh) .bot>button{width:100%!important;max-width:none!important;margin-top:10px!important}
+.page:not(.nh) .bot .cp-prog ul,.plan .cp-prog ul{grid-column:auto!important;grid-row:auto!important;margin:6px 0 4px!important}
+.plan .cp-prog{margin-top:10px!important}
 /* telefono: home più corta, l'ecosistema diventa un elenco senza foto */
 .nh .salta{display:none}
 @media (max-width:600px){
@@ -2500,6 +2511,11 @@ body.fuori-home #vaiHome{display:inline-flex}
             </span>
           </div>
           <p class="sub">Ti ferma dopo N perdite consecutive — il numero lo imposti tu — quando il conto è ancora sano. E quando ti blocca, chiude anche MetaTrader fino a mezzanotte.</p>
+          <div class="price">€99</div>
+          <div class="price-off">prezzo di lancio · dal 23 ottobre €149</div>
+          <div class="plabel">una tantum · 2 conti · aggiornamenti inclusi</div>
+          <button class="btn pri wide" style="margin-top:8px" data-prodotto="RiskGuard" onclick="azioneProdotto('RiskGuard')">Disponibile dal 23 ottobre · blocca il posto</button>
+          <details class="programma cp-prog"><summary>Cosa fa · 8 funzioni</summary>
           <ul>
             <li>Pausa obbligatoria dopo una perdita</li>
             <li>Blocco dopo N perdite consecutive</li>
@@ -2510,10 +2526,7 @@ body.fuori-home #vaiHome{display:inline-flex}
             <li>Chiusura automatica al target</li>
             <li>Operazioni nel journal e stato sul telefono</li>
           </ul>
-          <div class="price">€99</div>
-          <div class="price-off">prezzo di lancio · dal 23 ottobre €149</div>
-          <div class="plabel">una tantum · 2 conti · aggiornamenti inclusi</div>
-          <button class="btn pri wide" style="margin-top:8px" data-prodotto="RiskGuard" onclick="azioneProdotto('RiskGuard')">Disponibile dal 23 ottobre · blocca il posto</button>
+          </details>
         </div>
 
         <!-- TRADEMANAGER -->
@@ -2531,6 +2544,11 @@ body.fuori-home #vaiHome{display:inline-flex}
             </span>
           </div>
           <p class="sub">Gestisce le posizioni aperte al posto tuo: stop loss, break-even e trailing stop. Tutto in pip, nessuna formula da ricordare.</p>
+          <div class="price">€49</div>
+          <div class="price-off">prezzo di lancio · dal 23 ottobre €79</div>
+          <div class="plabel">una tantum · 2 conti · aggiornamenti inclusi</div>
+          <button class="btn pri wide" style="margin-top:8px" data-prodotto="TradeManager" onclick="azioneProdotto('TradeManager')">Disponibile dal 23 ottobre · blocca il posto</button>
+          <details class="programma cp-prog"><summary>Cosa fa · 5 funzioni</summary>
           <ul>
             <li>Stop loss e take profit automatici in pip, se mancano: mai una posizione senza stop</li>
             <li>Break-even automatico dopo N pip, con margine</li>
@@ -2538,10 +2556,7 @@ body.fuori-home #vaiHome{display:inline-flex}
             <li>Filtri per simbolo e magic number</li>
             <li>Slippage massimo configurabile</li>
           </ul>
-          <div class="price">€49</div>
-          <div class="price-off">prezzo di lancio · dal 23 ottobre €79</div>
-          <div class="plabel">una tantum · 2 conti · aggiornamenti inclusi</div>
-          <button class="btn pri wide" style="margin-top:8px" data-prodotto="TradeManager" onclick="azioneProdotto('TradeManager')">Disponibile dal 23 ottobre · blocca il posto</button>
+          </details>
         </div>
 
         <!-- SCALEIN -->
@@ -2559,6 +2574,11 @@ body.fuori-home #vaiHome{display:inline-flex}
             </span>
           </div>
           <p class="sub">Apri una posizione a mano, il bot apre le altre con take profit scaglionati in pip (es. 20, 40, 60). Nessun altro lo fa a questo prezzo.</p>
+          <div class="price">€79</div>
+          <div class="price-off">prezzo di lancio · dal 23 ottobre €129</div>
+          <div class="plabel">una tantum · 2 conti · aggiornamenti inclusi</div>
+          <button class="btn pri wide" style="margin-top:8px" data-prodotto="ScaleIn" onclick="azioneProdotto('ScaleIn')">Disponibile dal 23 ottobre · blocca il posto</button>
+          <details class="programma cp-prog"><summary>Cosa fa · 7 funzioni</summary>
           <ul>
             <li>Replica la posizione in N scaglioni</li>
             <li>TP diversi per ogni posizione, in pip</li>
@@ -2568,10 +2588,7 @@ body.fuori-home #vaiHome{display:inline-flex}
             <li>Blocco se il rischio totale è eccessivo</li>
             <li>Pendenti cancellati da soli se l'originale si chiude</li>
           </ul>
-          <div class="price">€79</div>
-          <div class="price-off">prezzo di lancio · dal 23 ottobre €129</div>
-          <div class="plabel">una tantum · 2 conti · aggiornamenti inclusi</div>
-          <button class="btn pri wide" style="margin-top:8px" data-prodotto="ScaleIn" onclick="azioneProdotto('ScaleIn')">Disponibile dal 23 ottobre · blocca il posto</button>
+          </details>
         </div>
 
         <!-- RISKLY PRO -->
@@ -2589,6 +2606,11 @@ body.fuori-home #vaiHome{display:inline-flex}
             </span>
           </div>
           <p class="sub">I tre moduli in un solo bot con stato condiviso: il rischio è calcolato sull'insieme delle posizioni, non su ciascuna separatamente.</p>
+          <div class="price">€199</div>
+          <div class="price-off">prezzo di lancio · dal 23 ottobre €299</div>
+          <div class="plabel">una tantum · 3 conti · aggiornamenti a vita</div>
+          <button class="btn pri wide" style="margin-top:8px" data-prodotto="Riskly Pro" onclick="azioneProdotto('Riskly Pro')">Disponibile dal 23 ottobre · blocca il posto</button>
+          <details class="programma cp-prog"><summary>Cosa fa · 9 funzioni</summary>
           <ul>
             <li>Tutto di RiskGuard</li>
             <li>Tutto di TradeManager</li>
@@ -2600,10 +2622,7 @@ body.fuori-home #vaiHome{display:inline-flex}
             <li>Pannello unico con barre di avanzamento</li>
             <li style="color:var(--up)">50% di sconto sul videocorso</li>
           </ul>
-          <div class="price">€199</div>
-          <div class="price-off">prezzo di lancio · dal 23 ottobre €299</div>
-          <div class="plabel">una tantum · 3 conti · aggiornamenti a vita</div>
-          <button class="btn pri wide" style="margin-top:8px" data-prodotto="Riskly Pro" onclick="azioneProdotto('Riskly Pro')">Disponibile dal 23 ottobre · blocca il posto</button>
+          </details>
         </div>
 
         <!-- RISKLYCOPY -->
@@ -2621,6 +2640,11 @@ body.fuori-home #vaiHome{display:inline-flex}
             </span>
           </div>
           <p class="sub">Apri sul conto principale e gli altri copiano. Il lotto si ricalcola sul saldo di ogni conto: stesso rischio, non lo stesso lotto.</p>
+          <div class="price">€69</div>
+          <div class="price-off">prezzo di lancio · poi €129</div>
+          <div class="plabel">una tantum · 1 conto principale + 3 che ricevono · aggiornamenti inclusi</div>
+          <button class="btn pri wide" style="margin-top:8px" data-prodotto="RisklyCopy" onclick="azioneProdotto('RisklyCopy')">In arrivo · blocca il prezzo di lancio</button>
+          <details class="programma cp-prog"><summary>Cosa fa · 6 funzioni</summary>
           <ul>
             <li>Copia apertura, chiusura, chiusure parziali, stop e take profit</li>
             <li>Tra MT4 e MT5, sullo stesso computer o VPS</li>
@@ -2629,17 +2653,14 @@ body.fuori-home #vaiHome{display:inline-flex}
             <li>Se il principale si spegne, non chiude niente per sbaglio</li>
             <li>Si usa insieme a Riskly Pro, ognuno sul suo grafico</li>
           </ul>
-          <div class="price">€69</div>
-          <div class="price-off">prezzo di lancio · poi €129</div>
-          <div class="plabel">una tantum · 1 conto principale + 3 che ricevono · aggiornamenti inclusi</div>
-          <button class="btn pri wide" style="margin-top:8px" data-prodotto="RisklyCopy" onclick="azioneProdotto('RisklyCopy')">In arrivo · blocca il prezzo di lancio</button>
+          </details>
         </div>
       </div>
 
       <!-- LICENZA -->
-      <div class="card" style="margin-top:14px">
-        <div class="card-head"><h3>Come funziona la licenza</h3></div>
-        <div class="tools">
+      <details class="cp-perche" style="margin-top:24px">
+        <summary>Come funziona la licenza</summary>
+        <div class="tools" style="padding-bottom:16px">
           <div>
             <h3 style="font-family:'Instrument Sans',-apple-system,system-ui,sans-serif;font-size:.92rem;font-weight:600;margin-bottom:6px">Legata al conto</h3>
             <p style="color:var(--dim);font-size:.85rem">La licenza è associata ai numeri di conto MetaTrader che ci comunichi, su MT4 o MT5. Puoi cambiarli scrivendo a supporto.</p>
@@ -2653,7 +2674,7 @@ body.fuori-home #vaiHome{display:inline-flex}
             <p style="color:var(--dim);font-size:.85rem">Nella sezione dei bot c'è un video per ognuno: vedi passo passo come si comporta. Dopo l'acquisto provalo prima su conto demo.</p>
           </div>
         </div>
-      </div>
+      </details>
 
       <div class="bot-rimandi">
       <button class="bot-rimando" onclick="botTab('come')"><b>Come funzionano →</b><span>Un video per ogni bot e i test su conto demo.</span></button>
@@ -3114,6 +3135,8 @@ body.fuori-home #vaiHome{display:inline-flex}
           <div class="pr" id="pr-base">29€ <small>/anno</small></div>
           <div class="save" id="sv-base">lancio fino al 31/12 · poi 49€</div>
           <div class="ds">Il diario e le metriche essenziali, per iniziare sul serio.</div>
+          <button class="btn pri wide" data-journal="Base" onclick="azioneJournal(this)">Attiva il piano</button>
+          <details class="programma cp-prog"><summary>Cosa include</summary>
           <ul>
             <li class="inc">Journal, operazioni illimitate</li>
             <li class="inc">Metriche di base</li>
@@ -3121,7 +3144,7 @@ body.fuori-home #vaiHome{display:inline-flex}
             <li class="inc">Tutti i calcolatori</li>
             <li class="inc">2 conti</li>
           </ul>
-          <button class="btn pri wide" data-journal="Base" onclick="azioneJournal(this)">Attiva il piano</button>
+          </details>
         </div>
 
         <div class="plan hi">
@@ -3130,6 +3153,8 @@ body.fuori-home #vaiHome{display:inline-flex}
           <div class="pr" id="pr-pro">64€ <small>/anno</small></div>
           <div class="save" id="sv-pro">lancio fino al 31/12 · poi 99€</div>
           <div class="ds">Analytics complete e tracker prop firm.</div>
+          <button class="btn pri wide" data-journal="Pro" onclick="azioneJournal(this)">Attiva il piano</button>
+          <details class="programma cp-prog"><summary>Cosa include</summary>
           <ul>
             <li class="inc">Tutto del piano Base</li>
             <li class="inc">Analytics avanzate</li>
@@ -3139,7 +3164,7 @@ body.fuori-home #vaiHome{display:inline-flex}
             <li class="inc">Import ed export CSV</li>
             <li class="inc">5 conti</li>
           </ul>
-          <button class="btn pri wide" data-journal="Pro" onclick="azioneJournal(this)">Attiva il piano</button>
+          </details>
         </div>
 
         <div class="plan">
@@ -3147,6 +3172,8 @@ body.fuori-home #vaiHome{display:inline-flex}
           <div class="pr" id="pr-prem">114€ <small>/anno</small></div>
           <div class="save" id="sv-prem">lancio fino al 31/12 · poi 149€</div>
           <div class="ds">Tutto, senza limiti, con priorità sul supporto.</div>
+          <button class="btn pri wide" data-journal="Premium" onclick="azioneJournal(this)">Attiva il piano</button>
+          <details class="programma cp-prog"><summary>Cosa include</summary>
           <ul>
             <li class="inc">Tutto del piano Pro</li>
             <li class="inc">Screenshot illimitati</li>
@@ -3154,7 +3181,7 @@ body.fuori-home #vaiHome{display:inline-flex}
             <li class="inc">Supporto prioritario</li>
             <li class="inc">Sconto 30% sui bot</li>
           </ul>
-          <button class="btn pri wide" data-journal="Premium" onclick="azioneJournal(this)">Attiva il piano</button>
+          </details>
         </div>
       </div>
 
