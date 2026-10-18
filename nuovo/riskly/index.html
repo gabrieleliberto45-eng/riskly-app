@@ -2101,9 +2101,18 @@ nav .btn.pri{border-radius:999px!important}
 .nh .hero-tag{font-size:12px;margin-bottom:16px;padding:6px 12px}
 }
 /* pulsante per tornare alla home dalle altre pagine */
-#vaiHome{display:none;position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:60;align-items:center;gap:4px;padding:10px 16px 10px 10px;border-radius:999px;border:1px solid #15181B;background:#15181B;color:#FBFBF9;font:700 15px 'Archivo',system-ui,sans-serif;box-shadow:0 10px 26px -10px rgba(0,0,0,.55);cursor:pointer;-webkit-tap-highlight-color:transparent}
+#vaiHome{display:none;flex:none;align-items:center;gap:2px;margin-right:4px;padding:8px 13px 8px 8px;border-radius:999px;border:1px solid #15181B;background:#15181B;color:#FBFBF9;font:700 14px 'Archivo',system-ui,sans-serif;cursor:pointer;-webkit-tap-highlight-color:transparent}
+@media (max-width:440px){body.fuori-home nav .brand{display:none!important}}
 #vaiHome:active{transform:scale(.96)}
 body.fuori-home #vaiHome{display:inline-flex}
+/* ogni prodotto in una scheda chiusa, separata dalle altre */
+.page:not(.nh) .bots{gap:20px!important}
+.page:not(.nh) .bot,.page:not(.nh) .bot.hi{background:#FBFBF9!important;border:1.5px solid #C9CDD1!important;border-radius:20px!important;padding:clamp(20px,3vw,34px)!important;box-shadow:0 14px 32px -20px rgba(21,24,27,.4)!important;margin:0 0 20px!important}
+.page:not(.nh) .bot.hi{border-color:#E9A10F!important;box-shadow:0 0 0 3px rgba(233,161,15,.18),0 14px 32px -20px rgba(21,24,27,.4)!important}
+.page:not(.nh) .pz-grid,.page:not(.nh) .plans{gap:18px!important}
+.page:not(.nh) .pz,.page:not(.nh) .pz.hi,.page:not(.nh) .plan,.page:not(.nh) .pz-corso{background:#FBFBF9!important;border:1.5px solid #C9CDD1!important;border-radius:20px!important;padding:clamp(18px,2.6vw,28px)!important;box-shadow:0 14px 32px -20px rgba(21,24,27,.4)!important}
+.page:not(.nh) .pz.hi,.page:not(.nh) .plan.hi,.page:not(.nh) .plan.pop{border-color:#E9A10F!important;box-shadow:0 0 0 3px rgba(233,161,15,.18),0 14px 32px -20px rgba(21,24,27,.4)!important}
+.page:not(.nh) .pz-corso+.pz-corso{margin-top:16px}
 /* telefono: home più corta, l'ecosistema diventa un elenco senza foto */
 .nh .salta{display:none}
 @media (max-width:600px){
@@ -2153,6 +2162,7 @@ body.fuori-home #vaiHome{display:inline-flex}
 
 <nav class="z">
   <div class="wrap">
+    <button type="button" id="vaiHome" onclick="go('home')" aria-label="Torna alla home"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>Home</button>
     <a class="brand" href="/" onclick="go('home');return false" aria-label="Riskly, home">
       <svg width="30" height="30" viewBox="0 0 44 44" fill="none" style="flex-shrink:0" aria-hidden="true"><rect width="44" height="44" rx="10" fill="#FBFBF9"/><path d="M9 31 L17 19.5 L23.5 25 L35 11" stroke="#B97C00" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 36 H35" stroke="#5E656D" stroke-width="3.6" stroke-linecap="round"/></svg>
       Riskly
@@ -3122,13 +3132,27 @@ body.fuori-home #vaiHome{display:inline-flex}
         <a href="https://app.riskly.trade/demo.html" style="color:var(--accent);text-decoration:underline">Prova la demo</a>.</p>
 
       <!-- CORSO -->
-      <div class="pz-sez"><h3>Videocorso</h3><span>50 LEZIONI · 11 MODULI · OLTRE 3 ORE · €199 AL LANCIO · POI €249</span></div>
+      <div class="pz-sez"><h3>Videocorsi</h3><span>DISPONIBILI SUBITO · PAGAMENTO UNICO · ACCESSO A VITA</span></div>
       <div class="pz-corso">
         <div>
-          <h4 style="font-size:1.08rem;font-weight:600;margin-bottom:6px">Gestione del rischio, dalla teoria alla regola</h4>
+          <h4 style="font-size:1.08rem;font-weight:600;margin-bottom:6px">Gestione del rischio, dalla teoria alla regola</h4><div class="pl" style="margin-bottom:6px">50 LEZIONI · 11 MODULI · €199 AL LANCIO</div>
           <p>Quanto rischiare, come calcolarlo, perché la disciplina crolla e come costruire regole che reggono. Disponibile subito: dopo l'acquisto ricevi l'accesso al gruppo Telegram del corso, con le lezioni divise per modulo. Nessuna strategia, nessun segnale.<br><span style="color:var(--up)">Chi acquista un software Riskly ha il 50% di sconto sul corso.</span></p>
         </div>
         <button class="btn pri" data-prodotto="Videocorso" onclick="azioneProdotto('Videocorso')">Disponibile dal 23 ottobre · blocca il posto</button>
+      </div>
+      <div class="pz-corso">
+        <div>
+          <h4 style="font-size:1.08rem;font-weight:600;margin-bottom:6px">Analisi fondamentale, dal dato al piano</h4>
+          <p>60 lezioni in 12 moduli: banche centrali, inflazione, lavoro, obbligazioni, correlazioni, beni rifugio ed eventi straordinari. Dopo l'acquisto ricevi l'accesso al gruppo Telegram del corso. <b>299 €</b>, accesso a vita.</p>
+        </div>
+        <button class="btn pri" data-prodotto="Corso Analisi fondamentale" onclick="azioneProdotto('Corso Analisi fondamentale')">Acquista il corso · 299 €</button>
+      </div>
+      <div class="pz-corso">
+        <div>
+          <h4 style="font-size:1.08rem;font-weight:600;margin-bottom:6px">Pacchetto: tutti e due i corsi</h4>
+          <p>Gestione del rischio + Analisi fondamentale: 110 lezioni, accesso a vita ai due gruppi Telegram. <b>399 € invece di 498 €</b>.</p>
+        </div>
+        <button class="btn pri" data-prodotto="Pacchetto corsi" onclick="azioneProdotto('Pacchetto corsi')">Acquista i due corsi · 399 €</button>
       </div>
 
       <div class="cap-slim" style="margin-top:40px">
@@ -6840,7 +6864,6 @@ document.addEventListener('play', e => { if(e.target.tagName !== 'VIDEO') return
   if(typeof go === 'function'){ var g0 = go; window.go = function(){ var r = g0.apply(this, arguments); setTimeout(function(){ document.querySelectorAll('.page.on .rv:not(.visto)').forEach(function(e){ var b = e.getBoundingClientRect(); if(b.top < innerHeight) e.classList.add('visto'); }); }, 30); return r; }; }
 })();
 </script>
-<button type="button" id="vaiHome" onclick="go('home')" aria-label="Torna alla home"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>Home</button>
 </body>
 </html>
 
