@@ -2439,6 +2439,13 @@ async function calControlla(){
   } catch(e) {}
 }
 setInterval(() => calControlla(), 30000);
+/* quando torni sull'app (anche dalla schermata Home) e il sito è stato aggiornato, ricarica da solo la versione nuova */
+(function(){ let firma = '';
+  const leggi = async () => { try { const r = await fetch('/', { method: 'HEAD', cache: 'no-store' }); return r.headers.get('etag') || ''; } catch(e) { return ''; } };
+  leggi().then(f => firma = f);
+  document.addEventListener('visibilitychange', async () => { if(document.visibilityState !== 'visible' || !firma) return;
+    const f = await leggi(); if(f && f !== firma) location.reload(); });
+})();
 try { if(navigator.serviceWorker) navigator.serviceWorker.register('/sw.js').catch(() => {}); } catch(e) {}
 setTimeout(() => { calPrefSalva(); calControlla(); if(calPushOk && calAvvisiStato() === 'on') calPushIscrivi(); }, 0);
 function calInfo(e){
