@@ -2044,6 +2044,9 @@ nav .btn.pri{border-radius:999px!important}
 .cifre .candele .stop{stroke-dashoffset:0;animation:scorri 1.6s linear infinite}
 @keyframes scorri{to{stroke-dashoffset:-32}}
 @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.cifre .candele .c{opacity:1;transform:none;transition:none}.cifre .candele .stop{animation:none}.nh h1 mark{background-size:100% 100%;transition:none}.nh .of,.nh .of-img,.btn{transition:none!important}}
+/* apertura senza simulazione: una colonna sola */
+.nh .apertura .wrap{grid-template-columns:minmax(0,1fr)!important}
+.nh .apertura .wrap>div{max-width:880px}
 /* telefono: home più corta, l'ecosistema diventa un elenco senza foto */
 .nh .salta{display:none}
 @media (max-width:600px){
@@ -2146,25 +2149,6 @@ nav .btn.pri{border-radius:999px!important}
         </nav>
       </div>
 
-      <div class="scheda" id="sim" aria-labelledby="sim-titolo">
-        <div class="scheda-testa"><span id="sim-titolo">RiskGuard · regole attive</span><span class="num">SIMULAZIONE</span></div>
-        <ol>
-          <li class="voce ok"><span class="spunta"><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></svg></span>
-            <span class="nome">Pausa dopo una perdita</span><i class="puntini"></i><span class="valore"><span class="calcolato">12 min</span></span></li>
-          <li class="voce ok"><span class="spunta"><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></svg></span>
-            <span class="nome">Perdite consecutive</span><i class="puntini"></i><span class="valore"><span class="contatore" id="contatore" aria-label="0 perdite su 3"><i></i><i></i><i></i></span></span></li>
-          <li class="voce ok"><span class="spunta"><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></svg></span>
-            <span class="nome">Perdita del giorno</span><i class="puntini"></i><span class="valore"><span class="calcolato" id="perdita">0,0% di 2%</span></span></li>
-          <li class="voce ok"><span class="spunta"><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></svg></span>
-            <span class="nome">Stop loss obbligatorio</span><i class="puntini"></i><span class="valore"><span class="calcolato">sì</span></span></li>
-        </ol>
-        <div class="stato-riga" id="stato" aria-live="polite"><b id="stato-t">Operativo</b><span id="stato-d">Puoi aprire operazioni</span></div>
-        <div class="scheda-azioni">
-          <button class="btn btn-pieno btn-piccolo" type="button" id="perdi">Registra una perdita</button>
-          <button class="btn btn-linea btn-piccolo" type="button" id="azzera">Ricomincia</button>
-          <small>Prova cosa fa RiskGuard quando le perdite si sommano.</small>
-        </div>
-      </div>
     </div>
   </div>
 
@@ -2332,28 +2316,6 @@ nav .btn.pri{border-radius:999px!important}
     </div>
   </section>
 
-<script>
-(function(){
-  const LIM = 3, PERDITA = 0.6, MAX = 2;
-  let n = 0;
-  const caselle = document.querySelectorAll('#contatore i');
-  const stato = document.getElementById('stato'), t = document.getElementById('stato-t'), d = document.getElementById('stato-d');
-  const perdi = document.getElementById('perdi');
-  const fmt = v => v.toLocaleString('it-IT', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
-  function disegna(){
-    caselle.forEach((c, i) => c.classList.toggle('piena', i < n));
-    document.getElementById('contatore').setAttribute('aria-label', n + ' perdite su ' + LIM);
-    document.getElementById('perdita').textContent = fmt(Math.min(n * PERDITA, MAX)) + '% di 2%';
-    stato.classList.remove('pausa', 'blocco');
-    if(n === 0){ t.textContent = 'Operativo'; d.textContent = 'Puoi aprire operazioni'; perdi.disabled = false; }
-    else if(n < LIM){ stato.classList.add('pausa'); t.textContent = 'Pausa di 12 minuti'; d.textContent = 'Nuove operazioni bloccate fino alla fine della pausa'; perdi.disabled = false; }
-    else { stato.classList.add('blocco'); t.textContent = 'Blocco fino a mezzanotte'; d.textContent = '3 perdite di fila: MetaTrader viene chiuso'; perdi.disabled = true; }
-  }
-  perdi.addEventListener('click', () => { if(n < LIM){ n++; disegna(); } });
-  document.getElementById('azzera').addEventListener('click', () => { n = 0; disegna(); });
-  disegna();
-})();
-</script>
 </div>
 
 <div class="page" id="bot">
