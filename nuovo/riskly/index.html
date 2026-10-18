@@ -4889,7 +4889,8 @@ const VENDITA_ATTIVA = VENDITA_FORZATA !== null ? VENDITA_FORZATA : Date.now() >
 const IN_VENDITA_ORA = ['Videocorso', 'Corso Analisi fondamentale', 'Pacchetto corsi'];   /* i due nuovi si attivano appena c'è il link Stripe */
 /* il journal è in vendita da subito: restano in attesa solo i bot */
 const JOURNAL_IN_VENDITA = true;
-const inVendita = nome => (VENDITA_ATTIVA || IN_VENDITA_ORA.includes(nome)) && !!STRIPE[nome];
+/* l'amministratore può comprare tutto anche prima del lancio, per provare gli acquisti con un codice sconto */
+const inVendita = nome => (VENDITA_ATTIVA || IN_VENDITA_ORA.includes(nome) || (typeof isAdmin === 'function' && isAdmin())) && !!STRIPE[nome];
 
 const STRIPE = {
   'RiskGuard':    'https://buy.stripe.com/28EbJ00QW4Ebe7L1fcdnW00',
@@ -4897,8 +4898,8 @@ const STRIPE = {
   'ScaleIn':      'https://buy.stripe.com/7sY14m6bgb2z3t7f62dnW0h',
   'Riskly Pro':   'https://buy.stripe.com/8x2fZg1V0fiP4xb4rodnW0i',
   'Videocorso':   'https://buy.stripe.com/00w9ASgPU8Ur8Nr6zwdnW0f',   /* in vendita da subito (IN_VENDITA_ORA) */
-  'Corso Analisi fondamentale': '',   /* 299 € · incolla qui il link Stripe */
-  'Pacchetto corsi': ''               /* 399 € (i due corsi) · incolla qui il link Stripe */
+  'Corso Analisi fondamentale': 'https://buy.stripe.com/7sYeVc7fk0nVe7L9LIdnW0j',   /* 299 € */
+  'Pacchetto corsi': 'https://buy.stripe.com/4gMcN4bvA4Eb5Bf5vsdnW0k'                /* 399 € (i due corsi) */
 };
 
 /* piani del journal su Stripe: mensile (m) e annuale (a) sono abbonamenti, a vita (l) è un pagamento unico */
