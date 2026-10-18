@@ -48,6 +48,22 @@
     font-weight:700;font-size:.9rem;padding:13px 24px;text-decoration:none;margin-top:16px}
   .note{font-size:.76rem;color:var(--dim2);margin-top:22px;line-height:1.6}
   #nl-badge-frame{display:none!important}
+  .acq{background:var(--sheet,#FBFBF9);border:1.5px solid #C9CDD1;border-radius:18px;padding:20px;margin-bottom:16px;box-shadow:0 14px 32px -22px rgba(21,24,27,.45)}
+  .acq.attivo{border-color:#E9A10F}
+  .acq-testa{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+  .acq h3{margin:0;font-size:1.3rem;line-height:1.15}
+  .acq-meta{font:500 12.5px 'Martian Mono',monospace;color:#5E656D;margin-top:6px}
+  .stato{flex:none;font:700 12px 'Archivo',sans-serif;padding:4px 10px;border-radius:999px;white-space:nowrap}
+  .stato.ok{background:rgba(30,127,69,.12);color:#1E7F45}
+  .stato.attesa{background:rgba(233,161,15,.16);color:#8A5D00}
+  .passi{list-style:none;margin:16px 0 0;padding:0;counter-reset:p}
+  .passi li{position:relative;padding:12px 0 12px 40px;border-top:1px solid #E1E4E6;font-size:.95rem;line-height:1.5;color:#2B3036}
+  .passi li::before{counter-increment:p;content:counter(p);position:absolute;left:0;top:11px;width:26px;height:26px;border-radius:50%;background:#15181B;color:#FBFBF9;font:700 13px/26px 'Archivo',sans-serif;text-align:center}
+  .passi li b{color:#15181B}
+  .passi .btn-link{display:table;margin-top:10px}
+  .acq-nota{margin:12px 0 0;font-size:.9rem;line-height:1.5;color:#4B525A}
+  .titoletto{font-size:1.2rem;margin:28px 0 12px}
+  .codice{font-family:'JetBrains Mono',monospace;font-size:1.3rem;font-weight:700;color:var(--up);letter-spacing:.08em}
 
   /* sfumature */
   .card,.glass,.tool,.bot,.plan,.capture,.jkpi,.jcard,.vetrina,.lancio-box,.bot-rimando,.acc-card,.acc-box,.pz,.gs-kpi{
@@ -116,54 +132,21 @@ input,select,textarea{border-radius:3px!important}
 
   <div class="lista" id="lista">
     <h1>Area clienti</h1>
-    <p id="lista-intro">Grazie per l'acquisto. I bot, la guida all'installazione e tutti gli aggiornamenti li trovi nel gruppo Telegram riservato ai clienti.</p>
+    <p id="lista-intro">I tuoi acquisti. Per ognuno trovi cosa fare per iniziare.</p>
+    <div id="acquisti"></div>
 
-    <div class="grp" id="corso-box" style="border-color:rgba(233,161,15,.45);display:none">
-      <h3>Il corso di gestione del rischio</h3>
-      <div class="sub">Il corso è in un gruppo Telegram privato, con una cartella per ogni modulo e le lezioni in ordine. Tocca il pulsante e chiedi di entrare: approviamo le richieste a mano, di solito in poche ore. L'accesso è a vita.</div>
-      <div id="corso-tg"></div>
-    </div>
-
-    <div class="grp" id="fond-box" style="border-color:rgba(233,161,15,.45);display:none">
-      <h3>Il corso di analisi fondamentale</h3>
-      <div class="sub">Anche questo corso è in un gruppo Telegram privato, un argomento per modulo. Tocca il pulsante e chiedi di entrare: approviamo le richieste a mano, di solito in poche ore. Dispense, quiz e attestato su riskly.trade/quiz.</div>
-      <div id="fond-tg"></div>
-    </div>
-
-    <div class="grp" id="journal-box" style="border-color:rgba(233,161,15,.45);display:none">
-      <h3>Il tuo journal</h3>
-      <div class="sub" id="journal-sub">Il piano è attivo sul tuo account: accedi al journal con la stessa email e lo trovi già sbloccato.</div>
-      <a class="btn-link" href="https://app.riskly.trade">Apri il journal</a>
-    </div>
-
-    <div class="grp" id="sconto-box" style="display:none">
-      <h3>50% di sconto sul videocorso</h3>
-      <div class="sub">Hai acquistato un software Riskly: con questo codice il videocorso costa la metà. Inseriscilo nella pagina di pagamento, alla voce "Aggiungi codice promozionale".</div>
-      <div id="sconto-codice" style="font-family:'JetBrains Mono',monospace;font-size:1.3rem;font-weight:700;color:var(--up);letter-spacing:.08em"></div>
-    </div>
-
-    <div class="grp" id="premium-box" style="display:none">
-      <h3>30% di sconto sui bot</h3>
-      <div class="sub">Hai il journal Premium: con questo codice RiskGuard, TradeManager, ScaleIn e Riskly Pro costano il 30% in meno. Inseriscilo nella pagina di pagamento, alla voce "Aggiungi codice promozionale". Vale finché il piano Premium è attivo.</div>
-      <div id="premium-codice" style="font-family:'JetBrains Mono',monospace;font-size:1.3rem;font-weight:700;color:var(--up);letter-spacing:.08em"></div>
-    </div>
-
-    <div id="bot-box">
-    <div class="grp" style="border-color:rgba(233,161,15,.45)">
-      <h3>1 · Entra nel gruppo clienti</h3>
-      <div class="sub">Riservato a chi ha acquistato. Le richieste di accesso sono approvate a mano, di solito entro poche ore.</div>
-      <div id="tg-box"></div>
-    </div>
-
-    <div class="grp">
-      <h3>2 · Ricevi i tuoi file</h3>
-      <div class="sub" style="margin-bottom:0">Scrivici in privato su Telegram con <b style="color:var(--text)">l'email dell'acquisto</b> e il <b style="color:var(--text)">numero del conto MetaTrader</b>. Ti inviamo i file già abilitati per quel conto, <b style="color:var(--text)">entro 24 ore lavorative</b>.</div>
-    </div>
-
-    <div class="grp">
-      <h3>3 · Installa e prova su demo</h3>
-      <div class="sub" style="margin-bottom:0">Nel gruppo trovi la guida passo passo. Prova sempre su conto demo prima di usare il bot su un conto reale.</div>
-    </div>
+    <div id="vantaggi" style="display:none">
+      <h2 class="titoletto">I tuoi vantaggi</h2>
+      <div class="grp" id="sconto-box" style="display:none">
+        <h3>50% di sconto sul videocorso</h3>
+        <div class="sub">Hai acquistato un software Riskly: con questo codice il videocorso costa la metà. Inseriscilo nella pagina di pagamento, alla voce "Aggiungi codice promozionale".</div>
+        <div id="sconto-codice" class="codice"></div>
+      </div>
+      <div class="grp" id="premium-box" style="display:none">
+        <h3>30% di sconto sui bot</h3>
+        <div class="sub">Hai il journal Premium: con questo codice RiskGuard, TradeManager, ScaleIn e Riskly Pro costano il 30% in meno. Inseriscilo nella pagina di pagamento, alla voce "Aggiungi codice promozionale". Vale finché il piano Premium è attivo.</div>
+        <div id="premium-codice" class="codice"></div>
+      </div>
     </div>
 
     <p class="note">Problemi? Scrivi a <b>supporto@riskly.trade</b>.</p>
@@ -222,40 +205,68 @@ input,select,textarea{border-radius:3px!important}
       box.innerHTML = '<div class="sub" style="margin:0;color:var(--text)">Il link è in arrivo: ti scriviamo noi all\'email dell\'acquisto.</div>';
     }
   }
-  /* prodotti attivi: il corso ha il suo gruppo, i bot il gruppo clienti */
-  async function sblocca(prodotti){
+  /* un acquisto = una scheda, con le istruzioni di quel prodotto */
+  const NOMI = { 'Videocorso':'Corso · Gestione del rischio', 'Corso Analisi fondamentale':'Corso · Analisi fondamentale', 'Pacchetto corsi':'Pacchetto · i due corsi' };
+  function tipo(p){
+    if(/pacchetto/i.test(p)) return 'pacchetto';
+    if(/^videocorso/i.test(p)) return 'rischio';
+    if(/fondamentale/i.test(p)) return 'fondamentale';
+    if(/^journal/i.test(p)) return 'journal';
+    return 'bot';
+  }
+  function esc(t){ return String(t == null ? '' : t).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' })[c]); }
+  function bottone(link, testo){
+    return link ? `<a class="btn-link" href="${esc(link)}" target="_blank" rel="noopener">${testo}</a>`
+                : `<div class="acq-nota">Il link è in arrivo: ti scriviamo noi all'email dell'acquisto.</div>`;
+  }
+  function passi(t, L, prodotto){
+    const corso = (link, nome) => `<li><b>Entra nel gruppo Telegram del corso ${nome}.</b> Tocca il pulsante e chiedi di entrare: approviamo le richieste a mano, di solito in poche ore. Dentro trovi una cartella per ogni modulo con le lezioni in ordine.${bottone(link, 'Entra nel corso')}</li>`;
+    if(t === 'rischio') return corso(L.corso, 'di gestione del rischio') + `<li><b>Scarica dispense e kit Excel</b> che trovi nel gruppo, e segui i moduli in ordine.</li><li><b>Fai i quiz di fine modulo</b> su riskly.trade/quiz: alla fine ricevi l'attestato.</li><li>L'accesso è <b>a vita</b>, aggiornamenti compresi.</li>`;
+    if(t === 'fondamentale') return corso(L.fond, 'di analisi fondamentale') + `<li><b>Scarica le dispense</b> nel gruppo e segui i moduli in ordine.</li><li><b>Fai i quiz di fine modulo</b> su riskly.trade/quiz: alla fine ricevi l'attestato.</li><li>L'accesso è <b>a vita</b>, aggiornamenti compresi.</li>`;
+    if(t === 'pacchetto') return corso(L.corso, 'di gestione del rischio') + corso(L.fond, 'di analisi fondamentale') + `<li><b>Fai i quiz</b> su riskly.trade/quiz per ogni corso: ricevi i due attestati. Accesso <b>a vita</b> a tutti e due.</li>`;
+    if(t === 'journal') return `<li><b>Il piano ${esc(prodotto.replace(/^journal\s+/i, ''))} è attivo</b> sul tuo account.</li><li><b>Apri il journal</b> con la stessa email e lo trovi già sbloccato.<a class="btn-link" href="https://app.riskly.trade">Apri il journal</a></li>`;
+    return `<li><b>Entra nel gruppo clienti su Telegram.</b> È riservato a chi ha acquistato: approviamo le richieste a mano, di solito in poche ore.${bottone(L.clienti, 'Entra nel gruppo clienti')}</li>
+      <li><b>Ricevi il file di ${esc(prodotto)}.</b> Scrivici in privato su Telegram con <b>l'email dell'acquisto</b> e il <b>numero del conto MetaTrader</b> su cui lo userai. Ti mandiamo il file già abilitato per quel conto, entro 24 ore lavorative.</li>
+      <li><b>Installa seguendo la guida</b> che trovi nel gruppo: si copia il file nella cartella degli Expert di MetaTrader e si trascina sul grafico.</li>
+      <li><b>Prova prima su un conto demo</b>, poi passa al conto reale. Gli aggiornamenti arrivano nel gruppo, gratis.</li>`;
+  }
+  async function sblocca(righe){
     document.getElementById('gate').style.display = 'none';
     document.getElementById('lista').style.display = 'block';
-    /* Videocorso = gestione del rischio · "Corso Analisi fondamentale" · "Pacchetto corsi" = tutti e due */
-    const pacchetto = prodotti.some(p => /pacchetto/i.test(p));
-    const haCorso = pacchetto || prodotti.some(p => /^videocorso/i.test(p));
-    const haFond = pacchetto || prodotti.some(p => /fondamentale/i.test(p));
-    const haBot = prodotti.some(p => !/corso|pacchetto|fondamentale/i.test(p) && !/^journal/i.test(p));
-    const journal = prodotti.find(p => /^journal/i.test(p));
-    if(journal){
-      document.getElementById('journal-box').style.display = 'block';
-      document.getElementById('journal-sub').textContent = 'Il piano ' + journal.replace(/^journal\s+/i, '') + ' è attivo sul tuo account: accedi al journal con la stessa email e lo trovi già sbloccato.';
+    /* un prodotto una volta sola: vale l'acquisto più recente */
+    const visti = new Set(), lista = [];
+    for(const r of righe){ if(!visti.has(r.prodotto)){ visti.add(r.prodotto); lista.push(r); } }
+    const attivi = lista.filter(r => r.stato === 'attivo').map(r => r.prodotto);
+    const servono = new Set(attivi.map(tipo));
+    const L = {
+      clienti: servono.has('bot') ? await linkDa('link_gruppo_clienti') : '',
+      corso: (servono.has('rischio') || servono.has('pacchetto')) ? await linkDa('link_gruppo_corso') : '',
+      fond: (servono.has('fondamentale') || servono.has('pacchetto')) ? await linkDa('link_gruppo_fondamentale') : '',
+    };
+    document.getElementById('acquisti').innerHTML = lista.map(r => {
+      const ok = r.stato === 'attivo', t = tipo(r.prodotto || '');
+      const data = r.creato ? new Date(r.creato).toLocaleDateString('it-IT', { day:'numeric', month:'long', year:'numeric' }) : '';
+      return `<div class="acq${ok ? ' attivo' : ''}">
+        <div class="acq-testa"><div><h3>${esc(NOMI[r.prodotto] || r.prodotto)}</h3>
+          <div class="acq-meta">${esc(data)}${r.prezzo ? ' · ' + esc(r.prezzo) + ' €' : ''}</div></div>
+          <span class="stato ${ok ? 'ok' : 'attesa'}">${ok ? 'Attivo' : 'In attesa'}</span></div>
+        ${ok ? `<ol class="passi">${passi(t, L, r.prodotto || '')}</ol>`
+             : `<div class="acq-nota">Stiamo aspettando la conferma del pagamento da Stripe: di solito arriva in pochi secondi. Se non hai completato il pagamento, puoi ignorare questo ordine.</div>`}
+      </div>`;
+    }).join('');
+
+    const haBot = attivi.some(p => tipo(p) === 'bot'), haCorso = attivi.some(p => /rischio|pacchetto/.test(tipo(p)));
+    const journal = attivi.find(p => /^journal/i.test(p));
+    let vantaggi = false;
+    if(haBot && !haCorso){
+      try{ const { data } = await sb.rpc('codice_sconto_corso');
+        if(data){ document.getElementById('sconto-codice').textContent = data; document.getElementById('sconto-box').style.display = 'block'; vantaggi = true; } }catch(e){}
     }
     if(journal && /premium/i.test(journal)){
-      try{
-        const { data } = await sb.rpc('codice_sconto_premium');
-        if(data){ document.getElementById('premium-codice').textContent = data; document.getElementById('premium-box').style.display = 'block'; }
-      }catch(e){}
+      try{ const { data } = await sb.rpc('codice_sconto_premium');
+        if(data){ document.getElementById('premium-codice').textContent = data; document.getElementById('premium-box').style.display = 'block'; vantaggi = true; } }catch(e){}
     }
-    if(!haCorso && !haFond && !haBot && journal) document.getElementById('lista-intro').textContent = 'Grazie per l\'acquisto. Il tuo piano del journal è attivo.';
-    if(haBot && !haCorso){
-      try{
-        const { data } = await sb.rpc('codice_sconto_corso');
-        if(data){ document.getElementById('sconto-codice').textContent = data; document.getElementById('sconto-box').style.display = 'block'; }
-      }catch(e){}
-    }
-    document.getElementById('corso-box').style.display = haCorso ? 'block' : 'none';
-    document.getElementById('fond-box').style.display = haFond ? 'block' : 'none';
-    document.getElementById('bot-box').style.display = haBot ? 'block' : 'none';
-    if((haCorso || haFond) && !haBot) document.getElementById('lista-intro').textContent = 'Grazie per l\'acquisto. Qui sotto trovi l\'accesso ai tuoi corsi.';
-    if(haCorso) pulsante(document.getElementById('corso-tg'), await linkDa('link_gruppo_corso'), 'Entra nel corso su Telegram');
-    if(haFond) pulsante(document.getElementById('fond-tg'), await linkDa('link_gruppo_fondamentale'), 'Entra nel corso su Telegram');
-    if(haBot) pulsante(document.getElementById('tg-box'), await linkDa('link_gruppo_clienti'), 'Entra nel gruppo Telegram');
+    document.getElementById('vantaggi').style.display = vantaggi ? 'block' : 'none';
   }
 
   /* arrivo da Stripe dopo il pagamento (i link di pagamento aggiungono ?pagato=1) */
@@ -286,8 +297,11 @@ input,select,textarea{border-radius:3px!important}
     for(let i = 0; i < (PAGATO ? 10 : 1); i++){
       if(i){ mostraGate(RICEVUTO + 'Sto attivando il tuo acquisto, un attimo…', ''); await new Promise(r => setTimeout(r, 3000)); }
       ({ data, error } = await sb.from('acquisti')
-        .select('prodotto,stato').eq('utente', session.user.id).eq('stato','attivo'));
-      if(error || (data && data.length)) break;
+        .select('prodotto,stato,prezzo,creato').eq('utente', session.user.id).in('stato', ['attivo', 'in_attesa'])
+        .order('creato', { ascending: false }));
+      /* gli ordini lasciati a metà (in attesa da più di un giorno) non li mostriamo */
+      if(data) data = data.filter(r => r.stato === 'attivo' || (Date.now() - new Date(r.creato).getTime()) < 86400000);
+      if(error || (data && data.some(r => r.stato === 'attivo'))) break;
     }
 
     if(error){
@@ -295,7 +309,7 @@ input,select,textarea{border-radius:3px!important}
       return;
     }
 
-    if(!data || !data.length){
+    if(!data || !data.some(r => r.stato === 'attivo')){
       mostraGate(
         PAGATO
           ? RICEVUTO + 'Stiamo confermando il tuo ordine: di solito in poche ore, al massimo entro 24 ore lavorative. '
@@ -307,7 +321,7 @@ input,select,textarea{border-radius:3px!important}
       return;
     }
 
-    sblocca(data.map(r => r.prodotto || ''));
+    sblocca(data);
   }
 
   verifica();
