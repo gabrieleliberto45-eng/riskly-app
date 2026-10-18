@@ -1,4 +1,4 @@
-/* Riskly Strumenti: serve solo per mostrare gli avvisi del calendario (anche su iPhone, dalla schermata Home).
+/* Riskly Strumenti: mostra gli avvisi del calendario (anche su iPhone, dalla schermata Home).
    Non salva niente in cache: il sito si carica sempre dalla rete. */
 self.addEventListener('install', () => self.skipWaiting());
 self.addEventListener('activate', e => e.waitUntil(self.clients.claim()));
@@ -8,4 +8,9 @@ self.addEventListener('notificationclick', e => {
     for(const c of l) if('focus' in c){ c.navigate && c.navigate('/#calendario'); return c.focus(); }
     return self.clients.openWindow('/#calendario');
   }));
+});
+/* avvisi mandati dal server (Supabase, funzione cal-avvisi): arrivano anche ad app chiusa */
+self.addEventListener('push', e => {
+  let d = {}; try { d = e.data.json(); } catch(err) { d = { titolo: 'Riskly', testo: e.data ? e.data.text() : '' }; }
+  e.waitUntil(self.registration.showNotification(d.titolo || 'Riskly', { body: d.testo || '', tag: d.tag, icon: '/icon-192.png', badge: '/icon-192.png' }));
 });

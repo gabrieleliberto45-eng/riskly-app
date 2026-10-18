@@ -2278,8 +2278,26 @@ let calPref = {}, calAvvisati = {};
 try { calPref = JSON.parse(localStorage.getItem('riskly-cal-pref')) || {}; calAvvisati = JSON.parse(localStorage.getItem('riskly-cal-avvisati')) || {}; } catch(e) {}
 (function(){ const lim = Date.now() - 8 * 86400e3; for(const k in calPref) if(new Date(calPref[k].d).getTime() < lim) delete calPref[k];
   for(const k in calAvvisati) if(calAvvisati[k] < lim) delete calAvvisati[k]; })();
+/* notifiche push vere: il server (Supabase) controlla i preferiti ogni minuto e avvisa anche ad app chiusa */
+const CAL_VAPID = 'BBOpQfTYpzmSXLrZtGfnu-x-tx4asq_lVhF0Kzb3ahftFAJ2Js6W-2qt7gTiMk7J8nuSahigHEW17B85bn7UWWw';
+const CAL_ISCRIVI = 'https://swlztverwfgdgchgpudt.supabase.co/functions/v1/cal-iscrivi';
+let calPushOk = false, calPushTimer;
+try { calPushOk = localStorage.getItem('riskly-cal-push') === '1'; } catch(e) {}
+function calB64(s){ s = s.replace(/-/g, '+').replace(/_/g, '/'); const b = atob(s + '='.repeat((4 - s.length % 4) % 4)); return Uint8Array.from(b, c => c.charCodeAt(0)); }
+async function calPushIscrivi(){
+  try {
+    if(!navigator.serviceWorker || !('PushManager' in window)) return false;
+    const reg = await navigator.serviceWorker.ready;
+    const sub = (await reg.pushManager.getSubscription()) || await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: calB64(CAL_VAPID) });
+    const r = await fetch(CAL_ISCRIVI, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sub: sub.toJSON(), preferiti: calPref }) });
+    calPushOk = r.ok;
+  } catch(e) { calPushOk = false; }
+  try { localStorage.setItem('riskly-cal-push', calPushOk ? '1' : '0'); } catch(e) {}
+  return calPushOk;
+}
 function calPrefSalva(){
   try { localStorage.setItem('riskly-cal-pref', JSON.stringify(calPref)); localStorage.setItem('riskly-cal-avvisati', JSON.stringify(calAvvisati)); } catch(e) {}
+  if(calPushOk && calAvvisiStato() === 'on'){ clearTimeout(calPushTimer); calPushTimer = setTimeout(calPushIscrivi, 800); }
   const n = Object.keys(calPref).length, el = document.getElementById('calPrefN'); if(el) el.textContent = n || '';
 }
 function calPrefCambia(id){
@@ -2299,20 +2317,25 @@ function calAvvisiBarra(){
   const st = calAvvisiStato(), t = document.getElementById('calAvvisiTesto'), btn = document.getElementById('calAvvisiBtn');
   const ios = /iPhone|iPad/.test(navigator.userAgent), app = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
   btn.style.display = st === 'off' ? '' : 'none';
-  if(st === 'on') t.innerHTML = '🔔 <b>Avvisi attivi</b> sui ' + n + ' preferiti: 5 minuti prima e appena esce il valore. Tieni il sito aperto (anche in un\'altra scheda).';
+  if(st === 'on') t.innerHTML = '🔔 <b>Avvisi attivi</b> sui ' + n + ' preferiti: 5 minuti prima e appena esce il valore' + (calPushOk ? ', anche con l\'app chiusa.' : '. Tieni il sito aperto (anche in un\'altra scheda).');
   else if(st === 'negato') t.textContent = '🔕 Hai bloccato le notifiche per questo sito: riattivale dalle impostazioni del browser.';
   else if(st === 'no') t.textContent = ios && !app ? '🔔 Su iPhone gli avvisi funzionano se aggiungi il sito alla schermata Home: Condividi → Aggiungi a Home, poi aprilo da lì.' : '🔔 Questo browser non supporta le notifiche.';
   else t.textContent = '🔔 Vuoi un avviso 5 minuti prima e appena escono i tuoi ' + n + ' preferiti?';
 }
 async function calAvvisiAttiva(){
   try { const p = await Notification.requestPermission(); if(p === 'granted'){ localStorage.setItem('riskly-cal-avvisi', '1');
-    calNotifica('Avvisi attivi', 'Ti avviso 5 minuti prima e appena esce il valore dei tuoi preferiti.'); } } catch(e) {}
+    const push = await calPushIscrivi();
+    calNotifica('Avvisi attivi', push ? 'Ti avviso 5 minuti prima e appena esce il valore dei tuoi preferiti, anche ad app chiusa.' : 'Ti avviso 5 minuti prima e appena esce il valore dei tuoi preferiti, finché il sito resta aperto.', true); } } catch(e) {}
   calAvvisiBarra(); calControlla();
 }
-async function calNotifica(tit, testo){
+async function calNotifica(tit, testo, sempre){
+  if(calPushOk && !sempre){ calToast(tit, testo); return; }   /* ci pensa il server: qui solo il messaggio sulla pagina */
   try { const reg = navigator.serviceWorker && await navigator.serviceWorker.getRegistration();
     if(reg) await reg.showNotification(tit, { body: testo, icon: '/icon-192.png', badge: '/icon-192.png', tag: tit });
     else new Notification(tit, { body: testo, icon: '/icon-192.png' }); } catch(e) {}
+  calToast(tit, testo);
+}
+function calToast(tit, testo){
   let pila = document.getElementById('calToasts');
   if(!pila){ pila = document.createElement('div'); pila.id = 'calToasts'; pila.className = 'cal-toasts'; pila.setAttribute('role', 'status'); document.body.appendChild(pila); }
   const v = document.createElement('div'); v.className = 'cal-toast';
@@ -2338,7 +2361,7 @@ async function calControlla(){
 }
 setInterval(() => calControlla(), 30000);
 try { if(navigator.serviceWorker) navigator.serviceWorker.register('/sw.js').catch(() => {}); } catch(e) {}
-setTimeout(() => { calPrefSalva(); calControlla(); }, 0);
+setTimeout(() => { calPrefSalva(); calControlla(); if(calPushOk && calAvvisiStato() === 'on') calPushIscrivi(); }, 0);
 function calGiornoScegli(g){
   calGiorno = g; try { localStorage.setItem('riskly-cal-giorno', g); } catch(e) {}
   document.querySelectorAll('.cal-giorni button').forEach(b => b.setAttribute('aria-selected', b.dataset.g === g));
