@@ -2165,6 +2165,13 @@ body.fuori-home #vaiHome{display:inline-flex}
 .nh .cmp b{display:block;font-weight:780;font-stretch:80%;font-size:22px;line-height:1.1;margin-bottom:6px}
 .nh .cmp p{margin:0;color:#4B525A;font-size:15.5px;line-height:1.5}
 @media (max-width:600px){.nh .offerta .intro{display:block!important}}
+/* assistente: pulsante grande e ambra, ben visibile */
+#chatBtn{background:#E9A10F!important;color:#2B1E00!important;border:0!important;height:60px!important;padding:0 22px 0 18px!important;font-size:16px!important;font-weight:800!important;box-shadow:0 12px 30px -8px rgba(185,124,0,.65)!important}
+#chatBtn svg{width:26px!important;height:26px!important}
+#chatBtn:hover{background:#F2B32E!important}
+@media (max-width:760px){#chatBtn{width:62px!important;height:62px!important;padding:0!important;background:#E9A10F!important;color:#2B1E00!important;right:14px!important;bottom:calc(16px + env(safe-area-inset-bottom))!important}#chatBtn svg{width:30px!important;height:30px!important}}
+@media (prefers-reduced-motion:no-preference){#chatBtn::after{content:'';position:absolute;inset:0;border-radius:inherit;box-shadow:0 0 0 0 rgba(233,161,15,.55);animation:chatPulsa 2.6s infinite}}
+@keyframes chatPulsa{70%{box-shadow:0 0 0 14px rgba(233,161,15,0)}100%{box-shadow:0 0 0 0 rgba(233,161,15,0)}}
 /* telefono: home più corta, l'ecosistema diventa un elenco senza foto */
 .nh .salta{display:none}
 @media (max-width:600px){
@@ -2330,10 +2337,6 @@ body.fuori-home #vaiHome{display:inline-flex}
           <b>Tutto alla luce del sole</b>
           <p>I bot li proviamo su conto demo e pubblichiamo i risultati con la data. Se uno strumento non serve a proteggere il conto, non lo facciamo.</p>
         </div>
-      </div>
-      <div class="of-chiedi">
-        <div><b>Hai una domanda su bot, corsi o journal?</b><span>L'assistente di Riskly risponde subito, a qualsiasi ora: prezzi, prop firm, installazione, pagamenti.</span></div>
-        <button type="button" class="btn btn-pieno" onclick="chatApri()">Chiedi all'assistente</button>
       </div>
     </div>
   </section>
