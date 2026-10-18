@@ -2056,7 +2056,7 @@ nav .btn.pri{border-radius:999px!important}
 .nh .hero-testa{max-width:900px}
 .nh .hero-wow .wrap>.tiles{max-width:none}
 .nh .cifre .candele{display:none}
-.nh .cifre{margin-top:0!important}
+.nh .cifre{margin-top:clamp(20px,3vw,36px)!important;border-radius:var(--r-l)!important}
 .nh .hero-tag{display:inline-flex;align-items:center;gap:10px;padding:7px 14px;border:1px solid rgba(233,161,15,.45);border-radius:999px;background:rgba(233,161,15,.08);color:#F6C55A;font-size:13.5px;font-weight:600;margin-bottom:22px}
 .nh .hero-tag i{width:8px;height:8px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 0 rgba(233,161,15,.6);animation:pulsa 2s infinite}
 @keyframes pulsa{70%{box-shadow:0 0 0 10px rgba(233,161,15,0)}100%{box-shadow:0 0 0 0 rgba(233,161,15,0)}}
@@ -2089,7 +2089,10 @@ nav .btn.pri{border-radius:999px!important}
 .nh .tile,.nh .tile:not(.t-big){grid-column:span 1;padding:14px}
 .nh .tile.t-big:first-child{grid-column:span 2}
 .nh .tile:not(.t-big){flex-direction:column;align-items:flex-start}
-.nh .tile:not(.t-big) .tile-badge{position:absolute;top:14px;right:14px}
+.nh .tile-badge,.nh .tile:not(.t-big) .tile-badge{position:static;order:0;align-self:flex-start;margin:4px 0 0}
+.nh .tile.t-big:first-child .tile-badge{position:absolute;top:14px;right:14px;margin:0}
+.nh .tile b,.nh .tile:not(.t-big) b{order:-1}
+.nh .tile-ic{order:-2}
 .nh .tile.t-big:not(:first-child) .tile-d{display:none}
 .nh .tile-ic{width:38px;height:38px}
 .nh .tile b,.nh .tile:not(.t-big) b{font-size:19px;margin-top:6px}
