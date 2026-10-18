@@ -50,7 +50,14 @@
   #nl-badge-frame{display:none!important}
   .acq{background:var(--sheet,#FBFBF9);border:1.5px solid #C9CDD1;border-radius:18px;padding:20px;margin-bottom:16px;box-shadow:0 14px 32px -22px rgba(21,24,27,.45)}
   .acq.attivo{border-color:#E9A10F}
-  .acq-testa{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+  .acq-testa{display:flex;justify-content:space-between;align-items:center;gap:10px;cursor:pointer;list-style:none}
+  .acq-testa::-webkit-details-marker{display:none}
+  .acq-dx{display:flex;align-items:center;gap:10px;flex:none}
+  .freccia{width:30px;height:30px;border-radius:50%;background:#15181B;position:relative;transition:transform .2s}
+  .freccia::before{content:'';position:absolute;left:10px;top:9px;width:8px;height:8px;border:solid #FBFBF9;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+  .acq[open] .freccia{transform:rotate(180deg)}
+  .acq:not([open]){padding-bottom:20px}
+  .acq-suggerimento{font-size:.88rem;color:#5E656D;margin:-6px 0 14px}
   .acq h3{margin:0;font-size:1.3rem;line-height:1.15}
   .acq-meta{font:500 12.5px 'Martian Mono',monospace;color:#5E656D;margin-top:6px}
   .stato{flex:none;font:700 12px 'Archivo',sans-serif;padding:4px 10px;border-radius:999px;white-space:nowrap}
@@ -132,7 +139,7 @@ input,select,textarea{border-radius:3px!important}
 
   <div class="lista" id="lista">
     <h1>Area clienti</h1>
-    <p id="lista-intro">I tuoi acquisti. Per ognuno trovi cosa fare per iniziare.</p>
+    <p id="lista-intro">I tuoi acquisti. Tocca un prodotto per vedere cosa fare per iniziare.</p>
     <div id="acquisti"></div>
 
     <div id="vantaggi" style="display:none">
@@ -243,16 +250,16 @@ input,select,textarea{border-radius:3px!important}
       corso: (servono.has('rischio') || servono.has('pacchetto')) ? await linkDa('link_gruppo_corso') : '',
       fond: (servono.has('fondamentale') || servono.has('pacchetto')) ? await linkDa('link_gruppo_fondamentale') : '',
     };
-    document.getElementById('acquisti').innerHTML = lista.map(r => {
+    document.getElementById('acquisti').innerHTML = lista.map((r, i) => {
       const ok = r.stato === 'attivo', t = tipo(r.prodotto || '');
       const data = r.creato ? new Date(r.creato).toLocaleDateString('it-IT', { day:'numeric', month:'long', year:'numeric' }) : '';
-      return `<div class="acq${ok ? ' attivo' : ''}">
-        <div class="acq-testa"><div><h3>${esc(NOMI[r.prodotto] || r.prodotto)}</h3>
-          <div class="acq-meta">${esc(data)}${r.prezzo ? ' · ' + esc(r.prezzo) + ' €' : ''}</div></div>
-          <span class="stato ${ok ? 'ok' : 'attesa'}">${ok ? 'Attivo' : 'In attesa'}</span></div>
+      return `<details class="acq${ok ? ' attivo' : ''}"${PAGATO && i === 0 ? ' open' : ''}>
+        <summary class="acq-testa"><div><h3>${esc(NOMI[r.prodotto] || r.prodotto)}</h3>
+          <div class="acq-meta">${esc(data)}${r.prezzo ? ' · ' + esc(r.prezzo) + '\u00a0€' : ''}</div></div>
+          <span class="acq-dx"><span class="stato ${ok ? 'ok' : 'attesa'}">${ok ? 'Attivo' : 'In attesa'}</span><span class="freccia" aria-hidden="true"></span></span></summary>
         ${ok ? `<ol class="passi">${passi(t, L, r.prodotto || '')}</ol>`
              : `<div class="acq-nota">Stiamo aspettando la conferma del pagamento da Stripe: di solito arriva in pochi secondi. Se non hai completato il pagamento, puoi ignorare questo ordine.</div>`}
-      </div>`;
+      </details>`;
     }).join('');
 
     const haBot = attivi.some(p => tipo(p) === 'bot'), haCorso = attivi.some(p => /rischio|pacchetto/.test(tipo(p)));
