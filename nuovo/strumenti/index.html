@@ -1432,8 +1432,8 @@
   .cal-info b{display:block;font:700 11.5px 'Archivo',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--amber-deep,#9A6700);margin:0 0 3px}
   .cal-info b+*,.cal-info b~b{margin-top:10px}
   .cal-info small{display:block;margin-top:8px;font-size:12px;color:var(--dim2)}
-  .cal-tit .cal-i{display:inline-grid;place-items:center;width:17px;height:17px;margin-left:6px;border-radius:50%;border:1.5px solid var(--accent,#E9A10F);color:var(--amber-deep,#9A6700);font:700 11px 'Archivo',sans-serif;vertical-align:1px}
-  .cal-ev.aperto .cal-i{background:var(--accent,#E9A10F);color:#2B1E00}
+  .cal-tit .cal-i{display:inline-block;margin-left:8px;padding:2px 9px;border-radius:999px;background:var(--accent,#E9A10F);color:#2B1E00;font:700 12px 'Archivo',sans-serif;white-space:nowrap;vertical-align:1px}
+  .cal-ev.aperto .cal-i{background:#15181B;color:#FBFBF9}
   .cal-prossimo{box-shadow:inset 3px 0 0 var(--accent)}
   .cal-stato{padding:40px 20px;text-align:center;color:var(--dim)}
   .cal-ev{grid-template-columns:52px 74px minmax(0,1fr) auto 36px}
@@ -2238,6 +2238,7 @@ const CAL_SPIEGA = [
   [/GDP Growth|^GDP\b/i, 'Il PIL: quanto è cresciuta (o diminuita) l\'economia del paese nel trimestre.', 'Crescita sopra le attese = economia forte, valuta di solito su. Due trimestri negativi di fila = recessione tecnica.'],
   [/ISM Manufacturing PMI/i, 'Fiducia dei responsabili acquisti delle aziende manifatturiere USA. Sopra 50 il settore cresce, sotto 50 si contrae.', 'Uno dei primi dati del mese: anticipa l\'andamento dell\'economia.'],
   [/ISM Services PMI|ISM Non-Manufacturing/i, 'Fiducia delle aziende dei servizi USA, che sono la parte più grande dell\'economia. Sopra 50 = crescita.', 'Dentro c\'è anche una voce sui prezzi, guardata per l\'inflazione.'],
+  [/^ISM /i, 'Una voce dell\'indagine ISM sulle aziende USA (occupazione, prezzi, nuovi ordini). Sopra 50 cresce, sotto 50 cala.', 'La voce prezzi anticipa l\'inflazione, quella occupazione il dato sul lavoro.'],
   [/PMI/i, 'Indagine tra i responsabili acquisti delle aziende. Sopra 50 il settore cresce, sotto 50 si contrae.', 'È tra i primi dati del mese, quindi anticipa gli altri: le versioni "flash" muovono di più.'],
   [/Retail Sales/i, 'Quanto hanno speso i consumatori nei negozi e online nel mese.', 'I consumi sono il motore dell\'economia: vendite forti = valuta su.'],
   [/Industrial Production/i, 'Quanto hanno prodotto fabbriche, miniere e impianti energetici.', 'Mostra lo stato dell\'industria; di solito muove poco rispetto a lavoro e inflazione.'],
@@ -2251,6 +2252,40 @@ const CAL_SPIEGA = [
   [/Existing Home Sales|New Home Sales|Pending Home Sales/i, 'Quante case sono state vendute nel mese.', 'Mostra quanto i tassi alti stanno frenando il mercato immobiliare.'],
   [/ZEW/i, 'Fiducia di analisti e investitori tedeschi sull\'economia dei prossimi 6 mesi.', 'È tra i primi segnali sull\'economia europea: può muovere l\'euro.'],
   [/Ifo/i, 'Fiducia delle imprese tedesche, da un\'indagine su circa 9.000 aziende.', 'La Germania è la prima economia europea: un Ifo debole pesa sull\'euro.'],
+  [/NAHB/i, 'Fiducia dei costruttori di case americani, da un\'indagine dell\'associazione NAHB. Sopra 50 la maggioranza vede il mercato in buona salute.', 'Anticipa cantieri e vendite di case; il mercato immobiliare è molto sensibile ai tassi sui mutui.'],
+  [/Mortgage Rate/i, 'Il tasso medio dei mutui per la casa negli USA.', 'Mutui più cari frenano compravendite e costruzioni, quindi una parte dell\'economia.'],
+  [/Mortgage Applications|Mortgage Approvals|Mortgage Lending|Home Loans|Investment Lending for Homes/i, 'Quante richieste o concessioni di mutui ci sono state nel periodo.', 'Mostra quanto i tassi stanno frenando (o spingendo) il mercato della casa.'],
+  [/Gasoline Stocks/i, 'Quanta benzina c\'è nei depositi USA rispetto alla settimana prima.', 'Scorte in calo = domanda forte, sostiene il prezzo del petrolio.'],
+  [/GDPNow/i, 'La stima in tempo reale del PIL USA fatta dalla Fed di Atlanta, aggiornata più volte al mese.', 'Fa capire in anticipo come uscirà il PIL ufficiale.'],
+  [/Full Time Employment|Part Time Employment|^Employment Change|Unemployment Change|Unemployed Persons/i, 'Quante persone hanno trovato (o perso) lavoro nel periodo. È il dato principale sul lavoro di paesi come Canada e Australia.', 'Più occupati del previsto = economia forte: la valuta del paese tende a salire.'],
+  [/Participation Rate/i, 'La quota di persone in età da lavoro che lavora o cerca lavoro.', 'Aiuta a leggere la disoccupazione: se sale la partecipazione, la disoccupazione può salire anche con più occupati.'],
+  [/Current Account/i, 'Il saldo di tutti gli scambi con l\'estero: merci, servizi, redditi e trasferimenti.', 'Un saldo positivo sostiene la valuta nel lungo periodo; di solito muove poco.'],
+  [/Factory Orders/i, 'Il valore dei nuovi ordini ricevuti dalle fabbriche.', 'Anticipa la produzione dei mesi successivi.'],
+  [/^Exports|^Imports|Export Prices|Import Prices/i, 'Il valore (o i prezzi) di quello che il paese vende o compra all\'estero.', 'Dice quanto è forte la domanda estera; i prezzi all\'importazione anticipano parte dell\'inflazione.'],
+  [/House Price|Housing Price|Home Price|Case-Shiller|RICS/i, 'Come cambiano i prezzi delle case.', 'Prezzi in salita sostengono la fiducia delle famiglie; in calo segnalano che i tassi alti pesano.'],
+  [/Household Spending|Personal Spending/i, 'Quanto spendono le famiglie nel mese.', 'I consumi sono la parte più grande dell\'economia: spesa forte = valuta su.'],
+  [/Personal Income/i, 'Quanto guadagnano in totale le famiglie americane.', 'Redditi in crescita sostengono i consumi dei mesi successivi.'],
+  [/Business Confidence|Business Optimism|NAB Business|ANZ Business|CBI|Tankan|Ai Group|KOF|Economic Sentiment/i, 'Indagine sulla fiducia delle imprese: come vedono affari, ordini e prospettive.', 'Le imprese fiduciose investono e assumono: anticipa l\'andamento dell\'economia.'],
+  [/Empire State|Philadelphia Fed|Philly Fed|Dallas Fed|Richmond Fed|Kansas Fed|Chicago Fed/i, 'Indagine di una Fed regionale sulle aziende della sua zona. Sopra zero il settore cresce, sotto zero si contrae.', 'Escono prima dei dati nazionali e li anticipano: Empire State e Philadelphia sono i più seguiti.'],
+  [/Manufacturing Production/i, 'Quanto hanno prodotto le fabbriche nel mese.', 'Dice come sta l\'industria; di solito muove poco.'],
+  [/Wholesale Prices|Core PPI/i, 'Prezzi alla produzione o all\'ingrosso, prima che arrivino al consumatore.', 'Anticipano l\'inflazione al consumo.'],
+  [/Inventories/i, 'Quante merci hanno in magazzino aziende e negozi.', 'Scorte che crescono troppo possono far rallentare la produzione futura.'],
+  [/Trimmed Mean|Weighted Median|CPI Median|CPI Common/i, 'Misure dell\'inflazione che tolgono le voci più estreme, per vedere la tendenza di fondo.', 'In Australia e Canada sono le più guardate dalla banca centrale.'],
+  [/Loan Prime Rate/i, 'Il tasso di riferimento per i prestiti in Cina, fissato ogni mese.', 'Un taglio indica che la Cina vuole sostenere l\'economia: muove yuan e dollaro australiano.'],
+  [/New Yuan Loans|Total Social Financing/i, 'Quanto credito nuovo è stato concesso in Cina.', 'Misura quanto la Cina sta sostenendo la sua economia.'],
+  [/Fixed Asset Investment|FDI/i, 'Gli investimenti in Cina: impianti, infrastrutture, case, o capitali dall\'estero.', 'Dice quanto è forte la crescita cinese, importante per materie prime e dollaro australiano.'],
+  [/Budget Statement|Budget Balance|Autumn Budget/i, 'I conti dello Stato: entrate, spese e deficit.', 'Un deficit più grande del previsto può far salire i rendimenti dei titoli di Stato.'],
+  [/MPC Vote/i, 'Come hanno votato i membri della Banca d\'Inghilterra: quanti per alzare, tagliare o tenere fermi i tassi.', 'Un voto più diviso del previsto muove la sterlina anche se la decisione è quella attesa.'],
+  [/Monetary Policy Report|Outlook Report|Economic Projections|Economic Forecasts|Financial Stability Report/i, 'Il rapporto con le previsioni della banca centrale o del governo su crescita, inflazione e tassi.', 'Le nuove previsioni fanno capire le prossime mosse sui tassi.'],
+  [/Summary of Opinions|Credit Conditions|Loan Officer|Survey of Consumer Expectations|Business Outlook Survey|Bulletin/i, 'Un\'indagine o un documento della banca centrale su credito, imprese o famiglie.', 'Di solito muove poco, ma aiuta a capire come ragiona la banca centrale.'],
+  [/Employment Cost|Unit Labour Costs|Labour Cost|Wage Growth|Negotiated Wage/i, 'Quanto costano i lavoratori alle aziende: salari e benefit.', 'Costi del lavoro in salita spingono l\'inflazione: le banche centrali li guardano.'],
+  [/Productivity/i, 'Quanto produce in media un lavoratore in un\'ora.', 'Più produttività permette salari più alti senza più inflazione.'],
+  [/Corporate Profits|Company Gross Profits|Capital Spending|Business Investment|Construction Work Done/i, 'Profitti e investimenti delle aziende nel trimestre.', 'Aziende che guadagnano e investono sostengono crescita e lavoro.'],
+  [/TIC Flows/i, 'Quanti capitali esteri entrano negli USA per comprare titoli americani.', 'Mostra la domanda di dollari dall\'estero.'],
+  [/Consumer Credit|Car Registrations|Machinery Orders|Distributive Trades/i, 'Un dato su consumi, credito o ordini delle imprese.', 'Di solito muove poco, ma completa il quadro dell\'economia.'],
+  [/Jackson Hole/i, 'L\'incontro annuale delle banche centrali a Jackson Hole, negli Stati Uniti. Il discorso del presidente Fed è il momento più atteso.', 'Spesso lì si annunciano cambi di direzione sui tassi: volatilità alta.'],
+  [/Election|Summit|Congress|Plenum|General Assembly|General Council/i, 'Un evento politico o istituzionale.', 'Può muovere i mercati se porta sorprese su politica economica, dazi o tensioni.'],
+  [/Short-Term Energy Outlook/i, 'Le previsioni mensili dell\'agenzia USA per l\'energia su produzione, domanda e prezzi di petrolio e gas.', 'Può muovere il petrolio se cambia le stime di domanda.'],
   [/Bill Auction|Note Auction|Bond Auction|Bund|BTP|Gilt|JGB|Bobl|Schatz|TIPS|Auction/i, 'Un\'asta in cui lo Stato vende i suoi titoli per finanziarsi.', 'Di solito muove poco; un\'asta con poca domanda può far salire i rendimenti.'],
   [/Day|Holiday|Festival/i, 'Giorno festivo: le borse del paese sono chiuse o a orario ridotto.', 'Meno scambi = spread più larghi e movimenti a volte irregolari.'],
 ];
@@ -2309,7 +2344,7 @@ function calMostra(){
     html += `<div class="cal-ev${d.getTime() < ora ? ' passato' : ''}${e === prossimo ? ' cal-prossimo' : ''}${pr ? ' pref' : ''}${aperto ? ' aperto' : ''}" data-id="${calEsc(e.id)}">
       <span class="cal-ora">${h}</span>
       <span class="cal-paese">${CAL_BAND[p] || ''} ${calEsc(e.currency || e.country)} <span class="cal-imp i${e.importance}"><b></b><b></b><b></b></span></span>
-      <span class="cal-tit">${calEsc(calNomeNuovo(e.title))}${per ? `<small>${calEsc(per)}</small>` : ''}${calSpiega(e.title) || e.comment ? '<span class="cal-i" aria-hidden="true">i</span>' : ''}</span>
+      <span class="cal-tit">${calEsc(calNomeNuovo(e.title))}${per ? `<small>${calEsc(per)}</small>` : ''}${calSpiega(e.title) || e.comment ? `<span class="cal-i">${aperto ? 'Chiudi ▴' : 'Cos\'è? ▾'}</span>` : ''}</span>
       <span class="cal-valori"><span><i>Effettivo</i>${calNum(e.actual, e.unit)}</span><span><i>Previsto</i>${calNum(e.forecast, e.unit)}</span><span><i>Precedente</i>${calNum(e.previous, e.unit)}</span></span>
       <button type="button" class="cal-stella" aria-pressed="${pr}" aria-label="${pr ? 'Togli dai preferiti' : 'Aggiungi ai preferiti'}">${pr ? '★' : '☆'}</button>
       ${aperto ? calInfo(e) : ''}
