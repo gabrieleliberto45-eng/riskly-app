@@ -2113,6 +2113,7 @@ body.fuori-home #vaiHome{display:inline-flex}
 .page:not(.nh) .pz,.page:not(.nh) .pz.hi,.page:not(.nh) .plan,.page:not(.nh) .pz-corso{background:#FBFBF9!important;border:1.5px solid #C9CDD1!important;border-radius:20px!important;padding:clamp(18px,2.6vw,28px)!important;box-shadow:0 14px 32px -20px rgba(21,24,27,.4)!important}
 .page:not(.nh) .pz.hi,.page:not(.nh) .plan.hi,.page:not(.nh) .plan.pop{border-color:#E9A10F!important;box-shadow:0 0 0 3px rgba(233,161,15,.18),0 14px 32px -20px rgba(21,24,27,.4)!important}
 .page:not(.nh) .pz-corso+.pz-corso{margin-top:16px}
+.pz-altri{margin-top:22px;font-size:15px;color:#4B525A}.pz-altri a{color:#15181B;font-weight:700}
 .siti-barra b .sb-corto{display:none}
 .siti-barra a.sb-clienti{background:rgba(233,161,15,.14)}
 .siti-barra a.sb-clienti i{color:#B97C00}
@@ -2216,7 +2217,7 @@ body.fuori-home #vaiHome{display:inline-flex}
       <button class="on" onclick="go('home',this)">Home</button>
       <button onclick="go('bot',this)">Bot</button>
       <button onclick="go('corso',this)">Corsi</button>
-      <button onclick="go('journal',this)">Prezzi</button>
+      <button onclick="go('journal',this)">Journal</button>
       <button onclick="go('metodo',this)">Metodo</button>
       <button onclick="go('faq',this)">FAQ</button>
     </div>
@@ -2227,7 +2228,7 @@ body.fuori-home #vaiHome{display:inline-flex}
     </div>
   </div>
   <div id="menu-mobile" hidden>
-    <button onclick="go('home');chiudiMenu()">Home</button><button onclick="go('bot');chiudiMenu()">Bot</button><button onclick="go('corso');chiudiMenu()">Corsi</button><button onclick="go('journal');chiudiMenu()">Prezzi</button><button onclick="vaiA('journal','pz-journal');chiudiMenu()">Piani del journal</button><button onclick="go('metodo');chiudiMenu()">Metodo</button><button onclick="go('faq');chiudiMenu()">FAQ</button><a href="https://app.riskly.trade">Journal</a><a href="https://strumenti.riskly.trade">Strumenti gratuiti</a><a href="/download.html" style="font-weight:800">Area clienti</a><button id="menu-accedi" onclick="if(utente){go('account')}else{apriAccesso('entra')};chiudiMenu()">Accedi</button>
+    <button onclick="go('home');chiudiMenu()">Home</button><button onclick="go('bot');chiudiMenu()">Bot</button><button onclick="go('corso');chiudiMenu()">Corsi</button><button onclick="go('journal');chiudiMenu()">Piani del journal</button><button onclick="go('metodo');chiudiMenu()">Metodo</button><button onclick="go('faq');chiudiMenu()">FAQ</button><a href="https://app.riskly.trade">Journal</a><a href="https://strumenti.riskly.trade">Strumenti gratuiti</a><a href="/download.html" style="font-weight:800">Area clienti</a><button id="menu-accedi" onclick="if(utente){go('account')}else{apriAccesso('entra')};chiudiMenu()">Accedi</button>
   </div>
   <div class="siti-barra"><div class="wrap">
     <span class="sb-testo">Riskly ha anche</span>
@@ -3030,108 +3031,11 @@ body.fuori-home #vaiHome{display:inline-flex}
   <section>
     <div class="wrap">
       <div class="sez-titolo pagina">
-        <span class="sez-num">PREZZI</span>
-        <h2>Tutto quello che serve<br><em>per restare in gioco</em></h2>
-        <p class="lead">Software per MetaTrader, journal e videocorso. Nessun segnale, nessun abbonamento obbligatorio sui bot: paghi una volta e sono tuoi.</p>
+        <span class="sez-num">JOURNAL</span>
+        <h2>Il diario che ti dice<br><em>se stai rispettando le regole</em></h2>
+        <p class="lead">Registra le operazioni (anche in automatico dai bot), misura winrate, drawdown e disciplina, e segui le regole delle prop firm. 7 giorni di prova, senza carta.</p>
       </div>
 
-      <div class="salta-pz" aria-label="Vai a">
-        <button type="button" onclick="vaiA('journal','pz-bot')">Bot</button>
-        <button type="button" onclick="vaiA('journal','pz-journal')">Piani del journal</button>
-        <button type="button" onclick="vaiA('journal','pz-corsi')">Videocorsi</button>
-      </div>
-
-      <div class="pz-hook">
-        <div class="c r">
-          <div class="k">UNA CHALLENGE FALLITA</div>
-          <div class="v">100 – 500 €</div>
-          <div class="d">Persi in una giornata storta, per aver sforato il limite giornaliero di pochi euro.</div>
-        </div>
-        <div class="vs">oppure</div>
-        <div class="c g">
-          <div class="k">RISKGUARD</div>
-          <div class="v">99 €</div>
-          <div class="d">Una volta sola, per sempre, su 2 conti. Si ferma prima del limite, con un margine di sicurezza.</div>
-        </div>
-      </div>
-
-      <div class="lancio-box">
-        <div class="top">
-          <div>
-            <h3>Prezzo di lancio, bloccato a vita</h3>
-            <p>Riservato ai primi 10 iscritti prima del lancio, su tutti i prodotti. Il prezzo resta bloccato anche sugli aggiornamenti futuri.</p>
-          </div>
-          <div class="contatore">
-            <div class="n" id="cnt-posti2">10</div>
-            <div class="l">posti disponibili</div>
-          </div>
-        </div>
-        <div class="slot">
-          <div class="slot-bar"><i id="slot-fill2" style="width:0%"></i></div>
-          <div class="slot-lbl">
-            <span id="slot-usati2">10 posti disponibili</span>
-            <span>Prezzo bloccato a vita</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="cd-fascia">
-        <div class="cd-kick">Il lancio apre tra</div>
-        <div class="cd-riga" id="cd-journal">
-          <div class="cd-box"><div class="cd-n">28</div><div class="cd-l">giorni</div></div>
-          <div class="cd-box"><div class="cd-n">00</div><div class="cd-l">ore</div></div>
-          <div class="cd-box"><div class="cd-n">00</div><div class="cd-l">min</div></div>
-          <div class="cd-box"><div class="cd-n">00</div><div class="cd-l">sec</div></div>
-        </div>
-        <div class="cd-sotto">Prezzi di lancio bloccati a vita per i primi 10 iscritti.</div>
-      </div>
-
-      <!-- BOT -->
-      <div class="pz-sez" id="pz-bot"><h3>Software per MetaTrader</h3><span>MT4 · MT5 · UNA TANTUM</span></div>
-      <div class="pz-grid">
-        <div class="pz hi">
-          <div class="tg">CONSIGLIATO PER INIZIARE</div>
-          <h4>RiskGuard</h4><div class="pl">PROTEZIONE DEL CONTO</div>
-          <p>Limite giornaliero con margine, drawdown massimo, pausa dopo una perdita, stop dopo N perdite di fila.</p>
-          <div class="pr2"><b style="font-size:1.15rem">€99</b> <span style="color:var(--dim2)">(poi €149)</span> · 2 conti · una tantum</div>
-          <button class="btn pri wide" data-prodotto="RiskGuard" onclick="azioneProdotto('RiskGuard')">Disponibile dal 23 ottobre · blocca il posto</button>
-        </div>
-        <div class="pz">
-          <h4>TradeManager</h4><div class="pl">GESTIONE POSIZIONI</div>
-          <p>Stop loss e take profit automatici se mancano, break-even e trailing stop. Tutto in pip.</p>
-          <div class="pr2"><b style="font-size:1.15rem">€49</b> <span style="color:var(--dim2)">(poi €79)</span> · 2 conti · una tantum</div>
-          <button class="btn pri wide" data-prodotto="TradeManager" onclick="azioneProdotto('TradeManager')">Disponibile dal 23 ottobre · blocca il posto</button>
-        </div>
-        <div class="pz">
-          <h4>ScaleIn</h4><div class="pl">SCAGLIONAMENTO</div>
-          <p>Apri una posizione a mano, lui la divide in più uscite in pip, con un limite sul rischio totale.</p>
-          <div class="pr2"><b style="font-size:1.15rem">€79</b> <span style="color:var(--dim2)">(poi €129)</span> · 2 conti · una tantum</div>
-          <button class="btn pri wide" data-prodotto="ScaleIn" onclick="azioneProdotto('ScaleIn')">Disponibile dal 23 ottobre · blocca il posto</button>
-        </div>
-        <div class="pz">
-          <div class="tg">TUTTI E TRE</div>
-          <h4>Riskly Pro</h4><div class="pl">I TRE MODULI INSIEME</div>
-          <p>Rischio calcolato sull'insieme delle posizioni, non su ognuna da sola. Costa meno dei tre separati.<br><span style="color:var(--up)">Include il 50% di sconto sul videocorso.</span></p>
-          <div class="pr2"><b style="font-size:1.15rem">€199</b> <span style="color:var(--dim2)">(poi €299)</span> · 3 conti · una tantum</div>
-          <button class="btn pri wide" data-prodotto="Riskly Pro" onclick="azioneProdotto('Riskly Pro')">Disponibile dal 23 ottobre · blocca il posto</button>
-        </div>
-        <div class="pz pz-largo">
-          <div><div class="tg">NUOVO · IN ARRIVO</div>
-          <h4>RisklyCopy</h4><div class="pl">COPIA TRA CONTI</div>
-          <p>Copia le operazioni dal conto principale agli altri, tra MT4 e MT5, con il lotto ricalcolato sul saldo di ogni conto.</p></div>
-          <div><div class="pr2"><b style="font-size:1.15rem">€69</b> <span style="color:var(--dim2)">(poi €129)</span> · 1 principale + 3 conti · una tantum</div>
-          <button class="btn pri wide" data-prodotto="RisklyCopy" onclick="azioneProdotto('RisklyCopy')">In arrivo · blocca il prezzo di lancio</button></div>
-        </div>
-      </div>
-        <div class="badge-sic">
-          <span><b>Nessuna carta</b> richiesta ora</span>
-          <span><b>7 giorni</b> di prova sul journal</span>
-          <span>Si paga <b>una volta sola</b></span>
-          <span><b>Zero email</b> indesiderate</span>
-        </div>
-      <p class="fine" style="margin-top:12px">Dettagli e simulazioni di ogni software nella sezione <a onclick="go('bot')" style="color:var(--accent);cursor:pointer;text-decoration:underline">Bot</a>.</p>
-
-      <!-- JOURNAL -->
       <div class="pz-sez" id="pz-journal"><h3>Piani del journal</h3><span>7 GIORNI DI PROVA · SENZA CARTA</span></div>
       <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:22px">
         <button class="btn" id="bt-m" onclick="setCiclo('m')">Mensile</button>
@@ -3198,29 +3102,8 @@ body.fuori-home #vaiHome{display:inline-flex}
       <p class="fine" style="text-align:center;margin-top:18px">Ogni piano parte con 7 giorni di prova gratuita, senza carta di credito. Puoi annullare quando vuoi.
         <a href="https://app.riskly.trade/demo.html" style="color:var(--accent);text-decoration:underline">Prova la demo</a>.</p>
 
-      <!-- CORSO -->
-      <div class="pz-sez" id="pz-corsi"><h3>Videocorsi</h3><span>DISPONIBILI SUBITO · PAGAMENTO UNICO · ACCESSO A VITA</span></div>
-      <div class="pz-corso">
-        <div>
-          <h4 style="font-size:1.08rem;font-weight:600;margin-bottom:6px">Gestione del rischio, dalla teoria alla regola</h4><div class="pl" style="margin-bottom:6px">50 LEZIONI · 11 MODULI · €199 AL LANCIO</div>
-          <p>Quanto rischiare, come calcolarlo, perché la disciplina crolla e come costruire regole che reggono. Disponibile subito: dopo l'acquisto ricevi l'accesso al gruppo Telegram del corso, con le lezioni divise per modulo. Nessuna strategia, nessun segnale.<br><span style="color:var(--up)">Chi acquista un software Riskly ha il 50% di sconto sul corso.</span></p>
-        </div>
-        <button class="btn pri" data-prodotto="Videocorso" onclick="azioneProdotto('Videocorso')">Disponibile dal 23 ottobre · blocca il posto</button>
-      </div>
-      <div class="pz-corso">
-        <div>
-          <h4 style="font-size:1.08rem;font-weight:600;margin-bottom:6px">Analisi fondamentale, dal dato al piano</h4>
-          <p>60 lezioni in 12 moduli: banche centrali, inflazione, lavoro, obbligazioni, correlazioni, beni rifugio ed eventi straordinari. Dopo l'acquisto ricevi l'accesso al gruppo Telegram del corso. <b>299 €</b>, accesso a vita.</p>
-        </div>
-        <button class="btn pri" data-prodotto="Corso Analisi fondamentale" onclick="azioneProdotto('Corso Analisi fondamentale')">Acquista il corso · 299 €</button>
-      </div>
-      <div class="pz-corso">
-        <div>
-          <h4 style="font-size:1.08rem;font-weight:600;margin-bottom:6px">Pacchetto: tutti e due i corsi</h4>
-          <p>Gestione del rischio + Analisi fondamentale: 110 lezioni, accesso a vita ai due gruppi Telegram. <b>399 € invece di 498 €</b>.</p>
-        </div>
-        <button class="btn pri" data-prodotto="Pacchetto corsi" onclick="azioneProdotto('Pacchetto corsi')">Acquista i due corsi · 399 €</button>
-      </div>
+
+      <p class="pz-altri">Cerchi i prezzi dei bot o dei corsi? Li trovi nelle loro pagine: <a href="#" onclick="go('bot');return false">Bot</a> · <a href="#" onclick="go('corso');return false">Corsi</a>.</p>
 
       <div class="cap-slim" style="margin-top:40px">
         <div class="t"><b>Non sai da dove partire?</b><span>Scarica "Le 7 regole di rischio che salvano un conto", gratis, e decidi dopo.</span></div>
@@ -4076,7 +3959,7 @@ body.fuori-home #vaiHome{display:inline-flex}
         <a href="https://app.riskly.trade">Journal ↗</a>
         <a href="https://strumenti.riskly.trade">Calcolatori e calendario ↗</a>
         <a onclick="go('corso')">Videocorso</a>
-        <a onclick="go('journal')">Prezzi</a>
+        <a onclick="go('journal')">Piani del journal</a>
         <a href="/download.html">Area clienti</a>
       </div>
 
