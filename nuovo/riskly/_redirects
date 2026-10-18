@@ -42,3 +42,7 @@
 # qualsiasi altro indirizzo (es. link delle email di conferma) apre il sito invece di "Page not found"
 /quiz /quiz.html?da=link-quiz 302
 /*    /index.html   200
+
+# quiz dei corsi, un link per gruppo Telegram
+/quiz-rischio        /quiz-rischio.html        200
+/quiz-fondamentale   /quiz-fondamentale.html   200

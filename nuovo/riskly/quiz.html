@@ -120,7 +120,9 @@
 
 const $ = id => document.getElementById(id);
 const NOMI = { rischio: 'Gestione del rischio', fondamentale: 'Analisi fondamentale' };
-let corso = new URLSearchParams(location.search).get('corso') === 'fondamentale' ? 'fondamentale' : 'rischio';
+/* quiz-rischio.html e quiz-fondamentale.html fissano il corso (QUIZ_CORSO) e nascondono la scelta */
+let corso = window.QUIZ_CORSO || (new URLSearchParams(location.search).get('corso') === 'fondamentale' ? 'fondamentale' : 'rischio');
+if(window.QUIZ_CORSO){ const sc = document.querySelector('.scelta'); if(sc) sc.style.display = 'none'; }
 let dati = null, mod = null, ordine = [], i = 0, giuste = 0;
 
 const chiave = c => 'riskly-quiz-' + c;
