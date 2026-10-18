@@ -1431,7 +1431,21 @@
   .cal-info{grid-column:1/-1;font-size:13.5px;color:var(--dim);line-height:1.5;padding-top:4px}
   .cal-prossimo{box-shadow:inset 3px 0 0 var(--accent)}
   .cal-stato{padding:40px 20px;text-align:center;color:var(--dim)}
-  @media(max-width:620px){.cal-ev{grid-template-columns:46px minmax(0,1fr);padding:11px 12px}.cal-paese{grid-column:2}.cal-tit{grid-column:1/-1}.cal-valori{grid-column:1/-1;justify-content:start;text-align:left;grid-template-columns:repeat(3,minmax(70px,auto))}.cal-filtri{left:0;right:auto;width:100%}}
+  .cal-ev{grid-template-columns:52px 74px minmax(0,1fr) auto 36px}
+  .cal-stella{appearance:none;border:0;background:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-size:21px;line-height:1;color:var(--dim2);cursor:pointer;-webkit-tap-highlight-color:transparent;transition:transform .15s,color .15s}
+  .cal-stella:active{transform:scale(.85)}
+  .cal-stella[aria-pressed="true"]{color:var(--accent,#E9A10F)}
+  @media (hover:hover) and (pointer:fine){.cal-stella:hover{color:var(--accent,#E9A10F);background:rgba(233,161,15,.1)}}
+  .cal-ev.pref{background:rgba(233,161,15,.06)}
+  @media(max-width:620px){.cal-giorni{width:100%}.cal-giorni button{flex:1;padding:0 6px;font-size:14px;white-space:nowrap}}
+  .cal-tab-pref span{display:inline-block;vertical-align:1px;min-width:18px;margin-left:5px;padding:0 5px;border-radius:999px;background:var(--accent,#E9A10F);color:#2B1E00;font-size:12px;line-height:18px}
+  .cal-tab-pref span:empty{display:none}
+  .cal-avvisi{display:flex;align-items:center;justify-content:space-between;gap:10px 16px;flex-wrap:wrap;padding:12px 14px;margin-bottom:12px;border:1px solid rgba(233,161,15,.5);border-radius:4px;background:rgba(233,161,15,.08);font-size:.92rem}
+  .cal-avvisi[hidden]{display:none}
+  .cal-toasts{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:99;display:flex;flex-direction:column;gap:8px;width:min(92vw,440px)}
+  .cal-toast{background:#15181B;color:#FBFBF9;padding:14px 18px;border-radius:12px;box-shadow:0 18px 40px -12px rgba(0,0,0,.5);font-size:.95rem;line-height:1.4}
+  .cal-toast b{color:#F6C55A}
+  @media(max-width:620px){.cal-ev{grid-template-columns:46px minmax(0,1fr) 36px;padding:11px 12px}.cal-stella{grid-column:3;grid-row:1}.cal-paese{grid-column:2}.cal-tit{grid-column:1/-1}.cal-valori{grid-column:1/-1;justify-content:start;text-align:left;grid-template-columns:repeat(3,minmax(70px,auto))}.cal-filtri{left:0;right:auto;width:100%}}
   .cal-cornice .vuoto{position:absolute;inset:0;display:grid;place-items:center;color:var(--dim);text-align:center;padding:24px}
   .cal-nota{color:var(--dim2);font-size:.78rem;line-height:1.55;margin-top:10px}
   .cal-nota a{color:var(--dim)}
@@ -1558,10 +1572,10 @@ input,select,textarea{border-radius:3px!important}
 <div class="str-pannello on" id="st-calendario">
         <div class="card cal-card">
           <div class="card-head"><h3>Calendario economico</h3><span class="meta cal-live"><i></i>in tempo reale</span></div>
-          <p class="cal-sotto">I dati che muovono forex, oro e indici. Il valore effettivo compare appena il dato esce; gli orari sono nella tua ora locale. Tocca un evento per leggere cosa misura.</p>
+          <p class="cal-sotto">I dati che muovono forex, oro e indici. Il valore effettivo compare appena il dato esce; gli orari sono nella tua ora locale. Tocca un evento per leggere cosa misura, e la stella ☆ per salvarlo nei preferiti e ricevere un avviso quando esce.</p>
           <div class="cal-barra">
             <div class="cal-giorni" role="tablist" aria-label="Periodo">
-              <button type="button" role="tab" data-g="oggi">Oggi</button><button type="button" role="tab" data-g="domani">Domani</button><button type="button" role="tab" data-g="settimana">Settimana</button>
+              <button type="button" role="tab" data-g="oggi">Oggi</button><button type="button" role="tab" data-g="domani">Domani</button><button type="button" role="tab" data-g="settimana">Settimana</button><button type="button" role="tab" data-g="preferiti" class="cal-tab-pref">★ Preferiti<span id="calPrefN"></span></button>
             </div>
             <button type="button" class="cal-apri" id="calApri" aria-expanded="false" aria-controls="calFiltri" onclick="calFiltriApri()">
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M7 12h10M10 18h4"/></svg>Filtri</button>
@@ -1579,6 +1593,10 @@ input,select,textarea{border-radius:3px!important}
               <button class="cal-chip" data-v="nz">🇳🇿 Nuova Zelanda</button><button class="cal-chip" data-v="cn">🇨🇳 Cina</button></div>
             <div class="cal-rapidi"><button data-preset="forex">Solo quello che muove il forex</button><button data-preset="usa">Solo USA, alta importanza</button><button data-preset="tutto">Mostra tutto</button></div>
             <div class="cal-fatto"><button type="button" class="btn pri" onclick="calFiltriApri(false)">Fatto</button></div>
+          </div>
+          <div class="cal-avvisi" id="calAvvisi" hidden>
+            <span id="calAvvisiTesto"></span>
+            <button type="button" class="btn" id="calAvvisiBtn" onclick="calAvvisiAttiva()">Attiva gli avvisi</button>
           </div>
           <div class="cal-cornice" id="calCornice"></div>
           <p class="cal-nota">Dati: <a href="https://it.tradingview.com/economic-calendar/" rel="noopener" target="_blank">TradingView</a>, si aggiornano ogni minuto. Orari e valori possono cambiare: verifica sempre prima di operare. Nei minuti intorno ai dati importanti spread e slippage possono farti perdere più del previsto: Riskly Pro non apre operazioni vicino alle notizie.</p>
@@ -2059,6 +2077,10 @@ try { calGiorno = localStorage.getItem('riskly-cal-giorno') || 'oggi'; } catch(e
 function calPeriodo(){
   const d0 = new Date(); d0.setHours(0, 0, 0, 0);
   const piu = (d, n) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
+  if(calGiorno === 'preferiti'){
+    const t = Object.values(calPref).map(x => new Date(x.d).getTime());
+    return [new Date(Math.min(Date.now() - 12 * 3600e3, ...t)), new Date(Math.max(Date.now(), ...t) + 3600e3)];
+  }
   if(calGiorno === 'domani') return [piu(d0, 1), piu(d0, 2)];
   if(calGiorno === 'settimana'){
     const g = d0.getDay(), lun = g === 0 ? piu(d0, 1) : g === 6 ? piu(d0, 2) : piu(d0, 1 - g);  // nel fine settimana, la prossima
@@ -2085,8 +2107,11 @@ async function calCarica(forza){
 }
 function calMostra(){
   const box = document.getElementById('calCornice'); if(!box) return;
-  if(!calStato.imp.length || !calStato.paesi.length){ box.innerHTML = '<div class="cal-stato">Scegli almeno un livello di importanza e un paese nei filtri.</div>'; return; }
-  const ev = calDati.filter(e => calStato.imp.includes(String(e.importance)) && calStato.paesi.includes(String(e.country).toLowerCase()));
+  const soloPref = calGiorno === 'preferiti';
+  calAvvisiBarra();
+  if(soloPref && !Object.keys(calPref).length){ box.innerHTML = '<div class="cal-stato">Nessun preferito.<br>Tocca la stella ☆ accanto a un dato di oggi, domani o della settimana per salvarlo qui.</div>'; return; }
+  if(!soloPref && (!calStato.imp.length || !calStato.paesi.length)){ box.innerHTML = '<div class="cal-stato">Scegli almeno un livello di importanza e un paese nei filtri.</div>'; return; }
+  const ev = soloPref ? calDati.filter(e => calPref[e.id]) : calDati.filter(e => calStato.imp.includes(String(e.importance)) && calStato.paesi.includes(String(e.country).toLowerCase()));
   if(!ev.length){ box.innerHTML = '<div class="cal-stato">Nessun evento con questi filtri' + (calGiorno === 'oggi' ? ' oggi' : calGiorno === 'domani' ? ' domani' : ' questa settimana') + '.</div>'; return; }
   const ora = Date.now(); let prossimo = ev.find(e => new Date(e.date).getTime() >= ora); let html = '', giorno = '';
   for(const e of ev){
@@ -2095,16 +2120,84 @@ function calMostra(){
     const h = d.toLocaleTimeString('it-IT', { hour:'2-digit', minute:'2-digit' });
     const p = String(e.country).toLowerCase(), pm = /^([A-Z][a-z]{2})\/(\d{2})$/.exec(e.period || ''), per = pm ? (+pm[2]) + ' ' + (CAL_MESI[pm[1]] || pm[1]) : e.period ? (CAL_MESI[e.period] || e.period) : '';
     const aperto = calAperto === e.id;
-    html += `<div class="cal-ev${d.getTime() < ora ? ' passato' : ''}${e === prossimo ? ' cal-prossimo' : ''}" data-id="${calEsc(e.id)}">
+    const pr = !!calPref[e.id];
+    html += `<div class="cal-ev${d.getTime() < ora ? ' passato' : ''}${e === prossimo ? ' cal-prossimo' : ''}${pr ? ' pref' : ''}" data-id="${calEsc(e.id)}">
       <span class="cal-ora">${h}</span>
       <span class="cal-paese">${CAL_BAND[p] || ''} ${calEsc(e.currency || e.country)} <span class="cal-imp i${e.importance}"><b></b><b></b><b></b></span></span>
       <span class="cal-tit">${calEsc(calNome(e.title))}${per ? `<small>${calEsc(per)}</small>` : ''}</span>
       <span class="cal-valori"><span><i>Effettivo</i>${calNum(e.actual, e.unit)}</span><span><i>Previsto</i>${calNum(e.forecast, e.unit)}</span><span><i>Precedente</i>${calNum(e.previous, e.unit)}</span></span>
+      <button type="button" class="cal-stella" aria-pressed="${pr}" aria-label="${pr ? 'Togli dai preferiti' : 'Aggiungi ai preferiti'}">${pr ? '★' : '☆'}</button>
       ${aperto && e.comment ? `<span class="cal-info">${calEsc(e.comment)}${e.source ? ' · Fonte: ' + calEsc(e.source) : ''}</span>` : ''}
     </div>`;
   }
   box.innerHTML = html;
 }
+/* preferiti e avvisi: salvati in questo browser */
+let calPref = {}, calAvvisati = {};
+try { calPref = JSON.parse(localStorage.getItem('riskly-cal-pref')) || {}; calAvvisati = JSON.parse(localStorage.getItem('riskly-cal-avvisati')) || {}; } catch(e) {}
+(function(){ const lim = Date.now() - 8 * 86400e3; for(const k in calPref) if(new Date(calPref[k].d).getTime() < lim) delete calPref[k];
+  for(const k in calAvvisati) if(calAvvisati[k] < lim) delete calAvvisati[k]; })();
+function calPrefSalva(){
+  try { localStorage.setItem('riskly-cal-pref', JSON.stringify(calPref)); localStorage.setItem('riskly-cal-avvisati', JSON.stringify(calAvvisati)); } catch(e) {}
+  const n = Object.keys(calPref).length, el = document.getElementById('calPrefN'); if(el) el.textContent = n || '';
+}
+function calPrefCambia(id){
+  if(calPref[id]) delete calPref[id];
+  else { const e = calDati.find(x => x.id === id); if(!e) return;
+    calPref[id] = { d: e.date, t: calNome(e.title), c: String(e.country).toLowerCase(), u: e.unit || '' }; }
+  calPrefSalva(); calMostra();
+}
+function calAvvisiStato(){
+  if(!('Notification' in window)) return 'no';
+  return Notification.permission === 'granted' && localStorage.getItem('riskly-cal-avvisi') === '1' ? 'on' : Notification.permission === 'denied' ? 'negato' : 'off';
+}
+function calAvvisiBarra(){
+  const b = document.getElementById('calAvvisi'); if(!b) return;
+  const n = Object.keys(calPref).length; b.hidden = !n;
+  if(!n) return;
+  const st = calAvvisiStato(), t = document.getElementById('calAvvisiTesto'), btn = document.getElementById('calAvvisiBtn');
+  const ios = /iPhone|iPad/.test(navigator.userAgent), app = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+  btn.style.display = st === 'off' ? '' : 'none';
+  if(st === 'on') t.innerHTML = '🔔 <b>Avvisi attivi</b> sui ' + n + ' preferiti: 5 minuti prima e appena esce il valore. Tieni il sito aperto (anche in un\'altra scheda).';
+  else if(st === 'negato') t.textContent = '🔕 Hai bloccato le notifiche per questo sito: riattivale dalle impostazioni del browser.';
+  else if(st === 'no') t.textContent = ios && !app ? '🔔 Su iPhone gli avvisi funzionano se aggiungi il sito alla schermata Home: Condividi → Aggiungi a Home, poi aprilo da lì.' : '🔔 Questo browser non supporta le notifiche.';
+  else t.textContent = '🔔 Vuoi un avviso 5 minuti prima e appena escono i tuoi ' + n + ' preferiti?';
+}
+async function calAvvisiAttiva(){
+  try { const p = await Notification.requestPermission(); if(p === 'granted'){ localStorage.setItem('riskly-cal-avvisi', '1');
+    calNotifica('Avvisi attivi', 'Ti avviso 5 minuti prima e appena esce il valore dei tuoi preferiti.'); } } catch(e) {}
+  calAvvisiBarra(); calControlla();
+}
+async function calNotifica(tit, testo){
+  try { const reg = navigator.serviceWorker && await navigator.serviceWorker.getRegistration();
+    if(reg) await reg.showNotification(tit, { body: testo, icon: '/icon-192.png', badge: '/icon-192.png', tag: tit });
+    else new Notification(tit, { body: testo, icon: '/icon-192.png' }); } catch(e) {}
+  let pila = document.getElementById('calToasts');
+  if(!pila){ pila = document.createElement('div'); pila.id = 'calToasts'; pila.className = 'cal-toasts'; pila.setAttribute('role', 'status'); document.body.appendChild(pila); }
+  const v = document.createElement('div'); v.className = 'cal-toast';
+  v.innerHTML = '<b>' + calEsc(tit) + '</b><br>' + calEsc(testo); pila.appendChild(v); setTimeout(() => v.remove(), 9000);
+}
+/* ogni 30 secondi controlla i preferiti vicini: avviso 5 minuti prima e quando compare il valore effettivo */
+async function calControlla(){
+  if(calAvvisiStato() !== 'on') return;
+  const ora = Date.now(), vicini = Object.entries(calPref).filter(([, x]) => { const t = new Date(x.d).getTime(); return t > ora - 3 * 3600e3 && t < ora + 6 * 60e3; });
+  if(!vicini.length) return;
+  for(const [id, x] of vicini){ const t = new Date(x.d).getTime();
+    if(t > ora && t - ora <= 5 * 60e3 && !calAvvisati[id + ':p']){ calAvvisati[id + ':p'] = ora; calPrefSalva();
+      calNotifica('Tra ' + Math.max(1, Math.round((t - ora) / 60e3)) + ' min: ' + x.t, (CAL_BAND[x.c] || '') + ' esce alle ' + new Date(t).toLocaleTimeString('it-IT', { hour:'2-digit', minute:'2-digit' }) + '. Occhio a spread e stop stretti.'); } }
+  const usciti = vicini.filter(([id, x]) => new Date(x.d).getTime() <= ora + 60e3 && !calAvvisati[id + ':u']);
+  if(!usciti.length) return;
+  try {
+    const r = await fetch('/api/calendario?from=' + new Date(ora - 3 * 3600e3).toISOString() + '&to=' + new Date(ora + 3600e3).toISOString() + '&countries=' + Object.keys(CAL_BAND).map(x => x.toUpperCase()).join(','));
+    const j = await r.json(); if(!Array.isArray(j.result)) return;
+    for(const [id, x] of usciti){ const e = j.result.find(y => y.id === id); if(!e || e.actual === null || e.actual === undefined || e.actual === '') continue;
+      calAvvisati[id + ':u'] = ora; calPrefSalva();
+      calNotifica('Uscito: ' + x.t, (CAL_BAND[x.c] || '') + ' Effettivo ' + calNum(e.actual, e.unit) + ' · previsto ' + calNum(e.forecast, e.unit) + ' · precedente ' + calNum(e.previous, e.unit)); }
+  } catch(e) {}
+}
+setInterval(() => calControlla(), 30000);
+try { if(navigator.serviceWorker) navigator.serviceWorker.register('/sw.js').catch(() => {}); } catch(e) {}
+setTimeout(() => { calPrefSalva(); calControlla(); }, 0);
 function calGiornoScegli(g){
   calGiorno = g; try { localStorage.setItem('riskly-cal-giorno', g); } catch(e) {}
   document.querySelectorAll('.cal-giorni button').forEach(b => b.setAttribute('aria-selected', b.dataset.g === g));
@@ -2119,6 +2212,7 @@ function calDisegna(){
 }
 document.addEventListener('click', e => {
   const b = e.target.closest('.cal-giorni button'); if(b){ calGiornoScegli(b.dataset.g); return; }
+  const st = e.target.closest('.cal-stella'); if(st){ calPrefCambia(st.closest('.cal-ev').dataset.id); return; }
   const r = e.target.closest('.cal-ev'); if(r){ calAperto = calAperto === r.dataset.id ? '' : r.dataset.id; calMostra(); return; }
   const f = document.getElementById('calFiltri');
   if(f && !f.hidden && !e.target.closest('#calFiltri') && !e.target.closest('#calApri')) calFiltriApri(false);
