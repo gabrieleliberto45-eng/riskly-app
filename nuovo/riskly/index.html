@@ -2100,6 +2100,10 @@ nav .btn.pri{border-radius:999px!important}
 .nh .tile-vai,.nh .tile:not(.t-big) .tile-vai{position:absolute;right:14px;bottom:10px;font-size:18px}
 .nh .hero-tag{font-size:12px;margin-bottom:16px;padding:6px 12px}
 }
+/* pulsante per tornare alla home dalle altre pagine */
+#vaiHome{display:none;position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:60;align-items:center;gap:4px;padding:10px 16px 10px 10px;border-radius:999px;border:1px solid #15181B;background:#15181B;color:#FBFBF9;font:700 15px 'Archivo',system-ui,sans-serif;box-shadow:0 10px 26px -10px rgba(0,0,0,.55);cursor:pointer;-webkit-tap-highlight-color:transparent}
+#vaiHome:active{transform:scale(.96)}
+body.fuori-home #vaiHome{display:inline-flex}
 /* telefono: home più corta, l'ecosistema diventa un elenco senza foto */
 .nh .salta{display:none}
 @media (max-width:600px){
@@ -2373,11 +2377,11 @@ nav .btn.pri{border-radius:999px!important}
     <div class="wrap">
       <div class="testo">
         <h2>Chi c'è dietro Riskly</h2>
-        <p>Sono <b>Gabriele Liberto</b>, trader e sviluppatore. Riskly nasce da un problema mio e di molti colleghi con cui lavoro ogni giorno.</p>
+        <p>Sono <b>Gabriele</b>, trader e sviluppatore. Riskly nasce da un problema mio e di molti colleghi con cui lavoro ogni giorno.</p>
         <p>Nel trading il mercato non lo controlli, il rischio sì, ed è l'unica variabile che quasi nessuno gestisce con regole scritte. Sapevo cosa mi serviva per fermarmi al momento giusto, e sapevo scriverlo. Così l'ho costruito.</p>
         <p>Non vendo segnali e non prometto rendimenti. I bot sono in test su conto demo MT5: pubblico gli screenshot datati sul canale Telegram.</p>
         <div class="link"><a href="https://t.me/+mlCyBs21_7A3ZDg0" target="_blank" rel="noopener">Canale Telegram</a><a href="mailto:info@riskly.trade">Scrivimi</a></div>
-        <p class="firma">Gabriele Liberto, ditta individuale, P. IVA 04948840162</p>
+        <p class="firma">Riskly · P. IVA 04948840162</p>
       </div>
       <form class="modulo" onsubmit="iscrivi(event,'mail0','capmsg0')">
         <h3>Le 7 regole di rischio che salvano un conto</h3>
@@ -3118,7 +3122,7 @@ nav .btn.pri{border-radius:999px!important}
         <a href="https://app.riskly.trade/demo.html" style="color:var(--accent);text-decoration:underline">Prova la demo</a>.</p>
 
       <!-- CORSO -->
-      <div class="pz-sez"><h3>Videocorso</h3><span>50 LEZIONI · 11 MODULI · QUASI 3 ORE · €199 AL LANCIO · POI €249</span></div>
+      <div class="pz-sez"><h3>Videocorso</h3><span>50 LEZIONI · 11 MODULI · OLTRE 3 ORE · €199 AL LANCIO · POI €249</span></div>
       <div class="pz-corso">
         <div>
           <h4 style="font-size:1.08rem;font-weight:600;margin-bottom:6px">Gestione del rischio, dalla teoria alla regola</h4>
@@ -3516,7 +3520,7 @@ nav .btn.pri{border-radius:999px!important}
         <p class="lead" style="margin-top:14px!important"><a href="#corso-rischio" onclick="document.getElementById('corso-rischio').scrollIntoView({behavior:'smooth'});return false" style="color:var(--ink);font-weight:700">Gestione del rischio ↓</a> &nbsp;·&nbsp; <a href="#corso-fondamentale" onclick="document.getElementById('corso-fondamentale').scrollIntoView({behavior:'smooth'});return false" style="color:var(--ink);font-weight:700">Analisi fondamentale ↓</a></p>
       </div>
 
-      <div class="pz-sez" id="corso-rischio" style="margin-top:0!important;scroll-margin-top:90px"><h3>Riskly · Gestione del rischio</h3><span>50 LEZIONI · 11 MODULI · QUASI 3 ORE · DISPONIBILE</span></div>
+      <div class="pz-sez" id="corso-rischio" style="margin-top:0!important;scroll-margin-top:90px"><h3>Riskly · Gestione del rischio</h3><span>50 LEZIONI · 11 MODULI · OLTRE 3 ORE · DISPONIBILE</span></div>
 
       
 
@@ -3685,7 +3689,7 @@ nav .btn.pri{border-radius:999px!important}
       </div>
 
 
-      <div class="pz-sez" id="corso-fondamentale" style="scroll-margin-top:90px"><h3>Riskly · Analisi fondamentale</h3><span>60 LEZIONI · 12 MODULI · QUASI 3 ORE · 299 €</span></div>
+      <div class="pz-sez" id="corso-fondamentale" style="scroll-margin-top:90px"><h3>Riskly · Analisi fondamentale</h3><span>60 LEZIONI · 12 MODULI · OLTRE 3 ORE · 299 €</span></div>
       <div class="lancio-box" style="margin-top:24px">
         <picture class="corso-cop">
           <img src="/img/eco-corso-fondamentale.webp" width="1200" height="675" loading="lazy" alt="Videocorso Riskly Analisi fondamentale: 60 lezioni, 12 moduli">
@@ -4042,12 +4046,11 @@ nav .btn.pri{border-radius:999px!important}
         Riskly fornisce strumenti software per la gestione del rischio e l'analisi delle operazioni. Non fornisce consulenza in materia di investimenti, raccomandazioni personalizzate, segnali operativi né gestione di portafogli, e non è iscritta ad alcun albo di consulenti finanziari. Le decisioni di investimento restano esclusiva responsabilità dell'utente. Il trading su strumenti finanziari con leva comporta un elevato rischio di perdita del capitale e non è adatto a tutti gli investitori: le performance passate non sono indicative di risultati futuri. Gli Expert Advisor vanno testati su conto demo prima dell'utilizzo su conto reale. MetaTrader è un marchio registrato di MetaQuotes Ltd., non affiliata a Riskly.
       </p>
       <p class="disc" style="margin-top:14px">
-        Gabriele Liberto · Ditta individuale<br>
-        P. IVA 04948840162 · C.F. LBRGRL04D19F899W<br>
+        Riskly · P. IVA 04948840162 · <a href="#" onclick="go('termini');return false">Dati del titolare</a><br>
         <a href="mailto:info@riskly.trade">info@riskly.trade</a>
       </p>
       <div class="f-firma">
-        <span>© 2026 Riskly · Gabriele Liberto</span>
+        <span>© 2026 Riskly</span>
         <span>P. IVA 04948840162</span>
       </div>
     </div>
@@ -5980,7 +5983,16 @@ function go(id, btn, idx){
   if(id === 'bot' && typeof avviaSimulazioni === 'function') avviaSimulazioni();
   if(typeof preparaComparsa === 'function') setTimeout(preparaComparsa, 60);
   if(id === 'app' && typeof avviaJournal === 'function') setTimeout(avviaJournal, 40);
+  /* pulsante "Home" fuori dalla home, e il tasto indietro del telefono torna alla pagina di prima */
+  document.body.classList.toggle('fuori-home', id !== 'home');
+  if(!go.daIndietro){ try{ const st = history.state || {};
+    if(st.pagina !== id) history[st.pagina ? 'pushState' : 'replaceState']({ pagina: id }, '', location.pathname + location.search); }catch(e){} }
 }
+addEventListener('popstate', function(e){
+  const id = (e.state && e.state.pagina) || 'home';
+  go.daIndietro = true; try{ go(id); } finally { go.daIndietro = false; }
+});
+try{ if(!history.state) history.replaceState({ pagina: 'home' }, '', location.pathname + location.search + location.hash); }catch(e){}
 
 /* ---------- Prezzi journal ---------- */
 const PREZZI = {
@@ -6625,7 +6637,7 @@ const CHAT_EXTRA = [
   { q: 'Come si installa il bot?', k: 'installare installazione installo guida file ex4 ex5 metatrader cartella experts',
     a: '<p>Dopo l\'acquisto entri nel gruppo Telegram dei clienti: lì trovi la guida passo passo e ricevi i file abilitati per il tuo conto. Ti aiutiamo noi se qualcosa non va. Prova sempre prima su conto demo.</p>' },
   { q: 'Chi c\'è dietro Riskly?', k: 'chi siete chi è gabriele azienda società partita iva affidabile truffa',
-    a: '<p>Riskly è di <b>Gabriele Liberto</b> (ditta individuale, P. IVA 04948840162). Non vendiamo segnali né promettiamo guadagni: solo strumenti per gestire il rischio.</p>',
+    a: '<p>Riskly è di <b>Gabriele</b>, trader e sviluppatore (P. IVA 04948840162). Non vendiamo segnali né promettiamo guadagni: solo strumenti per gestire il rischio.</p>',
     azioni: [['Il metodo', "chatChiudi();go('metodo')"]] },
 ];
 
@@ -6827,6 +6839,7 @@ document.addEventListener('play', e => { if(e.target.tagName !== 'VIDEO') return
   if(typeof go === 'function'){ var g0 = go; window.go = function(){ var r = g0.apply(this, arguments); setTimeout(function(){ document.querySelectorAll('.page.on .rv:not(.visto)').forEach(function(e){ var b = e.getBoundingClientRect(); if(b.top < innerHeight) e.classList.add('visto'); }); }, 30); return r; }; }
 })();
 </script>
+<button type="button" id="vaiHome" onclick="go('home')" aria-label="Torna alla home"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>Home</button>
 </body>
 </html>
 
