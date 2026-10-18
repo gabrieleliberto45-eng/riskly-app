@@ -2044,6 +2044,25 @@ nav .btn.pri{border-radius:999px!important}
 .cifre .candele .stop{stroke-dashoffset:0;animation:scorri 1.6s linear infinite}
 @keyframes scorri{to{stroke-dashoffset:-32}}
 @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.cifre .candele .c{opacity:1;transform:none;transition:none}.cifre .candele .stop{animation:none}.nh h1 mark{background-size:100% 100%;transition:none}.nh .of,.nh .of-img,.btn{transition:none!important}}
+/* telefono: home più corta, l'ecosistema diventa un elenco senza foto */
+.nh .salta{display:none}
+@media (max-width:600px){
+.nh .salta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.nh .salta a{padding:8px 14px;border:1px solid var(--rule);border-radius:999px;background:var(--sheet);color:var(--ink);font-size:14.5px;font-weight:600;text-decoration:none}
+.nh .offerta{padding:44px 0 32px}
+.nh .offerta .intro{display:none}
+.nh .of-griglia{gap:10px;margin-top:20px}
+.nh .of,.nh .of:nth-child(3n),.nh .of:nth-child(2n){display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:12px;row-gap:3px;padding:14px 16px!important}
+.nh .of>*{margin:0!important;grid-column:1}
+.nh .of-img,.nh .of p,.nh .of-n,.nh .of-arrivo{display:none!important}
+.nh .of b{font-size:23px}
+.nh .of-prezzo{font-size:12px}
+.nh .of-vai{grid-column:2;grid-row:1/span 3;font-size:0;text-decoration:none}
+.nh .of-vai::before{content:'→';font-size:22px;font-weight:700}
+.nh #procedura .intro,.nh .fase .strumento{display:none}
+.nh .fase{padding:16px 0}
+.nh .fase p{font-size:16px}
+}
 </style>
 <script>
 /* ritorno da Stripe: qualunque indirizzo usi Stripe, chi ha appena pagato va all'area clienti */
@@ -2118,6 +2137,13 @@ nav .btn.pri{border-radius:999px!important}
           <a class="btn btn-pieno" href="#offerta" onclick="document.getElementById('offerta').scrollIntoView({behavior:'smooth'});return false">Scopri cosa offriamo</a>
           <a class="btn btn-linea" href="#" onclick="go('bot');return false">Scegli il bot</a>
         </div>
+        <nav class="salta" aria-label="Vai subito a">
+          <a href="#" onclick="go('bot');return false">Bot</a>
+          <a href="#" onclick="go('corso');return false">Corsi</a>
+          <a href="https://app.riskly.trade">Journal</a>
+          <a href="https://strumenti.riskly.trade/#posizione">Calcolatori gratis</a>
+          <a href="https://strumenti.riskly.trade/#calendario">Calendario</a>
+        </nav>
       </div>
 
       <div class="scheda" id="sim" aria-labelledby="sim-titolo">
@@ -2148,7 +2174,7 @@ nav .btn.pri{border-radius:999px!important}
     <div class="wrap">
       <div><b>5</b><span>bot per MT4 e MT5</span></div>
       <div><b>2</b><span>videocorsi</span></div>
-      <div><b>104</b><span>lezioni video</span></div>
+      <div><b>110</b><span>lezioni video</span></div>
       <div><b>1</b><span>journal con i bot collegati</span></div>
       <div><b>0€</b><span>calcolatori e calendario</span></div>
     </div>
@@ -3156,7 +3182,7 @@ nav .btn.pri{border-radius:999px!important}
           <p>Due conti per RiskGuard, TradeManager e ScaleIn; tre per Riskly Pro; per RisklyCopy un conto principale e tre che ricevono. Puoi usarli su conto demo e reale. Se cambi broker o numero di conto, scrivici e aggiorniamo la licenza senza costi.</p></details>
 
         <details><summary>Cosa comprende il videocorso?</summary>
-          <p>Quarantasette lezioni video in dieci moduli, quasi tre ore in tutto: rischio per trade, stop e lotto; expectancy, profit factor e drawdown; position sizing con rischio fisso, ATR e Kelly; Monte Carlo e probabilità di rovina; disciplina, limiti giornalieri e checklist; le regole delle prop firm; break-even, trailing e scaglioni; compounding, mitigazione e hedging; e alla fine il tuo piano operativo su una pagina. Ogni lezione ha esempi svolti ed esercizi. Non contiene strategie d'ingresso né segnali operativi: quella è una scelta, non una mancanza.</p></details>
+          <p>Cinquanta lezioni video in undici moduli, più di tre ore in tutto: rischio per trade, stop e lotto; expectancy, profit factor e drawdown; position sizing con rischio fisso, ATR e Kelly; Monte Carlo e probabilità di rovina; disciplina, limiti giornalieri e checklist; le regole delle prop firm; break-even, trailing e scaglioni; compounding, mitigazione e hedging; e alla fine il tuo piano operativo su una pagina. Ogni lezione ha esempi svolti ed esercizi. Non contiene strategie d'ingresso né segnali operativi: quella è una scelta, non una mancanza.</p></details>
         <details><summary>Come ricevo il videocorso dopo l'acquisto?</summary>
           <p>Il corso si guarda su Telegram, in un gruppo privato con una cartella per ogni modulo e le lezioni in ordine. Dopo il pagamento accedi con il tuo account Riskly: nell'area clienti compare il pulsante per entrare nel gruppo del corso. Le richieste di accesso sono approvate a mano, di solito in poche ore e comunque entro 24 ore lavorative. L'accesso è a vita.</p></details>
 
@@ -3608,7 +3634,7 @@ nav .btn.pri{border-radius:999px!important}
           <div class="ci-e">lezioni video</div>
         </div>
         <div class="ci-voce">
-          <div class="ci-n">2h 48'</div>
+          <div class="ci-n">3h 16'</div>
           <div class="ci-e">durata totale</div>
         </div>
         <div class="ci-voce">
@@ -3749,8 +3775,8 @@ nav .btn.pri{border-radius:999px!important}
       </div>
       </details>
       <div class="corso-info">
-        <div class="ci-voce"><div class="ci-n">57</div><div class="ci-e">lezioni video</div></div>
-        <div class="ci-voce"><div class="ci-n">11</div><div class="ci-e">moduli</div></div>
+        <div class="ci-voce"><div class="ci-n">60</div><div class="ci-e">lezioni video</div></div>
+        <div class="ci-voce"><div class="ci-n">12</div><div class="ci-e">moduli</div></div>
         <div class="ci-voce"><div class="ci-n">∞</div><div class="ci-e">accesso a vita</div></div>
         <div class="ci-voce"><div class="ci-n">TG</div><div class="ci-e">gruppo Telegram per moduli</div></div>
       </div>
