@@ -2113,6 +2113,10 @@ body.fuori-home #vaiHome{display:inline-flex}
 .page:not(.nh) .pz,.page:not(.nh) .pz.hi,.page:not(.nh) .plan,.page:not(.nh) .pz-corso{background:#FBFBF9!important;border:1.5px solid #C9CDD1!important;border-radius:20px!important;padding:clamp(18px,2.6vw,28px)!important;box-shadow:0 14px 32px -20px rgba(21,24,27,.4)!important}
 .page:not(.nh) .pz.hi,.page:not(.nh) .plan.hi,.page:not(.nh) .plan.pop{border-color:#E9A10F!important;box-shadow:0 0 0 3px rgba(233,161,15,.18),0 14px 32px -20px rgba(21,24,27,.4)!important}
 .page:not(.nh) .pz-corso+.pz-corso{margin-top:16px}
+.siti-barra b .sb-corto{display:none}
+.siti-barra a.sb-clienti{background:rgba(233,161,15,.14)}
+.siti-barra a.sb-clienti i{color:#B97C00}
+@media (max-width:640px){.siti-barra b .sb-lungo{display:none}.siti-barra b .sb-corto{display:inline!important;font:inherit!important;color:inherit!important}}
 /* telefono: home più corta, l'ecosistema diventa un elenco senza foto */
 .nh .salta{display:none}
 @media (max-width:600px){
@@ -2183,12 +2187,13 @@ body.fuori-home #vaiHome{display:inline-flex}
     </div>
   </div>
   <div id="menu-mobile" hidden>
-    <button onclick="go('home');chiudiMenu()">Home</button><button onclick="go('bot');chiudiMenu()">Bot</button><button onclick="go('corso');chiudiMenu()">Corsi</button><button onclick="go('journal');chiudiMenu()">Prezzi</button><button onclick="go('metodo');chiudiMenu()">Metodo</button><button onclick="go('faq');chiudiMenu()">FAQ</button><a href="https://app.riskly.trade">Journal</a><a href="https://strumenti.riskly.trade">Strumenti gratuiti</a><button onclick="apriAccesso('entra');chiudiMenu()">Accedi</button>
+    <button onclick="go('home');chiudiMenu()">Home</button><button onclick="go('bot');chiudiMenu()">Bot</button><button onclick="go('corso');chiudiMenu()">Corsi</button><button onclick="go('journal');chiudiMenu()">Prezzi</button><button onclick="go('metodo');chiudiMenu()">Metodo</button><button onclick="go('faq');chiudiMenu()">FAQ</button><a href="https://app.riskly.trade">Journal</a><a href="https://strumenti.riskly.trade">Strumenti gratuiti</a><a href="/download.html" style="font-weight:800">Area clienti</a><button id="menu-accedi" onclick="if(utente){go('account')}else{apriAccesso('entra')};chiudiMenu()">Accedi</button>
   </div>
   <div class="siti-barra"><div class="wrap">
     <span class="sb-testo">Riskly ha anche</span>
     <a href="https://app.riskly.trade"><b>Journal</b><span>app.riskly.trade</span><i aria-hidden="true">↗</i></a>
-    <a href="https://strumenti.riskly.trade"><b>Calcolatori e calendario</b><span>strumenti.riskly.trade</span><i aria-hidden="true">↗</i></a>
+    <a href="https://strumenti.riskly.trade"><b><span class="sb-lungo">Calcolatori e calendario</span><span class="sb-corto">Strumenti</span></b><span>strumenti.riskly.trade</span><i aria-hidden="true">↗</i></a>
+    <a href="/download.html" class="sb-clienti"><b>Area clienti</b><span>i tuoi acquisti</span><i aria-hidden="true">→</i></a>
   </div></div>
 </nav>
 <script>function chiudiMenu(){const m=document.getElementById('menu-mobile');if(m)m.hidden=true;const b=document.querySelector('.apri-menu');if(b)b.setAttribute('aria-expanded','false');}</script>
@@ -4048,6 +4053,7 @@ body.fuori-home #vaiHome{display:inline-flex}
         <a href="https://strumenti.riskly.trade">Calcolatori e calendario ↗</a>
         <a onclick="go('corso')">Videocorso</a>
         <a onclick="go('journal')">Prezzi</a>
+        <a href="/download.html">Area clienti</a>
       </div>
 
       <div class="f-col">
@@ -5183,7 +5189,9 @@ function aggiornaNavAccount(){
     const nome = (profilo && profilo.nome) ? profilo.nome.split(' ')[0] : 'Il mio account';
     b.textContent = nome;
     b.onclick = () => go('account');
+    const m = document.getElementById('menu-accedi'); if(m) m.textContent = 'Il mio account (' + nome + ')';
   } else {
+    const m = document.getElementById('menu-accedi'); if(m) m.textContent = 'Accedi';
     b.textContent = 'Accedi';
     b.onclick = () => apriAccesso('entra');
   }
