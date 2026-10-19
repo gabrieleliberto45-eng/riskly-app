@@ -1571,6 +1571,49 @@ input,select,textarea{border-radius:3px!important}
   html[data-tema="scuro"] .s-tema .ic-sole{display:block}
   html[data-tema="scuro"] .s-tema .ic-luna{display:none}
   @media (max-width:560px){.s-tema-t{display:none}.s-tema{padding:0 10px}}
+
+/* ACCOUNT: gli strumenti si usano anche senza; con l'account i dati restano salvati ovunque */
+.acc-btn{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 14px 0 6px;border:1.5px solid var(--ink);border-radius:999px;background:var(--ink);color:var(--paper);font:700 14px 'Archivo',sans-serif;cursor:pointer;flex:none;margin-left:auto;margin-right:8px}
+.acc-btn+.s-tema{margin-left:0!important}
+.acc-btn .acc-av{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--amber);color:var(--amber-ink);font:800 13px 'Archivo',sans-serif}
+.acc-btn.dentro{background:transparent;color:var(--ink)}
+.acc-btn .acc-ok{width:8px;height:8px;border-radius:50%;background:#1E7F45;margin-left:2px}
+.acc-btn.salva .acc-ok{background:var(--amber)}
+@media(max-width:560px){.acc-btn .acc-t{display:none}.acc-btn{padding:0 6px}.s-link a.pri{display:none}}
+.acc-menu{position:absolute;right:16px;top:60px;z-index:40;width:min(320px,calc(100vw - 32px));background:var(--sheet);border:1px solid var(--rule);border-radius:18px;padding:18px;box-shadow:0 24px 50px -20px rgba(0,0,0,.45)}
+.acc-menu b{display:block;font-size:15px;color:var(--ink);word-break:break-all}
+.acc-menu p{font-size:13.5px;line-height:1.5;color:var(--ink-3);margin:8px 0 14px}
+.acc-menu .btn{width:100%}
+.acc-menu a{display:block;font-size:13.5px;color:var(--ink-2);margin:0 0 12px}
+.acc-invito{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:-6px 0 22px;padding:14px 16px 14px 18px;border:1px solid rgba(242,184,58,.55);border-radius:16px;background:rgba(242,184,58,.1);font-size:14.5px;line-height:1.45;color:var(--ink)}
+.acc-invito[hidden]{display:none}
+.acc-invito span{flex:1;min-width:220px}
+.acc-invito b{font-weight:700}
+.acc-invito .btn{padding:10px 16px;font-size:.84rem}
+.acc-invito .acc-x{background:none;border:0;color:var(--ink-3);font-size:20px;line-height:1;cursor:pointer;padding:4px}
+.acc-velo{position:fixed;inset:0;z-index:60;background:rgba(11,13,12,.55);display:none;align-items:center;justify-content:center;padding:16px}
+.acc-velo.on{display:flex}
+.acc-box{position:relative;width:min(420px,100%);max-height:calc(100svh - 32px);overflow:auto;background:var(--sheet);border:1px solid var(--rule);border-radius:22px;padding:28px 24px 22px;box-shadow:0 30px 70px -20px rgba(0,0,0,.5);color:var(--ink)}
+.acc-box h3{font:780 28px/1.05 'Archivo',sans-serif;font-stretch:80%;letter-spacing:-.01em;margin:0 0 8px}
+.acc-box .acc-perche{font-size:14px;line-height:1.5;color:var(--ink-3);margin:0 0 10px}
+.acc-box ul{margin:0 0 14px;padding:0;list-style:none;font-size:14px;line-height:1.5}
+.acc-box li{display:flex;gap:10px;padding:3px 0;color:var(--ink-2)}
+.acc-box li::before{content:'✓';color:var(--amber-deep);font-weight:800}
+.acc-box label{display:block;font-size:13px;font-weight:600;color:var(--ink-2);margin:12px 0 6px}
+.acc-box input{width:100%;box-sizing:border-box;padding:12px 14px;border:1px solid var(--rule);border-radius:12px;background:var(--paper);color:var(--ink);font:500 16px 'Archivo',sans-serif}
+.acc-box #accNomeF[hidden]{display:none}
+.acc-box .btn{width:100%;margin-top:18px}
+.acc-box .acc-chiudi{position:absolute;top:12px;right:12px;background:none;border:0;font-size:24px;line-height:1;color:var(--ink-3);cursor:pointer;padding:6px}
+.acc-box .acc-alt{margin:16px 0 0;text-align:center;font-size:14px;color:var(--ink-3)}
+.acc-box .acc-alt button{background:none;border:0;color:var(--amber-deep);font:700 14px 'Archivo',sans-serif;cursor:pointer;padding:0}
+.acc-box .acc-err{margin-top:12px;font-size:13.5px;line-height:1.5;color:#C2361F}
+.acc-box .acc-err:empty{display:none}
+.acc-box .acc-err.ok{color:var(--ink-2)}
+.acc-box .acc-nota{margin-top:14px;font-size:12.5px;line-height:1.5;color:var(--ink-3);text-align:center}
+html[data-tema="scuro"] .acc-btn{background:#ECEEEA!important;color:#0E1110!important;border-color:#ECEEEA!important}
+html[data-tema="scuro"] .acc-btn.dentro{background:transparent!important;color:#ECEEEA!important}
+html[data-tema="scuro"] .acc-box .acc-err{color:#FF6B5A}
+html[data-tema="scuro"] .acc-box .acc-err.ok{color:#B9C0BB}
 </style>
 <style id="tema-scuro">
 /* generato da tema_scuro.py: non modificare a mano */
@@ -1632,6 +1675,8 @@ html[data-tema="scuro"] .cal-toast{background:#ECEEEA!important;color:#161A18!im
 html[data-tema="scuro"] .s-link a.pri{color:#0E1110!important}
 html[data-tema="scuro"]{--paper:#0E1110;--sheet:#161A18;--ink:#ECEEEA;--ink-2:#B9C0BB;--ink-3:#A3ABA6;--rule:#2E3532;--amber-deep:#F2B83A;--line-hi:#ECEEEA;--accent:#F2B83A;--grad:#ECEEEA}
 html[data-tema="scuro"] .s-tema{border:1.5px solid var(--ink,#ECEEEA)!important;color:var(--ink,#ECEEEA)!important}
+html[data-tema="scuro"] .acc-btn .acc-ok{background:#3FCB7E!important}
+html[data-tema="scuro"] .acc-box .acc-err{color:#FF6B5A!important}
 html[data-tema="scuro"]{color-scheme:dark}
 html[data-tema="scuro"] body{background:#0E1110!important;color:#ECEEEA}
 html[data-tema="scuro"] input,html[data-tema="scuro"] select,html[data-tema="scuro"] textarea{background:#171B19!important;color:#ECEEEA!important;border-color:#36403B!important}
@@ -1647,6 +1692,7 @@ html[data-tema="scuro"] .s-testa .s-tema{border-color:#ECEEEA!important;color:#E
 <body>
 <header class="s-testa"><div class="wrap">
   <a class="s-logo" href="https://riskly.trade/?da=strumenti"><svg viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="10" fill="#FBFBF9"/><path d="M10 30 L17 20 L23 25 L34 12" stroke="#B97C00" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M10 34.5 H34" stroke="#5E656D" stroke-width="3.6" stroke-linecap="round"/></svg>Riskly<small>· Strumenti</small></a>
+  <button type="button" class="acc-btn" id="accBtn" onclick="accPulsante(event)" aria-label="Accedi o registrati"><span class="acc-av">?</span><span class="acc-t">Accedi</span></button>
   <button type="button" class="s-tema" id="sTema" onclick="temaCambia()" aria-label="Modalità scura" title="Modalità scura / chiara"><svg class="ic-luna" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="ic-sole" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg><span class="s-tema-t">Scuro</span></button>
   <nav class="s-link" aria-label="Siti Riskly"><a href="https://riskly.trade/?da=strumenti">Bot e videocorso</a><a href="https://app.riskly.trade">Journal</a><a class="pri" href="https://riskly.trade/?da=strumenti">Scopri Riskly</a></nav>
 </div></header>
@@ -1657,9 +1703,10 @@ html[data-tema="scuro"] .s-testa .s-tema{border-color:#ECEEEA!important;color:#E
       <div class="sez-titolo pagina">
         <span class="sez-num">STRUMENTI</span>
         <h2>Tutto quello che serve <em>prima del trade</em></h2>
-        <p class="lead">Calendario economico in tempo reale e cinque calcolatori gratuiti, senza registrazione. I calcolatori girano nel tuo browser: nessun dato viene inviato.</p>
+        <p class="lead">Calendario economico in tempo reale e cinque calcolatori gratuiti. Si usano anche senza registrazione; con un account gratuito ritrovi tutto su telefono e computer.</p>
       </div>
 
+      <div class="acc-invito" id="accInvito" hidden><span><b>Gratis, anche senza account.</b> Registrati per ritrovare preferiti, avvisi, filtri e i valori dei calcolatori su ogni dispositivo.</span><button type="button" class="btn pri" onclick="accApri('registrati')">Crea account gratis</button><button type="button" class="btn" onclick="accApri('accedi')">Accedi</button><button type="button" class="acc-x" aria-label="Chiudi" onclick="accInvitoChiudi()">×</button></div>
       <div class="str-nav" role="tablist" aria-label="Strumenti"><button role="tab" data-st="calendario" class="on" onclick="strTab('calendario')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span>Calendario</span></button><button role="tab" data-st="posizione" class="" onclick="strTab('posizione')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 8h14M7 13h10M9 18h6"/></svg><span>Posizione</span></button><button role="tab" data-st="montecarlo" class="" onclick="strTab('montecarlo')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17c3-1 4-8 7-8s3 6 6 6 3-9 5-10"/><path d="M3 21h18"/></svg><span>Monte Carlo</span></button><button role="tab" data-st="prop" class="" onclick="strTab('prop')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><span>Prop firm</span></button><button role="tab" data-st="recupero" class="" onclick="strTab('recupero')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg><span>Recupero</span></button><button role="tab" data-st="crescita" class="" onclick="strTab('crescita')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m3 17 6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg><span>Crescita</span></button></div>
 <div class="str-pannello on" id="st-calendario">
         <div class="card cal-card">
@@ -1804,7 +1851,7 @@ html[data-tema="scuro"] .s-testa .s-tema{border-color:#ECEEEA!important;color:#E
   </section>
 </div>
 </main>
-<footer class="s-piede">Strumenti gratuiti, senza registrazione. Contenuto informativo ed educativo, non è consulenza finanziaria. Il trading con leva comporta un alto rischio: puoi perdere tutto il capitale.<br>
+<footer class="s-piede">Strumenti gratuiti, anche senza registrazione. Contenuto informativo ed educativo, non è consulenza finanziaria. Il trading con leva comporta un alto rischio: puoi perdere tutto il capitale.<br>
 Riskly · P. IVA 04948840162 · <a href="https://riskly.trade/privacy.html">Privacy</a> · <a href="https://riskly.trade/?da=strumenti">riskly.trade</a></footer>
 <script>
 function esc(v){
@@ -2603,6 +2650,189 @@ function temaCambia(){
 function temaEtichetta(){ const sc = document.documentElement.getAttribute('data-tema') === 'scuro', b = document.getElementById('sTema');
   if(!b) return; b.querySelector('.s-tema-t').textContent = sc ? 'Chiaro' : 'Scuro'; b.setAttribute('aria-label', sc ? 'Passa alla modalità chiara' : 'Passa alla modalità scura'); }
 temaEtichetta();
+</script>
+
+<div class="acc-velo" id="accVelo" onclick="if(event.target===this)accChiudi()">
+  <form class="acc-box" id="accBox" onsubmit="accInvia(event)" role="dialog" aria-modal="true" aria-labelledby="accTit">
+    <button type="button" class="acc-chiudi" onclick="accChiudi()" aria-label="Chiudi">×</button>
+    <h3 id="accTit">Crea il tuo account</h3>
+    <p class="acc-perche">Gli strumenti restano gratis anche senza. Con l'account:</p>
+    <ul><li>preferiti e avvisi del calendario su tutti i dispositivi</li><li>filtri, giorni e paesi come li hai lasciati</li><li>i valori dei calcolatori (saldo, rischio, prop firm…) sempre pronti</li></ul>
+    <div id="accNomeF"><label for="accNome">Nome</label><input id="accNome" autocomplete="given-name" maxlength="40"></div>
+    <label for="accEmail">Email</label><input id="accEmail" type="email" autocomplete="email" required>
+    <label for="accPass">Password</label><input id="accPass" type="password" autocomplete="new-password" minlength="6" required>
+    <button type="submit" class="btn pri" id="accInviaB">Crea account gratis</button>
+    <div class="acc-err" id="accErr" role="status"></div>
+    <p class="acc-alt"><span id="accAltT">Hai già un account?</span> <button type="button" id="accAltB" onclick="accModo(ACC.modo==='registrati'?'accedi':'registrati')">Accedi</button></p>
+    <p class="acc-nota">Lo stesso account vale anche per il journal su app.riskly.trade.</p>
+  </form>
+</div>
+<script src="/js/supabase.js"></script>
+<script>
+/* ACCOUNT E SALVATAGGIO
+   Senza account tutto resta in questo browser (localStorage). Con l'account le stesse chiavi
+   vanno nella tabella strumenti_dati (una riga per utente) e tornano su ogni dispositivo. */
+const ACC = { sb: null, utente: null, modo: 'registrati', timer: null, applico: false, ultimaLettura: 0 };
+/* chiavi che seguono l'account; avvisi e iscrizione push restano del singolo dispositivo */
+const ACC_CHIAVI = ['riskly-calendario', 'riskly-cal-pref', 'riskly-cal-giorno', 'riskly-calc-sym', 'riskly-strumento', 'riskly-tema', 'riskly-campi'];
+try { ACC.sb = window.supabase.createClient('https://swlztverwfgdgchgpudt.supabase.co', 'sb_publishable_j9bujIvCEz6x21yYoCODPw_lIZCJrIR'); } catch(e) {}
+const accEsc = t => String(t == null ? '' : t).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+
+/* valori dei calcolatori: si ricordano sempre (anche senza account) */
+(function(){
+  let campi = {}; try { campi = JSON.parse(localStorage.getItem('riskly-campi')) || {}; } catch(e) {}
+  const sel = id => (document.getElementById(id) || {}).tagName === 'SELECT';
+  const ordine = Object.keys(campi).sort((a, b) => sel(b) - sel(a));   // prima i menu (simbolo), poi i numeri
+  ordine.forEach(id => {
+    const el = document.getElementById(id);
+    if(!el || !el.closest('.str-pannello') || el.value === campi[id]) return;
+    el.value = campi[id];
+    el.dispatchEvent(new Event(el.tagName === 'SELECT' ? 'change' : 'input', { bubbles: true }));
+  });
+  const salva = e => {
+    const el = e.target;
+    if(!el.id || !el.closest || !el.closest('.str-pannello') || el.closest('#st-calendario') || !/^(INPUT|SELECT)$/.test(el.tagName)) return;
+    let c = {}; try { c = JSON.parse(localStorage.getItem('riskly-campi')) || {}; } catch(x) {}
+    c[el.id] = el.value;
+    try { localStorage.setItem('riskly-campi', JSON.stringify(c)); } catch(x) {}
+  };
+  document.addEventListener('input', salva); document.addEventListener('change', salva);
+})();
+
+/* ogni scrittura di una chiave dell'account parte verso il server dopo un attimo */
+(function(){
+  const orig = Storage.prototype.setItem;
+  Storage.prototype.setItem = function(k, v){
+    orig.call(this, k, v);
+    if(this === window.localStorage && !ACC.applico && ACC.utente && ACC_CHIAVI.includes(k)) accProgramma();
+  };
+})();
+function accRaccogli(){ const d = {}; ACC_CHIAVI.forEach(k => { try { const v = localStorage.getItem(k); if(v != null) d[k] = v; } catch(e) {} }); return d; }
+function accProgramma(){ clearTimeout(ACC.timer); accStato('salva'); ACC.timer = setTimeout(accCarica, 1200); }
+async function accCarica(){
+  if(!ACC.sb || !ACC.utente) return;
+  const { error } = await ACC.sb.from('strumenti_dati').upsert({ utente: ACC.utente.id, dati: accRaccogli(), aggiornato: new Date().toISOString() });
+  accStato(error ? 'errore' : 'ok');
+}
+/* all'accesso: i dati dell'account vincono, i preferiti si uniscono; se cambia qualcosa ricarico la pagina una volta */
+async function accScarica(){
+  if(!ACC.sb || !ACC.utente) return;
+  ACC.ultimaLettura = Date.now();
+  const { data, error } = await ACC.sb.from('strumenti_dati').select('dati').eq('utente', ACC.utente.id).maybeSingle();
+  if(error){ accStato('errore'); return; }
+  const server = (data && data.dati) || {}, locale = accRaccogli();
+  let cambiato = false, daCaricare = !data;
+  ACC.applico = true;
+  try {
+    ACC_CHIAVI.forEach(k => {
+      let v = server[k];
+      if(k === 'riskly-cal-pref' || k === 'riskly-campi'){
+        let a = {}, b = {}; try { a = JSON.parse(locale[k] || '{}') || {}; b = JSON.parse(v || '{}') || {}; } catch(e) {}
+        const unito = JSON.stringify(k === 'riskly-cal-pref' ? Object.assign({}, a, b) : Object.assign({}, a, b));
+        if(Object.keys(a).some(x => !(x in b))) daCaricare = true;
+        v = (v == null && !locale[k]) ? null : unito;
+      }
+      if(v == null){ if(locale[k] != null) daCaricare = true; return; }
+      if(v !== locale[k]){ localStorage.setItem(k, v); cambiato = true; }
+    });
+  } finally { ACC.applico = false; }
+  if(daCaricare) await accCarica(); else accStato('ok');
+  if(cambiato){
+    let gia = false; try { gia = sessionStorage.getItem('riskly-acc-ricarica') === '1'; } catch(e) {}
+    if(!gia){ try { sessionStorage.setItem('riskly-acc-ricarica', '1'); } catch(e) {} location.reload(); }
+  } else { try { sessionStorage.removeItem('riskly-acc-ricarica'); } catch(e) {} }
+}
+
+/* interfaccia */
+function accStato(s){ const b = document.getElementById('accBtn'); if(b) b.classList.toggle('salva', s === 'salva'); }
+function accDisegna(){
+  const b = document.getElementById('accBtn'), inv = document.getElementById('accInvito');
+  if(ACC.utente){
+    const nome = (ACC.utente.user_metadata && ACC.utente.user_metadata.nome) || ACC.utente.email || '';
+    b.classList.add('dentro');
+    b.innerHTML = `<span class="acc-av">${accEsc((nome[0] || '?').toUpperCase())}</span><span class="acc-t">${accEsc(nome.split(/[ @]/)[0])}</span><i class="acc-ok" aria-hidden="true"></i>`;
+    b.setAttribute('aria-label', 'Il tuo account');
+    if(inv) inv.hidden = true;
+  } else {
+    b.classList.remove('dentro');
+    b.innerHTML = '<span class="acc-av"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span><span class="acc-t">Accedi</span>';
+    b.setAttribute('aria-label', 'Accedi o registrati');
+    let chiuso = false; try { chiuso = localStorage.getItem('riskly-invito-chiuso') === '1'; } catch(e) {}
+    if(inv) inv.hidden = chiuso;
+  }
+}
+function accPulsante(e){
+  e.stopPropagation();
+  if(!ACC.utente){ accApri('accedi'); return; }
+  let m = document.getElementById('accMenu');
+  if(m){ m.remove(); return; }
+  m = document.createElement('div'); m.className = 'acc-menu'; m.id = 'accMenu';
+  m.innerHTML = `<b>${accEsc(ACC.utente.email)}</b><p>Preferiti, avvisi del calendario, filtri e valori dei calcolatori sono salvati nel tuo account e li ritrovi su ogni dispositivo.</p><a href="https://app.riskly.trade">Apri il journal con lo stesso account →</a><button type="button" class="btn" onclick="accEsci()">Esci</button>`;
+  m.addEventListener('click', x => x.stopPropagation());
+  document.querySelector('.s-testa').appendChild(m);
+}
+document.addEventListener('click', () => { const m = document.getElementById('accMenu'); if(m) m.remove(); });
+function accInvitoChiudi(){ try { localStorage.setItem('riskly-invito-chiuso', '1'); } catch(e) {} document.getElementById('accInvito').hidden = true; }
+function accModo(m){
+  ACC.modo = m; const nuovo = m === 'registrati';
+  document.getElementById('accTit').textContent = nuovo ? 'Crea il tuo account' : 'Bentornato';
+  document.getElementById('accNomeF').hidden = !nuovo;
+  document.getElementById('accInviaB').textContent = nuovo ? 'Crea account gratis' : 'Accedi';
+  document.getElementById('accAltT').textContent = nuovo ? 'Hai già un account?' : 'Non hai un account?';
+  document.getElementById('accAltB').textContent = nuovo ? 'Accedi' : 'Registrati gratis';
+  document.getElementById('accPass').setAttribute('autocomplete', nuovo ? 'new-password' : 'current-password');
+  accErrore('');
+}
+function accApri(m){ accModo(m || 'registrati'); document.getElementById('accVelo').classList.add('on'); setTimeout(() => document.getElementById(m === 'accedi' ? 'accEmail' : 'accNome').focus(), 50); }
+function accChiudi(){ document.getElementById('accVelo').classList.remove('on'); }
+function accErrore(t, ok){ const e = document.getElementById('accErr'); e.innerHTML = t; e.classList.toggle('ok', !!ok); }
+function accTraduci(m){
+  if(/invalid login/i.test(m)) return 'Email o password non corrette.';
+  if(/already registered|already exists/i.test(m)) return 'Esiste già un account con questa email: premi "Accedi".';
+  if(/password.*(6|short|least)/i.test(m)) return 'La password deve avere almeno 6 caratteri.';
+  if(/rate|seconds|too many/i.test(m)) return 'Troppi tentativi: aspetta un minuto e riprova.';
+  if(/invalid.*email|email.*invalid/i.test(m)) return 'Controlla l\'indirizzo email.';
+  return 'Qualcosa non ha funzionato. Riprova tra poco.';
+}
+async function accInvia(e){
+  e.preventDefault();
+  if(!ACC.sb){ accErrore('Servizio non raggiungibile. Riprova.'); return; }
+  const email = document.getElementById('accEmail').value.trim(), pass = document.getElementById('accPass').value, nome = document.getElementById('accNome').value.trim();
+  const b = document.getElementById('accInviaB'), testo = b.textContent; b.disabled = true; b.textContent = 'Attendi…'; accErrore('');
+  try {
+    if(ACC.modo === 'registrati'){
+      const { data, error } = await ACC.sb.auth.signUp({ email, password: pass, options: { emailRedirectTo: location.origin + '/', data: { nome } } });
+      if(error) throw error;
+      if(!data.session){
+        accErrore(`Ci siamo quasi: ti abbiamo mandato un'email a <b>${accEsc(email)}</b> con il link per confermare l'account. Se non arriva entro 2 minuti guarda in <b>Spam</b> o <b>Promozioni</b>. Intanto i tuoi dati restano salvati su questo dispositivo.`, true);
+        try { if(typeof traccia === 'function') traccia('strumenti-registrazione'); } catch(x) {}
+        return;
+      }
+    } else {
+      const { error } = await ACC.sb.auth.signInWithPassword({ email, password: pass });
+      if(error) throw error;
+    }
+    accChiudi();
+  } catch(err){
+    if(/not confirmed/i.test(err.message || '')) accErrore('Prima di accedere conferma l\'email: cerca il messaggio di Riskly nella posta (anche in Spam).');
+    else accErrore(accTraduci(err.message || String(err)));
+  } finally { b.disabled = false; b.textContent = testo; }
+}
+async function accEsci(){ if(ACC.sb) await ACC.sb.auth.signOut(); const m = document.getElementById('accMenu'); if(m) m.remove(); }
+document.addEventListener('keydown', e => { if(e.key === 'Escape') accChiudi(); });
+
+if(ACC.sb){
+  ACC.sb.auth.onAuthStateChange((ev, sessione) => {
+    const prima = ACC.utente ? ACC.utente.id : null;
+    ACC.utente = sessione ? sessione.user : null;
+    accDisegna();
+    // fuori dalla callback: dentro non si devono attendere altre chiamate a Supabase
+    if(ACC.utente && ACC.utente.id !== prima) setTimeout(accScarica, 0);
+  });
+  /* tornando sulla pagina riprendo le modifiche fatte da un altro dispositivo */
+  document.addEventListener('visibilitychange', () => { if(!document.hidden && ACC.utente && Date.now() - ACC.ultimaLettura > 30000) accScarica(); });
+}
+accDisegna();
 </script>
 </body>
 </html>
