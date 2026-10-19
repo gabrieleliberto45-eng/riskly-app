@@ -22,9 +22,9 @@
 <!-- Quiz di fine modulo dei corsi Riskly e attestato di completamento.
      Domande in /quiz/<corso>.json. I progressi restano nel browser (localStorage), nessun dato viene inviato tranne il conteggio anonimo. -->
 <style>
-  :root{--bg:#F3F4F1;--bg2:#ECEEEA;--panel:#FBFBF9;--line:#CDD1D4;--text:#15181B;--dim:#5E656D;--oro:#B97C00;--amber:#E9A10F;--su:#1E7F45;--giu:#C2361F}
+  :root{--bg:#F3F4F1;--bg2:#ECEEEA;--panel:#FBFBF9;--line:#CDD1D4;--text:#15181B;--dim:#5E656D;--oro:#B97C00;--amber:#F2B83A;--su:#1E7F45;--giu:#C2361F}
   *{box-sizing:border-box}
-  body{margin:0;background:radial-gradient(520px 380px at 100% 0%,rgba(233,161,15,.16),transparent 70%),var(--bg);color:var(--text);font-family:'Instrument Sans',sans-serif;min-height:100vh}
+  body{margin:0;background:radial-gradient(520px 380px at 100% 0%,rgba(242,184,58,.16),transparent 70%),var(--bg);color:var(--text);font-family:'Instrument Sans',sans-serif;min-height:100vh}
   .wrap{max-width:640px;margin:0 auto;padding:22px 16px 60px}
   .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:26px}
   .marca{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.15rem;color:var(--text);text-decoration:none}
@@ -50,7 +50,7 @@
   .opz:disabled{cursor:default}
   .opz.giusta{border-color:var(--su);background:rgba(30,127,69,.08);font-weight:600}
   .opz.sbagliata{border-color:var(--giu);background:rgba(194,54,31,.07)}
-  .spieg{display:none;margin-top:10px;padding:12px 14px;border-radius:12px;background:rgba(233,161,15,.12);border:1px solid rgba(185,124,0,.3);font-size:.9rem;line-height:1.5}
+  .spieg{display:none;margin-top:10px;padding:12px 14px;border-radius:12px;background:rgba(242,184,58,.12);border:1px solid rgba(185,124,0,.3);font-size:.9rem;line-height:1.5}
   .btn{display:inline-block;background:#15181B;color:#FBFBF9;border:none;border-radius:100px;padding:13px 22px;font:inherit;font-weight:700;cursor:pointer;text-decoration:none}
   .btn.sec{background:transparent;color:var(--text);border:1px solid var(--text)}
   .riga{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;align-items:center}
@@ -210,9 +210,9 @@ $('att-crea').onclick = async () => {
   const oggi = new Date(), data = oggi.toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
   const cod = codice(nome.toLowerCase() + '|' + corso + '|' + oggi.toISOString().slice(0, 10));
   x.fillStyle = '#FBFBF9'; x.fillRect(0, 0, W, H);
-  const g = x.createRadialGradient(W * .92, 0, 0, W * .92, 0, 900); g.addColorStop(0, 'rgba(233,161,15,.22)'); g.addColorStop(1, 'rgba(233,161,15,0)'); x.fillStyle = g; x.fillRect(0, 0, W, H);
+  const g = x.createRadialGradient(W * .92, 0, 0, W * .92, 0, 900); g.addColorStop(0, 'rgba(242,184,58,.22)'); g.addColorStop(1, 'rgba(242,184,58,0)'); x.fillStyle = g; x.fillRect(0, 0, W, H);
   x.strokeStyle = '#15181B'; x.lineWidth = 6; x.strokeRect(60, 60, W - 120, H - 120);
-  x.strokeStyle = '#E9A10F'; x.lineWidth = 2; x.strokeRect(84, 84, W - 168, H - 168);
+  x.strokeStyle = '#F2B83A'; x.lineWidth = 2; x.strokeRect(84, 84, W - 168, H - 168);
   /* logo */
   x.save(); x.translate(160, 150); x.scale(2.6, 2.6);
   x.fillStyle = '#FBFBF9'; x.strokeStyle = '#CDD1D4'; x.lineWidth = .6; x.beginPath(); x.roundRect(0, 0, 44, 44, 10); x.fill(); x.stroke();
@@ -224,7 +224,7 @@ $('att-crea').onclick = async () => {
   x.fillStyle = '#5E656D'; x.font = '400 40px "Instrument Sans"'; x.fillText('Si attesta che', W / 2, 520);
   x.fillStyle = '#15181B'; let fs = 128; x.font = `italic 400 ${fs}px "Instrument Serif"`; while(x.measureText(nome).width > W - 400 && fs > 60){ fs -= 6; x.font = `italic 400 ${fs}px "Instrument Serif"`; }
   x.fillText(nome, W / 2, 650);
-  x.fillStyle = '#E9A10F'; x.fillRect(W / 2 - 260, 730, 520, 6);
+  x.fillStyle = '#F2B83A'; x.fillRect(W / 2 - 260, 730, 520, 6);
   x.fillStyle = '#5E656D'; x.font = '400 40px "Instrument Sans"'; x.fillText('ha completato il corso', W / 2, 820);
   x.fillStyle = '#15181B'; x.font = '700 76px "Instrument Sans"'; x.fillText('Riskly · ' + NOMI[corso], W / 2, 915);
   x.fillStyle = '#5E656D'; x.font = '400 34px "Instrument Sans"'; x.fillText('superando i quiz di fine modulo di tutti gli ' + dati.moduli.length + ' moduli del programma', W / 2, 995);

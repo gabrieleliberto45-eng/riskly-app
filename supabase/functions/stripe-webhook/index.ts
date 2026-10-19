@@ -53,6 +53,7 @@ const PRODOTTO_DEL_LINK: Record<string, string> = {
   "plink_1UNIISC4UovOoFaVZXl81nzK": "TradeManager",
   "plink_1UNIIUC4UovOoFaV9ay6TNvd": "ScaleIn",
   "plink_1UNIIVC4UovOoFaVKuWKL9K8": "Riskly Pro",
+  "plink_1US1auC4UovOoFaVpeOX0XvC": "RisklyCopy",
   "plink_1UMnafC4UovOoFaVmg2vfWjr": "Videocorso",
   "plink_1US0PWC4UovOoFaVtAXaxLlA": "Corso Analisi fondamentale",
   "plink_1US0PXC4UovOoFaVpYdUys4l": "Pacchetto corsi",
