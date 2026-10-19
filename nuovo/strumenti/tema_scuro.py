@@ -36,6 +36,7 @@ def regole(nodi):
   for n in nodi:
     if n.type == 'qualified-rule':
       sel = tinycss2.serialize(n.prelude).strip()
+      if 'data-tema' in sel: continue   # regole già scritte per una modalità precisa: non si toccano
       dich = tinycss2.parse_declaration_list(n.content, skip_comments=True, skip_whitespace=True)
       nuove = []
       for d in dich:
