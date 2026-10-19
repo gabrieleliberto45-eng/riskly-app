@@ -5175,17 +5175,19 @@ if(window.RISKLY_FORSE_PAGATO){
   setTimeout(() => av.remove(), 20000);
 }
 aggiornaPulsantiProdotto();   /* le scritte dei pulsanti non dipendono dal database */
+function quandoPronto(f){ if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', f, { once: true }); else f(); }
 if(sb){
   caricaAccount();
   sb.auth.onAuthStateChange((ev) => {
-    if(ev === 'PASSWORD_RECOVERY'){ apriAccesso('nuova'); return; }
+    if(ev === 'PASSWORD_RECOVERY'){ quandoPronto(() => apriAccesso('nuova')); return; }
     if(ev === 'SIGNED_IN' || ev === 'SIGNED_OUT') caricaAccount();
   });
 
   /* se si arriva dal link dell'email, apre subito la scelta della nuova password */
-  if(location.hash.includes('type=recovery')) apriAccesso('nuova');
+  /* la finestra di accesso è più in basso nella pagina: aspetto che esista */
+  if(location.hash.includes('type=recovery')) quandoPronto(() => apriAccesso('nuova'));
   /* dal journal: "Password dimenticata?" porta qui con ?recupero=1 */
-  else if(new URLSearchParams(location.search).has('recupero')) apriAccesso('recupero');
+  else if(new URLSearchParams(location.search).has('recupero')) quandoPronto(() => apriAccesso('recupero'));
 }
 
 /* link diretti a una pagina, per annunci e bio: riskly.trade/?vai=bot (si può unire a &da=ig-ad01) */
@@ -5363,7 +5365,7 @@ const ADMIN = ['gabrieleliberto1212@gmail.com'];
 
 /* il pannello viene costruito solo dopo il riconoscimento dell'admin:
    nel codice pubblico della pagina non compare nulla */
-let gsMontato = false;
+var gsMontato = false;   /* var: caricaAccount può chiamare gsSmonta prima che questa riga giri */
 
 function gsMonta(){
   if(gsMontato || !isAdmin()) return;

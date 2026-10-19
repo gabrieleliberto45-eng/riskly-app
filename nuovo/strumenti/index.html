@@ -1614,6 +1614,9 @@ html[data-tema="scuro"] .acc-btn{background:#ECEEEA!important;color:#0E1110!impo
 html[data-tema="scuro"] .acc-btn.dentro{background:transparent!important;color:#ECEEEA!important}
 html[data-tema="scuro"] .acc-box .acc-err{color:#FF6B5A}
 html[data-tema="scuro"] .acc-box .acc-err.ok{color:#B9C0BB}
+.acc-box .acc-dim{margin:8px 0 0;text-align:right}
+.acc-box .acc-dim button{background:none;border:0;color:var(--ink-3);font:600 13px 'Archivo',sans-serif;cursor:pointer;padding:0;text-decoration:underline}
+.acc-box [hidden]{display:none!important}
 </style>
 <style id="tema-scuro">
 /* generato da tema_scuro.py: non modificare a mano */
@@ -2659,11 +2662,13 @@ temaEtichetta();
     <p class="acc-perche">Gli strumenti restano gratis anche senza. Con l'account:</p>
     <ul><li>preferiti e avvisi del calendario su tutti i dispositivi</li><li>filtri, giorni e paesi come li hai lasciati</li><li>i valori dei calcolatori (saldo, rischio, prop firm…) sempre pronti</li></ul>
     <div id="accNomeF"><label for="accNome">Nome</label><input id="accNome" autocomplete="given-name" maxlength="40"></div>
-    <label for="accEmail">Email</label><input id="accEmail" type="email" autocomplete="email" required>
-    <label for="accPass">Password</label><input id="accPass" type="password" autocomplete="new-password" minlength="6" required>
+    <div id="accEmailF"><label for="accEmail">Email</label><input id="accEmail" type="email" autocomplete="email" required></div>
+    <div id="accPassF"><label for="accPass" id="accPassL">Password</label><input id="accPass" type="password" autocomplete="new-password" minlength="6" required></div>
+    <div id="accPass2F" hidden><label for="accPass2">Ripeti la nuova password</label><input id="accPass2" type="password" autocomplete="new-password" minlength="6"></div>
+    <p class="acc-dim" id="accDimF"><button type="button" onclick="accModo('recupero')">Password dimenticata?</button></p>
     <button type="submit" class="btn pri" id="accInviaB">Crea account gratis</button>
     <div class="acc-err" id="accErr" role="status"></div>
-    <p class="acc-alt"><span id="accAltT">Hai già un account?</span> <button type="button" id="accAltB" onclick="accModo(ACC.modo==='registrati'?'accedi':'registrati')">Accedi</button></p>
+    <p class="acc-alt" id="accAltF"><span id="accAltT">Hai già un account?</span> <button type="button" id="accAltB" onclick="accModo(ACC.modo==='accedi'?'registrati':'accedi')">Accedi</button></p>
     <p class="acc-nota">Lo stesso account vale anche per il journal su app.riskly.trade.</p>
   </form>
 </div>
@@ -2774,16 +2779,23 @@ function accPulsante(e){
 document.addEventListener('click', () => { const m = document.getElementById('accMenu'); if(m) m.remove(); });
 function accInvitoChiudi(){ try { localStorage.setItem('riskly-invito-chiuso', '1'); } catch(e) {} document.getElementById('accInvito').hidden = true; }
 function accModo(m){
-  ACC.modo = m; const nuovo = m === 'registrati';
-  document.getElementById('accTit').textContent = nuovo ? 'Crea il tuo account' : 'Bentornato';
+  ACC.modo = m; const nuovo = m === 'registrati', rec = m === 'recupero', nuova = m === 'nuova';
+  document.getElementById('accTit').textContent = { registrati: 'Crea il tuo account', accedi: 'Bentornato', recupero: 'Password dimenticata', nuova: 'Scegli una nuova password' }[m];
+  document.querySelector('.acc-perche').hidden = document.querySelector('.acc-box ul').hidden = rec || nuova;
   document.getElementById('accNomeF').hidden = !nuovo;
-  document.getElementById('accInviaB').textContent = nuovo ? 'Crea account gratis' : 'Accedi';
-  document.getElementById('accAltT').textContent = nuovo ? 'Hai già un account?' : 'Non hai un account?';
-  document.getElementById('accAltB').textContent = nuovo ? 'Accedi' : 'Registrati gratis';
-  document.getElementById('accPass').setAttribute('autocomplete', nuovo ? 'new-password' : 'current-password');
+  document.getElementById('accEmailF').hidden = nuova; document.getElementById('accEmail').required = !nuova;
+  document.getElementById('accPassF').hidden = rec; document.getElementById('accPass').required = !rec;
+  document.getElementById('accPass2F').hidden = !nuova; document.getElementById('accPass2').required = nuova;
+  document.getElementById('accPassL').textContent = nuova ? 'Nuova password' : 'Password';
+  document.getElementById('accDimF').hidden = m !== 'accedi';
+  document.getElementById('accAltF').hidden = nuova;
+  document.getElementById('accInviaB').textContent = { registrati: 'Crea account gratis', accedi: 'Accedi', recupero: 'Mandami il link', nuova: 'Salva la password' }[m];
+  document.getElementById('accAltT').textContent = rec ? 'Te la ricordi?' : nuovo ? 'Hai già un account?' : 'Non hai un account?';
+  document.getElementById('accAltB').textContent = rec || nuovo ? 'Accedi' : 'Registrati gratis';
+  document.getElementById('accPass').setAttribute('autocomplete', nuovo || nuova ? 'new-password' : 'current-password');
   accErrore('');
 }
-function accApri(m){ accModo(m || 'registrati'); document.getElementById('accVelo').classList.add('on'); setTimeout(() => document.getElementById(m === 'accedi' ? 'accEmail' : 'accNome').focus(), 50); }
+function accApri(m){ accModo(m || 'registrati'); document.getElementById('accVelo').classList.add('on'); setTimeout(() => document.getElementById({ accedi: 'accEmail', recupero: 'accEmail', nuova: 'accPass' }[m] || 'accNome').focus(), 50); }
 function accChiudi(){ document.getElementById('accVelo').classList.remove('on'); }
 function accErrore(t, ok){ const e = document.getElementById('accErr'); e.innerHTML = t; e.classList.toggle('ok', !!ok); }
 function accTraduci(m){
@@ -2792,6 +2804,8 @@ function accTraduci(m){
   if(/password.*(6|short|least)/i.test(m)) return 'La password deve avere almeno 6 caratteri.';
   if(/rate|seconds|too many/i.test(m)) return 'Troppi tentativi: aspetta un minuto e riprova.';
   if(/invalid.*email|email.*invalid/i.test(m)) return 'Controlla l\'indirizzo email.';
+  if(/different from the old|same.*password/i.test(m)) return 'Scegli una password diversa da quella vecchia.';
+  if(/session|jwt|expired/i.test(m)) return 'Il link è scaduto: chiedi un nuovo link con "Password dimenticata?".';
   return 'Qualcosa non ha funzionato. Riprova tra poco.';
 }
 async function accInvia(e){
@@ -2800,6 +2814,21 @@ async function accInvia(e){
   const email = document.getElementById('accEmail').value.trim(), pass = document.getElementById('accPass').value, nome = document.getElementById('accNome').value.trim();
   const b = document.getElementById('accInviaB'), testo = b.textContent; b.disabled = true; b.textContent = 'Attendi…'; accErrore('');
   try {
+    if(ACC.modo === 'recupero'){
+      const { error } = await ACC.sb.auth.resetPasswordForEmail(email, { redirectTo: location.origin + '/' });
+      if(error) throw error;
+      accErrore(`Se <b>${accEsc(email)}</b> ha un account Riskly, ti abbiamo mandato un link per scegliere una nuova password. Guarda anche in <b>Spam</b> o <b>Promozioni</b>.`, true);
+      return;
+    }
+    if(ACC.modo === 'nuova'){
+      if(pass !== document.getElementById('accPass2').value){ accErrore('Le due password non coincidono.'); return; }
+      const { error } = await ACC.sb.auth.updateUser({ password: pass });
+      if(error) throw error;
+      accErrore('Password cambiata. Sei dentro.', true);
+      try { history.replaceState(null, '', location.pathname); } catch(x) {}
+      setTimeout(accChiudi, 1400);
+      return;
+    }
     if(ACC.modo === 'registrati'){
       const { data, error } = await ACC.sb.auth.signUp({ email, password: pass, options: { emailRedirectTo: location.origin + '/', data: { nome } } });
       if(error) throw error;
@@ -2823,6 +2852,7 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape') accChiudi(); 
 
 if(ACC.sb){
   ACC.sb.auth.onAuthStateChange((ev, sessione) => {
+    if(ev === 'PASSWORD_RECOVERY') setTimeout(() => accApri('nuova'), 0);
     const prima = ACC.utente ? ACC.utente.id : null;
     ACC.utente = sessione ? sessione.user : null;
     accDisegna();
@@ -2833,6 +2863,7 @@ if(ACC.sb){
   document.addEventListener('visibilitychange', () => { if(!document.hidden && ACC.utente && Date.now() - ACC.ultimaLettura > 30000) accScarica(); });
 }
 accDisegna();
+if(/type=recovery/.test(location.hash)) accApri('nuova');
 </script>
 </body>
 </html>
