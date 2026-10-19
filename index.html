@@ -675,7 +675,14 @@
   .jbanner{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;
     background:var(--panel);
     border:1px solid rgba(242,184,58,.26);border-radius:20px;padding:22px 26px;margin-bottom:24px}
-  .jb-t{font-weight:600;font-size:.98rem;margin-bottom:3px}
+  .jb-t{font-weight:600;font-size:.98rem}
+  details.jbanner{display:block;padding:14px 20px}
+  details.jbanner>summary{display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;list-style:none}
+  details.jbanner>summary::-webkit-details-marker{display:none}
+  .jb-freccia{width:26px;height:26px;border-radius:50%;border:1.5px solid currentColor;position:relative;flex:none;opacity:.7;transition:transform .2s}
+  .jb-freccia::before{content:'';position:absolute;left:8px;top:7px;width:7px;height:7px;border:solid currentColor;border-width:0 2px 2px 0;transform:rotate(45deg)}
+  details.jbanner[open] .jb-freccia{transform:rotate(180deg)}
+  .jb-corpo{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-top:12px}
   .jb-s{color:var(--dim);font-size:.83rem;max-width:60ch}
 
   .jtoolbar{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;
@@ -1479,7 +1486,8 @@ html[data-tema="scuro"] .jrap-corre input{accent-color:#F2B83A!important}
 html[data-tema="scuro"] .jmetodo-box{background:linear-gradient(160deg,rgba(242,184,58,.07),transparent 50%),#161A18!important}
 html[data-tema="scuro"]{--paper:#0E1110;--sheet:#161A18;--ink:#ECEEEA;--ink-2:#B9C0BB;--ink-3:#A3ABA6;--rule:#2E3532;--amber-deep:#F2B83A;--line-hi:#ECEEEA;--accent:#F2B83A;--grad:#ECEEEA}
 html[data-tema="scuro"] .s-tema{border:1.5px solid var(--ink,#ECEEEA)!important;color:var(--ink,#ECEEEA)!important}
-html[data-tema="scuro"][data-tema="scuro"] .s-tema{border-color:#171B19!important;color:#171B19!important}
+html[data-tema="scuro"] .app-nav .nav-azioni button.s-tema{border:1.5px solid #ECEEEA!important;color:#ECEEEA!important}
+html[data-tema="scuro"][data-tema="scuro"] .app-nav .nav-azioni button.s-tema{border-color:#171B19!important;color:#171B19!important}
 html[data-tema="scuro"]{color-scheme:dark}
 html[data-tema="scuro"] body{background:#0E1110!important;color:#ECEEEA}
 html[data-tema="scuro"] input,html[data-tema="scuro"] select,html[data-tema="scuro"] textarea{background:#171B19!important;color:#ECEEEA!important;border-color:#36403B!important}
@@ -1531,13 +1539,13 @@ html[data-tema="scuro"] .s-testa .s-tema{border-color:#ECEEEA!important;color:#E
   <section>
     <div class="wrap">
 
-      <div class="jbanner" id="jbanner">
-        <div>
-          <div class="jb-t"></div>
+      <details class="jbanner" id="jbanner">
+        <summary><span class="jb-t"></span><span class="jb-freccia" aria-hidden="true"></span></summary>
+        <div class="jb-corpo">
           <div class="jb-s"></div>
+          <button class="btn pri" type="button">Vedi i piani</button>
         </div>
-        <button class="btn pri" type="button">Vedi i piani</button>
-      </div>
+      </details>
 
       <!-- stato dei bot di MetaTrader: si aggiorna da solo, anche dal telefono -->
       <div class="jcard jbot" id="jbot" hidden>
@@ -4773,6 +4781,7 @@ function aggiornaBanner(){
     p.textContent = 'Esplora metriche, calendario e spunti. Le tue operazioni non vengono toccate.';
     btn.textContent = 'Torna ai tuoi dati';
     btn.onclick = j_anteprima;
+    b.open = true;
     return;
   }
 
@@ -4788,7 +4797,8 @@ function aggiornaBanner(){
     ? 'Scegli un piano per continuare a usare tutte le funzioni. Le tue operazioni restano salvate.'
     : 'Le tue operazioni sono salvate: le ritrovi da qualsiasi dispositivo.';
   btn.textContent = piano === 'scaduto' ? 'Scegli un piano' : 'Vedi i piani';
-  btn.onclick = () => location.href = 'https://riskly.trade#prezzi';
+  btn.onclick = () => location.href = 'https://riskly.trade/#prezzi';
+  b.open = piano === 'scaduto';   /* chiuso di solito; aperto solo se c'è da scegliere un piano */
 }
 
 function avviaJournal(){

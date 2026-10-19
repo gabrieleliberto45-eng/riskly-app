@@ -5940,6 +5940,11 @@ addEventListener('popstate', function(e){
   go.daIndietro = true; try{ go(id); } finally { go.daIndietro = false; }
 });
 try{ if(!history.state) history.replaceState({ pagina: 'home' }, '', location.pathname + location.search + location.hash); }catch(e){}
+/* link diretti da fuori, es. riskly.trade/#prezzi (dal journal), #bot, #corso */
+(function(){ const h = location.hash.slice(1); if(!h || h.includes('=')) return;
+  const alias = { prezzi:['journal','pz-journal'], piani:['journal','pz-journal'], corsi:['corso'], journal:['journal'], bot:['bot'], corso:['corso'], metodo:['metodo'], faq:['faq'] };
+  const d = alias[h]; if(!d) return;
+  setTimeout(() => d[1] ? vaiA(d[0], d[1]) : go(d[0]), 0); })();
 
 /* ---------- Prezzi journal ---------- */
 const PREZZI = {
