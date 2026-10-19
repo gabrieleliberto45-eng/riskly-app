@@ -68,6 +68,14 @@
   .passi li::before{counter-increment:p;content:counter(p);position:absolute;left:0;top:11px;width:26px;height:26px;border-radius:50%;background:#15181B;color:#FBFBF9;font:700 13px/26px 'Archivo',sans-serif;text-align:center}
   .passi li b{color:#15181B}
   .passi .btn-link{display:table;margin-top:10px}
+  .conti{margin-top:10px;padding:12px;border:1.5px dashed #C9CDD1;border-radius:12px;background:#FFFDF6}
+  .conti-lista{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:8px}
+  .conti-lista .conto{font:600 13px 'Martian Mono',monospace;background:rgba(30,127,69,.12);color:#1E7F45;border-radius:999px;padding:4px 10px}
+  .conti-lista small{color:#5E656D;font-size:.82rem}
+  .conti-form{display:flex;gap:8px}
+  .conti-form input{flex:1;min-width:0;margin:0!important;padding:10px 12px!important;font-size:.95rem!important;background:#fff!important}
+  .conti-form button{width:auto!important;padding:10px 16px!important;border-radius:10px!important;font-size:.9rem!important;background:#15181B!important}
+  .conti-msg{font-size:.85rem;color:#4B525A;margin-top:6px;min-height:1em}
   .acq-nota{margin:12px 0 0;font-size:.9rem;line-height:1.5;color:#4B525A}
   .titoletto{font-size:1.2rem;margin:28px 0 12px}
   .vant-testa{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:6px}
@@ -237,11 +245,46 @@ input,select,textarea{border-radius:3px!important}
     if(t === 'fondamentale') return corso(L.fond, 'di analisi fondamentale') + `<li><b>Scarica le dispense</b> nel gruppo e segui i moduli in ordine.</li><li><b>Fai i quiz di fine modulo:</b> 5 domande per modulo, alla fine scarichi l'attestato.<a class="btn-link" href="/quiz-fondamentale">Apri il quiz</a></li><li>L'accesso è <b>a vita</b>, aggiornamenti compresi.</li>`;
     if(t === 'pacchetto') return corso(L.corso, 'di gestione del rischio') + corso(L.fond, 'di analisi fondamentale') + `<li><b>Fai i quiz di fine modulo</b> di ogni corso: ricevi i due attestati.<a class="btn-link" href="/quiz-rischio">Quiz · Gestione del rischio</a><a class="btn-link" href="/quiz-fondamentale">Quiz · Analisi fondamentale</a></li><li>L'accesso è <b>a vita</b> a tutti e due, aggiornamenti compresi.</li>`;
     if(t === 'journal') return `<li><b>Il piano ${esc(prodotto.replace(/^journal\s+/i, ''))} è attivo</b> sul tuo account.</li><li><b>Apri il journal</b> con la stessa email e lo trovi già sbloccato.<a class="btn-link" href="https://app.riskly.trade">Apri il journal</a></li>`;
-    return `<li><b>Entra nel gruppo clienti su Telegram.</b> È riservato a chi ha acquistato: approviamo le richieste a mano, di solito in poche ore.${bottone(L.clienti, 'Entra nel gruppo clienti')}</li>
-      <li><b>Ricevi il file di ${esc(prodotto)}.</b> Scrivici in privato su Telegram con <b>l'email dell'acquisto</b> e il <b>numero del conto MetaTrader</b> su cui lo userai. Ti mandiamo il file già abilitato per quel conto, entro 24 ore lavorative.</li>
-      <li><b>Installa seguendo la guida</b> che trovi nel gruppo: si copia il file nella cartella degli Expert di MetaTrader e si trascina sul grafico.</li>
-      <li><b>Prova prima su un conto demo</b>, poi passa al conto reale. Gli aggiornamenti arrivano nel gruppo, gratis.</li>`;
+    const cod = codice(prodotto), max = maxConti(cod);
+    return `<li><b>Entra nel gruppo clienti su Telegram.</b> È riservato a chi ha acquistato: lì trovi il file di ${esc(prodotto)}, la guida passo passo e gli aggiornamenti. Approviamo le richieste a mano, di solito in poche ore.${bottone(L.clienti, 'Entra nel gruppo clienti')}</li>
+      <li><b>Abilita i tuoi conti MetaTrader.</b> Scrivi qui il numero del conto su cui userai ${esc(prodotto)}: puoi abilitarne fino a ${max}${cod === 'risklycopy' ? ' (il conto principale e 2 copie)' : ''}. Il bot si attiva da solo su quei conti.
+        <div class="conti" data-prod="${esc(cod)}" data-max="${max}"><div class="conti-lista">Carico i tuoi conti…</div>
+          <form class="conti-form" onsubmit="aggiungiConto(event, '${esc(cod)}')"><input type="text" inputmode="numeric" pattern="[0-9]{3,11}" placeholder="Numero del conto, es. 51234567" required><button type="submit">Abilita</button></form>
+          <div class="conti-msg" role="status"></div></div></li>
+      <li><b>Installa seguendo la guida</b> del gruppo: si copia il file nella cartella degli Expert di MetaTrader e si trascina sul grafico.</li>
+      <li><b>Prova prima su un conto demo</b> (abilita anche quello), poi passa al conto reale. Gli aggiornamenti arrivano nel gruppo, gratis.</li>`;
   }
+  /* licenze: "Riskly Pro" -> "risklypro", come licenza_codice() nel database */
+  const codice = n => String(n || '').replace(/[^A-Za-z]/g, '').toLowerCase();
+  const maxConti = c => (c === 'risklypro' || c === 'risklycopy') ? 3 : 2;
+  async function caricaConti(){
+    const box = document.querySelectorAll('.conti'); if(!box.length || !sb) return;
+    let righe = [];
+    try{ const { data, error } = await sb.rpc('licenza_miei_conti'); if(!error && data) righe = data; }catch(e){}
+    box.forEach(b => {
+      const miei = righe.filter(r => r.prodotto === b.dataset.prod), max = +b.dataset.max;
+      b.querySelector('.conti-lista').innerHTML = miei.length
+        ? miei.map(r => `<span class="conto">✓ ${esc(r.conto)}</span>`).join('') + `<small>${miei.length} di ${max} abilitati</small>`
+        : `<small>Nessun conto abilitato ancora.</small>`;
+      b.querySelector('.conti-form').style.display = miei.length >= max ? 'none' : '';
+      if(miei.length >= max) b.querySelector('.conti-msg').textContent = 'Hai abilitato tutti i conti: per cambiarne uno scrivi a supporto@riskly.trade.';
+    });
+  }
+  window.aggiungiConto = async function(ev, prod){
+    ev.preventDefault();
+    const f = ev.target, inp = f.querySelector('input'), msg = f.parentElement.querySelector('.conti-msg'), n = inp.value.replace(/\D/g, '');
+    if(!n){ msg.textContent = 'Scrivi il numero del conto, solo cifre.'; return; }
+    f.querySelector('button').disabled = true; msg.textContent = 'Abilito il conto…';
+    try{
+      const { data, error } = await sb.rpc('licenza_aggiungi_conto', { p_prodotto: prod, p_conto: Number(n) });
+      if(error) throw error;
+      msg.textContent = data === 'OK' ? 'Conto ' + n + ' abilitato: il bot si attiva da solo entro qualche minuto.' : data;
+      if(data === 'OK') inp.value = '';
+    }catch(e){ msg.textContent = 'Non sono riuscito ad abilitare il conto. Riprova o scrivi a supporto@riskly.trade.'; }
+    f.querySelector('button').disabled = false;
+    caricaConti();
+  };
+
   async function sblocca(righe){
     document.getElementById('gate').style.display = 'none';
     document.getElementById('lista').style.display = 'block';
@@ -267,6 +310,7 @@ input,select,textarea{border-radius:3px!important}
       </details>`;
     }).join('');
 
+    caricaConti();
     const haBot = attivi.some(p => tipo(p) === 'bot'), haCorso = attivi.some(p => /rischio|pacchetto/.test(tipo(p)));
     const journal = attivi.find(p => /^journal/i.test(p));
     const imposta = (chiave, attivo, testo, codice) => {
