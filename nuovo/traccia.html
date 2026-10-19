@@ -6,6 +6,7 @@
       KEY = 'sb_publishable_j9bujIvCEz6x21yYoCODPw_lIZCJrIR',
       sito = location.hostname.replace(/^www\./, '').split('.')[0] || 'locale';
   function invia(percorso, referer){
+    if(window.rNonContare && rNonContare()) return;
     try{ fetch(URL, { method:'POST', keepalive:true, headers:{ apikey:KEY, 'Content-Type':'application/json', Prefer:'return=minimal' },
                       body: JSON.stringify({ percorso: String(percorso).slice(0, 80), referer: String(referer).slice(0, 80) }) }).catch(function(){}); }catch(e){}
   }

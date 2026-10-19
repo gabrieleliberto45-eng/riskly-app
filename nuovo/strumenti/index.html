@@ -1,6 +1,13 @@
 <!doctype html>
 <html lang="it">
 <head>
+<script>/* chi gestisce Riskly non entra nel conteggio delle visite: si attiva da solo con l'accesso di Gabriele
+   oppure aprendo il sito con ?noconta=1; si toglie con ?conta=1. Anche le prove in locale non contano. */
+function rNonContare(){ try{ return localStorage.getItem('riskly-non-contare') === '1' || /^(127\.|localhost$)/.test(location.hostname); }catch(e){ return false; } }
+function rSegnaGestore(email){ if(['gabrieleliberto1212@gmail.com','gabrieleliberto45@gmail.com'].indexOf(String(email || '').toLowerCase()) >= 0){ try{ localStorage.setItem('riskly-non-contare', '1'); }catch(e){} } }
+(function(){ try{ var q = new URLSearchParams(location.search); if(q.has('noconta')) localStorage.setItem('riskly-non-contare', '1'); if(q.has('conta')) localStorage.removeItem('riskly-non-contare'); }catch(e){} })();
+</script>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Strumenti gratuiti per il trading · Riskly</title>
@@ -1538,6 +1545,7 @@ input,select,textarea{border-radius:3px!important}
       KEY = 'sb_publishable_j9bujIvCEz6x21yYoCODPw_lIZCJrIR',
       sito = location.hostname.replace(/^www\./, '').split('.')[0] || 'locale';
   function invia(percorso, referer){
+    if(window.rNonContare && rNonContare()) return;
     try{ fetch(URL, { method:'POST', keepalive:true, headers:{ apikey:KEY, 'Content-Type':'application/json', Prefer:'return=minimal' },
                       body: JSON.stringify({ percorso: String(percorso).slice(0, 80), referer: String(referer).slice(0, 80) }) }).catch(function(){}); }catch(e){}
   }
@@ -2859,6 +2867,7 @@ if(ACC.sb){
     if(ev === 'PASSWORD_RECOVERY') setTimeout(() => accApri('nuova'), 0);
     const prima = ACC.utente ? ACC.utente.id : null;
     ACC.utente = sessione ? sessione.user : null;
+    if(ACC.utente && window.rSegnaGestore) rSegnaGestore(ACC.utente.email);   /* le visite di Gabriele non si contano */
     accDisegna();
     // fuori dalla callback: dentro non si devono attendere altre chiamate a Supabase
     if(ACC.utente && ACC.utente.id !== prima) setTimeout(accScarica, 0);

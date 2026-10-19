@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
+<script>/* chi gestisce Riskly non entra nel conteggio delle visite: si attiva da solo con l'accesso di Gabriele
+   oppure aprendo il sito con ?noconta=1; si toglie con ?conta=1. Anche le prove in locale non contano. */
+function rNonContare(){ try{ return localStorage.getItem('riskly-non-contare') === '1' || /^(127\.|localhost$)/.test(location.hostname); }catch(e){ return false; } }
+function rSegnaGestore(email){ if(['gabrieleliberto1212@gmail.com','gabrieleliberto45@gmail.com'].indexOf(String(email || '').toLowerCase()) >= 0){ try{ localStorage.setItem('riskly-non-contare', '1'); }catch(e){} } }
+(function(){ try{ var q = new URLSearchParams(location.search); if(q.has('noconta')) localStorage.setItem('riskly-non-contare', '1'); if(q.has('conta')) localStorage.removeItem('riskly-non-contare'); }catch(e){} })();
+</script>
+
 <meta charset="UTF-8">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -33,6 +40,7 @@
       KEY = 'sb_publishable_j9bujIvCEz6x21yYoCODPw_lIZCJrIR',
       sito = location.hostname.replace(/^www\./, '').split('.')[0] || 'locale';
   function invia(percorso, referer){
+    if(window.rNonContare && rNonContare()) return;
     try{ fetch(URL, { method:'POST', keepalive:true, headers:{ apikey:KEY, 'Content-Type':'application/json', Prefer:'return=minimal' },
                       body: JSON.stringify({ percorso: String(percorso).slice(0, 80), referer: String(referer).slice(0, 80) }) }).catch(function(){}); }catch(e){}
   }
@@ -4873,7 +4881,7 @@ try{
     const corti = { '/tt':'tiktok', '/ig':'instagram', '/tg':'telegram', '/yt':'youtube', '/bio':'bio' };
     const tag = q.get('da') || q.get('utm_source') || corti[location.pathname.replace(/\/$/,'')] || '';
 
-    sb.from('visite').insert({
+    if(!(window.rNonContare && rNonContare())) sb.from('visite').insert({
       percorso: location.pathname || '/',
       referer:  tag || da || 'diretto'
     }).then(()=>{}, ()=>{});
@@ -5466,6 +5474,7 @@ function gsSmonta(){
 let gsOrdini = [], gsAttesa = [], gsUtenti = [], gsVisite = [];
 
 function isAdmin(){
+  if(utente && window.rSegnaGestore) rSegnaGestore(utente.email);   /* le visite di Gabriele non si contano */
   return !!(utente && ADMIN.includes((utente.email || '').toLowerCase()));
 }
 

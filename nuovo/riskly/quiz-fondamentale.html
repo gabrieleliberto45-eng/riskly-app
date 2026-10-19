@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
+<script>/* chi gestisce Riskly non entra nel conteggio delle visite: si attiva da solo con l'accesso di Gabriele
+   oppure aprendo il sito con ?noconta=1; si toglie con ?conta=1. Anche le prove in locale non contano. */
+function rNonContare(){ try{ return localStorage.getItem('riskly-non-contare') === '1' || /^(127\.|localhost$)/.test(location.hostname); }catch(e){ return false; } }
+function rSegnaGestore(email){ if(['gabrieleliberto1212@gmail.com','gabrieleliberto45@gmail.com'].indexOf(String(email || '').toLowerCase()) >= 0){ try{ localStorage.setItem('riskly-non-contare', '1'); }catch(e){} } }
+(function(){ try{ var q = new URLSearchParams(location.search); if(q.has('noconta')) localStorage.setItem('riskly-non-contare', '1'); if(q.has('conta')) localStorage.removeItem('riskly-non-contare'); }catch(e){} })();
+</script>
+
 <meta charset="UTF-8">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -122,7 +129,7 @@
 /* conteggio anonimo come sugli altri siti (nessun cookie) */
 (function(){
   var URL='https://swlztverwfgdgchgpudt.supabase.co/rest/v1/visite', KEY='sb_publishable_j9bujIvCEz6x21yYoCODPw_lIZCJrIR';
-  function invia(p,r){ try{ fetch(URL,{method:'POST',keepalive:true,headers:{apikey:KEY,'Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify({percorso:String(p).slice(0,80),referer:String(r).slice(0,80)})}).catch(function(){}); }catch(e){} }
+  function invia(p,r){ if(window.rNonContare && rNonContare()) return; try{ fetch(URL,{method:'POST',keepalive:true,headers:{apikey:KEY,'Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify({percorso:String(p).slice(0,80),referer:String(r).slice(0,80)})}).catch(function(){}); }catch(e){} }
   function unaVolta(k){ try{ if(sessionStorage.getItem(k)) return false; sessionStorage.setItem(k,'1'); }catch(e){} return true; }
   window.traccia=function(ev){ if(unaVolta('riskly_ev_'+ev)) invia('#'+ev,'riskly'); };
   if(unaVolta('riskly_visita_quiz')) invia('quiz', new URLSearchParams(location.search).get('da') || 'diretto');
