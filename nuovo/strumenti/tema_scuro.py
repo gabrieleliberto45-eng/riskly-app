@@ -2,10 +2,12 @@
 # Legge gli stili di index.html e, per ogni regola che usa un colore chiaro (fondi) o scuro (testi),
 # scrive la stessa regola sotto html[data-tema="scuro"] con il colore scambiato.
 # Il risultato va nel blocco <style id="tema-scuro"> (rigenerato ogni volta).
-# Si rilancia dopo aver cambiato gli stili:  python3 nuovo/strumenti/tema_scuro.py   (serve: pip install tinycss2)
-import os, re, tinycss2
+# Si rilancia dopo aver cambiato gli stili (serve: pip install tinycss2):
+#   python3 nuovo/strumenti/tema_scuro.py              -> strumenti.riskly.trade
+#   python3 nuovo/strumenti/tema_scuro.py index.html   -> il journal (app.riskly.trade, index.html nella radice)
+import os, re, sys, tinycss2
 QUI = os.path.dirname(os.path.abspath(__file__))
-P = os.path.join(QUI, 'index.html')
+P = sys.argv[1] if len(sys.argv) > 1 else os.path.join(QUI, 'index.html')
 COLORI = {  # chiaro -> scuro
   '#F3F4F1': '#0E1110', '#ECEEEA': '#171B19', '#FBFBF9': '#161A18', '#FFFFFF': '#1C211F', '#FFF': '#1C211F',
   '#E1E4E6': '#262C29', '#D7DADC': '#2E3532', '#CDD1D4': '#2E3532', '#C9CDD1': '#36403B',
