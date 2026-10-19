@@ -3041,6 +3041,7 @@ function j_modificaDaScheda(id){ j_chiudiOp(); j_modifica(id); }
 async function j_eliminaDaScheda(id){
   const m = document.getElementById('modOp');
   m.classList.remove('on');                       /* la richiesta di conferma resta visibile */
+  const prima = j_trades.length;
   await j_removeTrade(id);
   if(j_trades.length === prima) m.classList.add('on');   /* annullato: la scheda resta aperta */
   else j_opId = null;
