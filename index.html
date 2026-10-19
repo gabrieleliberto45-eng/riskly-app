@@ -5103,6 +5103,15 @@ if(sb){
   });
 }
 
+/* tornando sulla pagina (es. dopo aver salvato dal telefono) rileggo le operazioni, al massimo ogni 20 secondi */
+let j_ultimaRilettura = Date.now();
+document.addEventListener('visibilitychange', async () => {
+  if(document.hidden || !utente || j_salvando || Date.now() - j_ultimaRilettura < 20000) return;
+  j_ultimaRilettura = Date.now();
+  await caricaOperazioni();
+  j_renderAll();
+});
+
 /* barra di navigazione in basso per il journal */
 (function(){
   const VISTE = [
