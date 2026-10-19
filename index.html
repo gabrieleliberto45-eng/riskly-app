@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
+<script>/* chi gestisce Riskly non entra nel conteggio delle visite: si attiva da solo con l'accesso di Gabriele
+   oppure aprendo il sito con ?noconta=1; si toglie con ?conta=1. Anche le prove in locale non contano. */
+function rNonContare(){ try{ return localStorage.getItem('riskly-non-contare') === '1' || /^(127\.|localhost$)/.test(location.hostname); }catch(e){ return false; } }
+function rSegnaGestore(email){ if(['gabrieleliberto1212@gmail.com','gabrieleliberto45@gmail.com'].indexOf(String(email || '').toLowerCase()) >= 0){ try{ localStorage.setItem('riskly-non-contare', '1'); }catch(e){} } }
+(function(){ try{ var q = new URLSearchParams(location.search); if(q.has('noconta')) localStorage.setItem('riskly-non-contare', '1'); if(q.has('conta')) localStorage.removeItem('riskly-non-contare'); }catch(e){} })();
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Riskly — Il tuo journal</title>
@@ -27,6 +34,7 @@
       KEY = 'sb_publishable_j9bujIvCEz6x21yYoCODPw_lIZCJrIR',
       sito = location.hostname.replace(/^www\./, '').split('.')[0] || 'locale';
   function invia(percorso, referer){
+    if(window.rNonContare && rNonContare()) return;
     try{ fetch(URL, { method:'POST', keepalive:true, headers:{ apikey:KEY, 'Content-Type':'application/json', Prefer:'return=minimal' },
                       body: JSON.stringify({ percorso: String(percorso).slice(0, 80), referer: String(referer).slice(0, 80) }) }).catch(function(){}); }catch(e){}
   }
@@ -2173,6 +2181,7 @@ function aggiornaBarra(){
   if(!c) return;
 
   if(utente){
+    if(window.rSegnaGestore) rSegnaGestore(utente.email);   /* le visite di Gabriele non si contano */
     const nome = (profilo && profilo.nome) ? profilo.nome.split(' ')[0] : 'Ciao';
     c.innerHTML = `
       <button type="button" class="s-tema" onclick="temaCambia()" aria-label="Modalità scura o chiara" title="Modalità scura / chiara"><svg class="ic-luna" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="ic-sole" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg></button>
