@@ -2517,7 +2517,7 @@ body.fuori-home #vaiHome{display:inline-flex}
           </div>
           <p class="sub">Ti ferma dopo N perdite consecutive — il numero lo imposti tu — quando il conto è ancora sano. E quando ti blocca, chiude anche MetaTrader fino a mezzanotte.</p>
           <div class="price">€99</div>
-          <div class="price-off">prezzo di lancio · dal 23 ottobre €149</div>
+          <div class="price-off">prezzo di lancio · poi €149</div>
           <div class="plabel">una tantum · 2 conti · aggiornamenti inclusi</div>
           <button class="btn pri wide" style="margin-top:8px" data-prodotto="RiskGuard" onclick="azioneProdotto('RiskGuard')">Disponibile dal 23 ottobre · blocca il posto</button>
           <details class="programma cp-prog"><summary>Cosa fa · 8 funzioni</summary>
@@ -2551,7 +2551,7 @@ body.fuori-home #vaiHome{display:inline-flex}
           </div>
           <p class="sub">Gestisce le posizioni aperte al posto tuo: stop loss, break-even e trailing stop. Tutto in pip, nessuna formula da ricordare.</p>
           <div class="price">€49</div>
-          <div class="price-off">prezzo di lancio · dal 23 ottobre €79</div>
+          <div class="price-off">prezzo di lancio · poi €79</div>
           <div class="plabel">una tantum · 2 conti · aggiornamenti inclusi</div>
           <button class="btn pri wide" style="margin-top:8px" data-prodotto="TradeManager" onclick="azioneProdotto('TradeManager')">Disponibile dal 23 ottobre · blocca il posto</button>
           <details class="programma cp-prog"><summary>Cosa fa · 5 funzioni</summary>
@@ -2582,7 +2582,7 @@ body.fuori-home #vaiHome{display:inline-flex}
           </div>
           <p class="sub">Apri una posizione a mano, il bot apre le altre con take profit scaglionati in pip (es. 20, 40, 60). Nessun altro lo fa a questo prezzo.</p>
           <div class="price">€79</div>
-          <div class="price-off">prezzo di lancio · dal 23 ottobre €129</div>
+          <div class="price-off">prezzo di lancio · poi €129</div>
           <div class="plabel">una tantum · 2 conti · aggiornamenti inclusi</div>
           <button class="btn pri wide" style="margin-top:8px" data-prodotto="ScaleIn" onclick="azioneProdotto('ScaleIn')">Disponibile dal 23 ottobre · blocca il posto</button>
           <details class="programma cp-prog"><summary>Cosa fa · 7 funzioni</summary>
@@ -2615,7 +2615,7 @@ body.fuori-home #vaiHome{display:inline-flex}
           </div>
           <p class="sub">I tre moduli in un solo bot con stato condiviso: il rischio è calcolato sull'insieme delle posizioni, non su ciascuna separatamente.</p>
           <div class="price">€199</div>
-          <div class="price-off">prezzo di lancio · dal 23 ottobre €299</div>
+          <div class="price-off">prezzo di lancio · poi €299</div>
           <div class="plabel">una tantum · 3 conti · aggiornamenti a vita</div>
           <button class="btn pri wide" style="margin-top:8px" data-prodotto="Riskly Pro" onclick="azioneProdotto('Riskly Pro')">Disponibile dal 23 ottobre · blocca il posto</button>
           <details class="programma cp-prog"><summary>Cosa fa · 9 funzioni</summary>
@@ -5346,6 +5346,7 @@ function testiLancio(){
   testo('.lancio-bar .wrap > span:first-child', '<b>I bot per MT4 e MT5 sono disponibili</b>');
   document.querySelectorAll('.of-prezzo').forEach(e => { e.textContent = e.textContent.replace('dal 23 ottobre', 'disponibili ora'); });
   testo('.lancio .data', 'Disponibili');
+  document.querySelectorAll('.tile-badge').forEach(e => { if(/dal 23 ottobre/.test(e.textContent)) e.textContent = 'disponibili'; });
   document.querySelectorAll('.lancio p').forEach(e => { if(/Escono i bot/.test(e.textContent)) e.innerHTML = 'I bot per <b>MetaTrader 4 e 5</b> sono in vendita. Ai primi 10 acquisti il prezzo di lancio resta bloccato a vita. Si paga una volta sola.'; });
   document.querySelectorAll('h3').forEach(h => { if(h.textContent.trim() === 'Non sono ancora in vendita'){ h.textContent = 'Disponibili ora';
     const p = h.parentElement.querySelector('p'); if(p) p.textContent = 'I primi 10 acquisti hanno il prezzo di lancio, bloccato per sempre. Paghi una volta sola, ricevi file, licenza e guida.'; } });
