@@ -1,58 +1,100 @@
--- ═══════════════════════════════════════════════════════════════════
---  Riskly · correzioni di sicurezza del database (Supabase)
---
---  Il database ha già la RLS attiva su tutte le tabelle e le policy
---  admin. Qui si chiudono solo le due falle trovate e si aggiunge la
---  consegna protetta del link Telegram. Si può rieseguire.
--- ═══════════════════════════════════════════════════════════════════
+-- Riskly: regole di sicurezza lato server.
+-- Da eseguire una volta nel SQL Editor di Supabase (Dashboard → SQL Editor → New query).
+-- Il sito controlla già piani e permessi nel browser, ma chiunque può aggirarli dalla
+-- console: queste regole fanno sì che il database stesso li faccia rispettare.
+-- Prima di eseguirlo, controlla che i nomi (operazioni.utente, profili.id, bucket
+-- "screenshot") corrispondano ai tuoi.
 
 
--- ─── 1. Acquisti: il cliente può creare solo ordini "in_attesa" ────
--- Prima bastava che l'ordine fosse suo: poteva crearlo già "attivo"
--- e sbloccare l'area clienti senza pagare.
-drop policy if exists "crea i propri ordini" on public.acquisti;
-create policy "crea i propri ordini" on public.acquisti
-  for insert to authenticated
-  with check (auth.uid() = utente and stato = 'in_attesa');
+-- 1. Operazioni: ognuno legge e modifica solo le proprie ---------------------------
+
+alter table public.operazioni enable row level security;
+
+drop policy if exists "operazioni: solo le proprie" on public.operazioni;
+create policy "operazioni: solo le proprie" on public.operazioni
+  for all to authenticated
+  using (auth.uid() = utente)
+  with check (auth.uid() = utente);
 
 
--- ─── 2. Profili: il cliente li legge ma non li modifica ────────────
--- Prima poteva cambiarsi piano e scadenza da solo (es. "premium").
--- Il profilo lo crea il trigger al_nuovo_utente → crea_profilo(),
--- il piano lo cambia solo l'admin ("admin aggiorna profili").
-drop policy if exists "ognuno modifica il proprio profilo" on public.profili;
-drop policy if exists "inserimento del proprio profilo" on public.profili;
+-- 2. Profili: si legge il proprio, ma piano e scadenza non si toccano dal browser ----
 
+alter table public.profili enable row level security;
 
--- ─── 3. Link del gruppo Telegram clienti ──────────────────────────
--- download.html lo chiede con sb.rpc('link_gruppo_clienti') e lo
--- riceve solo chi ha un acquisto attivo.
-create table if not exists public.impostazioni_private (
-  chiave text primary key,
-  valore text not null
-);
-alter table public.impostazioni_private enable row level security;
--- nessuna policy: dal browser non si legge, solo tramite la funzione sotto
+drop policy if exists "profili: lettura del proprio" on public.profili;
+create policy "profili: lettura del proprio" on public.profili
+  for select to authenticated
+  using (auth.uid() = id);
 
-create or replace function public.link_gruppo_clienti()
-returns text
-language sql stable
-security definer
-set search_path = public
+drop policy if exists "profili: modifica del proprio" on public.profili;
+create policy "profili: modifica del proprio" on public.profili
+  for update to authenticated
+  using (auth.uid() = id)
+  with check (auth.uid() = id);
+
+-- l'amministratore (pannello "Gestione" del sito) vede e modifica tutti i profili;
+-- piano e scadenza li può cambiare solo lui (o il pagamento, con la service role)
+create or replace function public.e_admin() returns boolean
+  language sql stable security definer set search_path = public
 as $$
-  select valore from public.impostazioni_private
-  where chiave = 'telegram_clienti'
-    and exists (
-      select 1 from public.acquisti
-      where utente = auth.uid() and stato = 'attivo'
-    )
+  select lower(coalesce(auth.jwt() ->> 'email', '')) = 'gabrieleliberto1212@gmail.com'
 $$;
 
-revoke all on function public.link_gruppo_clienti() from public, anon;
-grant execute on function public.link_gruppo_clienti() to authenticated;
+-- l'admin vede e modifica tutti i profili
+drop policy if exists "profili: admin legge tutti" on public.profili;
+create policy "profili: admin legge tutti" on public.profili
+  for select to authenticated
+  using (public.e_admin());
 
--- Il link (nuovo, con "richiesta di accesso" attiva) si inserisce così,
--- oppure dal Table Editor → impostazioni_private:
--- insert into public.impostazioni_private (chiave, valore)
--- values ('telegram_clienti', 'https://t.me/+NUOVO_LINK')
--- on conflict (chiave) do update set valore = excluded.valore;
+drop policy if exists "profili: admin modifica tutti" on public.profili;
+create policy "profili: admin modifica tutti" on public.profili
+  for update to authenticated
+  using (public.e_admin())
+  with check (public.e_admin());
+
+-- il permesso di modifica torna com'era; piano e scadenza li protegge il controllo qui sotto
+grant update on public.profili to authenticated;
+
+create or replace function public.proteggi_piano() returns trigger
+  language plpgsql security definer set search_path = public
+as $$
+begin
+  if (new.piano is distinct from old.piano or new.scadenza is distinct from old.scadenza)
+     and auth.role() = 'authenticated' and not public.e_admin() then
+    raise exception 'Solo l''amministratore può cambiare piano e scadenza';
+  end if;
+  return new;
+end
+$$;
+
+drop trigger if exists proteggi_piano on public.profili;
+create trigger proteggi_piano before update on public.profili
+  for each row execute function public.proteggi_piano();
+
+
+
+-- 3. Screenshot: bucket privato, ognuno vede solo la propria cartella --------------
+-- Il journal ora usa link temporanei firmati, quindi funziona anche col bucket privato.
+
+update storage.buckets set public = false where id = 'screenshot';
+
+drop policy if exists "screenshot: lettura propria" on storage.objects;
+create policy "screenshot: lettura propria" on storage.objects
+  for select to authenticated
+  using (bucket_id = 'screenshot' and (storage.foldername(name))[1] = auth.uid()::text);
+
+drop policy if exists "screenshot: caricamento proprio" on storage.objects;
+create policy "screenshot: caricamento proprio" on storage.objects
+  for insert to authenticated
+  with check (bucket_id = 'screenshot' and (storage.foldername(name))[1] = auth.uid()::text);
+
+drop policy if exists "screenshot: cancellazione propria" on storage.objects;
+create policy "screenshot: cancellazione propria" on storage.objects
+  for delete to authenticated
+  using (bucket_id = 'screenshot' and (storage.foldername(name))[1] = auth.uid()::text);
+
+-- limite di 5 MB e solo immagini, anche se qualcuno aggira il controllo nel browser
+update storage.buckets
+  set file_size_limit = 5242880,
+      allowed_mime_types = array['image/png','image/jpeg','image/webp','image/gif']
+  where id = 'screenshot';
