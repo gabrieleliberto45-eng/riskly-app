@@ -4378,6 +4378,8 @@ async function j_addTrade(e){
     document.getElementById('f-ora').value = ora;
     j_flash(`${t.symbol} ${vecchio ? 'aggiornato' : 'salvato'} · ${j_fmt(t.pnl)}.${avvisoShot}`, !!avvisoShot);
     j_renderAll();
+    // dopo il salvataggio si torna alla schermata da cui si arriva
+    if(window.jVista) jVista(vecchio ? 'operazioni' : 'panoramica');
   } catch(err){
     console.error(err);
     // lo screenshot appena caricato non serve più
