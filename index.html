@@ -1376,6 +1376,12 @@ body{padding-top:0}
   .jm-campo > span{display:block;color:var(--dim);font-size:.78rem;margin-bottom:7px}
   .jm-campo .jchips-scelta{margin-top:0}
   .jdett-riga{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--accent);opacity:.85;margin-top:3px}
+  .jgr{display:flex;flex-direction:column;gap:5px;margin-top:6px;max-width:440px}
+  .jgr-b{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:7px 9px 7px 11px;border-left:3px solid var(--accent);border-radius:8px;background:color-mix(in srgb,var(--accent) 8%,transparent);font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--text);line-height:1.45}
+  .jgr-k{display:block;font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:1px}
+  .jgr-vuoto{color:var(--dim2)}
+  .jgr-foto{width:58px;height:40px;flex:none}
+  .jgr-c{font-family:'JetBrains Mono',monospace;font-size:.66rem;color:var(--dim);padding-left:2px}
   .jmetodo-ov{display:none;position:fixed;inset:0;z-index:95;background:rgba(4,8,6,.8);backdrop-filter:blur(6px);
     align-items:center;justify-content:center;padding:16px}
   .jmetodo-ov.on{display:flex}
@@ -2858,6 +2864,7 @@ function j_renderTable(list){
     const emo=j_emoInfo(t.emo||'lucido');
     const id=esc(t.id);
     const img = t.shotUrl || (t.shot && t.shot.startsWith('data:') ? t.shot : '');
+    const gruppi = j_dettagliGruppi(t, img);
     return `<tr class="jclic" tabindex="0" role="button" aria-label="Apri la scheda di ${esc(t.symbol)} del ${j_dataBreve(t.date)}" onclick="j_clicRiga(event,'${id}')" onkeydown="if(event.key==='Enter'&&event.target===this)j_apriOp('${id}')">
       <td style="color:var(--dim)">${j_dataBreve(t.date)}${t.ora?' <span style="color:var(--dim2);font-size:.9em">'+esc(t.ora)+'</span>':''}</td>
       <td>${esc(t.symbol)}${t.fonte==='bot'?'<span class="pill bot" title="Arrivata dal bot di MetaTrader">BOT</span>':''}</td>
@@ -2865,8 +2872,8 @@ function j_renderTable(list){
       <td class="bar-cell ${j_cl(t.pnl)}"><span class="bar-fill" style="width:${w}%;background:${t.pnl>=0?'#1E7F45':'#C2361F'}"></span><span style="position:relative">${j_fmt(t.pnl)}</span></td>
       <td class="${t.risk>0?j_cl(t.pnl):''}" style="${t.risk>0?'':'color:var(--dim2)'}">${r}</td>
       <td><span class="pill emo" style="color:${emo.col}">${emo.nome}</span></td>
-      <td class="strat" title="${esc(t.nota)}">${esc(t.strategy)||'—'}${j_dettagliTesto(t)?`<div class="jdett-riga">${esc(j_dettagliTesto(t))}</div>`:''}${(t.dettagli||{}).scaglioni?`<div class="jdett-riga jscag-riep">${esc(j_scagRiassunto(j_scagParse(t.dettagli.scaglioni)))}</div>`:''}${t.nota?`<div class="jnota-riga">${esc(t.nota)}</div>`:''}</td>
-      <td>${img?`<img class="jthumb" src="${esc(img)}" alt="Screenshot ${esc(t.symbol)}" loading="lazy" onclick="j_apriShot('${id}')">`:'<span class="jthumb-no">—</span>'}</td>
+      <td class="strat" title="${esc(t.nota)}">${esc(t.strategy)||'—'}${gruppi||(j_dettagliTesto(t)?`<div class="jdett-riga">${esc(j_dettagliTesto(t))}</div>`:'')}${(t.dettagli||{}).scaglioni?`<div class="jdett-riga jscag-riep">${esc(j_scagRiassunto(j_scagParse(t.dettagli.scaglioni)))}</div>`:''}${t.nota?`<div class="jnota-riga">${esc(t.nota)}</div>`:''}</td>
+      <td>${gruppi?'':img?`<img class="jthumb" src="${esc(img)}" alt="Screenshot ${esc(t.symbol)}" loading="lazy" onclick="j_apriShot('${id}')">`:'<span class="jthumb-no">—</span>'}</td>
       <td class="jazioni">${bloccato?'':`<button class="del mod" onclick="j_modifica('${id}')" title="Modifica" aria-label="Modifica">✎</button><button class="del" onclick="j_removeTrade('${id}')" title="Elimina" aria-label="Elimina">✕</button>`}</td>
     </tr>`;
   }).join('');
@@ -4020,6 +4027,21 @@ function j_dettagliTesto(t, conNomi){
     const c = campi.find(x => x.id === k);
     return conNomi && c ? c.nome + ': ' + v : v;
   }).filter(Boolean).join(conNomi ? '; ' : ' · ');
+}
+/* metodo con i gruppi (Input e conferma): in tabella un riquadro per l'input e uno per la conferma,
+   ciascuno con il suo screenshot accanto; contesto e disciplina su una riga sotto */
+const J_SINO = { rispettata: 'Entrato dopo la conferma', piano: 'Piano seguito', emo_influito: 'Emozioni influenti' };
+function j_dettagliGruppi(t, img){
+  const d = t.dettagli || {};
+  const campi = Object.values(METODI).flatMap(m => m.campi).filter(c => c.gruppo);
+  if(!campi.some(c => d[c.id]) && !t.shot2Url) return '';
+  const val = c => { const v = d[c.id]; if(!v) return ''; if(J_SINO[c.id]) return J_SINO[c.id] + ': ' + v; return c.id.startsWith('tf_') ? 'TF ' + v : v; };
+  const del = g => { const visti = new Set(); return campi.filter(c => c.gruppo === g && !visti.has(c.id) && visti.add(c.id)).map(val).filter(Boolean).join(' · '); };
+  const id = esc(t.id);
+  const foto = (u, n, alt) => u ? `<img class="jthumb jgr-foto" src="${esc(u)}" alt="${alt} ${esc(t.symbol)}" loading="lazy" onclick="j_apriShot('${id}'${n === 2 ? ', 2' : ''})">` : '';
+  const blocco = (g, u, n) => { const v = del(g); if(!v && !u) return ''; return `<div class="jgr-b"><div><span class="jgr-k">${J_GRUPPI_CAMPI[g][0]}</span>${esc(v) || '<span class="jgr-vuoto">—</span>'}</div>${foto(u, n, g === 'input' ? 'Input' : 'Conferma')}</div>`; };
+  const altro = ['contesto', 'disciplina'].map(del).filter(Boolean).join(' · ');
+  return `<div class="jgr">${blocco('input', img, 1)}${blocco('conferma', t.shot2Url, 2)}${altro ? `<div class="jgr-c">${esc(altro)}</div>` : ''}</div>`;
 }
 function j_dettagliCasuali(){
   const out = {};
