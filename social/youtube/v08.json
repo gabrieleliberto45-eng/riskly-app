@@ -1,0 +1,132 @@
+{
+ "id": "v08",
+ "serie": "Domani esce",
+ "titolo": "Domani alle 14:30: cantieri e permessi di costruzione USA (20 ottobre 2026)",
+ "scene": [
+  {
+   "capitolo": "Introduzione",
+   "tipo": "titolo",
+   "grande": "Domani alle 14:30<br><mark>le case americane</mark>",
+   "piccolo": "Nuovi cantieri e permessi di costruzione USA, martedì 20 ottobre: cosa misurano e come gestire il rischio",
+   "voce": "Domani, martedì venti ottobre, alle quattordici e trenta ora italiana, escono due dati sul mercato della casa americano: i nuovi cantieri e i permessi di costruzione di settembre. Non sono i dati più famosi, ma in questo momento raccontano bene quanto pesano i tassi alti. In tre minuti vediamo cosa misurano, cosa si aspetta il mercato e come gestire il rischio. Niente previsioni."
+  },
+  {
+   "capitolo": "Cosa esce domani",
+   "tipo": "punti",
+   "titolo": "Cosa esce domani",
+   "punti": [
+    [
+     "Nuovi cantieri",
+     "quante case hanno iniziato a costruire a settembre, in ritmo annuo"
+    ],
+    [
+     "Permessi di costruzione",
+     "quante case sono state autorizzate: anticipano i cantieri dei mesi dopo"
+    ],
+    [
+     "14:30 ora italiana",
+     "escono insieme, dal Census Bureau americano"
+    ]
+   ],
+   "nota": "Fonte: U.S. Census Bureau · orario dal calendario economico.",
+   "voce": "Il primo dato sono i nuovi cantieri: quante case gli americani hanno iniziato a costruire a settembre, espresso in ritmo annuo, cioè come se quel mese durasse tutto l'anno. Il secondo sono i permessi di costruzione: le case autorizzate, che di solito diventano cantieri nei mesi successivi. Per questo i permessi sono guardati come un segnale in anticipo. Escono insieme, alle quattordici e trenta ora italiana."
+  },
+  {
+   "capitolo": "Il contesto: mutui più cari",
+   "tipo": "numeri",
+   "titolo": "Il contesto: mutui più cari",
+   "colonne": [
+    "Fatto",
+    "Quando"
+   ],
+   "righe": [
+    [
+     "Mutuo a 30 anni: 6,66%",
+     "inizio agosto"
+    ],
+    [
+     "Fed: tassi dal 3,75% al 4%",
+     "16 settembre"
+    ],
+    [
+     "Mutuo a 30 anni: 7,40%",
+     "15 ottobre"
+    ]
+   ],
+   "nota": "Fonti: Freddie Mac, tasso medio dei mutui a 30 anni · Federal Reserve.",
+   "voce": "Il contesto. Il sedici settembre la Federal Reserve ha alzato i tassi dal tre virgola settantacinque al quattro per cento. E i mutui sono diventati più cari: il tasso medio di un mutuo a trent'anni era al sei virgola sessantasei per cento a inizio agosto, e il quindici ottobre era al sette virgola quaranta. Quando il mutuo costa di più, meno persone comprano casa e i costruttori tendono a rallentare. Ed è proprio questo che misurano i dati di domani."
+  },
+  {
+   "capitolo": "Ultimo dato e attese",
+   "tipo": "numeri",
+   "titolo": "Ultimo dato e attese",
+   "colonne": [
+    "Dato USA, ritmo annuo",
+    "Agosto → atteso a settembre"
+   ],
+   "righe": [
+    [
+     "Nuovi cantieri",
+     "1,275 milioni → 1,31 milioni"
+    ],
+    [
+     "Permessi di costruzione",
+     "1,403 milioni → 1,40 milioni"
+    ],
+    [
+     "Cantieri ad agosto: consenso → effettivo",
+     "1,31 → 1,275 milioni"
+    ]
+   ],
+   "nota": "Fonti: Census Bureau, dati di agosto (permessi nella versione definitiva) · consenso dal calendario economico.",
+   "voce": "Gli ultimi numeri. Ad agosto i nuovi cantieri sono stati un milione duecentosettantacinquemila in ritmo annuo, sotto le attese di un milione trecentodiecimila. Per settembre il mercato si aspetta un milione trecentodiecimila. I permessi di agosto sono stati un milione quattrocentotremila, e per settembre l'attesa è intorno a un milione quattrocentomila. Domani conterà soprattutto la distanza tra il numero che esce e queste attese."
+  },
+  {
+   "capitolo": "Come reagisce di solito",
+   "tipo": "punti",
+   "titolo": "Come reagisce di solito",
+   "punti": [
+    [
+     "Dati più forti",
+     "economia più solida: di solito un piccolo sostegno al dollaro"
+    ],
+    [
+     "Dati più deboli",
+     "i tassi alti frenano: di solito il contrario"
+    ],
+    [
+     "Reazione più piccola",
+     "di inflazione e lavoro: conta di più se la sorpresa è grande"
+    ]
+   ],
+   "voce": "Come reagisce di solito il mercato? Se cantieri e permessi escono sopra le attese, si legge un'economia più solida, e il dollaro di solito ne trae un piccolo sostegno. Se escono sotto, si legge che i tassi alti stanno frenando, e di solito succede il contrario. Ma attenzione: questi dati muovono meno dell'inflazione o del rapporto sul lavoro. Contano davvero quando la sorpresa è grande. Sono tendenze, non regole."
+  },
+  {
+   "capitolo": "Il rischio",
+   "tipo": "punti",
+   "titolo": "Il rischio domani",
+   "punti": [
+    [
+     "Alle 14:30",
+     "spread più larghi nei primi minuti, anche su un dato minore"
+    ],
+    [
+     "Posizioni aperte",
+     "stop vero sulla piattaforma e lotto calcolato su quello stop"
+    ],
+    [
+     "Dopo il dato",
+     "aspetta che il prezzo si calmi: niente rincorse sul primo movimento"
+    ]
+   ],
+   "voce": "E il rischio. Anche su un dato considerato minore, nei primi minuti dopo le quattordici e trenta gli spread possono allargarsi e il prezzo può fare un movimento brusco. Se hai posizioni aperte, tieni uno stop vero sulla piattaforma e un lotto calcolato su quello stop. E se vuoi entrare dopo il dato, aspetta che il prezzo si calmi: rincorrere il primo movimento è uno degli errori più costosi."
+  },
+  {
+   "capitolo": "Per approfondire",
+   "tipo": "chiusura",
+   "grande": "Capire i dati<br><mark>da zero</mark>",
+   "piccolo": "Calendario gratuito: riskly.trade/dati · Corso Riskly · Analisi fondamentale: riskly.trade/corsi",
+   "voce": "Vuoi sapere ogni giorno quali dati escono e a che ora? Il calendario economico gratuito è su riskly punto trade barra dati. E se vuoi capire davvero cosa misurano e come gestirli, c'è il corso Riskly Analisi fondamentale: banche centrali, inflazione, lavoro e dati economici, sempre con un occhio al rischio. Contenuto educativo, non consulenza finanziaria: il trading con leva può farti perdere tutto il capitale."
+  }
+ ]
+}
