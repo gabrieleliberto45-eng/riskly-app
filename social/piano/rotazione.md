@@ -101,3 +101,27 @@ YouTube: in questo turno nessun nuovo video lungo; restano le routine "Domani es
 ## Regola dal 19 ottobre 2026 (decisa da Gabriele)
 - Al massimo **un contenuto al giorno per social** (Instagram, TikTok, YouTube; X se verrà collegato). Niente più 2–4 uscite nello stesso giorno.
 - Riorganizzazione fatta il 17/10: in bozza i reel pre-lancio superati (bot 19/10 e 21/10, carosello overtrading); spostati "Oggi no · stop" al 26/10, "Oggi no · copia tra conti" al 27/10 (testo aggiornato: RisklyCopy disponibile ora), carosello "5 frasi" al 28/10, video YouTube sul lotto dell'oro al 24/10.
+
+## YouTube dal 20 ottobre: grafica del sito e formati diversi (richiesta di Gabriele)
+Problema: quasi solo "Domani esce", sempre uguale → poche visualizzazioni. Dal 20 ottobre:
+
+**Grafica** (social/youtube/modello.html): stile dell'apertura di riskly.trade. Fondo nero, candele che scorrono con la linea
+dello stop ambra, ambra #F2B83A solo su ciò che conta, Archivo stretto, schede scure come le tile del sito, capitolo nella pillola ambra
+e nome della serie accanto (campo "serie" del json). Le candele si muovono sempre: il montaggio rende ogni fotogramma
+(circa 0,18 s a fotogramma: 3 minuti ≈ 13 minuti di montaggio; FERMO=1 per la versione veloce senza movimento).
+
+**Tipi di scena** (oltre a titolo, punti, numeri, grafico, formula, chiusura):
+- `cifra`: {titolo?, cifra:"-35,2%", etichetta, nota?}: numero enorme che conta da zero.
+- `confronto`: {titolo, no:{titolo, righe[]}, si:{titolo, righe[]}, nota?}: due schede, sbagliato e giusto.
+- `domanda`: {titolo, opzioni[2-4], giusta:indice, spiegazione}: quiz; la voce fa la domanda, lascia un attimo
+  ("metti in pausa e rispondi nei commenti"), poi si accende la risposta giusta.
+Regola: in ogni video almeno 3 tipi di scena diversi, mai due scene di fila dello stesso tipo, almeno una `domanda` o `cifra`.
+
+**Calendario YouTube** (massimo un'uscita al giorno):
+| Giorno | Ora | Serie |
+|---|---|---|
+| Martedì | 18:30 | **Casi veri** (6–8 min): un crollo o un caso vero raccontato come una storia (Archegos, franco svizzero 2015, LTCM, Barings, Knight Capital, Amaranth, nichel LME 2022, Melvin/GameStop, Credit Suisse, petrolio negativo 2020…). Struttura: gancio con la cifra · chi erano · la decisione sbagliata · il giorno del crollo (cifre verificate) · domanda "tu cosa avresti fatto?" · confronto senza piano / con piano · cosa porti nel tuo conto. Chiusura riskly.trade/rovina. |
+| Giovedì | 18:30 | **Rispondi tu** (5–7 min): guida pratica a quiz, 4–5 domande con risposta e spiegazione (lotto, leva, stop, prop firm, serie di perdite, orari dei dati). Chiusura con lo strumento del tema (riskly.trade/lotto, /prop, /rovina). |
+| Sabato | 11:00 | **La settimana dell'oro** (come prima, con la nuova grafica). |
+| Giorno prima di un dato | 18:30 | **Domani esce**: solo per i dati più forti (decisioni Fed e BCE, inflazione CPI e PCE USA, occupazione USA, PIL USA). Al massimo 2 a settimana e mai nei giorni che hanno già un video. |
+Gli altri giorni: YouTube Short (la clip verticale del video uscito prima), se c'è.

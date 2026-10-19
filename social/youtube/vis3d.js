@@ -2,7 +2,7 @@
    window.vis.imposta(tipo) prepara la scena, window.vis.disegna(t) disegna il fotogramma. */
 import * as THREE from './three/three.module.min.js';
 
-const LIME = 0xB6D84F, SU = 0x22C55E, GIU = 0xEF4444, ORO = 0xE8B84A, GRIGIO = 0x3A423A, TESTO = 0xEEF2EA;
+const LIME = 0xF2B83A, SU = 0x22C55E, GIU = 0xEF4444, ORO = 0xE8B84A, GRIGIO = 0x3A3D40, TESTO = 0xEEF2EA;
 const cv = document.getElementById('gl');
 const gl = new THREE.WebGLRenderer({ canvas: cv, antialias: true, alpha: true, preserveDrawingBuffer: true });
 gl.setPixelRatio(1); gl.setSize(cv.width, cv.height, false); gl.setClearColor(0x000000, 0);
@@ -17,7 +17,7 @@ function base(){
   s.add(new THREE.AmbientLight(0xffffff, .7));
   const l = new THREE.DirectionalLight(0xffffff, 1.6); l.position.set(5, 10, 7); s.add(l);
   const l2 = new THREE.DirectionalLight(LIME, .5); l2.position.set(-6, 3, -4); s.add(l2);
-  const g = new THREE.GridHelper(40, 40, 0x2A3A1A, 0x1A201A); g.material.transparent = true; g.material.opacity = .6; s.add(g);
+  const g = new THREE.GridHelper(40, 40, 0x3A3018, 0x1C1A14); g.material.transparent = true; g.material.opacity = .6; s.add(g);
   return s;
 }
 let seme = 3; const rnd = () => (seme = (seme * 16807) % 2147483647) / 2147483647;

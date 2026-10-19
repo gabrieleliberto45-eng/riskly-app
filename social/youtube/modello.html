@@ -1,93 +1,171 @@
 <!doctype html>
 <html lang="it"><head><meta charset="utf-8">
 <style>
-  /* video lunghi YouTube, 1920×1080: fondo scuro del marchio, verde lime solo su ciò che conta */
-  @font-face{font-family:'Archivo';src:url(archivo.woff2) format('woff2');font-weight:400 900;font-stretch:62% 125%}
-  @font-face{font-family:'Martian Mono';src:url(martian-mono.woff2) format('woff2');font-weight:400 700;font-stretch:75% 112.5%}
-  :root{--bg:#0B0D0C;--panel:#121512;--testo:#EEF2EA;--dim:#9AA39A;--riga:#232823;--lime:#B6D84F}
+  /* video lunghi YouTube, 1920×1080, nello stile dell'apertura di riskly.trade:
+     fondo nero, candele che scorrono con la linea dello stop, ambra solo su ciò che conta */
+  @font-face{font-family:'Archivo';src:url(archivo.woff2) format('woff2');font-weight:100 900;font-stretch:62% 125%}
+  @font-face{font-family:'Martian Mono';src:url(martian-mono.woff2) format('woff2');font-weight:100 800;font-stretch:75% 112.5%}
+  :root{--bg:#0B0D0C;--testo:#F3F4F1;--chiaro:#F7F8F5;--dim:#B9BEB6;--dim2:#8C928A;--amber:#F2B83A;--amber-hi:#F9D27A;--ink:#15181B;
+        --vetro:rgba(24,27,25,.92);--bordo:rgba(255,255,255,.12);--giu:#E5674F;--su:#5BBF7A;--ease:cubic-bezier(.23,1,.32,1)}
   *{box-sizing:border-box;margin:0;padding:0}
   body{background:var(--bg)}
-  #v{width:1920px;height:1080px;position:relative;overflow:hidden;background:
-      radial-gradient(1200px 700px at 85% 10%,rgba(182,216,79,.08),transparent 60%),var(--bg);
-     color:var(--testo);font-family:'Archivo',sans-serif}
-  #v::before{content:'';position:absolute;inset:0;opacity:.5;
-     background-image:linear-gradient(rgba(238,242,234,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(238,242,234,.035) 1px,transparent 1px);
-     background-size:96px 96px}
-  .testa{position:absolute;left:120px;right:120px;top:70px;display:flex;justify-content:space-between;align-items:center;font:600 26px 'Martian Mono';color:var(--dim)}
-  .cap{display:flex;align-items:center;gap:16px}
-  .cap i{width:12px;height:12px;background:var(--lime);border-radius:2px}
-  .logo{display:flex;align-items:center;gap:12px;font:800 32px 'Archivo';font-stretch:90%;color:var(--testo)}
-  .corpo{position:absolute;left:120px;right:120px;top:190px;bottom:150px;display:flex;flex-direction:column;justify-content:center}
-  mark{background:linear-gradient(transparent 10%,var(--lime) 10%,var(--lime) 90%,transparent 90%);color:#0B0D0C;padding:0 .08em;
-       -webkit-box-decoration-break:clone;box-decoration-break:clone}
-  .grande{font-weight:900;font-stretch:72%;font-size:150px;line-height:.98;text-transform:uppercase;letter-spacing:-.01em;word-spacing:.12em}
-  .piccolo{margin-top:44px;font:500 40px/1.4 'Archivo';color:var(--dim);max-width:40ch}
-  .tit{font-weight:900;font-stretch:75%;font-size:84px;line-height:1;text-transform:uppercase;margin-bottom:56px;word-spacing:.12em;max-width:28ch}
-  .righe{border-top:4px solid var(--testo);max-width:1400px}
-  .intest{display:flex;justify-content:space-between;padding:18px 0;font:600 26px 'Martian Mono';color:var(--dim);border-bottom:2px solid var(--riga)}
-  .riga{display:flex;justify-content:space-between;align-items:baseline;gap:40px;padding:26px 0;border-bottom:2px solid var(--riga)}
-  .riga span:first-child{font:500 44px/1.2 'Archivo'}
-  .riga span:last-child{font:700 54px 'Martian Mono';font-stretch:87.5%;white-space:nowrap;font-variant-numeric:tabular-nums}
-  .punto{display:grid;grid-template-columns:auto 1fr;gap:6px 36px;padding:26px 0;border-bottom:2px solid var(--riga);max-width:1500px;align-items:baseline}
-  .punto b{font-weight:900;font-stretch:75%;font-size:60px;text-transform:uppercase;color:var(--lime);min-width:80px}
-  .punto span{font:500 46px/1.3 'Archivo'}
-  .formula{font:700 66px/1.5 'Martian Mono';font-stretch:87.5%;max-width:1600px}
-  .formula span{color:var(--lime)}
-  .nota{margin-top:40px;font:500 34px/1.45 'Archivo';color:var(--dim);max-width:60ch}
-  .piede{position:absolute;left:120px;right:120px;bottom:70px;display:flex;justify-content:space-between;font:500 24px 'Martian Mono';color:var(--dim)}
-  .barra{position:absolute;left:0;bottom:0;height:6px;background:var(--lime)}
+  #v{width:1920px;height:1080px;position:relative;overflow:hidden;background:var(--bg);color:var(--testo);font-family:'Archivo',sans-serif}
+  #bg{position:absolute;inset:0;width:1920px;height:1080px;z-index:0}
+  /* velo come nel sito: scuro a sinistra dove c'è il testo, le candele si vedono a destra */
+  #velo{position:absolute;inset:0;z-index:0;pointer-events:none;background:
+     linear-gradient(90deg,rgba(11,13,12,.94) 0%,rgba(11,13,12,.8) 42%,rgba(11,13,12,.25) 82%),
+     linear-gradient(to bottom,rgba(11,13,12,.55) 0%,rgba(11,13,12,0) 22%,rgba(11,13,12,0) 70%,rgba(11,13,12,.95) 100%)}
+  .con3d #velo{background:rgba(11,13,12,.86)}
+  .testa{position:absolute;left:120px;right:120px;top:64px;display:flex;justify-content:space-between;align-items:center;font:600 24px 'Martian Mono';color:var(--dim2)}
+  .cap{display:inline-flex;align-items:center;gap:14px;padding:12px 24px;border:1.5px solid rgba(242,184,58,.45);border-radius:999px;background:rgba(242,184,58,.08);
+       color:var(--amber-hi);font:650 26px 'Archivo';letter-spacing:.005em}
+  .cap i{width:12px;height:12px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 6px rgba(242,184,58,.18)}
+  .serie{font:600 22px 'Martian Mono';color:var(--dim2);margin-left:18px}
+  .logo{display:flex;align-items:center;gap:12px;font:780 32px 'Archivo';font-stretch:85%;color:var(--chiaro)}
+  .corpo{position:absolute;left:120px;right:120px;top:180px;bottom:150px;display:flex;flex-direction:column;justify-content:center}
+  mark{background-image:linear-gradient(transparent 12%,var(--amber) 12%,var(--amber) 92%,transparent 92%);background-repeat:no-repeat;background-size:100% 100%;
+       background-color:transparent;color:var(--ink);padding:0 .08em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+  .grande{font-weight:780;font-stretch:78%;font-size:138px;line-height:.98;letter-spacing:-.025em;color:var(--chiaro);text-shadow:0 2px 30px rgba(0,0,0,.5);max-width:15ch;text-wrap:balance}
+  .grande mark{text-shadow:none}
+  .piccolo{margin-top:40px;font:500 40px/1.4 'Archivo';color:#C9CDC6;max-width:44ch}
+  .tit{font-weight:780;font-stretch:78%;font-size:84px;line-height:1;letter-spacing:-.02em;margin-bottom:48px;max-width:26ch;color:var(--chiaro)}
+  .tit::before{content:'';display:block;width:64px;height:6px;border-radius:3px;background:var(--amber);margin-bottom:26px}
+  /* tabelle e punti in schede di vetro, come le tile del sito */
+  .righe{background:var(--vetro);border:1.5px solid var(--bordo);border-radius:28px;padding:10px 40px;max-width:1500px;backdrop-filter:blur(10px)}
+  .intest{display:flex;justify-content:space-between;padding:18px 0;font:600 24px 'Martian Mono';color:var(--dim2);border-bottom:1.5px solid var(--bordo)}
+  .riga{display:flex;justify-content:space-between;align-items:baseline;gap:40px;padding:24px 0;border-bottom:1.5px solid rgba(255,255,255,.08)}
+  .riga:last-child{border-bottom:none}
+  .riga span:first-child{font:500 42px/1.2 'Archivo';color:var(--testo)}
+  .riga span:last-child{font:650 50px 'Martian Mono';font-stretch:87.5%;white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--amber-hi)}
+  .punti{display:flex;flex-direction:column;gap:18px;max-width:1500px}
+  .punto{display:grid;grid-template-columns:72px 1fr;gap:4px 30px;padding:24px 32px;border-radius:24px;background:var(--vetro);border:1.5px solid var(--bordo);align-items:center}
+  .punto .n{grid-row:span 2;width:72px;height:72px;border-radius:18px;display:grid;place-items:center;background:var(--amber);color:#2B1E00;font:700 34px 'Martian Mono'}
+  .punto b{font-weight:780;font-stretch:80%;font-size:52px;line-height:1.05;color:var(--chiaro)}
+  .punto span{font:500 38px/1.3 'Archivo';color:var(--dim)}
+  .formula{font:650 64px/1.5 'Martian Mono';font-stretch:87.5%;max-width:1600px;background:var(--vetro);border:1.5px solid var(--bordo);border-radius:28px;padding:36px 48px}
+  .formula span{color:var(--amber)}
+  .nota{margin-top:32px;font:500 30px/1.45 'Archivo';color:var(--dim2);max-width:64ch}
+  .piede{position:absolute;left:120px;right:120px;bottom:62px;display:flex;justify-content:space-between;align-items:center;font:500 22px 'Martian Mono';color:var(--dim2)}
+  .barra{position:absolute;left:0;bottom:0;height:6px;background:var(--amber);box-shadow:0 0 18px rgba(242,184,58,.6)}
+  /* cifra: un numero enorme che conta */
+  .cifra{font-weight:800;font-stretch:72%;font-size:330px;line-height:.9;letter-spacing:-.03em;color:var(--amber);text-shadow:0 0 60px rgba(242,184,58,.25);font-variant-numeric:tabular-nums}
+  .cifra-et{margin-top:24px;font-weight:700;font-stretch:80%;font-size:64px;line-height:1.1;color:var(--chiaro);max-width:24ch}
+  /* confronto: due schede affiancate */
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:36px;max-width:1680px}
+  .lato{border-radius:28px;padding:34px 40px;background:var(--vetro);border:1.5px solid var(--bordo)}
+  .lato h3{font:700 26px 'Martian Mono';letter-spacing:.04em;text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:14px}
+  .lato h3 i{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font:800 24px 'Archivo';font-style:normal}
+  .lato.no h3{color:#F2A08F}.lato.no h3 i{background:rgba(229,103,79,.18);color:var(--giu)}
+  .lato.si{background:linear-gradient(160deg,#3A2F17,#1B1D1A 60%);border-color:rgba(242,184,58,.4)}
+  .lato.si h3{color:var(--amber-hi)}.lato.si h3 i{background:var(--amber);color:#2B1E00}
+  .lato p{font:500 38px/1.35 'Archivo';color:var(--testo);padding:14px 0;border-top:1.5px solid rgba(255,255,255,.08)}
+  .lato p:first-of-type{border-top:none}
+  /* domanda: opzioni, poi si accende quella giusta */
+  .opz{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:1500px}
+  .op{display:flex;align-items:center;gap:24px;padding:26px 30px;border-radius:22px;background:var(--vetro);border:1.5px solid var(--bordo);font:500 40px/1.25 'Archivo'}
+  .op b{flex:none;width:58px;height:58px;border-radius:14px;display:grid;place-items:center;border:1.5px solid var(--bordo);font:700 28px 'Martian Mono';color:var(--dim)}
+  .svelata .op{opacity:.38}
+  .svelata .op.ok{opacity:1;background:linear-gradient(160deg,#43351A,#1D1F1C);border-color:var(--amber);box-shadow:0 18px 40px -18px rgba(242,184,58,.55)}
+  .svelata .op.ok b{background:var(--amber);border-color:var(--amber);color:#2B1E00}
+  .spieg{margin-top:30px;font:500 36px/1.4 'Archivo';color:var(--dim);max-width:60ch}
+  .spieg::before{content:'Risposta  ';font:700 26px 'Martian Mono';color:var(--amber)}
   /* scena 3D a destra, testo a sinistra */
-  #gl{position:absolute;right:60px;top:190px;width:860px;height:760px;z-index:0}
-  #cont{position:absolute;inset:0;z-index:1}
+  #gl{position:absolute;right:60px;top:180px;width:860px;height:760px;z-index:1;-webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 14%,#000 92%,transparent)}
+  #cont{position:absolute;inset:0;z-index:2}
   .con3d .corpo{right:900px}
-  .con3d .grande{font-size:112px}
-  .con3d .tit{font-size:66px;max-width:22ch}
-  .con3d .riga span:first-child{font-size:36px}
-  .con3d .riga span:last-child{font-size:40px;white-space:normal;text-align:right;max-width:58%}
-  .con3d .riga span:first-child{max-width:42%}
+  .con3d .grande{font-size:104px}
+  .con3d .tit{font-size:64px;max-width:22ch}
+  .con3d .riga span:first-child{font-size:34px;max-width:42%}
+  .con3d .riga span:last-child{font-size:38px;white-space:normal;text-align:right;max-width:58%}
+  .con3d .righe{padding:8px 30px}
   .con3d .corpo{bottom:170px}
-  .con3d .punto b{font-size:46px}
-  .con3d .punto span{font-size:36px}
-  .con3d .formula{font-size:46px}
-  .con3d .nota{font-size:28px}
+  .con3d .punto{grid-template-columns:56px 1fr;padding:18px 24px;gap:2px 22px}
+  .con3d .punto .n{width:56px;height:56px;font-size:26px;border-radius:14px}
+  .con3d .punto b{font-size:40px}
+  .con3d .punto span{font-size:30px}
+  .con3d .formula{font-size:44px;padding:28px 34px}
+  .con3d .nota{font-size:26px}
   .con3d .piccolo{font-size:34px}
+  .con3d .cifra{font-size:210px}
+  .con3d .cifra-et{font-size:48px}
   /* versione senza voce: sottotitoli in basso, corpo più compatto */
-  #sott{position:absolute;left:120px;right:120px;bottom:118px;min-height:118px;display:none;align-items:center;font:500 38px/1.32 'Archivo';color:var(--testo);
-        background:rgba(11,13,12,.9);border-left:8px solid var(--lime);padding:18px 30px;border-radius:10px;z-index:2}
+  #sott{position:absolute;left:120px;right:120px;bottom:112px;min-height:112px;display:none;align-items:center;font:500 38px/1.32 'Archivo';color:var(--testo);
+        background:rgba(11,13,12,.9);border:1.5px solid rgba(242,184,58,.35);padding:18px 30px;border-radius:20px;z-index:3}
   .muto #sott{display:flex}
-  .muto .corpo{top:165px;bottom:290px}
-  .muto .grande{font-size:120px}
-  .muto .piccolo{margin-top:30px;font-size:36px}
-  .muto .tit{font-size:68px;margin-bottom:34px}
-  .muto .punto{padding:16px 0}
-  .muto .punto b{font-size:46px}
-  .muto .punto span{font-size:38px}
-  .muto .riga{padding:16px 0}
-  .muto .riga span:first-child{font-size:38px}
-  .muto .riga span:last-child{font-size:44px}
-  .muto .nota{margin-top:22px;font-size:28px}
-  .graf{display:block;height:470px;width:auto;max-width:100%;border-radius:12px}
+  .muto .corpo{top:160px;bottom:280px}
+  .muto .grande{font-size:112px}
+  .muto .piccolo{margin-top:26px;font-size:34px}
+  .muto .tit{font-size:64px;margin-bottom:28px}
+  .muto .tit::before{margin-bottom:18px}
+  .muto .punti{gap:12px}
+  .muto .punto{padding:14px 24px}
+  .muto .punto b{font-size:40px}
+  .muto .punto span{font-size:32px}
+  .muto .riga{padding:14px 0}
+  .muto .riga span:first-child{font-size:36px}
+  .muto .riga span:last-child{font-size:42px}
+  .muto .nota{margin-top:18px;font-size:26px}
+  .muto .cifra{font-size:220px}
+  .graf{display:block;height:470px;width:auto;max-width:100%;border-radius:24px;border:1.5px solid var(--bordo)}
   .muto .graf{height:400px}
   /* comparse */
   .e{opacity:0;transform:translateY(24px)}
-  .e.on{animation:entra .7s cubic-bezier(.23,1,.32,1) forwards}
+  .e.on{animation:entra .7s var(--ease) forwards}
   @keyframes entra{to{opacity:1;transform:none}}
+  /* evidenziatore che si stende sulla parola, come nel titolo del sito */
+  .e.on mark{animation:evid .9s .3s var(--ease) both}
+  @keyframes evid{from{background-size:0% 100%}to{background-size:100% 100%}}
 </style></head>
-<body><div id="v"><canvas id="gl" width="860" height="760"></canvas><div id="cont"></div><div id="sott"></div></div>
+<body><div id="v"><canvas id="bg" width="1920" height="1080"></canvas><div id="velo"></div><canvas id="gl" width="860" height="760"></canvas><div id="cont"></div><div id="sott"></div></div>
 <script>
 const LOGO='<svg width="40" height="40" viewBox="0 0 44 44" fill="none"><rect width="44" height="44" rx="10" fill="#FBFBF9"/><path d="M9 31 L17 19.5 L23.5 25 L35 11" stroke="#B97C00" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 36 H35" stroke="#5E656D" stroke-width="3.6" stroke-linecap="round"/></svg>';
-/* disegna la scena: gli elementi .e compaiono in ordine; mostra(k) accende i primi k */
+let SERIE='';
+window.serie=s=>{SERIE=s||'';};
+/* sfondo: candele che scorrono, come nell'apertura del sito; quando il prezzo tocca lo stop la candela si spegne.
+   Tutto dipende dal tempo T (secondi dall'inizio del video), così ogni fotogramma è riproducibile */
+const BG=(function(){
+  const cv=document.getElementById('bg'),cx=cv.getContext('2d'),W=1920,H=1080,STEP=40,STOP=91.5;
+  let seed=7,P=100;const L=[];
+  const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647;};
+  for(let i=0;i<2400;i++){const o=P,v=(rnd()-.5)*3.2+Math.sin(i/9)*.5;P=Math.max(88,Math.min(112,P+v));const c=P;L.push({o,c,h:Math.max(o,c)+rnd()*1.4,l:Math.min(o,c)-rnd()*1.4});}
+  const y=p=>200+(112-p)/24*800;
+  return T=>{
+    const pos=T*20/STEP*1.1, i0=Math.floor(pos), off=(pos-i0)*STEP;
+    cx.clearRect(0,0,W,H);
+    cx.strokeStyle='rgba(255,255,255,.05)';cx.lineWidth=1;
+    for(let gy=0;gy<H;gy+=72){cx.beginPath();cx.moveTo(0,gy+.5);cx.lineTo(W,gy+.5);cx.stroke();}
+    const sy=y(STOP);cx.lineWidth=2;
+    for(let j=0;j<W/STEP+3;j++){const k=L[(i0+j)%L.length],x=j*STEP-off+STEP/2;
+      const tocca=k.l<STOP,su=k.c>=k.o,col=tocca?'rgba(150,155,150,.35)':(su?'rgba(242,184,58,.85)':'rgba(243,244,241,.55)');
+      cx.strokeStyle=col;cx.fillStyle=col;cx.beginPath();cx.moveTo(x,y(k.h));cx.lineTo(x,y(tocca?STOP:k.l));cx.stroke();
+      const a=y(Math.max(k.o,k.c)),b=Math.max(3,y(Math.min(k.o,k.c))-a);cx.fillRect(x-STEP*.3,a,STEP*.6,tocca?Math.min(b,sy-a):b);}
+    cx.save();cx.setLineDash([14,10]);cx.lineDashOffset=-T*25;cx.strokeStyle='#F2B83A';cx.lineWidth=3;cx.shadowColor='#F2B83A';cx.shadowBlur=16;
+    cx.beginPath();cx.moveTo(0,sy);cx.lineTo(W,sy);cx.stroke();cx.restore();
+    cx.font='700 18px "Martian Mono",monospace';cx.fillStyle='#F2B83A';cx.textAlign='right';cx.fillText('STOP −1%  ·  RISCHIO SOTTO CONTROLLO',W-40,sy-16);
+  };
+})();
+const esc=s=>String(s==null?'':s);
+/* disegna la scena: gli elementi .e compaiono in ordine */
 window.scena=(s,i,n,avanzamento)=>{
   let c='';
   if(s.tipo==='titolo'||s.tipo==='chiusura') c=`<div class="grande e">${s.grande}</div><div class="piccolo e">${s.piccolo||''}</div>`;
-  if(s.tipo==='punti') c=`<div class="tit e">${s.titolo}</div>`+s.punti.map(p=>`<div class="punto e"><b>${p[0]}</b><span>${p[1]}</span></div>`).join('');
+  if(s.tipo==='punti') c=`<div class="tit e">${s.titolo}</div><div class="punti">`+s.punti.map((p,k)=>`<div class="punto e"><span class="n">${k+1}</span><b>${p[0]}</b><span>${p[1]}</span></div>`).join('')+`</div>`+(s.nota?`<div class="nota e">${s.nota}</div>`:'');
   if(s.tipo==='numeri') c=`<div class="tit e">${s.titolo}</div><div class="righe e">${(s.colonne&&s.colonne[0])?`<div class="intest"><span>${s.colonne[0]}</span><span>${s.colonne[1]}</span></div>`:''}</div>`
      +`<div class="righe-dentro"></div>`+(s.nota?`<div class="nota e">${s.nota}</div>`:'');
   if(s.tipo==='grafico') c=`<div class="tit e">${s.titolo}</div><img class="e graf" src="${s.img}">`+(s.nota?`<div class="nota e">${s.nota}</div>`:'');
   if(s.tipo==='formula') c=`<div class="tit e">${s.titolo}</div><div class="formula e">${s.formula}</div>`+(s.nota?`<div class="nota e">${s.nota}</div>`:'');
+  /* {tipo:'cifra', titolo?, cifra:'-35%', etichetta, nota?}: il numero conta da zero */
+  if(s.tipo==='cifra') c=(s.titolo?`<div class="tit e">${s.titolo}</div>`:'')+`<div class="cifra e" data-fine="${esc(s.cifra)}">${esc(s.cifra)}</div><div class="cifra-et e">${s.etichetta||''}</div>`+(s.nota?`<div class="nota e">${s.nota}</div>`:'');
+  /* {tipo:'confronto', titolo, no:{titolo,righe[]}, si:{titolo,righe[]}, nota?} */
+  if(s.tipo==='confronto') c=`<div class="tit e">${s.titolo}</div><div class="duo">`
+     +`<div class="lato no e"><h3><i>×</i>${s.no.titolo}</h3>${s.no.righe.map(r=>`<p>${r}</p>`).join('')}</div>`
+     +`<div class="lato si e"><h3><i>✓</i>${s.si.titolo}</h3>${s.si.righe.map(r=>`<p>${r}</p>`).join('')}</div></div>`+(s.nota?`<div class="nota e">${s.nota}</div>`:'');
+  /* {tipo:'domanda', titolo, opzioni[], giusta:indice, spiegazione}: l'ultima comparsa svela la risposta */
+  if(s.tipo==='domanda') c=`<div class="tit e">${s.titolo}</div><div class="opz">`+s.opzioni.map((o,k)=>`<div class="op e${k===s.giusta?' ok':''}"><b>${'ABCD'[k]}</b><span>${o}</span></div>`).join('')+`</div>`
+     +`<div class="spieg e svela">${s.spiegazione||''}</div>`;
   document.getElementById('v').classList.toggle('con3d',!!s.visual);
   if(window.vis) window.vis.imposta(s.visual);
-  document.getElementById('cont').innerHTML=`<div class="testa"><span class="cap"><i></i>${s.capitolo}</span><span>${i+1} / ${n}</span></div>
+  document.getElementById('cont').innerHTML=`<div class="testa"><span style="display:flex;align-items:center"><span class="cap"><i></i>${s.capitolo}</span>${SERIE?`<span class="serie">${SERIE}</span>`:''}</span><span>${String(i+1).padStart(2,'0')} / ${String(n).padStart(2,'0')}</span></div>
     <div class="corpo">${c}</div>
     <div class="piede"><span class="logo">${LOGO}Riskly</span><span>riskly.trade · contenuto educativo</span></div>
     <div class="barra" style="width:${(avanzamento*100).toFixed(2)}%"></div>`;
@@ -104,16 +182,34 @@ window.mostra=(k,t)=>{
   const el=[...document.querySelectorAll('.e')];
   el.forEach((e,j)=>{e.classList.toggle('on',j<k);});
   document.getAnimations().forEach(a=>a.pause());
-  el.forEach((e,j)=>{ if(j>=k) return; e.getAnimations().forEach(a=>{a.currentTime=(j===k-1?t:10)*1000;}); });
+  el.forEach((e,j)=>{ if(j>=k) return; e.querySelectorAll('*').forEach(x=>x.getAnimations().forEach(a=>{a.currentTime=10000;})); e.getAnimations().forEach(a=>{a.currentTime=(j===k-1?t:10)*1000;}); });
+  const sv=document.querySelector('.svela'); if(sv) document.querySelector('.opz').classList.toggle('svelata',sv.classList.contains('on'));
+  document.querySelectorAll('.cifra').forEach(c=>c.textContent=c.dataset.fine);
+  BG(12);
 };
 /* sottotitolo del pezzo di testo attivo all'istante t (versione senza voce) */
 window.sottotitolo=(pezzi,inizi,t)=>{ let k=0; inizi.forEach((x,j)=>{ if(t>=x) k=j; }); const el=document.getElementById('sott'); el.textContent=pezzi[k]||''; };
 window.muto=on=>document.getElementById('v').classList.toggle('muto',!!on);
-/* un fotogramma della scena all'istante t: ogni elemento .e entra al suo tempo, la scena 3D si muove */
-window.fotogramma=(t,tempi)=>{
+/* numero che conta: "-35,2%" → parte da 0 e arriva al valore con lo stesso formato */
+function conta(el,d){
+  const fine=el.dataset.fine, m=fine.match(/^([^\d]*)([\d.]+(?:,\d+)?)(.*)$/);
+  if(!m){ el.textContent=fine; return; }
+  const dec=(m[2].split(',')[1]||'').length, num=parseFloat(m[2].replace(/\./g,'').replace(',','.'));
+  const x=Math.min(1,Math.max(0,d/1.6)), v=num*(1-Math.pow(1-x,3));
+  el.textContent=m[1]+v.toLocaleString('it-IT',{minimumFractionDigits:dec,maximumFractionDigits:dec})+m[3];
+}
+/* un fotogramma della scena all'istante t (T = tempo dall'inizio del video per lo sfondo) */
+window.fotogramma=(t,tempi,T)=>{
   const el=[...document.querySelectorAll('.e')];
-  el.forEach((e,j)=>{ const d=t-tempi[j]; e.classList.add('on'); e.getAnimations().forEach(a=>{a.pause();a.currentTime=Math.max(0,d)*1000;}); e.style.visibility=d<0?'hidden':'visible'; });
+  el.forEach((e,j)=>{ const d=t-tempi[j]; e.classList.add('on');
+    const an=[e,...e.querySelectorAll('mark')].flatMap(x=>x.getAnimations());
+    an.forEach(a=>{a.pause();a.currentTime=Math.max(0,d)*1000;}); e.style.visibility=d<0?'hidden':'visible';
+    if(e.classList.contains('cifra')) conta(e,d);
+    if(e.classList.contains('svela')) document.querySelector('.opz').classList.toggle('svelata',d>=0);
+  });
+  BG((T||0)+t);
   if(window.vis) window.vis.disegna(t);
 };
+BG(0);
 </script>
 <script type="module" src="vis3d.js"></script></body></html>

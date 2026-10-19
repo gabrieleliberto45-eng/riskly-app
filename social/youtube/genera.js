@@ -29,6 +29,7 @@ const durata = f => { const o = spawnSync(FF, ['-i', f]).stderr.toString().match
   // senza voce la scena dura il tempo di lettura dei sottotitoli (circa 2,6 parole al secondo)
   const durate = MUTO ? spec.scene.map(s => Math.max(6, parole(s.voce) / 2.6 + 1.8)) : voci.map(durata).map(d => d + PAUSA);
   await p.evaluate(m => window.muto(m), MUTO);
+  await p.evaluate(x => window.serie && window.serie(x), spec.serie || '');
   const totale = durate.reduce((a, c) => a + c, 0);
   let inizio = 0, scritti = 0, dovuti = 0; const capitoli = [];
   // i fotogrammi vanno direttamente a ffmpeg (niente migliaia di file su disco), a fotogrammi costanti
@@ -49,18 +50,19 @@ const durata = f => { const o = spawnSync(FF, ['-i', f]).stderr.toString().match
     const pz = MUTO ? pezzi(s.voce) : [], tot = pz.reduce((a, x) => a + parole(x), 0); let acc = 0;
     const inizi = pz.map(x => { const v = (acc / tot) * (D - 1.2) + 0.3; acc += parole(x); return v; });
     const sott = async t => { if(MUTO) await p.evaluate(([a, b, t]) => window.sottotitolo(a, b, t), [pz, inizi, t]); };
-    if(s.visual){                       // scena 3D: ogni fotogramma è diverso
+    // le candele dello sfondo scorrono sempre: ogni fotogramma è diverso (FERMO=1: solo le comparse, più veloce)
+    if(s.visual || !process.env.FERMO){
       const tot = Math.round(D * FPS);
       for(let f = 0; f < tot; f++){
-        await p.evaluate(([t, tempi]) => window.fotogramma(t, tempi), [f / FPS, tempi]); await sott(f / FPS);
+        await p.evaluate(([t, tempi, T]) => window.fotogramma(t, tempi, T), [f / FPS, tempi, inizio]); await sott(f / FPS);
         await lista.push([await scatto(), 1 / FPS]);
       }
-    } else {                            // senza 3D: solo le comparse, poi immagine ferma
+    } else {
       let t = 0;
       while(t < D){
-        await p.evaluate(([t, tempi]) => window.fotogramma(t, tempi), [t, tempi]); await sott(t);
+        await p.evaluate(([t, tempi, T]) => window.fotogramma(t, tempi, T), [t, tempi, inizio]); await sott(t);
         const f = await scatto();
-        const inAnim = tempi.some(x => t >= x && t < x + ANIM);
+        const inAnim = tempi.some(x => t >= x && t < x + ANIM + 0.9);
         const prossimo = inAnim ? t + 1 / FPS : Math.min(D, ...tempi.filter(x => x > t), ...inizi.filter(x => x > t), D);
         await lista.push([f, Math.max(1 / FPS, prossimo - t)]); t = Math.max(prossimo, t + 1 / FPS);
       }
@@ -69,7 +71,7 @@ const durata = f => { const o = spawnSync(FF, ['-i', f]).stderr.toString().match
     process.stdout.write(`scena ${i + 1}/${spec.scene.length}\n`);
   }
   // miniatura: scena 1 completa
-  await p.evaluate(([s, N]) => { window.scena(s, 0, N, 0); window.fotogramma(8, Array(30).fill(0)); }, [spec.scene[0], spec.scene.length]);
+  await p.evaluate(([s, N]) => { window.scena(s, 0, N, 0); window.fotogramma(8, Array(30).fill(0), 20); }, [spec.scene[0], spec.scene.length]);
   await (await p.$('#v')).screenshot({ path: path.join(QUI, ID + '-miniatura.jpg'), type: 'jpeg', quality: 92 });
   await b.close();
 
