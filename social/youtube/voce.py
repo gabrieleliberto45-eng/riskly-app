@@ -4,7 +4,7 @@ import certifi, json, asyncio, sys, os
 if os.path.exists('/root/.ccr/ca-bundle.crt'): certifi.where = lambda: '/root/.ccr/ca-bundle.crt'
 import edge_tts, re
 # pronuncia delle sigle (verificata trascrivendo l'audio); vale solo per la voce
-PRONUNCIA = {'CPI': 'ci-pi-ài', 'PPI': 'P P I', 'PCE': 'P C E', 'CME': 'C M E', 'NFP': 'N F P', 'PMI': 'P M I', 'BoJ': 'Banca del Giappone', 'BoE': "Banca d'Inghilterra"}
+PRONUNCIA = {'CPI': 'ci-pi-ài', 'PPI': 'P P I', 'PCE': 'P C E', 'CME': 'C M E', 'NFP': 'N F P', 'PMI': 'P M I', 'BoJ': 'Banca del Giappone', 'BoE': "Banca d'Inghilterra", 'CFTC': 'C F T C', 'WTI': 'W T I', 'NYMEX': 'Naimex'}
 def pronuncia(t):
     for k, v in PRONUNCIA.items(): t = re.sub(r'\b' + re.escape(k) + r'\b', v, t)
     return t

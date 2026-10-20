@@ -125,3 +125,9 @@ Regola: in ogni video almeno 3 tipi di scena diversi, mai due scene di fila dell
 | Sabato | 11:00 | **La settimana dell'oro** (come prima, con la nuova grafica). |
 | Giorno prima di un dato | 18:30 | **Domani esce**: solo per i dati più forti (decisioni Fed e BCE, inflazione CPI e PCE USA, occupazione USA, PIL USA). Al massimo 2 a settimana e mai nei giorni che hanno già un video. |
 Gli altri giorni: YouTube Short (la clip verticale del video uscito prima), se c'è.
+
+## Casi veri · puntate
+| Data | Video | Caso |
+|---|---|---|
+| 20 ott 18:30 | v09 | Petrolio a −37,63 $ (20 aprile 2020): Bank of China «Yuan You Bao», clienti di Interactive Brokers. Fonti: CFTC, Caixin. |
+Prossimi casi non ancora usati su YouTube: Amaranth (2006), Melvin Capital e GameStop (2021), Credit Suisse (2023), e in versione lunga quelli già raccontati nelle storie brevi (franco svizzero, Barings, Archegos, LTCM, Knight Capital, nichel).

@@ -1,0 +1,125 @@
+{
+ "id": "v09",
+ "serie": "Casi veri",
+ "titolo": "Petrolio a −37 dollari: il giorno in cui comprare «a buon prezzo» costò più di tutto (20 aprile 2020)",
+ "scene": [
+  {
+   "capitolo": "Introduzione",
+   "tipo": "cifra",
+   "titolo": "20 aprile 2020",
+   "cifra": "-37,63 $",
+   "etichetta": "il prezzo di chiusura di un barile di petrolio americano",
+   "nota": "Contratto WTI con consegna a maggio 2020, Borsa di New York (NYMEX). Fonte: CFTC.",
+   "voce": "Meno trentasette dollari e sessantatré centesimi. È il prezzo a cui ha chiuso il petrolio americano il venti aprile del duemilaventi. Non trentasette dollari: meno trentasette. Per un giorno, chi aveva un barile da consegnare pagava qualcuno perché se lo prendesse. In trentasette anni di storia di quel contratto non era mai successo. Quel giorno migliaia di persone che pensavano di aver comprato il petrolio a un prezzo bassissimo hanno perso tutto quello che avevano messo, e alcune anche di più. In questo video vediamo come è successo, chi c'era dentro, e cosa ti porti a casa per il tuo conto, anche se il petrolio non lo tocchi mai."
+  },
+  {
+   "capitolo": "Il mondo si ferma",
+   "tipo": "punti",
+   "titolo": "Primavera 2020: il mondo si ferma",
+   "visual": "globo",
+   "punti": [
+    ["Lockdown", "aerei a terra, fabbriche chiuse, strade vuote"],
+    ["Domanda crollata", "il petrolio estratto non serviva più a nessuno"],
+    ["Depositi pieni", "a Cushing, in Oklahoma, dove si consegna il petrolio del contratto, lo spazio stava finendo"]
+   ],
+   "nota": "Ricostruzione delle cause più diffusa; il rapporto della CFTC descrive i fatti senza indicarne una sola causa.",
+   "voce": "Facciamo un passo indietro. Primavera del duemilaventi: mezzo mondo è in lockdown. Gli aerei restano a terra, le fabbriche chiudono, le strade sono vuote. Il petrolio però continua a uscire dai pozzi, e nessuno sa dove metterlo. Il contratto americano più seguito, il WTI, si chiude con una consegna fisica a Cushing, in Oklahoma, dove ci sono i grandi depositi. E ad aprile quei depositi si stavano riempiendo. Tieni a mente questo dettaglio, perché è tutta la storia: il contratto di maggio scadeva il ventuno aprile, e chi lo teneva fino alla fine doveva ritirare davvero il petrolio. Senza un posto dove metterlo."
+  },
+  {
+   "capitolo": "Chi c'era dentro",
+   "tipo": "numeri",
+   "titolo": "Chi c'era dentro",
+   "colonne": ["Chi", "Cosa è successo"],
+   "righe": [
+    ["Risparmiatori di Bank of China", "circa 60.000, con il prodotto «Yuan You Bao»"],
+    ["Le loro perdite stimate", "circa 1,4 miliardi di $"],
+    ["Clienti di Interactive Brokers", "centinaia di conti long fino alla chiusura"],
+    ["Le loro perdite", "oltre 82,57 milioni di $"]
+   ],
+   "nota": "Fonti: Caixin (5 dicembre 2020) per Bank of China · CFTC, ordine del 28 settembre 2021, per Interactive Brokers.",
+   "voce": "Chi c'era dentro? Non solo grandi fondi. In Cina, circa sessantamila risparmiatori avevano comprato un prodotto della Bank of China legato al petrolio, chiamato Yuan You Bao. Molti pensavano fosse un normale investimento di risparmio. Secondo il giornale economico Caixin, le perdite sono state di circa un miliardo e quattrocento milioni di dollari. Negli Stati Uniti, centinaia di clienti del broker Interactive Brokers avevano posizioni al rialzo sul petrolio, tenute fino alla chiusura del venti aprile. Secondo l'autorità americana dei futures, la CFTC, le loro perdite hanno superato gli ottantadue milioni e mezzo di dollari. In molti casi, più dei soldi che avevano sul conto."
+  },
+  {
+   "capitolo": "La decisione sbagliata",
+   "tipo": "punti",
+   "titolo": "La decisione sbagliata",
+   "punti": [
+    ["«Più giù di così non va»", "il petrolio a 20 $ sembrava un affare: sotto zero non era nemmeno immaginato"],
+    ["Tenere fino alla scadenza", "un contratto che obbliga a ritirare il petrolio, senza poterlo fare"],
+    ["Non sapere cosa c'è dentro", "un prodotto con dentro dei futures, venduto come risparmio"]
+   ],
+   "voce": "Qual è stata la decisione sbagliata? Non una sola, ma tre che si sommano. La prima: pensare che più giù di così non potesse andare. Il petrolio era passato da sessanta a venti dollari in pochi mesi, e comprarlo sembrava un affare. Che potesse scendere sotto zero non lo metteva in conto quasi nessuno. La seconda: tenere la posizione fino alla scadenza del contratto, cioè fino al momento in cui conta solo chi può davvero ritirare il petrolio. La terza: non sapere cosa c'era dentro il prodotto. Molti risparmiatori cinesi, per esempio, non sapevano di avere in mano dei futures."
+  },
+  {
+   "capitolo": "Il giorno del crollo",
+   "tipo": "numeri",
+   "titolo": "Lunedì 20 aprile 2020, contratto di maggio",
+   "visual": "candele",
+   "colonne": ["Momento", "Prezzo al barile"],
+   "righe": [
+    ["Apertura", "17,73 $"],
+    ["Minimo della giornata", "−40,32 $"],
+    ["Chiusura", "−37,63 $"],
+    ["Il giorno dopo, 21 aprile", "10,01 $"]
+   ],
+   "nota": "Fonte: CFTC, rapporto provvisorio del 23 novembre 2020 e dichiarazione del commissario Berkovitz.",
+   "voce": "Arriviamo al lunedì venti aprile. Il contratto di maggio apre a diciassette dollari e settantatré. Durante il giorno scende, scende, e nel pomeriggio americano accelera. Gran parte del crollo avviene negli ultimi minuti di contrattazione. Il minimo tocca meno quaranta dollari e trentadue, la chiusura è a meno trentasette e sessantatré. Chi era al rialzo con un lotto non ha perso il prezzo che aveva pagato: ha perso il prezzo pagato più altri trentasette dollari per ogni barile. E il giorno dopo, il ventuno aprile, lo stesso contratto chiude di nuovo sopra zero, a dieci dollari. Ma chi era uscito per forza, quel rimbalzo non l'ha mai visto."
+  },
+  {
+   "capitolo": "Tu cosa avresti fatto?",
+   "tipo": "domanda",
+   "titolo": "È il 17 aprile. Hai un long sul petrolio a 20 $ che scade fra pochi giorni. Cosa fai?",
+   "opzioni": [
+    "Aggiungo: più scende, più è un affare",
+    "Lo tengo: sotto zero non può andare",
+    "Chiudo o sposto su un contratto più lontano",
+    "Tolgo lo stop per non farmi buttare fuori"
+   ],
+   "giusta": 2,
+   "spiegazione": "Vicino alla scadenza il prezzo dipende da chi può ritirare il petrolio. Chiudere o passare al contratto dopo toglie il rischio della consegna.",
+   "voce": "Adesso tocca a te. È venerdì diciassette aprile. Hai una posizione al rialzo sul petrolio, comprata a venti dollari, su un contratto che scade fra pochi giorni. Cosa fai? Prima risposta: aggiungo, perché più scende più è un affare. Seconda: la tengo, tanto sotto zero non può andare. Terza: chiudo, oppure sposto la posizione su un contratto con scadenza più lontana. Quarta: tolgo lo stop, così non mi butta fuori. Metti in pausa e scrivi nei commenti la tua lettera. La risposta più prudente è la terza: vicino alla scadenza il prezzo lo decide chi può ritirare davvero il petrolio, e tu non sei tra quelli."
+  },
+  {
+   "capitolo": "Oltre il conto",
+   "tipo": "cifra",
+   "cifra": "82,57 mln $",
+   "etichetta": "le perdite dei clienti di un solo broker, in molti casi oltre i soldi che avevano sul conto",
+   "nota": "Fonte: CFTC, 28 settembre 2021. Il broker ha poi rimborsato i clienti e pagato una sanzione di 1,75 milioni di dollari.",
+   "voce": "Ottantadue milioni e mezzo di dollari: le perdite dei clienti di un solo broker in un solo giorno. C'è un dettaglio che fa ancora più paura. Il sistema di quel broker non era pronto a mostrare prezzi sotto zero, e i clienti non potevano nemmeno inserire ordini a prezzo negativo. Lo ha scritto la CFTC, che nel duemilaventuno ha sanzionato il broker. Il broker alla fine ha rimborsato i clienti, ma è stata una sua scelta, non una garanzia. La lezione è semplice: in un evento estremo non funziona solo il mercato in modo strano. Possono non funzionare anche gli strumenti che usi per proteggerti."
+  },
+  {
+   "capitolo": "Senza piano e con piano",
+   "tipo": "confronto",
+   "titolo": "Stesso petrolio, due trader",
+   "no": {
+    "titolo": "Senza piano",
+    "righe": ["Lotto deciso «a occhio» perché il prezzo è basso", "Posizione tenuta fino alla scadenza", "Nessun limite di perdita giornaliero"]
+   },
+   "si": {
+    "titolo": "Con piano",
+    "righe": ["Lotto calcolato sulla perdita massima che accetti", "Scadenze e rollover controllati prima di entrare", "Stop giornaliero: dopo la perdita del giorno, si chiude"]
+   },
+   "voce": "Mettiamo vicini due trader sullo stesso petrolio. Il primo non ha un piano: compra un lotto deciso a occhio, perché il prezzo gli sembra basso, tiene la posizione fino alla scadenza e non ha un limite di perdita per la giornata. Il secondo ha un piano. Il lotto lo calcola partendo dalla perdita massima che accetta, non dal prezzo che gli piace. Prima di entrare controlla quando scade il contratto o quando il suo broker fa il rollover. E ha uno stop giornaliero: arrivato alla perdita massima del giorno, chiude e si ferma. Il venti aprile il primo ha perso il conto. Il secondo, nel caso peggiore, una giornata storta."
+  },
+  {
+   "capitolo": "Cosa porti nel tuo conto",
+   "tipo": "punti",
+   "titolo": "Cosa porti nel tuo conto",
+   "visual": "scudo",
+   "punti": [
+    ["Il prezzo può andare dove non immagini", "il lotto si decide pensando al caso peggiore, non a quello probabile"],
+    ["La leva moltiplica anche l'impossibile", "più è alta, meno spazio c'è per l'imprevisto"],
+    ["Conosci lo strumento", "scadenze, rollover, orari: sui CFD li trovi nelle specifiche del simbolo"],
+    ["Stop giornaliero", "un limite di perdita per la giornata che non si sposta"]
+   ],
+   "voce": "Cosa porti nel tuo conto da questa storia, anche se non fai mai trading sul petrolio? Primo: il prezzo può andare dove non immagini. Il lotto si decide pensando al caso peggiore, non a quello probabile. Secondo: la leva moltiplica anche l'impossibile. Più è alta, meno spazio hai quando succede qualcosa che non avevi previsto. Terzo: conosci lo strumento che usi. Scadenze, rollover, orari di contrattazione: se usi i CFD, li trovi nelle specifiche del simbolo su MetaTrader. Quarto: datti uno stop giornaliero, un limite di perdita per la giornata che non si sposta, qualunque cosa succeda."
+  },
+  {
+   "capitolo": "Per approfondire",
+   "tipo": "chiusura",
+   "grande": "Quanto rischi <mark>con la tua leva?</mark>",
+   "piccolo": "Simula una serie di perdite sul tuo conto, gratis: riskly.trade/rovina",
+   "voce": "Se vuoi vedere cosa può fare una serie di perdite al tuo conto, con il tuo rischio per operazione e la tua leva, c'è un simulatore gratuito su riskly punto trade barra rovina. Lo trovi anche in descrizione. Se questa storia ti è servita, iscriviti al canale: ogni martedì un caso vero, raccontato dall'inizio alla fine. Questo video è solo informativo ed educativo, non è un consiglio su cosa comprare o vendere. Il trading con leva comporta un alto rischio: puoi perdere tutto il capitale. Ci vediamo nel prossimo caso."
+  }
+ ]
+}
