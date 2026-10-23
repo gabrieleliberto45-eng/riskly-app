@@ -1,0 +1,44 @@
+{
+ "id": "t03",
+ "serie": "Rischio in 1 minuto",
+ "titolo": "Quanti lotti con 1.000 €?",
+ "scene": [
+  {
+   "capitolo": "Rispondi tu",
+   "tipo": "domanda",
+   "titolo": "1.000 €, rischio 1%, stop 25 pip su EURUSD: quanti lotti?",
+   "opzioni": [
+    "0,04",
+    "0,10",
+    "0,40",
+    "1"
+   ],
+   "giusta": 0,
+   "spiegazione": "10 € ÷ (25 pip × 8,6 €) ≈ 0,04 lotti.",
+   "voce": "Conto da mille euro. Vuoi rischiare l'uno per cento. Lo stop è a venticinque pip su euro dollaro. Quanti lotti apri? Zero virgola zero quattro, zero virgola dieci, zero virgola quaranta, oppure uno? Scrivilo nei commenti. La risposta giusta è la prima: zero virgola zero quattro."
+  },
+  {
+   "capitolo": "La formula",
+   "tipo": "formula",
+   "titolo": "La formula",
+   "formula": "rischio ÷ (stop × valore pip)<br>10 € ÷ (25 × 8,6 €) ≈ <span>0,04 lotti</span>",
+   "nota": "Esempio: EURUSD a 1,16, un pip per lotto vale 10 $, circa 8,6 €. Controlla il valore sul tuo broker.",
+   "voce": "La formula è semplice. Rischio in euro diviso stop in pip per il valore di un pip. L'uno per cento di mille euro sono dieci euro. Un pip su un lotto di euro dollaro vale dieci dollari, circa otto euro e sessanta. Dieci diviso venticinque per otto e sessanta: zero virgola zero quattro lotti."
+  },
+  {
+   "capitolo": "A occhio",
+   "tipo": "cifra",
+   "cifra": "-86 €",
+   "etichetta": "la perdita sullo stop con 0,40 lotti «a occhio»: quasi il 9% del conto",
+   "nota": "Stesso conto, stesso stop di 25 pip.",
+   "voce": "E se apri zero virgola quaranta, come fanno in tanti a occhio? Sullo stop perdi circa ottantasei euro, quasi il nove per cento del conto in una sola operazione. Bastano pochi stop di fila per dimezzarlo."
+  },
+  {
+   "capitolo": "Calcolatore",
+   "tipo": "chiusura",
+   "grande": "Il lotto non si sceglie <mark>a occhio</mark>",
+   "piccolo": "Calcolatore gratis: riskly.trade/lotto",
+   "voce": "Il lotto non si sceglie a occhio. Calcolalo gratis su riskly punto trade barra lotto. Contenuto educativo, non è consulenza finanziaria. Il trading con leva comporta un alto rischio."
+  }
+ ]
+}

@@ -2,7 +2,7 @@
    Le azioni partono sulle parole della voce: window.ep.imposta(battute) · window.ep.disegna(t) */
 import * as THREE from './three/three.module.min.js';
 
-const C = { lime: 0xB6D84F, verde: 0x22C55E, rosso: 0xEF4444, oro: 0xE8B84A, bianco: 0xF3F1EA, grafite: 0x1E241F };
+const C = { lime: 0xF2B83A, verde: 0x22C55E, rosso: 0xEF4444, oro: 0xE8B84A, bianco: 0xF3F1EA, grafite: 0x1E241F };
 const hex = c => '#' + new THREE.Color(c).getHexString();
 const cv = document.getElementById('gl');
 const gl = new THREE.WebGLRenderer({ canvas: cv, antialias: true, alpha: true, preserveDrawingBuffer: true });
@@ -142,7 +142,7 @@ window.ep = {
     disegnaSchermo(perdite, rabbia, spento);
     const lotto = t >= tL ? '0,80' : '0,40';
     if(t >= tCh + .4) disegnaBottone('CHIUSO', '#2A302A', '#5D6B7D');
-    else disegnaBottone('BUY ' + lotto, t >= tL && t < tL + .25 ? '#F3F1EA' : '#B6D84F', '#0B0D0C');
+    else disegnaBottone('BUY ' + lotto, t >= tL && t < tL + .25 ? '#F3F1EA' : '#F2B83A', '#0B0D0C');
     const sopra = t >= tCu + 1.0 && t < tE;
     latoB.emissiveIntensity = sopra ? .6 + .3 * Math.sin(t * 18) : (t >= tCh + .4 ? 0 : .25);
     latoB.color.set(t >= tCh + .4 ? 0x2A302A : C.lime);

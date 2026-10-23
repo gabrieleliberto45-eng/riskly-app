@@ -131,3 +131,24 @@ Gli altri giorni: YouTube Short (la clip verticale del video uscito prima), se c
 |---|---|---|
 | 20 ott 18:30 | v09 | Petrolio a −37,63 $ (20 aprile 2020): Bank of China «Yuan You Bao», clienti di Interactive Brokers. Fonti: CFTC, Caixin. |
 Prossimi casi non ancora usati su YouTube: Amaranth (2006), Melvin Capital e GameStop (2021), Credit Suisse (2023), e in versione lunga quelli già raccontati nelle storie brevi (franco svizzero, Barings, Archegos, LTCM, Knight Capital, nichel).
+
+## Dal 26 ottobre: grafiche del sito ovunque e video educativi (decisi con Gabriele il 23 ottobre)
+Dati 9–23 ottobre: TikTok 210–270 visualizzazioni a video (picchi 740–765 per "come funziona" dei bot e storia LTCM), Instagram reel 11–48,
+YouTube video lunghi 1–36 ma Shorts educativi di inizio ottobre 30–146. Dal sito quasi zero visite dai social, nessuna vendita al lancio (23 ott, ore 18:25).
+
+**Grafiche**: tutto nello stile di riskly.trade (nero con candele e linea dello stop, ambra #F2B83A, Archivo stretto, frasi normali, niente maiuscolo).
+- Caroselli: social/caroselli/modello.html (predefinito chiaro come le pagine del sito, `--scuro` come l'apertura; usare **scuro**). "notizie" = scuro con la pillola "Mercati · la settimana".
+- Video verticali educativi (TikTok, Reels, Shorts): stesso motore dei video YouTube, `VERT=1 node social/youtube/genera.js tNN` (1080×1920, sottotitoli grandi, niente 3D). File social/youtube/tNN.json, serie "Rischio in 1 minuto" o "Fondamentale in 1 minuto", 45–70 s, 4 scene, almeno una "domanda" o "cifra".
+- Storie di rischio e "Oggi no." restano, con l'ambra al posto del verde.
+
+**Settimana tipo** (massimo un contenuto al giorno per social):
+| Giorno | Instagram + TikTok | YouTube |
+|---|---|---|
+| Lun | carosello "La settimana dei mercati" (scuro) | Short tNN |
+| Mar | video educativo tNN | Casi veri (lungo) |
+| Mer | video educativo tNN | Short tNN |
+| Gio | carosello di rischio | Rispondi tu (lungo) |
+| Ven | Oggi no. / storia di rischio | Short tNN |
+| Sab | video educativo tNN | La settimana dell'oro |
+| Dom | storia di rischio o Oggi no. | — |
+TikTok: 3 video educativi a settimana su rischio e analisi fondamentale (richiesta di Gabriele). Gli stessi video vanno su Reels e come Shorts su YouTube.

@@ -12,8 +12,8 @@
   .stato{height:64px;display:flex;justify-content:space-between;align-items:center;padding:0 44px;font:600 30px Arial}
   .barra{height:96px;display:flex;align-items:center;gap:26px;padding:0 30px;border-bottom:1px solid #222;font:500 34px Arial}
   .barra .tf{color:#9aa0a6;font-size:30px}
-  .barra .bot{margin-left:auto;display:flex;align-items:center;gap:12px;font:700 26px 'Martian Mono';color:#B6D84F;border:2px solid rgba(182,216,79,.5);border-radius:999px;padding:8px 18px}
-  .barra .bot i{width:12px;height:12px;border-radius:50%;background:#B6D84F;box-shadow:0 0 12px #B6D84F}
+  .barra .bot{margin-left:auto;display:flex;align-items:center;gap:12px;font:700 26px 'Martian Mono';color:#F2B83A;border:2px solid rgba(242,184,58,.5);border-radius:999px;padding:8px 18px}
+  .barra .bot i{width:12px;height:12px;border-radius:50%;background:#F2B83A;box-shadow:0 0 12px #F2B83A}
   .click{display:grid;grid-template-columns:1fr 250px 1fr;height:150px;margin:16px 20px 0}
   .sell,.buy{display:flex;flex-direction:column;justify-content:center;padding:0 26px;font:600 26px Arial;letter-spacing:.04em}
   .sell{background:#D32F2F;border-radius:10px 0 0 10px}
@@ -26,13 +26,13 @@
   #banner i{width:14px;height:14px;border-radius:50%;background:#ff3b30}
   #banner b{margin-left:auto;font:700 32px 'Martian Mono';color:#fff}
   #graf{position:absolute;left:0;top:470px;width:1080px;height:1000px}
-  #didas{position:absolute;left:36px;right:36px;top:490px;font:800 44px/1.22 'Archivo';color:#0B0D0C;background:#B6D84F;
+  #didas{position:absolute;left:36px;right:36px;top:490px;font:800 44px/1.22 'Archivo';color:#0B0D0C;background:#F2B83A;
          padding:22px 28px 22px 24px;border-radius:16px;opacity:0;display:flex;gap:20px;align-items:center;
-         box-shadow:0 0 0 4px rgba(182,216,79,.25),0 18px 50px rgba(0,0,0,.65);transform-origin:50% 50%}
-  #didas b{flex:none;width:64px;height:64px;border-radius:50%;background:#0B0D0C;color:#B6D84F;font:700 34px 'Martian Mono';display:grid;place-items:center}
+         box-shadow:0 0 0 4px rgba(242,184,58,.25),0 18px 50px rgba(0,0,0,.65);transform-origin:50% 50%}
+  #didas b{flex:none;width:64px;height:64px;border-radius:50%;background:#0B0D0C;color:#F2B83A;font:700 34px 'Martian Mono';display:grid;place-items:center}
   #pann{position:absolute;left:24px;right:24px;top:1480px;height:250px;background:#0d110e;border:2px solid #252B26;border-radius:22px;padding:22px 28px}
   #pann .tit{display:flex;align-items:center;gap:14px;font:800 34px 'Archivo';color:#F3F1EA;margin-bottom:16px}
-  #pann .tit span{margin-left:auto;font:700 26px 'Martian Mono';padding:6px 14px;border-radius:999px;background:rgba(182,216,79,.14);color:#B6D84F}
+  #pann .tit span{margin-left:auto;font:700 26px 'Martian Mono';padding:6px 14px;border-radius:999px;background:rgba(242,184,58,.14);color:#F2B83A}
   #pann .tit span.rosso{background:rgba(255,59,48,.16);color:#ff6b61}
   #pann .righe{display:grid;grid-template-columns:1fr 1fr;gap:12px 40px;font:500 27px 'Martian Mono';color:#9aa0a6}
   #pann .righe div{display:flex;justify-content:space-between}
@@ -53,8 +53,8 @@
   #fine .nome{font:900 150px/1 'Archivo';font-stretch:70%;color:#F3F1EA;margin-bottom:46px;text-align:center}
   #fine ul{list-style:none;width:100%;margin-bottom:60px}
   #fine li{display:flex;gap:24px;align-items:center;font:600 44px/1.3 'Archivo';color:#F3F1EA;padding:20px 0;border-bottom:1px solid rgba(255,255,255,.08);opacity:0}
-  #fine li::before{content:'';width:18px;height:18px;border-radius:5px;background:#B6D84F;flex:none}
-  #fine .cta{background:#B6D84F;color:#0B0D0C;font:800 52px 'Archivo';border-radius:999px;padding:28px 70px;text-align:center;box-shadow:0 0 60px rgba(182,216,79,.4)}
+  #fine li::before{content:'';width:18px;height:18px;border-radius:5px;background:#F2B83A;flex:none}
+  #fine .cta{background:#F2B83A;color:#0B0D0C;font:800 52px 'Archivo';border-radius:999px;padding:28px 70px;text-align:center;box-shadow:0 0 60px rgba(242,184,58,.4)}
   #fine .cta small{display:block;font:600 28px 'Martian Mono'}
   #fine .quando{font:600 34px 'Martian Mono';color:#9aa0a6;margin-top:30px}
   #fine .logo{position:absolute;top:150px;display:flex;align-items:center;gap:18px;font:800 54px 'Archivo';color:#F3F1EA}
@@ -164,7 +164,7 @@ window.fotogramma = (t, f) => {
   const fmt = x => { const s = x.toFixed(2); return `${s.slice(0, -2)}<b>${s.slice(-2)}</b>`; };
   $('ps').innerHTML = fmt(p); $('pb').innerHTML = fmt(p + spr);
   const lt = ultimo(E.lotto, t); $('lot').textContent = lt ? lt[1] : '—';
-  $('lot').style.color = lt && t < lt[0] + .5 && lt[0] > 0 ? '#B6D84F' : '#fff';
+  $('lot').style.color = lt && t < lt[0] + .5 && lt[0] > 0 ? '#F2B83A' : '#fff';
   // avviso notizie
   const bn = E.banner;
   if(bn){ const on = t >= bn.da && t < bn.a; $('banner').style.opacity = on ? 1 : 0; $('banner').style.display = on ? 'flex' : 'none';

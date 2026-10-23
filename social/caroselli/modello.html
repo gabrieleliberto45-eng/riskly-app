@@ -1,56 +1,73 @@
 <!doctype html>
 <html lang="it"><head><meta charset="utf-8">
 <style>
-  /* stile "foglio bianco": nero pieno, carattere stretto, evidenziatore verde lime sui numeri che contano */
-  @font-face{font-family:'Archivo';src:url(archivo.woff2) format('woff2');font-weight:400 900;font-stretch:62% 125%}
-  @font-face{font-family:'Martian Mono';src:url(martian-mono.woff2) format('woff2');font-weight:400 700;font-stretch:75% 112.5%}
-  :root{--carta:#F7F7F4;--inchiostro:#0E0F0E;--grigio:#5C615C;--lime:#C8EE4A;--riga:#D9DBD4}
-  body.scuro{--carta:#0B0D0C;--inchiostro:#EEF2EA;--grigio:#9AA39A;--riga:#232823;--lime:#B6D84F}
-  body.scuro .s::before{background:repeating-linear-gradient(0deg,transparent 0 63px,rgba(238,242,234,.035) 63px 64px)}
-  body.scuro mark{color:#0B0D0C}
-  body.scuro .link{background:var(--lime);color:#0B0D0C}
-  body.notizie{--carta:#FFFFFF;--inchiostro:#111;--grigio:#555;--riga:#E4E4E4;--lime:#FFD84D}
-  body.notizie .s::before{background:none}
-  body.notizie .s{padding-top:150px}
-  body.notizie .s::after{content:'MERCATI · LA SETTIMANA';position:absolute;left:0;right:0;top:0;height:78px;background:#C8102E;color:#fff;
-    font:800 32px/78px 'Archivo';font-stretch:85%;letter-spacing:.06em;padding-left:92px}
-  body.notizie .testa{position:absolute;top:100px;left:92px;right:92px}
+  /* caroselli 1080×1350 nello stile di riskly.trade.
+     Chiaro (predefinito): carta del sito, inchiostro, evidenziatore ambra.
+     Scuro (--scuro): come l'apertura del sito, fondo nero con le candele e la linea dello stop.
+     Notizie (stile "notizie" nel json): scuro con la fascia ambra "Mercati · la settimana". */
+  @font-face{font-family:'Archivo';src:url(archivo.woff2) format('woff2');font-weight:100 900;font-stretch:62% 125%}
+  @font-face{font-family:'Martian Mono';src:url(martian-mono.woff2) format('woff2');font-weight:100 800;font-stretch:75% 112.5%}
+  :root{--carta:#F3F4F1;--foglio:#FBFBF9;--inchiostro:#15181B;--grigio:#4B525A;--grigio2:#5E656D;--riga:#CDD1D4;--ambra:#F2B83A;--ambra-scura:#B97C00;--ambra-ink:#2B1E00}
+  body.scuro,body.notizie{--carta:#0B0D0C;--foglio:rgba(24,27,25,.92);--inchiostro:#F7F8F5;--grigio:#C9CDC6;--grigio2:#8C928A;--riga:rgba(255,255,255,.12);--ambra-scura:#F9D27A}
   *{box-sizing:border-box;margin:0;padding:0}
   body{background:#888}
   .s{width:1080px;height:1350px;background:var(--carta);color:var(--inchiostro);position:relative;overflow:hidden;
-     font-family:'Archivo',sans-serif;padding:96px 92px 110px;display:flex;flex-direction:column}
-  .s::before{content:'';position:absolute;inset:0;pointer-events:none;
-     background:repeating-linear-gradient(0deg,transparent 0 63px,rgba(14,15,14,.045) 63px 64px)}
-  .testa{display:flex;justify-content:space-between;align-items:center;font:600 30px 'Martian Mono',monospace;color:var(--grigio);position:relative}
-  .logo{display:flex;align-items:center;gap:14px;font:800 38px 'Archivo';font-stretch:90%;color:var(--inchiostro);letter-spacing:-.01em}
-  .corpo{flex:1;display:flex;flex-direction:column;justify-content:center;position:relative}
-  .grande,.medio,.tit,.frase .q{word-spacing:.14em}
-  mark{background:linear-gradient(transparent 12%,var(--lime) 12%,var(--lime) 88%,transparent 88%);color:inherit;padding:0 .08em;
+     font-family:'Archivo',sans-serif;padding:84px 84px 110px;display:flex;flex-direction:column}
+  #bg{position:absolute;inset:0;width:1080px;height:1350px;display:none}
+  .velo{position:absolute;inset:0;display:none;pointer-events:none;
+     background:linear-gradient(180deg,rgba(11,13,12,.55) 0%,rgba(11,13,12,.86) 45%,rgba(11,13,12,.96) 100%)}
+  body.scuro #bg,body.scuro .velo,body.notizie #bg,body.notizie .velo{display:block}
+  .testa,.corpo,.piede{position:relative;z-index:1}
+  .testa{display:flex;justify-content:space-between;align-items:center;font:600 26px 'Martian Mono',monospace;color:var(--grigio2)}
+  .logo{display:flex;align-items:center;gap:14px;font:780 38px 'Archivo';font-stretch:85%;color:var(--inchiostro);letter-spacing:-.01em}
+  .pill{display:none;align-items:center;gap:12px;margin-top:34px;align-self:flex-start;position:relative;z-index:1;padding:12px 22px;border-radius:999px;
+        border:1.5px solid rgba(242,184,58,.5);background:rgba(242,184,58,.12);color:var(--ambra-scura);font:650 28px 'Archivo'}
+  .pill i{width:12px;height:12px;border-radius:50%;background:var(--ambra)}
+  body.notizie .pill{display:inline-flex}
+  .corpo{flex:1;display:flex;flex-direction:column;justify-content:center}
+  mark{background:linear-gradient(transparent 12%,var(--ambra) 12%,var(--ambra) 92%,transparent 92%);color:#15181B;padding:0 .08em;
        -webkit-box-decoration-break:clone;box-decoration-break:clone}
-  .grande{font-weight:900;font-stretch:72%;font-size:132px;line-height:.98;letter-spacing:-.015em;text-transform:uppercase}
-  .medio{font-weight:900;font-stretch:72%;font-size:104px;line-height:1;letter-spacing:-.01em;text-transform:uppercase}
-  .sotto{margin-top:48px;font:500 40px/1.35 'Archivo';color:var(--grigio)}
-  .tit{font-weight:900;font-stretch:75%;font-size:74px;line-height:1;text-transform:uppercase;margin-bottom:52px;letter-spacing:-.005em}
-  .par{font:500 50px/1.4 'Archivo';max-width:22ch}
+  .grande{font-weight:780;font-stretch:76%;font-size:128px;line-height:.96;letter-spacing:-.03em;text-wrap:balance}
+  .medio{font-weight:780;font-stretch:76%;font-size:100px;line-height:.98;letter-spacing:-.025em;text-wrap:balance}
+  .sotto{margin-top:44px;font:500 40px/1.35 'Archivo';color:var(--grigio)}
+  .tit{font-weight:780;font-stretch:78%;font-size:76px;line-height:1;letter-spacing:-.02em;margin-bottom:48px}
+  .tit::before{content:'';display:block;width:64px;height:7px;border-radius:4px;background:var(--ambra);margin-bottom:28px}
+  .par{font:500 48px/1.4 'Archivo';max-width:23ch}
   .par b{font-weight:800}
-  .nota{margin-top:44px;font:500 34px/1.45 'Archivo';color:var(--grigio);max-width:30ch}
-  .righe{border-top:4px solid var(--inchiostro)}
-  .riga{display:flex;justify-content:space-between;align-items:baseline;gap:30px;padding:30px 0;border-bottom:2px solid var(--riga)}
-  .riga span:first-child{font:500 40px/1.25 'Archivo'}
-  .riga span:last-child{font:700 50px 'Martian Mono',monospace;font-stretch:87.5%;white-space:nowrap;font-variant-numeric:tabular-nums}
+  .nota{margin-top:40px;font:500 32px/1.45 'Archivo';color:var(--grigio2);max-width:32ch}
+  .righe{background:var(--foglio);border:1.5px solid var(--riga);border-radius:26px;padding:6px 36px}
+  .riga{display:flex;justify-content:space-between;align-items:baseline;gap:30px;padding:28px 0;border-bottom:1.5px solid var(--riga)}
+  .riga:last-child{border-bottom:none}
+  .riga span:first-child{font:500 38px/1.25 'Archivo'}
+  .riga span:last-child{font:650 46px 'Martian Mono',monospace;font-stretch:87.5%;white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--ambra-scura)}
   .riga:last-child span:first-child{font-weight:800}
-  .frase{padding:38px 0;border-bottom:2px solid var(--riga);display:grid;grid-template-columns:110px 1fr;gap:6px 0}
-  .frase .n{font:700 64px 'Martian Mono';color:var(--inchiostro);grid-row:1/3}
-  .frase .q{font-weight:900;font-stretch:75%;font-size:78px;line-height:1.02;text-transform:uppercase}
-  .frase .a{font:500 38px/1.35 'Archivo';color:var(--grigio);margin-top:12px}
-  .link{margin-top:56px;display:inline-flex;align-self:flex-start;font:700 34px 'Archivo';background:var(--inchiostro);color:var(--carta);padding:22px 30px;border-radius:6px}
-  .piede{position:absolute;left:92px;right:92px;bottom:48px;display:flex;justify-content:space-between;font:500 24px 'Martian Mono';color:var(--grigio)}
-  .disc{font:500 24px/1.4 'Archivo';color:var(--grigio);max-width:44ch}
-  .freccia{font:700 30px 'Martian Mono';color:var(--inchiostro)}
+  .frase{padding:30px 32px;margin-bottom:16px;border-radius:24px;background:var(--foglio);border:1.5px solid var(--riga);display:grid;grid-template-columns:96px 1fr;gap:6px 0;align-items:start}
+  .frase .n{width:72px;height:72px;border-radius:18px;display:grid;place-items:center;background:var(--ambra);color:var(--ambra-ink);font:700 34px 'Martian Mono';grid-row:1/3}
+  .frase .q{font-weight:780;font-stretch:78%;font-size:58px;line-height:1.04;letter-spacing:-.015em}
+  .frase .a{font:500 34px/1.35 'Archivo';color:var(--grigio);margin-top:8px}
+  .link{margin-top:52px;display:inline-flex;align-self:flex-start;font:700 34px 'Archivo';background:var(--inchiostro);color:var(--carta);padding:22px 30px;border-radius:999px}
+  body.scuro .link,body.notizie .link{background:var(--ambra);color:var(--ambra-ink)}
+  .piede{position:absolute;left:84px;right:84px;bottom:46px;display:flex;justify-content:space-between;align-items:flex-end;font:500 24px 'Martian Mono';color:var(--grigio2)}
+  .disc{font:500 24px/1.4 'Archivo';color:var(--grigio2);max-width:44ch}
+  .freccia{font:700 28px 'Martian Mono';color:var(--inchiostro)}
 </style></head>
 <body><div id="s" class="s"></div>
 <script>
 const LOGO = '<svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect width="44" height="44" rx="10" fill="#FBFBF9"/><path d="M9 31 L17 19.5 L23.5 25 L35 11" stroke="#B97C00" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 36 H35" stroke="#5E656D" stroke-width="3.6" stroke-linecap="round"/></svg>';
+/* candele come nell'apertura del sito: le candele che toccano lo stop si spengono; il tratto cambia a ogni slide */
+function candele(cv, seme){
+  const cx=cv.getContext('2d'), W=cv.width, H=cv.height, STEP=40, STOP=91.5; let s=seme||7, P=100; const L=[];
+  const rnd=()=>{ s=(s*16807)%2147483647; return s/2147483647; };
+  for(let i=0;i<W/STEP+2;i++){ const o=P; P=Math.max(88,Math.min(112,P+(rnd()-.5)*3.2+Math.sin(i/9)*.5)); L.push({o,c:P,h:Math.max(o,P)+rnd()*1.4,l:Math.min(o,P)-rnd()*1.4}); }
+  const y=p=>140+(112-p)/24*820; cx.clearRect(0,0,W,H);
+  cx.strokeStyle='rgba(255,255,255,.05)'; cx.lineWidth=1; for(let gy=0;gy<H;gy+=72){ cx.beginPath(); cx.moveTo(0,gy+.5); cx.lineTo(W,gy+.5); cx.stroke(); }
+  const sy=y(STOP); cx.lineWidth=2;
+  L.forEach((k,j)=>{ const x=j*STEP+STEP/2, tocca=k.l<STOP, col=tocca?'rgba(150,155,150,.35)':(k.c>=k.o?'rgba(242,184,58,.85)':'rgba(243,244,241,.55)');
+    cx.strokeStyle=col; cx.fillStyle=col; cx.beginPath(); cx.moveTo(x,y(k.h)); cx.lineTo(x,y(tocca?STOP:k.l)); cx.stroke();
+    const a=y(Math.max(k.o,k.c)), b=Math.max(3,y(Math.min(k.o,k.c))-a); cx.fillRect(x-STEP*.3,a,STEP*.6,tocca?Math.min(b,sy-a):b); });
+  cx.save(); cx.setLineDash([14,10]); cx.strokeStyle='#F2B83A'; cx.lineWidth=3; cx.shadowColor='#F2B83A'; cx.shadowBlur=14;
+  cx.beginPath(); cx.moveTo(0,sy); cx.lineTo(W,sy); cx.stroke(); cx.restore();
+}
 window.mostra = (d, i, n) => {
   const s = document.getElementById('s');
   let c = '';
@@ -60,8 +77,11 @@ window.mostra = (d, i, n) => {
   if(d.tipo === 'frasi') c = d.voci.map(v => `<div class="frase"><span class="n">${v[0]}</span><span class="q">${v[1]}</span><span class="a">${v[2]}</span></div>`).join('');
   if(d.tipo === 'domanda') c = `<div class="medio">${d.testo}</div><div class="sotto">${d.sotto}</div><div class="link">${d.link}</div>`;
   const ultima = i === n - 1;
-  s.innerHTML = `<div class="testa"><span class="logo">${LOGO}Riskly</span><span>${i + 1}/${n}</span></div>
+  s.innerHTML = `<canvas id="bg" width="1080" height="1350"></canvas><div class="velo"></div>
+    <div class="testa"><span class="logo">${LOGO}Riskly</span><span>${String(i + 1).padStart(2,'0')} / ${String(n).padStart(2,'0')}</span></div>
+    <span class="pill"><i></i>Mercati · la settimana</span>
     <div class="corpo">${c}</div>
     <div class="piede">${ultima ? '<span class="disc">Contenuto educativo, non è consulenza finanziaria. Il trading con leva comporta un alto rischio: puoi perdere tutto il capitale.</span>' : '<span>riskly.trade</span><span class="freccia">scorri →</span>'}</div>`;
+  candele(document.getElementById('bg'), 7 + i * 13);
 };
 </script></body></html>

@@ -4,7 +4,7 @@
    window.storia.imposta(battute) · window.storia.disegna(t)  (t = secondi dall'inizio della storia) */
 import * as THREE from './three/three.module.min.js';
 
-const C = { lime: 0xB6D84F, verde: 0x22C55E, rosso: 0xEF4444, oro: 0xE8B84A, grigio: 0x2E352E, bianco: 0xF3F1EA };
+const C = { lime: 0xF2B83A, verde: 0x22C55E, rosso: 0xEF4444, oro: 0xE8B84A, grigio: 0x2E352E, bianco: 0xF3F1EA };
 const hex = c => '#' + new THREE.Color(c).getHexString();
 const cv = document.getElementById('gl');
 const gl = new THREE.WebGLRenderer({ canvas: cv, antialias: true, alpha: true, preserveDrawingBuffer: true });

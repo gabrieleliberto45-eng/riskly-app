@@ -115,20 +115,79 @@
   /* evidenziatore che si stende sulla parola, come nel titolo del sito */
   .e.on mark{animation:evid .9s .3s var(--ease) both}
   @keyframes evid{from{background-size:0% 100%}to{background-size:100% 100%}}
+
+  /* versione verticale 1080×1920 (TikTok, Reels, Shorts): margini larghi per le icone dell'app, una colonna, niente 3D */
+  #v.vert{width:1080px;height:1920px}
+  .vert #bg{width:1080px;height:1920px}
+  .vert #velo{background:linear-gradient(180deg,rgba(11,13,12,.35) 0%,rgba(11,13,12,.8) 30%,rgba(11,13,12,.92) 60%,rgba(11,13,12,.97) 100%)}
+  .vert #gl{display:none}
+  .vert .testa{left:72px;right:72px;top:150px}
+  .vert .corpo,.vert.con3d .corpo{left:72px;right:150px;top:300px;bottom:470px}
+  .vert .piede{left:72px;right:150px;bottom:330px}
+  .vert .barra{height:8px}
+  .vert .grande,.vert.con3d .grande{font-size:118px;max-width:none}
+  .vert .piccolo,.vert.con3d .piccolo{font-size:40px;max-width:none}
+  .vert .tit,.vert.con3d .tit{font-size:76px;max-width:none}
+  .vert .punto,.vert.con3d .punto{grid-template-columns:60px 1fr;gap:4px 24px;padding:22px 26px}
+  .vert .punto .n,.vert.con3d .punto .n{width:60px;height:60px;font-size:28px;border-radius:15px}
+  .vert .punto b,.vert.con3d .punto b{font-size:48px}
+  .vert .punto span,.vert.con3d .punto span{font-size:34px}
+  .vert .righe,.vert.con3d .righe{padding:6px 28px}
+  .vert .riga,.vert.con3d .riga{flex-direction:column;align-items:flex-start;gap:6px;padding:20px 0}
+  .vert .riga span:first-child,.vert.con3d .riga span:first-child{font-size:36px;max-width:none}
+  .vert .riga span:last-child,.vert.con3d .riga span:last-child{font-size:46px;white-space:normal;text-align:left;max-width:none}
+  .vert .formula,.vert.con3d .formula{font-size:46px;padding:30px 34px}
+  .vert .nota,.vert.con3d .nota{font-size:28px}
+  .vert .cifra,.vert.con3d .cifra{font-size:230px}
+  .vert .cifra-et,.vert.con3d .cifra-et{font-size:58px}
+  .vert .duo{grid-template-columns:1fr;gap:20px}
+  .vert .lato{padding:24px 30px}
+  .vert .lato p{font-size:34px;padding:10px 0}
+  .vert .opz{grid-template-columns:1fr;gap:14px}
+  .vert .op{font-size:38px;padding:20px 24px}
+  .vert .spieg{font-size:32px}
+  .vert #sott{left:72px;right:150px;bottom:470px;min-height:0;font:800 50px/1.2 'Archivo';font-stretch:85%;background:rgba(11,13,12,.92);padding:20px 28px}
+  .vert.sottotitoli .corpo{bottom:700px}
+  .sottotitoli #sott{display:flex}
+
+  /* verticale: caratteri più grandi, si guarda sul telefono */
+  .vert .grande,.vert.con3d .grande{font-size:132px}
+  .vert .piccolo,.vert.con3d .piccolo{font-size:46px}
+  .vert .tit,.vert.con3d .tit{font-size:92px;margin-bottom:40px}
+  .vert .punti{gap:22px}
+  .vert .punto,.vert.con3d .punto{grid-template-columns:76px 1fr;gap:6px 26px;padding:28px 30px}
+  .vert .punto .n,.vert.con3d .punto .n{width:76px;height:76px;font-size:34px;border-radius:18px}
+  .vert .punto b,.vert.con3d .punto b{font-size:62px}
+  .vert .punto span,.vert.con3d .punto span{font-size:42px}
+  .vert .riga span:first-child,.vert.con3d .riga span:first-child{font-size:42px}
+  .vert .riga span:last-child,.vert.con3d .riga span:last-child{font-size:56px}
+  .vert .formula,.vert.con3d .formula{font-size:54px;line-height:1.45}
+  .vert .nota,.vert.con3d .nota{font-size:32px}
+  .vert .cifra,.vert.con3d .cifra{font-size:290px}
+  .vert .cifra-et,.vert.con3d .cifra-et{font-size:66px}
+  .vert .lato p{font-size:42px}
+  .vert .op{font-size:48px;padding:26px 28px}
+  .vert .op b{width:66px;height:66px;font-size:32px}
+  .vert .spieg{font-size:40px}
+  .vert #sott{font-size:58px}
 </style></head>
 <body><div id="v"><canvas id="bg" width="1920" height="1080"></canvas><div id="velo"></div><canvas id="gl" width="860" height="760"></canvas><div id="cont"></div><div id="sott"></div></div>
 <script>
 const LOGO='<svg width="40" height="40" viewBox="0 0 44 44" fill="none"><rect width="44" height="44" rx="10" fill="#FBFBF9"/><path d="M9 31 L17 19.5 L23.5 25 L35 11" stroke="#B97C00" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 36 H35" stroke="#5E656D" stroke-width="3.6" stroke-linecap="round"/></svg>';
 let SERIE='';
 window.serie=s=>{SERIE=s||'';};
+/* formato verticale (TikTok, Reels, Shorts) e sottotitoli anche con la voce */
+window.verticale=on=>{ const v=document.getElementById('v'), c=document.getElementById('bg'); v.classList.toggle('vert',!!on); c.width=on?1080:1920; c.height=on?1920:1080; window.BGdim&&window.BGdim(c.width,c.height); };
+window.sottotitoli=on=>document.getElementById('v').classList.toggle('sottotitoli',!!on);
 /* sfondo: candele che scorrono, come nell'apertura del sito; quando il prezzo tocca lo stop la candela si spegne.
    Tutto dipende dal tempo T (secondi dall'inizio del video), così ogni fotogramma è riproducibile */
 const BG=(function(){
-  const cv=document.getElementById('bg'),cx=cv.getContext('2d'),W=1920,H=1080,STEP=40,STOP=91.5;
+  const cv=document.getElementById('bg'),cx=cv.getContext('2d'),STEP=40,STOP=91.5; let W=1920,H=1080;
   let seed=7,P=100;const L=[];
   const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647;};
   for(let i=0;i<2400;i++){const o=P,v=(rnd()-.5)*3.2+Math.sin(i/9)*.5;P=Math.max(88,Math.min(112,P+v));const c=P;L.push({o,c,h:Math.max(o,c)+rnd()*1.4,l:Math.min(o,c)-rnd()*1.4});}
-  const y=p=>200+(112-p)/24*800;
+  const y=p=>H*.185+(112-p)/24*H*.74;
+  window.BGdim=(w,h)=>{ W=w; H=h; };
   return T=>{
     const pos=T*20/STEP*1.1, i0=Math.floor(pos), off=(pos-i0)*STEP;
     cx.clearRect(0,0,W,H);

@@ -6,13 +6,13 @@
      window.prepara(dati) → durata, window.disegna(t). Tempi delle scene e sottotitoli da parole.json -->
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
-  :root{--bg:#0B0D0C;--panel:#151916;--line:#252B26;--acc:#B6D84F;--text:#E6EDF3;--dim:#8B98A9;--dim2:#5D6B7D;
+  :root{--bg:#0B0D0C;--panel:#151916;--line:#252B26;--acc:#F2B83A;--text:#E6EDF3;--dim:#8B98A9;--dim2:#5D6B7D;
     --up:#22C55E;--down:#EF4444;--grad:linear-gradient(120deg,#D2E97A 0%,#A9D14A 55%,#7DBE4A 100%)}
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{width:1080px;height:1920px;overflow:hidden;background:var(--bg)}
   body{font-family:'Instrument Sans',sans-serif;color:var(--text);position:relative}
   .sfondo{position:absolute;inset:0;background:
-    radial-gradient(900px 700px at 82% 6%,rgba(182,216,79,.16),transparent 62%),
+    radial-gradient(900px 700px at 82% 6%,rgba(242,184,58,.16),transparent 62%),
     radial-gradient(800px 640px at 8% 80%,rgba(34,197,94,.08),transparent 64%)}
   .griglia{position:absolute;inset:0;opacity:.06;background-size:90px 90px;
     background-image:linear-gradient(#2a322b 2px,transparent 2px),linear-gradient(90deg,#2a322b 2px,transparent 2px)}
@@ -29,16 +29,16 @@
   .mono{font-family:'JetBrains Mono',monospace}
   .centro{left:0;right:0;text-align:center}
 
-  .card{background:linear-gradient(160deg,rgba(182,216,79,.07),transparent 60%),var(--panel);border:2px solid var(--line);border-radius:36px}
+  .card{background:linear-gradient(160deg,rgba(242,184,58,.07),transparent 60%),var(--panel);border:2px solid var(--line);border-radius:36px}
   .chip{display:inline-flex;align-items:center;gap:14px;padding:18px 28px;border-radius:999px;font-size:34px;font-weight:600;
     background:rgba(21,25,22,.92);border:2px solid var(--line);white-space:nowrap}
   .chip.r{border-color:rgba(239,68,68,.55);color:#FCA5A5}
-  .chip.g{border-color:rgba(182,216,79,.6);color:var(--acc)}
+  .chip.g{border-color:rgba(242,184,58,.6);color:var(--acc)}
   .chip i{width:14px;height:14px;border-radius:50%;background:currentColor;display:block}
 
   /* telefono con le schermate vere del sito */
   .tel{position:absolute;width:540px;height:1060px;border-radius:70px;padding:16px;background:#050605;
-    border:3px solid #2b322c;box-shadow:0 40px 120px rgba(0,0,0,.6),0 0 0 10px rgba(182,216,79,.05)}
+    border:3px solid #2b322c;box-shadow:0 40px 120px rgba(0,0,0,.6),0 0 0 10px rgba(242,184,58,.05)}
   .tel .schermo{width:100%;height:100%;border-radius:56px;overflow:hidden;position:relative;background:var(--bg)}
   .tel img{position:absolute;left:0;top:0;width:100%;display:block}
   .tel .notch{position:absolute;top:30px;left:50%;width:150px;height:40px;margin-left:-75px;border-radius:30px;background:#050605;z-index:2}
@@ -51,13 +51,13 @@
 
   /* scena 4: i quattro bot */
   .bot{position:absolute;left:90px;right:90px;height:150px;display:flex;align-items:center;gap:30px;padding:0 36px}
-  .bot .ic{width:88px;height:88px;border-radius:26px;display:grid;place-items:center;background:rgba(182,216,79,.1);flex-shrink:0}
+  .bot .ic{width:88px;height:88px;border-radius:26px;display:grid;place-items:center;background:rgba(242,184,58,.1);flex-shrink:0}
   .bot b{display:block;font-size:46px;letter-spacing:-.02em}
   .bot span{display:block;font-size:29px;color:var(--dim);margin-top:4px}
-  .bot.on{border-color:rgba(182,216,79,.75);background:linear-gradient(120deg,rgba(182,216,79,.18),rgba(21,25,22,.95) 70%)}
+  .bot.on{border-color:rgba(242,184,58,.75);background:linear-gradient(120deg,rgba(242,184,58,.18),rgba(21,25,22,.95) 70%)}
 
   .posti{display:flex;gap:14px;justify-content:center}
-  .posti i{width:44px;height:44px;border-radius:12px;border:2px solid rgba(182,216,79,.5);display:block}
+  .posti i{width:44px;height:44px;border-radius:12px;border:2px solid rgba(242,184,58,.5);display:block}
   .posti i.p{background:var(--grad);border-color:transparent}
 </style>
 </head>
@@ -110,10 +110,10 @@
   <div class="abs card" style="left:90px;right:90px;top:270px;height:380px;overflow:hidden">
     <canvas id="c4" class="abs" width="900" height="380" style="left:0;top:0"></canvas>
   </div>
-  <div class="bot card el" id="b1" style="top:690px"><div class="ic"><svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#B6D84F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6Z"/></svg></div><div><b>RiskGuard</b><span>Ti ferma prima del limite</span></div></div>
-  <div class="bot card el" id="b2" style="top:850px"><div class="ic"><svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#B6D84F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 9 11l4 4 8-8"/><path d="M15 7h6v6"/></svg></div><div><b>TradeManager</b><span>Break-even e trailing stop</span></div></div>
-  <div class="bot card el" id="b3" style="top:1010px"><div class="ic"><svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#B6D84F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5Z"/><path d="m3 13 9 5 9-5"/></svg></div><div><b>ScaleIn</b><span>Più take profit, in automatico</span></div></div>
-  <div class="bot card el" id="b4" style="top:1170px"><div class="ic"><svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#B6D84F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div><div><b>Riskly Pro</b><span>Tutti e tre insieme</span></div></div>
+  <div class="bot card el" id="b1" style="top:690px"><div class="ic"><svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#F2B83A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6Z"/></svg></div><div><b>RiskGuard</b><span>Ti ferma prima del limite</span></div></div>
+  <div class="bot card el" id="b2" style="top:850px"><div class="ic"><svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#F2B83A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 9 11l4 4 8-8"/><path d="M15 7h6v6"/></svg></div><div><b>TradeManager</b><span>Break-even e trailing stop</span></div></div>
+  <div class="bot card el" id="b3" style="top:1010px"><div class="ic"><svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#F2B83A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5Z"/><path d="m3 13 9 5 9-5"/></svg></div><div><b>ScaleIn</b><span>Più take profit, in automatico</span></div></div>
+  <div class="bot card el" id="b4" style="top:1170px"><div class="ic"><svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#F2B83A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div><div><b>Riskly Pro</b><span>Tutti e tre insieme</span></div></div>
 </div>
 
 <!-- 5 · il journal -->
@@ -262,10 +262,10 @@ function botGrafico(ctx, w, h, quale, p){
     linea(f, cl(p * 1.3) * .72, '#EF4444');
     if(p > .6){
       const q = ease((p - .6) / .25), x = 40 + .72 * (w - 80), y = f(.72);
-      ctx.fillStyle = `rgba(182,216,79,${q})`; ctx.beginPath(); ctx.roundRect(x - 44, y - 44, 88, 88, 22); ctx.fill();
+      ctx.fillStyle = `rgba(242,184,58,${q})`; ctx.beginPath(); ctx.roundRect(x - 44, y - 44, 88, 88, 22); ctx.fill();
       ctx.strokeStyle = '#0B0D0C'; ctx.lineWidth = 6; ctx.beginPath(); ctx.roundRect(x - 18, y - 6, 36, 28, 5); ctx.stroke();
       ctx.beginPath(); ctx.arc(x, y - 8, 12, Math.PI, 0); ctx.stroke();
-      ctx.fillStyle = `rgba(182,216,79,${q})`; ctx.font = '700 38px "Instrument Sans", sans-serif'; ctx.fillText('Giornata bloccata', 40, 60);
+      ctx.fillStyle = `rgba(242,184,58,${q})`; ctx.font = '700 38px "Instrument Sans", sans-serif'; ctx.fillText('Giornata bloccata', 40, 60);
     }
   } else if(quale === 1){
     /* TradeManager: lo stop sale a pareggio e poi segue */
@@ -273,14 +273,14 @@ function botGrafico(ctx, w, h, quale, p){
     const fino = cl(p * 1.1);
     riga(300, 'rgba(139,152,169,.7)', true, 'ingresso');
     const stop = fino < .35 ? 370 : fino < .6 ? 300 : 300 - (fino - .6) / .4 * 150;
-    riga(stop, '#B6D84F', false, fino < .35 ? 'stop' : fino < .6 ? 'stop a pareggio' : 'trailing stop');
+    riga(stop, '#F2B83A', false, fino < .35 ? 'stop' : fino < .6 ? 'stop a pareggio' : 'trailing stop');
     linea(f, fino, '#22C55E');
   } else if(quale === 2){
     /* ScaleIn: TP1, TP2, TP3 */
     const f = x => 360 - x * 300 + Math.sin(x * 16) * 18;
     const fino = cl(p * 1.1);
     [['TP1', 250, .38], ['TP2', 170, .66], ['TP3', 95, .92]].forEach(([n, y, quando]) => {
-      riga(y, fino >= quando ? '#B6D84F' : 'rgba(182,216,79,.35)', true, (fino >= quando ? '✓ ' : '') + n);
+      riga(y, fino >= quando ? '#F2B83A' : 'rgba(242,184,58,.35)', true, (fino >= quando ? '✓ ' : '') + n);
     });
     linea(f, fino, '#22C55E');
   } else {
@@ -288,7 +288,7 @@ function botGrafico(ctx, w, h, quale, p){
     const q = easeIO(p * 1.4), cx = w / 2, cy = h / 2;
     [-1, 0, 1].forEach((k, j) => {
       const x = cx + k * 260 * (1 - q), a = 1 - q * .4;
-      ctx.fillStyle = `rgba(182,216,79,${.12 + .1 * j})`; ctx.strokeStyle = `rgba(182,216,79,${a})`; ctx.lineWidth = 4;
+      ctx.fillStyle = `rgba(242,184,58,${.12 + .1 * j})`; ctx.strokeStyle = `rgba(242,184,58,${a})`; ctx.lineWidth = 4;
       ctx.beginPath(); ctx.roundRect(x - 80, cy - 80, 160, 160, 40); ctx.fill(); ctx.stroke();
     });
     ctx.fillStyle = '#E6EDF3'; ctx.font = '700 44px "Instrument Sans", sans-serif'; ctx.textAlign = 'center';

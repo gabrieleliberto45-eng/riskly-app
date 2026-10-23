@@ -11,8 +11,13 @@ const QUI = __dirname, ID = process.argv[2] || 'v01';
 const FF = execSync(`python3 -c "import imageio_ffmpeg as i;print(i.get_ffmpeg_exe())"`).toString().trim();
 const FPS = 24, ANIM = 0.7, PAUSA = 0.7;          // durata comparsa, silenzio tra le scene
 const MUTO = !!process.env.MUTO;                 // senza voce: sottotitoli a schermo e musica più alta
+const VERT = !!process.env.VERT;                 // verticale 1080×1920 per TikTok, Reels e Shorts (con sottotitoli)
+const SOTT = MUTO || VERT;
 /* pezzi di sottotitolo: frasi intere, al massimo ~110 caratteri; tempi in proporzione alle parole */
-const pezzi = t => { const fr = t.match(/[^.!?]+[.!?]+["»]?|[^.!?]+$/g).map(x => x.trim()); const out = []; for(const f of fr){ if(out.length && (out[out.length-1] + ' ' + f).length <= 110) out[out.length-1] += ' ' + f; else out.push(f); } return out; };
+const MAXSOTT = VERT ? 62 : 110;   // in verticale righe più corte, scritte più grandi
+const pezzi = t => { const fr = t.match(/[^.!?]+[.!?]+["»]?|[^.!?]+$/g).map(x => x.trim()); const out = [];
+  const spezza = f => { if(f.length <= MAXSOTT) return [f]; const r = []; let cur = ''; for(const w of f.split(/\s+/)){ if(cur && (cur + ' ' + w).length > MAXSOTT){ r.push(cur); cur = w; } else cur = cur ? cur + ' ' + w : w; } if(cur) r.push(cur); return r; };
+  for(const f of fr.flatMap(spezza)){ if(out.length && (out[out.length-1] + ' ' + f).length <= MAXSOTT) out[out.length-1] += ' ' + f; else out.push(f); } return out; };
 const parole = t => t.split(/\s+/).filter(Boolean).length;
 const durata = f => { const o = spawnSync(FF, ['-i', f]).stderr.toString().match(/Duration: (\d+):(\d+):([\d.]+)/); return +o[1]*3600 + +o[2]*60 + +o[3]; };
 
@@ -20,7 +25,7 @@ const durata = f => { const o = spawnSync(FF, ['-i', f]).stderr.toString().match
   const spec = JSON.parse(fs.readFileSync(path.join(QUI, ID + '.json'), 'utf8'));
   const tmp = path.join(QUI, 'tmp-' + ID); fs.rmSync(tmp, { recursive: true, force: true }); fs.mkdirSync(tmp);
   const b = await chromium.launch({ args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
-  const p = await b.newPage({ viewport: { width: 1920, height: 1080 } });
+  const p = await b.newPage({ viewport: VERT ? { width: 1080, height: 1920 } : { width: 1920, height: 1080 } });
   // i moduli 3D non si caricano da file://: serve un server locale (python3 -m http.server 8790 nella cartella)
   await p.goto(process.env.URL || 'http://127.0.0.1:8790/modello.html');
   await p.waitForFunction(() => window.visPronto); await p.evaluate(() => document.fonts.ready);
@@ -29,6 +34,7 @@ const durata = f => { const o = spawnSync(FF, ['-i', f]).stderr.toString().match
   // senza voce la scena dura il tempo di lettura dei sottotitoli (circa 2,6 parole al secondo)
   const durate = MUTO ? spec.scene.map(s => Math.max(6, parole(s.voce) / 2.6 + 1.8)) : voci.map(durata).map(d => d + PAUSA);
   await p.evaluate(m => window.muto(m), MUTO);
+  await p.evaluate(v => { window.verticale(v); window.sottotitoli(v); }, VERT);
   await p.evaluate(x => window.serie && window.serie(x), spec.serie || '');
   const totale = durate.reduce((a, c) => a + c, 0);
   let inizio = 0, scritti = 0, dovuti = 0; const capitoli = [];
@@ -47,9 +53,9 @@ const durata = f => { const o = spawnSync(FF, ['-i', f]).stderr.toString().match
     // titolo subito, il resto distribuito nel primo 75% della voce
     const tempi = [...Array(n)].map((_, k) => k === 0 ? 0 : Math.min(D - 1, 0.6 + (k / n) * D * 0.75));
     // sottotitoli: ogni pezzo parte in proporzione alle parole lette prima
-    const pz = MUTO ? pezzi(s.voce) : [], tot = pz.reduce((a, x) => a + parole(x), 0); let acc = 0;
+    const pz = SOTT ? pezzi(s.voce) : [], tot = pz.reduce((a, x) => a + parole(x), 0); let acc = 0;
     const inizi = pz.map(x => { const v = (acc / tot) * (D - 1.2) + 0.3; acc += parole(x); return v; });
-    const sott = async t => { if(MUTO) await p.evaluate(([a, b, t]) => window.sottotitolo(a, b, t), [pz, inizi, t]); };
+    const sott = async t => { if(SOTT) await p.evaluate(([a, b, t]) => window.sottotitolo(a, b, t), [pz, inizi, t]); };
     // le candele dello sfondo scorrono sempre: ogni fotogramma è diverso (FERMO=1: solo le comparse, più veloce)
     if(s.visual || !process.env.FERMO){
       const tot = Math.round(D * FPS);

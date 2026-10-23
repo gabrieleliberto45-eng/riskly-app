@@ -2,7 +2,7 @@
    window.vis.imposta(tipo) prepara la scena, window.vis.disegna(t) disegna il fotogramma. */
 import * as THREE from './three/three.module.min.js';
 
-const LIME = 0xB6D84F, SU = 0x22C55E, GIU = 0xEF4444, ORO = 0xE8B84A, GRIGIO = 0x3A423A, TESTO = 0xEEF2EA;
+const LIME = 0xF2B83A, SU = 0x22C55E, GIU = 0xEF4444, ORO = 0xE8B84A, GRIGIO = 0x3A423A, TESTO = 0xEEF2EA;
 const cv = document.getElementById('gl');
 const gl = new THREE.WebGLRenderer({ canvas: cv, antialias: true, alpha: true, preserveDrawingBuffer: true });
 gl.setPixelRatio(1); gl.setSize(cv.width, cv.height, false); gl.setClearColor(0x000000, 0);

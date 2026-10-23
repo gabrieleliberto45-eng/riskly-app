@@ -1,0 +1,49 @@
+{
+ "id": "t02",
+ "serie": "Rischio in 1 minuto",
+ "titolo": "Settimana di Fed e BCE: 3 regole per il lotto",
+ "scene": [
+  {
+   "capitolo": "Questa settimana",
+   "tipo": "titolo",
+   "grande": "Fed mercoledì, <mark>BCE giovedì</mark>",
+   "piccolo": "Mercoledì 28 alle 19:00 · giovedì 29 alle 14:15, ora italiana",
+   "voce": "Questa settimana decidono sui tassi sia la Fed, mercoledì alle diciannove, sia la BCE, giovedì alle quattordici e quindici. Sono i minuti in cui il prezzo si muove più velocemente. Tre regole per non farti male."
+  },
+  {
+   "capitolo": "Tre regole",
+   "tipo": "punti",
+   "titolo": "Tre regole",
+   "punti": [
+    [
+     "Decidi prima",
+     "dentro o fuori: non nei secondi della notizia"
+    ],
+    [
+     "Stop già messo",
+     "mai inserito dopo, a mercato che corre"
+    ],
+    [
+     "Stop più largo = lotto più piccolo",
+     "il rischio in euro resta lo stesso"
+    ]
+   ],
+   "voce": "Prima regola: decidi prima se stare dentro o fuori, non nei secondi della notizia. Seconda: lo stop lo metti prima, non dopo, quando il prezzo sta già correndo e lo spread si allarga. Terza: se lo stop è più largo, il lotto deve essere più piccolo."
+  },
+  {
+   "capitolo": "Il calcolo",
+   "tipo": "formula",
+   "titolo": "Stesso rischio, stop più largo",
+   "formula": "20 pip → <span>0,50 lotti</span><br>40 pip → <span>0,25 lotti</span>",
+   "nota": "Rischio fisso di 100 € (1% di 10.000 €), 10 € a pip per lotto.",
+   "voce": "Facciamo un esempio. Conto da diecimila euro, rischio dell'uno per cento, cioè cento euro. Con uno stop di venti pip apri zero virgola cinquanta lotti. Se lo stop diventa di quaranta pip, il lotto scende a zero virgola venticinque. La perdita massima resta cento euro."
+  },
+  {
+   "capitolo": "Il lotto",
+   "tipo": "chiusura",
+   "grande": "Il lotto si calcola <mark>prima di entrare</mark>",
+   "piccolo": "Calcolatore gratis: riskly.trade/lotto",
+   "voce": "Il lotto giusto calcolalo prima di entrare, gratis, su riskly punto trade barra lotto. Contenuto educativo, non è consulenza finanziaria. Il trading con leva comporta un alto rischio."
+  }
+ ]
+}

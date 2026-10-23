@@ -1,0 +1,59 @@
+{
+ "id": "t01",
+ "serie": "Fondamentale in 1 minuto",
+ "titolo": "Da lunedì i dati USA escono alle 13:30",
+ "scene": [
+  {
+   "capitolo": "Orari",
+   "tipo": "cifra",
+   "titolo": "Da lunedì 26 ottobre",
+   "cifra": "13:30",
+   "etichetta": "l'ora italiana dei dati USA che di solito escono alle 14:30",
+   "voce": "Da lunedì i dati americani non escono alle quattordici e trenta. Escono alle tredici e trenta. Domenica in Italia è tornata l'ora solare, ma negli Stati Uniti l'ora cambia solo il primo novembre. Per una settimana è tutto un'ora prima."
+  },
+  {
+   "capitolo": "La settimana",
+   "tipo": "numeri",
+   "titolo": "Questa settimana, ora italiana",
+   "colonne": [
+    "Cosa",
+    "Quando"
+   ],
+   "righe": [
+    [
+     "Fed, tassi",
+     "mer 28 · 19:00"
+    ],
+    [
+     "PIL e PCE USA",
+     "gio 29 · 13:30"
+    ],
+    [
+     "BCE, tassi",
+     "gio 29 · 14:15"
+    ]
+   ],
+   "nota": "Fonte: calendario economico. Fino al 30 ottobre.",
+   "voce": "Le date da segnarti. Mercoledì la Federal Reserve decide sui tassi alle diciannove, non alle venti. Giovedì alle tredici e trenta escono il PIL americano e l'inflazione PCE. E alle quattordici e quindici decide la Banca Centrale Europea."
+  },
+  {
+   "capitolo": "Rispondi tu",
+   "tipo": "domanda",
+   "titolo": "Hai la sveglia alle 14:30 come sempre. Giovedì cosa succede?",
+   "opzioni": [
+    "Niente, i dati escono alle 14:30",
+    "Arrivi un'ora dopo i dati"
+   ],
+   "giusta": 1,
+   "spiegazione": "Giovedì i dati escono alle 13:30: alle 14:30 il movimento è già avvenuto.",
+   "voce": "Allora, se giovedì metti la sveglia alle quattordici e trenta come sempre, cosa succede? Scrivilo nei commenti. Risposta: arrivi un'ora dopo i dati, quando il movimento c'è già stato, magari con una posizione aperta."
+  },
+  {
+   "capitolo": "Calendario",
+   "tipo": "chiusura",
+   "grande": "Gli orari giusti, <mark>già in ora italiana</mark>",
+   "piccolo": "Calendario economico gratis: riskly.trade/dati",
+   "voce": "Il calendario con gli orari già in ora italiana lo trovi gratis su riskly punto trade barra dati. Contenuto educativo, non è consulenza finanziaria."
+  }
+ ]
+}
