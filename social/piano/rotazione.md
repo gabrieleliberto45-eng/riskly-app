@@ -152,3 +152,15 @@ YouTube video lunghi 1–36 ma Shorts educativi di inizio ottobre 30–146. Dal 
 | Sab | video educativo tNN | La settimana dell'oro |
 | Dom | storia di rischio o Oggi no. | — |
 TikTok: 3 video educativi a settimana su rischio e analisi fondamentale (richiesta di Gabriele). Gli stessi video vanno su Reels e come Shorts su YouTube.
+
+**Programmata su Metricool, 25 ottobre – 1 novembre** (immagini e video da raw GitHub, commit 4f026f5):
+| Giorno | Instagram + TikTok | YouTube |
+|---|---|---|
+| Dom 25 13:00 | carosello c07 leva (scuro) | — |
+| Lun 26 | 09:00 carosello n03 "Fed e BCE nella stessa settimana" | 18:00 Short t01 |
+| Mar 27 | 13:00 t01 dati USA alle 13:30 | Casi veri (routine) |
+| Mer 28 | 13:00 t02 Fed/BCE, 3 regole | 10:00 Short t02 (prima della Fed delle 19:00) |
+| Gio 29 | 13:00 carosello c05 5 frasi (scuro) | Rispondi tu (routine) |
+| Ven 30 | 18:00 Oggi no · stop | 18:00 Short t03 |
+| Sab 31 | 13:00 t03 quanti lotti con 1.000 € | La settimana dell'oro (routine) |
+| Dom 1 | 18:00 Oggi no · copia | — |
