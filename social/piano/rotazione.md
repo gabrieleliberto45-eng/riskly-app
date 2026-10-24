@@ -164,3 +164,5 @@ TikTok: 3 video educativi a settimana su rischio e analisi fondamentale (richies
 | Ven 30 | 18:00 Oggi no · stop | 18:00 Short t03 |
 | Sab 31 | 13:00 t03 quanti lotti con 1.000 € | La settimana dell'oro (routine) |
 | Dom 1 | 18:00 Oggi no · copia | — |
+
+**Voce dal 24 ottobre:** George di ElevenLabs con l'effetto stanza, come i corsi (Gabriele: "George scena 1 è bellissima"), per tutti i video YouTube e i video educativi tNN. `ELEVEN_API_KEY=… python3 social/youtube/voce.py <id>`: controlla prima i crediti e, se non bastano, fa tutto il video con Giuseppe (mai due voci nello stesso video). Consumo: circa 22.000 caratteri a settimana (lunghi + 3 Shorts), circa 95.000 al mese; il piano Creator si rinnova il 17 di ogni mese. t01–t03 già rifatti con George.
