@@ -2507,13 +2507,16 @@ function j_shotCarica(f, slot){
     j_shotStato('Verrà caricato al salvataggio.', false, slot);
   };
   lettore.readAsDataURL(f);
-  j_leggiIngresso(f);
+  j_leggiIngresso(f, slot);
 }
 
 /* ---------- Prezzo d'ingresso letto dallo screenshot ----------
    Il testo si legge nel browser (Tesseract, caricato solo quando serve): l'immagine non va da nessuna parte.
-   Se trova "buy 0.10 4559.20 → 4565.10" (riga di MetaTrader) prende il primo prezzo; altrimenti propone i prezzi trovati. */
-let j_ocrTurno = 0, j_ocrPronto = null;
+   1) grafici TradingView: il prezzo attuale è nel riquadro rosso o verde sulla scala, con sotto il conto alla rovescia
+      della candela (due righe). Prendo quello più in basso nell'immagine (il grafico di sotto) e leggo solo quel riquadro.
+   2) riga di MetaTrader "buy 0.10 4559.20 → 4565.10": il primo prezzo.
+   3) altrimenti propongo i prezzi trovati. */
+let j_ocrTurno = 0, j_ocrPronto = null, j_ocrCifre = null;
 function j_ocrCarica(){
   if(!j_ocrPronto) j_ocrPronto = new Promise((ok, ko) => {
     const s = document.createElement('script');
@@ -2523,11 +2526,79 @@ function j_ocrCarica(){
   });
   return j_ocrPronto;
 }
+async function j_immagine(f){
+  const url = URL.createObjectURL(f);
+  try{
+    const img = new Image(); img.src = url; await img.decode();
+    const c = document.createElement('canvas'); c.width = img.naturalWidth; c.height = img.naturalHeight;
+    c.getContext('2d').drawImage(img, 0, 0);
+    return c;
+  } finally { URL.revokeObjectURL(url); }
+}
+/* riquadri pieni rossi o verdi larghi come un'etichetta di prezzo; restituisce quello giusto o null */
+function j_riquadroPrezzo(c){
+  const W = c.width, H = c.height, P = 3, gw = Math.floor(W / P), gh = Math.floor(H / P);
+  const px = c.getContext('2d').getImageData(0, 0, W, H).data;
+  const on = new Uint8Array(gw * gh);
+  for(let gy = 0; gy < gh; gy++) for(let gx = 0; gx < gw; gx++){
+    let n = 0;
+    for(let y = gy * P; y < gy * P + P; y++) for(let x = gx * P; x < gx * P + P; x++){
+      const i = (y * W + x) * 4, r = px[i], g = px[i + 1], b = px[i + 2];
+      if((r > 150 && g < 90 && b < 100 && r - g > 80) || (g > 110 && r < 90 && g - r > 50 && b < g + 20)) n++;
+    }
+    on[gy * gw + gx] = n >= 3 ? 1 : 0;
+  }
+  const visto = new Uint8Array(gw * gh), box = [];
+  for(let s = 0; s < on.length; s++){
+    if(!on[s] || visto[s]) continue;
+    let x0 = 1e9, y0 = 1e9, x1 = -1, y1 = -1, n = 0; const coda = [s]; visto[s] = 1;
+    while(coda.length){
+      const k = coda.pop(), x = k % gw, y = (k - x) / gw; n++;
+      if(x < x0) x0 = x; if(x > x1) x1 = x; if(y < y0) y0 = y; if(y > y1) y1 = y;
+      for(const [dx, dy] of [[1,0],[-1,0],[0,1],[0,-1],[2,0],[-2,0],[0,2],[0,-2]]){
+        const nx = x + dx, ny = y + dy;
+        if(nx < 0 || ny < 0 || nx >= gw || ny >= gh) continue;
+        const kk = ny * gw + nx;
+        if(on[kk] && !visto[kk]){ visto[kk] = 1; coda.push(kk); }
+      }
+    }
+    const w = (x1 - x0 + 1) * P, h = (y1 - y0 + 1) * P;
+    if(w >= 40 && w <= 260 && h >= 12 && h <= 90 && w > h * 1.6 && n / ((x1 - x0 + 1) * (y1 - y0 + 1)) > .4)
+      box.push({ x: x0 * P, y: y0 * P, w, h });
+  }
+  if(!box.length) return null;
+  const hMin = Math.min(...box.map(b => b.h));
+  const due = box.filter(b => b.h >= hMin * 1.4);                 /* con il conto alla rovescia sotto */
+  return (due.length ? due : box).sort((a, b) => b.y - a.y)[0];
+}
+async function j_leggiRiquadro(T, c, r){
+  if(!j_ocrCifre){
+    j_ocrCifre = T.createWorker('eng').then(async w => { await w.setParameters({ tessedit_char_whitelist: '0123456789.,:', tessedit_pageseg_mode: '6' }); return w; });
+    j_ocrCifre.catch(() => { j_ocrCifre = null; });
+  }
+  const w = await j_ocrCifre;
+  /* ingrandisco il riquadro e lo rendo testo nero su bianco; se la lettura non sembra un prezzo riprovo più grande */
+  let primo = '';
+  for(const [alto, soglia] of [[150, 165], [240, 140]]){
+    const K = Math.max(2, Math.round(alto / r.h)), out = document.createElement('canvas');
+    out.width = r.w * K; out.height = r.h * K;
+    const x = out.getContext('2d');
+    x.imageSmoothingQuality = 'high'; x.drawImage(c, r.x, r.y, r.w, r.h, 0, 0, out.width, out.height);
+    const d = x.getImageData(0, 0, out.width, out.height), p = d.data;
+    for(let i = 0; i < p.length; i += 4){ const v = (p[i] + p[i + 1] + p[i + 2]) / 3 > soglia ? 0 : 255; p[i] = p[i + 1] = p[i + 2] = v; }
+    x.putImageData(d, 0, 0);
+    const { data } = await w.recognize(out);
+    const riga = String(data.text || '').split('\n')[0].trim();
+    if(/^\d{1,3}([.,]\d{3})*[.,]\d{1,5}$|^\d+[.,]\d{1,5}$/.test(riga)) return j_numeroPrezzo(riga);
+    if(!primo){ const m = riga.match(/\d[\d.,]*\d/); if(m) primo = j_numeroPrezzo(m[0]); }
+  }
+  return primo;
+}
 function j_prezziDalTesto(testo){
   const t = String(testo || '').replace(/[—–]/g, '-');
   const num = '(?<![\\d.,])(\\d{1,3}(?:[ ,.]\\d{3})*(?:[.,]\\d{1,5})|\\d+[.,]\\d{1,5})(?![.,]?\\d)';
   /* 1) "prezzo → prezzo" (spesso letto come "prezzo — prezzo"): il primo è l'ingresso */
-  const freccia = t.match(new RegExp(num + '\\s*(?:→|->|=>|-|>|»)\\s*' + num));
+  const freccia = t.match(new RegExp(num + '\\s*(?:→|[-=>»]{1,3})\\s*' + num));
   if(freccia) return { sicuro: j_numeroPrezzo(freccia[1]), tutti: [] };
   /* 2) "buy/sell ... at 4559.20" o "prezzo di apertura 4559.20" */
   const dopo = t.match(new RegExp('(?:\\bat\\b|@|open price|prezzo di apertura|apertura|entry|ingresso)\\s*:?\\s*' + num, 'i'));
@@ -2537,19 +2608,33 @@ function j_prezziDalTesto(testo){
   (t.match(new RegExp(num, 'g')) || []).forEach(x => { const p = j_numeroPrezzo(x); if(p && parseFloat(p) >= 0.01 && !visti.includes(p)) visti.push(p); });
   return { sicuro: '', tutti: visti.slice(0, 8) };
 }
-async function j_leggiIngresso(f){
+/* con due screenshot vale quello della conferma (è lì che si entra) */
+async function j_leggiIngresso(f, slot){
   const campo = document.getElementById('f-ingresso'), box = document.getElementById('ingressoOcr');
   if(!campo || !box || (campo.value && !campo.dataset.auto)) return;   /* scritto a mano: non lo tocco */
+  if(slot !== 2 && campo.dataset.auto === '2') return;
   const turno = ++j_ocrTurno;
   box.textContent = 'Leggo il prezzo d\'ingresso dallo screenshot…';
   try{
     const T = await j_ocrCarica();
+    let dalRiquadro = '';
+    try{
+      const c = await j_immagine(f), r = j_riquadroPrezzo(c);
+      if(r) dalRiquadro = await j_leggiRiquadro(T, c, r);
+    }catch(err){ console.error(err); }
+    if(turno !== j_ocrTurno) return;
+    if(dalRiquadro){
+      if(campo.value && !campo.dataset.auto) { box.textContent = ''; return; }
+      campo.value = dalRiquadro; campo.dataset.auto = String(slot === 2 ? 2 : 1);
+      box.textContent = 'Preso dall\'etichetta del prezzo nello screenshot: controlla che sia giusto.';
+      return;
+    }
     const { data } = await T.recognize(f, 'eng');
     if(turno !== j_ocrTurno) return;
     const r = j_prezziDalTesto(data && data.text);
     if(campo.value && !campo.dataset.auto) { box.textContent = ''; return; }
     if(r.sicuro){
-      campo.value = r.sicuro; campo.dataset.auto = '1';
+      campo.value = r.sicuro; campo.dataset.auto = String(slot === 2 ? 2 : 1);
       box.textContent = 'Letto dallo screenshot: controlla che sia giusto.';
     } else if(r.tutti.length){
       box.innerHTML = 'Prezzi trovati nello screenshot, tocca quello d\'ingresso:<br>' +
