@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <rect width="120" height="120" rx="28" fill="#0A0E14"/>
+  <!-- il limite di rischio: il prezzo ci arriva vicino ma non lo tocca -->
+  <path d="M24 94 H96" stroke="#8B98A9" stroke-width="6" stroke-linecap="round"/>
+  <!-- discesa, rimbalzo sopra il limite, risalita -->
+  <path d="M24 40 L42 62 L52 52 L66 78 L94 32" stroke="#22C55E" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <circle cx="94" cy="32" r="7" fill="#2EE06C"/>
+</svg>
