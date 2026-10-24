@@ -766,8 +766,18 @@ function rSegnaGestore(email){ if(['gabrieleliberto1212@gmail.com','gabrielelibe
   .jlightbox{position:fixed;inset:0;background:rgba(21,24,27,0.55);backdrop-filter:blur(6px);
              z-index:400;display:none;align-items:center;justify-content:center;padding:28px}
   .jlightbox.on{display:flex}
-  .jlightbox img{max-width:96vw;max-height:88vh;border-radius:14px;border:1px solid var(--line-hi)}
-  .jlb-x{position:absolute;top:20px;right:22px;width:42px;height:42px;border-radius:99px;
+  .jlightbox img{max-width:96vw;max-height:88vh;border-radius:14px;border:1px solid var(--line-hi);cursor:zoom-in}
+  /* ingrandito: l'immagine alla sua risoluzione (o più), si scorre trascinando o con la rotella */
+  .jlb-area{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:28px}
+  .jlightbox.zoom .jlb-area{display:block;overflow:auto;padding:0;cursor:grab;overscroll-behavior:contain}
+  .jlightbox.zoom.trascina .jlb-area{cursor:grabbing;user-select:none}
+  .jlightbox.zoom img{max-width:none;max-height:none;border-radius:0;border:none;display:block;margin:0 auto;cursor:inherit}
+  .jlb-zoom{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);z-index:2;display:flex;align-items:center;gap:4px;
+    background:var(--panel);border:1px solid var(--line-hi);border-radius:99px;padding:4px;box-shadow:0 6px 24px rgba(0,0,0,.25)}
+  .jlb-zoom button{width:36px;height:36px;border-radius:99px;border:none;background:none;color:var(--text);font-size:1.2rem;cursor:pointer}
+  .jlb-zoom button:hover{background:color-mix(in srgb,var(--line) 60%,transparent)}
+  .jlb-zoom span{min-width:64px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--dim)}
+  .jlb-x{position:absolute;z-index:2;top:20px;right:22px;width:42px;height:42px;border-radius:99px;
          background:var(--panel);border:1px solid var(--line-hi);color:var(--text);
          font-size:1.1rem;cursor:pointer}
 
@@ -1885,9 +1895,14 @@ html[data-tema="scuro"] .s-testa .s-tema{border-color:#ECEEEA!important;color:#E
   </div>
 </div>
 
-<div class="jlightbox" id="jlightbox" onclick="j_chiudiShot()">
+<div class="jlightbox" id="jlightbox">
   <button class="jlb-x" onclick="j_chiudiShot()" aria-label="Chiudi">✕</button>
-  <img id="jlbImg" alt="Screenshot dell'operazione">
+  <div class="jlb-zoom" aria-label="Ingrandimento">
+    <button type="button" onclick="j_zoomShot(-1)" aria-label="Rimpicciolisci">−</button>
+    <span id="jlbLiv">Adatta</span>
+    <button type="button" onclick="j_zoomShot(1)" aria-label="Ingrandisci">+</button>
+  </div>
+  <div class="jlb-area" id="jlbArea" onclick="if(event.target===this&&!document.getElementById('jlightbox').classList.contains('zoom'))j_chiudiShot()"><img id="jlbImg" alt="Screenshot dell'operazione" title="Clicca per ingrandire" draggable="false"></div>
 </div>
 
 <!-- ═══════════ BOT ═══════════ -->
@@ -2735,13 +2750,72 @@ function j_apriShot(id, slot){
   const t = j_lista().find(x => x.id === id);
   const url = t && (slot === 2 ? t.shot2Url : (t.shotUrl || (t.shot.startsWith('data:') ? t.shot : '')));
   if(!url) return;
+  j_lbScala = 0; j_lbApplica();
   document.getElementById('jlbImg').src = url;
   document.getElementById('jlightbox').classList.add('on');
 }
 function j_chiudiShot(){
-  document.getElementById('jlightbox').classList.remove('on');
+  const lb = document.getElementById('jlightbox');
+  lb.classList.remove('on', 'zoom');
   document.getElementById('jlbImg').src = '';
 }
+/* ingrandimento: 0 = adatta allo schermo, altrimenti la scala rispetto ai pixel veri dell'immagine
+   (gli screenshot del computer sono larghi: adattati allo schermo i numeri diventano minuscoli) */
+let j_lbScala = 0;
+const J_LB_SCALE = [0, .5, .75, 1, 1.5, 2, 3];
+function j_lbAdattata(){
+  const img = document.getElementById('jlbImg');
+  if(!img.naturalWidth) return 1;
+  return Math.min(innerWidth * .96 / img.naturalWidth, innerHeight * .88 / img.naturalHeight, 1);
+}
+function j_lbApplica(cx, cy){
+  const lb = document.getElementById('jlightbox'), area = document.getElementById('jlbArea'), img = document.getElementById('jlbImg');
+  const prima = img.getBoundingClientRect();
+  const fx = cx === undefined ? .5 : (cx - prima.left) / (prima.width || 1), fy = cy === undefined ? .5 : (cy - prima.top) / (prima.height || 1);
+  lb.classList.toggle('zoom', j_lbScala > 0);
+  if(j_lbScala > 0){
+    img.style.width = Math.round(img.naturalWidth * j_lbScala) + 'px';
+    const w = img.offsetWidth, h = img.offsetHeight;
+    img.style.marginTop = h < innerHeight ? Math.round((innerHeight - h) / 2) + 'px' : '0';
+    area.scrollLeft = fx * w - (cx === undefined ? innerWidth / 2 : cx);
+    area.scrollTop = fy * h - (cy === undefined ? innerHeight / 2 : cy);
+  } else { img.style.width = ''; img.style.marginTop = ''; }
+  document.getElementById('jlbLiv').textContent = j_lbScala > 0 ? Math.round(j_lbScala * 100) + '%' : 'Adatta';
+}
+function j_zoomShot(dir, cx, cy){
+  const base = j_lbAdattata();
+  const att = j_lbScala || base;
+  let nuova;
+  if(dir > 0) nuova = J_LB_SCALE.find(x => x > att + .01) || J_LB_SCALE[J_LB_SCALE.length - 1];
+  else nuova = [...J_LB_SCALE].reverse().find(x => x && x < att - .01 && x > base + .01) || 0;
+  j_lbScala = nuova; j_lbApplica(cx, cy);
+}
+(function(){
+  const lb = document.getElementById('jlightbox'), area = document.getElementById('jlbArea'), img = document.getElementById('jlbImg');
+  let giu = null, mosso = false;
+  /* clic sull'immagine: ingrandisce dove hai cliccato (alla risoluzione vera, almeno il doppio); di nuovo: torna adattata */
+  img.addEventListener('click', e => {
+    e.stopPropagation();
+    if(mosso){ mosso = false; return; }
+    if(j_lbScala){ j_lbScala = 0; j_lbApplica(); return; }
+    j_lbScala = Math.max(1, Math.min(3, j_lbAdattata() * 2)); j_lbApplica(e.clientX, e.clientY);
+  });
+  lb.addEventListener('wheel', e => {
+    if(!lb.classList.contains('on') || !(e.ctrlKey || !lb.classList.contains('zoom'))) return;
+    e.preventDefault(); j_zoomShot(e.deltaY < 0 ? 1 : -1, e.clientX, e.clientY);
+  }, { passive: false });
+  lb.addEventListener('pointerdown', e => {
+    if(!lb.classList.contains('zoom') || e.pointerType === 'touch' || e.target.closest('button')) return;
+    giu = { x: e.clientX, y: e.clientY, sl: area.scrollLeft, st: area.scrollTop }; mosso = false;
+  });
+  addEventListener('pointermove', e => {
+    if(!giu) return;
+    const dx = e.clientX - giu.x, dy = e.clientY - giu.y;
+    if(Math.abs(dx) + Math.abs(dy) > 4){ mosso = true; lb.classList.add('trascina'); }
+    area.scrollLeft = giu.sl - dx; area.scrollTop = giu.st - dy;
+  });
+  ['pointerup', 'pointercancel'].forEach(t => addEventListener(t, () => { giu = null; lb.classList.remove('trascina'); }));
+})();
 document.addEventListener('keydown', e => { if(e.key === 'Escape') j_chiudiShot(); });
 
 /* trascinamento sull'area */
