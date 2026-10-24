@@ -1327,6 +1327,18 @@ body{padding-top:0}
   .jconto-form .btn,.jconto>.btn{padding:11px 20px}
   @media(max-width:760px){.jconto{padding:18px}.jconto-form,.jconto-form input{width:100%}.jconto-form input{flex:1 1 100%}}
   .jobi{margin-bottom:16px}
+  /* saldo e obiettivi a tendina: chiusi mostrano solo la riga del titolo */
+  .jtend{display:flex;align-items:center;gap:8px;background:none;border:none;padding:0;color:inherit;font:inherit;cursor:pointer;text-align:left}
+  .jtend-f{width:7px;height:7px;border-right:1.6px solid var(--dim2);border-bottom:1.6px solid var(--dim2);transform:rotate(45deg);margin:-3px 2px 0;transition:transform .2s}
+  .chiuso .jtend-f{transform:rotate(-45deg);margin-top:0}
+  .jobi-riass{display:none;font-family:'JetBrains Mono','SF Mono',Menlo,monospace;font-size:.76rem;color:var(--dim2)}
+  .jobi.chiuso .jobi-riass{display:inline}
+  .jobi.chiuso .jcard-head{margin-bottom:0}
+  .jobi.chiuso #obiCorpo,.jobi.chiuso #obiForm,.jobi.chiuso #obiModifica{display:none!important}
+  .jconto.chiuso{padding-top:14px;padding-bottom:14px}
+  .jconto.chiuso .jconto-sx{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+  .jconto.chiuso .jconto-v{font-size:1.1rem;margin:0}
+  .jconto.chiuso .jconto-s,.jconto.chiuso #contoForm,.jconto.chiuso #contoModifica{display:none!important}
   .jobi [hidden]{display:none!important}
   .jobi-vuoto{font-size:.9rem;color:var(--dim)}
   .jobi-griglia{display:grid;grid-template-columns:1fr 1fr;gap:14px}
@@ -1596,7 +1608,7 @@ html[data-tema="scuro"] .s-testa .s-tema{border-color:#ECEEEA!important;color:#E
       <!-- saldo del conto: iniziale + risultato di tutte le operazioni -->
       <div class="jcard jconto" id="jconto">
         <div class="jconto-sx">
-          <div class="jconto-l">Saldo del conto</div>
+          <button type="button" class="jtend" onclick="j_tendina('jconto')" aria-expanded="true"><span class="jconto-l">Saldo del conto</span><i class="jtend-f" aria-hidden="true"></i></button>
           <div class="jconto-v" id="contoSaldo">—</div>
           <div class="jconto-s" id="contoSub"></div>
         </div>
@@ -1610,7 +1622,7 @@ html[data-tema="scuro"] .s-testa .s-tema{border-color:#ECEEEA!important;color:#E
 
       <!-- obiettivi di profitto e limiti di perdita, del giorno e della settimana: si aggiornano con ogni operazione -->
       <div class="jcard jobi" id="jobi">
-        <div class="jcard-head"><h3>Obiettivi</h3><button type="button" class="btn" id="obiModifica" onclick="j_apriObiettivi()">Imposta</button></div>
+        <div class="jcard-head"><button type="button" class="jtend" onclick="j_tendina('jobi')" aria-expanded="true"><h3>Obiettivi</h3><i class="jtend-f" aria-hidden="true"></i><span class="jobi-riass" id="obiRiass"></span></button><button type="button" class="btn" id="obiModifica" onclick="j_apriObiettivi()">Imposta</button></div>
         <div id="obiCorpo"></div>
         <form class="jobi-form" id="obiForm" onsubmit="j_salvaObiettivi(event)" hidden>
           <div class="jobi-unita"><span>Obiettivi in</span>
@@ -4263,6 +4275,17 @@ async function j_salvaSaldoIniziale(e){
   if(v) j_flash('Saldo iniziale salvato: ora il saldo si aggiorna da solo.');
 }
 
+/* saldo e obiettivi si chiudono a tendina; lo stato resta su questo dispositivo */
+function j_tendina(id, stato){
+  const el = document.getElementById(id);
+  if(!el) return;
+  const chiuso = stato === undefined ? !el.classList.contains('chiuso') : stato;
+  el.classList.toggle('chiuso', chiuso);
+  const b = el.querySelector('.jtend'); if(b) b.setAttribute('aria-expanded', String(!chiuso));
+  if(stato === undefined){ try{ localStorage.setItem('riskly-chiuso-' + id, chiuso ? '1' : ''); }catch{} }
+}
+['jconto', 'jobi'].forEach(id => { let c = false; try{ c = !!localStorage.getItem('riskly-chiuso-' + id); }catch{} if(c) j_tendina(id, true); });
+
 /* ---------- Obiettivi del giorno e della settimana ---------- */
 /* come il saldo iniziale: nel profilo di accesso (vale su tutti i dispositivi), con una copia su questo dispositivo.
    gp/gl = profitto e perdita massima del giorno, sp/sl = della settimana (da lunedì a domenica) */
@@ -4303,6 +4326,8 @@ function j_renderObiettivi(){
   const o = j_obiettivi(), corpo = document.getElementById('obiCorpo'), btn = document.getElementById('obiModifica');
   document.getElementById('obiForm').hidden = true;
   corpo.hidden = false; btn.hidden = false;
+  const riass = document.getElementById('obiRiass');
+  riass.textContent = '';
   if(!J_OBI_CHIAVI.some(k => o[k])){
     corpo.innerHTML = '<div class="jobi-vuoto">Imposta quanto vuoi guadagnare e quanto al massimo puoi perdere, in un giorno e in una settimana: si aggiornano da soli con ogni operazione.</div>';
     btn.textContent = 'Imposta gli obiettivi'; btn.classList.add('pri');
@@ -4334,6 +4359,7 @@ function j_renderObiettivi(){
     return `<div class="jobi-per"><div class="jobi-t"><span>${titolo}</span><b class="${j_cl(pnl)}">${esc(j_fmt(pnl))}${sulSaldo}</b></div>
       ${gp ? riga('Obiettivo di profitto', pnl, gp, false, base) : ''}${gl ? riga('Perdita massima', -pnl, gl, true, base) : ''}${msg}</div>`;
   };
+  riass.textContent = `Oggi ${j_fmt(pnlG)} · settimana ${j_fmt(pnlS)}`;
   corpo.innerHTML = `<div class="jobi-griglia">${periodo('OGGI', pnlG, o.gp, o.gl, 'g', j_saldoAl(oggi))}${periodo('QUESTA SETTIMANA', pnlS, o.sp, o.sl, 's', j_saldoAl(lun))}</div>`;
 }
 function j_apriObiettivi(){
