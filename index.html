@@ -3078,25 +3078,7 @@ function j_apriOp(id){
   const R = t.risk > 0 ? t.pnl / t.risk : null;
   const esito = t.pnl > 0 ? 'Vincente' : (t.pnl < 0 ? 'Perdente' : 'Pareggio');
   const emo = j_emoInfo(t.emo || 'lucido');
-  const fascia = j_fascia(t);
   const gg = GIORNI[j_giornoSett(t)];
-
-  /* serie: quante operazioni di fila con lo stesso esito, fino a questa */
-  let serie = 0;
-  const segno = Math.sign(t.pnl);
-  if(segno !== 0){
-    for(let k = i; k >= 0 && Math.sign(ord[k].pnl) === segno; k--) serie++;
-  }
-
-  const classifica = [...lista].sort((a, b) => b.pnl - a.pnl).findIndex(x => x.id === id) + 1;
-  const giorno = j_statGruppo(lista, x => x.date === t.date);
-
-  const gruppi = [];
-  gruppi.push([`Su ${t.symbol}`, j_statGruppo(lista, x => x.symbol === t.symbol)]);
-  if(t.strategy) gruppi.push([`Strategia «${t.strategy}»`, j_statGruppo(lista, x => x.strategy === t.strategy)]);
-  gruppi.push([t.dir === 'long' ? 'Operazioni long' : 'Operazioni short', j_statGruppo(lista, x => x.dir === t.dir)]);
-  gruppi.push([`Stato d'animo «${emo.nome}»`, j_statGruppo(lista, x => (x.emo || 'lucido') === (t.emo || 'lucido'))]);
-  if(fascia) gruppi.push([`Fascia ${fascia.et}`, j_statGruppo(lista, x => { const f = j_fascia(x); return f && f.et === fascia.et; })]);
 
   const campi = Object.values(METODI).flatMap(m => m.campi);
   const scag = j_scagParse((t.dettagli || {}).scaglioni);
@@ -3132,16 +3114,7 @@ function j_apriOp(id){
 
     ${scag.length ? `<div class="jop-sez">SCAGLIONI</div>${scag.map((x, k) =>
         riga(`${k + 1}° · ${x.l.toFixed(2)} lotti`, J_ESITI[x.e].nome + j_scagPip(x) + (x.e === 'tp' || x.e === 'sl' ? ' pip' : ''), x.e === 'tp' ? 'up' : (x.e === 'sl' ? 'down' : ''))).join('')}
-      ${riga('Riepilogo', `${scag.length} scaglioni · ${j_scagLotti(scag).toFixed(2)} lotti · ${scag.filter(x => x.e === 'tp').length} profit · ${scag.filter(x => x.e === 'be').length} pareggio · ${scag.filter(x => x.e === 'sl').length} stop`, '', true)}` : ''}
-
-    <div class="jop-sez">IN QUESTA GIORNATA E NELLA SERIE</div>
-    ${riga('Giornata del ' + j_dataBreve(t.date), `${giorno.n} ${giorno.n === 1 ? 'operazione' : 'operazioni'} · ${j_fmt(giorno.tot)}`, j_cl(giorno.tot), true)}
-    ${riga('Serie', segno === 0 ? '—' : `${serie}ª ${segno > 0 ? 'vincita' : 'perdita'} di fila`, segno > 0 ? 'up' : (segno < 0 ? 'down' : ''))}
-    ${riga('Posizione per risultato', `${classifica}ª su ${lista.length}`)}
-
-    <div class="jop-sez">CONFRONTO CON LE TUE ALTRE OPERAZIONI</div>
-    ${gruppi.map(([nome, g]) =>
-      riga(esc(nome), `${g.n} op. · winrate ${g.wr}% · media ${j_fmt(g.media)}`, j_cl(g.media), true)).join('')}
+      ` : ''}
 
     ${dett.length ? `<div class="jop-sez">DETTAGLI DEL METODO</div>${dett.map(([k, v]) => riga(esc(k), esc(v))).join('')}` : ''}
 
