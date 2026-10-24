@@ -2657,7 +2657,8 @@ function j_simboloDalTesto(testo){
     lista.forEach(v => {
       const n = String(v).toUpperCase().replace(/[^A-Z0-9]/g, '');
       if(n.length < 4) return;
-      const i = parole.findIndex(p => p === n || p.endsWith(n));      /* "OANDAXAUUSD" va bene */
+      /* "OANDAXAUUSD" va bene; anche "XAUUSI" o "XAUUS" (l'ultima lettera sfumata nella barra dell'app) */
+      const i = parole.findIndex(p => p === n || p.endsWith(n) || (p.length >= 5 && n.startsWith(p)) || (p.length >= 6 && n.startsWith(p.slice(0, -1))));
       if(i >= 0 && (!meglio || i < meglio.i)) meglio = { i, v };
     });
     if(meglio) return meglio.v;
@@ -2699,7 +2700,24 @@ async function j_leggiDataOra(f, slot){
         j_aggiornaSessioni(true); fatto.push('data', 'ora');
       }
     }
-    if(simLibero){
+    if(simLibero && telefono){
+      /* app di TradingView sul telefono: il simbolo è nella barra in basso, in bianco ("XAUUSD 1H");
+         sopra e sotto ci sono altri simboli sfumati, che con la soglia spariscono */
+      const y0 = Math.round(c.height * .82), h3 = Math.round(c.height * .11), o3 = document.createElement('canvas');
+      o3.width = c.width * K; o3.height = h3 * K;
+      const x3 = o3.getContext('2d'); x3.drawImage(c, 0, y0, c.width, h3, 0, 0, o3.width, o3.height);
+      const d3 = x3.getImageData(0, 0, o3.width, o3.height), q = d3.data;
+      for(let i = 0; i < q.length; i += 4){ const v = (q[i] + q[i + 1] + q[i + 2]) / 3 > 150 ? 0 : 255; q[i] = q[i + 1] = q[i + 2] = v; }
+      x3.putImageData(d3, 0, 0);
+      const basso = (await T.recognize(o3, 'eng')).data.text || '';
+      if(turno !== j_dataTurno) return;
+      const sim = j_simboloDalTesto(basso);
+      if(sim && (!fs.value.trim() || fs.dataset.auto)){
+        fs.value = sim; fs.dataset.auto = String(slot === 2 ? 2 : 1);
+        j_aggiornaSalva('simboli'); fatto.push('simbolo');
+      }
+    }
+    if(simLibero && !fatto.includes('simbolo')){
       /* solo la parte alta: lì c'è il nome del grafico; più in basso ci sono altri simboli (correlazioni, watchlist) */
       const h2 = Math.round(c.height * .22), o2 = document.createElement('canvas'); o2.width = c.width * K; o2.height = h2 * K;
       o2.getContext('2d').drawImage(c, 0, 0, c.width, h2, 0, 0, o2.width, o2.height);
