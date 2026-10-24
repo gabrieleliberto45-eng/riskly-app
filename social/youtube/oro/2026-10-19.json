@@ -1,0 +1,57 @@
+{
+ "settimana": "2026-10-19",
+ "oro": {
+  "apertura": 4191.3,
+  "chiusura": 4007.9,
+  "var": -183.4,
+  "var_pct": -4.38,
+  "massimo": 4211.2,
+  "quando_max": "2026-10-19T07:00:00+00:00",
+  "minimo": 3989.1,
+  "quando_min": "2026-10-23T14:00:00+00:00"
+ },
+ "dollaro": {
+  "apertura": 102.01,
+  "chiusura": 101.75,
+  "var": -0.26,
+  "var_pct": -0.26,
+  "massimo": 102.08,
+  "quando_max": "2026-10-19T07:00:00+00:00",
+  "minimo": 101.45,
+  "quando_min": "2026-10-22T07:00:00+00:00"
+ },
+ "decennale": {
+  "apertura": 5.09,
+  "chiusura": 4.99,
+  "var": -0.1,
+  "var_pct": -2.0,
+  "massimo": 5.15,
+  "quando_max": "2026-10-19T16:20:00+00:00",
+  "minimo": 4.94,
+  "quando_min": "2026-10-22T17:20:00+00:00",
+  "var_pb": -10
+ },
+ "giorni": [
+  {
+   "giorno": "2026-10-19",
+   "chiusura": 4151.7
+  },
+  {
+   "giorno": "2026-10-20",
+   "chiusura": 4132.5
+  },
+  {
+   "giorno": "2026-10-21",
+   "chiusura": 4142.3
+  },
+  {
+   "giorno": "2026-10-22",
+   "chiusura": 4038.3
+  },
+  {
+   "giorno": "2026-10-23",
+   "chiusura": 4007.9
+  }
+ ],
+ "fonte": "Yahoo Finance: oro future COMEX (GC=F), indice del dollaro (DX-Y.NYB), rendimento Treasury 10 anni (^TNX); dati orari"
+}

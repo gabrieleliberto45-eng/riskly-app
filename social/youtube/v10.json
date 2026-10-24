@@ -1,0 +1,99 @@
+{
+ "id": "v10",
+ "serie": "La settimana dell'oro",
+ "titolo": "La settimana dell'oro: −4,4% e sotto i 4.000 $, colpa del petrolio (19–23 ottobre 2026)",
+ "scene": [
+  {
+   "capitolo": "Introduzione",
+   "tipo": "cifra",
+   "titolo": "Oro, dal 19 al 23 ottobre 2026",
+   "cifra": "−4,4%",
+   "etichetta": "la peggior settimana da giugno: venerdì sotto i 4.000 dollari per la prima volta da luglio",
+   "nota": "Future COMEX: da 4.191,3 a 4.007,9 $. Fonte: Yahoo Finance (GC=F).",
+   "voce": "Meno quattro virgola quattro per cento. È quanto ha perso il future sull'oro questa settimana, dal diciannove al ventitré ottobre: la settimana peggiore da giugno. Venerdì pomeriggio il prezzo è sceso sotto i quattromila dollari l'oncia, per la prima volta da luglio. E la cosa strana è che il dollaro e i rendimenti americani sono scesi, cioè proprio le due cose che di solito aiutano l'oro. Vediamo i numeri, cosa è successo e cosa esce la settimana prossima. Niente previsioni: solo fatti e rischio."
+  },
+  {
+   "capitolo": "Il grafico della settimana",
+   "tipo": "grafico",
+   "titolo": "Oro, future COMEX, dati orari",
+   "img": "oro/2026-10-19.png",
+   "nota": "Fonte: Yahoo Finance (GC=F). Giorni in ora italiana.",
+   "voce": "Ecco il grafico della settimana, con i dati orari del future sull'oro. Il massimo arriva subito, lunedì mattina, a quattromiladuecentoundici dollari. Poi il prezzo scende piano e fino a mercoledì resta tra i quattromilacentotrenta e i quattromilacentosessanta. Giovedì la discesa accelera: in un giorno il future perde più di cento dollari. Venerdì, nel pomeriggio, tocca il minimo della settimana, tremilanovecentottantanove dollari, e chiude poco sopra i quattromila."
+  },
+  {
+   "capitolo": "I numeri",
+   "tipo": "numeri",
+   "titolo": "I numeri della settimana",
+   "colonne": ["Mercato", "Variazione"],
+   "righe": [
+    ["Oro (future COMEX)", "4.191,3 → 4.007,9 $ · −4,4%"],
+    ["Massimo · minimo", "4.211,2 · 3.989,1 $"],
+    ["Indice del dollaro", "102,01 → 101,75 · −0,3%"],
+    ["Treasury 10 anni", "5,09% → 4,99% · −10 punti base"]
+   ],
+   "nota": "Fonte: Yahoo Finance, dati orari dal 19 al 23 ottobre 2026.",
+   "voce": "I numeri. L'oro apre la settimana a quattromilacentonovantuno dollari e chiude a quattromilasette: meno centottantatré dollari, meno quattro virgola quattro per cento. Tra massimo e minimo ci sono più di duecentoventi dollari. L'indice del dollaro scende dello zero virgola tre per cento, e il rendimento del Treasury a dieci anni cala di dieci punti base, sotto il cinque per cento. Di solito, con dollaro e rendimenti in calo, l'oro sale. Questa settimana no. Ed è proprio questo il punto interessante."
+  },
+  {
+   "capitolo": "Cosa l'ha mosso",
+   "tipo": "punti",
+   "titolo": "Cosa ha mosso l'oro",
+   "punti": [
+    ["Petrolio ai massimi da maggio", "Brent oltre 116 $: attacchi Houthi in Arabia Saudita e timori di nuovi raid sull'Iran"],
+    ["Più inflazione, tassi alti più a lungo", "l'oro non paga interessi: se i tassi reali restano alti pesa di più"],
+    ["Giovedì: vendite su tutto", "Borse giù, il Nasdaq soffre: si vende anche l'oro per fare cassa"]
+   ],
+   "nota": "Fonti: Bloomberg, Reuters, CNBC, Capital Economics (23 ottobre 2026).",
+   "voce": "Cosa ha mosso l'oro. Primo, il petrolio. Venerdì il Brent ha superato i centosedici dollari al barile, il livello più alto da maggio, dopo gli attacchi degli Houthi alle infrastrutture saudite e le notizie su possibili nuovi raid contro l'Iran. Secondo: petrolio più caro vuol dire più inflazione, e quindi tassi alti più a lungo. L'oro non paga interessi: se i tassi reali restano alti, tenerlo costa di più. È la lettura di Capital Economics. Terzo: giovedì le Borse americane sono scese, con il Nasdaq colpito dai timori sull'intelligenza artificiale. I rendimenti a dieci anni hanno avuto il calo più forte in un giorno da marzo duemilaventitré, ma l'oro è sceso lo stesso, di quasi il tre per cento. Quando i mercati scendono tutti insieme, molti vendono quello che si vende più facilmente per fare cassa, e l'oro è tra questi."
+  },
+  {
+   "capitolo": "Tu cosa ne pensi?",
+   "tipo": "domanda",
+   "titolo": "Quale fattore ha pesato di più sull'oro questa settimana?",
+   "opzioni": [
+    "Il dollaro più forte",
+    "Il petrolio e la paura dell'inflazione",
+    "I rendimenti americani in salita",
+    "Una banca centrale che ha alzato i tassi"
+   ],
+   "giusta": 1,
+   "spiegazione": "Dollaro e rendimenti sono scesi e nessuna banca centrale ha deciso in settimana: a pesare è stato il petrolio, con l'idea di tassi alti più a lungo.",
+   "voce": "Adesso tocca a te. Quale fattore ha pesato di più sull'oro questa settimana? Prima risposta: il dollaro più forte. Seconda: il petrolio e la paura dell'inflazione. Terza: i rendimenti americani in salita. Quarta: una banca centrale che ha alzato i tassi. Metti in pausa e scrivi nei commenti la tua lettera. La risposta è la seconda. Il dollaro e i rendimenti sono scesi, e in settimana nessuna grande banca centrale ha deciso sui tassi. A pesare è stato il petrolio, con l'idea che l'inflazione costringa a tenere i tassi alti più a lungo."
+  },
+  {
+   "capitolo": "La settimana prossima",
+   "tipo": "numeri",
+   "titolo": "La settimana prossima · ora italiana",
+   "colonne": ["Ora italiana", "Cosa"],
+   "righe": [
+    ["mar 27 · 13:30", "USA: ordini di beni durevoli"],
+    ["mer 28 · 19:00", "<mark>Fed</mark>: decisione sui tassi"],
+    ["gio 29 · 13:30", "USA: PIL e inflazione PCE"],
+    ["gio 29 · 14:15", "<mark>BCE</mark>: decisione sui tassi"]
+   ],
+   "nota": "Dal 25 ottobre in Italia c'è l'ora solare, negli USA solo dal 1° novembre: i dati americani escono un'ora prima del solito.",
+   "voce": "La settimana prossima è la più carica del mese. Attenzione all'ora: domenica in Italia torna l'ora solare, negli Stati Uniti solo il primo novembre, quindi per una settimana i dati americani escono un'ora prima del solito. Martedì alle tredici e trenta gli ordini di beni durevoli americani. Mercoledì alle diciannove la decisione della Fed, e alle diciannove e trenta la conferenza stampa. Giovedì alle tredici e trenta il PIL americano del terzo trimestre e l'inflazione PCE, e alle quattordici e quindici la decisione della BCE. Venerdì mattina il PIL dell'Eurozona e l'inflazione italiana di ottobre."
+  },
+  {
+   "capitolo": "Il rischio",
+   "tipo": "confronto",
+   "titolo": "Settimana di Fed e BCE: due modi di stare sull'oro",
+   "no": {
+    "titolo": "Senza piano",
+    "righe": ["Stesso lotto di sempre, anche con 220 $ di oscillazione", "Posizione aperta alle 19:00 di mercoledì", "Orario dei dati USA ancora alle 14:30"]
+   },
+   "si": {
+    "titolo": "Con piano",
+    "righe": ["Stop in dollari più largo, lotto più piccolo", "Decidi prima della Fed se stare dentro o fuori", "Orari aggiornati: dati USA alle 13:30"]
+   },
+   "voce": "Il rischio. Questa settimana tra massimo e minimo ci sono stati più di duecentoventi dollari, e la prossima arrivano Fed, BCE, PIL e inflazione in quarantotto ore. Mettiamo vicini due modi di stare sull'oro. Senza piano: lo stesso lotto di sempre, anche se il prezzo si muove il doppio; la posizione aperta mentre esce la Fed; e l'orario dei dati americani ancora alle quattordici e trenta. Con piano: se lo stop in dollari è più largo, il lotto è più piccolo, così la perdita massima in euro resta uguale; si decide prima della Fed se stare dentro o fuori; e gli orari si aggiornano, dati americani alle tredici e trenta."
+  },
+  {
+   "capitolo": "Per approfondire",
+   "tipo": "chiusura",
+   "grande": "I dati della settimana,<br><mark>gratis</mark>",
+   "piccolo": "Calendario in ora italiana su riskly.trade/dati · Corso Riskly · Analisi fondamentale: banche centrali, inflazione, petrolio, oro",
+   "voce": "I dati della settimana prossima, già in ora italiana, li trovi gratis su riskly punto trade barra dati. E se vuoi capire come petrolio, inflazione e tassi muovono l'oro, c'è il corso Riskly Analisi fondamentale, con grafici sui dati veri: lo trovi su riskly punto trade barra corsi. Sono miei prodotti. Contenuto informativo ed educativo, non consulenza finanziaria: il trading con leva può farti perdere tutto il capitale."
+  }
+ ]
+}
