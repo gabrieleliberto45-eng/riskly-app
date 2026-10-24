@@ -696,7 +696,14 @@ function rSegnaGestore(email){ if(['gabrieleliberto1212@gmail.com','gabrielelibe
   .jtoolbar{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;
             flex-wrap:wrap;margin-bottom:20px}
   .jperiodo{color:var(--dim2);font-size:.8rem;font-family:'JetBrains Mono','SF Mono',Menlo,monospace;margin-top:3px}
-  .jactions{display:flex;gap:8px;flex-wrap:wrap}
+  .jactions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .jactions [hidden]{display:none!important}
+  .jaltro-btn{min-width:46px;font-size:1.1rem;letter-spacing:.05em}
+  .jfiltri-btn span{margin-left:6px;padding:1px 7px;border-radius:99px;background:var(--accent);color:#15181B;font-size:.72rem;font-weight:700}
+  .jfiltri-btn span:empty{display:none}
+  .jfiltri-btn[aria-expanded="true"]{border-color:var(--accent)}
+  .jaltro-val{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 14px 10px;font-size:.84rem;color:var(--dim);border-bottom:1px solid var(--line);margin-bottom:4px}
+  .jaltro-val select{width:auto;padding:6px 10px;font-size:.8rem}
 
   .jkpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:12px;margin-bottom:14px}
   .jkpi{background:var(--panel);border:1px solid var(--line);border-radius:18px;
@@ -1115,6 +1122,8 @@ body{padding-top:0}
 .jfiltri select,.jfiltri input{width:auto;min-width:0;padding:9px 14px;font-size:.78rem;border-radius:99px}
 .jfiltri select{flex:0 1 160px}
 .jfiltri input{flex:1 1 190px}
+.jfiltri-altri{display:flex;gap:10px;flex-wrap:wrap;align-items:center;flex:1 1 100%}
+.jfiltri-altri[hidden]{display:none}
 .jchips{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
 .jchips:empty{display:none}
 .jchip{display:inline-flex;align-items:center;gap:7px;padding:5px 8px 5px 12px;border-radius:99px;
@@ -1233,7 +1242,7 @@ body{padding-top:0}
   .jaltro-menu{display:none;position:absolute;right:0;top:calc(100% + 6px);z-index:40;min-width:220px;
     background:#FBFBF9;border:1px solid var(--line);border-radius:14px;padding:6px;box-shadow:0 14px 34px rgba(21,24,27,0.158)}
   .jaltro.on .jaltro-menu{display:block}
-  @media(max-width:760px){.jaltro-menu{right:auto;left:0}}
+  @media(max-width:760px){.jaltro-menu{right:0;left:auto;max-width:calc(100vw - 32px)}}
   .jaltro-menu button{display:block;width:100%;text-align:left;background:none;border:none;color:var(--text);
     font-family:inherit;font-size:.88rem;padding:11px 12px;border-radius:10px;cursor:pointer}
   .jaltro-menu button:hover{background:rgba(21,24,27,.06)}
@@ -1659,9 +1668,12 @@ html[data-tema="scuro"] .s-testa .s-tema{border-color:#ECEEEA!important;color:#E
         <div class="jactions">
           <button class="btn" id="btnDemo" onclick="j_anteprima()">Guarda un esempio</button>
           <button class="btn" onclick="b_apri()">Bot</button>
+          <button class="btn jfiltri-btn" type="button" id="fAltriBtn" aria-expanded="false" aria-controls="fAltri" onclick="j_altriFiltri()">Filtri<span id="fAltriN"></span></button>
           <div class="jaltro" id="jaltro">
-            <button class="btn" type="button" aria-haspopup="true" onclick="event.stopPropagation();this.parentElement.classList.toggle('on')">⋯ Altro</button>
+            <button class="btn jaltro-btn" type="button" aria-haspopup="true" aria-label="Altro" onclick="event.stopPropagation();this.parentElement.classList.toggle('on')">⋯</button>
             <div class="jaltro-menu" onclick="this.parentElement.classList.remove('on')">
+              <label class="jaltro-val" onclick="event.stopPropagation()">Valuta del conto
+                <select id="fValuta" class="jvaluta" aria-label="Valuta del conto" onchange="j_setValuta(this.value)"></select></label>
               <button type="button" onclick="j_exportData()">Esporta copia (JSON)</button>
               <button type="button" onclick="j_exportCSV()">Esporta in CSV</button>
               <button type="button" onclick="document.getElementById('imp').click()">Importa</button>
@@ -1671,13 +1683,13 @@ html[data-tema="scuro"] .s-testa .s-tema{border-color:#ECEEEA!important;color:#E
             </div>
           </div>
           <input type="file" id="imp" accept=".json,.csv,.txt" hidden onchange="j_importData(event)">
-          <select id="fValuta" class="jvaluta" aria-label="Valuta del conto" onchange="j_setValuta(this.value)"></select>
         </div>
       </div>
 
       <!-- filtri: valgono per metriche, grafici e tabelle -->
       <div class="jfiltri">
         <div class="jseg" id="fPeriodo"></div>
+        <div class="jfiltri-altri" id="fAltri" hidden>
         <select id="fSimbolo" aria-label="Simbolo" onchange="j_setFiltro('simbolo', this.value)"></select>
         <select id="fStrategia" aria-label="Strategia" onchange="j_setFiltro('strategia', this.value)"></select>
         <select id="fDir" aria-label="Direzione" onchange="j_setFiltro('dir', this.value)">
@@ -1687,6 +1699,7 @@ html[data-tema="scuro"] .s-testa .s-tema{border-color:#ECEEEA!important;color:#E
         </select>
         <select id="fEmo" aria-label="Stato d'animo" onchange="j_setFiltro('emo', this.value)"></select>
         <input type="search" id="fCerca" placeholder="Cerca simbolo, strategia, nota…" oninput="j_setFiltro('cerca', this.value)">
+        </div>
       </div>
       <div class="jchips" id="fChips"></div>
 
@@ -3059,8 +3072,17 @@ function j_opzioni(sel, testoTutti, valori){
     valori.map(([v, t]) => `<option value="${esc(v)}"${v === attuale ? ' selected' : ''}>${esc(t)}</option>`).join('');
 }
 
+/* simbolo, strategia, direzione, stato d'animo e ricerca stanno dietro il pulsante "Filtri"; il periodo resta sempre visibile */
+function j_altriFiltri(apri){
+  const box = document.getElementById('fAltri'), b = document.getElementById('fAltriBtn');
+  const on = apri === undefined ? box.hidden : apri;
+  box.hidden = !on; b.setAttribute('aria-expanded', String(on));
+}
 function j_renderFiltri(){
   document.querySelector('.jfiltri').style.display = j_lista().length ? '' : 'none';
+  const nAltri = ['simbolo', 'strategia', 'dir', 'emo', 'cerca'].filter(k => j_filtro[k]).length;
+  document.getElementById('fAltriN').textContent = nAltri ? String(nAltri) : '';
+  document.getElementById('fAltriBtn').hidden = !j_lista().length;
   document.getElementById('fPeriodo').innerHTML = PERIODI.map(([v, t]) =>
     `<button type="button" class="${j_filtro.periodo === v ? 'on' : ''}" onclick="j_setFiltro('periodo','${v}')">${t}</button>`
   ).join('');
