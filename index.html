@@ -1763,8 +1763,9 @@ html[data-tema="scuro"] .s-testa .s-tema{border-color:#ECEEEA!important;color:#E
         <div class="jcard-head"><h3 id="fTitolo">Nuova operazione</h3><button type="button" class="jmetodo-pill" id="fMetodoPill" onclick="j_apriMetodi()"></button></div>
         <form onsubmit="j_addTrade(event)">
           <div class="jform">
-            <div><label for="f-date">Data</label><input type="date" id="f-date" required onchange="j_aggiornaSessioni(true)"></div>
-            <div><label for="f-ora">Ora</label><input type="time" id="f-ora" value="09:00" onchange="j_aggiornaSessioni(true)"></div>
+            <div><label for="f-date">Data</label><input type="date" id="f-date" required onchange="this.dataset.mano='1';j_aggiornaSessioni(true)"></div>
+            <div><label for="f-ora">Ora</label><input type="time" id="f-ora" value="09:00" onchange="this.dataset.mano='1';j_aggiornaSessioni(true)">
+              <div class="jingr" id="dataOcr"></div></div>
             <div class="jcampo-lista">
               <label for="f-symbol">Simbolo</label>
               <div class="jcon-salva"><input id="f-symbol" placeholder="EURUSD" maxlength="24" list="f-simboli" required autocomplete="off" oninput="j_aggiornaSalva('simboli')">
@@ -2523,6 +2524,7 @@ function j_shotCarica(f, slot){
   };
   lettore.readAsDataURL(f);
   j_leggiIngresso(f, slot);
+  j_leggiDataOra(f, slot);
 }
 
 /* ---------- Prezzo d'ingresso letto dallo screenshot ----------
@@ -2623,6 +2625,47 @@ function j_prezziDalTesto(testo){
   (t.match(new RegExp(num, 'g')) || []).forEach(x => { const p = j_numeroPrezzo(x); if(p && parseFloat(p) >= 0.01 && !visti.includes(p)) visti.push(p); });
   return { sicuro: '', tutti: visti.slice(0, 8) };
 }
+/* data e ora dalla scritta in alto degli screenshot di TradingView: "creato con TradingView.com, Ott 22, 2026 18:51 UTC+2"
+   (o "2026.10.22 18:51" di MetaTrader). Con il fuso indicato, l'ora si converte in quella di questo dispositivo. */
+let j_dataTurno = 0;
+const J_MESI = { gen:1, jan:1, feb:2, mar:3, apr:4, mag:5, may:5, giu:6, jun:6, lug:7, jul:7, ago:8, aug:8, set:9, sep:9, ott:10, oct:10, nov:11, dic:12, dec:12 };
+function j_dataOraDalTesto(testo){
+  const t = String(testo || '').replace(/[−–—]/g, '-');
+  let m = t.match(/\b(gen|feb|mar|apr|mag|may|giu|jun|lug|jul|ago|aug|set|sep|ott|oct|nov|dic|dec)[a-z]*\.?\s+(\d{1,2}),?\s+(\d{4}),?\s+(\d{1,2})[:.](\d{2})(?:\s*(?:UTC|GMT)\s*([+-]\d{1,2})(?::?(\d{2}))?)?/i);
+  let a, me, g, h, mi, fuso = null;
+  if(m){ me = J_MESI[m[1].toLowerCase()]; g = +m[2]; a = +m[3]; h = +m[4]; mi = +m[5]; if(m[6] !== undefined) fuso = (+m[6]) * 60 + Math.sign(+m[6] || 1) * (+m[7] || 0); }
+  else {
+    m = t.match(/\b(20\d{2})[.\/-](\d{1,2})[.\/-](\d{1,2})\s+(\d{1,2}):(\d{2})/);
+    if(!m) return null;
+    a = +m[1]; me = +m[2]; g = +m[3]; h = +m[4]; mi = +m[5];
+  }
+  if(!(me >= 1 && me <= 12 && g >= 1 && g <= 31 && h < 24 && mi < 60 && a >= 2000 && a < 2100)) return null;
+  const d = fuso === null ? new Date(a, me - 1, g, h, mi) : new Date(Date.UTC(a, me - 1, g, h, mi) - fuso * 60000);
+  if(isNaN(d)) return null;
+  return { data: isoLocale(d), ora: String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0') };
+}
+async function j_leggiDataOra(f, slot){
+  const fd = document.getElementById('f-date'), fo = document.getElementById('f-ora'), box = document.getElementById('dataOcr');
+  if(!fd || fd.dataset.mano || fo.dataset.mano) return;      /* cambiate a mano o operazione in modifica: non le tocco */
+  if(slot !== 2 && fd.dataset.auto === '2') return;
+  const turno = ++j_dataTurno;
+  try{
+    const T = await j_ocrCarica();
+    const c = await j_immagine(f);
+    /* solo la striscia in alto, ingrandita: è lì che TradingView scrive data e ora */
+    const alto = Math.max(40, Math.round(c.height * .06)), K = c.width < 1600 ? 2 : 1;
+    const o = document.createElement('canvas'); o.width = c.width * K; o.height = alto * K;
+    o.getContext('2d').drawImage(c, 0, 0, c.width, alto, 0, 0, o.width, o.height);
+    const { data } = await T.recognize(o, 'eng');
+    if(turno !== j_dataTurno || fd.dataset.mano || fo.dataset.mano) return;
+    const r = j_dataOraDalTesto(data && data.text);
+    if(!r) return;
+    fd.value = r.data; fo.value = r.ora; fd.dataset.auto = String(slot === 2 ? 2 : 1);
+    j_aggiornaSessioni(true);
+    box.textContent = 'Data e ora prese dallo screenshot.';
+  }catch(err){ console.error(err); }
+}
+
 /* con due screenshot vale quello della conferma (è lì che si entra) */
 async function j_leggiIngresso(f, slot){
   const campo = document.getElementById('f-ingresso'), box = document.getElementById('ingressoOcr');
@@ -3780,6 +3823,8 @@ function j_resetForm(){
   j_shot2File = null; j_shot2Anteprima = null; j_shot2Rimosso = false;
   ['f-symbol','f-pnl','f-risk','f-strat','f-nota','f-ingresso'].forEach(i=>document.getElementById(i).value='');
   document.getElementById('f-ingresso').dataset.auto = ''; document.getElementById('ingressoOcr').innerHTML = ''; j_ocrTurno++;
+  ['f-date', 'f-ora'].forEach(i => { document.getElementById(i).dataset.mano = ''; document.getElementById(i).dataset.auto = ''; });
+  document.getElementById('dataOcr').textContent = ''; j_dataTurno++;
   j_setUnita('pnl', j_unitaPreferita('pnl'), true); j_setUnita('risk', j_unitaPreferita('risk'), true);
   j_renderScelte();
   j_dettagli = {}; j_scag = []; Object.assign(j_rap, { tot: '', k: 0, corre: false, correPip: '', esito: '', pipFine: '' }); j_renderCampiMetodo(); j_renderScag();
@@ -4692,6 +4737,7 @@ function j_modifica(id){
   j_dettagli = Object.assign({}, t.dettagli || {}); if(j_dettagli.sessioni) j_dettagli._sessioniAMano = '1'; j_scag = j_scagParse(j_dettagli.scaglioni); j_rapDaScag(j_scag, j_dettagli); j_renderCampiMetodo(); j_renderScag(true);
   document.getElementById('f-nota').value = t.nota;
   document.getElementById('f-ingresso').value = (t.dettagli || {}).ingresso || '';
+  document.getElementById('f-date').dataset.mano = '1'; document.getElementById('f-ora').dataset.mano = '1';
   j_setDir(t.dir);
   j_setEmo(t.emo || 'lucido');
   j_mostraAnteprima(t.shotUrl || '');
