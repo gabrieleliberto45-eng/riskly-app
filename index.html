@@ -1768,7 +1768,7 @@ html[data-tema="scuro"] .s-testa .s-tema{border-color:#ECEEEA!important;color:#E
               <div class="jingr" id="dataOcr"></div></div>
             <div class="jcampo-lista">
               <label for="f-symbol">Simbolo</label>
-              <div class="jcon-salva"><input id="f-symbol" placeholder="EURUSD" maxlength="24" list="f-simboli" required autocomplete="off" oninput="j_aggiornaSalva('simboli')">
+              <div class="jcon-salva"><input id="f-symbol" placeholder="EURUSD" maxlength="24" list="f-simboli" required autocomplete="off" oninput="this.dataset.auto='';j_aggiornaSalva('simboli')">
                 <button type="button" class="jsalva" id="salva-simboli" onclick="j_salvaVoce('simboli')" hidden>☆ Salva</button></div>
               <datalist id="f-simboli"></datalist>
               <div class="jchips-scelta" id="chips-simboli"></div>
@@ -2580,7 +2580,7 @@ function j_riquadroPrezzo(c){
       }
     }
     const w = (x1 - x0 + 1) * P, h = (y1 - y0 + 1) * P;
-    if(w >= 40 && w <= 260 && h >= 12 && h <= 90 && w > h * 1.6 && n / ((x1 - x0 + 1) * (y1 - y0 + 1)) > .4)
+    if(w >= 40 && w <= Math.max(260, W * .3) && h >= 12 && h <= Math.max(90, W * .1) && w > h * 1.6 && n / ((x1 - x0 + 1) * (y1 - y0 + 1)) > .4)
       box.push({ x: x0 * P, y: y0 * P, w, h });
   }
   if(!box.length) return null;
@@ -2644,25 +2644,74 @@ function j_dataOraDalTesto(testo){
   if(isNaN(d)) return null;
   return { data: isoLocale(d), ora: String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0') };
 }
+/* simbolo: cerco nel testo della parte alta dello screenshot prima i tuoi simboli (salvati o già usati), poi i più comuni;
+   lo scrivo come lo scrivi tu (es. XAU/USD) */
+const J_SIMBOLI_NOTI = ['XAUUSD', 'XAGUSD', 'EURUSD', 'GBPUSD', 'USDJPY', 'USDCHF', 'USDCAD', 'AUDUSD', 'NZDUSD', 'EURJPY', 'GBPJPY', 'EURGBP',
+  'US30', 'US100', 'US500', 'NAS100', 'SPX500', 'GER40', 'DE40', 'UK100', 'BTCUSD', 'ETHUSD', 'USOIL', 'UKOIL'];
+function j_simboloDalTesto(testo){
+  const parole = String(testo || '').toUpperCase().split(/\s+/).map(p => p.replace(/[^A-Z0-9]/g, '')).filter(p => p.length >= 4);
+  if(!parole.length) return '';
+  const tuoi = [...new Set(j_salvati('simboli').concat(j_usati('simboli')))];
+  for(const lista of [tuoi, J_SIMBOLI_NOTI]){
+    let meglio = null;
+    lista.forEach(v => {
+      const n = String(v).toUpperCase().replace(/[^A-Z0-9]/g, '');
+      if(n.length < 4) return;
+      const i = parole.findIndex(p => p === n || p.endsWith(n));      /* "OANDAXAUUSD" va bene */
+      if(i >= 0 && (!meglio || i < meglio.i)) meglio = { i, v };
+    });
+    if(meglio) return meglio.v;
+  }
+  return '';
+}
+/* data e ora: 1) scritta di TradingView in alto; 2) screenshot del telefono: l'ora della barra in alto, con la data del file
+   (o di oggi). Il simbolo dal testo di tutta l'immagine. */
 async function j_leggiDataOra(f, slot){
-  const fd = document.getElementById('f-date'), fo = document.getElementById('f-ora'), box = document.getElementById('dataOcr');
-  if(!fd || fd.dataset.mano || fo.dataset.mano) return;      /* cambiate a mano o operazione in modifica: non le tocco */
-  if(slot !== 2 && fd.dataset.auto === '2') return;
+  const fd = document.getElementById('f-date'), fo = document.getElementById('f-ora'), fs = document.getElementById('f-symbol'), box = document.getElementById('dataOcr');
+  if(!fd) return;
+  const dataLibera = !fd.dataset.mano && !fo.dataset.mano && !(slot !== 2 && fd.dataset.auto === '2');
+  const simLibero = !fs.value.trim() || (fs.dataset.auto && !(slot !== 2 && fs.dataset.auto === '2'));
+  if(!dataLibera && !simLibero) return;
   const turno = ++j_dataTurno;
   try{
     const T = await j_ocrCarica();
     const c = await j_immagine(f);
-    /* solo la striscia in alto, ingrandita: è lì che TradingView scrive data e ora */
-    const alto = Math.max(40, Math.round(c.height * .06)), K = c.width < 1600 ? 2 : 1;
+    const telefono = c.height > c.width * 1.3;
+    /* la striscia in alto, ingrandita: lì TradingView scrive data e ora, e il telefono l'orologio */
+    const alto = Math.max(40, Math.round(c.height * (telefono ? .045 : .06))), K = c.width < 1600 ? 2 : 1;
     const o = document.createElement('canvas'); o.width = c.width * K; o.height = alto * K;
     o.getContext('2d').drawImage(c, 0, 0, c.width, alto, 0, 0, o.width, o.height);
-    const { data } = await T.recognize(o, 'eng');
-    if(turno !== j_dataTurno || fd.dataset.mano || fo.dataset.mano) return;
-    const r = j_dataOraDalTesto(data && data.text);
-    if(!r) return;
-    fd.value = r.data; fo.value = r.ora; fd.dataset.auto = String(slot === 2 ? 2 : 1);
-    j_aggiornaSessioni(true);
-    box.textContent = 'Data e ora prese dallo screenshot.';
+    const striscia = (await T.recognize(o, 'eng')).data.text || '';
+    if(turno !== j_dataTurno) return;
+    const fatto = [];
+    if(dataLibera && !fd.dataset.mano && !fo.dataset.mano){
+      let r = j_dataOraDalTesto(striscia);
+      if(!r && telefono){
+        const m = striscia.match(/\b([01]?\d|2[0-3])[:.]([0-5]\d)\b/);
+        if(m){
+          /* la data dal file se è quella dello scatto (non quella di adesso), altrimenti oggi */
+          const lm = f.lastModified && Math.abs(Date.now() - f.lastModified) > 120000 ? new Date(f.lastModified) : new Date();
+          r = { data: isoLocale(lm), ora: m[1].padStart(2, '0') + ':' + m[2] };
+        }
+      }
+      if(r){
+        fd.value = r.data; fo.value = r.ora; fd.dataset.auto = String(slot === 2 ? 2 : 1);
+        j_aggiornaSessioni(true); fatto.push('data', 'ora');
+      }
+    }
+    if(simLibero){
+      /* solo la parte alta: lì c'è il nome del grafico; più in basso ci sono altri simboli (correlazioni, watchlist) */
+      const h2 = Math.round(c.height * .22), o2 = document.createElement('canvas'); o2.width = c.width * K; o2.height = h2 * K;
+      o2.getContext('2d').drawImage(c, 0, 0, c.width, h2, 0, 0, o2.width, o2.height);
+      const tutto = (await T.recognize(o2, 'eng')).data.text || '';
+      if(turno !== j_dataTurno) return;
+      const sim = j_simboloDalTesto(striscia + '\n' + tutto);
+      if(sim && (!fs.value.trim() || fs.dataset.auto)){
+        fs.value = sim; fs.dataset.auto = String(slot === 2 ? 2 : 1);
+        j_aggiornaSalva('simboli'); fatto.push('simbolo');
+      }
+    }
+    if(fatto.length) box.textContent = (fatto.length > 1 ? fatto.slice(0, -1).join(', ') + ' e ' + fatto[fatto.length - 1] : fatto[0]).replace(/^./, x => x.toUpperCase()) + (fatto.includes('simbolo') ? (fatto.length > 1 ? ' presi' : ' preso') : ' prese') + ' dallo screenshot.';
   }catch(err){ console.error(err); }
 }
 
@@ -3824,6 +3873,7 @@ function j_resetForm(){
   ['f-symbol','f-pnl','f-risk','f-strat','f-nota','f-ingresso'].forEach(i=>document.getElementById(i).value='');
   document.getElementById('f-ingresso').dataset.auto = ''; document.getElementById('ingressoOcr').innerHTML = ''; j_ocrTurno++;
   ['f-date', 'f-ora'].forEach(i => { document.getElementById(i).dataset.mano = ''; document.getElementById(i).dataset.auto = ''; });
+  document.getElementById('f-symbol').dataset.auto = '';
   document.getElementById('dataOcr').textContent = ''; j_dataTurno++;
   j_setUnita('pnl', j_unitaPreferita('pnl'), true); j_setUnita('risk', j_unitaPreferita('risk'), true);
   j_renderScelte();
@@ -4640,6 +4690,7 @@ function j_renderScelte(){
         j_scriviSalvati(tipo, j_salvati(tipo).filter(x => x !== v));
       }else{
         document.getElementById(J_CAMPO[tipo]).value = v;
+        document.getElementById(J_CAMPO[tipo]).dataset.auto = '';
       }
       j_renderScelte();
     };
