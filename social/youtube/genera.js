@@ -90,8 +90,11 @@ const durata = f => { const o = spawnSync(FF, ['-i', f]).stderr.toString().match
     if(r.status) console.error(r.stderr.toString().slice(-1500));
   } else {
   // voce: tracce in fila con la pausa tra le scene
-  const ac = voci.map(v => `file '${v}'\nfile '${path.join(tmp, 'pausa.mp3')}'`).join('\n');
-  spawnSync(FF, ['-y', '-f', 'lavfi', '-i', 'anullsrc=r=24000:cl=mono', '-t', String(PAUSA), '-c:a', 'libmp3lame', path.join(tmp, 'pausa.mp3')]);
+  // ogni traccia in wav 44,1 kHz mono: le voci possono avere formati diversi (edge-tts 24 kHz, ElevenLabs 44,1 kHz)
+  // e il concat vuole file identici
+  const wav = voci.map((v, i) => { const o = path.join(tmp, `v${i}.wav`); spawnSync(FF, ['-y', '-v', 'error', '-i', v, '-ar', '44100', '-ac', '1', o]); return o; });
+  spawnSync(FF, ['-y', '-v', 'error', '-f', 'lavfi', '-i', 'anullsrc=r=44100:cl=mono', '-t', String(PAUSA), path.join(tmp, 'pausa.wav')]);
+  const ac = wav.map(v => `file '${v}'\nfile '${path.join(tmp, 'pausa.wav')}'`).join('\n');
   fs.writeFileSync(path.join(tmp, 'voce.txt'), ac);
   spawnSync(FF, ['-y', '-f', 'concat', '-safe', '0', '-i', path.join(tmp, 'voce.txt'), '-ar', '44100', '-ac', '2', path.join(tmp, 'voce.wav')]);
   // base musicale molto bassa sotto la voce, in loop
