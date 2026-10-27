@@ -1,0 +1,121 @@
+{
+ "id": "r01",
+ "serie": "Reel",
+ "titolo": "Fed domani alle 19:00: il punto non è la decisione",
+ "scene": [
+  {
+   "tipo": "gancio",
+   "broll": "trading",
+   "tinta": "rosso",
+   "pill": "FED · MER 28 OTT · ORE 19:00",
+   "grande": "Domani <span class=\"blu\">alle 19:00</span>",
+   "sotto": "pochi minuti, <span class=\"rosso\">decine di dollari</span> sull'oro",
+   "voce": "Domani alle diciannove decide la Fed. E in pochi minuti l'oro può muoversi di decine di dollari."
+  },
+  {
+   "tipo": "barre",
+   "broll": "palazzo",
+   "pill": "RIUNIONE FED · 28 OTTOBRE",
+   "label": "Cosa si aspetta il mercato",
+   "titolo": "Probabilità prezzate",
+   "barre": [
+    [
+     "Tassi fermi",
+     89
+    ],
+    [
+     "Rialzo",
+     11
+    ]
+   ],
+   "righe": [
+    [
+     "Tasso Fed attuale",
+     "3,75–4,00%"
+    ],
+    [
+     "Ultimo rialzo",
+     "settembre"
+    ]
+   ],
+   "dopo": 2.6,
+   "voce": "Il mercato dà quasi per certa una pausa: nove probabilità su dieci, tassi fermi tra tre virgola settantacinque e quattro per cento."
+  },
+  {
+   "tipo": "metro",
+   "broll": "citta",
+   "label": "Il vero punto",
+   "grande": "Cosa dirà <span class=\"blu\">dopo.</span>",
+   "valore": 75,
+   "etichetta": "rialzo entro dicembre, probabilità prezzata",
+   "dopo": 2.4,
+   "voce": "Ma il punto non è la decisione. È cosa dirà dopo, in conferenza stampa. Per dicembre il mercato prezza già un altro rialzo: tre probabilità su quattro."
+  },
+  {
+   "tipo": "quadro",
+   "broll": "oro",
+   "label": "Il quadro",
+   "righe": [
+    [
+     "Inflazione USA, settembre",
+     "3,7%"
+    ],
+    [
+     "Treasury 10 anni",
+     "~5%"
+    ],
+    [
+     "Oro dal record di gennaio",
+     "−28%",
+     "rosso"
+    ]
+   ],
+   "passo": 1.8,
+   "voce": "Inflazione americana al tre virgola sette per cento, decennale intorno al cinque. E l'oro dal record di gennaio ha perso circa il ventotto per cento."
+  },
+  {
+   "tipo": "scenari",
+   "broll": "dollari",
+   "label": "Dopo la Fed",
+   "grande": "Di solito, <span class=\"blu\">2 scenari</span>",
+   "scenari": [
+    [
+     "Lascia intendere altri rialzi",
+     "dollaro più forte",
+     "oro sotto pressione",
+     1.6
+    ],
+    [
+     "Apre a una pausa più lunga",
+     "dollaro più debole",
+     "oro sostenuto",
+     4.6
+    ]
+   ],
+   "voce": "Di solito gli scenari sono due. Se lascia intendere altri rialzi, dollaro più forte e oro sotto pressione. Se apre a una pausa lunga, spesso il contrario."
+  },
+  {
+   "tipo": "piano",
+   "broll": "orologio",
+   "label": "Il piano per domani",
+   "punti": [
+    [
+     "Livelli segnati prima",
+     1.4
+    ],
+    [
+     "Lotto e stop decisi prima",
+     2.6
+    ],
+    [
+     "Zero operazioni durante la conferenza",
+     3.8
+    ]
+   ],
+   "cta_in": 6.0,
+   "parola": "FED",
+   "link": "riskly.trade/dati",
+   "voce": "Quindi domani non indovinare. Livelli segnati prima, lotto e stop decisi prima, niente operazioni durante la conferenza. Commenta FED e ti mando il calendario."
+  }
+ ]
+}
