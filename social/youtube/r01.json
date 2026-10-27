@@ -1,16 +1,16 @@
 {
  "id": "r01",
  "serie": "Reel",
- "titolo": "Fed domani alle 19:00: il punto non è la decisione",
+ "titolo": "Fed stasera alle 19:00: il punto non è la decisione",
  "scene": [
   {
    "tipo": "gancio",
    "broll": "trading",
    "tinta": "rosso",
    "pill": "FED · MER 28 OTT · ORE 19:00",
-   "grande": "Domani <span class=\"blu\">alle 19:00</span>",
+   "grande": "Stasera <span class=\"blu\">alle 19:00</span>",
    "sotto": "pochi minuti, <span class=\"rosso\">decine di dollari</span> sull'oro",
-   "voce": "Domani alle diciannove decide la Fed. E in pochi minuti l'oro può muoversi di decine di dollari."
+   "voce": "Stasera alle diciannove decide la Fed. E in pochi minuti l'oro può muoversi di decine di dollari."
   },
   {
    "tipo": "barre",
@@ -97,7 +97,7 @@
   {
    "tipo": "piano",
    "broll": "orologio",
-   "label": "Il piano per domani",
+   "label": "Il piano per stasera",
    "punti": [
     [
      "Livelli segnati prima",
@@ -115,7 +115,7 @@
    "cta_in": 6.0,
    "parola": "FED",
    "link": "riskly.trade/dati",
-   "voce": "Quindi domani non indovinare. Livelli segnati prima, lotto e stop decisi prima, niente operazioni durante la conferenza. Commenta FED e ti mando il calendario."
+   "voce": "Quindi stasera non indovinare. Livelli segnati prima, lotto e stop decisi prima, niente operazioni durante la conferenza. Commenta FED e ti mando il calendario."
   }
  ]
 }
