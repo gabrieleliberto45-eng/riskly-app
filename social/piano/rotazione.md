@@ -167,3 +167,10 @@ TikTok: 3 video educativi a settimana su rischio e analisi fondamentale (richies
 | Dom 1 | 18:00 Oggi no · copia | — |
 
 **Voce dal 24 ottobre:** George di ElevenLabs con l'effetto stanza, come i corsi (Gabriele: "George scena 1 è bellissima"), per tutti i video YouTube e i video educativi tNN. `ELEVEN_API_KEY=… python3 social/youtube/voce.py <id>`: controlla prima i crediti e, se non bastano, fa tutto il video con Giuseppe (mai due voci nello stesso video). Consumo: circa 22.000 caratteri a settimana (lunghi + 3 Shorts), circa 95.000 al mese; il piano Creator si rinnova il 17 di ogni mese. t01–t03 già rifatti con George.
+
+**Video verticali dal 27 ottobre: montaggio "reel" (richiesta di Gabriele, riferimento: reel @mich.fx sulla Fed).** Gabriele: "è il montaggio del video che mi piace", con i colori nostri (nero e ambra, non il blu del riferimento).
+- Struttura: gancio forte nei primi 2 secondi con data/ora nella pillola → schede con numeri che crescono (barre, cerchio, righe) → scenari → piano in 3 punti → "Commenta PAROLA" + link corto. 45–60 secondi, frasi brevi.
+- Sfondo: clip vere verticali (Pexels, cercate con vidiq_generate_broll, 1 credito l'una) in social/reel/broll/, scurite; crediti dei fotografi nella didascalia.
+- Sottotitoli grandi in basso, gruppi di 4 parole, parola detta in ambra.
+- File: social/youtube/rNN.json (tipi di scena: gancio, barre, metro, quadro, scenari, piano) → voce.py rNN → python3 social/reel/parole.py rNN → node social/reel/rendi.js rNN → social/reel/rNN.mp4.
+- Pilota: r01 "Fed domani alle 19:00" (27 ottobre).

@@ -2,32 +2,32 @@
 <html lang="it"><head><meta charset="utf-8">
 <style>
   /* Reel verticali 1080×1920 nello stile chiesto da Gabriele il 27 ottobre (riferimento: reel @mich.fx sulla Fed):
-     sfondo video vero (aggiunto da ffmpeg sotto questa pagina trasparente), schede blu scure con bordo luminoso,
+     sfondo video vero (aggiunto da ffmpeg sotto questa pagina trasparente), schede scure con bordo ambra (colori di riskly.trade: Gabriele vuole il montaggio del riferimento, non il suo blu),
      numeri grandi, una pillola con data e ora in alto, sottotitoli grandi in basso. */
   @font-face{font-family:'Archivo';src:url(../youtube/archivo.woff2) format('woff2');font-weight:100 900;font-stretch:62% 125%}
   @font-face{font-family:'Martian Mono';src:url(../youtube/martian-mono.woff2) format('woff2');font-weight:100 800;font-stretch:75% 112.5%}
-  :root{--blu:#3D6BFF;--ciano:#6FE3FF;--bianco:#F4F7FF;--grigio:#AAB4D4;--scheda:rgba(10,18,48,.78);--bordo:rgba(92,140,255,.55);--rosso:#FF4D5E;--verde:#2BD98B;--ambra:#F2B83A}
+  :root{--blu:#F2B83A;--ciano:#F9D27A;--bianco:#F7F8F5;--grigio:#C9CDC6;--scheda:rgba(11,13,12,.80);--bordo:rgba(242,184,58,.45);--rosso:#FF4D5E;--verde:#2BD98B;--ambra:#F2B83A}
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{background:transparent;width:1080px;height:1920px;overflow:hidden}
   body{font-family:'Archivo',sans-serif;color:var(--bianco)}
   #s{position:absolute;inset:0;padding:150px 80px 0;display:flex;flex-direction:column;align-items:center;text-align:center}
   .e{opacity:0;transform:translateY(40px)}
-  .pill{display:inline-flex;align-items:center;gap:14px;padding:16px 30px;border-radius:999px;background:rgba(61,107,255,.92);
-        font:700 34px 'Archivo';letter-spacing:.04em;box-shadow:0 0 40px rgba(61,107,255,.6)}
-  .pill i{width:14px;height:14px;border-radius:50%;background:#fff;box-shadow:0 0 12px #fff}
+  .pill{display:inline-flex;align-items:center;gap:14px;padding:16px 30px;border-radius:999px;background:#F2B83A;color:#2B1E00;
+        font:700 34px 'Archivo';letter-spacing:.04em;box-shadow:0 0 40px rgba(242,184,58,.45)}
+  .pill i{width:14px;height:14px;border-radius:50%;background:#2B1E00}
   .label{margin-top:70px;font:700 34px 'Martian Mono';letter-spacing:.14em;color:var(--ciano);text-transform:uppercase}
   .grande{margin-top:30px;font-weight:800;font-stretch:80%;font-size:150px;line-height:.98;letter-spacing:-.02em;text-shadow:0 6px 40px rgba(0,0,0,.6)}
   .medio{margin-top:26px;font-weight:800;font-stretch:82%;font-size:96px;line-height:1.02;text-shadow:0 6px 30px rgba(0,0,0,.6)}
   .blu{color:var(--ciano)} .rosso{color:var(--rosso)} .verde{color:var(--verde)}
-  .num{font-weight:800;font-stretch:85%;font-size:190px;line-height:1;background:linear-gradient(180deg,#fff,#9FC2FF);-webkit-background-clip:text;color:transparent;filter:drop-shadow(0 0 30px rgba(92,140,255,.55))}
+  .num{font-weight:800;font-stretch:85%;font-size:190px;line-height:1;background:linear-gradient(180deg,#fff,#F9D27A);-webkit-background-clip:text;color:transparent;filter:drop-shadow(0 0 30px rgba(242,184,58,.45))}
   .scheda{margin-top:44px;width:100%;background:var(--scheda);border:2px solid var(--bordo);border-radius:36px;padding:40px 46px;
-          box-shadow:0 0 50px rgba(61,107,255,.28), inset 0 0 30px rgba(61,107,255,.12);backdrop-filter:blur(6px);text-align:left}
+          box-shadow:0 0 50px rgba(242,184,58,.16), inset 0 0 30px rgba(242,184,58,.06);backdrop-filter:blur(6px);text-align:left}
   .scheda h4{font:700 30px 'Martian Mono';letter-spacing:.1em;color:var(--grigio);text-transform:uppercase;margin-bottom:26px}
   .barra{margin:22px 0}
   .barra .t{display:flex;justify-content:space-between;font:700 46px 'Archivo';margin-bottom:14px}
   .barra .t b{font-family:'Martian Mono';font-size:44px}
   .barra .f{height:26px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden}
-  .barra .f i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--blu),var(--ciano));box-shadow:0 0 24px var(--blu)}
+  .barra .f i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--blu),var(--ciano));box-shadow:0 0 24px rgba(242,184,58,.6)}
   .barra.debole .f i{background:linear-gradient(90deg,#5b6688,#8d97b8);box-shadow:none}
   .riga{display:flex;justify-content:space-between;align-items:baseline;gap:30px;padding:22px 0;border-bottom:2px solid rgba(255,255,255,.1);font:600 42px 'Archivo'}
   .riga:last-child{border-bottom:none}
@@ -38,20 +38,20 @@
   .metro .c b{font:800 150px 'Archivo';font-stretch:85%}
   .metro .c span{font:600 34px 'Archivo';color:var(--grigio);margin-top:6px;max-width:340px;line-height:1.2}
   .due{display:flex;flex-direction:column;gap:30px;width:100%;margin-top:44px}
-  .scen{background:var(--scheda);border:2px solid var(--bordo);border-radius:32px;padding:34px 40px;text-align:left;box-shadow:0 0 40px rgba(61,107,255,.25)}
+  .scen{background:var(--scheda);border:2px solid var(--bordo);border-radius:32px;padding:34px 40px;text-align:left;box-shadow:0 0 40px rgba(242,184,58,.14)}
   .scen small{font:700 28px 'Martian Mono';letter-spacing:.1em;color:var(--ciano)}
   .scen h5{font:800 56px 'Archivo';font-stretch:85%;margin:12px 0 10px;line-height:1.05}
   .scen p{font:500 40px/1.3 'Archivo';color:var(--grigio)}
   .scen p b{color:#fff}
   .check{display:flex;align-items:center;gap:28px;padding:22px 0;font:700 50px 'Archivo';text-align:left}
-  .check i{flex:none;width:66px;height:66px;border-radius:20px;background:var(--blu);display:grid;place-items:center;font:900 40px 'Archivo';font-style:normal;box-shadow:0 0 24px var(--blu)}
-  .cta{margin-top:50px;display:inline-flex;align-items:center;gap:22px;padding:30px 44px;border-radius:40px;background:#fff;color:#0A1230;font:800 54px 'Archivo';box-shadow:0 0 60px rgba(111,227,255,.5)}
-  .cta em{font-style:normal;background:var(--blu);color:#fff;padding:6px 18px;border-radius:16px}
+  .check i{flex:none;width:66px;height:66px;border-radius:20px;background:var(--blu);color:#2B1E00;display:grid;place-items:center;font:900 40px 'Archivo';font-style:normal;box-shadow:0 0 24px rgba(242,184,58,.5)}
+  .cta{margin-top:50px;display:inline-flex;align-items:center;gap:22px;padding:30px 44px;border-radius:40px;background:#fff;color:#15181B;font:800 54px 'Archivo';box-shadow:0 0 60px rgba(242,184,58,.4)}
+  .cta em{font-style:normal;background:var(--blu);color:#2B1E00;padding:6px 18px;border-radius:16px}
   .link{margin-top:26px;font:700 38px 'Martian Mono';color:var(--ciano)}
   canvas.mini{margin-top:36px;width:920px;height:520px}
   #sott{position:absolute;left:60px;right:60px;bottom:250px;text-align:center;font:800 64px/1.15 'Archivo';font-stretch:88%;color:#fff;
         text-shadow:0 0 6px #000,0 4px 18px rgba(0,0,0,.9);-webkit-text-stroke:2px rgba(0,0,0,.55)}
-  #sott mark{background:none;color:#FFE16B}
+  #sott mark{background:none;color:#F2B83A}
   #piede{position:absolute;left:0;right:0;bottom:120px;display:flex;justify-content:center;align-items:center;gap:14px;font:700 32px 'Archivo';color:rgba(255,255,255,.85)}
   #piede svg{width:40px;height:40px}
   #avviso{position:absolute;left:60px;right:60px;bottom:60px;text-align:center;font:500 24px 'Archivo';color:rgba(255,255,255,.6)}
@@ -71,7 +71,7 @@ const html = s => {
   if(s.tipo === 'metro') return `<div class="label e" data-in="0">${s.label}</div><div class="medio e" data-in="0.2">${s.grande}</div>
       <div class="metro e" data-in="${s.dopo || 1.2}"><svg viewBox="0 0 520 520"><circle cx="260" cy="260" r="220" stroke="rgba(255,255,255,.12)" stroke-width="34" fill="none"/>
       <circle cx="260" cy="260" r="220" stroke="url(#gr)" stroke-width="34" fill="none" stroke-linecap="round" stroke-dasharray="1382" stroke-dashoffset="1382" data-arco="${s.valore}" data-da="${(s.dopo || 1.2) + 0.2}"/>
-      <defs><linearGradient id="gr"><stop offset="0" stop-color="#3D6BFF"/><stop offset="1" stop-color="#6FE3FF"/></linearGradient></defs></svg>
+      <defs><linearGradient id="gr"><stop offset="0" stop-color="#B97C00"/><stop offset="1" stop-color="#F9D27A"/></linearGradient></defs></svg>
       <div class="c"><b data-conta="${s.valore}" data-da="${(s.dopo || 1.2) + 0.2}">~0%</b><span>${s.etichetta}</span></div></div>`;
   if(s.tipo === 'quadro') return `<div class="label e" data-in="0">${s.label}</div><div class="scheda e" data-in="0.2">${s.righe.map((r, i) =>
       `<div class="riga e" data-in="${0.4 + i * (s.passo || 1.6)}"><span>${r[0]}</span><b${r[2] ? ` class="${r[2]}"` : ''}>${r[1]}</b></div>`).join('')}</div>`;

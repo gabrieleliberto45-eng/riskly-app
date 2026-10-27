@@ -1,7 +1,7 @@
-/* Monta un reel verticale 1080×1920 nello stile "schede blu su video vero" (richiesta di Gabriele, 27 ottobre).
+/* Monta un reel verticale 1080×1920 nello stile "schede su video vero" con i colori del sito (richiesta di Gabriele, 27 ottobre).
    Prima: python3 social/youtube/voce.py rNN  e  python3 social/reel/parole.py rNN
    Uso: node social/reel/rendi.js rNN  → social/reel/rNN.mp4
-   Sfondo: clip di social/reel/broll/<nome>.mp4 (Pexels, crediti nella didascalia), scurite e tinte di blu.
+   Sfondo: clip di social/reel/broll/<nome>.mp4 (Pexels, crediti nella didascalia), scurite e appena calde.
    Sopra: social/reel/modello.html renderizzata trasparente fotogramma per fotogramma. */
 const { chromium } = require('playwright');
 const { spawn, spawnSync, execSync } = require('child_process');
@@ -24,7 +24,7 @@ const durata = f => { const o = spawnSync(FF, ['-i', f]).stderr.toString().match
   // 1. sfondo: una clip per scena, riempie 1080×1920, scurita e tinta (rossa nel gancio se "tinta": "rosso")
   const pezzi = spec.scene.map((s, i) => {
     const o = path.join(tmp, `b${i}.mp4`);
-    const tinta = s.tinta === 'rosso' ? 'colorbalance=rs=.25:gs=-.1:bs=-.1:rm=.2' : 'colorbalance=rs=-.15:gs=-.05:bs=.25:rm=-.1:bm=.2';
+    const tinta = s.tinta === 'rosso' ? 'colorbalance=rs=.25:gs=-.1:bs=-.1:rm=.2' : 'colorbalance=rs=.06:gs=.02:bs=-.08:rm=.05:bm=-.05';
     const vf = `scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,setsar=1,fps=${FPS},${tinta},eq=brightness=-0.18:saturation=0.75:contrast=1.05,gblur=sigma=1.2,` +
       `drawbox=c=black@0.38:t=fill,fade=t=in:st=0:d=0.25`;
     const r = spawnSync(FF, ['-y', '-v', 'error', '-stream_loop', '-1', '-i', path.join(QUI, 'broll', s.broll + '.mp4'), '-t', dur[i].toFixed(3), '-vf', vf, '-an', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '20', '-pix_fmt', 'yuv420p', o]);
