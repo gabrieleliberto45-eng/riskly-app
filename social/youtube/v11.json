@@ -1,0 +1,151 @@
+{
+ "id": "v11",
+ "serie": "Casi veri",
+ "titolo": "Franco svizzero −29% in pochi minuti: il giorno in cui lo stop loss non è servito (15 gennaio 2015)",
+ "scene": [
+  {
+   "capitolo": "Introduzione",
+   "tipo": "cifra",
+   "titolo": "15 gennaio 2015",
+   "cifra": "−29%",
+   "etichetta": "l'euro contro il franco svizzero, da 1,20 a 0,85 in pochi minuti",
+   "nota": "EUR/CHF, minimo 0,8517 dopo l'annuncio della Banca nazionale svizzera. Fonte: Reuters.",
+   "voce": "Meno ventinove per cento. In pochi minuti. Non su un'azione sconosciuta o su una criptovaluta, ma su una coppia di valute tra le più tranquille del mondo: euro contro franco svizzero. Il quindici gennaio del duemilaquindici il cambio passa da uno virgola venti a zero virgola ottantacinque. Migliaia di trader avevano lo stop loss impostato. E molti si sono svegliati con il conto in negativo: non a zero, sotto zero. Dovevano soldi al broker. In questo video vediamo come è successo, perché lo stop non li ha protetti, e cosa ti porti a casa per il tuo conto."
+  },
+  {
+   "capitolo": "Il muro a 1,20",
+   "tipo": "punti",
+   "titolo": "Il muro a 1,20",
+   "punti": [
+    [
+     "6 settembre 2011",
+     "la Banca nazionale svizzera fissa un minimo: l'euro non deve scendere sotto 1,20 franchi"
+    ],
+    [
+     "Tre anni e mezzo di calma",
+     "la banca compra euro ogni volta che serve, e il cambio resta sopra il limite"
+    ],
+    [
+     "Un'operazione che sembrava sicura",
+     "comprare EUR/CHF appena sopra 1,20, con lo stop poco sotto"
+    ]
+   ],
+   "voce": "Facciamo un passo indietro. Settembre duemilaundici: il franco svizzero si sta rafforzando troppo e la Banca nazionale svizzera decide una cosa rara. Fissa un minimo: l'euro non deve valere meno di uno virgola venti franchi. E per difenderlo compra euro ogni volta che serve. Per tre anni e mezzo funziona. Il cambio resta sopra il limite, e per molti trader diventa quasi un'operazione automatica: compri euro franco vicino a uno virgola venti, metti lo stop poco sotto, e il rischio sembra minuscolo. Venti, trenta pip. Cosa può andare storto, se dietro c'è una banca centrale?"
+  },
+  {
+   "capitolo": "La decisione sbagliata",
+   "tipo": "confronto",
+   "titolo": "Il ragionamento che sembrava giusto",
+   "no": {
+    "titolo": "Come ragionavano",
+    "righe": [
+     "Lo stop è a 20 pip: rischio piccolo",
+     "La banca centrale difende il livello",
+     "Con la leva alta posso aprire tanti lotti"
+    ]
+   },
+   "si": {
+    "titolo": "Cosa è successo davvero",
+    "righe": [
+     "Lo stop è stato eseguito centinaia di pip più in basso",
+     "La banca centrale ha cambiato idea in un minuto",
+     "Più lotti, più debito quando lo stop salta"
+    ]
+   },
+   "voce": "Qual era il ragionamento? Lo vediamo affiancato a quello che è successo davvero. Primo: lo stop è a venti pip, quindi il rischio è piccolo. In realtà gli stop sono stati eseguiti centinaia di pip più in basso, dove c'era di nuovo qualcuno disposto a comprare. Secondo: la banca centrale difende il livello. Ma una banca centrale può cambiare idea, e quel giorno l'ha fatto senza preavviso. Terzo: con la leva alta posso aprire tanti lotti, tanto lo stop è vicino. Ed è proprio qui che il conto è finito sotto zero: più lotti avevi, più grande era il buco quando lo stop non ha tenuto."
+  },
+  {
+   "capitolo": "Il giorno del crollo",
+   "tipo": "numeri",
+   "titolo": "Giovedì 15 gennaio 2015",
+   "visual": "candele",
+   "colonne": [
+    "Cosa",
+    "Quanto"
+   ],
+   "righe": [
+    [
+     "Annuncio della Banca nazionale svizzera",
+     "fine del minimo a 1,20"
+    ],
+    [
+     "Tasso sui depositi",
+     "−0,75%"
+    ],
+    [
+     "EUR/CHF, minimo dopo l'annuncio",
+     "0,8517"
+    ],
+    [
+     "Movimento",
+     "circa −29%"
+    ]
+   ],
+   "nota": "Fonti: comunicato della Banca nazionale svizzera del 15 gennaio 2015; Reuters.",
+   "voce": "Giovedì quindici gennaio, mattina. La Banca nazionale svizzera annuncia che il minimo a uno virgola venti finisce, con effetto immediato. E nello stesso momento porta il tasso sui depositi a meno zero virgola settantacinque per cento. Il mercato non ha il tempo di reagire con calma. Per diversi minuti quasi nessuno vuole comprare euro. Il cambio scende fino a zero virgola ottantacinque, circa il ventinove per cento in meno. Poi risale in parte. Ma chi aveva uno stop a uno virgola diciannove non è uscito a uno virgola diciannove: è uscito dove il broker ha trovato il primo prezzo disponibile, spesso molto più in basso."
+  },
+  {
+   "capitolo": "Tu cosa avresti fatto?",
+   "tipo": "domanda",
+   "titolo": "È il 14 gennaio 2015. Hai un long su EUR/CHF a 1,2010, stop a 1,1990, leva 1:100. Cosa ti protegge davvero?",
+   "opzioni": [
+    "Lo stop a 1,1990",
+    "La leva alta: posso aprire di più",
+    "Un lotto piccolo: anche se lo stop salta, la perdita resta sopportabile",
+    "Aggiungere se il prezzo scende"
+   ],
+   "giusta": 2,
+   "spiegazione": "Lo stop dice dove vuoi uscire, non dove esci. Quando il prezzo salta, ti protegge solo la dimensione della posizione.",
+   "voce": "Adesso tocca a te. È il quattordici gennaio del duemilaquindici, il giorno prima. Hai una posizione al rialzo su euro franco a uno virgola duemiladieci, stop a uno virgola millenovecentonovanta, leva uno a cento. Cosa ti protegge davvero? Prima risposta: lo stop. Seconda: la leva alta, così posso aprire di più. Terza: un lotto piccolo, così anche se lo stop salta la perdita resta sopportabile. Quarta: aggiungere se il prezzo scende. Metti in pausa e scrivi nei commenti la tua lettera. La risposta è la terza. Lo stop dice dove vuoi uscire, non dove esci. Quando il prezzo salta, l'unica cosa che ti protegge è quanto sei esposto."
+  },
+  {
+   "capitolo": "Oltre il conto",
+   "tipo": "cifra",
+   "titolo": "I clienti di un solo broker",
+   "cifra": "225 mln $",
+   "etichetta": "quanto dovevano a FXCM i clienti finiti con il conto in negativo",
+   "nota": "Fonte: FXCM, 16 gennaio 2015. Il broker ha avuto bisogno di un prestito di 300 milioni di dollari da Leucadia; Alpari UK è finita in insolvenza.",
+   "voce": "Duecentoventicinque milioni di dollari. È quanto dovevano a FXCM, uno dei broker forex più grandi del mondo, i clienti finiti con il conto in negativo. Il broker per restare in piedi ha dovuto chiedere un prestito di trecento milioni di dollari, e in pochi giorni le sue azioni hanno perso circa l'ottantasei per cento. Interactive Brokers ha registrato circa centoventi milioni di dollari di saldi negativi dei clienti. Alpari, nel Regno Unito, il giorno dopo è finita in insolvenza: ha scritto che la maggior parte dei suoi clienti aveva perso più di quanto aveva sul conto. Quando un trader va sotto zero, quel buco qualcuno lo paga."
+  },
+  {
+   "capitolo": "Il conto di un lotto",
+   "tipo": "formula",
+   "titolo": "Esempio: un lotto su EUR/CHF",
+   "formula": "100.000 € × (1,20 − 0,85)<br>= <span>35.000 franchi</span>",
+   "voce": "Facciamo il conto con un esempio. Un lotto standard su euro franco vale centomila euro. Se il cambio passa da uno virgola venti a zero virgola ottantacinque, sono trentacinque centesimi di franco per ogni euro. Centomila per zero virgola trentacinque: trentacinquemila franchi di perdita, per un solo lotto. Su un conto da cinquemila euro, con la leva uno a cento quel lotto si poteva aprire senza problemi. E la perdita diventa sette volte il conto. È un esempio, non tutti gli stop sono stati eseguiti al minimo. Ma fa capire perché la leva da sola non è il rischio: il rischio è quanto apri.",
+   "nota": "Esempio illustrativo: un lotto standard, stop saltato fino al minimo. Su un conto da 5.000 € la perdita è sette volte il conto."
+  },
+  {
+   "capitolo": "Cosa porti nel tuo conto",
+   "tipo": "punti",
+   "titolo": "Cosa porti nel tuo conto",
+   "visual": "scudo",
+   "punti": [
+    [
+     "Lo stop non è una garanzia",
+     "nei salti di prezzo viene eseguito dove c'è il primo prezzo"
+    ],
+    [
+     "Il lotto si decide pensando al caso peggiore",
+     "non a quello probabile"
+    ],
+    [
+     "Nessun livello è sacro",
+     "nemmeno se lo difende una banca centrale"
+    ],
+    [
+     "Controlla il tuo broker",
+     "chiedi se c'è la protezione dal saldo negativo"
+    ]
+   ],
+   "voce": "Cosa porti nel tuo conto da questa storia? Primo: lo stop loss non è una garanzia. Nei salti di prezzo viene eseguito dove c'è il primo prezzo disponibile, non dove l'hai messo tu. Secondo: il lotto si decide pensando al caso peggiore, non a quello probabile. Terzo: nessun livello è sacro, nemmeno se lo difende una banca centrale. Quarto: controlla il tuo broker. Oggi in Europa, per i clienti al dettaglio dei CFD, c'è la protezione dal saldo negativo: dopo il duemilaquindici le regole sono cambiate anche per questo. Ma verificalo sempre nelle condizioni del tuo conto."
+  },
+  {
+   "capitolo": "Per approfondire",
+   "tipo": "chiusura",
+   "grande": "Quanto rischi <mark>con la tua leva?</mark>",
+   "piccolo": "Simula una serie di perdite sul tuo conto, gratis: riskly.trade/rovina",
+   "voce": "Se vuoi vedere cosa può fare una serie di perdite al tuo conto, con il tuo rischio per operazione e la tua leva, c'è un simulatore gratuito su riskly punto trade barra rovina. Lo trovi anche in descrizione. Se questa storia ti è servita, iscriviti al canale: ogni martedì un caso vero, raccontato dall'inizio alla fine. Questo video è solo informativo ed educativo, non è un consiglio su cosa comprare o vendere. Il trading con leva comporta un alto rischio: puoi perdere tutto il capitale. Ci vediamo nel prossimo caso."
+  }
+ ]
+}
