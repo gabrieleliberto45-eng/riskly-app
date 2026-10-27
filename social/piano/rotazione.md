@@ -130,7 +130,8 @@ Gli altri giorni: YouTube Short (la clip verticale del video uscito prima), se c
 | Data | Video | Caso |
 |---|---|---|
 | 20 ott 18:30 | v09 | Petrolio a −37,63 $ (20 aprile 2020): Bank of China «Yuan You Bao», clienti di Interactive Brokers. Fonti: CFTC, Caixin. |
-Prossimi casi non ancora usati su YouTube: Amaranth (2006), Melvin Capital e GameStop (2021), Credit Suisse (2023), e in versione lunga quelli già raccontati nelle storie brevi (franco svizzero, Barings, Archegos, LTCM, Knight Capital, nichel).
+| 27 ott 18:30 | v11 | Franco svizzero −29% (15 gennaio 2015): fine del minimo a 1,20, FXCM 225 mln $ di saldi negativi dei clienti e prestito Leucadia da 300 mln, Interactive Brokers ~120 mln, Alpari UK insolvente. Fonti: BNS, Reuters, FXCM, Interactive Brokers. Voce Giuseppe (container nuovo, chiave ElevenLabs da reinserire). |
+Prossimi casi non ancora usati su YouTube: Amaranth (2006), Melvin Capital e GameStop (2021), Credit Suisse (2023), e in versione lunga quelli già raccontati nelle storie brevi (Barings, Archegos, LTCM, Knight Capital, nichel).
 
 ## Dal 26 ottobre: grafiche del sito ovunque e video educativi (decisi con Gabriele il 23 ottobre)
 Dati 9–23 ottobre: TikTok 210–270 visualizzazioni a video (picchi 740–765 per "come funziona" dei bot e storia LTCM), Instagram reel 11–48,
