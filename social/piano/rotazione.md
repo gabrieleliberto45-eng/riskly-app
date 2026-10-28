@@ -126,6 +126,21 @@ Regola: in ogni video almeno 3 tipi di scena diversi, mai due scene di fila dell
 | Giorno prima di un dato | 18:30 | **Domani esce**: solo per i dati più forti (decisioni Fed e BCE, inflazione CPI e PCE USA, occupazione USA, PIL USA). Al massimo 2 a settimana e mai nei giorni che hanno già un video. |
 Gli altri giorni: YouTube Short (la clip verticale del video uscito prima), se c'è.
 
+**Hook in apertura (Gabriele, 28 ottobre: "questo volevo trasmetterti").** Ogni video (reel, Short, TikTok, e la prima frase dei video lunghi di YouTube) apre con uno di questi 10 hook, adattato al tema e sempre seguito da un fatto vero e verificato:
+1. "Nessuno parla di questo, ma…"
+2. "Questo potrebbe farti arrabbiare, ma…"
+3. "Ecco la verità su…"
+4. "Nessuno vuole ammetterlo, ma…"
+5. "Se questo ti offende…"
+6. "Non farlo mai."
+7. "Se dovessi ricominciare da zero…"
+8. "Questo cambierà il modo in cui vedi le cose."
+9. "Tutto quello che non sai su…"
+10. "Quello che avrei voluto sapere prima."
+Regole: l'hook va detto dalla voce nei primi 2 secondi e scritto grande nella scena "gancio"; ruota (mai lo stesso due video di fila; segna qui sotto quale è stato usato); niente promesse di guadagno né provocazioni false: l'hook apre, il contenuto resta informativo ed educativo.
+Esempi: "Nessuno parla di questo, ma il tuo stop loss non ti protegge sempre." · "Non farlo mai: spostare lo stop quando il prezzo ci si avvicina." · "Se dovessi ricominciare da zero con 1.000 €, rischierei così." · "Quello che avrei voluto sapere prima: il lotto si calcola dallo stop, non dalla leva." · "Ecco la verità sulla leva: non decide quanto perdi." · "Nessuno vuole ammetterlo, ma il giorno della Fed la maggior parte entra a caso."
+Hook usati: (nessuno ancora)
+
 ## Casi veri · puntate
 | Data | Video | Caso |
 |---|---|---|
