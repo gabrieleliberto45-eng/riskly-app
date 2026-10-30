@@ -139,7 +139,21 @@ Gli altri giorni: YouTube Short (la clip verticale del video uscito prima), se c
 10. "Quello che avrei voluto sapere prima."
 Regole: l'hook va detto dalla voce nei primi 2 secondi e scritto grande nella scena "gancio"; ruota (mai lo stesso due video di fila; segna qui sotto quale è stato usato); niente promesse di guadagno né provocazioni false: l'hook apre, il contenuto resta informativo ed educativo.
 Esempi: "Nessuno parla di questo, ma il tuo stop loss non ti protegge sempre." · "Non farlo mai: spostare lo stop quando il prezzo ci si avvicina." · "Se dovessi ricominciare da zero con 1.000 €, rischierei così." · "Quello che avrei voluto sapere prima: il lotto si calcola dallo stop, non dalla leva." · "Ecco la verità sulla leva: non decide quanto perdi." · "Nessuno vuole ammetterlo, ma il giorno della Fed la maggior parte entra a caso."
-Hook usati: (nessuno ancora)
+Hook usati: r02 elezioni (3 nov) "Nessuno parla di questo" · r03 stop (2 e 4 nov) "Non farlo mai" · r04 payrolls (6 nov) "Ecco la verità" · r05 (4 e 7 nov) "Se dovessi ricominciare da zero" · carosello c08 (5 nov) "Quello che avrei voluto sapere prima". Prossimi da usare: "Smettila di…", "Nessuno vuole ammetterlo", "Tutto quello che non sai su…".
+
+## Settimana 2–8 novembre (programmata il 30 ottobre)
+| Giorno | Ora | Dove | Contenuto | CTA |
+|---|---|---|---|---|
+| dom 1 | 18:30 | YouTube | v12 Rispondi tu: "Leva e margine: 5 domande che quasi tutti sbagliano" (recupero della puntata saltata, voce Giuseppe) | /lotto, /corsi |
+| lun 2 | 09:00 | IG + TT | carosello n04 settimana (dati USA alle 14:30, elezioni, BoE, payrolls) | DATI → /dati |
+| lun 2 | 18:00 | YT Short | r03 spostare lo stop | /lotto |
+| mar 3 | 13:00 | IG + TT | r02 elezioni USA di notte | USA → /dati |
+| mer 4 | 13:00 | IG + TT | r03 spostare lo stop | LOTTO → /lotto |
+| mer 4 | 18:00 | YT Short | r05 ricominciare da zero | /rovina |
+| gio 5 | 13:00 | IG + TT | carosello c08 "Quello che avrei voluto sapere prima" | PRIMA → /rovina |
+| ven 6 | 09:30 / 10:00 | IG + TT / YT Short | r04 payrolls alle 14:30 | NFP → /dati |
+| sab 7 | 13:00 | IG + TT | r05 ricominciare da zero | ZERO → /rovina |
+Numeri 23–30 ottobre (Metricool): TikTok 208–283 visualizzazioni a post (t01 283, r01 249), reel Instagram 8–13.
 
 ## Casi veri · puntate
 | Data | Video | Caso |
