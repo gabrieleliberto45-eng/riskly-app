@@ -1,0 +1,91 @@
+{
+ "id": "r03",
+ "serie": "Reel",
+ "titolo": "Non farlo mai: spostare lo stop",
+ "scene": [
+  {
+   "tipo": "gancio",
+   "broll": "stress",
+   "tinta": "rosso",
+   "pill": "RISCHIO IN 1 MINUTO",
+   "grande": "Non farlo <span class=\"blu\">mai.</span>",
+   "sotto": "spostare lo stop quando <span class=\"rosso\">il prezzo ci arriva</span>",
+   "voce": "Non farlo mai: spostare lo stop quando il prezzo ci si avvicina. Sembra una seconda possibilità. È il modo più veloce per raddoppiare una perdita."
+  },
+  {
+   "tipo": "quadro",
+   "broll": "laptop",
+   "label": "Esempio",
+   "righe": [
+    [
+     "Conto",
+     "1.000 €"
+    ],
+    [
+     "Rischio deciso, 1%",
+     "10 €"
+    ],
+    [
+     "Stop 25 pip su EURUSD",
+     "0,04 lotti"
+    ]
+   ],
+   "passo": 1.6,
+   "voce": "Conto da mille euro, rischio l'uno per cento: dieci euro. Stop a venticinque pip su euro dollaro: il lotto giusto è zero virgola zero quattro."
+  },
+  {
+   "tipo": "scenari",
+   "broll": "telefono",
+   "label": "Stesso lotto, due finali",
+   "grande": "Lo stop <span class=\"blu\">decide</span>",
+   "scenari": [
+    [
+     "Stop rispettato",
+     "esci a 25 pip",
+     "perdi circa 9 €",
+     1.4
+    ],
+    [
+     "Stop spostato a 50 pip",
+     "stesso lotto",
+     "perdi circa 17 €",
+     4.2
+    ]
+   ],
+   "voce": "Se rispetti lo stop, perdi circa nove euro. Se lo sposti a cinquanta pip con lo stesso lotto, ne perdi diciassette."
+  },
+  {
+   "tipo": "metro",
+   "broll": "orologio",
+   "label": "Spostare lo stop",
+   "grande": "Perdita <span class=\"blu\">quasi doppia</span>",
+   "valore": 100,
+   "etichetta": "di perdita in più, con lo stesso lotto",
+   "dopo": 1.8,
+   "voce": "Perdita quasi raddoppiata, con lo stesso lotto. E il conto non l'avevi deciso tu, l'ha deciso il prezzo."
+  },
+  {
+   "tipo": "piano",
+   "broll": "quaderno2",
+   "label": "La regola",
+   "punti": [
+    [
+     "Stop deciso prima di entrare",
+     1.2
+    ],
+    [
+     "Lotto calcolato su quello stop",
+     2.4
+    ],
+    [
+     "Se lo tocca, esci. Punto.",
+     3.6
+    ]
+   ],
+   "cta_in": 5.4,
+   "parola": "LOTTO",
+   "link": "riskly.trade/lotto",
+   "voce": "La regola: stop deciso prima di entrare, lotto calcolato su quello stop, e se lo tocca esci. Commenta LOTTO e ti mando il calcolatore."
+  }
+ ]
+}

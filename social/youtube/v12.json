@@ -1,0 +1,138 @@
+{
+ "id": "v12",
+ "serie": "Rispondi tu",
+ "titolo": "Leva e margine: 5 domande che quasi tutti sbagliano",
+ "scene": [
+  {
+   "capitolo": "Introduzione",
+   "tipo": "titolo",
+   "grande": "Leva e margine:<br><mark>5 domande</mark>",
+   "piccolo": "Rispondi prima di sentire la soluzione",
+   "voce": "Quello che avrei voluto sapere prima? Come funzionano davvero leva e margine. In questo video ti faccio cinque domande: per ognuna metti in pausa, scrivi la tua risposta nei commenti e poi ascolta la spiegazione. Niente teoria lunga, solo conti veri."
+  },
+  {
+   "capitolo": "Domanda 1",
+   "tipo": "domanda",
+   "titolo": "Conto da 1.000 €, leva 1:30. Apri 0,10 lotti su EURUSD. Quanto margine ti blocca il broker?",
+   "opzioni": [
+    "33 €",
+    "333 €",
+    "1.000 €",
+    "3.333 €"
+   ],
+   "giusta": 1,
+   "spiegazione": "0,10 lotti = 10.000 € di euro. Con leva 1:30 il margine è 10.000 ÷ 30 ≈ 333 €.",
+   "voce": "Prima domanda. Conto da mille euro, leva uno a trenta. Apri zero virgola dieci lotti su euro dollaro. Quanto margine ti blocca il broker? Trentatré euro, trecentotrentatré, mille o tremilatrecentotrentatré? Metti in pausa e scrivi la tua risposta nei commenti. La risposta è trecentotrentatré euro. Zero virgola dieci lotti sono diecimila euro, e con la leva uno a trenta ne devi tenere da parte un trentesimo."
+  },
+  {
+   "capitolo": "La formula del margine",
+   "tipo": "formula",
+   "titolo": "Il margine",
+   "formula": "Margine = valore della posizione ÷ leva<br>10.000 € ÷ 30 = <span>333 €</span>",
+   "nota": "Esempio illustrativo: 1 lotto standard su EURUSD = 100.000 €.",
+   "voce": "La formula è semplice: il margine è il valore della posizione diviso la leva. Diecimila euro diviso trenta fa trecentotrentatré. Il margine non è una spesa e non è la tua perdita: è la parte del conto che il broker tiene ferma finché la posizione è aperta."
+  },
+  {
+   "capitolo": "Domanda 2",
+   "tipo": "domanda",
+   "titolo": "Stesso trade, 0,10 lotti, stop di 20 pip. Con leva 1:500 invece che 1:30, quanto perdi sullo stop?",
+   "opzioni": [
+    "Di più con 1:500",
+    "Uguale",
+    "Di più con 1:30",
+    "Dipende dal broker"
+   ],
+   "giusta": 1,
+   "spiegazione": "La perdita dipende da lotto e stop: circa 17 € in entrambi i casi. La leva cambia solo il margine.",
+   "voce": "Seconda domanda. Stesso trade, zero virgola dieci lotti, stop di venti pip. Se invece di uno a trenta hai la leva uno a cinquecento, sullo stop perdi di più, uguale, di meno, o dipende dal broker? Metti in pausa e scrivi la tua risposta. La risposta è: uguale. Circa diciassette euro in tutti e due i casi. La perdita la decidono il lotto e lo stop. La leva cambia solo quanto margine ti viene bloccato."
+  },
+  {
+   "capitolo": "La leva non è il rischio",
+   "tipo": "confronto",
+   "titolo": "Leva 1:30 o 1:500, stesso lotto",
+   "no": {
+    "titolo": "Cosa si pensa",
+    "righe": [
+     "Leva alta = perdo di più",
+     "Leva bassa = sono al sicuro",
+     "La leva decide il rischio"
+    ]
+   },
+   "si": {
+    "titolo": "Come funziona",
+    "righe": [
+     "Stesso lotto = stessa perdita",
+     "Con leva alta puoi aprire lotti enormi",
+     "Il rischio lo decide il lotto"
+    ]
+   },
+   "voce": "Ed è qui l'equivoco. Molti pensano che la leva alta faccia perdere di più e che la leva bassa li metta al sicuro. In realtà con lo stesso lotto perdi la stessa cifra. La leva alta è pericolosa per un altro motivo: ti permette di aprire lotti enormi rispetto al conto. Il rischio lo decide il lotto, sempre."
+  },
+  {
+   "capitolo": "Domanda 3",
+   "tipo": "domanda",
+   "titolo": "Sei un cliente retail in Unione Europea. A che livello di margine il broker chiude per regola le tue posizioni?",
+   "opzioni": [
+    "100%",
+    "50%",
+    "20%",
+    "0%"
+   ],
+   "giusta": 1,
+   "spiegazione": "Regola ESMA per i CFD dei clienti retail: chiusura quando il capitale scende al 50% del margine usato.",
+   "voce": "Terza domanda. Sei un cliente al dettaglio in Unione Europea. A che livello di margine il broker è obbligato a chiudere le tue posizioni? Cento per cento, cinquanta, venti o zero? Metti in pausa e scrivi la tua risposta. La risposta è cinquanta per cento. Dal duemiladiciotto, per i CFD dei clienti al dettaglio, quando il capitale del conto scende alla metà del margine usato le posizioni vengono chiuse."
+  },
+  {
+   "capitolo": "Lo stop out",
+   "tipo": "cifra",
+   "titolo": "Chiusura automatica",
+   "cifra": "50%",
+   "etichetta": "il livello di margine a cui si chiudono le posizioni dei clienti retail in UE",
+   "nota": "Fonte: ESMA, misure sui CFD del 2018. Alcuni broker chiudono prima: controlla le condizioni del tuo conto.",
+   "voce": "Cinquanta per cento. È una protezione, ma non è un piano: se ci arrivi, vuol dire che hai già perso gran parte del conto. E quando la chiusura scatta, scatta al prezzo che c'è in quel momento, non a quello che avresti scelto tu. Alcuni broker chiudono anche prima: controlla sempre le condizioni del tuo conto."
+  },
+  {
+   "capitolo": "Domanda 4",
+   "tipo": "domanda",
+   "titolo": "Conto da 1.000 €, rischio 1%, stop di 20 pip su EURUSD. Quanti lotti?",
+   "opzioni": [
+    "0,05",
+    "0,50",
+    "1",
+    "Dipende dalla leva"
+   ],
+   "giusta": 0,
+   "spiegazione": "10 € ÷ (20 pip × 8,62 € a pip per lotto) ≈ 0,058 → 0,05 lotti. La leva non entra nel conto.",
+   "voce": "Quarta domanda. Conto da mille euro, rischio l'uno per cento, stop di venti pip su euro dollaro. Quanti lotti? Zero virgola zero cinque, zero virgola cinquanta, uno, o dipende dalla leva? Metti in pausa e scrivi la tua risposta. La risposta è zero virgola zero cinque. Dieci euro di rischio, diviso venti pip per otto euro e sessantadue a pip per lotto: zero virgola zero cinque, arrotondando per difetto. E la leva, come vedi, nel conto non c'è."
+  },
+  {
+   "capitolo": "La formula del lotto",
+   "tipo": "formula",
+   "titolo": "Il lotto",
+   "formula": "Lotti = rischio ÷ (stop × valore del pip)<br>10 € ÷ (20 × 8,62 €) ≈ <span>0,05</span>",
+   "nota": "Esempio illustrativo: EURUSD a 1,16, valore del pip per 1 lotto ≈ 8,62 €. Dipende dal broker.",
+   "voce": "Questa è la formula che conta davvero: lotti uguale rischio diviso stop per valore del pip. Prima decidi quanto puoi perdere, poi lo stop, e il lotto viene da sé. Su euro dollaro, con il cambio a uno virgola sedici, un pip vale circa otto euro e sessantadue per lotto."
+  },
+  {
+   "capitolo": "Domanda 5",
+   "tipo": "domanda",
+   "titolo": "Qual è la leva massima per un cliente retail in UE su un CFD sull'oro?",
+   "opzioni": [
+    "1:30",
+    "1:20",
+    "1:10",
+    "1:500"
+   ],
+   "giusta": 1,
+   "spiegazione": "Limiti ESMA per i clienti retail: 1:30 sulle valute principali, 1:20 su oro e indici principali.",
+   "voce": "Ultima domanda. Qual è la leva massima per un cliente al dettaglio in Unione Europea su un CFD sull'oro? Uno a trenta, uno a venti, uno a dieci o uno a cinquecento? Metti in pausa e scrivi la tua risposta. La risposta è uno a venti. Uno a trenta vale per le valute principali, uno a venti per l'oro e gli indici principali. Se ti offrono uno a cinquecento, chiediti con quale regolamentazione."
+  },
+  {
+   "capitolo": "Per approfondire",
+   "tipo": "chiusura",
+   "grande": "Quanti lotti <mark>sul tuo conto?</mark>",
+   "piccolo": "Calcolatore gratuito, senza registrazione: riskly.trade/lotto",
+   "voce": "Quante ne hai indovinate? Scrivilo nei commenti. Il lotto giusto per il tuo conto, con il tuo stop e il tuo rischio, lo calcoli gratis su riskly punto trade barra lotto. Ogni giovedì una nuova puntata di Rispondi tu. Questo video è solo informativo ed educativo, non è un consiglio su cosa comprare o vendere. Il trading con leva comporta un alto rischio: puoi perdere tutto il capitale."
+  }
+ ]
+}

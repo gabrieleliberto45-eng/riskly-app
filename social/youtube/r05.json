@@ -1,0 +1,80 @@
+{
+ "id": "r05",
+ "serie": "Reel",
+ "titolo": "Se dovessi ricominciare da zero con 1.000 €",
+ "scene": [
+  {
+   "tipo": "gancio",
+   "broll": "quaderno2",
+   "pill": "RISCHIO IN 1 MINUTO",
+   "grande": "Se ricominciassi <span class=\"blu\">da zero…</span>",
+   "sotto": "con 1.000 € farei <span class=\"blu\">solo 3 cose</span>",
+   "voce": "Se dovessi ricominciare da zero con mille euro, farei solo tre cose. Nessuna strategia segreta: regole sul rischio."
+  },
+  {
+   "tipo": "quadro",
+   "broll": "laptop",
+   "label": "1 · Il rischio",
+   "righe": [
+    [
+     "Conto",
+     "1.000 €"
+    ],
+    [
+     "Rischio per operazione",
+     "1% = 10 €"
+    ],
+    [
+     "Perdite di fila per perdere il 20%",
+     "23"
+    ]
+   ],
+   "passo": 1.6,
+   "voce": "Uno: rischio l'uno per cento a operazione, dieci euro. Per perdere il venti per cento del conto servono ventitré perdite di fila."
+  },
+  {
+   "tipo": "scenari",
+   "broll": "stress",
+   "label": "2 · Lo stop giornaliero",
+   "grande": "Una <span class=\"blu\">giornata storta</span>",
+   "scenari": [
+    [
+     "Con lo stop giornaliero",
+     "3 perdite, −3%",
+     "domani si riparte",
+     1.4
+    ],
+    [
+     "Senza",
+     "rincorri il prezzo",
+     "e la giornata non finisce",
+     4.0
+    ]
+   ],
+   "voce": "Due: uno stop giornaliero. Tre perdite, meno tre per cento, e per oggi basta. Senza, una giornata storta diventa una settimana storta."
+  },
+  {
+   "tipo": "piano",
+   "broll": "quaderno",
+   "label": "3 · Il diario",
+   "punti": [
+    [
+     "Ogni operazione scritta",
+     1.2
+    ],
+    [
+     "Perché sei entrato e come ti sentivi",
+     2.4
+    ],
+    [
+     "Ogni settimana guardi i numeri",
+     3.6
+    ]
+   ],
+   "cta_in": 5.6,
+   "parola": "ZERO",
+   "link": "riskly.trade/rovina",
+   "voce": "Tre: un diario. Ogni operazione scritta, perché sei entrato e come ti sentivi. Commenta ZERO e ti mando il simulatore."
+  }
+ ]
+}

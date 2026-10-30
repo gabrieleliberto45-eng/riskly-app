@@ -1,0 +1,81 @@
+{
+ "id": "r02",
+ "serie": "Reel",
+ "titolo": "Elezioni USA: i risultati arrivano mentre dormi",
+ "scene": [
+  {
+   "tipo": "gancio",
+   "broll": "notte_citta",
+   "tinta": "rosso",
+   "pill": "USA · ELEZIONI DI METÀ MANDATO · 3 NOV",
+   "grande": "Nessuno ne parla, <span class=\"blu\">ma…</span>",
+   "sotto": "i risultati arrivano <span class=\"rosso\">mentre dormi</span>",
+   "voce": "Nessuno parla di questo, ma stanotte i risultati delle elezioni americane arrivano mentre in Italia dormi. E il mercato non aspetta che ti svegli."
+  },
+  {
+   "tipo": "quadro",
+   "broll": "palazzo",
+   "label": "Chiusura dei seggi · ora italiana",
+   "righe": [
+    [
+     "Primi seggi",
+     "da mezzanotte"
+    ],
+    [
+     "Costa est",
+     "01:00–02:00"
+    ],
+    [
+     "California",
+     "05:00"
+    ]
+   ],
+   "passo": 1.6,
+   "voce": "I primi seggi chiudono da mezzanotte, la costa est tra l'una e le due, la California alle cinque del mattino. I risultati escono di notte, un pezzo alla volta."
+  },
+  {
+   "tipo": "scenari",
+   "broll": "borsa_tel",
+   "label": "Di notte",
+   "grande": "Cosa può <span class=\"blu\">succedere</span>",
+   "scenari": [
+    [
+     "Spread più larghi",
+     "meno scambi di notte",
+     "lo stop può costare di più",
+     1.4
+    ],
+    [
+     "Movimenti improvvisi",
+     "dollaro, indici, oro",
+     "anche decine di pip",
+     4.2
+    ]
+   ],
+   "voce": "Di notte gli scambi sono pochi: gli spread si allargano e uno stop può essere eseguito peggio. E quando arriva un risultato a sorpresa, dollaro, indici e oro possono muoversi di decine di pip in pochi minuti."
+  },
+  {
+   "tipo": "piano",
+   "broll": "quaderno",
+   "label": "Se hai posizioni aperte",
+   "punti": [
+    [
+     "Decidi prima se tenerle",
+     1.2
+    ],
+    [
+     "Se le tieni, lotto più piccolo",
+     2.4
+    ],
+    [
+     "Stop che regge uno spread largo",
+     3.6
+    ]
+   ],
+   "cta_in": 5.6,
+   "parola": "USA",
+   "link": "riskly.trade/dati",
+   "voce": "Quindi decidi prima se tenere le posizioni aperte stanotte. Se le tieni, lotto più piccolo e stop che regge anche uno spread largo. Commenta USA e ti mando il calendario."
+  }
+ ]
+}
