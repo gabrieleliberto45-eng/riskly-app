@@ -1,0 +1,109 @@
+{
+ "id": "v13",
+ "serie": "La settimana dell'oro",
+ "titolo": "La settimana dell'oro: −3,1% e sotto i 3.900 $, pesa la Fed (26–30 ottobre 2026)",
+ "scene": [
+  {
+   "capitolo": "Introduzione",
+   "tipo": "cifra",
+   "titolo": "Oro, dal 26 al 30 ottobre 2026",
+   "cifra": "−3,1%",
+   "etichetta": "seconda settimana di fila in calo: venerdì sotto i 3.900 dollari, ai minimi da oltre un anno",
+   "nota": "Future COMEX: da 4.010,2 a 3.884,9 $. Fonte: Yahoo Finance (GC=F); minimi da oltre un anno: Kitco.",
+   "voce": "Meno tre virgola uno per cento. È quanto ha perso il future sull'oro questa settimana, dal ventisei al trenta ottobre. È la seconda settimana di fila in calo, e venerdì il prezzo è sceso sotto i tremilanovecento dollari l'oncia, il livello più basso da oltre un anno. Quasi tutto è successo in un giorno solo: venerdì. Vediamo i numeri, cosa l'ha mosso e cosa esce la settimana prossima. Niente previsioni: solo fatti e rischio."
+  },
+  {
+   "capitolo": "Il grafico della settimana",
+   "tipo": "grafico",
+   "titolo": "Oro, future COMEX, dati orari",
+   "img": "oro/2026-10-26.png",
+   "nota": "Fonte: Yahoo Finance (GC=F). Giorni in ora italiana.",
+   "voce": "Ecco il grafico della settimana, con i dati orari del future sull'oro. Lunedì e martedì il prezzo recupera: martedì chiude a quattromilasettantacinque dollari. Mercoledì sera, dopo la decisione della Fed, tocca il massimo della settimana, quattromilanovantasette dollari. Da lì comincia la discesa. Giovedì perde una cinquantina di dollari, e venerdì arriva il colpo più forte: in un solo giorno il future perde circa centotrentacinque dollari e chiude vicino al minimo, a tremilaottocentottantacinque."
+  },
+  {
+   "capitolo": "I numeri",
+   "tipo": "numeri",
+   "titolo": "I numeri della settimana",
+   "colonne": ["Mercato", "Variazione"],
+   "righe": [
+    ["Oro (future COMEX)", "4.010,2 → 3.884,9 $ · −3,1%"],
+    ["Massimo · minimo", "4.097,2 · 3.879,3 $"],
+    ["Indice del dollaro", "101,78 → 101,96 · +0,2%"],
+    ["Treasury 10 anni", "5,00% → 4,93% · −7 punti base"]
+   ],
+   "nota": "Fonte: Yahoo Finance, dati orari dal 26 al 30 ottobre 2026.",
+   "voce": "I numeri. L'oro apre la settimana a quattromiladieci dollari e chiude a tremilaottocentottantacinque: meno centoventicinque dollari, meno tre virgola uno per cento. Tra massimo e minimo ci sono più di duecentodieci dollari. L'indice del dollaro sale appena, dello zero virgola due per cento. E il rendimento del Treasury a dieci anni scende di sette punti base, sotto il cinque per cento. Quindi, come la settimana scorsa, dollaro quasi fermo e rendimenti in calo, eppure l'oro scende. La spiegazione questa volta sta soprattutto nella Fed."
+  },
+  {
+   "capitolo": "Cosa l'ha mosso",
+   "tipo": "punti",
+   "titolo": "Cosa ha mosso l'oro",
+   "punti": [
+    ["Mercoledì: Fed ferma, ma divisa", "tassi fermi al 3,75–4,00%, voto 10 a 2: due membri volevano già un rialzo"],
+    ["Giovedì: dati USA forti", "PIL del terzo trimestre +3,4%, inflazione PCE al 3,6%: rialzo a dicembre prezzato al 75% circa"],
+    ["Venerdì: vendite su tutto", "Borse tecnologiche giù, vendite anche su oro e argento (−6% in un giorno)"],
+    ["Sullo sfondo: il petrolio", "Brent sopra 110 $, una petroliera colpita nello stretto di Hormuz"]
+   ],
+   "nota": "Fonti: Federal Reserve, Kitco, CME FedWatch via TradingKey, USAGOLD (28–30 ottobre 2026). La BCE il 29 ottobre ha lasciato i tassi fermi (deposito al 2,50%).",
+   "voce": "Cosa ha mosso l'oro. Primo: mercoledì la Fed ha lasciato i tassi fermi, tra tre virgola settantacinque e quattro per cento. Ma il voto è stato dieci a due, e i due contrari, Lisa Cook e Beth Hammack, volevano già un altro rialzo. Secondo: giovedì i dati americani. Il PIL del terzo trimestre è cresciuto del tre virgola quattro per cento annualizzato, e l'inflazione PCE è al tre virgola sei per cento, con il rialzo mensile più forte da marzo. Così il mercato ha portato a circa tre su quattro la probabilità di un rialzo dei tassi a dicembre, secondo il FedWatch del CME. L'oro non paga interessi: se i tassi salgono, tenerlo costa di più. Terzo: venerdì le Borse tecnologiche sono scese e si è venduto quasi tutto, metalli compresi; l'argento ha perso circa il sei per cento in un giorno. Sullo sfondo, il petrolio resta sopra i centodieci dollari, dopo una petroliera colpita nello stretto di Hormuz. Giovedì anche la BCE ha lasciato i tassi fermi, con il deposito al due virgola cinquanta per cento."
+  },
+  {
+   "capitolo": "Tu cosa ne pensi?",
+   "tipo": "domanda",
+   "titolo": "Quale fattore ha pesato di più sull'oro questa settimana?",
+   "opzioni": [
+    "Un dollaro molto più forte",
+    "Rendimenti americani in forte salita",
+    "Le attese di un altro rialzo della Fed",
+    "La BCE che ha alzato i tassi"
+   ],
+   "giusta": 2,
+   "spiegazione": "Il dollaro si è mosso appena, i rendimenti sono scesi e la BCE è rimasta ferma: hanno pesato le attese di un rialzo della Fed a dicembre, dopo il voto diviso e i dati sull'inflazione.",
+   "voce": "Adesso tocca a te. Quale fattore ha pesato di più sull'oro questa settimana? Prima risposta: un dollaro molto più forte. Seconda: rendimenti americani in forte salita. Terza: le attese di un altro rialzo della Fed. Quarta: la BCE che ha alzato i tassi. Metti in pausa e scrivi nei commenti la tua lettera. La risposta è la terza. Il dollaro si è mosso appena, i rendimenti sono scesi e la BCE è rimasta ferma. A pesare sono state le attese di un rialzo della Fed a dicembre, dopo il voto diviso di mercoledì e i dati sull'inflazione di giovedì."
+  },
+  {
+   "capitolo": "La settimana prossima",
+   "tipo": "numeri",
+   "titolo": "La settimana prossima · ora italiana",
+   "colonne": ["Ora italiana", "Cosa"],
+   "righe": [
+    ["lun 2 · 16:00", "USA: indice ISM manifatturiero"],
+    ["mar 3 · notte", "<mark>USA: elezioni di metà mandato</mark>, risultati da mezzanotte"],
+    ["mer 4 · 16:00", "USA: indice ISM dei servizi"],
+    ["gio 5 · 13:00", "Banca d'Inghilterra: decisione sui tassi"],
+    ["ven 6 · 14:30", "<mark>USA: payrolls</mark> e disoccupazione di ottobre"]
+   ],
+   "nota": "Dal 1° novembre anche negli USA c'è l'ora solare: i dati americani tornano alle 14:30 e alle 16:00 ora italiana.",
+   "voce": "La settimana prossima. Prima cosa, l'orario: dal primo novembre anche negli Stati Uniti torna l'ora solare, quindi i dati americani tornano alle quattordici e trenta e alle sedici, ora italiana. Lunedì alle sedici l'indice ISM manifatturiero. Martedì le elezioni americane di metà mandato: i risultati arrivano di notte, da mezzanotte in poi, quando gli spread sono più larghi. Mercoledì alle sedici l'indice ISM dei servizi. Giovedì alle tredici la Banca d'Inghilterra. E venerdì alle quattordici e trenta i payrolls di ottobre, il dato che più di tutti può cambiare le attese su un rialzo della Fed a dicembre."
+  },
+  {
+   "capitolo": "Il rischio",
+   "tipo": "confronto",
+   "titolo": "Elezioni e payrolls: due modi di stare sull'oro",
+   "no": {
+    "titolo": "Senza piano",
+    "righe": [
+     "Stesso lotto anche con 135 $ di movimento in un giorno",
+     "Posizione aperta durante la notte delle elezioni",
+     "Ordini pendenti vicino al prezzo alle 14:30 di venerdì"
+    ]
+   },
+   "si": {
+    "titolo": "Con piano",
+    "righe": [
+     "Stop in dollari più largo, lotto più piccolo",
+     "Decidi prima di martedì sera se tenere o chiudere",
+     "Spread controllato e lotto deciso prima dei payrolls"
+    ]
+   },
+   "voce": "Il rischio. Venerdì l'oro si è mosso di circa centotrentacinque dollari in un giorno, e la settimana prossima ci sono le elezioni di notte e i payrolls venerdì. Mettiamo vicini due modi di stare sull'oro. Senza piano: lo stesso lotto di sempre, anche se il prezzo si muove il doppio; la posizione aperta durante la notte delle elezioni; ordini pendenti vicino al prezzo alle quattordici e trenta di venerdì. Con piano: se lo stop in dollari è più largo, il lotto è più piccolo, così la perdita massima in euro resta la stessa; si decide prima di martedì sera se tenere o chiudere; e prima dei payrolls si controlla lo spread e si decide il lotto."
+  },
+  {
+   "capitolo": "Per approfondire",
+   "tipo": "chiusura",
+   "grande": "I dati della settimana,<br><mark>gratis</mark>",
+   "piccolo": "Calendario in ora italiana su riskly.trade/dati · Corso Riskly · Analisi fondamentale: banche centrali, inflazione, petrolio, oro",
+   "voce": "I dati della settimana prossima, già in ora italiana, li trovi gratis su riskly punto trade barra dati. E se vuoi capire come Fed, inflazione e tassi muovono l'oro, c'è il corso Riskly Analisi fondamentale, con grafici sui dati veri: lo trovi su riskly punto trade barra corsi. Sono miei prodotti. Contenuto informativo ed educativo, non consulenza finanziaria: il trading con leva può farti perdere tutto il capitale."
+  }
+ ]
+}
