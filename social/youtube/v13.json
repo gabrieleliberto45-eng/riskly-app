@@ -8,8 +8,8 @@
    "tipo": "cifra",
    "titolo": "Oro, dal 26 al 30 ottobre 2026",
    "cifra": "−3,1%",
-   "etichetta": "seconda settimana di fila in calo: venerdì sotto i 3.900 dollari, ai minimi da oltre un anno",
-   "nota": "Future COMEX: da 4.010,2 a 3.884,9 $. Fonte: Yahoo Finance (GC=F); minimi da oltre un anno: Kitco.",
+   "etichetta": "seconda settimana di fila in calo: venerdì sotto i 3.900 $",
+   "nota": "Future COMEX: da 4.010,2 a 3.884,9 $. Fonte: Yahoo Finance (GC=F).",
    "voce": "Meno tre virgola uno per cento. È quanto ha perso il future sull'oro questa settimana, dal ventisei al trenta ottobre. È la seconda settimana di fila in calo, e venerdì il prezzo è sceso sotto i tremilanovecento dollari l'oncia, il livello più basso da oltre un anno. Quasi tutto è successo in un giorno solo: venerdì. Vediamo i numeri, cosa l'ha mosso e cosa esce la settimana prossima. Niente previsioni: solo fatti e rischio."
   },
   {
@@ -24,12 +24,27 @@
    "capitolo": "I numeri",
    "tipo": "numeri",
    "titolo": "I numeri della settimana",
-   "colonne": ["Mercato", "Variazione"],
+   "colonne": [
+    "Mercato",
+    "Variazione"
+   ],
    "righe": [
-    ["Oro (future COMEX)", "4.010,2 → 3.884,9 $ · −3,1%"],
-    ["Massimo · minimo", "4.097,2 · 3.879,3 $"],
-    ["Indice del dollaro", "101,78 → 101,96 · +0,2%"],
-    ["Treasury 10 anni", "5,00% → 4,93% · −7 punti base"]
+    [
+     "Oro (future COMEX)",
+     "4.010,2 → 3.884,9 $ · −3,1%"
+    ],
+    [
+     "Massimo · minimo",
+     "4.097,2 · 3.879,3 $"
+    ],
+    [
+     "Indice del dollaro",
+     "101,78 → 101,96 · +0,2%"
+    ],
+    [
+     "Treasury 10 anni",
+     "5,00% → 4,93% · −7 punti base"
+    ]
    ],
    "nota": "Fonte: Yahoo Finance, dati orari dal 26 al 30 ottobre 2026.",
    "voce": "I numeri. L'oro apre la settimana a quattromiladieci dollari e chiude a tremilaottocentottantacinque: meno centoventicinque dollari, meno tre virgola uno per cento. Tra massimo e minimo ci sono più di duecentodieci dollari. L'indice del dollaro sale appena, dello zero virgola due per cento. E il rendimento del Treasury a dieci anni scende di sette punti base, sotto il cinque per cento. Quindi, come la settimana scorsa, dollaro quasi fermo e rendimenti in calo, eppure l'oro scende. La spiegazione questa volta sta soprattutto nella Fed."
@@ -39,12 +54,20 @@
    "tipo": "punti",
    "titolo": "Cosa ha mosso l'oro",
    "punti": [
-    ["Mercoledì: Fed ferma, ma divisa", "tassi fermi al 3,75–4,00%, voto 10 a 2: due membri volevano già un rialzo"],
-    ["Giovedì: dati USA forti", "PIL del terzo trimestre +3,4%, inflazione PCE al 3,6%: rialzo a dicembre prezzato al 75% circa"],
-    ["Venerdì: vendite su tutto", "Borse tecnologiche giù, vendite anche su oro e argento (−6% in un giorno)"],
-    ["Sullo sfondo: il petrolio", "Brent sopra 110 $, una petroliera colpita nello stretto di Hormuz"]
+    [
+     "Mercoledì: Fed ferma, ma divisa",
+     "tassi fermi al 3,75–4,00%, voto 10 a 2: due membri volevano già un rialzo"
+    ],
+    [
+     "Giovedì: dati USA forti",
+     "PIL del terzo trimestre +3,4%, inflazione PCE al 3,6%: rialzo a dicembre prezzato al 75% circa"
+    ],
+    [
+     "Venerdì: vendite su tutto",
+     "Borse tecnologiche giù, vendite anche su oro e argento (−6% in un giorno)"
+    ]
    ],
-   "nota": "Fonti: Federal Reserve, Kitco, CME FedWatch via TradingKey, USAGOLD (28–30 ottobre 2026). La BCE il 29 ottobre ha lasciato i tassi fermi (deposito al 2,50%).",
+   "nota": "Fonti: Federal Reserve, Kitco, CME FedWatch, USAGOLD (28–30 ottobre). Sullo sfondo: Brent sopra 110 $. BCE ferma al 2,50%.",
    "voce": "Cosa ha mosso l'oro. Primo: mercoledì la Fed ha lasciato i tassi fermi, tra tre virgola settantacinque e quattro per cento. Ma il voto è stato dieci a due, e i due contrari, Lisa Cook e Beth Hammack, volevano già un altro rialzo. Secondo: giovedì i dati americani. Il PIL del terzo trimestre è cresciuto del tre virgola quattro per cento annualizzato, e l'inflazione PCE è al tre virgola sei per cento, con il rialzo mensile più forte da marzo. Così il mercato ha portato a circa tre su quattro la probabilità di un rialzo dei tassi a dicembre, secondo il FedWatch del CME. L'oro non paga interessi: se i tassi salgono, tenerlo costa di più. Terzo: venerdì le Borse tecnologiche sono scese e si è venduto quasi tutto, metalli compresi; l'argento ha perso circa il sei per cento in un giorno. Sullo sfondo, il petrolio resta sopra i centodieci dollari, dopo una petroliera colpita nello stretto di Hormuz. Giovedì anche la BCE ha lasciato i tassi fermi, con il deposito al due virgola cinquanta per cento."
   },
   {
@@ -64,16 +87,30 @@
   {
    "capitolo": "La settimana prossima",
    "tipo": "numeri",
-   "titolo": "La settimana prossima · ora italiana",
-   "colonne": ["Ora italiana", "Cosa"],
-   "righe": [
-    ["lun 2 · 16:00", "USA: indice ISM manifatturiero"],
-    ["mar 3 · notte", "<mark>USA: elezioni di metà mandato</mark>, risultati da mezzanotte"],
-    ["mer 4 · 16:00", "USA: indice ISM dei servizi"],
-    ["gio 5 · 13:00", "Banca d'Inghilterra: decisione sui tassi"],
-    ["ven 6 · 14:30", "<mark>USA: payrolls</mark> e disoccupazione di ottobre"]
+   "titolo": "La settimana prossima",
+   "colonne": [
+    "Ora italiana",
+    "Cosa"
    ],
-   "nota": "Dal 1° novembre anche negli USA c'è l'ora solare: i dati americani tornano alle 14:30 e alle 16:00 ora italiana.",
+   "righe": [
+    [
+     "mar 3 · notte",
+     "<mark>Elezioni USA</mark> di metà mandato"
+    ],
+    [
+     "mer 4 · 16:00",
+     "USA: ISM dei servizi"
+    ],
+    [
+     "gio 5 · 13:00",
+     "Banca d'Inghilterra"
+    ],
+    [
+     "ven 6 · 14:30",
+     "<mark>USA: payrolls</mark> di ottobre"
+    ]
+   ],
+   "nota": "Ora italiana. Dal 1° novembre anche negli USA c'è l'ora solare. Lunedì 2 alle 16:00: ISM manifatturiero.",
    "voce": "La settimana prossima. Prima cosa, l'orario: dal primo novembre anche negli Stati Uniti torna l'ora solare, quindi i dati americani tornano alle quattordici e trenta e alle sedici, ora italiana. Lunedì alle sedici l'indice ISM manifatturiero. Martedì le elezioni americane di metà mandato: i risultati arrivano di notte, da mezzanotte in poi, quando gli spread sono più larghi. Mercoledì alle sedici l'indice ISM dei servizi. Giovedì alle tredici la Banca d'Inghilterra. E venerdì alle quattordici e trenta i payrolls di ottobre, il dato che più di tutti può cambiare le attese su un rialzo della Fed a dicembre."
   },
   {
