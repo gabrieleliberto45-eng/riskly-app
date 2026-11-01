@@ -3017,7 +3017,14 @@ function j_contoId(){
   return j_conti().some(c => c.id === j_contoAttivo) ? j_contoAttivo : '1';
 }
 function j_contoDati(){ return j_conti().find(c => c.id === j_contoId()) || { id: '1' }; }
-const j_delConto = t => (((t.dettagli || {}).cj) || '1') === j_contoId();
+/* a quale conto appartiene un'operazione: quello scritto nei dettagli; per i bot, il conto del journal collegato al numero MetaTrader */
+function j_contoDi(t){
+  const cj = (t.dettagli || {}).cj;
+  if(cj) return cj;
+  if(t.fonte === 'bot' && t.conto){ const c = j_conti().find(x => (x.mt || []).includes(String(t.conto))); if(c) return c.id; }
+  return '1';
+}
+const j_delConto = t => j_contoDi(t) === j_contoId();
 const j_lista = () => j_demo || j_trades.filter(j_delConto);
 
 /* valuta del conto: la sceglie l'utente, resta salvata in questo browser */
@@ -4587,18 +4594,21 @@ function j_salvaConto(campi){
 function j_apriConti(){
   if(!utente || j_demo) return;
   const conti = j_conti(), id = j_contoId(), premium = pianoAttivo() === 'premium';
+  const mtVisti = j_mtVisti();
   document.getElementById('contiLista').innerHTML = conti.map(c => {
-    const ops = j_trades.filter(t => (((t.dettagli || {}).cj) || '1') === c.id);
+    const ops = j_trades.filter(t => j_contoDi(t) === c.id);
     const pnl = ops.reduce((a, t) => a + (Number(t.pnl) || 0), 0);
-    const sotto = `${ops.length} ${ops.length === 1 ? 'operazione' : 'operazioni'}${ops.length ? ' · ' + j_fmt(pnl) : ''}`;
+    const sotto = `${ops.length} ${ops.length === 1 ? 'operazione' : 'operazioni'}${ops.length ? ' · ' + j_fmt(pnl) : ''}${(c.mt || []).length ? ' · MetaTrader ' + c.mt.join(', ') : ''}`;
     return `<div class="jcl-riga${c.id === id ? ' on' : ''}">
       <button type="button" class="jcl-scegli" onclick="j_scegliConto('${c.id}')"><b>${esc(c.nome || 'Conto')}</b><span>${esc(sotto)}${c.id === id ? ' · in uso' : ''}</span></button>
-      <div class="jcl-az"><button type="button" class="btn" onclick="j_rinominaConto('${c.id}')">Rinomina</button>${c.id !== '1' && !ops.length ? `<button type="button" class="btn" onclick="j_eliminaConto('${c.id}')">Elimina</button>` : ''}</div>
+      <div class="jcl-az">${mtVisti.length && c.id !== '1' ? `<button type="button" class="btn" onclick="j_collegaMT('${c.id}')">MetaTrader</button>` : ''}<button type="button" class="btn" onclick="j_rinominaConto('${c.id}')">Rinomina</button>${c.id !== '1' && !ops.length ? `<button type="button" class="btn" onclick="j_eliminaConto('${c.id}')">Elimina</button>` : ''}</div>
     </div>`;
   }).join('');
   const piede = document.getElementById('contiPiede');
-  if(premium && conti.length < J_MAX_CONTI) piede.innerHTML = `<button type="button" class="btn pri wide" onclick="j_nuovoConto()">+ Aggiungi un conto</button><div class="jcl-nota">Puoi avere fino a ${J_MAX_CONTI} conti (${conti.length} su ${J_MAX_CONTI}).</div>`;
-  else if(premium) piede.innerHTML = `<div class="jcl-nota">Hai raggiunto il massimo di ${J_MAX_CONTI} conti.</div>`;
+  const liberi = mtVisti.filter(n => !conti.some(c => (c.mt || []).includes(n)));
+  const avvisoMT = conti.length > 1 && liberi.length ? `<div class="jcl-nota">Operazioni dei bot dal conto MetaTrader ${liberi.join(', ')}: per ora vanno nel «${esc(conti[0].nome)}». Tocca «MetaTrader» su un conto per mandarle lì.</div>` : '';
+  if(premium && conti.length < J_MAX_CONTI) piede.innerHTML = avvisoMT + `<button type="button" class="btn pri wide" onclick="j_nuovoConto()">+ Aggiungi un conto</button><div class="jcl-nota">Puoi avere fino a ${J_MAX_CONTI} conti (${conti.length} su ${J_MAX_CONTI}).</div>`;
+  else if(premium) piede.innerHTML = avvisoMT + `<div class="jcl-nota">Hai raggiunto il massimo di ${J_MAX_CONTI} conti.</div>`;
   else piede.innerHTML = `<div class="jcl-nota">Con il piano Premium puoi collegare fino a ${J_MAX_CONTI} conti allo stesso account, ognuno con le sue operazioni.</div><button type="button" class="btn wide" style="margin-top:10px" onclick="location.href='https://riskly.trade/#prezzi'">Vedi il piano Premium</button>`;
   document.getElementById('modConti').classList.add('on');
 }
@@ -4620,6 +4630,23 @@ async function j_nuovoConto(){
   const nuovo = { id: 'c' + Date.now().toString(36), nome };
   if(await j_salvaConti(conti.concat([nuovo]))) j_scegliConto(nuovo.id);
 }
+/* numeri dei conti MetaTrader da cui sono arrivate operazioni dei bot */
+function j_mtVisti(){
+  return [...new Set(j_trades.filter(t => t.fonte === 'bot' && t.conto).map(t => String(t.conto)))].sort();
+}
+/* collega uno o più conti MetaTrader a un conto del journal: le operazioni dei bot da quel numero vanno lì */
+async function j_collegaMT(id){
+  const conti = j_conti(), c = conti.find(x => x.id === id); if(!c) return;
+  const altri = new Set(conti.filter(x => x.id !== id).flatMap(x => x.mt || []));
+  const disp = j_mtVisti().filter(n => !altri.has(n));
+  const r = prompt(`Numero del conto MetaTrader da collegare a «${c.nome}».\nConti MetaTrader dei tuoi bot: ${disp.join(', ') || 'nessuno libero'}.\nPiù numeri separati da virgola; lascia vuoto per scollegare.`, (c.mt || []).join(', '));
+  if(r === null) return;
+  const mt = [...new Set(r.split(/[\s,;]+/).map(x => x.trim()).filter(x => /^\d{3,15}$/.test(x)))].filter(n => !altri.has(n));
+  if(await j_salvaConti(conti.map(x => x.id === id ? Object.assign({}, x, { mt }) : x))){
+    j_renderAll(); j_apriConti();
+    j_flash(mt.length ? `Le operazioni dei bot da ${mt.join(', ')} ora vanno in «${c.nome}».` : `Conto MetaTrader scollegato da «${c.nome}».`);
+  }
+}
 async function j_rinominaConto(id){
   const c = j_conti().find(x => x.id === id); if(!c) return;
   const nome = (prompt('Nuovo nome del conto:', c.nome || '') || '').trim().slice(0, 40);
@@ -4627,7 +4654,7 @@ async function j_rinominaConto(id){
   if(await j_salvaConti(j_conti().map(x => x.id === id ? Object.assign({}, x, { nome }) : x))){ j_renderConti(); j_apriConti(); }
 }
 async function j_eliminaConto(id){
-  if(id === '1' || j_trades.some(t => ((t.dettagli || {}).cj) === id)) return;
+  if(id === '1' || j_trades.some(t => j_contoDi(t) === id)) return;
   const c = j_conti().find(x => x.id === id); if(!c) return;
   if(!confirm(`Eliminare il conto «${c.nome}»? Non ha operazioni.`)) return;
   if(await j_salvaConti(j_conti().filter(x => x.id !== id))){
