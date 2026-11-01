@@ -4,14 +4,16 @@
   /* Reel "Il punto" 1080×1920. Dal riferimento mandato da Gabriele il 1° novembre teniamo solo il ritmo
      (un oggetto animato nuovo ogni pochi secondi, clic e colpi sotto la voce); la grafica è nostra: nero e ambra di riskly.trade,
      contatori con grafico, carta che si gira, termometro e lancetta, catena di cause, ordini di vendita, calendario a strappo.
-     API: window.mostra(scena, parole, [data, indice, totale scene, durata]) e window.fotogramma(t, testo). */
+     API: window.mostra(scena, parole, [data, indice, totale scene, durata, inizio]) e window.fotogramma(t, testo).
+     Movimento continuo (Gabriele, 1° novembre: "troppo statiche"): camera che avanza e trema sui colpi, entrata a scatto con lampo,
+     titoli parola per parola, griglia e nastro delle quotazioni sempre in moto, schede che ondeggiano. */
   @font-face{font-family:'Archivo';src:url(../youtube/archivo.woff2) format('woff2');font-weight:100 900;font-stretch:62% 125%}
   @font-face{font-family:'Martian Mono';src:url(../youtube/martian-mono.woff2) format('woff2');font-weight:100 800;font-stretch:75% 112.5%}
   :root{--fondo:#0B0D0C;--ambra:#F2B83A;--ambra2:#F9D27A;--rosso:#FF4D5E;--verde:#2BD98B;--bianco:#F7F8F5;--grigio:#9AA09A;--scheda:#151917;--bordo:rgba(242,184,58,.35)}
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{width:1080px;height:1920px;overflow:hidden}
   body{font-family:'Archivo',sans-serif;color:var(--bianco);background:radial-gradient(ellipse at 50% 30%,#1a1710 0%,var(--fondo) 60%);}
-  body::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(242,184,58,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(242,184,58,.05) 1px,transparent 1px);background-size:90px 90px}
+  
   #testa{position:absolute;left:70px;right:70px;top:76px;display:flex;justify-content:space-between;align-items:center}
   #testa .marchio{display:flex;align-items:center;gap:16px;font:800 40px 'Archivo'}
   #testa .marchio svg{width:52px;height:52px}
@@ -89,12 +91,16 @@
   .link{margin-top:24px;font:800 40px 'Martian Mono';color:var(--ambra2)}
   #sott{position:absolute;left:60px;right:60px;top:1440px;text-align:center;font:800 64px/1.18 'Archivo';font-stretch:88%;color:#fff;text-shadow:0 4px 20px rgba(0,0,0,.8)}
   #sott mark{background:var(--ambra);color:var(--fondo);padding:0 10px;border-radius:8px}
+  #griglia{position:absolute;inset:-200px;background-image:linear-gradient(rgba(242,184,58,.07) 2px,transparent 2px),linear-gradient(90deg,rgba(242,184,58,.07) 2px,transparent 2px);background-size:90px 90px}
+  #lampo{position:absolute;inset:0;background:var(--ambra);opacity:0;pointer-events:none}
+  #nastro{position:absolute;left:0;right:0;top:1676px;height:66px;background:var(--ambra);color:var(--fondo);overflow:hidden;white-space:nowrap;font:800 32px/66px 'Martian Mono';transform:rotate(-1.5deg)}
+  #nastro span{display:inline-block}
   #piede{position:absolute;left:70px;right:70px;bottom:64px;text-align:center;font:500 22px 'Archivo';color:rgba(255,255,255,.5)}
 </style></head>
 <body>
 <div id="testa"><div class="marchio"><svg viewBox="0 0 44 44" fill="none"><rect width="44" height="44" rx="10" fill="#FBFBF9"/><path d="M9 31 L17 19.5 L23.5 25 L35 11" stroke="#B97C00" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 36 H35" stroke="#5E656D" stroke-width="3.6" stroke-linecap="round"/></svg>Riskly <em>IL PUNTO</em></div><div class="data" id="data"></div></div>
 <div id="avanza"></div>
-<div id="s"></div><div id="sott"></div>
+<div id="griglia"></div><div id="s"></div><div id="sott"></div><div id="nastro"><span></span></div><div id="lampo"></div>
 <div id="piede">Contenuto informativo ed educativo, non è consulenza finanziaria né una previsione. La leva comporta un alto rischio.</div>
 <script>
 const ease = x => 1 - Math.pow(1 - Math.min(1, Math.max(0, x)), 3);
@@ -104,7 +110,7 @@ let S = null, P = [], INFO = [];
 // "w:parola" = quando la voce la dice; "w:parola#2" = la seconda volta
 const T = v => { if(typeof v !== 'string') return v || 0; const [w, n] = v.slice(2).toLowerCase().split('#'); const x = P.filter(p => p[1].toLowerCase().replace(/[^a-zàèéìòù0-9]/g, '').startsWith(w))[(+n || 1) - 1]; return x ? x[0] : 0; };
 const euro = v => String(Math.round(v)).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-const motivo = s => `<div class="motivo"><div class="num e pop" data-in="0">MOTIVO ${s.n} / 3</div><h2 class="e" data-in="0.25">${s.nome}</h2></div>`;
+const motivo = s => `<div class="motivo"><div class="num e pop" data-in="0">MOTIVO ${s.n} / 3</div><h2 class="e" data-in="0.25" data-parole="1">${s.nome}</h2></div>`;
 const html = s => {
   if(s.tipo === 'apertura'){
     const W = 940, H = 330, mn = Math.min(...s.serie) - 20, mx = Math.max(...s.serie) + 20;
@@ -135,7 +141,7 @@ const html = s => {
       <svg viewBox="0 0 880 200" width="880" height="200"><polyline points="0,40 90,55 170,35 260,70 340,60 430,95 520,90 610,130 700,150 790,165 880,185" fill="none" stroke="#FF4D5E" stroke-width="8" stroke-linejoin="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" data-traccia="${T(s.linea_in) - 0.3}"/></svg></div>
       <div class="biglietti">${s.ordini.map((o, i) => `<div class="biglietto" style="top:${i * 230}px" data-entra="${T(o[2]) - 0.15}"><div><small>ORDINE DI VENDITA</small><b>${o[0]}</b></div><em>${o[1]}</em></div>`).join('')}
       <div class="timbro e pop" data-in="${T(s.ordini.at(-1)[2]) + 0.8}">${s.timbro}</div></div>`;
-  if(s.tipo === 'calendario') return `<div class="titolo2 e pop" data-in="0">${s.titolo}</div><div class="mono e" data-in="${T('w:nessuna')}" style="margin-top:26px">${s.sotto}</div>
+  if(s.tipo === 'calendario') return `<div class="titolo2 e pop" data-in="0" data-parole="1">${s.titolo}</div><div class="mono e" data-in="${T('w:nessuna')}" style="margin-top:26px">${s.sotto}</div>
       <div class="fogli">${s.date.map(d => `<div class="foglio" data-cala="${T(d[3]) - 0.1}"><div class="m">${d[1]}</div><div class="g">${d[0]}</div><div class="x">${d[2]}</div></div>`).join('')}</div>
       <div class="cta e pop" data-in="${T(s.cta_in)}">Commenta <em>${s.parola}</em></div><div class="link e" data-in="${T(s.cta_in) + 0.3}">${s.link}</div>`;
   return '';
@@ -145,7 +151,14 @@ window.mostra = (s, parole, info) => {
   document.getElementById('data').textContent = info[0];
   document.getElementById('avanza').innerHTML = Array.from({ length: info[2] }, () => '<i><b></b></i>').join('');
   document.getElementById('s').innerHTML = html(s);
+  // titoli parola per parola
+  document.querySelectorAll('[data-parole]').forEach(el => { const b = +el.dataset.in; el.removeAttribute('data-in'); el.classList.remove('e', 'pop');
+    el.innerHTML = el.textContent.trim().split(/\s+/).map((w, i) => `<span class="e pop" style="display:inline-block" data-in="${b + i * 0.14}">${w}</span>`).join(' '); });
+  document.querySelector('#nastro span').textContent = (s.nastro || NASTRO).repeat(6);
+  COLPI = [0.05, ...[...document.querySelectorAll('.pop')].map(e => +e.dataset.in), ...[...document.querySelectorAll('[data-gira]')].map(e => +e.dataset.gira + 0.3), ...[...document.querySelectorAll('[data-cala]')].map(e => +e.dataset.cala + 0.35)];
 };
+const NASTRO = '   ORO 3.885 $ ▼ 3,1%   ·   ARGENTO ▼ ~6% VEN   ·   BRENT 110+ $ ▲   ·   TREASURY 10A 4,93% ▼   ·   DOLLARO 101,96 ≈   ·   FED 3,75–4,00%   ·   PCE 3,6%';
+let COLPI = [];
 window.suoni = () => {
   const out = [];
   document.querySelectorAll('.pop').forEach(e => out.push([+e.dataset.in, 'colpo']));
@@ -168,11 +181,11 @@ window.fotogramma = (t, testo) => {
   s.querySelectorAll('[data-a]').forEach(e => { const k = ease((t - +e.dataset.t) / 2), v = +e.dataset.da + (+e.dataset.a - +e.dataset.da) * k; e.textContent = '$' + euro(Math.round(v)); e.style.color = k > 0.5 ? '#FF4D5E' : '#F7F8F5'; });
   s.querySelectorAll('[data-traccia]').forEach(e => e.setAttribute('stroke-dashoffset', 1 - ease((t - +e.dataset.traccia) / 2)));
   s.querySelectorAll('[data-punto]').forEach(e => { const k = t - +e.dataset.punto; e.setAttribute('opacity', k > 0 ? 1 : 0); e.setAttribute('r', k > 0 ? 16 + 8 * Math.abs(Math.sin(k * 3)) : 0); });
-  s.querySelectorAll('[data-gira]').forEach(e => { const a = 180 * ease((t - +e.dataset.gira) / 0.6); e.style.transform = `rotateY(${a}deg)`; e.children[0].style.opacity = a < 90 ? 1 : 0; e.children[1].style.opacity = a < 90 ? 0 : 1; });
+  s.querySelectorAll('[data-gira]').forEach(e => { const a = 180 * ease((t - +e.dataset.gira) / 0.6); e.style.transform = `rotateY(${a + 7 * Math.sin(t * 1.4)}deg) rotateX(${5 * Math.sin(t * 1.1)}deg)`; e.children[0].style.opacity = a < 90 ? 1 : 0; e.children[1].style.opacity = a < 90 ? 0 : 1; });
   s.querySelectorAll('[data-h]').forEach(e => { e.style.height = (+e.dataset.h * ease((t - +e.dataset.da) / 1.2)) + '%'; });
   s.querySelectorAll('[data-conta]').forEach(e => { const v = +e.dataset.conta * ease((t - +e.dataset.da) / 1.2); e.textContent = (e.dataset.dec ? v.toFixed(1).replace('.', ',') : Math.round(v)) + '%'; });
   s.querySelectorAll('[data-arco]').forEach(e => e.setAttribute('stroke-dashoffset', 100 - +e.dataset.arco * ease((t - +e.dataset.da) / 1.2)));
-  s.querySelectorAll('[data-ago]').forEach(e => { e.style.transform = `rotate(${180 * +e.dataset.ago / 100 * ease((t - +e.dataset.da) / 1.2)}deg)`; });
+  s.querySelectorAll('[data-ago]').forEach(e => { const k = ease((t - +e.dataset.da) / 1.2); e.style.transform = `rotate(${180 * +e.dataset.ago / 100 * k + (k > 0.9 ? 2.5 * Math.sin(t * 7) : 0)}deg)`; });
   s.querySelectorAll('[data-pulsa]').forEach(e => { e.style.boxShadow = `0 0 0 ${6 + 8 * Math.abs(Math.sin(t * 4))}px rgba(255,77,94,.35)`; });
   s.querySelectorAll('[data-dollari]').forEach(e => { e.textContent = '$' + Math.round(+e.dataset.dollari * ease((t - +e.dataset.da) / 1)) + '+'; });
   s.querySelectorAll('[data-w]').forEach(e => { e.style.width = (+e.dataset.w * ease((t - +e.dataset.da) / 1)) + '%'; });
@@ -180,6 +193,16 @@ window.fotogramma = (t, testo) => {
   s.querySelectorAll('[data-giu]').forEach(e => { e.style.height = (100 * ease((t - +e.dataset.giu) / 0.25)) + '%'; });
   s.querySelectorAll('[data-entra]').forEach(e => { const k = back((t - +e.dataset.entra) / 0.45); e.style.opacity = t > +e.dataset.entra ? 1 : 0; e.style.transform = `translateX(${(1 - k) * 1000}px) rotate(${(1 - k) * 8}deg)`; });
   s.querySelectorAll('[data-cala]').forEach(e => { const k = back((t - +e.dataset.cala) / 0.5); e.style.opacity = t > +e.dataset.cala ? 1 : 0; e.style.transform = `rotateX(${(1 - k) * -90}deg)`; });
+  // camera: entrata a scatto, zoom lento, tremore sui colpi; sfondo e nastro sempre in moto
+  const G = INFO[4] + t, k0 = ease(t / 0.32);
+  let tx = 0, ty = 0; COLPI.forEach((c, j) => { const d = t - c; if(d > 0 && d < 0.35){ const a = 16 * Math.exp(-d / 0.08); tx += a * Math.sin(d * 90 + j); ty += a * Math.cos(d * 77 + j); } });
+  s.style.transform = `translate(${(1 - k0) * 520 + tx}px, ${ty}px) scale(${1 + 0.06 * lin(t / INFO[3])}) rotate(${(1 - k0) * 3 + 0.4 * Math.sin(G * 0.7)}deg)`;
+  s.style.filter = k0 < 1 ? `blur(${(1 - k0) * 18}px)` : 'none';
+  document.getElementById('lampo').style.opacity = INFO[1] ? Math.max(0, 0.35 * (1 - t / 0.18)) : 0;
+  document.getElementById('griglia').style.transform = `translate(${(G * 25) % 90}px, ${(G * 40) % 90}px)`;
+  document.querySelector('#nastro span').style.transform = `translateX(${-(G * 150) % 2400}px)`;
+  s.querySelectorAll('.tessere>div,.biglietto,.foglio,.brent,.borsa,.zero,.badge,.cta,.anello.on,.luogo').forEach((e, i) => { e.style.rotate = `${Math.sin(G * 1.7 + i * 1.3) * 1.4}deg`; });
+  s.querySelectorAll('.contatore,.lancetta b,.termo .val,.brent b').forEach((e, i) => { e.style.scale = 1 + 0.03 * Math.sin(G * 4 + i); });
   document.getElementById('sott').innerHTML = testo || '';
 };
 </script></body></html>

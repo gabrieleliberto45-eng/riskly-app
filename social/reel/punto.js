@@ -51,7 +51,7 @@ function effetti(eventi, totale, out){
   for(let f = 0; f < n; f++){
     const t = f / FPS; let i = inizio.findIndex((a, k) => t >= a && t < a + dur[k]); if(i < 0) i = spec.scene.length - 1;
     if(i !== scena){
-      scena = i; await p.evaluate(([s, w, h]) => window.mostra(s, w, h), [spec.scene[i], parole[i] || [], [spec.data, i, spec.scene.length, dur[i]]]);
+      scena = i; await p.evaluate(([s, w, h]) => window.mostra(s, w, h), [spec.scene[i], parole[i] || [], [spec.data, i, spec.scene.length, dur[i], inizio[i]]]);
       eventi.push([inizio[i], 'colpo'], ...(await p.evaluate(() => window.suoni())).map(([x, k]) => [inizio[i] + x, k]));
     }
     const tl = t - inizio[i];
