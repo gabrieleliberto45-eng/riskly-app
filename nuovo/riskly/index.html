@@ -17,7 +17,7 @@ function rSegnaGestore(email){ if(['gabrieleliberto1212@gmail.com','gabrielelibe
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Riskly — Bot, corsi, journal e strumenti per il trading</title>
-<meta name="description" content="Tutto quello che serve a un trader: bot di gestione per MetaTrader 4 e 5, corsi di gestione del rischio e di analisi fondamentale, journal, calcolatori e calendario economico. Nessun segnale.">
+<meta name="description" content="Tutto quello che serve a un trader: bot di gestione per MetaTrader 4 e 5, corso di gestione del rischio, journal, calcolatori e calendario economico. Nessun segnale.">
 <link rel="canonical" href="https://riskly.trade/">
 <!-- anteprima quando il link viene condiviso (WhatsApp, Telegram, Instagram, Facebook, X) -->
 <meta property="og:type" content="website">
@@ -25,7 +25,7 @@ function rSegnaGestore(email){ if(['gabrieleliberto1212@gmail.com','gabrielelibe
 <meta property="og:locale" content="it_IT">
 <meta property="og:url" content="https://riskly.trade/">
 <meta property="og:title" content="Riskly — Il mercato non lo controlli. Tutto il resto sì.">
-<meta property="og:description" content="Bot per MT4 e MT5, corsi di gestione del rischio e analisi fondamentale, journal, calcolatori e calendario economico. Nessun segnale, nessuna promessa di guadagno.">
+<meta property="og:description" content="Bot per MT4 e MT5, corso di gestione del rischio, journal, calcolatori e calendario economico. Nessun segnale, nessuna promessa di guadagno.">
 <meta property="og:image" content="https://riskly.trade/anteprima.png?v=2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -2128,6 +2128,9 @@ body.fuori-home #vaiHome{display:inline-flex}
 .siti-barra a.sb-clienti{background:rgba(242,184,58,.14)}
 .siti-barra a.sb-clienti i{color:#B97C00}
 @media (max-width:640px){.siti-barra b .sb-lungo{display:none}.siti-barra b .sb-corto{display:inline!important;font:inherit!important;color:inherit!important}}
+/* analisi fondamentale e pacchetto tolti dal sito per ora (Gabriele, 1° novembre 2026): resta solo il corso di rischio */
+#corso-fondamentale[hidden],#pacchetto-corsi[hidden]{display:none!important}
+.cp-griglia.uno{grid-template-columns:minmax(0,640px);justify-content:center}
 .cp-griglia{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;align-items:start;margin-top:clamp(20px,3vw,36px)}
 .cp{background:#FBFBF9;border:1.5px solid #C9CDD1;border-radius:20px;overflow:hidden;box-shadow:0 14px 32px -20px rgba(21,24,27,.4);scroll-margin-top:90px}
 .cp-pacchetto{border-color:#F2B83A;box-shadow:0 0 0 3px rgba(242,184,58,.18),0 14px 32px -20px rgba(21,24,27,.4)}
@@ -2281,7 +2284,7 @@ body.fuori-home #vaiHome{display:inline-flex}
     <canvas class="hero-cv" aria-hidden="true"></canvas>
     <div class="wrap">
       <div class="hero-testa">
-        <span class="hero-tag"><i></i>5 bot · 2 videocorsi · journal · strumenti gratis</span>
+        <span class="hero-tag"><i></i>5 bot · videocorso · journal · strumenti gratis</span>
         <h1>Il mercato non lo controlli. <span class="seconda"><mark>Tutto il resto sì.</mark></span></h1>
         <p class="sotto">Bot, journal, calcolatori e corsi per gestire il rischio. In un posto solo. Niente segnali, niente promesse.</p>
       </div>
@@ -2307,7 +2310,7 @@ body.fuori-home #vaiHome{display:inline-flex}
           <a class="tile " href="#" onclick="go('corso');return false">
             <span class="tile-ic"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="13" rx="2.5"/><path d="M10 9l5 2.5-5 2.5z"/><path d="M8 21h8"/></svg></span>
             <span class="tile-badge">disponibili</span>
-            <b>Videocorsi</b><span class="tile-d">Gestione del rischio e analisi fondamentale: 110 lezioni.</span>
+            <b>Videocorso</b><span class="tile-d">Gestione del rischio: 50 lezioni.</span>
             <span class="tile-vai" aria-hidden="true">→</span>
           </a>
           <a class="tile " href="https://strumenti.riskly.trade/#calendario">
@@ -2331,8 +2334,8 @@ body.fuori-home #vaiHome{display:inline-flex}
     <svg class="candele" viewBox="0 0 1200 150" preserveAspectRatio="none" aria-hidden="true" focusable="false"><g class="c" style="--i:0"><line x1="20.0" y1="15.2" x2="20.0" y2="32.2" stroke="#15181B" stroke-width="2.4"/><rect x="8.8" y="22.3" width="22.4" height="3.0" fill="#15181B"/></g><g class="c" style="--i:1"><line x1="60.0" y1="12.0" x2="60.0" y2="33.1" stroke="#B97C00" stroke-width="2.4"/><rect x="48.8" y="19.1" width="22.4" height="5.6" fill="#B97C00"/></g><g class="c" style="--i:2"><line x1="100.0" y1="13.9" x2="100.0" y2="45.1" stroke="#15181B" stroke-width="2.4"/><rect x="88.8" y="19.1" width="22.4" height="17.5" fill="#15181B"/></g><g class="c" style="--i:3"><line x1="140.0" y1="28.4" x2="140.0" y2="41.2" stroke="#15181B" stroke-width="2.4"/><rect x="128.8" y="36.6" width="22.4" height="3.0" fill="#15181B"/></g><g class="c" style="--i:4"><line x1="180.0" y1="34.7" x2="180.0" y2="50.5" stroke="#15181B" stroke-width="2.4"/><rect x="168.8" y="38.4" width="22.4" height="6.4" fill="#15181B"/></g><g class="c" style="--i:5"><line x1="220.0" y1="42.7" x2="220.0" y2="52.0" stroke="#15181B" stroke-width="2.4"/><rect x="208.8" y="44.8" width="22.4" height="3.7" fill="#15181B"/></g><g class="c" style="--i:6"><line x1="260.0" y1="40.2" x2="260.0" y2="66.9" stroke="#15181B" stroke-width="2.4"/><rect x="248.8" y="48.5" width="22.4" height="11.2" fill="#15181B"/></g><g class="c" style="--i:7"><line x1="300.0" y1="52.2" x2="300.0" y2="76.8" stroke="#15181B" stroke-width="2.4"/><rect x="288.8" y="59.6" width="22.4" height="14.2" fill="#15181B"/></g><g class="c" style="--i:8"><line x1="340.0" y1="71.0" x2="340.0" y2="78.5" stroke="#15181B" stroke-width="2.4"/><rect x="328.8" y="73.8" width="22.4" height="3.0" fill="#15181B"/></g><g class="c" style="--i:9"><line x1="380.0" y1="69.1" x2="380.0" y2="79.9" stroke="#B97C00" stroke-width="2.4"/><rect x="368.8" y="72.6" width="22.4" height="3.8" fill="#B97C00"/></g><g class="c" style="--i:10"><line x1="420.0" y1="58.0" x2="420.0" y2="76.6" stroke="#B97C00" stroke-width="2.4"/><rect x="408.8" y="66.0" width="22.4" height="6.7" fill="#B97C00"/></g><g class="c" style="--i:11"><line x1="460.0" y1="54.1" x2="460.0" y2="72.6" stroke="#B97C00" stroke-width="2.4"/><rect x="448.8" y="59.8" width="22.4" height="6.1" fill="#B97C00"/></g><g class="c" style="--i:12"><line x1="500.0" y1="51.4" x2="500.0" y2="79.7" stroke="#15181B" stroke-width="2.4"/><rect x="488.8" y="59.8" width="22.4" height="13.1" fill="#15181B"/></g><g class="c" style="--i:13"><line x1="540.0" y1="58.5" x2="540.0" y2="77.0" stroke="#B97C00" stroke-width="2.4"/><rect x="528.8" y="66.6" width="22.4" height="6.3" fill="#B97C00"/></g><g class="c" style="--i:14"><line x1="580.0" y1="63.5" x2="580.0" y2="78.8" stroke="#15181B" stroke-width="2.4"/><rect x="568.8" y="66.6" width="22.4" height="9.1" fill="#15181B"/></g><g class="c" style="--i:15"><line x1="620.0" y1="71.6" x2="620.0" y2="98.5" stroke="#15181B" stroke-width="2.4"/><rect x="608.8" y="75.7" width="22.4" height="16.6" fill="#15181B"/></g><g class="c" style="--i:16"><line x1="660.0" y1="85.7" x2="660.0" y2="114.8" stroke="#15181B" stroke-width="2.4"/><rect x="648.8" y="92.3" width="22.4" height="18.2" fill="#15181B"/></g><g class="c" style="--i:17"><line x1="700.0" y1="102.9" x2="700.0" y2="126.2" stroke="#15181B" stroke-width="2.4"/><rect x="688.8" y="110.5" width="22.4" height="10.4" fill="#15181B"/></g><g class="c" style="--i:18"><line x1="740.0" y1="115.6" x2="740.0" y2="138.0" stroke="#15181B" stroke-width="2.4"/><rect x="728.8" y="120.9" width="22.4" height="10.2" fill="#15181B"/></g><g class="c" style="--i:19"><line x1="780.0" y1="122.4" x2="780.0" y2="137.0" stroke="#15181B" stroke-width="2.4"/><rect x="768.8" y="131.1" width="22.4" height="3.6" fill="#15181B"/></g><g class="c" style="--i:20"><line x1="820.0" y1="113.0" x2="820.0" y2="136.9" stroke="#B97C00" stroke-width="2.4"/><rect x="808.8" y="120.8" width="22.4" height="13.9" fill="#B97C00"/></g><g class="c" style="--i:21"><line x1="860.0" y1="101.4" x2="860.0" y2="126.8" stroke="#B97C00" stroke-width="2.4"/><rect x="848.8" y="105.9" width="22.4" height="14.9" fill="#B97C00"/></g><g class="c" style="--i:22"><line x1="900.0" y1="103.6" x2="900.0" y2="114.0" stroke="#15181B" stroke-width="2.4"/><rect x="888.8" y="105.9" width="22.4" height="4.8" fill="#15181B"/></g><g class="c" style="--i:23"><line x1="940.0" y1="88.3" x2="940.0" y2="118.0" stroke="#B97C00" stroke-width="2.4"/><rect x="928.8" y="91.6" width="22.4" height="19.1" fill="#B97C00"/></g><g class="c" style="--i:24"><line x1="980.0" y1="64.7" x2="980.0" y2="96.0" stroke="#B97C00" stroke-width="2.4"/><rect x="968.8" y="73.1" width="22.4" height="18.5" fill="#B97C00"/></g><g class="c" style="--i:25"><line x1="1020.0" y1="63.6" x2="1020.0" y2="80.5" stroke="#B97C00" stroke-width="2.4"/><rect x="1008.8" y="69.2" width="22.4" height="3.9" fill="#B97C00"/></g><g class="c" style="--i:26"><line x1="1060.0" y1="62.1" x2="1060.0" y2="79.0" stroke="#15181B" stroke-width="2.4"/><rect x="1048.8" y="69.2" width="22.4" height="3.0" fill="#15181B"/></g><g class="c" style="--i:27"><line x1="1100.0" y1="52.5" x2="1100.0" y2="80.0" stroke="#B97C00" stroke-width="2.4"/><rect x="1088.8" y="54.8" width="22.4" height="16.7" fill="#B97C00"/></g><g class="c" style="--i:28"><line x1="1140.0" y1="50.5" x2="1140.0" y2="63.8" stroke="#15181B" stroke-width="2.4"/><rect x="1128.8" y="54.8" width="22.4" height="3.0" fill="#15181B"/></g><g class="c" style="--i:29"><line x1="1180.0" y1="35.0" x2="1180.0" y2="65.9" stroke="#B97C00" stroke-width="2.4"/><rect x="1168.8" y="39.4" width="22.4" height="18.2" fill="#B97C00"/></g><line class="stop" x1="0" y1="136.7" x2="1200" y2="136.7" stroke="#F2B83A" stroke-width="2.5" stroke-dasharray="9 7"/><text x="1192" y="128.7" text-anchor="end" font-family="Martian Mono, monospace" font-size="15" font-weight="700" fill="#B97C00">STOP −1%</text></svg>
     <div class="wrap">
       <div><b>5</b><span>bot per MT4 e MT5</span></div>
-      <div><b>2</b><span>videocorsi</span></div>
-      <div><b>110</b><span>lezioni video</span></div>
+      <div><b>1</b><span>videocorso</span></div>
+      <div><b>50</b><span>lezioni video</span></div>
       <div><b>1</b><span>journal con i bot collegati</span></div>
       <div><b>0€</b><span>calcolatori e calendario</span></div>
     </div>
@@ -3500,12 +3503,12 @@ body.fuori-home #vaiHome{display:inline-flex}
   <section>
     <div class="wrap">
       <div class="sez-titolo pagina">
-        <span class="sez-num">Videocorsi</span>
+        <span class="sez-num">Videocorso</span>
         <h2>Quello che di solito si impara <em>dopo il primo conto bruciato.</em></h2>
-        <p class="lead">Qui lo impari prima, e costa molto meno. Il primo corso ti insegna quanto rischiare e quando fermarti; il secondo perché il prezzo si muove quando escono i dati. Spiegati a voce, come a lezione, con esempi veri in euro e pip. Niente strategie, niente segnali.</p>
+        <p class="lead">Qui lo impari prima, e costa molto meno. Il corso ti insegna quanto rischiare e quando fermarti. Spiegati a voce, come a lezione, con esempi veri in euro e pip. Niente strategie, niente segnali.</p>
       </div>
 
-      <div class="cp-griglia">
+      <div class="cp-griglia uno">
         <article class="cp" id="corso-rischio">
           <picture class="cp-img"><source srcset="/img/corso-rischio.webp" type="image/webp"><img src="/img/corso-rischio.jpg" width="1200" height="675" loading="lazy" alt="Videocorso Riskly sulla gestione del rischio"></picture>
           <div class="cp-corpo">
@@ -3627,7 +3630,7 @@ body.fuori-home #vaiHome{display:inline-flex}
       </details>
           </div>
         </article>
-        <article class="cp" id="corso-fondamentale">
+        <article class="cp" id="corso-fondamentale" hidden>
           <picture class="cp-img"><img src="/img/corso-fondamentale.webp" width="1200" height="675" loading="lazy" alt="Videocorso Riskly di analisi fondamentale"></picture>
           <div class="cp-corpo">
             <span class="cp-tag">Nuovo</span>
@@ -3738,7 +3741,7 @@ body.fuori-home #vaiHome{display:inline-flex}
       </details>
           </div>
         </article>
-        <article class="cp cp-pacchetto" id="pacchetto-corsi">
+        <article class="cp cp-pacchetto" id="pacchetto-corsi" hidden>
           <picture class="cp-img"><source srcset="/img/corso-pacchetto.webp" type="image/webp"><img src="/img/corso-pacchetto.jpg" width="1200" height="675" loading="lazy" alt="Pacchetto Riskly: corso di gestione del rischio e di analisi fondamentale"></picture>
           <div class="cp-corpo">
             <span class="cp-tag">Conviene</span>
@@ -4836,7 +4839,7 @@ const PREZZO_DOPO_LANCIO = { 'RiskGuard':149, 'TradeManager':79, 'ScaleIn':129, 
 const VENDITA_FORZATA = null;
 const VENDITA_ATTIVA = VENDITA_FORZATA !== null ? VENDITA_FORZATA : Date.now() >= new Date('2026-10-23T18:00:00+02:00').getTime();
 /* prodotti già in vendita anche prima del lancio generale */
-const IN_VENDITA_ORA = ['Videocorso', 'Corso Analisi fondamentale', 'Pacchetto corsi'];   /* i due nuovi si attivano appena c'è il link Stripe */
+const IN_VENDITA_ORA = ['Videocorso'];   /* analisi fondamentale e pacchetto tolti per ora (1° novembre 2026) */   /* i due nuovi si attivano appena c'è il link Stripe */
 /* il journal è in vendita da subito: restano in attesa solo i bot */
 const JOURNAL_IN_VENDITA = true;
 /* l'amministratore può comprare tutto anche prima del lancio, per provare gli acquisti con un codice sconto */
@@ -6586,9 +6589,9 @@ document.addEventListener('keydown', e=>{ if(e.key === 'Escape') chiudiAltro(); 
 <script>
 /* ---------- Assistente: cerca la risposta tra FAQ e schede del sito ---------- */
 const CHAT_EXTRA = [
-  { q: 'Quanto costano i corsi? Videocorsi', k: 'corso corsi videocorso videocorsi prezzo costano costa rischio fondamentale analisi pacchetto lezioni telegram attestato',
-    a: '<p>I corsi si pagano <b>una volta sola</b>, con accesso a vita:</p><p><b>Gestione del rischio</b> 199 € al lancio (poi 249 €) · 50 lezioni<br><b>Analisi fondamentale</b> 299 € · 60 lezioni<br><b>Pacchetto con tutti e due</b> 399 € invece di 498 €</p><p>Le lezioni sono in un gruppo Telegram privato, con dispense, quiz e attestato. Chi ha un bot ha il 50% di sconto sul corso di gestione del rischio.</p>',
-    azioni: [['Vedi i corsi', "chatChiudi();go('corso')"]] },
+  { q: 'Quanto costa il corso? Videocorso', k: 'corso corsi videocorso videocorsi prezzo costano costa rischio lezioni telegram attestato',
+    a: '<p>Il corso si paga <b>una volta sola</b>, con accesso a vita:</p><p><b>Gestione del rischio</b> 199 € al lancio (poi 249 €) · 50 lezioni</p><p>Le lezioni sono in un gruppo Telegram privato, con dispense, quiz e attestato. Chi ha un bot ha il 50% di sconto sul corso di gestione del rischio.</p>',
+    azioni: [['Vedi il corso', "chatChiudi();go('corso')"]] },
   { q: 'Quanto costano i bot?', k: 'prezzo prezzi bot riskguard trademanager scalein riskly pro costano listino sconto lancio',
     a: '<p>Si pagano <b>una volta sola</b>, niente abbonamento, aggiornamenti inclusi:</p><p><b>RiskGuard</b> 99 € · <b>TradeManager</b> 49 € · <b>ScaleIn</b> 79 € · <b>Riskly Pro</b> 199 € · <b>RisklyCopy</b> 69 €</p><p>Sono prezzi di lancio: dopo diventano 149 €, 79 €, 129 €, 299 € e 129 €. Per i primi 10 restano bloccati a vita. Chi compra un bot ha il 50% di sconto sul videocorso.</p>',
     azioni: [['Vedi i bot', "chatChiudi();go('bot')"]] },
