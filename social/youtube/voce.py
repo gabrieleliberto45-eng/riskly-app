@@ -42,9 +42,10 @@ async def main(vid):
         if spec.get('pause'):
             await frasi(pronuncia(s['voce']), out)
         else:
-            c = edge_tts.Communicate(pronuncia(s['voce']), 'it-IT-GiuseppeMultilingualNeural', rate='+0%')
+            # voce e velocità si possono scegliere nel json ("voce_edge", "velocita"); di base Giuseppe
+            c = edge_tts.Communicate(pronuncia(s['voce']), spec.get('voce_edge', 'it-IT-GiuseppeMultilingualNeural'), rate=spec.get('velocita', '+0%'))
             await c.save(out)
-        print(out, 'Giuseppe')
+        print(out, spec.get('voce_edge', 'Giuseppe'))
 
 # Giuseppe tende a legare le frasi (1° novembre: "Niente previsioni: segna le date" diventava un'altra cosa):
 # con "pause": true nel json ogni frase è sintetizzata da sola e unita con un silenzio vero (punto 0,35 s, domanda 0,5 s, due punti 0,3 s)

@@ -19,6 +19,7 @@ function effetti(eventi, totale, out){
     const i0 = Math.floor(t * SR); if(i0 < 0 || i0 >= n) continue;
     if(tipo === 'clic') for(let i = 0; i < SR * 0.012 && i0 + i < n; i++) a[i0 + i] += rnd() * 0.35 * Math.exp(-i / (SR * 0.002));
     if(tipo === 'colpo') for(let i = 0; i < SR * 0.25 && i0 + i < n; i++){ const s = i / SR; a[i0 + i] += (Math.sin(2 * Math.PI * (70 - 30 * s) * s) * 0.9 + rnd() * 0.25 * Math.exp(-s / 0.01)) * Math.exp(-s / 0.07); }
+    if(tipo === 'botto') for(let i = 0; i < SR * 0.7 && i0 + i < n; i++){ const s = i / SR; a[i0 + i] += (Math.sin(2 * Math.PI * (55 - 25 * s) * s) * 1.1 + rnd() * 0.5 * Math.exp(-s / 0.03) + rnd() * 0.15 * Math.exp(-s / 0.25)) * Math.exp(-s / 0.18); }
     if(tipo === 'notifica') for(let i = 0; i < SR * 0.5 && i0 + i < n; i++){ const s = i / SR, f = s < 0.12 ? 988 : 1319; a[i0 + i] += Math.sin(2 * Math.PI * f * s) * 0.35 * Math.exp(-((s % 0.12) || s) / 0.15); }
   }
   const b = Buffer.alloc(44 + n * 2);
