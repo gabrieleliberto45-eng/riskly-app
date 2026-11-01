@@ -1584,6 +1584,49 @@ html[data-tema="scuro"] .str-nav button{color:#C3CAC5!important}
 html[data-tema="scuro"] .str-nav button.on{background:#F2B83A!important;color:#1C1700!important}
 html[data-tema="scuro"] .s-testa .s-tema{border-color:#ECEEEA!important;color:#ECEEEA!important;background:rgba(255,255,255,.04)!important}
 </style>
+<style id="pc">
+/* ══════ JOURNAL SUL PC (Gabriele, 1° novembre 2026: "adattarli meglio al pc, più professional") ══════
+   la scheda P&L prendeva lo stile .hero del sito (griglia a due colonne e 70px di margine) */
+.jkpi.hero{display:block!important;padding:18px 20px!important;gap:0!important}
+.jkpi.hero .jkpi-val{white-space:nowrap}
+.jconti[hidden]{display:none!important}
+@media (min-width:900px){
+  body.in-app{--rail:92px}
+  body.in-app #appJournal{padding-left:var(--rail);padding-bottom:40px}
+  body.in-app .app-nav .wrap{max-width:none;padding:0 24px}
+  body.in-app .app-corpo .wrap{max-width:1340px;padding:0 28px}
+  /* la barra in basso diventa una colonna fissa a sinistra, come nei programmi da computer */
+  body.in-app .jbarra{left:0;right:auto;top:66px;bottom:0;transform:none;width:var(--rail);height:auto;
+    display:flex;flex-direction:column;align-items:stretch;gap:4px;padding:18px 10px;
+    border-radius:0;border:0!important;border-right:1px solid var(--line)!important;box-shadow:none;
+    background:var(--bg);backdrop-filter:none;-webkit-backdrop-filter:none}
+  body.in-app .jbarra button{padding:11px 4px;border-radius:12px;font-size:11px;gap:5px}
+  body.in-app .jbarra button svg{width:21px;height:21px}
+  body.in-app .jbarra button.on{background:var(--panel-hi,rgba(21,24,27,.08))!important;color:var(--text)!important;box-shadow:inset 3px 0 0 var(--accent)}
+  html[data-tema="scuro"] body.in-app .jbarra button.on{background:#1C211F!important;color:#ECEEEA!important}
+  body.in-app .jbarra .jb-piu{order:-1;width:auto;height:46px;margin:0 0 14px;border-radius:12px;flex-direction:row;justify-self:auto;
+    background:var(--accent)!important;color:#15181B!important;box-shadow:none!important}
+  body.in-app .jbarra .jb-piu:hover,body.in-app .jbarra .jb-piu.on,html[data-tema="scuro"] body.in-app .jbarra .jb-piu.on{filter:brightness(1.08);background:var(--accent)!important;color:#15181B!important;box-shadow:none!important}
+  body.in-app .jbarra .jb-piu svg{width:22px;height:22px}
+  body.in-app .jtoast,body.in-app #tornaSu{bottom:24px}
+  body.in-app .app-corpo>section{padding-top:26px}
+}
+@media (min-width:1280px){
+  body.in-app{--rail:232px}
+  body.in-app .jbarra{padding:22px 14px}
+  body.in-app .jbarra button{flex-direction:row;justify-content:flex-start;gap:12px;padding:11px 14px;font-size:14px;font-weight:500}
+  body.in-app .jbarra .jb-piu{justify-content:center;font-weight:600}
+  body.in-app .jbarra .jb-piu::after{content:'Nuova operazione';font-size:14px}
+  /* conto e saldo affiancati, obiettivi sotto: meno scorrimento */
+  body.in-app[data-vista="panoramica"] .app-corpo .wrap{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:14px;align-items:start}
+  body.in-app[data-vista="panoramica"] .app-corpo .wrap>*{grid-column:1/-1}
+  body.in-app[data-vista="panoramica"] .app-corpo .wrap>#jconti{grid-column:1/span 5;align-self:stretch;margin-bottom:14px}
+  body.in-app[data-vista="panoramica"] .app-corpo .wrap>#jconto{grid-column:6/-1;align-self:stretch;margin-bottom:14px}
+  body.in-app[data-vista="panoramica"] .app-corpo .wrap>#jconti[hidden]+#jconto,
+  body.in-app[data-vista="panoramica"] .app-corpo .wrap>#jconti[style*="none"]+#jconto{grid-column:1/-1}
+  body.in-app .jkpis{grid-template-columns:repeat(6,minmax(0,1fr))}
+}
+</style>
 </head>
 <body>
 
@@ -5834,6 +5877,7 @@ function aggiornaVista(){
   const dentro = !!utente;
   benv.style.display = dentro ? 'none' : 'flex';
   app.style.display  = dentro ? 'block' : 'none';
+  document.body.classList.toggle('in-app', dentro);
 
   if(dentro) avviaJournal();
   if(dentro) setTimeout(j_forseChiediMetodo, 1200);
