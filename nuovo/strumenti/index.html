@@ -1393,7 +1393,7 @@ function rSegnaGestore(email){ if(['gabrieleliberto1212@gmail.com','gabrielelibe
   .nw-filtri button{border:1px solid var(--line);background:none;color:var(--text);font:inherit;font-size:.88rem;font-weight:600;padding:7px 14px;border-radius:999px;cursor:pointer}
   .nw-filtri button.on{background:var(--text);color:var(--bg,#fff);border-color:var(--text)}
   .nw-lista{display:flex;flex-direction:column;gap:14px}
-  .nw-art{display:block;width:100%;text-align:left;background:var(--panel,#fff);border:1px solid var(--line);border-radius:18px;padding:18px 20px;cursor:pointer;color:inherit;font:inherit}
+  .nw-art{display:block;width:100%;text-align:left;text-decoration:none;background:var(--panel,#fff);border:1px solid var(--line);border-radius:18px;padding:18px 20px;cursor:pointer;color:inherit;font:inherit}
   .nw-art:hover{border-color:#B97C00}
   .nw-meta{display:flex;align-items:center;gap:10px;font-size:.8rem;color:var(--muted,#6E6A62);margin-bottom:8px}
   .nw-cat{font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:.72rem;padding:3px 9px;border-radius:999px;background:rgba(185,124,0,.12);color:#8A5D00}
@@ -1785,10 +1785,10 @@ html[data-tema="scuro"] .s-testa .s-tema{border-color:#ECEEEA!important;color:#E
       </div>
       <div class="str-pannello" id="st-news">
         <div class="card">
-          <div class="card-head"><h3>Riskly News</h3><span class="meta" id="nwAgg"></span></div>
-          <p class="cal-sotto">Ogni giorno quello che muove il mercato che seguiamo: oro, dollaro, Fed e tassi, banche centrali e notizie straordinarie. Fatti verificati con le fonti, spiegati in modo semplice. Niente previsioni.</p>
-          <div class="nw-filtri" id="nwFiltri"></div>
-          <div id="nwCorpo"><p class="cal-sotto">Caricamento degli articoli…</p></div>
+          <div class="card-head"><h3>Riskly News</h3><span class="meta">news.riskly.trade</span></div>
+          <p class="cal-sotto">Ogni mattina quello che muove il mercato che seguiamo: oro, dollaro, Fed e tassi, banche centrali e notizie straordinarie. Fatti verificati con le fonti, spiegati in modo semplice. Niente previsioni.</p>
+          <div id="nwCorpo"></div>
+          <a class="btn pri" href="https://news.riskly.trade" style="margin-top:14px">Vai a Riskly News</a>
         </div>
       </div>
       <div class="str-pannello" id="st-posizione">
@@ -2197,49 +2197,20 @@ const set=(id,t)=>document.getElementById(id).textContent=t;
 calcPos(); calcRuin(); calcProp(); calcBE(); calcComp();
 
 /* ═══ STRUMENTI: sotto-pagine e calendario economico ═══ */
-/* ---------- Riskly News ---------- */
-const NW_URL = 'https://raw.githubusercontent.com/gabrieleliberto45-eng/riskly-app/main/notizie/articoli.json';
-const NW_CAT = { tutti: 'Tutti', oro: 'Oro', dollaro: 'Dollaro', fed: 'Fed', tassi: 'Tassi e banche centrali', straordinarie: 'Straordinarie', settimana: 'La settimana' };
-let nwArticoli = null, nwFiltro = 'tutti', nwCarico = null;
-const nwEsc = x => String(x == null ? '' : x).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-const nwData = d => { try{ return new Date(d + 'T12:00:00').toLocaleDateString('it-IT', { weekday: 'short', day: 'numeric', month: 'long' }); }catch(e){ return d; } };
-function nwCarica(){
-  if(!nwCarico) nwCarico = fetch(NW_URL + '?v=' + Math.floor(Date.now() / 300000), { cache: 'no-store' })
-    .then(r => { if(!r.ok) throw new Error(r.status); return r.json(); })
-    .then(d => { nwArticoli = (d.articoli || []).slice().sort((a, b) => (b.data || '').localeCompare(a.data || '')); const e = document.getElementById('nwAgg'); if(e && d.aggiornato) e.textContent = 'aggiornato ' + nwData(d.aggiornato); })
-    .catch(() => { nwArticoli = []; nwCarico = null; document.getElementById('nwCorpo').innerHTML = '<p class="cal-sotto">Non riesco a caricare gli articoli adesso. Riprova tra poco.</p>'; throw 0; });
-  return nwCarico;
-}
-function nwMostra(id){
-  nwCarica().then(() => {
-    const presenti = new Set(nwArticoli.map(a => a.categoria));
-    document.getElementById('nwFiltri').innerHTML = Object.keys(NW_CAT).filter(k => k === 'tutti' || presenti.has(k))
-      .map(k => `<button type="button" class="${k === nwFiltro ? 'on' : ''}" onclick="nwFiltro='${k}';nwMostra()">${NW_CAT[k]}</button>`).join('');
-    const corpo = document.getElementById('nwCorpo');
-    const a = id && nwArticoli.find(x => x.id === id);
-    if(a){
-      document.getElementById('nwFiltri').hidden = true;
-      corpo.innerHTML = `<article class="nw-pezzo"><button type="button" class="nw-indietro" onclick="nwApri('')">← Tutti gli articoli</button>
-        <div class="nw-meta"><span class="nw-cat ${nwEsc(a.categoria)}">${nwEsc(NW_CAT[a.categoria] || a.categoria)}</span><span>${nwEsc(nwData(a.data))}</span></div>
-        <h3>${nwEsc(a.titolo)}</h3><p class="nw-somm">${nwEsc(a.sommario)}</p>
-        ${(a.corpo || []).map(p => `<p>${nwEsc(p)}</p>`).join('')}
-        ${(a.da_guardare || []).length ? `<div class="nw-box"><b>Da guardare</b><ul>${a.da_guardare.map(x => `<li>${nwEsc(x)}</li>`).join('')}</ul></div>` : ''}
-        ${(a.fonti || []).length ? `<p class="nw-fonti">Fonti: ${a.fonti.map(f => `<a href="${nwEsc(f.url)}" target="_blank" rel="noopener">${nwEsc(f.nome)}</a>`).join(' · ')}</p>` : ''}
-        <p class="nw-avviso">Contenuto informativo ed educativo, non è consulenza finanziaria né una previsione. Il trading con leva comporta un alto rischio: puoi perdere tutto il capitale.</p></article>`;
-      return;
-    }
-    document.getElementById('nwFiltri').hidden = false;
-    const lista = nwArticoli.filter(x => nwFiltro === 'tutti' || x.categoria === nwFiltro);
-    corpo.innerHTML = lista.length ? `<div class="nw-lista">${lista.map(x => `<button type="button" class="nw-art" onclick="nwApri('${nwEsc(x.id)}')">
-        <div class="nw-meta"><span class="nw-cat ${nwEsc(x.categoria)}">${nwEsc(NW_CAT[x.categoria] || x.categoria)}</span><span>${nwEsc(nwData(x.data))}</span></div>
-        <h4>${nwEsc(x.titolo)}</h4><p>${nwEsc(x.sommario)}</p><span class="nw-leggi">Leggi l'articolo →</span></button>`).join('')}</div>`
-      : '<p class="cal-sotto">Nessun articolo in questa categoria per ora.</p>';
-  }).catch(() => {});
-}
-function nwApri(id){
-  history.replaceState(null, '', '#news' + (id ? '/' + id : ''));
-  nwMostra(id);
-  const n = document.getElementById('st-news'); if(n) n.scrollIntoView({ behavior: 'smooth', block: 'start' });
+/* ---------- Riskly News: gli ultimi titoli (pubblici) e il link al sotto sito news.riskly.trade, in abbonamento ---------- */
+const NW_CAT = { oro: 'Oro', dollaro: 'Dollaro', fed: 'Fed', tassi: 'Tassi', straordinarie: 'Straordinarie', settimana: 'La settimana' };
+let nwFatto = false;
+function nwMostra(){
+  if(nwFatto || !ACC.sb) return;
+  nwFatto = true;
+  const esc = x => String(x == null ? '' : x).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  ACC.sb.from('notizie_anteprima').select('*').order('data', { ascending: false }).limit(3).then(({ data, error }) => {
+    const c = document.getElementById('nwCorpo');
+    if(error || !data || !data.length){ c.innerHTML = ''; return; }
+    c.innerHTML = `<div class="nw-lista">${data.map(a => `<a class="nw-art" href="https://news.riskly.trade/#/${encodeURIComponent(a.id)}">
+      <div class="nw-meta"><span class="nw-cat ${esc(a.categoria)}">${esc(NW_CAT[a.categoria] || a.categoria)}</span><span>${esc(new Date(a.data + 'T12:00:00').toLocaleDateString('it-IT', { day: 'numeric', month: 'long' }))}</span></div>
+      <h4>${esc(a.titolo)}</h4><p>${esc(a.sommario)}</p><span class="nw-leggi">Leggi su Riskly News →</span></a>`).join('')}</div>`;
+  });
 }
 function strTab(nome){
   document.querySelectorAll('.str-pannello').forEach(x => x.classList.toggle('on', x.id === 'st-' + nome));
@@ -2720,7 +2691,7 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape') calFiltriApri
             .observe(pag, { attributes: true, attributeFilter: ['class'] });
 })();
 /* sito separato: la pagina è sempre aperta; si può aprire una scheda con #calendario, #montecarlo... */
-(function(){ const h = location.hash.slice(1); if(h.startsWith('news/')){ strTab('news'); nwApri(h.slice(5)); } else if(h && document.getElementById('st-' + h)) strTab(h);
+(function(){ const h = location.hash.slice(1); if(h && document.getElementById('st-' + h)) strTab(h);
   else if(document.getElementById('st-calendario').classList.contains('on')) calDisegna(); })();
 
 </script>
@@ -2773,6 +2744,7 @@ const ACC = { sb: null, utente: null, modo: 'registrati', timer: null, applico: 
 /* chiavi che seguono l'account; avvisi e iscrizione push restano del singolo dispositivo */
 const ACC_CHIAVI = ['riskly-calendario', 'riskly-cal-pref', 'riskly-cal-giorno', 'riskly-calc-sym', 'riskly-strumento', 'riskly-tema', 'riskly-campi'];
 try { ACC.sb = window.supabase.createClient('https://swlztverwfgdgchgpudt.supabase.co', 'sb_publishable_j9bujIvCEz6x21yYoCODPw_lIZCJrIR'); } catch(e) {}
+if(document.getElementById('st-news') && document.getElementById('st-news').classList.contains('on')) nwMostra();
 const accEsc = t => String(t == null ? '' : t).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
 
 /* valori dei calcolatori: si ricordano sempre (anche senza account) */

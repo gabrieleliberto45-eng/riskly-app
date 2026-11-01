@@ -5,7 +5,8 @@
 //    (client_reference_id = id dell'account), lo mette "attivo" e,
 //    se è un piano del journal, assegna il piano al profilo
 //  - checkout.session.expired   → il cliente non ha pagato: ordine "rifiutato"
-//  - customer.subscription.deleted → abbonamento al journal finito: piano tolto
+//  - customer.subscription.deleted → abbonamento finito: si chiude solo quello finito
+//    (Riskly News → acquisto "scaduto"; journal → piano tolto)
 //
 // Segreti richiesti (Supabase → Edge Functions → Secrets):
 //   STRIPE_WEBHOOK_SECRET  (whsec_..., dall'endpoint creato su Stripe)
@@ -66,6 +67,9 @@ const PRODOTTO_DEL_LINK: Record<string, string> = {
   "plink_1UKhSpC4UovOoFaV1rsuVXYt": "Journal Premium mensile",
   "plink_1UKhSqC4UovOoFaVUwcAf1SB": "Journal Premium annuale",
   "plink_1UKhSsC4UovOoFaVMKHFTaLQ": "Journal Premium a vita",
+  // Riskly News (news.riskly.trade): aggiungere qui gli id dei link quando sono creati su Stripe
+  // "plink_...": "Riskly News mensile",
+  // "plink_...": "Riskly News annuale",
 };
 
 /* l'ordine in attesa dello stesso cliente e dello stesso prodotto, il più recente */
@@ -96,6 +100,10 @@ async function pagato(s: any) {
     const { error } = await db.from("acquisti").insert({ utente, prodotto, prezzo: importo, stato: "attivo", stripe_sessione: s.id });
     if (error) throw new Error(error.message);
   }
+  /* abbonamento: ricordo quale, così quando finisce si chiude solo questo (colonna da supabase/news.sql) */
+  if (s.subscription) {
+    await db.from("acquisti").update({ stripe_abbonamento: String(s.subscription) }).eq("stripe_sessione", s.id);
+  }
 
   const piano = pianoDa(prodotto);
   if (piano) {
@@ -122,6 +130,18 @@ async function scaduto(s: any) {
 }
 
 async function abbonamentoFinito(sub: any) {
+  /* se so di quale acquisto è l'abbonamento, chiudo solo quello */
+  if (sub.id) {
+    const { data: righe } = await db.from("acquisti").select("id, prodotto, utente").eq("stripe_abbonamento", sub.id).limit(1);
+    if (righe && righe.length) {
+      const r = righe[0];
+      await db.from("acquisti").update({ stato: "scaduto" }).eq("id", r.id);
+      if (!pianoDa(r.prodotto)) return r.prodotto + " scaduto";
+      const { error } = await db.from("profili").update({ piano: "prova", scadenza: new Date().toISOString() }).eq("id", r.utente);
+      return error ? error.message : "piano tolto";
+    }
+  }
+  /* abbonamenti al journal di prima, senza l'id salvato: come prima */
   if (!sub.customer) return "nessun cliente";
   const { error } = await db.from("profili")
     .update({ piano: "prova", scadenza: new Date().toISOString() })

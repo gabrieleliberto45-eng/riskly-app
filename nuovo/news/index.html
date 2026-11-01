@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Riskly News · oro, dollaro, Fed e tassi ogni giorno</title>
+<meta name="description" content="Ogni giorno quello che muove oro, dollaro, Fed e tassi: fatti verificati, spiegati in modo semplice, con gli orari italiani. Niente previsioni.">
+<meta name="theme-color" content="#F3F4F1">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/favicon-32.png" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script>try{ if(localStorage.getItem('riskly-tema') === 'scuro') document.documentElement.setAttribute('data-tema', 'scuro'); }catch(e){}</script>
+<style>
+/* Riskly News (news.riskly.trade): sotto sito in abbonamento (Gabriele, 1° novembre 2026).
+   Titolo e sommario pubblici (vista notizie_anteprima), articolo intero solo per abbonati o Premium (tabella notizie, RLS in supabase/news.sql). */
+@font-face{font-family:'Archivo';src:url(/fonts/archivo.woff2) format('woff2');font-weight:100 900;font-stretch:62% 125%;font-display:swap}
+@font-face{font-family:'Martian Mono';src:url(/fonts/martian-mono.woff2) format('woff2');font-weight:100 800;font-stretch:75% 112.5%;font-display:swap}
+:root{--bg:#F3F4F1;--panel:#FBFBF9;--ink:#15181B;--ink2:#4B525A;--ink3:#6E747A;--line:#D8DBDD;--amber:#F2B83A;--amber-deep:#B97C00;--blu:#1D4FC4;--verde:#0F7A47;--rosso:#B0202E}
+html[data-tema="scuro"]{--bg:#0E1110;--panel:#171B19;--ink:#ECEEEA;--ink2:#C3CAC5;--ink3:#98A09A;--line:#2E3632;--amber-deep:#F2B83A;--blu:#7FA5FF;--verde:#4FD08F;--rosso:#FF7A85}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Archivo',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+.testa{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.testa .wrap{display:flex;align-items:center;gap:12px;height:68px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;text-decoration:none;margin-right:auto}
+.logo svg{width:34px;height:34px}
+.logo small{font:700 13px 'Martian Mono';letter-spacing:.08em;color:var(--amber-deep)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1.5px solid var(--ink);background:none;color:var(--ink);font:700 15px 'Archivo';padding:10px 16px;border-radius:12px;cursor:pointer;text-decoration:none}
+.btn.pri{background:var(--ink);color:var(--bg)}
+.btn.amb{background:var(--amber);border-color:var(--amber);color:#2B1E00}
+.btn.wide{width:100%}
+.ico{width:42px;height:42px;padding:0;border-radius:50%}
+.hero{padding:44px 0 26px}
+.hero .k{font:700 13px 'Martian Mono';letter-spacing:.12em;color:var(--amber-deep)}
+.hero h1{font-size:clamp(38px,7vw,64px);line-height:.98;font-stretch:80%;margin:10px 0 14px;letter-spacing:-.01em}
+.hero h1 em{font-style:normal;background:var(--amber);color:#2B1E00;padding:0 10px}
+.hero p{font-size:18px;line-height:1.5;color:var(--ink2);max-width:640px;margin:0}
+.abbonati{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:22px;padding:18px 20px;border:1.5px solid var(--amber);border-radius:18px;background:color-mix(in srgb,var(--amber) 9%,var(--panel))}
+.abbonati p{margin:0;flex:1 1 260px;font-size:15px;line-height:1.45;color:var(--ink2)}
+.abbonati p b{color:var(--ink)}
+.filtri{display:flex;gap:8px;flex-wrap:wrap;margin:26px 0 18px}
+.filtri button{border:1px solid var(--line);background:var(--panel);color:var(--ink);font:600 14px 'Archivo';padding:8px 14px;border-radius:999px;cursor:pointer}
+.filtri button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.lista{display:flex;flex-direction:column;gap:14px;padding-bottom:40px}
+.art{display:block;width:100%;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px 22px;cursor:pointer;color:inherit;font:inherit;text-decoration:none}
+.art:hover{border-color:var(--amber-deep)}
+.meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:13px;color:var(--ink3);margin-bottom:8px}
+.cat{font:700 11px 'Martian Mono';letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:999px;background:color-mix(in srgb,var(--amber) 18%,transparent);color:var(--amber-deep)}
+.cat.fed,.cat.tassi{background:color-mix(in srgb,var(--blu) 14%,transparent);color:var(--blu)}
+.cat.dollaro{background:color-mix(in srgb,var(--verde) 14%,transparent);color:var(--verde)}
+.cat.straordinarie{background:color-mix(in srgb,var(--rosso) 14%,transparent);color:var(--rosso)}
+.lucch{font:700 11px 'Martian Mono';letter-spacing:.06em;color:var(--ink3)}
+.art h2{font-size:21px;line-height:1.22;margin:0 0 6px}
+.art p{margin:0;font-size:16px;line-height:1.5;color:var(--ink2)}
+.pezzo{padding:30px 0 50px}
+.indietro{background:none;border:none;color:var(--ink);font:700 15px 'Archivo';cursor:pointer;padding:0;margin-bottom:16px}
+.pezzo h1{font-size:clamp(30px,5vw,44px);line-height:1.08;font-stretch:85%;margin:8px 0 14px}
+.pezzo .somm{font-size:19px;font-weight:600;line-height:1.45;margin:0 0 22px}
+.pezzo p{font-size:17px;line-height:1.7;margin:0 0 16px}
+.box{border-left:4px solid var(--amber-deep);background:color-mix(in srgb,var(--amber) 9%,var(--panel));border-radius:12px;padding:14px 18px;margin:22px 0}
+.box b{display:block;margin-bottom:6px}
+.box ul{margin:0;padding-left:20px}.box li{margin:5px 0;line-height:1.5}
+.fonti{font-size:14px;color:var(--ink2)}
+.muro{position:relative;margin-top:6px;border:1.5px solid var(--amber);border-radius:20px;padding:26px 24px;text-align:center;background:var(--panel)}
+.muro::before{content:'';position:absolute;left:0;right:0;top:-90px;height:90px;background:linear-gradient(transparent,var(--bg));pointer-events:none}
+.muro h3{font-size:24px;margin:0 0 8px;font-stretch:85%}
+.muro p{font-size:16px;line-height:1.5;color:var(--ink2);margin:0 0 18px}
+.muro .opz{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.muro small{display:block;margin-top:12px;color:var(--ink3);font-size:13px}
+.finto{filter:blur(5px);user-select:none;pointer-events:none;opacity:.6}
+.avviso{font-size:13px;color:var(--ink3);line-height:1.5;margin-top:22px}
+.piede{border-top:1px solid var(--line);padding:22px 0 40px;font-size:13px;color:var(--ink3);line-height:1.6}
+.piede a{margin-right:14px}
+.vuoto{color:var(--ink2);padding:20px 0}
+.velo{position:fixed;inset:0;z-index:60;background:rgba(21,24,27,.55);display:none;align-items:center;justify-content:center;padding:18px}
+.velo.on{display:flex}
+.modale{background:var(--panel);border-radius:22px;padding:26px 24px;width:100%;max-width:420px;position:relative}
+.modale h3{margin:0 0 6px;font-size:24px}
+.modale p{margin:0 0 16px;color:var(--ink2);line-height:1.45}
+.modale label{display:block;font-weight:700;font-size:14px;margin:12px 0 6px}
+.modale input{width:100%;font:16px 'Archivo';padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
+.modale .x{position:absolute;right:14px;top:12px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--ink)}
+.modale .err{color:var(--rosso);font-size:14px;min-height:20px;margin:10px 0}
+.modale .cambia{background:none;border:none;color:var(--amber-deep);font:700 14px 'Archivo';cursor:pointer;margin-top:12px;padding:0}
+.flash{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:12px 18px;border-radius:12px;font-weight:600;z-index:70;display:none}
+@media(max-width:560px){.logo small{display:none}.hero{padding-top:30px}.art{padding:18px}}
+</style>
+</head>
+<body>
+<header class="testa"><div class="wrap">
+  <a class="logo" href="/"><svg viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="10" fill="#15181B"/><path d="M10 30 L17 20 L23 25 L34 12" stroke="#F2B83A" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M10 34.5 H34" stroke="#9AA09A" stroke-width="3.6" stroke-linecap="round"/></svg>Riskly <small>NEWS</small></a>
+  <button type="button" class="btn ico" onclick="tema()" aria-label="Modalità scura o chiara"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+  <button type="button" class="btn" id="accBtn" onclick="accPulsante()">Accedi</button>
+</div></header>
+
+<main class="wrap" id="vista"></main>
+
+<footer class="wrap piede">
+  <a href="https://riskly.trade">riskly.trade</a><a href="https://strumenti.riskly.trade">Strumenti gratuiti</a><a href="https://app.riskly.trade">Journal</a><a href="https://riskly.trade/privacy.html">Privacy</a><a href="https://riskly.trade/termini.html">Termini</a>
+  <p>Riskly News è un contenuto informativo ed educativo: non è consulenza finanziaria, né una previsione o un segnale operativo. Il trading con leva (forex, CFD) comporta un alto rischio: puoi perdere tutto il capitale.</p>
+</footer>
+
+<div class="velo" id="velo" onclick="if(event.target===this) accChiudi()">
+  <form class="modale" id="accForm" onsubmit="accInvia(event)">
+    <button type="button" class="x" onclick="accChiudi()" aria-label="Chiudi">×</button>
+    <h3 id="accTit">Accedi</h3>
+    <p id="accSub">Usa lo stesso account di riskly.trade e del journal.</p>
+    <div id="accNomeBox"><label for="accNome">Nome</label><input id="accNome" autocomplete="given-name"></div>
+    <label for="accEmail">Email</label><input id="accEmail" type="email" required autocomplete="email">
+    <label for="accPass">Password</label><input id="accPass" type="password" required minlength="6" autocomplete="current-password">
+    <div class="err" id="accErr"></div>
+    <button type="submit" class="btn pri wide" id="accInvio">Accedi</button>
+    <button type="button" class="cambia" id="accCambia" onclick="accModo(ACC.modo === 'accedi' ? 'registrati' : 'accedi')">Non hai un account? Registrati gratis</button>
+  </form>
+</div>
+<div class="flash" id="flash"></div>
+
+<script src="/js/supabase.js"></script>
+<script>
+/* ---------- impostazioni ---------- */
+const SB_URL = 'https://swlztverwfgdgchgpudt.supabase.co', SB_KEY = 'sb_publishable_j9bujIvCEz6x21yYoCODPw_lIZCJrIR';
+/* link di pagamento Stripe di Riskly News (da creare su Stripe e aggiungere anche in supabase/functions/stripe-webhook) */
+const PAGA = { mensile: '', annuale: '' };
+const PREZZO = { mensile: '', annuale: '' };   /* es. '9,90 € al mese' */
+const CAT = { tutti: 'Tutti', oro: 'Oro', dollaro: 'Dollaro', fed: 'Fed', tassi: 'Tassi e banche centrali', straordinarie: 'Straordinarie', settimana: 'La settimana' };
+
+let sb = null; try{ sb = window.supabase.createClient(SB_URL, SB_KEY); }catch(e){}
+const ACC = { utente: null, accesso: false, modo: 'accedi', dopo: null };
+let ANTE = [], filtro = 'tutti';
+
+const esc = x => String(x == null ? '' : x).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const dataIt = d => { try{ return new Date(d + 'T12:00:00').toLocaleDateString('it-IT', { weekday: 'long', day: 'numeric', month: 'long' }); }catch(e){ return d; } };
+function flash(t){ const f = document.getElementById('flash'); f.textContent = t; f.style.display = 'block'; clearTimeout(flash.t); flash.t = setTimeout(() => f.style.display = 'none', 3200); }
+function tema(){
+  const s = document.documentElement.getAttribute('data-tema') === 'scuro' ? 'chiaro' : 'scuro';
+  document.documentElement.setAttribute('data-tema', s); try{ localStorage.setItem('riskly-tema', s); }catch(e){}
+}
+
+/* ---------- dati ---------- */
+async function caricaAnteprime(){
+  const { data, error } = await sb.from('notizie_anteprima').select('*').order('data', { ascending: false }).limit(200);
+  if(error) throw error;
+  ANTE = data || [];
+}
+async function controllaAccesso(){
+  ACC.accesso = false;
+  if(!ACC.utente) return;
+  const { data } = await sb.rpc('ha_news');
+  ACC.accesso = data === true;
+}
+
+/* ---------- viste ---------- */
+function bloccoAbbonati(){
+  if(ACC.accesso) return `<div class="abbonati"><p><b>Sei abbonato a Riskly News.</b> Ogni mattina trovi qui l'articolo del giorno.</p></div>`;
+  return `<div class="abbonati"><p><b>Titoli e sommari sono gratis.</b> Gli articoli completi, con il riquadro "Da guardare" e le fonti, sono per gli abbonati a Riskly News${PREZZO.mensile ? ' (' + esc(PREZZO.mensile) + ')' : ''}. Incluso nel piano Premium del journal.</p><button type="button" class="btn amb" onclick="abbonati()">Abbonati</button></div>`;
+}
+function vistaLista(){
+  const presenti = new Set(ANTE.map(a => a.categoria));
+  const lista = ANTE.filter(a => filtro === 'tutti' || a.categoria === filtro);
+  document.getElementById('vista').innerHTML = `
+    <section class="hero"><div class="k">RISKLY NEWS · OGNI GIORNO</div>
+      <h1>Quello che muove <em>il tuo mercato</em></h1>
+      <p>Oro, dollaro, Fed e tassi, banche centrali e notizie straordinarie: ogni mattina i fatti verificati con le fonti, spiegati in modo semplice e con gli orari italiani. Niente previsioni, niente segnali.</p>
+      ${bloccoAbbonati()}</section>
+    <div class="filtri">${Object.keys(CAT).filter(k => k === 'tutti' || presenti.has(k)).map(k => `<button type="button" class="${k === filtro ? 'on' : ''}" onclick="filtro='${k}';vistaLista()">${CAT[k]}</button>`).join('')}</div>
+    <div class="lista">${lista.length ? lista.map(a => `<a class="art" href="#/${esc(a.id)}">
+      <div class="meta"><span class="cat ${esc(a.categoria)}">${esc(CAT[a.categoria] || a.categoria)}</span><span>${esc(dataIt(a.data))}</span>${ACC.accesso ? '' : '<span class="lucch">🔒 ABBONATI</span>'}</div>
+      <h2>${esc(a.titolo)}</h2><p>${esc(a.sommario)}</p></a>`).join('') : '<p class="vuoto">Nessun articolo in questa categoria per ora.</p>'}</div>`;
+}
+async function vistaArticolo(id){
+  const v = document.getElementById('vista');
+  const a = ANTE.find(x => x.id === id);
+  if(!a){ v.innerHTML = `<div class="pezzo"><button class="indietro" onclick="location.hash=''">← Tutti gli articoli</button><p class="vuoto">Articolo non trovato.</p></div>`; return; }
+  document.title = a.titolo + ' · Riskly News';
+  let pieno = null;
+  if(ACC.accesso){
+    const { data } = await sb.from('notizie').select('*').eq('id', id).maybeSingle();
+    pieno = data;
+  }
+  const testa = `<button class="indietro" onclick="location.hash=''">← Tutti gli articoli</button>
+    <div class="meta"><span class="cat ${esc(a.categoria)}">${esc(CAT[a.categoria] || a.categoria)}</span><span>${esc(dataIt(a.data))}</span></div>
+    <h1>${esc(a.titolo)}</h1><p class="somm">${esc(a.sommario)}</p>`;
+  if(pieno){
+    v.innerHTML = `<article class="pezzo">${testa}
+      ${(pieno.corpo || []).map(p => `<p>${esc(p)}</p>`).join('')}
+      ${(pieno.da_guardare || []).length ? `<div class="box"><b>Da guardare</b><ul>${pieno.da_guardare.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>` : ''}
+      ${(pieno.fonti || []).length ? `<p class="fonti">Fonti: ${pieno.fonti.map(f => `<a href="${esc(f.url)}" target="_blank" rel="noopener">${esc(f.nome)}</a>`).join(' · ')}</p>` : ''}
+      <p class="avviso">Contenuto informativo ed educativo, non è consulenza finanziaria né una previsione. Il trading con leva comporta un alto rischio: puoi perdere tutto il capitale.</p></article>`;
+  } else {
+    v.innerHTML = `<article class="pezzo">${testa}
+      <p class="finto">Il resto dell'articolo spiega i numeri della giornata, cosa li ha mossi e cosa guardare nei prossimi giorni, con gli orari italiani e le fonti.</p>
+      <div class="muro"><h3>Continua a leggere con Riskly News</h3>
+        <p>Ogni mattina l'articolo completo su oro, dollaro, Fed e tassi, con il riquadro "Da guardare" e le fonti.${ACC.utente ? '' : ' Prima accedi o crea un account gratis.'}</p>
+        <div class="opz">${ACC.utente ? `<button class="btn amb" onclick="abbonati('mensile')">Abbonati${PREZZO.mensile ? ' · ' + esc(PREZZO.mensile) : ''}</button>${PAGA.annuale ? `<button class="btn" onclick="abbonati('annuale')">Annuale${PREZZO.annuale ? ' · ' + esc(PREZZO.annuale) : ''}</button>` : ''}`
+          : `<button class="btn pri" onclick="accApri('registrati', 'abbonati')">Crea un account</button><button class="btn" onclick="accApri('accedi')">Accedi</button>`}</div>
+        <small>Incluso nel piano Premium del journal. Disdici quando vuoi.</small></div></article>`;
+  }
+  window.scrollTo(0, 0);
+}
+function vista(){
+  const h = location.hash.replace(/^#\/?/, '');
+  if(h) vistaArticolo(decodeURIComponent(h)); else { document.title = 'Riskly News · oro, dollaro, Fed e tassi ogni giorno'; vistaLista(); }
+}
+window.addEventListener('hashchange', vista);
+
+/* ---------- abbonamento ---------- */
+function abbonati(tipo){
+  if(!ACC.utente){ accApri('registrati', 'abbonati'); return; }
+  if(ACC.accesso){ flash('Sei già abbonato.'); return; }
+  const link = PAGA[tipo || 'mensile'] || PAGA.mensile;
+  if(!link){ flash('L\'abbonamento apre a breve.'); return; }
+  const u = new URL(link);
+  u.searchParams.set('client_reference_id', ACC.utente.id);
+  if(ACC.utente.email) u.searchParams.set('prefilled_email', ACC.utente.email);
+  location.href = u.toString();
+}
+
+/* ---------- account (lo stesso di riskly.trade e del journal) ---------- */
+function accModo(m){
+  ACC.modo = m;
+  const reg = m === 'registrati';
+  document.getElementById('accTit').textContent = reg ? 'Crea un account' : 'Accedi';
+  document.getElementById('accSub').textContent = reg ? 'Gratis. Lo stesso account vale per riskly.trade e per il journal.' : 'Usa lo stesso account di riskly.trade e del journal.';
+  document.getElementById('accNomeBox').hidden = !reg;
+  document.getElementById('accInvio').textContent = reg ? 'Crea account' : 'Accedi';
+  document.getElementById('accCambia').textContent = reg ? 'Hai già un account? Accedi' : 'Non hai un account? Registrati gratis';
+  document.getElementById('accPass').autocomplete = reg ? 'new-password' : 'current-password';
+  document.getElementById('accErr').textContent = '';
+}
+function accApri(m, dopo){ ACC.dopo = dopo || null; accModo(m || 'accedi'); document.getElementById('velo').classList.add('on'); setTimeout(() => document.getElementById('accEmail').focus(), 50); }
+function accChiudi(){ document.getElementById('velo').classList.remove('on'); }
+async function accPulsante(){
+  if(!ACC.utente){ accApri('accedi'); return; }
+  if(confirm('Vuoi uscire dal tuo account?')){ await sb.auth.signOut(); }
+}
+async function accInvia(e){
+  e.preventDefault();
+  const email = document.getElementById('accEmail').value.trim(), pass = document.getElementById('accPass').value, err = document.getElementById('accErr');
+  err.textContent = '';
+  try{
+    if(ACC.modo === 'registrati'){
+      const nome = document.getElementById('accNome').value.trim();
+      const { data, error } = await sb.auth.signUp({ email, password: pass, options: { emailRedirectTo: location.origin + '/', data: { nome } } });
+      if(error) throw error;
+      if(!data.session){ err.style.color = 'var(--verde)'; err.textContent = 'Ti abbiamo mandato un\'email: conferma l\'indirizzo e poi accedi.'; return; }
+    } else {
+      const { error } = await sb.auth.signInWithPassword({ email, password: pass });
+      if(error) throw error;
+    }
+    accChiudi();
+    if(ACC.dopo === 'abbonati') setTimeout(() => abbonati(), 600);
+  }catch(x){
+    const m = (x && x.message) || String(x);
+    err.style.color = ''; err.textContent = /Invalid login/i.test(m) ? 'Email o password non corrette.' : /already registered/i.test(m) ? 'Questa email ha già un account: accedi.' : 'Non è andata: ' + m;
+  }
+}
+async function aggiornaUtente(sessione){
+  ACC.utente = sessione ? sessione.user : null;
+  document.getElementById('accBtn').textContent = ACC.utente ? 'Esci' : 'Accedi';
+  await controllaAccesso();
+  vista();
+}
+
+/* ---------- avvio ---------- */
+(async () => {
+  if(!sb){ document.getElementById('vista').innerHTML = '<p class="vuoto">Non riesco a collegarmi. Ricarica la pagina.</p>'; return; }
+  try{ await caricaAnteprime(); }catch(e){ document.getElementById('vista').innerHTML = '<p class="vuoto">Gli articoli non sono disponibili adesso. Riprova tra poco.</p>'; return; }
+  const { data } = await sb.auth.getSession();
+  await aggiornaUtente(data.session);
+  sb.auth.onAuthStateChange((ev, s) => { if(ev === 'SIGNED_IN' || ev === 'SIGNED_OUT') aggiornaUtente(s); });
+})();
+</script>
+</body>
+</html>

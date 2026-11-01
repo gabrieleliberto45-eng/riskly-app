@@ -1,0 +1,6 @@
+# news.riskly.trade: sito statico, gli articoli arrivano da Supabase (tabella notizie, vista notizie_anteprima)
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
