@@ -1,6 +1,6 @@
 -- Riskly News (news.riskly.trade), abbonamento a parte (Gabriele, 1° novembre 2026).
 -- Titolo e sommario sono pubblici; l'articolo intero lo leggono solo gli abbonati a Riskly News
--- e chi ha il piano Premium del journal. Da eseguire una volta nell'editor SQL di Supabase.
+-- (il Premium del journal era incluso: tolto con news-solo-abbonati.sql). Da eseguire una volta nell'editor SQL di Supabase.
 
 -- ─── 1. Articoli ───────────────────────────────────────────────────
 create table if not exists public.notizie (

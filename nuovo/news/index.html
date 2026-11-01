@@ -10,7 +10,7 @@
 <script>try{ if(localStorage.getItem('riskly-tema') === 'scuro') document.documentElement.setAttribute('data-tema', 'scuro'); }catch(e){}</script>
 <style>
 /* Riskly News (news.riskly.trade): sotto sito in abbonamento (Gabriele, 1° novembre 2026).
-   Titolo e sommario pubblici (vista notizie_anteprima), articolo intero solo per abbonati o Premium (tabella notizie, RLS in supabase/news.sql). */
+   Titolo e sommario pubblici (vista notizie_anteprima), articolo intero solo per abbonati Riskly News, il Premium del journal non è incluso (tabella notizie, RLS in supabase/news.sql). */
 @font-face{font-family:'Archivo';src:url(/fonts/archivo.woff2) format('woff2');font-weight:100 900;font-stretch:62% 125%;font-display:swap}
 @font-face{font-family:'Martian Mono';src:url(/fonts/martian-mono.woff2) format('woff2');font-weight:100 800;font-stretch:75% 112.5%;font-display:swap}
 :root{--bg:#F3F4F1;--panel:#FBFBF9;--ink:#15181B;--ink2:#4B525A;--ink3:#6E747A;--line:#D8DBDD;--amber:#F2B83A;--amber-deep:#B97C00;--blu:#1D4FC4;--verde:#0F7A47;--rosso:#B0202E}
@@ -162,7 +162,7 @@ async function controllaAccesso(){
 /* ---------- viste ---------- */
 function bloccoAbbonati(){
   if(ACC.accesso) return `<div class="abbonati"><p><b>Sei abbonato a Riskly News.</b> Ogni mattina trovi qui l'articolo del giorno.</p></div>`;
-  return `<div class="abbonati"><p><b>Titoli e sommari sono gratis.</b> Gli articoli completi, con il riquadro "Da guardare" e le fonti, sono per gli abbonati a Riskly News${PREZZO.mensile ? ' (' + esc(PREZZO.mensile) + ')' : ''}. Incluso nel piano Premium del journal.</p><button type="button" class="btn amb" onclick="abbonati()">Abbonati</button></div>`;
+  return `<div class="abbonati"><p><b>Titoli e sommari sono gratis.</b> Gli articoli completi, con il riquadro "Da guardare" e le fonti, sono per gli abbonati a Riskly News${PREZZO.mensile ? ' (' + esc(PREZZO.mensile) + ')' : ''}.</p><button type="button" class="btn amb" onclick="abbonati()">Abbonati</button></div>`;
 }
 function vistaLista(){
   const presenti = new Set(ANTE.map(a => a.categoria));
@@ -205,7 +205,7 @@ async function vistaArticolo(id){
         <p>Ogni mattina l'articolo completo su oro, dollaro, Fed e tassi, con il riquadro "Da guardare" e le fonti.${ACC.utente ? '' : ' Prima accedi o crea un account gratis.'}</p>
         <div class="opz">${ACC.utente ? `<button class="btn amb" onclick="abbonati('mensile')">Abbonati${PREZZO.mensile ? ' · ' + esc(PREZZO.mensile) : ''}</button>${PAGA.annuale ? `<button class="btn" onclick="abbonati('annuale')">Annuale${PREZZO.annuale ? ' · ' + esc(PREZZO.annuale) : ''}</button>` : ''}`
           : `<button class="btn pri" onclick="accApri('registrati', 'abbonati')">Crea un account</button><button class="btn" onclick="accApri('accedi')">Accedi</button>`}</div>
-        <small>Incluso nel piano Premium del journal. Disdici quando vuoi.</small></div></article>`;
+        <small>Disdici quando vuoi.</small></div></article>`;
   }
   window.scrollTo(0, 0);
 }
