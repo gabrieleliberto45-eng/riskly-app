@@ -1,0 +1,71 @@
+{
+ "id": "r06",
+ "serie": "Reel dossier",
+ "stile": "dossier",
+ "titolo": "Oro sotto i 3.900 $: chi sta vendendo?",
+ "testata": "Dossier Oro",
+ "data": "SAB 31 OTT",
+ "scene": [
+  {
+   "tipo": "copertina",
+   "righe": ["ORO", "A PICCO"],
+   "flap": "$3.885",
+   "fascia": "AI MINIMI DA OLTRE UN ANNO",
+   "var": "−3,1%",
+   "domanda": "chi sta <u>vendendo?</u>",
+   "voce": "Nessuno vuole ammetterlo, ma questa settimana l'oro ha fatto il contrario di quello che dice il manuale. Meno tre virgola uno per cento, sotto i tremilanovecento dollari. Chi sta vendendo?"
+  },
+  {
+   "tipo": "altalena",
+   "titolo": "Il paradosso",
+   "dati": [["Treasury 10 anni", "4,93%", "−7 pb ▼"], ["Dollaro", "101,96", "+0,2% ≈"]],
+   "sx": "RENDIMENTI",
+   "dx": "ORO",
+   "inclina": "w:sale",
+   "cade": "w:Giù",
+   "voce": "Il manuale dice: se i rendimenti americani scendono, l'oro sale. Il decennale è sceso, il dollaro è rimasto quasi fermo. E l'oro? Giù."
+  },
+  {
+   "tipo": "motivo",
+   "n": 1,
+   "motivi": ["LA FED", "IL PETROLIO", "VENDITE FORZATE"],
+   "flap": "3,6%",
+   "flap_label": "INFLAZIONE PCE",
+   "anello": 75,
+   "anello_label": "rialzo a dicembre, probabilità prezzata",
+   "anello_in": "w:rialzo",
+   "barre_in": "w:interessi",
+   "voce": "Tre motivi. Uno, la Fed: inflazione al tre virgola sei per cento, e il mercato ora prezza un rialzo a dicembre, tre probabilità su quattro. E l'oro non paga interessi."
+  },
+  {
+   "tipo": "domino",
+   "n": 2,
+   "motivi": ["LA FED", "IL PETROLIO", "VENDITE FORZATE"],
+   "luogo": "STRETTO DI HORMUZ",
+   "flap": "$110+",
+   "flap_label": "BRENT AL BARILE",
+   "tessere": ["PETROLIO", "INFLAZIONE", "TASSI", "ORO"],
+   "domino_in": "w:caro",
+   "voce": "Due, il petrolio: una petroliera colpita a Hormuz, Brent sopra i centodieci dollari. Petrolio caro, più inflazione, tassi alti più a lungo. E l'oro ne soffre."
+  },
+  {
+   "tipo": "telefono",
+   "n": 3,
+   "motivi": ["LA FED", "IL PETROLIO", "VENDITE FORZATE"],
+   "notifica_in": "w:chi",
+   "ricevuta_in": "w:oro",
+   "ricevuta": [["Borse tecnologiche", "▼"], ["Oro, venerdì", "−3,4%"], ["Argento, venerdì", "circa −6%"]],
+   "voce": "Tre, vendite forzate. Venerdì le Borse tecnologiche scendono, e chi deve coprire le perdite vende quello che si vende subito: oro e argento. L'argento fa anche peggio."
+  },
+  {
+   "tipo": "tabellone",
+   "titolo": "E adesso?",
+   "sotto": "Niente previsioni: segna le date.",
+   "date": [["MAR 03", "Elezioni USA", "w:Martedì"], ["VEN 06", "Payrolls 14:30", "w:venerdì"], ["MER 09/12", "Fed", "w:nove"]],
+   "parola": "ORO",
+   "link": "riskly.trade/dati",
+   "cta_in": "w:Commenta",
+   "voce": "E adesso? Niente previsioni: segna le date. Martedì le elezioni americane, venerdì alle quattordici e trenta i payrolls, il nove dicembre la Fed. Commenta ORO e ti mando il calendario."
+  }
+ ]
+}
