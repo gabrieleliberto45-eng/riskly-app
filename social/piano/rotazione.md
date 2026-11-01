@@ -163,6 +163,7 @@ Gabriele, 1° novembre: "pubblichiamo reel con questo stile su TikTok, Insta e S
 | sab 7 | 13:00 / 18:00 | IG + TT / Short | r12 ricominciare da zero (lista, conto, carta) | Se dovessi ricominciare da zero | ZERO → /rovina |
 | dom 8 | 13:00 / 18:00 | IG + TT / Short | r13 raddoppiare dopo una perdita (apertura, conto, lista) | Questo potrebbe farti arrabbiare | SERIE → /rovina |
 I vecchi reel r02–r05 (video di sfondo) non escono più: sostituiti da r08, r09, r11, r12.
+**Due post al giorno su IG + TT (Gabriele, 1° novembre: "tutti i giorni 2").** Il reel Il punto più un secondo post di formato diverso (carosello scuro o "Oggi no"), di solito alle 18:00. Settimana 2–8 novembre: lun n04 (09:00) · mar c09 tornare in pari · mer c10 spread · gio c08 (13:00) · ven c11 weekend e gap · sab c12 diario · dom c13 lotto sull'oro (tutti alle 18:00 dove non indicato).
 Numeri 23–30 ottobre (Metricool): TikTok 208–283 visualizzazioni a post (t01 283, r01 249), reel Instagram 8–13.
 
 ## Casi veri · puntate
