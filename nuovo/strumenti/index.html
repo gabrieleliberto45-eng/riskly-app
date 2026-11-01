@@ -1730,6 +1730,23 @@ html[data-tema="scuro"] .str-nav button{color:#C3CAC5!important}
 html[data-tema="scuro"] .str-nav button.on{background:#F2B83A!important;color:#1C1700!important}
 html[data-tema="scuro"] .s-testa .s-tema{border-color:#ECEEEA!important;color:#ECEEEA!important;background:rgba(255,255,255,.04)!important}
 </style>
+<style id="pc">
+/* ══════ STRUMENTI SUL PC (Gabriele, 1° novembre 2026: "adattarli meglio al pc, più professional") ══════
+   con l'account (o aperti come app installata) la presentazione sparisce: si parte dagli strumenti */
+@media (min-width:900px){
+  body.dentro #calc .sez-titolo.pagina{display:none}
+  body.dentro #calc>section{padding-top:22px}
+  body.dentro #calc .str-nav{width:100%;justify-content:flex-start;margin:0 0 18px;border-radius:14px;top:72px}
+  body.dentro #calc .str-nav button{padding-left:16px;padding-right:16px}
+}
+@media (min-width:900px) and (display-mode:standalone){
+  #calc .sez-titolo.pagina{display:none}
+  #calc>section{padding-top:22px}
+}
+@media (min-width:1280px){
+  body.dentro #calc .wrap,body.dentro .s-testa .wrap{max-width:1340px}
+}
+</style>
 </head>
 <body>
 <header class="s-testa"><div class="wrap">
@@ -2815,6 +2832,7 @@ async function accScarica(){
 /* interfaccia */
 function accStato(s){ const b = document.getElementById('accBtn'); if(b) b.classList.toggle('salva', s === 'salva'); }
 function accDisegna(){
+  document.body.classList.toggle('dentro', !!ACC.utente);   /* con l'account: niente presentazione, si va dritti agli strumenti */
   const b = document.getElementById('accBtn'), inv = document.getElementById('accInvito');
   if(ACC.utente){
     const nome = (ACC.utente.user_metadata && ACC.utente.user_metadata.nome) || ACC.utente.email || '';
