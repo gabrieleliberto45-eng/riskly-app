@@ -1,14 +1,14 @@
-/* Monta un reel "dossier" (social/reel/dossier.html, deciso con Gabriele il 1° novembre): pagina opaca, niente video sotto,
-   voce un po' più veloce (×1,12, ritmo da notiziario come il riferimento) e clic delle palette/timbri sotto la voce.
+/* Monta un reel "Il punto" (social/reel/punto.html, deciso con Gabriele il 1° novembre: il ritmo del riferimento, ma grafica nostra): pagina opaca, niente video sotto,
+   voce frase per frase con le pause ("pause": true nel json) e clic delle palette/timbri sotto la voce.
    Prima: python3 social/youtube/voce.py rNN  e  python3 social/reel/parole.py rNN
-   Uso: node social/reel/dossier.js rNN  → social/reel/rNN.mp4 */
+   Uso: node social/reel/punto.js rNN  → social/reel/rNN.mp4 */
 const { chromium } = require('playwright');
 const { spawn, spawnSync, execSync } = require('child_process');
 const fs = require('fs'), path = require('path');
 const QUI = __dirname, YT = path.join(QUI, '..', 'youtube');
 const ID = process.argv[2];
 const FF = execSync(`python3 -c "import imageio_ffmpeg as i;print(i.get_ffmpeg_exe())"`).toString().trim();
-const FPS = 25, CODA = 0.3, VEL = 1.12, SR = 44100;
+const FPS = 25, CODA = 0.3, VEL = 1, SR = 44100;
 const durata = f => { const o = spawnSync(FF, ['-i', f]).stderr.toString().match(/Duration: (\d+):(\d+):([\d.]+)/); return +o[1]*3600 + +o[2]*60 + +o[3]; };
 
 // effetti sintetizzati: clic secco, colpo basso, notifica a due toni
@@ -35,23 +35,23 @@ function effetti(eventi, totale, out){
   const dur = voci.map(v => durata(v) / VEL + CODA);
   const inizio = dur.map((d, i) => dur.slice(0, i).reduce((a, b) => a + b, 0));
   const totale = dur.reduce((a, b) => a + b, 0);
-  const tmp = fs.mkdtempSync(path.join(require('os').tmpdir(), 'dossier-'));
+  const tmp = fs.mkdtempSync(path.join(require('os').tmpdir(), 'punto-'));
 
   // voce: ogni traccia accelerata e allungata alla durata della sua scena
-  const wav = voci.map((v, i) => { const o = path.join(tmp, `v${i}.wav`); spawnSync(FF, ['-y', '-v', 'error', '-i', v, '-af', `atempo=${VEL},apad=whole_dur=${dur[i].toFixed(3)}`, '-ar', String(SR), '-ac', '1', o]); return o; });
+  const wav = voci.map((v, i) => { const o = path.join(tmp, `v${i}.wav`); spawnSync(FF, ['-y', '-v', 'error', '-i', v, '-af', `apad=whole_dur=${dur[i].toFixed(3)}`, '-ar', String(SR), '-ac', '1', o]); return o; });
   fs.writeFileSync(path.join(tmp, 'v.txt'), wav.map(p => `file '${p}'`).join('\n'));
   spawnSync(FF, ['-y', '-v', 'error', '-f', 'concat', '-safe', '0', '-i', path.join(tmp, 'v.txt'), path.join(tmp, 'voce.wav')]);
 
   // video: la pagina fotogramma per fotogramma, direttamente in H.264
   const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 1080, height: 1920 } });
-  await p.goto('file://' + path.join(QUI, 'dossier.html')); await p.evaluate(() => document.fonts.ready);
+  await p.goto('file://' + path.join(QUI, 'punto.html')); await p.evaluate(() => document.fonts.ready);
   const video = path.join(tmp, 'video.mp4');
   const enc = spawn(FF, ['-y', '-v', 'error', '-f', 'image2pipe', '-framerate', String(FPS), '-c:v', 'mjpeg', '-i', '-', '-c:v', 'libx264', '-preset', 'medium', '-crf', '20', '-pix_fmt', 'yuv420p', video]);
   const n = Math.ceil(totale * FPS); let scena = -1; const eventi = [];
   for(let f = 0; f < n; f++){
     const t = f / FPS; let i = inizio.findIndex((a, k) => t >= a && t < a + dur[k]); if(i < 0) i = spec.scene.length - 1;
     if(i !== scena){
-      scena = i; await p.evaluate(([s, w, h]) => window.mostra(s, w, h), [spec.scene[i], parole[i] || [], [spec.testata, spec.data]]);
+      scena = i; await p.evaluate(([s, w, h]) => window.mostra(s, w, h), [spec.scene[i], parole[i] || [], [spec.data, i, spec.scene.length, dur[i]]]);
       eventi.push([inizio[i], 'colpo'], ...(await p.evaluate(() => window.suoni())).map(([x, k]) => [inizio[i] + x, k]));
     }
     const tl = t - inizio[i];

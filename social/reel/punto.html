@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8">
+<style>
+  /* Reel "Il punto" 1080×1920. Dal riferimento mandato da Gabriele il 1° novembre teniamo solo il ritmo
+     (un oggetto animato nuovo ogni pochi secondi, clic e colpi sotto la voce); la grafica è nostra: nero e ambra di riskly.trade,
+     contatori con grafico, carta che si gira, termometro e lancetta, catena di cause, ordini di vendita, calendario a strappo.
+     API: window.mostra(scena, parole, [data, indice, totale scene, durata]) e window.fotogramma(t, testo). */
+  @font-face{font-family:'Archivo';src:url(../youtube/archivo.woff2) format('woff2');font-weight:100 900;font-stretch:62% 125%}
+  @font-face{font-family:'Martian Mono';src:url(../youtube/martian-mono.woff2) format('woff2');font-weight:100 800;font-stretch:75% 112.5%}
+  :root{--fondo:#0B0D0C;--ambra:#F2B83A;--ambra2:#F9D27A;--rosso:#FF4D5E;--verde:#2BD98B;--bianco:#F7F8F5;--grigio:#9AA09A;--scheda:#151917;--bordo:rgba(242,184,58,.35)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1080px;height:1920px;overflow:hidden}
+  body{font-family:'Archivo',sans-serif;color:var(--bianco);background:radial-gradient(ellipse at 50% 30%,#1a1710 0%,var(--fondo) 60%);}
+  body::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(242,184,58,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(242,184,58,.05) 1px,transparent 1px);background-size:90px 90px}
+  #testa{position:absolute;left:70px;right:70px;top:76px;display:flex;justify-content:space-between;align-items:center}
+  #testa .marchio{display:flex;align-items:center;gap:16px;font:800 40px 'Archivo'}
+  #testa .marchio svg{width:52px;height:52px}
+  #testa .marchio em{font-style:normal;font:700 28px 'Martian Mono';color:var(--fondo);background:var(--ambra);padding:6px 14px;border-radius:8px;letter-spacing:.08em}
+  #testa .data{font:700 26px 'Martian Mono';color:var(--grigio);letter-spacing:.08em}
+  #avanza{position:absolute;left:70px;right:70px;top:160px;display:flex;gap:10px}
+  #avanza i{flex:1;height:8px;border-radius:9px;background:rgba(255,255,255,.12);overflow:hidden}
+  #avanza i b{display:block;height:100%;width:0;background:var(--ambra)}
+  #s{position:absolute;left:70px;right:70px;top:230px;height:1150px;display:flex;flex-direction:column;align-items:center;text-align:center}
+  .e{opacity:0}
+  .mono{font:700 32px 'Martian Mono';letter-spacing:.12em;color:var(--ambra2);text-transform:uppercase}
+  .rosso{color:var(--rosso)} .verde{color:var(--verde)} .ambra{color:var(--ambra)}
+  .contatore{font:900 230px 'Archivo';font-stretch:78%;line-height:1;margin-top:10px;font-variant-numeric:tabular-nums}
+  .grafico{width:940px;height:330px;margin-top:10px}
+  .titolo{font:900 112px/1 'Archivo';font-stretch:76%;margin-top:30px}
+  .titolo em{font-style:normal;color:var(--fondo);background:var(--ambra);padding:0 14px;box-decoration-break:clone}
+  .badge{margin-top:34px;display:inline-block;background:var(--rosso);color:#fff;font:800 44px 'Archivo';padding:14px 30px;border-radius:999px}
+  .tessere{display:flex;gap:26px;width:100%}
+  .tessere div{flex:1;background:var(--scheda);border:2px solid rgba(255,255,255,.1);border-radius:26px;padding:26px 30px;text-align:left}
+  .tessere small{font:700 24px 'Martian Mono';letter-spacing:.08em;color:var(--grigio);text-transform:uppercase}
+  .tessere b{display:block;font:900 86px 'Archivo';font-stretch:80%;margin-top:4px}
+  .tessere span{font:800 34px 'Martian Mono'}
+  .scena3d{perspective:2000px;width:860px;height:640px;margin-top:70px}
+  .carta{position:relative;width:100%;height:100%;transform-style:preserve-3d}
+  .faccia{position:absolute;inset:0;backface-visibility:hidden;border-radius:40px;padding:56px;display:flex;flex-direction:column;justify-content:center;gap:26px;background:var(--scheda)}
+  .faccia.f{border:6px solid var(--ambra);box-shadow:0 0 70px rgba(242,184,58,.25)}
+  .faccia.r{border:6px solid var(--rosso);box-shadow:0 0 70px rgba(255,77,94,.3);transform:rotateY(180deg)}
+  .faccia small{font:800 36px 'Martian Mono';letter-spacing:.14em}
+  .faccia div{font:900 120px 'Archivo';font-stretch:78%;line-height:1}
+  .motivo{display:flex;flex-direction:column;align-items:center}
+  .motivo .num{font:800 30px 'Martian Mono';letter-spacing:.2em;color:var(--fondo);background:var(--ambra);padding:10px 22px;border-radius:10px}
+  .motivo h2{font:900 170px 'Archivo';font-stretch:74%;line-height:.95;margin-top:18px}
+  .fed{display:flex;gap:30px;align-items:flex-end;justify-content:center;width:100%;margin-top:40px}
+  .termo{position:relative;width:400px;height:560px}
+  .termo .tubo{position:absolute;left:35px;top:0;width:80px;height:480px;border-radius:40px;border:5px solid rgba(255,255,255,.25);overflow:hidden}
+  .termo .tubo i{position:absolute;left:0;right:0;bottom:0;height:0;background:linear-gradient(0deg,var(--rosso),#ff8a6a)}
+  .termo .bulbo{position:absolute;left:15px;bottom:0;width:120px;height:120px;border-radius:50%;background:var(--rosso)}
+  .termo .soglia{position:absolute;left:-10px;right:0;border-top:4px dashed var(--ambra2);font:700 24px 'Martian Mono';color:var(--ambra2);text-align:right;padding-top:6px}
+  .termo .val{position:absolute;left:160px;font:900 96px 'Archivo';font-stretch:80%;color:var(--rosso);white-space:nowrap}
+  .lancetta{width:440px;text-align:center}
+  .lancetta b{display:block;font:900 120px 'Archivo';font-stretch:80%;margin-top:-30px}
+  .lancetta span{font:600 32px 'Archivo';color:var(--grigio)}
+  .zero{margin-top:40px;display:flex;gap:20px;align-items:center;background:var(--scheda);border:3px solid var(--rosso);border-radius:24px;padding:20px 34px;font:800 46px 'Archivo'}
+  .zero b{font:900 70px 'Martian Mono';color:var(--rosso)}
+  .luogo{margin-top:28px;display:inline-flex;align-items:center;gap:16px;font:700 34px 'Martian Mono';color:var(--ambra2)}
+  .luogo i{width:22px;height:22px;border-radius:50%;background:var(--rosso)}
+  .brent{width:100%;margin-top:30px;background:var(--scheda);border-radius:26px;padding:26px 34px;text-align:left}
+  .brent .t{display:flex;justify-content:space-between;align-items:baseline;font:700 34px 'Archivo';color:var(--grigio)}
+  .brent .t b{font:900 90px 'Archivo';font-stretch:80%;color:var(--bianco)}
+  .brent .f{height:24px;border-radius:12px;background:rgba(255,255,255,.1);margin-top:12px;overflow:hidden}
+  .brent .f i{display:block;height:100%;width:0;background:linear-gradient(90deg,#8a5a00,var(--ambra))}
+  .catena{width:100%;margin-top:34px;display:flex;flex-direction:column;align-items:center}
+  .anello{width:760px;padding:22px;border-radius:22px;border:3px solid rgba(255,255,255,.15);background:var(--scheda);font:800 50px 'Archivo';font-stretch:85%;color:rgba(255,255,255,.35)}
+  .anello.on{border-color:var(--ambra);color:var(--bianco);box-shadow:0 0 30px rgba(242,184,58,.25)}
+  .anello.on.ultimo{border-color:var(--rosso);color:var(--rosso);box-shadow:0 0 30px rgba(255,77,94,.3)}
+  .freccia{width:6px;height:34px;background:rgba(255,255,255,.15);position:relative}
+  .freccia i{position:absolute;left:0;top:0;width:100%;height:0;background:var(--ambra)}
+  .borsa{width:100%;margin-top:34px;background:var(--scheda);border-radius:26px;padding:24px 30px;text-align:left}
+  .borsa small{font:700 26px 'Martian Mono';color:var(--grigio);letter-spacing:.08em}
+  .biglietti{position:relative;width:100%;height:470px;margin-top:30px}
+  .biglietto{position:absolute;left:60px;right:60px;height:200px;background:#F7F8F5;color:var(--fondo);border-radius:20px;padding:24px 34px;display:flex;justify-content:space-between;align-items:center;text-align:left;
+             -webkit-mask:radial-gradient(circle 22px at 0 50%,transparent 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 22px at 100% 50%,transparent 98%,#000) right/51% 100% no-repeat}
+  .biglietto small{display:block;font:700 24px 'Martian Mono';letter-spacing:.1em;color:#555}
+  .biglietto b{font:900 92px 'Archivo';font-stretch:78%}
+  .biglietto em{font-style:normal;font:900 64px 'Martian Mono';color:#D62F3F}
+  .timbro{position:absolute;right:30px;bottom:-20px;font:900 70px 'Archivo';font-stretch:80%;color:var(--ambra);border:8px solid var(--ambra);border-radius:16px;padding:4px 24px;transform:rotate(-8deg);background:rgba(11,13,12,.85)}
+  .titolo2{font:900 170px 'Archivo';font-stretch:74%;line-height:.95}
+  .fogli{display:flex;gap:26px;margin-top:50px;perspective:1600px}
+  .foglio{width:282px;border-radius:24px;overflow:hidden;background:#F7F8F5;color:var(--fondo);transform-origin:50% 0}
+  .foglio .m{background:var(--rosso);color:#fff;font:800 36px 'Martian Mono';padding:12px 0;letter-spacing:.12em}
+  .foglio .g{font:900 170px 'Archivo';font-stretch:78%;line-height:1.05}
+  .foglio .x{font:800 34px 'Archivo';font-stretch:85%;padding:0 12px 24px;min-height:110px;display:grid;place-items:center}
+  .cta{margin-top:60px;display:inline-flex;align-items:center;gap:22px;padding:28px 46px;border-radius:999px;background:var(--ambra);color:var(--fondo);font:800 60px 'Archivo'}
+  .cta em{font-style:normal;background:var(--fondo);color:var(--ambra);padding:4px 20px;border-radius:14px}
+  .link{margin-top:24px;font:800 40px 'Martian Mono';color:var(--ambra2)}
+  #sott{position:absolute;left:60px;right:60px;top:1440px;text-align:center;font:800 64px/1.18 'Archivo';font-stretch:88%;color:#fff;text-shadow:0 4px 20px rgba(0,0,0,.8)}
+  #sott mark{background:var(--ambra);color:var(--fondo);padding:0 10px;border-radius:8px}
+  #piede{position:absolute;left:70px;right:70px;bottom:64px;text-align:center;font:500 22px 'Archivo';color:rgba(255,255,255,.5)}
+</style></head>
+<body>
+<div id="testa"><div class="marchio"><svg viewBox="0 0 44 44" fill="none"><rect width="44" height="44" rx="10" fill="#FBFBF9"/><path d="M9 31 L17 19.5 L23.5 25 L35 11" stroke="#B97C00" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 36 H35" stroke="#5E656D" stroke-width="3.6" stroke-linecap="round"/></svg>Riskly <em>IL PUNTO</em></div><div class="data" id="data"></div></div>
+<div id="avanza"></div>
+<div id="s"></div><div id="sott"></div>
+<div id="piede">Contenuto informativo ed educativo, non è consulenza finanziaria né una previsione. La leva comporta un alto rischio.</div>
+<script>
+const ease = x => 1 - Math.pow(1 - Math.min(1, Math.max(0, x)), 3);
+const back = x => { x = Math.min(1, Math.max(0, x)); const c = 1.7; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const lin = x => Math.min(1, Math.max(0, x));
+let S = null, P = [], INFO = [];
+// "w:parola" = quando la voce la dice; "w:parola#2" = la seconda volta
+const T = v => { if(typeof v !== 'string') return v || 0; const [w, n] = v.slice(2).toLowerCase().split('#'); const x = P.filter(p => p[1].toLowerCase().replace(/[^a-zàèéìòù0-9]/g, '').startsWith(w))[(+n || 1) - 1]; return x ? x[0] : 0; };
+const euro = v => String(Math.round(v)).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+const motivo = s => `<div class="motivo"><div class="num e pop" data-in="0">MOTIVO ${s.n} / 3</div><h2 class="e" data-in="0.25">${s.nome}</h2></div>`;
+const html = s => {
+  if(s.tipo === 'apertura'){
+    const W = 940, H = 330, mn = Math.min(...s.serie) - 20, mx = Math.max(...s.serie) + 20;
+    const pts = s.serie.map((v, i) => [30 + i * (W - 60) / (s.serie.length - 1), 20 + (mx - v) / (mx - mn) * (H - 70)]);
+    return `<div class="mono e" data-in="0">${s.etichetta}</div>
+      <div class="contatore" data-da="${s.da}" data-a="${s.a}" data-t="0.4"></div>
+      <svg class="grafico e" data-in="0.3" viewBox="0 0 ${W} ${H}"><polyline points="${pts.map(p => p.join(',')).join(' ')}" fill="none" stroke="#F2B83A" stroke-width="8" stroke-linejoin="round" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" data-traccia="0.4"/>
+      ${pts.map((p, i) => i ? `<text x="${p[0]}" y="${H - 6}" text-anchor="middle" font-family="Martian Mono" font-weight="700" font-size="24" fill="#9AA09A">${s.giorni[i]}</text>` : '').join('')}
+      <circle cx="${pts.at(-1)[0]}" cy="${pts.at(-1)[1]}" r="16" fill="#FF4D5E" data-punto="2.4"/></svg>
+      <div class="titolo e" data-in="${T('w:tradito') - 0.6}">${s.titolo}</div>
+      <div class="badge e pop" data-in="${T('w:meno')}">${s.badge}</div>`;
+  }
+  if(s.tipo === 'carta') return `<div class="tessere">${s.dati.map((d, i) => `<div class="e" data-in="${T(i ? 'w:dollaro' : 'w:decennale') - 0.2}"><small>${d[0]}</small><b>${d[1]}</b><span class="${d[3] === 'giu' ? 'rosso' : 'ambra'}">${d[2]} ${d[3] === 'giu' ? '▼' : '≈'}</span></div>`).join('')}</div>
+    <div class="scena3d e" data-in="0.2"><div class="carta" data-gira="${T(s.gira) - 0.25}">
+      <div class="faccia f"><small class="ambra">${s.fronte[0]}</small><div>${s.fronte[1].replace('▼', '<span class="rosso">▼</span>')}</div><div>${s.fronte[2].replace('▲', '<span class="verde">▲</span>')}</div></div>
+      <div class="faccia r"><small class="rosso">${s.retro[0]}</small><div>${s.retro[1].replace('▼', '<span class="rosso">▼</span>')}</div><div class="rosso">${s.retro[2]}</div></div></div></div>`;
+  if(s.tipo === 'fed') return motivo(s) + `<div class="fed"><div class="termo e" data-in="${T('w:inflazione') - 0.2}"><div class="tubo"><i data-h="${s.inflazione / 5 * 100}" data-da="${T('w:inflazione')}"></i></div><div class="bulbo"></div>
+      <div class="soglia" style="top:${480 - s.obiettivo / 5 * 480}px">OBIETTIVO ${s.obiettivo}%</div><div class="val" style="top:${480 - s.inflazione / 5 * 480 - 60}px" data-conta="${s.inflazione}" data-dec="1" data-da="${T('w:inflazione')}"></div></div>
+      <div class="lancetta e" data-in="${T(s.rialzo_in) - 0.3}"><svg viewBox="0 0 500 280" width="440" height="246"><path d="M40 250 A210 210 0 0 1 460 250" stroke="rgba(255,255,255,.12)" stroke-width="40" fill="none"/>
+        <path d="M40 250 A210 210 0 0 1 460 250" stroke="#F2B83A" stroke-width="40" fill="none" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100" data-arco="${s.rialzo}" data-da="${T(s.rialzo_in)}"/>
+        <g data-ago="${s.rialzo}" data-da="${T(s.rialzo_in)}" style="transform-origin:250px 250px"><line x1="250" y1="250" x2="70" y2="250" stroke="#F7F8F5" stroke-width="10" stroke-linecap="round"/></g><circle cx="250" cy="250" r="20" fill="#F7F8F5"/></svg>
+        <b data-conta="${s.rialzo}" data-da="${T(s.rialzo_in)}"></b><span>rialzo a dicembre, probabilità prezzata</span></div></div>
+      <div class="zero e pop" data-in="${T(s.zero_in) - 0.4}">L'oro rende <b>0%</b></div>`;
+  if(s.tipo === 'catena') return motivo(s) + `<div class="luogo e" data-in="${T('w:petroliera')}"><i data-pulsa="1"></i>${s.luogo}</div>
+      <div class="brent e" data-in="${T('w:brent') - 0.3}"><div class="t"><span>Brent al barile</span><b data-dollari="${s.prezzo}" data-da="${T('w:brent')}"></b></div><div class="f"><i data-w="88" data-da="${T('w:brent')}"></i></div></div>
+      <div class="catena">${s.anelli.map((a, i) => (i ? `<div class="freccia"><i data-giu="${T(s.catena_in) + i * 0.7 - 0.25}"></i></div>` : '') + `<div class="anello e${i === s.anelli.length - 1 ? ' ultimo' : ''}" data-in="${T(s.catena_in) - 0.6}" data-accende="${T(s.catena_in) + i * 0.7}">${a}</div>`).join('')}</div>`;
+  if(s.tipo === 'ordini') return motivo(s) + `<div class="borsa e" data-in="${T(s.linea_in) - 0.5}"><small>BORSE TECNOLOGICHE · VENERDÌ</small>
+      <svg viewBox="0 0 880 200" width="880" height="200"><polyline points="0,40 90,55 170,35 260,70 340,60 430,95 520,90 610,130 700,150 790,165 880,185" fill="none" stroke="#FF4D5E" stroke-width="8" stroke-linejoin="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" data-traccia="${T(s.linea_in) - 0.3}"/></svg></div>
+      <div class="biglietti">${s.ordini.map((o, i) => `<div class="biglietto" style="top:${i * 230}px" data-entra="${T(o[2]) - 0.15}"><div><small>ORDINE DI VENDITA</small><b>${o[0]}</b></div><em>${o[1]}</em></div>`).join('')}
+      <div class="timbro e pop" data-in="${T(s.ordini.at(-1)[2]) + 0.8}">${s.timbro}</div></div>`;
+  if(s.tipo === 'calendario') return `<div class="titolo2 e pop" data-in="0">${s.titolo}</div><div class="mono e" data-in="${T('w:nessuna')}" style="margin-top:26px">${s.sotto}</div>
+      <div class="fogli">${s.date.map(d => `<div class="foglio" data-cala="${T(d[3]) - 0.1}"><div class="m">${d[1]}</div><div class="g">${d[0]}</div><div class="x">${d[2]}</div></div>`).join('')}</div>
+      <div class="cta e pop" data-in="${T(s.cta_in)}">Commenta <em>${s.parola}</em></div><div class="link e" data-in="${T(s.cta_in) + 0.3}">${s.link}</div>`;
+  return '';
+};
+window.mostra = (s, parole, info) => {
+  S = s; P = parole || []; INFO = info;
+  document.getElementById('data').textContent = info[0];
+  document.getElementById('avanza').innerHTML = Array.from({ length: info[2] }, () => '<i><b></b></i>').join('');
+  document.getElementById('s').innerHTML = html(s);
+};
+window.suoni = () => {
+  const out = [];
+  document.querySelectorAll('.pop').forEach(e => out.push([+e.dataset.in, 'colpo']));
+  document.querySelectorAll('[data-da][data-a]').forEach(e => { for(let t = +e.dataset.t; t < +e.dataset.t + 2; t += 0.07) out.push([t, 'clic']); });
+  document.querySelectorAll('[data-gira]').forEach(e => out.push([+e.dataset.gira + 0.3, 'colpo']));
+  document.querySelectorAll('[data-accende]').forEach(e => out.push([+e.dataset.accende, 'clic'], [+e.dataset.accende + 0.03, 'clic']));
+  document.querySelectorAll('[data-entra]').forEach(e => out.push([+e.dataset.entra + 0.2, 'notifica']));
+  document.querySelectorAll('[data-cala]').forEach(e => out.push([+e.dataset.cala + 0.35, 'colpo']));
+  document.querySelectorAll('[data-dollari]').forEach(e => { for(let t = +e.dataset.da; t < +e.dataset.da + 1; t += 0.07) out.push([t, 'clic']); });
+  return out;
+};
+window.fotogramma = (t, testo) => {
+  const s = document.getElementById('s');
+  document.querySelectorAll('#avanza b').forEach((b, i) => { b.style.width = (i < INFO[1] ? 100 : i > INFO[1] ? 0 : lin(t / INFO[3]) * 100) + '%'; });
+  s.querySelectorAll('[data-in]').forEach(e => {
+    const x = (t - +e.dataset.in) / 0.35;
+    if(e.classList.contains('pop')){ const k = back(x); e.style.opacity = x > 0 ? 1 : 0; e.style.scale = x > 0 ? 1.3 - 0.3 * k : 1.3; }
+    else { const k = ease(x); e.style.opacity = k; e.style.translate = `0 ${(1 - k) * 40}px`; }
+  });
+  s.querySelectorAll('[data-a]').forEach(e => { const k = ease((t - +e.dataset.t) / 2), v = +e.dataset.da + (+e.dataset.a - +e.dataset.da) * k; e.textContent = '$' + euro(Math.round(v)); e.style.color = k > 0.5 ? '#FF4D5E' : '#F7F8F5'; });
+  s.querySelectorAll('[data-traccia]').forEach(e => e.setAttribute('stroke-dashoffset', 1 - ease((t - +e.dataset.traccia) / 2)));
+  s.querySelectorAll('[data-punto]').forEach(e => { const k = t - +e.dataset.punto; e.setAttribute('opacity', k > 0 ? 1 : 0); e.setAttribute('r', k > 0 ? 16 + 8 * Math.abs(Math.sin(k * 3)) : 0); });
+  s.querySelectorAll('[data-gira]').forEach(e => { const a = 180 * ease((t - +e.dataset.gira) / 0.6); e.style.transform = `rotateY(${a}deg)`; e.children[0].style.opacity = a < 90 ? 1 : 0; e.children[1].style.opacity = a < 90 ? 0 : 1; });
+  s.querySelectorAll('[data-h]').forEach(e => { e.style.height = (+e.dataset.h * ease((t - +e.dataset.da) / 1.2)) + '%'; });
+  s.querySelectorAll('[data-conta]').forEach(e => { const v = +e.dataset.conta * ease((t - +e.dataset.da) / 1.2); e.textContent = (e.dataset.dec ? v.toFixed(1).replace('.', ',') : Math.round(v)) + '%'; });
+  s.querySelectorAll('[data-arco]').forEach(e => e.setAttribute('stroke-dashoffset', 100 - +e.dataset.arco * ease((t - +e.dataset.da) / 1.2)));
+  s.querySelectorAll('[data-ago]').forEach(e => { e.style.transform = `rotate(${180 * +e.dataset.ago / 100 * ease((t - +e.dataset.da) / 1.2)}deg)`; });
+  s.querySelectorAll('[data-pulsa]').forEach(e => { e.style.boxShadow = `0 0 0 ${6 + 8 * Math.abs(Math.sin(t * 4))}px rgba(255,77,94,.35)`; });
+  s.querySelectorAll('[data-dollari]').forEach(e => { e.textContent = '$' + Math.round(+e.dataset.dollari * ease((t - +e.dataset.da) / 1)) + '+'; });
+  s.querySelectorAll('[data-w]').forEach(e => { e.style.width = (+e.dataset.w * ease((t - +e.dataset.da) / 1)) + '%'; });
+  s.querySelectorAll('[data-accende]').forEach(e => e.classList.toggle('on', t >= +e.dataset.accende));
+  s.querySelectorAll('[data-giu]').forEach(e => { e.style.height = (100 * ease((t - +e.dataset.giu) / 0.25)) + '%'; });
+  s.querySelectorAll('[data-entra]').forEach(e => { const k = back((t - +e.dataset.entra) / 0.45); e.style.opacity = t > +e.dataset.entra ? 1 : 0; e.style.transform = `translateX(${(1 - k) * 1000}px) rotate(${(1 - k) * 8}deg)`; });
+  s.querySelectorAll('[data-cala]').forEach(e => { const k = back((t - +e.dataset.cala) / 0.5); e.style.opacity = t > +e.dataset.cala ? 1 : 0; e.style.transform = `rotateX(${(1 - k) * -90}deg)`; });
+  document.getElementById('sott').innerHTML = testo || '';
+};
+</script></body></html>
