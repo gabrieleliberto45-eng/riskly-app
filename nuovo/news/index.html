@@ -55,6 +55,7 @@ a{color:inherit}
 .art .txt{padding:18px 22px 20px}
 .pezzo .cop{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:16px;margin:4px 0 18px;background:#0B0D0C}
 .cat.setup{background:#15181B;color:#F2B83A}
+.cat.dati{background:var(--rosso);color:#fff}
 html[data-tema="scuro"] .cat.setup{background:#F2B83A;color:#15181B}
 .tab{width:100%;border-collapse:collapse;margin:6px 0 22px;font-size:15px}
 .tab td{padding:10px 4px;border-bottom:1px solid var(--line)}
@@ -131,7 +132,7 @@ const SB_URL = 'https://swlztverwfgdgchgpudt.supabase.co', SB_KEY = 'sb_publisha
 /* link di pagamento Stripe di Riskly News (da creare su Stripe e aggiungere anche in supabase/functions/stripe-webhook) */
 const PAGA = { mensile: 'https://buy.stripe.com/6oUbJ0eHM1rZ5Bf2jgdnW0m', annuale: '' };
 const PREZZO = { mensile: '6,99 € al mese', annuale: '' };   /* prezzo deciso da Gabriele il 1° novembre */
-const CAT = { tutti: 'Tutti', setup: 'Setup XAU', oro: 'Oro', dollaro: 'Dollaro', fed: 'Fed', tassi: 'Tassi e banche centrali', straordinarie: 'Straordinarie', settimana: 'La settimana' };
+const CAT = { tutti: 'Tutti', dati: 'Dati appena usciti', setup: 'Setup XAU', oro: 'Oro', dollaro: 'Dollaro', fed: 'Fed', tassi: 'Tassi e banche centrali', straordinarie: 'Straordinarie', settimana: 'La settimana' };
 
 let sb = null; try{ sb = window.supabase.createClient(SB_URL, SB_KEY); }catch(e){}
 const ACC = { utente: null, accesso: false, modo: 'accedi', dopo: null };
