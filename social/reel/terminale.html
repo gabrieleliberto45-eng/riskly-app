@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8">
+<!-- Reel "Terminale Riskly" (Gabriele, 1° novembre 2026: "ne fai uno simile per Riskly?" dopo un video di un bot di memecoin).
+     Stesso linguaggio visivo (app da computer che si accende, agenti, log, equity in diretta) ma al contrario:
+     il bot non promette guadagni, ti FERMA al limite di perdita. Numeri di esempio su conto demo.
+     Tutto è calcolato dal tempo t: window.fotogramma(t) disegna il fotogramma, window.suoni() dà gli effetti. -->
+<style>
+@font-face{font-family:'Archivo';src:url(../youtube/archivo.woff2) format('woff2');font-weight:100 900;font-stretch:62% 125%}
+@font-face{font-family:'Martian Mono';src:url(../youtube/martian-mono.woff2) format('woff2');font-weight:100 800;font-stretch:75% 112.5%}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--oro:#F2B83A;--oro2:#F9D27A;--verde:#2BD98B;--rosso:#FF4D5E;--testo:#ECEEEA;--dim:#8E968F;--riga:rgba(255,255,255,.08)}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#050605}
+body{font-family:'Archivo',sans-serif;color:var(--testo);position:relative}
+.mono{font-family:'Martian Mono',monospace}
+#sfondo{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,#1B1607 0%,#070807 55%,#030303 100%)}
+/* testo in alto, stile TikTok */
+#gancio{position:absolute;left:60px;right:60px;top:250px;text-align:center;font-weight:850;font-stretch:88%;font-size:84px;line-height:1.02;letter-spacing:-.025em;text-shadow:0 6px 30px rgba(0,0,0,.8)}
+#gancio mark{background:var(--oro);color:#0B0D0C;padding:0 14px;border-radius:6px}
+/* schermo del computer */
+#schermo{position:absolute;left:20px;top:560px;width:1040px;height:760px;border-radius:22px;overflow:hidden;background:#0A0B0A;box-shadow:0 30px 90px rgba(0,0,0,.8),0 0 0 2px #1B1E1C}
+#cam{position:absolute;left:0;top:0;width:1600px;height:1170px;transform-origin:0 0}
+.menu{height:44px;display:flex;align-items:center;gap:26px;padding:0 22px;font-size:19px;font-weight:600;background:#0D0E0D;color:#C9CEC9}
+.menu b{font-weight:800;color:#fff}.menu .dx{margin-left:auto;font-family:'Martian Mono';font-size:16px;color:#C9CEC9}
+.fin{position:absolute;left:26px;right:26px;top:66px;bottom:26px;border-radius:18px;overflow:hidden;
+  background:linear-gradient(160deg,#1A1608 0%,#0E100E 40%,#0B0C0B 100%);border:1px solid #2A2C22}
+.barra{height:62px;display:flex;align-items:center;gap:16px;padding:0 22px;border-bottom:1px solid var(--riga);background:rgba(242,184,58,.05)}
+.semafori i{display:inline-block;width:15px;height:15px;border-radius:50%;margin-right:8px}
+.logo{width:34px;height:34px;border-radius:9px;background:#F3F4F1;display:grid;place-items:center}
+.nome{font-weight:800;font-size:23px}
+.chip{font-family:'Martian Mono';font-size:14px;font-weight:700;color:var(--oro);border:1px solid rgba(242,184,58,.4);border-radius:99px;padding:5px 12px;background:rgba(242,184,58,.08)}
+.tabs{margin-left:60px;display:flex;gap:6px;background:rgba(255,255,255,.04);padding:5px;border-radius:12px}
+.tabs span{font-size:17px;font-weight:600;color:#9AA39A;padding:7px 16px;border-radius:9px}.tabs span.on{background:rgba(255,255,255,.1);color:#fff}
+.stato{margin-left:auto;display:flex;gap:12px}.stato div{font-family:'Martian Mono';font-size:15px;font-weight:700;border:1px solid var(--riga);border-radius:10px;padding:8px 13px;background:rgba(0,0,0,.25)}
+.stato .live i{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--verde);margin-right:8px;box-shadow:0 0 10px var(--verde)}
+/* avvio */
+#avvio{position:absolute;inset:62px 0 0 0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 42%,rgba(242,184,58,.16),transparent 55%)}
+.orb{width:250px;height:250px;border-radius:50%;border:3px solid rgba(242,184,58,.75);display:grid;place-items:center;position:relative;box-shadow:0 0 70px rgba(242,184,58,.35)}
+.orb .in{width:170px;height:170px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFE3A0,#F2B83A 45%,#7A5300 100%);display:grid;place-items:center;box-shadow:inset 0 -14px 30px rgba(0,0,0,.35)}
+.orb .punto{position:absolute;top:-9px;left:50%;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:#fff;box-shadow:0 0 16px var(--oro)}
+#avvio h1{font-size:76px;font-weight:850;letter-spacing:-.03em;margin-top:34px}
+#avvio .chip{margin-top:12px;font-size:16px}
+.lista{margin-top:30px;font-family:'Martian Mono';font-size:21px;line-height:1.9}
+.lista div{opacity:0}.lista div.v{opacity:1}.lista .ok{color:var(--verde);margin-right:14px}
+.sinc{margin-top:28px;font-family:'Martian Mono';font-size:16px;letter-spacing:.2em;color:#9AA39A}
+/* cruscotto */
+#cru{position:absolute;inset:62px 0 0 0;display:grid;grid-template-columns:260px 1fr 330px;gap:16px;padding:16px;opacity:0}
+.lato{border-right:1px solid var(--riga);padding:6px 14px 0 4px}
+.lato h4{font-family:'Martian Mono';font-size:13px;letter-spacing:.18em;color:#7E867F;margin:10px 0 10px}
+.voce{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:11px;font-size:18px;font-weight:600;color:#C9CEC9}
+.voce.on{background:rgba(242,184,58,.12);color:#fff}
+.voce small{margin-left:auto;font-family:'Martian Mono';font-size:13px;color:#8E968F}
+.ag{display:flex;align-items:center;gap:12px;padding:9px 6px}
+.ag .ic{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;font-size:19px;font-weight:900;color:#0B0D0C}
+.ag b{font-size:18px;display:block}.ag span{font-size:13px;color:#8E968F}
+.ag .bar{margin-left:auto;display:flex;gap:3px;align-items:flex-end;height:24px}.ag .bar i{width:4px;border-radius:2px;background:currentColor}
+.conto{position:absolute;left:20px;bottom:20px;width:230px;border:1px solid var(--riga);border-radius:14px;padding:14px;background:rgba(0,0,0,.3)}
+.conto b{font-size:15px}.conto .n{font-family:'Martian Mono';font-size:26px;font-weight:800;margin-top:6px}
+.centro{display:flex;flex-direction:column;gap:14px;min-width:0}
+.box{border:1px solid var(--riga);border-radius:16px;background:rgba(255,255,255,.02);padding:16px 18px;position:relative}
+.box h5{font-family:'Martian Mono';font-size:13px;letter-spacing:.18em;color:#7E867F;font-weight:700}
+.eq{height:400px}
+.eq .val{font-size:78px;font-weight:850;letter-spacing:-.03em;margin-top:4px;font-variant-numeric:tabular-nums}
+.eq .val small{font-size:40px;color:#9AA39A}
+.eq .var{display:inline-block;font-family:'Martian Mono';font-size:18px;font-weight:800;padding:5px 12px;border-radius:9px;margin-top:4px}
+.eq svg{position:absolute;left:16px;right:16px;bottom:14px}
+.limite{position:absolute;right:18px;top:16px;width:300px;text-align:right}
+.limite .t{font-family:'Martian Mono';font-size:14px;color:#9AA39A}
+.limite .g{height:14px;border-radius:99px;background:rgba(255,255,255,.08);margin-top:8px;overflow:hidden}
+.limite .g i{display:block;height:100%;border-radius:99px}
+.limite .n{font-family:'Martian Mono';font-size:22px;font-weight:800;margin-top:8px}
+.carte{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.carta{border:1px solid var(--riga);border-radius:14px;padding:12px 14px;background:rgba(255,255,255,.02)}
+.carta .k{font-family:'Martian Mono';font-size:12px;letter-spacing:.12em;color:#7E867F}
+.carta .v{font-size:27px;font-weight:800;margin-top:4px;font-variant-numeric:tabular-nums}
+.carta .s{font-size:13px;color:#9AA39A;margin-top:2px}
+table{width:100%;border-collapse:collapse;font-family:'Martian Mono';font-size:15px}
+td,th{padding:7px 6px;text-align:left;border-bottom:1px solid var(--riga)}th{font-size:12px;color:#7E867F;letter-spacing:.12em;font-weight:700}
+.st{font-weight:800;font-size:13px;padding:3px 8px;border-radius:6px}
+.log{font-family:'Martian Mono';font-size:14px;line-height:1.55;height:100%}
+.log div{margin-bottom:9px;opacity:0;transform:translateY(8px)}.log div.v{opacity:1;transform:none}
+.log .o{color:#7E867F}.log .a{font-weight:800}
+/* blocco */
+#blocco{position:absolute;inset:62px 0 0 0;display:grid;place-items:center;background:rgba(40,0,6,.0);pointer-events:none;opacity:0}
+#blocco .tim{border:6px solid var(--rosso);color:var(--rosso);border-radius:22px;padding:30px 50px;text-align:center;background:rgba(10,0,2,.92);box-shadow:0 0 80px rgba(255,77,94,.45)}
+#blocco .tim b{display:block;font-size:84px;font-weight:900;letter-spacing:-.02em;line-height:1}
+#blocco .tim span{display:block;font-family:'Martian Mono';font-size:22px;font-weight:700;margin-top:14px;color:#FFC2C8}
+/* fondo */
+#piede{position:absolute;left:60px;right:60px;top:1380px;text-align:center}
+#sotto{font-size:46px;font-weight:800;line-height:1.15;min-height:110px}
+#sotto em{font-style:normal;color:var(--oro)}
+#nota{position:absolute;left:0;right:0;bottom:120px;text-align:center;font-family:'Martian Mono';font-size:22px;color:#8E968F}
+/* chiusura */
+#fine{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 40%,#2A2008,#060706 70%);opacity:0;text-align:center}
+#fine h2{font-size:118px;font-weight:900;letter-spacing:-.035em;line-height:.98;margin-top:60px}
+#fine h2 mark{background:var(--oro);color:#0B0D0C;padding:0 16px}
+#fine p{font-size:36px;color:#C9CEC9;margin-top:46px;font-weight:600}
+#fine .url{font-family:'Martian Mono';font-size:40px;font-weight:800;color:var(--oro);margin-top:30px}
+#fine small{position:absolute;bottom:120px;left:80px;right:80px;font-family:'Martian Mono';font-size:21px;color:#8E968F;line-height:1.5}
+#lampo{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none}
+</style></head><body>
+<div id="sfondo"></div>
+<div id="gancio"></div>
+<div id="schermo"><div id="cam">
+  <div class="menu"><span style="font-size:22px"></span><b>Riskly Pro</b><span>File</span><span>Modifica</span><span>Vista</span><span>Trading</span><span>Finestra</span><span>Aiuto</span><span class="dx">Ven 6 nov <span id="ora">15:02</span></span></div>
+  <div class="fin">
+    <div class="barra">
+      <span class="semafori"><i style="background:#FF5F57"></i><i style="background:#FEBC2E"></i><i style="background:#28C840"></i></span>
+      <span class="logo"><svg width="24" height="24" viewBox="0 0 44 44" fill="none"><path d="M9 31 L17 19.5 L23.5 25 L35 11" stroke="#B97C00" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 36 H35" stroke="#5E656D" stroke-width="4" stroke-linecap="round"/></svg></span>
+      <span class="nome">Riskly Pro</span><span class="chip">● terminale di rischio</span>
+      <div class="tabs"><span class="on">Panoramica</span><span>Regole</span><span>Conti</span><span>Journal</span></div>
+      <div class="stato"><div class="live" id="live"><i></i>Live</div><div id="crono">00:00:00</div><div>Conto demo · MT5</div></div>
+    </div>
+    <div id="avvio">
+      <div class="orb"><span class="punto"></span><div class="in"><svg width="96" height="96" viewBox="0 0 44 44" fill="none"><path d="M9 31 L17 19.5 L23.5 25 L35 11" stroke="#1A1200" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 36 H35" stroke="#1A1200" stroke-width="3.6" stroke-linecap="round" opacity=".55"/></svg></div></div>
+      <h1>Riskly Pro</h1><span class="chip">● terminale di rischio</span>
+      <div class="lista" id="lista">
+        <div><span class="ok">✓</span>MetaTrader 5 · conto demo collegato</div>
+        <div><span class="ok">✓</span>rischio per operazione · 1%</div>
+        <div><span class="ok">✓</span>limite di perdita al giorno · −3%</div>
+        <div><span class="ok">✓</span>blocco notizie · 15 min prima e dopo</div>
+        <div><span class="ok">✓</span>break even e trailing automatici</div>
+      </div>
+      <div class="sinc" id="sinc">SINCRONIZZO IL CONTO · 0%</div>
+    </div>
+    <div id="cru">
+      <div class="lato">
+        <h4>TERMINALE</h4>
+        <div class="voce on">▦ Panoramica</div><div class="voce">⇄ Operazioni <small id="nOp">0</small></div><div class="voce">☰ Regole <small>6/6</small></div><div class="voce">⛨ Blocchi <small id="nBl">0</small></div>
+        <h4 style="margin-top:22px">MODULI</h4>
+        <div class="ag" style="color:#F2B83A"><span class="ic" style="background:#F2B83A">R</span><div><b style="color:#fff">RiskGuard</b><span>limiti di perdita</span></div><span class="bar" id="b0"></span></div>
+        <div class="ag" style="color:#2BD98B"><span class="ic" style="background:#2BD98B">T</span><div><b style="color:#fff">TradeManager</b><span>stop, BE, trailing</span></div><span class="bar" id="b1"></span></div>
+        <div class="ag" style="color:#7FA5FF"><span class="ic" style="background:#7FA5FF">S</span><div><b style="color:#fff">ScaleIn</b><span>ingressi a scaglioni</span></div><span class="bar" id="b2"></span></div>
+        <div class="ag" style="color:#C38BFF"><span class="ic" style="background:#C38BFF">C</span><div><b style="color:#fff">Calendario</b><span>blocco notizie</span></div><span class="bar" id="b3"></span></div>
+        <div class="conto"><b>Conto demo</b><div class="mono" style="font-size:13px;color:#8E968F">MT5 · 10.000 € a inizio giornata</div><div class="n" id="contoN">10.000,00 €</div></div>
+      </div>
+      <div class="centro">
+        <div class="box eq">
+          <h5>EQUITY · OGGI <span style="color:#5E655F">— simulazione su conto demo</span></h5>
+          <div class="val" id="eqVal">10.000<small>,00 €</small></div>
+          <div class="var" id="eqVar">+0,00 €  (+0,00%)</div>
+          <div class="limite"><div class="t">LIMITE DI PERDITA AL GIORNO</div><div class="g"><i id="limBar"></i></div><div class="n" id="limN">0 € su −300 €</div></div>
+          <svg id="grafico" width="860" height="230" viewBox="0 0 860 230"></svg>
+        </div>
+        <div class="carte">
+          <div class="carta"><div class="k">LOTTO CALCOLATO</div><div class="v" id="cLotto">—</div><div class="s" id="cLottoS">rischio 1% = 100 €</div></div>
+          <div class="carta"><div class="k">STOP RISPETTATI</div><div class="v" id="cStop">0 / 0</div><div class="s">nessuno spostato a mano</div></div>
+          <div class="carta"><div class="k">OPERAZIONI OGGI</div><div class="v" id="cOp">0 / 6</div><div class="s">massimo al giorno</div></div>
+          <div class="carta"><div class="k">NOTIZIE</div><div class="v" id="cNews" style="color:#C38BFF">16:00</div><div class="s" id="cNewsS">Michigan · blocco 15:45 → 16:15</div></div>
+        </div>
+        <div class="box" style="flex:1">
+          <h5>POSIZIONI</h5>
+          <table><thead><tr><th>SIMBOLO</th><th>LATO</th><th>LOTTI</th><th>RISCHIO</th><th>RISULTATO</th><th>STATO</th></tr></thead><tbody id="pos"></tbody></table>
+        </div>
+      </div>
+      <div class="box"><h5>REGISTRO</h5><div class="log" id="log" style="margin-top:12px"></div></div>
+    </div>
+    <div id="blocco"><div class="tim"><b>TRADING BLOCCATO</b><span>limite di perdita −3% raggiunto · posizioni chiuse</span><span>riprende lunedì alle 08:00</span></div></div>
+  </div>
+</div></div>
+<div id="piede"><div id="sotto"></div></div>
+<div id="nota">Simulazione su conto demo · numeri di esempio</div>
+<div id="fine">
+  <svg width="150" height="150" viewBox="0 0 44 44" fill="none"><rect width="44" height="44" rx="11" fill="#F3F4F1"/><path d="M9 31 L17 19.5 L23.5 25 L35 11" stroke="#B97C00" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 36 H35" stroke="#5E656D" stroke-width="3.4" stroke-linecap="round"/></svg>
+  <h2>Il mercato non<br>lo controlli.<br><mark>Tutto il resto sì.</mark></h2>
+  <p>Bot per MT4 e MT5 che ti fermano<br>prima del conto bruciato.</p>
+  <div class="url">riskly.trade</div>
+  <small>Simulazione su conto demo, numeri di esempio. Nessun bot elimina le perdite: le limita. Il trading con leva comporta un alto rischio.</small>
+</div>
+<div id="lampo"></div>
+<script>
+const $ = id => document.getElementById(id);
+const cl = (x, a, b) => Math.max(a, Math.min(b, x));
+const ease = x => { x = cl(x, 0, 1); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
+const lerp = (a, b, x) => a + (b - a) * x;
+const eur = (v, seg) => (seg && v > 0 ? '+' : v < 0 ? '−' : '') + Math.abs(v).toLocaleString('it-IT', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
+const pct = v => (v > 0 ? '+' : v < 0 ? '−' : '') + Math.abs(v).toLocaleString('it-IT', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '%';
+
+const T_CRU = 3.4, T_BLOCCO = 14.2, T_FINE = 19.6, DURATA = 23.5;
+window.DURATA = DURATA;
+/* equity (esempio) = 10.000 € + risultato delle posizioni: le perdite chiuse fanno esattamente −300 € (−3%) */
+function eqA(t){ return 10000 + POS.reduce((a, p) => a + ris(p, t), 0); }
+/* senza limite (esempio): la stessa giornata continua a scendere */
+const FANTASMA = [[T_BLOCCO, 9700], [15.2, 9560], [16.2, 9410], [17.2, 9280], [18.2, 9160]];
+function interp(arr, t){ if(t <= arr[0][0]) return arr[0][1]; for(let i = 1; i < arr.length; i++) if(t <= arr[i][0]){ const [t0, v0] = arr[i-1], [t1, v1] = arr[i]; return lerp(v0, v1, ease((t - t0) / (t1 - t0))); } return arr[arr.length-1][1]; }
+const LOG = [
+  [3.8, 'RiskGuard', '#F2B83A', 'conto collegato · limite del giorno −3% (−300 €)'],
+  [4.6, 'TradeManager', '#2BD98B', 'EURUSD buy · 0,42 lotti · rischio 1% = 100 €'],
+  [5.5, 'Calendario', '#C38BFF', 'Michigan alle 16:00 · ordini bloccati 15:45 → 16:15'],
+  [6.6, 'TradeManager', '#2BD98B', 'EURUSD +20 pip · stop spostato a break even'],
+  [7.6, 'ScaleIn', '#7FA5FF', 'XAUUSD sell in 2 scaglioni · rischio totale 1%'],
+  [9.6, 'RiskGuard', '#F2B83A', 'XAUUSD stop colpito · −100 €, come previsto'],
+  [10.0, 'TradeManager', '#2BD98B', 'NAS100 buy · 0,15 lotti · rischio 1%'],
+  [11.6, 'RiskGuard', '#FF4D5E', 'NAS100 stop · 2 perdite di fila · rischio ridotto allo 0,5%'],
+  [12.8, 'RiskGuard', '#FF4D5E', 'GBPUSD stop · oggi −2,5%'],
+  [13.6, 'RiskGuard', '#FF4D5E', 'attenzione: −2,8% su un limite di −3%'],
+  [T_BLOCCO, 'RiskGuard', '#FF4D5E', 'LIMITE −3% RAGGIUNTO · posizioni chiuse, trading bloccato'],
+];
+const POS = [
+  // simbolo, lato, lotti, rischio, [apertura, chiusura], esito, risultato alla chiusura
+  ['EURUSD', 'BUY', '0,42', '1%', [4.6, T_BLOCCO], 'be', 0],
+  ['XAUUSD', 'SELL', '0,08', '1%', [7.6, 9.6], 'stop', -100],
+  ['NAS100', 'BUY', '0,15', '1%', [10.0, 11.6], 'stop', -100],
+  ['GBPUSD', 'SELL', '0,21', '0,5%', [11.8, 12.8], 'stop', -50],
+  ['US30', 'BUY', '0,05', '0,5%', [13.0, T_BLOCCO], 'stop', -50],
+];
+function ris(p, t){
+  const [sim, , , , [ta, tc], , fine] = p;
+  if(t < ta) return 0;
+  if(sim === 'EURUSD') return t < 6.6 ? 84 * ease((t - ta) / 2) : t >= tc ? 0 : lerp(84, 0, ease((t - 6.6) / (tc - 6.6)));
+  if(t >= tc) return fine;
+  const x = (t - ta) / (tc - ta);
+  return fine * ease(x) + Math.sin(x * 9) * 6 * (1 - x);
+}
+const GANCI = [[0, 'Ho dato il mio conto<br>a <mark>un bot.</mark>'], [T_CRU + .2, 'Non per farmi<br><mark>guadagnare.</mark>'], [10.4, 'Ma per <mark>fermarmi.</mark>'], [T_BLOCCO, 'Prima del<br><mark>disastro.</mark>']];
+const SOTTO = [[0.3, 'Si accende così.'], [T_CRU + .3, 'Ogni ordine: lotto calcolato<br>sul <em>rischio dell\'1%</em>.'], [6.6, 'In guadagno? Stop a <em>break even</em>.<br>Notizie in arrivo? <em>Ordini bloccati.</em>'], [9.6, 'Poi la giornata gira.<br><em>Stop. Stop. Stop.</em>'], [T_BLOCCO + .1, '<em>−3%</em> e il bot chiude tutto.<br>Niente vendetta.'], [16.2, 'Senza limite, la stessa giornata<br>finiva a <em style="color:#FF4D5E">−8,4%</em>.']];
+function ultimo(arr, t){ let r = null; for(const x of arr) if(t >= x[0]) r = x; return r; }
+
+function grafico(t){
+  const W = 860, H = 230, t0 = T_CRU, t1 = 18.4, vmin = 9020, vmax = 10140;
+  const X = tt => (tt - t0) / (t1 - t0) * W, Y = v => H - 10 - (v - vmin) / (vmax - vmin) * (H - 20);
+  const fine = Math.max(t0, Math.min(t, T_BLOCCO));
+  let d = '', pts = [];
+  for(let tt = t0; tt <= fine + 1e-6; tt += .05) pts.push([X(tt), Y(eqA(tt))]);
+  if(t > T_BLOCCO) pts.push([X(Math.min(t, t1)), Y(9700)]);
+  d = pts.map((p, i) => (i ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' ');
+  const yLim = Y(9700), base = Y(10000);
+  let g = `<line x1="0" x2="${W}" y1="${base}" y2="${base}" stroke="rgba(255,255,255,.18)" stroke-dasharray="4 6"/>`;
+  g += `<line x1="0" x2="${W}" y1="${yLim}" y2="${yLim}" stroke="#FF4D5E" stroke-width="2" stroke-dasharray="10 8" opacity=".8"/><text x="${W - 6}" y="${yLim - 10}" text-anchor="end" font-family="Martian Mono" font-size="16" font-weight="800" fill="#FF4D5E">LIMITE −3%</text>`;
+  if(t > 15){ // la giornata senza limite
+    const f = []; for(let tt = T_BLOCCO; tt <= Math.min(t - .8, 18.2) + 1e-6; tt += .05) f.push([X(tt), Y(interp(FANTASMA, tt))]);
+    if(f.length > 1){ g += `<path d="${f.map((p, i) => (i ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' ')}" fill="none" stroke="#FF4D5E" stroke-width="3" stroke-dasharray="3 7" stroke-linecap="round" opacity=".85"/>`;
+      const l = f[f.length-1]; g += `<text x="${l[0] - 14}" y="${l[1] + 6}" text-anchor="end" font-family="Martian Mono" font-size="17" font-weight="800" fill="#FF8A95">senza limite: −8,4% (esempio)</text>`; }
+  }
+  const ult = pts[pts.length-1], col = eqA(fine) >= 10000 ? '#2BD98B' : '#FF4D5E';
+  g += `<path d="${d} L${ult[0]} ${H} L0 ${H} Z" fill="${col}" opacity=".08"/><path d="${d}" fill="none" stroke="${col}" stroke-width="4" stroke-linejoin="round"/>`;
+  g += `<circle cx="${ult[0]}" cy="${ult[1]}" r="8" fill="${col}"/><circle cx="${ult[0]}" cy="${ult[1]}" r="${16 + 6 * Math.sin(t * 6)}" fill="${col}" opacity=".2"/>`;
+  if(t > T_BLOCCO) g += `<text x="${X(T_BLOCCO) - 12}" y="${yLim + 30}" text-anchor="end" font-family="Martian Mono" font-size="17" font-weight="800" fill="#ECEEEA">con Riskly: fermo a −3%</text>`;
+  $('grafico').innerHTML = g;
+}
+
+const SUONI = [];
+(function(){
+  SUONI.push([0.05, 'colpo']);
+  [0.7, 1.15, 1.6, 2.05, 2.5].forEach(x => SUONI.push([x, 'clic']));
+  SUONI.push([T_CRU, 'colpo']);
+  LOG.forEach(l => SUONI.push([l[0], l[0] === T_BLOCCO ? 'botto' : 'clic']));
+  SUONI.push([5.5, 'notifica'], [13.6, 'notifica'], [10.4, 'colpo'], [16.2, 'colpo'], [T_FINE, 'colpo']);
+})();
+window.suoni = () => SUONI;
+
+window.fotogramma = function(t){
+  // testo in alto e in basso
+  const g = ultimo(GANCI, t); $('gancio').innerHTML = g ? g[1] : '';
+  const gi = g ? cl((t - g[0]) / .25, 0, 1) : 0; $('gancio').style.transform = `scale(${lerp(1.18, 1, ease(gi))})`; $('gancio').style.opacity = gi;
+  const s = ultimo(SOTTO, t); $('sotto').innerHTML = s ? s[1] : ''; $('sotto').style.opacity = s ? cl((t - s[0]) / .2, 0, 1) : 0;
+  // avvio
+  const lista = [...$('lista').children]; lista.forEach((d, i) => d.classList.toggle('v', t >= .7 + i * .45));
+  $('sinc').textContent = 'SINCRONIZZO IL CONTO · ' + Math.round(cl((t - .3) / 2.7, 0, 1) * 100) + '%';
+  const av = cl((t - T_CRU + .3) / .3, 0, 1); $('avvio').style.opacity = 1 - av; $('cru').style.opacity = av;
+  $('avvio').querySelector('.orb').style.transform = `scale(${1 + .04 * Math.sin(t * 5)}) rotate(${t * 40}deg)`;
+  // ora e cronometro
+  const sec = Math.max(0, t - T_CRU) * 58; // un secondo di video ≈ un minuto di mercato
+  const m = Math.floor(sec / 60), ss = Math.floor(sec % 60);
+  $('crono').textContent = `00:${String(m).padStart(2,'0')}:${String(ss).padStart(2,'0')}`;
+  $('ora').textContent = '15:' + String(Math.min(59, 2 + m)).padStart(2, '0');
+  const bloccato = t >= T_BLOCCO;
+  $('live').innerHTML = bloccato ? '<i style="background:#FF4D5E;box-shadow:0 0 10px #FF4D5E"></i>Bloccato' : '<i></i>Live';
+  // equity
+  const eq = eqA(Math.min(t, T_BLOCCO)), pl = eq - 10000;
+  const [int, dec] = eq.toLocaleString('it-IT', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).split(',');
+  $('eqVal').innerHTML = `${int}<small>,${dec} €</small>`; $('contoN').textContent = eur(eq);
+  const v = $('eqVar'); v.textContent = `${eur(pl, true)}  (${pct(pl / 100)})`;
+  v.style.background = pl >= 0 ? 'rgba(43,217,139,.14)' : 'rgba(255,77,94,.16)'; v.style.color = pl >= 0 ? '#2BD98B' : '#FF6B7A';
+  const usato = cl(-pl / 300, 0, 1);
+  $('limBar').style.width = (usato * 100) + '%'; $('limBar').style.background = usato > .8 ? '#FF4D5E' : usato > .4 ? '#F2B83A' : '#2BD98B';
+  $('limN').textContent = `${pl < 0 ? '−' + Math.round(-pl) : 0} € su −300 €`; $('limN').style.color = usato > .8 ? '#FF4D5E' : '#ECEEEA';
+  grafico(t);
+  // carte
+  const aperte = POS.filter(p => t >= p[4][0]).length;
+  $('cOp').textContent = `${aperte} / 6`; $('nOp').textContent = aperte;
+  const chiuseStop = POS.filter(p => p[5] === 'stop' && t >= p[4][1]).length;
+  $('cStop').textContent = `${chiuseStop} / ${chiuseStop}`;
+  const pAtt = [...POS].reverse().find(p => t >= p[4][0]);
+  $('cLotto').textContent = pAtt ? pAtt[2] + ' lotti' : '—'; $('cLottoS').textContent = pAtt ? `${pAtt[0]} · rischio ${pAtt[3]}` : 'rischio 1% = 100 €';
+  $('nBl').textContent = bloccato ? 1 : 0;
+  $('pos').innerHTML = POS.filter(p => t >= p[4][0]).map(p => {
+    const [sim, lato, lotti, risk, [ta, tc], esito] = p; const chiusa = t >= tc, r = ris(p, t);
+    let st = '<span class="st" style="background:rgba(43,217,139,.15);color:#2BD98B">APERTA</span>';
+    if(sim === 'EURUSD' && t >= 6.6) st = '<span class="st" style="background:rgba(242,184,58,.15);color:#F2B83A">BE ✓</span>';
+    if(chiusa && esito === 'stop') st = '<span class="st" style="background:rgba(255,77,94,.16);color:#FF6B7A">STOP</span>';
+    if(chiusa && esito === 'be') st = '<span class="st" style="background:rgba(255,77,94,.16);color:#FF6B7A">CHIUSA</span>';
+    return `<tr><td style="font-weight:800">${sim}</td><td>${lato}</td><td>${lotti}</td><td>${risk}</td><td style="color:${r >= 0 ? '#2BD98B' : '#FF6B7A'};font-weight:700">${eur(r, true)}</td><td>${st}</td></tr>`;
+  }).join('');
+  // registro (gli ultimi 9)
+  const righe = LOG.filter(l => t >= l[0]).slice(-9);
+  $('log').innerHTML = righe.map(l => `<div class="v"><span class="o">15:${String(Math.min(59, 2 + Math.floor((l[0] - T_CRU) * 58 / 60))).padStart(2,'0')}</span> <span class="a" style="color:${l[2]}">${l[1]}</span><br>${l[3]}</div>`).join('');
+  // barre dei moduli
+  ['b0','b1','b2','b3'].forEach((id, k) => { $(id).innerHTML = [0,1,2,3,4].map(j => `<i style="height:${6 + Math.abs(Math.sin(t * (3 + k) + j * 1.7 + k)) * (bloccato && k ? 2 : 18)}px"></i>`).join(''); });
+  // blocco
+  const bl = cl((t - T_BLOCCO) / .15, 0, 1), blv = t < 15.6 ? bl : 1 - cl((t - 15.6) / .4, 0, 1);
+  $('blocco').style.opacity = blv; $('blocco').querySelector('.tim').style.transform = `scale(${lerp(1.6, 1, ease(bl))}) rotate(-4deg)`;
+  $('blocco').style.background = `rgba(60,0,8,${.45 * blv})`;
+  // camera: da tutto lo schermo ai dettagli
+  const CAM = [ // t, scala, x, y (punto in alto a sinistra mostrato)
+    [0, .65, 0, 0], [T_CRU, .65, 0, 0], [4.4, .65, 0, 0], [5.2, 1.0, 280, 130], [6.4, 1.0, 280, 130], [7.0, 1.0, 290, 470], [8.4, 1.0, 290, 470],
+    [9.0, 1.0, 560, 100], [10.2, 1.0, 560, 100], [10.8, .65, 0, 0], [12.6, .65, 0, 0], [13.2, .9, 280, 120], [T_BLOCCO, .9, 280, 120], [14.5, .65, 0, 0], [15.8, .65, 0, 0], [16.4, 1.0, 290, 140], [T_FINE, 1.0, 290, 140]];
+  let c0 = CAM[0], c1 = CAM[0]; for(let i = 1; i < CAM.length; i++) if(t >= CAM[i-1][0]){ c0 = CAM[i-1]; c1 = CAM[i]; }
+  const k = c1[0] > c0[0] ? ease((t - c0[0]) / (c1[0] - c0[0])) : 1;
+  const sc = lerp(c0[1], c1[1], k), cx = lerp(c0[2], c1[2], k), cy = lerp(c0[3], c1[3], k);
+  const sh = t >= T_BLOCCO && t < T_BLOCCO + .5 ? (1 - (t - T_BLOCCO) / .5) * 14 : 0;
+  const ox = cl(cx * sc, 0, 1600 * sc - 1040), oy = cl(cy * sc, 0, Math.max(0, 1170 * sc - 760));
+  $('cam').style.transform = `translate(${-ox + Math.sin(t * 90) * sh}px,${-oy + Math.cos(t * 77) * sh}px) scale(${sc})`;
+  $('schermo').style.boxShadow = bloccato && t < T_FINE ? `0 30px 90px rgba(0,0,0,.8),0 0 0 3px rgba(255,77,94,${.5 + .3 * Math.sin(t * 8)})` : '';
+  // lampo sui colpi
+  const lam = [T_CRU, T_BLOCCO, T_FINE].map(x => t >= x && t < x + .18 ? 1 - (t - x) / .18 : 0); $('lampo').style.opacity = Math.max(...lam) * .55;
+  // chiusura
+  const f = cl((t - T_FINE) / .35, 0, 1); $('fine').style.opacity = f; $('fine').querySelector('h2').style.transform = `scale(${lerp(1.12, 1, ease(f))})`;
+};
+window.fotogramma(0);
+</script></body></html>
