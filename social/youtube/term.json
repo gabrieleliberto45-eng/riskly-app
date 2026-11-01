@@ -1,0 +1,15 @@
+{
+ "titolo": "Terminale Riskly: il bot che ti ferma",
+ "nota": "Voce del reel social/reel/terminale.html (1° novembre 2026). Una scena per pezzo di video: ogni traccia parte al suo 'inizio' (secondi) e deve finire prima del pezzo dopo.",
+ "pause": true,
+ "velocita": "+8%",
+ "scene": [
+  {"inizio": 0.15, "fine": 3.3, "voce": "Ho dato il mio conto a un bot."},
+  {"inizio": 3.5, "fine": 6.5, "voce": "Non per guadagnare di più. Ogni ordine ha il lotto calcolato sull'uno per cento."},
+  {"inizio": 6.6, "fine": 9.5, "voce": "In guadagno? Stop a break even. Notizie in arrivo? Ordini bloccati."},
+  {"inizio": 9.6, "fine": 14.1, "voce": "Poi la giornata gira. Stop. Stop. Stop. Meno due virgola otto."},
+  {"inizio": 14.3, "fine": 16.1, "voce": "Meno tre: chiude tutto. Niente vendetta."},
+  {"inizio": 16.2, "fine": 19.5, "voce": "Senza limite, la stessa giornata finiva a meno otto virgola quattro."},
+  {"inizio": 19.7, "fine": 23.4, "voce": "Il mercato non lo controlli. Tutto il resto sì. Riskly."}
+ ]
+}
