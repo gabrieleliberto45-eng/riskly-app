@@ -1,0 +1,128 @@
+{
+ "aggiornato": "2026-11-01",
+ "articoli": [
+  {
+   "id": "2026-11-01-settimana-2-6-novembre",
+   "data": "2026-11-01",
+   "categoria": "settimana",
+   "titolo": "La settimana che arriva: elezioni USA, Banca d'Inghilterra e payrolls",
+   "sommario": "Da lunedì i dati americani tornano alle 14:30. In cinque giorni: elezioni di metà mandato nella notte di martedì, rialzo quasi certo della Banca d'Inghilterra giovedì, payrolls venerdì.",
+   "corpo": [
+    "Dal 1° novembre anche negli Stati Uniti è finita l'ora legale: da lunedì i dati americani escono di nuovo alle 14:30 e alle 16:00 ora italiana, e la Borsa di New York apre alle 15:30. La settimana scorsa, con l'Italia già all'ora solare e gli USA no, uscivano un'ora prima.",
+    "Lunedì alle 16:00 c'è l'indice ISM manifatturiero di ottobre. Martedì si vota per le elezioni di metà mandato: i primi seggi chiudono da mezzanotte ora italiana, la costa est tra l'una e le due, la California alle cinque. I risultati arrivano quindi di notte, quando gli scambi sono pochi e gli spread più larghi.",
+    "Mercoledì alle 11:00 esce la stima dell'inflazione dell'Eurozona e alle 16:00 l'indice ISM dei servizi americano. Giovedì alle 13:00 decide la Banca d'Inghilterra: i prezzi degli swap danno circa il 94% di probabilità a un rialzo dal 3,75% al 4%, dopo che l'inflazione inglese di settembre è salita al 3,5%. A settembre il voto era stato 6 a 3, con tre membri già per il rialzo.",
+    "Venerdì alle 14:30 escono i payrolls di ottobre: il mese scorso +29 mila posti di lavoro, il consenso di oggi è +65 mila, con la disoccupazione attesa al 4,2%. È il dato che più di tutti può cambiare le attese su un rialzo della Fed a dicembre."
+   ],
+   "da_guardare": [
+    "Martedì notte: spread più larghi su dollaro, indici e oro mentre arrivano i risultati.",
+    "Giovedì 13:00: se il rialzo è già nei prezzi, contano il voto e quello che la banca dice sui prossimi mesi.",
+    "Venerdì 14:30: conta la sorpresa rispetto alle attese, non il numero da solo."
+   ],
+   "fonti": [
+    {
+     "nome": "Calendario economico (consenso al 30 ottobre)",
+     "url": "https://strumenti.riskly.trade/#calendario"
+    },
+    {
+     "nome": "Banca d'Inghilterra: politica monetaria",
+     "url": "https://www.bankofengland.co.uk/monetary-policy"
+    },
+    {
+     "nome": "HomeOwners Alliance: previsioni sui tassi UK",
+     "url": "https://hoa.org.uk/news/interest-rate-predictions-2/"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-01-oro-sotto-3900",
+   "data": "2026-11-01",
+   "categoria": "oro",
+   "titolo": "Oro sotto i 3.900 $: −3,1% in una settimana, ai minimi da oltre un anno",
+   "sommario": "Il future sull'oro chiude la settimana del 26–30 ottobre a 3.884,9 $. Dollaro quasi fermo e rendimenti in calo, eppure l'oro scende: pesano la Fed, il petrolio e le vendite di venerdì.",
+   "corpo": [
+    "Il future sull'oro (COMEX) è passato da 4.010,2 a 3.884,9 dollari nella settimana dal 26 al 30 ottobre: −125 dollari, −3,1%. È la seconda settimana di fila in calo e venerdì il prezzo spot è sceso ai livelli più bassi da oltre un anno. Il massimo della settimana, 4.097 dollari, è arrivato mercoledì sera subito dopo la Fed; quasi tutta la discesa è avvenuta venerdì, con circa 135 dollari persi in un giorno.",
+    "La cosa che non torna con il manuale: l'indice del dollaro è salito appena dello 0,2% e il rendimento del Treasury a dieci anni è sceso di 7 punti base, al 4,93%. Di solito, con dollaro fermo e rendimenti in calo, l'oro sale.",
+    "Il primo motivo è la Fed: tassi fermi mercoledì, ma con due membri che volevano già un rialzo, e giovedì un'inflazione PCE al 3,6%. Il mercato ora vede circa tre probabilità su quattro di un rialzo a dicembre, e l'oro non paga interessi. Il secondo è il petrolio: il Brent resta sopra i 110 dollari dopo una petroliera colpita nello stretto di Hormuz, e petrolio caro vuol dire più inflazione. Il terzo sono le vendite di venerdì: con le Borse tecnologiche in calo si è venduto quasi tutto, metalli compresi; l'argento ha perso circa il 6% in un giorno."
+   ],
+   "da_guardare": [
+    "Payrolls di venerdì 6 novembre alle 14:30: un dato debole può ridurre le attese di un rialzo a dicembre.",
+    "Petrolio e notizie dal Medio Oriente.",
+    "Con oscillazioni da oltre 200 $ a settimana, lo stop in dollari si allarga: il lotto va ricalcolato."
+   ],
+   "fonti": [
+    {
+     "nome": "Yahoo Finance: oro future COMEX (GC=F)",
+     "url": "https://finance.yahoo.com/quote/GC%3DF/"
+    },
+    {
+     "nome": "Kitco, 30 ottobre 2026",
+     "url": "https://www.kitco.com/news/article/2026-10-30/wall-street-abandons-ship-after-gold-sinks-below-3900oz-main-street"
+    },
+    {
+     "nome": "TradingKey (CME FedWatch)",
+     "url": "https://www.tradingkey.com/analysis/commodities/metal/262261037-gold-prices-fall-below-3900-silver-what-causes-prices-to-drop-tradingkey"
+    },
+    {
+     "nome": "USAGOLD, 30 ottobre 2026",
+     "url": "https://www.usagold.com/daily-precious-metals-market-report-october-30-2026/"
+    }
+   ]
+  },
+  {
+   "id": "2026-10-30-bce-ferma-lagarde",
+   "data": "2026-10-30",
+   "categoria": "tassi",
+   "titolo": "BCE ferma al 2,50%, e Lagarde annuncia che lascerà a febbraio",
+   "sommario": "Il 29 ottobre la BCE ha lasciato i tassi invariati dopo due rialzi quest'anno. Con l'inflazione dell'Eurozona al 3,8%, il rischio indicato è il prezzo dell'energia. Christine Lagarde ha annunciato l'uscita anticipata.",
+   "corpo": [
+    "Giovedì 29 ottobre la Banca centrale europea ha lasciato fermi i tre tassi di riferimento: deposito al 2,50%, rifinanziamento principale al 2,65%, prestito marginale al 2,90%. Quest'anno la BCE aveva già alzato i tassi due volte, l'ultima a settembre.",
+    "Nel comunicato la banca scrive che i prezzi dell'energia hanno continuato a salire, con rischi al rialzo per l'inflazione e al ribasso per la crescita, e che non si impegna in anticipo su un percorso dei tassi. L'inflazione dell'Eurozona è al 3,8%.",
+    "Nella stessa giornata Christine Lagarde ha annunciato che lascerà la presidenza a febbraio, prima della scadenza del mandato."
+   ],
+   "da_guardare": [
+    "Mercoledì 5 novembre alle 11:00: stima dell'inflazione dell'Eurozona di ottobre.",
+    "Le notizie sulla successione di Lagarde possono muovere l'euro."
+   ],
+   "fonti": [
+    {
+     "nome": "BCE: decisioni di politica monetaria, 29 ottobre 2026",
+     "url": "https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.mp261029~9a493adf17.en.html"
+    },
+    {
+     "nome": "Euronews, 29 ottobre 2026",
+     "url": "https://www.euronews.com/2026/10/29/ecb-holds-rates-at-25-as-lagarde-announces-early-exit-with-inflation-near-double-the-targe"
+    }
+   ]
+  },
+  {
+   "id": "2026-10-28-fed-ferma-voto-diviso",
+   "data": "2026-10-28",
+   "categoria": "fed",
+   "titolo": "Fed: tassi fermi al 3,75–4,00%, ma due membri volevano già alzare",
+   "sommario": "Decisione del 28 ottobre con voto 10 a 2: Lisa Cook e Beth Hammack chiedevano un rialzo subito. Dopo i dati di giovedì il mercato vede circa tre probabilità su quattro di un rialzo a dicembre.",
+   "corpo": [
+    "Mercoledì 28 ottobre la Federal Reserve ha lasciato i tassi tra il 3,75% e il 4,00%. Il voto è stato 10 a 2: la governatrice Lisa Cook e la presidente della Fed di Cleveland Beth Hammack hanno votato per un rialzo immediato di 25 punti base. La Fed non ha escluso un altro rialzo entro fine anno.",
+    "Il giorno dopo sono usciti dati americani forti: il PIL del terzo trimestre è cresciuto del 3,4% annualizzato e l'inflazione PCE è al 3,6%, con il rialzo mensile più forte da marzo. Secondo il FedWatch del CME, il mercato ha portato a circa il 75% la probabilità di un rialzo a dicembre.",
+    "La prossima riunione della Fed è il 9 dicembre. Tassi attesi più alti di solito sostengono il dollaro e pesano sull'oro, che non paga interessi."
+   ],
+   "da_guardare": [
+    "Payrolls di venerdì 6 novembre alle 14:30.",
+    "Inflazione CPI di novembre, prima della riunione del 9 dicembre."
+   ],
+   "fonti": [
+    {
+     "nome": "Federal Reserve: calendario e comunicati FOMC",
+     "url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+    },
+    {
+     "nome": "Kitco, 30 ottobre 2026",
+     "url": "https://www.kitco.com/news/article/2026-10-30/wall-street-abandons-ship-after-gold-sinks-below-3900oz-main-street"
+    },
+    {
+     "nome": "USAGOLD, 30 ottobre 2026",
+     "url": "https://www.usagold.com/daily-precious-metals-market-report-october-30-2026/"
+    }
+   ]
+  }
+ ]
+}
