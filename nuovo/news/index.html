@@ -50,6 +50,16 @@ a{color:inherit}
 .cat.straordinarie{background:color-mix(in srgb,var(--rosso) 14%,transparent);color:var(--rosso)}
 .lucch{font:700 11px 'Martian Mono';letter-spacing:.06em;color:var(--ink3)}
 .art h2{font-size:21px;line-height:1.22;margin:0 0 6px}
+.art{overflow:hidden;padding:0}
+.art .cop{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#0B0D0C;border-bottom:1px solid var(--line)}
+.art .txt{padding:18px 22px 20px}
+.pezzo .cop{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:16px;margin:4px 0 18px;background:#0B0D0C}
+.cat.setup{background:#15181B;color:#F2B83A}
+html[data-tema="scuro"] .cat.setup{background:#F2B83A;color:#15181B}
+.tab{width:100%;border-collapse:collapse;margin:6px 0 22px;font-size:15px}
+.tab td{padding:10px 4px;border-bottom:1px solid var(--line)}
+.tab td:last-child{text-align:right;font:700 15px 'Martian Mono';white-space:nowrap}
+.nota-setup{font-size:14px;color:var(--ink3);border:1px dashed var(--line);border-radius:12px;padding:10px 14px;margin:0 0 18px}
 .art p{margin:0;font-size:16px;line-height:1.5;color:var(--ink2)}
 .pezzo{padding:30px 0 50px}
 .indietro{background:none;border:none;color:var(--ink);font:700 15px 'Archivo';cursor:pointer;padding:0;margin-bottom:16px}
@@ -82,7 +92,7 @@ a{color:inherit}
 .modale .err{color:var(--rosso);font-size:14px;min-height:20px;margin:10px 0}
 .modale .cambia{background:none;border:none;color:var(--amber-deep);font:700 14px 'Archivo';cursor:pointer;margin-top:12px;padding:0}
 .flash{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:12px 18px;border-radius:12px;font-weight:600;z-index:70;display:none}
-@media(max-width:560px){.logo small{display:none}.hero{padding-top:30px}.art{padding:18px}}
+@media(max-width:560px){.logo small{display:none}.hero{padding-top:30px}.art .txt{padding:16px 18px 18px}.tab{font-size:14px}.tab td:last-child{font-size:13px}}
 </style>
 </head>
 <body>
@@ -121,7 +131,7 @@ const SB_URL = 'https://swlztverwfgdgchgpudt.supabase.co', SB_KEY = 'sb_publisha
 /* link di pagamento Stripe di Riskly News (da creare su Stripe e aggiungere anche in supabase/functions/stripe-webhook) */
 const PAGA = { mensile: 'https://buy.stripe.com/6oUbJ0eHM1rZ5Bf2jgdnW0m', annuale: '' };
 const PREZZO = { mensile: '6,99 € al mese', annuale: '' };   /* prezzo deciso da Gabriele il 1° novembre */
-const CAT = { tutti: 'Tutti', oro: 'Oro', dollaro: 'Dollaro', fed: 'Fed', tassi: 'Tassi e banche centrali', straordinarie: 'Straordinarie', settimana: 'La settimana' };
+const CAT = { tutti: 'Tutti', setup: 'Setup XAU', oro: 'Oro', dollaro: 'Dollaro', fed: 'Fed', tassi: 'Tassi e banche centrali', straordinarie: 'Straordinarie', settimana: 'La settimana' };
 
 let sb = null; try{ sb = window.supabase.createClient(SB_URL, SB_KEY); }catch(e){}
 const ACC = { utente: null, accesso: false, modo: 'accedi', dopo: null };
@@ -159,12 +169,12 @@ function vistaLista(){
   document.getElementById('vista').innerHTML = `
     <section class="hero"><div class="k">RISKLY NEWS · OGNI GIORNO</div>
       <h1>Quello che muove <em>il tuo mercato</em></h1>
-      <p>Oro, dollaro, Fed e tassi, banche centrali e notizie straordinarie: ogni mattina i fatti verificati con le fonti, spiegati in modo semplice e con gli orari italiani. Niente previsioni, niente segnali.</p>
+      <p>Oro, dollaro, Fed e tassi, banche centrali e notizie straordinarie, più il <b>Setup XAU</b> con le zone e il trend dell'oro: ogni mattina i fatti verificati con le fonti, spiegati in modo semplice e con gli orari italiani. Niente previsioni, niente segnali.</p>
       ${bloccoAbbonati()}</section>
     <div class="filtri">${Object.keys(CAT).filter(k => k === 'tutti' || presenti.has(k)).map(k => `<button type="button" class="${k === filtro ? 'on' : ''}" onclick="filtro='${k}';vistaLista()">${CAT[k]}</button>`).join('')}</div>
     <div class="lista">${lista.length ? lista.map(a => `<a class="art" href="#/${esc(a.id)}">
-      <div class="meta"><span class="cat ${esc(a.categoria)}">${esc(CAT[a.categoria] || a.categoria)}</span><span>${esc(dataIt(a.data))}</span>${ACC.accesso ? '' : '<span class="lucch">🔒 ABBONATI</span>'}</div>
-      <h2>${esc(a.titolo)}</h2><p>${esc(a.sommario)}</p></a>`).join('') : '<p class="vuoto">Nessun articolo in questa categoria per ora.</p>'}</div>`;
+      ${a.copertina ? `<img class="cop" src="${esc(a.copertina)}" alt="" loading="lazy">` : ''}<div class="txt"><div class="meta"><span class="cat ${esc(a.categoria)}">${esc(CAT[a.categoria] || a.categoria)}</span><span>${esc(dataIt(a.data))}</span>${ACC.accesso ? '' : '<span class="lucch">🔒 ABBONATI</span>'}</div>
+      <h2>${esc(a.titolo)}</h2><p>${esc(a.sommario)}</p></div></a>`).join('') : '<p class="vuoto">Nessun articolo in questa categoria per ora.</p>'}</div>`;
 }
 async function vistaArticolo(id){
   const v = document.getElementById('vista');
@@ -178,9 +188,11 @@ async function vistaArticolo(id){
   }
   const testa = `<button class="indietro" onclick="location.hash=''">← Tutti gli articoli</button>
     <div class="meta"><span class="cat ${esc(a.categoria)}">${esc(CAT[a.categoria] || a.categoria)}</span><span>${esc(dataIt(a.data))}</span></div>
-    <h1>${esc(a.titolo)}</h1><p class="somm">${esc(a.sommario)}</p>`;
+    <h1>${esc(a.titolo)}</h1>${a.copertina ? `<img class="cop" src="${esc(a.copertina)}" alt="">` : ''}<p class="somm">${esc(a.sommario)}</p>`;
   if(pieno){
     v.innerHTML = `<article class="pezzo">${testa}
+      ${a.categoria === 'setup' ? '<p class="nota-setup">Setup XAU descrive cosa ha fatto l\'oro e dove ha girato di recente: sono livelli osservati, non segnali. Non indicano dove comprare o vendere.</p>' : ''}
+      ${(pieno.tabella || []).length ? `<table class="tab">${pieno.tabella.map(r => `<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td></tr>`).join('')}</table>` : ''}
       ${(pieno.corpo || []).map(p => `<p>${esc(p)}</p>`).join('')}
       ${(pieno.da_guardare || []).length ? `<div class="box"><b>Da guardare</b><ul>${pieno.da_guardare.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>` : ''}
       ${(pieno.fonti || []).length ? `<p class="fonti">Fonti: ${pieno.fonti.map(f => `<a href="${esc(f.url)}" target="_blank" rel="noopener">${esc(f.nome)}</a>`).join(' · ')}</p>` : ''}

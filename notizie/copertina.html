@@ -1,0 +1,36 @@
+<!doctype html><html lang="it"><head><meta charset="utf-8"><style>
+/* Copertina degli articoli di Riskly News (1600×900): categoria, titolo e il grafico vero dell'attivo legato al tema */
+@font-face{font-family:'Archivo';src:url(../nuovo/news/fonts/archivo.woff2) format('woff2');font-weight:100 900;font-stretch:62% 125%}
+@font-face{font-family:'Martian Mono';src:url(../nuovo/news/fonts/martian-mono.woff2) format('woff2');font-weight:100 800}
+*{margin:0;box-sizing:border-box}
+body{width:1600px;height:900px;overflow:hidden;background:#0B0D0C;color:#F7F8F5;font-family:'Archivo';position:relative}
+body::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(242,184,58,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(242,184,58,.05) 1px,transparent 1px);background-size:80px 80px}
+#g{position:absolute;left:0;right:0;bottom:0;width:1600px;height:560px}
+.testa{position:absolute;left:90px;top:80px;right:90px}
+.cat{display:inline-block;font:800 26px 'Martian Mono';letter-spacing:.12em;padding:10px 20px;border-radius:999px;background:var(--c);color:#0B0D0C;text-transform:uppercase}
+h1{font-weight:900;font-stretch:78%;font-size:84px;line-height:1.02;margin-top:28px;max-width:1380px;text-shadow:0 6px 30px rgba(0,0,0,.6)}
+.dato{position:absolute;right:90px;bottom:70px;text-align:right;font:700 24px 'Martian Mono';color:#C3CAC5}
+.dato b{display:block;font:900 64px 'Archivo';font-stretch:80%;color:var(--c)}
+.marchio{position:absolute;left:90px;bottom:70px;display:flex;align-items:center;gap:14px;font:800 30px 'Archivo'}
+.marchio i{font:700 20px 'Martian Mono';font-style:normal;color:#F2B83A;letter-spacing:.1em}
+</style></head><body>
+<svg id="g" viewBox="0 0 1600 560" preserveAspectRatio="none"></svg>
+<div class="testa"><span class="cat" id="cat"></span><h1 id="tit"></h1></div>
+<div class="marchio"><svg viewBox="0 0 44 44" width="46" height="46"><rect width="44" height="44" rx="10" fill="#FBFBF9"/><path d="M10 30 L17 20 L23 25 L34 12" stroke="#B97C00" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M10 34.5 H34" stroke="#5E656D" stroke-width="3.6" stroke-linecap="round"/></svg>Riskly <i>NEWS</i></div>
+<div class="dato" id="dato"></div>
+<script>
+window.disegna = d => {
+  document.documentElement.style.setProperty('--c', d.colore);
+  document.getElementById('cat').textContent = d.etichetta;
+  const t = document.getElementById('tit'); t.textContent = d.titolo;
+  t.style.fontSize = (d.titolo.length > 90 ? 64 : d.titolo.length > 60 ? 74 : 84) + 'px';
+  document.getElementById('dato').innerHTML = d.serie.length ? `${d.nome}<b>${d.ultimo}</b>` : '';
+  if(!d.serie.length) return;
+  const v = d.serie, mn = Math.min(...v), mx = Math.max(...v), W = 1600, H = 560;
+  const p = v.map((y, i) => [i / (v.length - 1) * W, 60 + (1 - (y - mn) / (mx - mn || 1)) * (H - 120)]);
+  const linea = p.map((q, i) => (i ? 'L' : 'M') + q[0].toFixed(1) + ' ' + q[1].toFixed(1)).join(' ');
+  document.getElementById('g').innerHTML = `<defs><linearGradient id="f" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="${d.colore}" stop-opacity=".28"/><stop offset="1" stop-color="${d.colore}" stop-opacity="0"/></linearGradient></defs>
+    <path d="${linea} L${W} ${H} L0 ${H} Z" fill="url(#f)"/><path d="${linea}" fill="none" stroke="${d.colore}" stroke-width="5" stroke-linejoin="round"/>
+    <circle cx="${p.at(-1)[0] - 8}" cy="${p.at(-1)[1]}" r="12" fill="${d.colore}"/>`;
+};
+</script></body></html>
