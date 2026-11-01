@@ -85,7 +85,7 @@
    "rialzo": 75,
    "rialzo_in": "w:rialzo",
    "zero_in": "w:interessi",
-   "voce": "Primo motivo: la Fed. L'inflazione è al tre virgola sei per cento, e il mercato ora prezza un rialzo a dicembre: tre probabilità su quattro. E l'oro non paga interessi.",
+   "voce": "Primo motivo: la Fed. L'inflazione è al tre virgola sei per cento. E il mercato ora si aspetta un rialzo a dicembre: tre probabilità su quattro. E l'oro non paga interessi.",
    "colpi": [
     [
      "w:quattro",
@@ -136,7 +136,7 @@
     ]
    ],
    "timbro": "PER FARE CASSA",
-   "voce": "Terzo: vendite forzate. Venerdì scendono le Borse tecnologiche, e chi deve coprire le perdite vende quello che si vende subito: oro e argento.",
+   "voce": "Terzo: vendite forzate. Venerdì, scendono le Borse tecnologiche. E chi deve coprire le perdite vende quello che si vende subito: oro e argento.",
    "colpi": [
     [
      "w:subito",
@@ -173,7 +173,7 @@
    "parola": "ORO",
    "link": "riskly.trade/dati",
    "cta_in": "w:Commenta",
-   "voce": "E adesso? Nessuna previsione, solo le date da segnare. Martedì le elezioni americane. Venerdì alle quattordici e trenta, i payrolls. Il nove dicembre, la Fed. Commenta ORO e ti mando il calendario.",
+   "voce": "E adesso? Nessuna previsione: solo le date da segnare. | Martedì sera, le elezioni americane. | Venerdì, alle quattordici e trenta, i payrolls. | Il nove dicembre, la Fed. | Commenta ORO, e ti mando il calendario.",
    "colpi": [
     [
      "w:nessuna",

@@ -36,26 +36,28 @@ async def main(vid):
         if os.path.exists(out): continue
         if george:
             try:
-                voce_eleven.sintetizza(pronuncia(s['voce']), out, FF); print(out, 'George'); continue
+                voce_eleven.sintetizza(pronuncia(s['voce'].replace(' | ', ' ')), out, FF); print(out, 'George'); continue
             except Exception as e:
                 george = False; print('ATTENZIONE: ElevenLabs non risponde (' + str(e)[:120] + '), uso la voce di riserva (Giuseppe)')
-        if spec.get('pause'):
-            await frasi(pronuncia(s['voce']), out)
+        voce, vel = spec.get('voce_edge', 'it-IT-GiuseppeMultilingualNeural'), spec.get('velocita', '+0%')
+        if spec.get('pause') or '|' in s['voce']:
+            await frasi(pronuncia(s['voce']), out, voce, vel, solo_barre=not spec.get('pause'))
         else:
             # voce e velocità si possono scegliere nel json ("voce_edge", "velocita"); di base Giuseppe
-            c = edge_tts.Communicate(pronuncia(s['voce']), spec.get('voce_edge', 'it-IT-GiuseppeMultilingualNeural'), rate=spec.get('velocita', '+0%'))
+            c = edge_tts.Communicate(pronuncia(s['voce']), voce, rate=vel)
             await c.save(out)
         print(out, spec.get('voce_edge', 'Giuseppe'))
 
 # Giuseppe tende a legare le frasi (1° novembre: "Niente previsioni: segna le date" diventava un'altra cosa):
-# con "pause": true nel json ogni frase è sintetizzata da sola e unita con un silenzio vero (punto 0,35 s, domanda 0,5 s, due punti 0,3 s)
-async def frasi(testo, out):
-    pezzi = [p.strip() for p in re.findall(r'[^.?!:]+[.?!:]?', testo) if p.strip()]
+# con "pause": true nel json ogni frase è sintetizzata da sola e unita con un silenzio vero (punto 0,35 s, domanda 0,5 s, due punti 0,3 s).
+# Senza "pause", una " | " nel testo della voce è una pausa vera di 0,4 s solo in quel punto (la voce legge di fila il resto).
+async def frasi(testo, out, voce='it-IT-GiuseppeMultilingualNeural', vel='+0%', solo_barre=False):
+    pezzi = [p.strip() for p in (testo.split('|') if solo_barre else re.findall(r'[^.?!:]+[.?!:]?', testo.replace('|', ''))) if p.strip()]
     tmp = out + '.parti'; os.makedirs(tmp, exist_ok=True); lista = []
     for i, p in enumerate(pezzi):
         mp3 = os.path.join(tmp, f'{i}.mp3'); wav = os.path.join(tmp, f'{i}.wav')
-        await edge_tts.Communicate(p if p[-1] in '.?!' else p.rstrip(':') + '.', 'it-IT-GiuseppeMultilingualNeural', rate='+0%').save(mp3)
-        pausa = {'?': 0.5, ':': 0.3}.get(p[-1], 0.35) if i < len(pezzi) - 1 else 0
+        await edge_tts.Communicate(p if p[-1] in '.?!' else p.rstrip(':') + '.', voce, rate=vel).save(mp3)
+        pausa = (0.4 if solo_barre else {'?': 0.5, ':': 0.3}.get(p[-1], 0.35)) if i < len(pezzi) - 1 else 0
         subprocess.run([FF, '-y', '-v', 'error', '-i', mp3, '-af', f'silenceremove=start_periods=1:start_threshold=-55dB,areverse,silenceremove=start_periods=1:start_threshold=-65dB,areverse,apad=pad_dur={pausa + 0.08}', '-ar', '24000', '-ac', '1', wav], check=True)
         lista.append(wav)
     open(os.path.join(tmp, 'l.txt'), 'w').write('\n'.join(f"file '{w}'" for w in lista))

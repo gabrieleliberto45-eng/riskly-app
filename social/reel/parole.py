@@ -12,7 +12,7 @@ out = []
 for i, s in enumerate(spec['scene']):
     seg, _ = m.transcribe(os.path.join(YT, 'voce', f'{vid}-{i+1:02d}.mp3'), language='it', word_timestamps=True)
     tempi = [(w.start, w.end) for x in seg for w in x.words]
-    parole = s['voce'].split()
+    parole = [w for w in s['voce'].split() if w != '|']
     if not tempi:
         out.append([]); continue
     # la parola k del testo prende il tempo della parola proporzionale nella trascrizione
