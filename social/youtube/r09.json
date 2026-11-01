@@ -58,7 +58,7 @@
     [
      "Stop spostato · 50 pip",
      17,
-     "w:spostato",
+     "w:sposti",
      "rossa"
     ]
    ],
@@ -73,7 +73,7 @@
     ]
    ],
    "filigrana": "doppio",
-   "voce": "Facciamo i conti. Conto da mille euro, rischio dell'uno per cento, stop di venticinque pip su euro dollaro: zero virgola zero quattro lotti. Stop rispettato: perdi circa nove euro. Stop spostato a cinquanta pip: circa diciassette. Quasi il doppio."
+   "voce": "Facciamo i conti. Conto da mille euro, rischio dell'uno per cento, stop di venticinque pip su euro dollaro: zero virgola zero quattro lotti. Stop rispettato: perdi circa nove euro. Ma se lo sposti più lontano, a cinquanta, perdi circa diciassette euro. Quasi il doppio."
   },
   {
    "tipo": "lista",

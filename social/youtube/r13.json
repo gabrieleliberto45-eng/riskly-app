@@ -106,8 +106,8 @@
      "w:fisso"
     ],
     [
-     "Uno stop giornaliero",
-     "w:stop"
+     "Un limite di perdita al giorno",
+     "w:limite"
     ],
     [
      "Dopo una perdita, una pausa",
@@ -127,7 +127,7 @@
     ]
    ],
    "filigrana": "invece",
-   "voce": "Le serie di perdite capitano a tutti. Invece: rischio fisso, sempre uguale. Uno stop giornaliero. E dopo una perdita, una pausa. | Commenta SERIE, e ti mando il simulatore."
+   "voce": "Le serie di perdite capitano a tutti. Invece: rischio fisso, sempre uguale. Un limite di perdita al giorno. E dopo una perdita, una pausa. | Commenta SERIE, e ti mando il simulatore."
   }
  ],
  "nastro": "ESEMPIO · −10 € · −20 € · −40 € · −80 € · −160 € · −320 € · TOTALE −630 €"

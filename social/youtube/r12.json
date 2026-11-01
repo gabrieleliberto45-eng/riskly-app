@@ -20,8 +20,8 @@
      "w:rischio"
     ],
     [
-     "Uno stop giornaliero",
-     "w:stop"
+     "Un limite di perdita al giorno",
+     "w:limite"
     ],
     [
      "Un diario di ogni operazione",
@@ -36,7 +36,7 @@
     ]
    ],
    "filigrana": "da zero",
-   "voce": "Se dovessi ricominciare da zero con mille euro, farei solo tre cose. Rischio dell'uno per cento a operazione. Uno stop giornaliero. E un diario di ogni operazione."
+   "voce": "Se dovessi ricominciare da zero con mille euro, farei solo tre cose. Rischio dell'uno per cento a operazione. Un limite di perdita al giorno. E un diario di ogni operazione."
   },
   {
    "tipo": "conto",
@@ -97,5 +97,5 @@
    "voce": "Tutti cercano la strategia perfetta. Ma all'inizio conta di più quanto rischi ogni volta. | Commenta ZERO, e ti mando il simulatore."
   }
  ],
- "nastro": "RISCHIO 1% · STOP GIORNALIERO · DIARIO · 23 PERDITE DI FILA PER PERDERE IL 20%"
+ "nastro": "RISCHIO 1% · LIMITE DI PERDITA AL GIORNO · DIARIO · 23 PERDITE DI FILA PER PERDERE IL 20%"
 }
