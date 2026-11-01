@@ -68,8 +68,7 @@ const PRODOTTO_DEL_LINK: Record<string, string> = {
   "plink_1UKhSqC4UovOoFaVUwcAf1SB": "Journal Premium annuale",
   "plink_1UKhSsC4UovOoFaVMKHFTaLQ": "Journal Premium a vita",
   // Riskly News (news.riskly.trade): aggiungere qui gli id dei link quando sono creati su Stripe
-  // "plink_...": "Riskly News mensile",
-  // "plink_...": "Riskly News annuale",
+  "plink_1UWzeeC4UovOoFaVmeSKh3om": "Riskly News mensile",
 };
 
 /* l'ordine in attesa dello stesso cliente e dello stesso prodotto, il più recente */

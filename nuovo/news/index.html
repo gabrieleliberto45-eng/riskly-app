@@ -119,7 +119,7 @@ a{color:inherit}
 /* ---------- impostazioni ---------- */
 const SB_URL = 'https://swlztverwfgdgchgpudt.supabase.co', SB_KEY = 'sb_publishable_j9bujIvCEz6x21yYoCODPw_lIZCJrIR';
 /* link di pagamento Stripe di Riskly News (da creare su Stripe e aggiungere anche in supabase/functions/stripe-webhook) */
-const PAGA = { mensile: '', annuale: '' };
+const PAGA = { mensile: 'https://buy.stripe.com/6oUbJ0eHM1rZ5Bf2jgdnW0m', annuale: '' };
 const PREZZO = { mensile: '6,99 € al mese', annuale: '' };   /* prezzo deciso da Gabriele il 1° novembre */
 const CAT = { tutti: 'Tutti', oro: 'Oro', dollaro: 'Dollaro', fed: 'Fed', tassi: 'Tassi e banche centrali', straordinarie: 'Straordinarie', settimana: 'La settimana' };
 
@@ -266,6 +266,14 @@ async function aggiornaUtente(sessione){
   try{ await caricaAnteprime(); }catch(e){ document.getElementById('vista').innerHTML = '<p class="vuoto">Gli articoli non sono disponibili adesso. Riprova tra poco.</p>'; return; }
   const { data } = await sb.auth.getSession();
   await aggiornaUtente(data.session);
+  /* ritorno dal pagamento: il webhook di Stripe attiva l'abbonamento in pochi secondi */
+  if(/[?&]abbonato=1/.test(location.search)){
+    history.replaceState(null, '', location.pathname + location.hash);
+    flash('Grazie! Sto attivando il tuo abbonamento…');
+    for(let i = 0; i < 6 && !ACC.accesso; i++){ await new Promise(r => setTimeout(r, 2500)); await controllaAccesso(); }
+    vista();
+    flash(ACC.accesso ? 'Abbonamento attivo: buona lettura!' : 'Pagamento ricevuto. Se gli articoli restano chiusi, ricarica la pagina tra un minuto.');
+  }
   sb.auth.onAuthStateChange((ev, s) => { if(ev === 'SIGNED_IN' || ev === 'SIGNED_OUT') aggiornaUtente(s); });
 })();
 </script>
