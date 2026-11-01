@@ -6,6 +6,7 @@
 <title>Riskly News · oro, dollaro, Fed e tassi ogni giorno</title>
 <meta name="description" content="Ogni giorno quello che muove oro, dollaro, Fed e tassi: fatti verificati, spiegati in modo semplice, con gli orari italiani. Niente previsioni.">
 <meta name="theme-color" content="#F3F4F1">
+<link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/favicon-32.png" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <script>try{ if(localStorage.getItem('riskly-tema') === 'scuro') document.documentElement.setAttribute('data-tema', 'scuro'); }catch(e){}</script>
 <style>
@@ -37,6 +38,12 @@ a{color:inherit}
 .abbonati{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:22px;padding:18px 20px;border:1.5px solid var(--amber);border-radius:18px;background:color-mix(in srgb,var(--amber) 9%,var(--panel))}
 .abbonati p{margin:0;flex:1 1 260px;font-size:15px;line-height:1.45;color:var(--ink2)}
 .abbonati p b{color:var(--ink)}
+/* notifiche dei nuovi articoli */
+.campana{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:12px;padding:12px 16px;border:1px solid var(--line);border-radius:14px;background:var(--panel);font-size:14px;line-height:1.45;color:var(--ink2)}
+.campana p{margin:0;flex:1 1 240px}
+.campana p b{color:var(--ink)}
+.campana .btn{padding:9px 14px;font-size:14px}
+.campana.on{border-color:color-mix(in srgb,var(--amber) 55%,var(--line))}
 .filtri{display:flex;gap:8px;flex-wrap:wrap;margin:26px 0 18px}
 .filtri button{border:1px solid var(--line);background:var(--panel);color:var(--ink);font:600 14px 'Archivo';padding:8px 14px;border-radius:999px;cursor:pointer}
 .filtri button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
@@ -170,8 +177,58 @@ async function controllaAccesso(){
   ACC.accesso = data === true;
 }
 
+
+/* ---------- notifiche: avviso appena esce un articolo (Gabriele, 1° novembre 2026) ----------
+   Le manda il server (funzione news-avvisi, chiamata dal database quando entra un articolo),
+   anche a sito chiuso. Nella notifica ci sono solo titolo e sommario, che sono gratis per tutti. */
+const NEWS_VAPID = 'BBOpQfTYpzmSXLrZtGfnu-x-tx4asq_lVhF0Kzb3ahftFAJ2Js6W-2qt7gTiMk7J8nuSahigHEW17B85bn7UWWw';
+const NEWS_ISCRIVI = 'https://swlztverwfgdgchgpudt.supabase.co/functions/v1/news-iscrivi';
+let AVVISI = false;
+try{ AVVISI = localStorage.getItem('riskly-news-avvisi') === '1'; }catch(e){}
+const b64 = s => { s = s.replace(/-/g, '+').replace(/_/g, '/'); const b = atob(s + '='.repeat((4 - s.length % 4) % 4)); return Uint8Array.from(b, c => c.charCodeAt(0)); };
+function avvisiStato(){
+  const ios = /iPhone|iPad/.test(navigator.userAgent), app = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+  if(!('Notification' in window) || !navigator.serviceWorker || !('PushManager' in window)) return ios && !app ? 'ios' : 'no';
+  if(Notification.permission === 'denied') return 'negato';
+  return AVVISI && Notification.permission === 'granted' ? 'on' : 'off';
+}
+function campana(){
+  const st = avvisiStato();
+  if(st === 'on') return `<div class="campana on"><p>🔔 <b>Notifiche attive:</b> ti avvisiamo appena esce un articolo, anche a sito chiuso.</p><button type="button" class="btn" onclick="avvisiSpegni()">Disattiva</button></div>`;
+  if(st === 'negato') return `<div class="campana"><p>🔕 Hai bloccato le notifiche per questo sito: riattivale dalle impostazioni del browser (lucchetto accanto all'indirizzo).</p></div>`;
+  if(st === 'ios') return `<div class="campana"><p>🔔 <b>Vuoi un avviso a ogni articolo?</b> Su iPhone tocca Condividi → <b>Aggiungi alla schermata Home</b>, apri Riskly News da lì e attiva le notifiche.</p></div>`;
+  if(st === 'no') return '';
+  return `<div class="campana"><p>🔔 <b>Avvisami quando esce un articolo:</b> l'articolo del giorno, il Setup XAU e l'analisi appena esce un dato.</p><button type="button" class="btn amb" onclick="avvisiAccendi(this)">Attiva le notifiche</button></div>`;
+}
+function ridisegna(){ vista(); }
+async function avvisiAccendi(b){
+  if(b){ b.disabled = true; b.textContent = 'Un attimo…'; }
+  try{
+    const perm = await Notification.requestPermission();
+    if(perm !== 'granted'){ flash(perm === 'denied' ? 'Notifiche bloccate: riattivale dalle impostazioni del browser.' : 'Notifiche non attivate.'); ridisegna(); return; }
+    const reg = await navigator.serviceWorker.register('/sw.js'); await navigator.serviceWorker.ready;
+    const sub = (await reg.pushManager.getSubscription()) || await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: b64(NEWS_VAPID) });
+    const r = await fetch(NEWS_ISCRIVI, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sub: sub.toJSON() }) });
+    if(!r.ok) throw new Error('iscrizione');
+    AVVISI = true; try{ localStorage.setItem('riskly-news-avvisi', '1'); }catch(e){}
+    flash('Fatto: ti avvisiamo appena esce un articolo.');
+  }catch(e){ flash('Non è andata, riprova tra poco.'); }
+  ridisegna();
+}
+async function avvisiSpegni(){
+  try{
+    const reg = await navigator.serviceWorker.getRegistration('/'); const sub = reg && await reg.pushManager.getSubscription();
+    if(sub){ await fetch(NEWS_ISCRIVI, { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ endpoint: sub.endpoint }) }); await sub.unsubscribe(); }
+  }catch(e){}
+  AVVISI = false; try{ localStorage.setItem('riskly-news-avvisi', '0'); }catch(e){}
+  flash('Notifiche disattivate.'); ridisegna();
+}
+/* se le notifiche sono attive il service worker resta registrato (serve per riceverle) */
+if(AVVISI && navigator.serviceWorker) navigator.serviceWorker.register('/sw.js').catch(() => {});
+
 /* ---------- viste ---------- */
-function bloccoAbbonati(){
+function bloccoAbbonati(){ return bloccoAbb() + campana(); }
+function bloccoAbb(){
   if(ACC.accesso) return `<div class="abbonati"><p><b>Sei abbonato a Riskly News.</b> Ogni mattina trovi qui l'articolo del giorno.</p></div>`;
   return `<div class="abbonati"><p><b>Titoli e sommari sono gratis.</b> Gli articoli completi, con il riquadro "Da guardare" e le fonti, sono per gli abbonati a Riskly News${PREZZO.mensile ? ' (' + esc(PREZZO.mensile) + ')' : ''}.</p><button type="button" class="btn amb" onclick="abbonati()">Abbonati</button></div>`;
 }
@@ -213,7 +270,7 @@ async function vistaArticolo(id){
       ${(pieno.corpo || []).map(p => `<p>${esc(p)}</p>`).join('')}
       ${(pieno.da_guardare || []).length ? `<div class="box"><b>Da guardare</b><ul>${pieno.da_guardare.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>` : ''}
       ${(pieno.fonti || []).length ? `<p class="fonti">Fonti: ${pieno.fonti.map(f => `<a href="${esc(f.url)}" target="_blank" rel="noopener">${esc(f.nome)}</a>`).join(' · ')}</p>` : ''}
-      <p class="avviso">Contenuto informativo ed educativo, non è consulenza finanziaria né una previsione. Il trading con leva comporta un alto rischio: puoi perdere tutto il capitale.</p></article>`;
+      <p class="avviso">Contenuto informativo ed educativo, non è consulenza finanziaria né una previsione. Il trading con leva comporta un alto rischio: puoi perdere tutto il capitale.</p>${campana()}</article>`;
   } else {
     v.innerHTML = `<article class="pezzo">${testa}
       <p class="finto">Il resto dell'articolo spiega i numeri della giornata, cosa li ha mossi e cosa guardare nei prossimi giorni, con gli orari italiani e le fonti.</p>
@@ -221,7 +278,7 @@ async function vistaArticolo(id){
         <p>Ogni mattina l'articolo completo su oro, dollaro, Fed e tassi, con il riquadro "Da guardare" e le fonti.${ACC.utente ? '' : ' Prima accedi o crea un account gratis.'}</p>
         <div class="opz">${ACC.utente ? `<button class="btn amb" onclick="abbonati('mensile')">Abbonati${PREZZO.mensile ? ' · ' + esc(PREZZO.mensile) : ''}</button>${PAGA.annuale ? `<button class="btn" onclick="abbonati('annuale')">Annuale${PREZZO.annuale ? ' · ' + esc(PREZZO.annuale) : ''}</button>` : ''}`
           : `<button class="btn pri" onclick="accApri('registrati', 'abbonati')">Crea un account</button><button class="btn" onclick="accApri('accedi')">Accedi</button>`}</div>
-        <small>Disdici quando vuoi.</small></div></article>`;
+        <small>Disdici quando vuoi.</small></div>${campana()}</article>`;
   }
   window.scrollTo(0, 0);
 }
