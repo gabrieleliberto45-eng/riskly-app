@@ -1,0 +1,112 @@
+{
+ "stile": "punto",
+ "pause": false,
+ "voce_edge": "it-IT-DiegoNeural",
+ "velocita": "+8%",
+ "id": "r09",
+ "titolo": "Non farlo mai: spostare lo stop",
+ "data": "MER 4 NOV",
+ "testa": "NON FARLO MAI",
+ "tema": "ambra",
+ "sfondo": "punti",
+ "scene": [
+  {
+   "tipo": "quiz",
+   "etichetta": "NON FARLO MAI",
+   "domanda": "Il prezzo si avvicina al tuo stop. Cosa fai?",
+   "opzioni": [
+    [
+     "Sposto lo stop più lontano",
+     "w:prima"
+    ],
+    [
+     "Aggiungo lotti per mediare",
+     "w:seconda"
+    ],
+    [
+     "Lascio lo stop dov'è",
+     "w:terza"
+    ],
+    [
+     "Tolgo lo stop",
+     "w:quarta"
+    ]
+   ],
+   "giusta": 2,
+   "rivela": "w:giusta",
+   "colpi": [
+    [
+     "w:giusta",
+     "La terza",
+     "rosso"
+    ]
+   ],
+   "filigrana": "stop",
+   "voce": "Non farlo mai. Il prezzo si avvicina al tuo stop: cosa fai? Prima risposta: sposto lo stop più lontano. Seconda: aggiungo lotti per mediare. Terza: lascio lo stop dov'è. Quarta: tolgo lo stop. | La risposta giusta è la terza."
+  },
+  {
+   "tipo": "conto",
+   "etichetta": "ESEMPIO · CONTO 1.000 € · EURUSD 0,04 LOTTI",
+   "titolo": "Quanto perdi",
+   "barre": [
+    [
+     "Stop rispettato · 25 pip",
+     9,
+     "w:rispettato",
+     "verde"
+    ],
+    [
+     "Stop spostato · 50 pip",
+     17,
+     "w:spostato",
+     "rossa"
+    ]
+   ],
+   "prima": "−",
+   "dopo": " €",
+   "nota": "Esempio illustrativo: EURUSD a 1,16, il valore del pip dipende dal broker.",
+   "colpi": [
+    [
+     "w:doppio",
+     "Quasi il doppio",
+     "rosso"
+    ]
+   ],
+   "filigrana": "doppio",
+   "voce": "Facciamo i conti. Conto da mille euro, rischio dell'uno per cento, stop di venticinque pip su euro dollaro: zero virgola zero quattro lotti. Stop rispettato: perdi circa nove euro. Stop spostato a cinquanta pip: circa diciassette. Quasi il doppio."
+  },
+  {
+   "tipo": "lista",
+   "titolo": "La regola",
+   "punti": [
+    [
+     "Stop deciso prima di entrare",
+     "w:stop"
+    ],
+    [
+     "Lotto calcolato su quello stop",
+     "w:lotto"
+    ],
+    [
+     "Se lo tocca, esci",
+     "w:tocca"
+    ]
+   ],
+   "cta": [
+    "LOTTO",
+    "riskly.trade/lotto",
+    "w:commenta"
+   ],
+   "colpi": [
+    [
+     "w:esci",
+     "Esci",
+     "verde"
+    ]
+   ],
+   "filigrana": "regola",
+   "voce": "La regola è semplice. Stop deciso prima di entrare. Lotto calcolato su quello stop. E se lo tocca, esci. | Commenta LOTTO, e ti mando il calcolatore."
+  }
+ ],
+ "nastro": "ESEMPIO · CONTO 1.000 € · RISCHIO 1% · EURUSD 0,04 LOTTI · STOP RISPETTATO −9 € · STOP SPOSTATO −17 €"
+}

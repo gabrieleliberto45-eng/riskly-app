@@ -1,0 +1,101 @@
+{
+ "stile": "punto",
+ "pause": false,
+ "voce_edge": "it-IT-DiegoNeural",
+ "velocita": "+8%",
+ "id": "r12",
+ "titolo": "Se dovessi ricominciare da zero con 1.000 €",
+ "data": "SAB 7 NOV",
+ "testa": "DA ZERO",
+ "tema": "verde",
+ "sfondo": "punti",
+ "scene": [
+  {
+   "tipo": "lista",
+   "etichetta": "CON 1.000 €",
+   "titolo": "Solo 3 cose",
+   "punti": [
+    [
+     "Rischio dell'1% a operazione",
+     "w:rischio"
+    ],
+    [
+     "Uno stop giornaliero",
+     "w:stop"
+    ],
+    [
+     "Un diario di ogni operazione",
+     "w:diario"
+    ]
+   ],
+   "colpi": [
+    [
+     "w:tre",
+     "Solo 3",
+     "verde"
+    ]
+   ],
+   "filigrana": "da zero",
+   "voce": "Se dovessi ricominciare da zero con mille euro, farei solo tre cose. Rischio dell'uno per cento a operazione. Uno stop giornaliero. E un diario di ogni operazione."
+  },
+  {
+   "tipo": "conto",
+   "etichetta": "PERDITE DI FILA PER PERDERE IL 20%",
+   "titolo": "Perché l'1%?",
+   "barre": [
+    [
+     "Rischiando il 5%",
+     5,
+     "w:cinque",
+     "rossa"
+    ],
+    [
+     "Rischiando l'1%",
+     23,
+     "w:ventitré",
+     "verde"
+    ]
+   ],
+   "dopo": " perdite",
+   "nota": "Calcolo: 0,95⁵ ≈ 0,77 · 0,99²³ ≈ 0,79.",
+   "colpi": [
+    [
+     "w:ventitré",
+     "23",
+     "verde"
+    ]
+   ],
+   "filigrana": "23",
+   "voce": "Perché l'uno per cento? Per perdere il venti per cento del conto, rischiando il cinque per cento bastano cinque perdite di fila. Con l'uno per cento, ne servono ventitré."
+  },
+  {
+   "tipo": "carta",
+   "fronte": [
+    "QUELLO CHE CERCANO TUTTI",
+    "La strategia",
+    "perfetta"
+   ],
+   "retro": [
+    "QUELLO CHE CONTA DI PIÙ",
+    "Quanto rischi",
+    "ogni volta"
+   ],
+   "gira": "w:ma",
+   "cta": [
+    "ZERO",
+    "riskly.trade/rovina",
+    "w:commenta"
+   ],
+   "colpi": [
+    [
+     "w:quanto",
+     "Quanto rischi",
+     "verde"
+    ]
+   ],
+   "filigrana": "rischio",
+   "voce": "Tutti cercano la strategia perfetta. Ma all'inizio conta di più quanto rischi ogni volta. | Commenta ZERO, e ti mando il simulatore."
+  }
+ ],
+ "nastro": "RISCHIO 1% · STOP GIORNALIERO · DIARIO · 23 PERDITE DI FILA PER PERDERE IL 20%"
+}

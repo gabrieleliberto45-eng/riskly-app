@@ -1,0 +1,116 @@
+{
+ "stile": "punto",
+ "pause": false,
+ "voce_edge": "it-IT-DiegoNeural",
+ "velocita": "+8%",
+ "id": "r10",
+ "titolo": "Banca d'Inghilterra oggi alle 13: non conta solo la decisione",
+ "data": "GIO 5 NOV",
+ "testa": "OGGI 13:00",
+ "tema": "blu",
+ "sfondo": "righe",
+ "scene": [
+  {
+   "tipo": "orologio",
+   "etichetta": "BANCA D'INGHILTERRA · ORA ITALIANA",
+   "titolo": "Oggi alle 13",
+   "da": "09:00",
+   "tappe": [
+    [
+     "13:00",
+     "Decisione sui tassi",
+     "w:tredici"
+    ]
+   ],
+   "colpi": [
+    [
+     "w:decisione",
+     "Non solo questo",
+     "blu"
+    ]
+   ],
+   "filigrana": "sterlina",
+   "voce": "Ecco la verità sulle banche centrali: non conta solo la decisione. Oggi alle tredici decide la Banca d'Inghilterra."
+  },
+  {
+   "tipo": "conto",
+   "etichetta": "PROBABILITÀ PREZZATE · 28 OTTOBRE",
+   "titolo": "Cosa si aspetta il mercato",
+   "barre": [
+    [
+     "Rialzo dal 3,75% al 4%",
+     94,
+     "w:rialzo",
+     "verde"
+    ],
+    [
+     "Tassi fermi",
+     6,
+     "w:inflazione"
+    ]
+   ],
+   "prima": "~",
+   "dopo": "%",
+   "nota": "Fonte: prezzi degli swap OIS (28 ottobre). Inflazione UK di settembre: 3,5%.",
+   "colpi": [
+    [
+     "w:certo",
+     "Quasi certo",
+     "blu"
+    ]
+   ],
+   "filigrana": "94%",
+   "voce": "Il mercato dà quasi per certo un rialzo: dal tre virgola settantacinque al quattro per cento. Perché l'inflazione inglese è salita al tre virgola cinque."
+  },
+  {
+   "tipo": "carta",
+   "fronte": [
+    "COSA GUARDANO TUTTI",
+    "La decisione",
+    "su o ferma?"
+   ],
+   "retro": [
+    "COSA PUÒ MUOVERE",
+    "Il voto",
+    "e cosa dice dopo"
+   ],
+   "gira": "w:altro",
+   "colpi": [
+    [
+     "w:sei",
+     "6 a 3",
+     "rosso"
+    ]
+   ],
+   "filigrana": "voto",
+   "voce": "Ma se il rialzo è già nei prezzi, a muovere la sterlina può essere altro: quanti votano per alzare, e cosa dice la banca sui prossimi mesi. A settembre il voto era stato sei a tre."
+  },
+  {
+   "tipo": "lista",
+   "titolo": "Il piano per le 13",
+   "punti": [
+    [
+     "Niente pendenti vicino al prezzo",
+     "w:niente"
+    ],
+    [
+     "Lotto e stop decisi prima",
+     "w:lotto"
+    ],
+    [
+     "Senza piano, si guarda",
+     "w:senza"
+    ]
+   ],
+   "cta": [
+    "STERLINA",
+    "riskly.trade/dati",
+    "w:commenta"
+   ],
+   "colpi": [],
+   "filigrana": "piano",
+   "voce": "Il piano: niente ordini pendenti vicino al prezzo. Lotto e stop decisi prima. E senza un piano, si guarda. | Commenta STERLINA, e ti mando il calendario."
+  }
+ ],
+ "nastro": "BANCA D'INGHILTERRA 13:00 · TASSO 3,75% · ATTESO 4% · INFLAZIONE UK 3,5% · VOTO DI SETTEMBRE 6–3"
+}

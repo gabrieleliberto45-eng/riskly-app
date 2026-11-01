@@ -1,0 +1,105 @@
+{
+ "stile": "punto",
+ "pause": false,
+ "voce_edge": "it-IT-DiegoNeural",
+ "velocita": "+8%",
+ "id": "r07",
+ "titolo": "Da oggi i dati USA tornano alle 14:30",
+ "data": "LUN 2 NOV",
+ "testa": "OGGI",
+ "tema": "blu",
+ "sfondo": "punti",
+ "scene": [
+  {
+   "tipo": "orologio",
+   "etichetta": "DATI USA · ORA ITALIANA",
+   "titolo": "Un'ora dopo",
+   "da": "12:00",
+   "tappe": [
+    [
+     "13:30",
+     "Fino a venerdì",
+     "w:tredici"
+    ],
+    [
+     "14:30",
+     "Da oggi",
+     "w:quattordici"
+    ]
+   ],
+   "colpi": [
+    [
+     "w:dopo",
+     "+1 ora",
+     "ambra"
+    ]
+   ],
+   "filigrana": "+1 ora",
+   "voce": "Tutto quello che non sai sul cambio d'ora: fino a venerdì i dati americani uscivano alle tredici e trenta. Da oggi, un'ora dopo: alle quattordici e trenta."
+  },
+  {
+   "tipo": "carta",
+   "fronte": [
+    "LA SETTIMANA SCORSA",
+    "Dati USA 13:30",
+    "Wall Street 14:30"
+   ],
+   "retro": [
+    "DA OGGI",
+    "Dati USA 14:30",
+    "Wall Street 15:30"
+   ],
+   "gira": "w:domenica",
+   "colpi": [
+    [
+     "w:prima",
+     "Come prima",
+     "blu"
+    ]
+   ],
+   "filigrana": "ora solare",
+   "voce": "La settimana scorsa l'Italia era già all'ora solare, gli Stati Uniti no. Da domenica anche loro. E tutto torna come prima: dati alle quattordici e trenta, Wall Street alle quindici e trenta."
+  },
+  {
+   "tipo": "lista",
+   "titolo": "Questa settimana",
+   "punti": [
+    [
+     "Lun 16:00 · ISM manifatturiero",
+     "w:lunedì"
+    ],
+    [
+     "Mar notte · elezioni USA",
+     "w:martedì"
+    ],
+    [
+     "Mer 11:00 · inflazione Eurozona",
+     "w:mercoledì"
+    ],
+    [
+     "Gio 13:00 · Banca d'Inghilterra",
+     "w:giovedì"
+    ],
+    [
+     "Ven 14:30 · payrolls",
+     "w:venerdì"
+    ]
+   ],
+   "cta": [
+    "DATI",
+    "riskly.trade/dati",
+    "w:commenta"
+   ],
+   "colpi": [
+    [
+     "w:payrolls",
+     "Payrolls",
+     "ambra"
+    ]
+   ],
+   "filigrana": "settimana",
+   "voce": "Questa settimana, in ora italiana. Lunedì alle sedici, l'ISM manifatturiero. Martedì notte, le elezioni americane. Mercoledì alle undici, l'inflazione dell'Eurozona. Giovedì alle tredici, la Banca d'Inghilterra. Venerdì alle quattordici e trenta, i payrolls. | Commenta DATI, e ti mando il calendario."
+  }
+ ],
+ "nastro": "DATI USA 14:30 · WALL STREET 15:30 · ISM LUN 16:00 · ELEZIONI USA MAR · INFLAZIONE EUROZONA MER 11:00 · BOE GIO 13:00 · PAYROLLS VEN 14:30"
+}

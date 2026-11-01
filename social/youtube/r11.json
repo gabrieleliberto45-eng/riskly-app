@@ -1,0 +1,111 @@
+{
+ "stile": "punto",
+ "pause": false,
+ "voce_edge": "it-IT-DiegoNeural",
+ "velocita": "+8%",
+ "id": "r11",
+ "titolo": "Payrolls oggi alle 14:30: conta la sorpresa",
+ "data": "VEN 6 NOV",
+ "testa": "OGGI 14:30",
+ "tema": "ambra",
+ "sfondo": "griglia",
+ "scene": [
+  {
+   "tipo": "conto",
+   "etichetta": "PAYROLLS USA · OGGI 14:30",
+   "titolo": "Smettila di guardare solo il numero",
+   "barre": [
+    [
+     "Mese scorso",
+     29,
+     "w:scorso"
+    ],
+    [
+     "Attesi oggi",
+     65,
+     "w:attese",
+     "verde"
+    ]
+   ],
+   "prima": "+",
+   "dopo": " mila",
+   "nota": "Posti di lavoro non agricoli. Consenso al 30 ottobre; disoccupazione attesa al 4,2%.",
+   "colpi": [
+    [
+     "w:quattordici",
+     "14:30",
+     "ambra"
+    ]
+   ],
+   "filigrana": "payrolls",
+   "voce": "Smettila di guardare solo il numero dei payrolls. Oggi alle quattordici e trenta. Il mese scorso, più ventinove mila posti. Le attese di oggi, più sessantacinque mila."
+  },
+  {
+   "tipo": "quiz",
+   "etichetta": "LA DOMANDA",
+   "domanda": "Cosa muove davvero il dollaro?",
+   "opzioni": [
+    [
+     "Il numero da solo",
+     "w:prima"
+    ],
+    [
+     "La sorpresa rispetto alle attese",
+     "w:seconda"
+    ],
+    [
+     "L'ora di uscita",
+     "w:terza"
+    ],
+    [
+     "Il dato del mese scorso",
+     "w:quarta"
+    ]
+   ],
+   "giusta": 1,
+   "rivela": "w:risposta",
+   "colpi": [
+    [
+     "w:risposta",
+     "La sorpresa",
+     "verde"
+    ]
+   ],
+   "filigrana": "sorpresa",
+   "voce": "Cosa muove davvero il dollaro? Prima: il numero da solo. Seconda: la sorpresa rispetto alle attese. Terza: l'ora di uscita. Quarta: il dato del mese scorso. | La risposta è la seconda."
+  },
+  {
+   "tipo": "scenari",
+   "titolo": "Di solito",
+   "a": [
+    "MOLTO SOPRA LE ATTESE",
+    "Dollaro su",
+    "di solito, non sempre",
+    "su",
+    "w:sopra"
+   ],
+   "b": [
+    "MOLTO SOTTO LE ATTESE",
+    "Dollaro giù",
+    "di solito, non sempre",
+    "giu",
+    "w:sotto"
+   ],
+   "cta": [
+    "NFP",
+    "riskly.trade/dati",
+    "w:commenta"
+   ],
+   "colpi": [
+    [
+     "w:dall",
+     "Su e giù",
+     "rosso"
+    ]
+   ],
+   "filigrana": "dollaro",
+   "voce": "Molto sopra le attese: di solito il dollaro sale. Molto sotto: di solito scende. E nei primi minuti spesso va da una parte, e poi dall'altra. | Commenta NFP, e ti mando il calendario."
+  }
+ ],
+ "nastro": "PAYROLLS USA 14:30 · PRECEDENTE +29 MILA · ATTESI +65 MILA · DISOCCUPAZIONE ATTESA 4,2%"
+}

@@ -1,0 +1,101 @@
+{
+ "stile": "punto",
+ "pause": false,
+ "voce_edge": "it-IT-DiegoNeural",
+ "velocita": "+8%",
+ "id": "r08",
+ "titolo": "Elezioni USA: i risultati arrivano mentre dormi",
+ "data": "MAR 3 NOV",
+ "testa": "STANOTTE",
+ "tema": "ambra",
+ "sfondo": "righe",
+ "scene": [
+  {
+   "tipo": "orologio",
+   "etichetta": "ELEZIONI USA · ORA ITALIANA",
+   "titolo": "Mentre dormi",
+   "da": "21:00",
+   "tappe": [
+    [
+     "00:00",
+     "Chiudono i primi seggi",
+     "w:mezzanotte"
+    ],
+    [
+     "02:00",
+     "Costa est, entro le 2",
+     "w:costa"
+    ],
+    [
+     "05:00",
+     "California",
+     "w:california"
+    ]
+   ],
+   "colpi": [
+    [
+     "w:dormi",
+     "Mentre dormi",
+     "ambra"
+    ]
+   ],
+   "filigrana": "stanotte",
+   "voce": "Nessuno parla di questo, ma stanotte i risultati delle elezioni americane arrivano mentre dormi. I primi seggi chiudono a mezzanotte. La costa est tra l'una e le due. La California alle cinque."
+  },
+  {
+   "tipo": "catena",
+   "titolo": "Di notte",
+   "anelli": [
+    "Pochi scambi",
+    "Spread più larghi",
+    "Prezzo che salta",
+    "Stop eseguito più lontano"
+   ],
+   "catena_in": "w:pochi",
+   "luogo": "Dollaro · indici · oro",
+   "colpi": [
+    [
+     "w:lontano",
+     "Più lontano",
+     "rosso"
+    ]
+   ],
+   "filigrana": "spread",
+   "voce": "Di notte ci sono pochi scambi. Gli spread si allargano, il prezzo può saltare, e uno stop può essere eseguito più lontano da dove l'hai messo.",
+   "luogo_in": "w:pochi"
+  },
+  {
+   "tipo": "scenari",
+   "titolo": "Hai posizioni aperte?",
+   "a": [
+    "SE LE TIENI",
+    "Lotto più piccolo",
+    "e uno stop che regge uno spread largo",
+    "su",
+    "w:tieni"
+   ],
+   "b": [
+    "SE NON SEI SICURO",
+    "Chiudi prima",
+    "e rientri domani a mente fredda",
+    "giu",
+    "w:sicuro"
+   ],
+   "cta": [
+    "USA",
+    "riskly.trade/dati",
+    "w:commenta"
+   ],
+   "colpi": [
+    [
+     "w:prima",
+     "Decidi prima",
+     "ambra"
+    ]
+   ],
+   "filigrana": "decidi",
+   "voce": "Hai posizioni aperte? Decidi prima. Se le tieni: lotto più piccolo, e uno stop che regge uno spread largo. Se non sei sicuro, chiudere prima è una scelta. | Commenta USA, e ti mando il calendario."
+  }
+ ],
+ "nastro": "ELEZIONI USA · PRIMI SEGGI 00:00 · COSTA EST 01–02 · CALIFORNIA 05:00 · DOLLARO · INDICI · ORO · ORA ITALIANA"
+}
