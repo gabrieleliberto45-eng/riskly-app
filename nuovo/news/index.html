@@ -94,6 +94,7 @@ html[data-tema="scuro"] .cat.setup{background:#F2B83A;color:#15181B}
 .modale .cambia{background:none;border:none;color:var(--amber-deep);font:700 14px 'Archivo';cursor:pointer;margin-top:12px;padding:0}
 .flash{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:12px 18px;border-radius:12px;font-weight:600;z-index:70;display:none}
 @media(max-width:560px){.logo small{display:none}.hero{padding-top:30px}.art .txt{padding:16px 18px 18px}.tab{font-size:14px}.tab td:last-child{font-size:13px}}
+.altri{text-align:center;margin:22px 0 8px}
 </style>
 </head>
 <body>
@@ -147,10 +148,20 @@ function tema(){
 }
 
 /* ---------- dati ---------- */
+/* gli articoli vecchi restano tutti nel database: la lista li carica a pagine, senza un tetto */
+const PAGINA = 60; let FINITI = false, LETTI = 0;
 async function caricaAnteprime(){
-  const { data, error } = await sb.from('notizie_anteprima').select('*').order('data', { ascending: false }).limit(200);
+  const { data, error } = await sb.from('notizie_anteprima').select('*').order('data', { ascending: false }).order('id', { ascending: false }).range(LETTI, LETTI + PAGINA - 1);
+  LETTI += (data || []).length;
   if(error) throw error;
-  ANTE = data || [];
+  const nuovi = (data || []).filter(a => !ANTE.some(x => x.id === a.id));
+  ANTE = ANTE.concat(nuovi).sort((x, y) => x.data < y.data ? 1 : x.data > y.data ? -1 : (x.id < y.id ? 1 : -1));
+  FINITI = (data || []).length < PAGINA;
+}
+async function altri(b){
+  b.disabled = true; b.textContent = 'Carico…';
+  try{ await caricaAnteprime(); }catch(e){ flash('Non è andata, riprova.'); }
+  vistaLista();
 }
 async function controllaAccesso(){
   ACC.accesso = false;
@@ -175,11 +186,16 @@ function vistaLista(){
     <div class="filtri">${Object.keys(CAT).filter(k => k === 'tutti' || presenti.has(k)).map(k => `<button type="button" class="${k === filtro ? 'on' : ''}" onclick="filtro='${k}';vistaLista()">${CAT[k]}</button>`).join('')}</div>
     <div class="lista">${lista.length ? lista.map(a => `<a class="art" href="#/${esc(a.id)}">
       ${a.copertina ? `<img class="cop" src="${esc(a.copertina)}" alt="" loading="lazy">` : ''}<div class="txt"><div class="meta"><span class="cat ${esc(a.categoria)}">${esc(CAT[a.categoria] || a.categoria)}</span><span>${esc(dataIt(a.data))}</span>${ACC.accesso ? '' : '<span class="lucch">🔒 ABBONATI</span>'}</div>
-      <h2>${esc(a.titolo)}</h2><p>${esc(a.sommario)}</p></div></a>`).join('') : '<p class="vuoto">Nessun articolo in questa categoria per ora.</p>'}</div>`;
+      <h2>${esc(a.titolo)}</h2><p>${esc(a.sommario)}</p></div></a>`).join('') : '<p class="vuoto">Nessun articolo in questa categoria per ora.</p>'}</div>
+    ${FINITI ? '' : '<div class="altri"><button type="button" class="btn" onclick="altri(this)">Mostra articoli precedenti</button></div>'}`;
 }
 async function vistaArticolo(id){
   const v = document.getElementById('vista');
-  const a = ANTE.find(x => x.id === id);
+  let a = ANTE.find(x => x.id === id);
+  if(!a){   // link a un articolo vecchio non ancora caricato nella lista
+    const { data } = await sb.from('notizie_anteprima').select('*').eq('id', id).maybeSingle();
+    if(data){ a = data; ANTE.push(data); }
+  }
   if(!a){ v.innerHTML = `<div class="pezzo"><button class="indietro" onclick="location.hash=''">← Tutti gli articoli</button><p class="vuoto">Articolo non trovato.</p></div>`; return; }
   document.title = a.titolo + ' · Riskly News';
   let pieno = null;
