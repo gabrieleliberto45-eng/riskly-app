@@ -786,5 +786,332 @@
     "link": "Simula le tue perdite di fila, gratis: riskly.trade/rovina"
    }
   ]
+ },
+ {
+  "id": "c09-pari",
+  "titolo": "Quanto devi recuperare per tornare in pari",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "Perdere il 50% <mark>non si recupera</mark> con il 50%.",
+    "sotto": "Questo cambierà il modo in cui vedi le perdite →"
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "Per tornare in pari",
+    "righe": [
+     [
+      "Perdi il 10%",
+      "serve +11%"
+     ],
+     [
+      "Perdi il 20%",
+      "serve +25%"
+     ],
+     [
+      "Perdi il 30%",
+      "serve +43%"
+     ],
+     [
+      "Perdi il 50%",
+      "<mark>serve +100%</mark>"
+     ],
+     [
+      "Perdi il 70%",
+      "serve +233%"
+     ]
+    ]
+   },
+   {
+    "tipo": "testo",
+    "titolo": "Perché",
+    "testo": "<b>Recupero = perdita ÷ (100% − perdita)</b>",
+    "nota": "Esempio: 1.000 € → perdi il 50% → 500 €. Per tornare a 1.000 € devi raddoppiare."
+   },
+   {
+    "tipo": "frasi",
+    "voci": [
+     [
+      "1",
+      "Le perdite piccole si recuperano.",
+      "−10% chiede solo +11%."
+     ],
+     [
+      "2",
+      "Le perdite grandi no.",
+      "Oltre il 30% la salita diventa ripida."
+     ],
+     [
+      "3",
+      "Per questo si rischia poco a operazione.",
+      "L'1% ti tiene lontano dalla parte ripida."
+     ]
+    ]
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Qual è il drawdown <mark>più grande</mark> che hai avuto?",
+    "sotto": "Scrivilo nei commenti con PARI 👇",
+    "link": "Simula le tue perdite di fila, gratis: riskly.trade/rovina"
+   }
+  ]
+ },
+ {
+  "id": "c10-spread",
+  "titolo": "Lo spread è un costo che paghi subito",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "Ogni operazione parte <mark>in perdita.</mark>",
+    "sotto": "Se fai tante operazioni, questo potrebbe farti arrabbiare →"
+   },
+   {
+    "tipo": "testo",
+    "titolo": "Il costo dello spread",
+    "testo": "<b>Costo = spread in pip × valore del pip × lotti</b>",
+    "nota": "Su EURUSD 1 pip vale circa 10 $ per lotto standard."
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "Esempio",
+    "righe": [
+     [
+      "Spread",
+      "1 pip"
+     ],
+     [
+      "Lotti",
+      "0,10"
+     ],
+     [
+      "Costo a operazione",
+      "circa 1 $"
+     ],
+     [
+      "20 operazioni al giorno",
+      "20 $"
+     ],
+     [
+      "20 giorni di borsa",
+      "<mark>circa 400 $</mark>"
+     ]
+    ]
+   },
+   {
+    "tipo": "frasi",
+    "voci": [
+     [
+      "1",
+      "Lo paghi anche se l'operazione va bene.",
+      "Esci in pari? Hai perso lo spread."
+     ],
+     [
+      "2",
+      "Di notte e sui dati si allarga.",
+      "Lo stesso trade costa di più."
+     ],
+     [
+      "3",
+      "Meno operazioni, più scelte.",
+      "Il costo scende da solo."
+     ]
+    ]
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Quante operazioni fai <mark>al giorno?</mark>",
+    "sotto": "Scrivi il numero e SPREAD nei commenti 👇",
+    "link": "Calcola lotto e rischio, gratis: riskly.trade/lotto"
+   }
+  ]
+ },
+ {
+  "id": "c11-weekend",
+  "titolo": "Il weekend e le posizioni aperte",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "Il mercato chiude. <mark>Il rischio no.</mark>",
+    "sotto": "Cosa succede alle posizioni aperte nel weekend →"
+   },
+   {
+    "tipo": "frasi",
+    "voci": [
+     [
+      "1",
+      "Il forex chiude venerdì sera.",
+      "E riapre domenica sera (orari del broker)."
+     ],
+     [
+      "2",
+      "Nel weekend le notizie continuano.",
+      "Elezioni, guerre, decisioni dei governi."
+     ]
+    ]
+   },
+   {
+    "tipo": "frasi",
+    "voci": [
+     [
+      "3",
+      "Lunedì il prezzo può aprire lontano.",
+      "Si chiama gap: tra venerdì e lunedì non ci sono prezzi in mezzo."
+     ],
+     [
+      "4",
+      "Lo stop si esegue al primo prezzo.",
+      "Se il gap lo salta, esci più lontano da dove l'avevi messo."
+     ]
+    ]
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "Prima di venerdì sera",
+    "righe": [
+     [
+      "Posizione aperta?",
+      "decidi se tenerla"
+     ],
+     [
+      "Se la tieni",
+      "lotto più piccolo"
+     ],
+     [
+      "Lo stop",
+      "pensalo con un gap"
+     ],
+     [
+      "Senza piano",
+      "<mark>chiudi</mark>"
+     ]
+    ]
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Tu tieni posizioni <mark>nel weekend?</mark>",
+    "sotto": "Scrivi SÌ o NO e WEEKEND nei commenti 👇",
+    "link": "I dati della settimana, gratis: riskly.trade/dati"
+   }
+  ]
+ },
+ {
+  "id": "c12-diario",
+  "titolo": "Cosa scrivere nel diario di trading",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "Il diario che <mark>ti cambia</mark> il trading.",
+    "sotto": "5 cose da scrivere a ogni operazione →"
+   },
+   {
+    "tipo": "frasi",
+    "voci": [
+     [
+      "1",
+      "Ingresso, stop e lotto.",
+      "I numeri, prima di tutto."
+     ],
+     [
+      "2",
+      "Perché sei entrato.",
+      "Una riga. Se non la sai scrivere, non entrare."
+     ]
+    ]
+   },
+   {
+    "tipo": "frasi",
+    "voci": [
+     [
+      "3",
+      "Come ti sentivi.",
+      "Calmo, di fretta, arrabbiato dopo una perdita?"
+     ],
+     [
+      "4",
+      "Il risultato in R.",
+      "+2R, −1R: confronti operazioni di dimensioni diverse."
+     ]
+    ]
+   },
+   {
+    "tipo": "frasi",
+    "voci": [
+     [
+      "5",
+      "Cosa rifaresti.",
+      "La regola che ti porti alla prossima operazione."
+     ]
+    ]
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Tu tieni <mark>un diario?</mark>",
+    "sotto": "Scrivi DIARIO nei commenti 👇",
+    "link": "Il journal Riskly calcola tutto da solo: app.riskly.trade · è un mio prodotto"
+   }
+  ]
+ },
+ {
+  "id": "c13-oro",
+  "titolo": "L'oro non si muove in pip",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "Sull'oro il lotto <mark>si sbaglia</mark> facile.",
+    "sotto": "Pip o dollari? La formula in 4 slide →"
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "Come si muove l'oro (XAUUSD)",
+    "righe": [
+     [
+      "1 lotto",
+      "100 once"
+     ],
+     [
+      "L'oro si muove di 1 $",
+      "100 $ per lotto"
+     ],
+     [
+      "0,01 lotti",
+      "1 $ per ogni dollaro"
+     ]
+    ]
+   },
+   {
+    "tipo": "testo",
+    "titolo": "La formula",
+    "testo": "<b>Lotti = rischio in $ ÷ (stop in $ × 100)</b>",
+    "nota": "Lo stop si misura in dollari di prezzo, non in pip: i broker contano i pip sull'oro in modi diversi."
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "Esempio",
+    "righe": [
+     [
+      "Conto",
+      "1.000 $"
+     ],
+     [
+      "Rischio 1%",
+      "10 $"
+     ],
+     [
+      "Stop",
+      "5 $ di prezzo"
+     ],
+     [
+      "10 ÷ (5 × 100)",
+      "<mark>0,02 lotti</mark>"
+     ]
+    ]
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Sull'oro conti <mark>in pip o in dollari?</mark>",
+    "sotto": "Scrivi ORO nei commenti 👇",
+    "link": "Calcola il lotto giusto, gratis: riskly.trade/lotto"
+   }
+  ]
  }
 ]
