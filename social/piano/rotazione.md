@@ -139,20 +139,30 @@ Gli altri giorni: YouTube Short (la clip verticale del video uscito prima), se c
 10. "Quello che avrei voluto sapere prima."
 Regole: l'hook va detto dalla voce nei primi 2 secondi e scritto grande nella scena "gancio"; ruota (mai lo stesso due video di fila; segna qui sotto quale è stato usato); niente promesse di guadagno né provocazioni false: l'hook apre, il contenuto resta informativo ed educativo.
 Esempi: "Nessuno parla di questo, ma il tuo stop loss non ti protegge sempre." · "Non farlo mai: spostare lo stop quando il prezzo ci si avvicina." · "Se dovessi ricominciare da zero con 1.000 €, rischierei così." · "Quello che avrei voluto sapere prima: il lotto si calcola dallo stop, non dalla leva." · "Ecco la verità sulla leva: non decide quanto perdi." · "Nessuno vuole ammetterlo, ma il giorno della Fed la maggior parte entra a caso."
-Hook usati: r02 elezioni (3 nov) "Nessuno parla di questo" · r03 stop (2 e 4 nov) "Non farlo mai" · r04 payrolls (6 nov) "Ecco la verità" · r05 (4 e 7 nov) "Se dovessi ricominciare da zero" · carosello c08 (5 nov) "Quello che avrei voluto sapere prima". Prossimi da usare: "Smettila di…", "Nessuno vuole ammetterlo", "Tutto quello che non sai su…".
+Hook usati: r06 (1 nov) "Nessuno vuole ammetterlo" · r07 (2 nov) "Tutto quello che non sai su…" · r08 (3 nov) "Nessuno parla di questo" · r09 (4 nov) "Non farlo mai" · r10 (5 nov) "Ecco la verità" · carosello c08 (5 nov) "Quello che avrei voluto sapere prima" · r11 (6 nov) "Smettila di…" · r12 (7 nov) "Se dovessi ricominciare da zero" · r13 (8 nov) "Questo potrebbe farti arrabbiare". Prossimi da usare: "Se questo ti offende…", "Questo cambierà il modo in cui vedi le cose".
 
-## Settimana 2–8 novembre (programmata il 30 ottobre)
-| Giorno | Ora | Dove | Contenuto | CTA |
-|---|---|---|---|---|
-| dom 1 | 18:30 | YouTube | v12 Rispondi tu: "Leva e margine: 5 domande che quasi tutti sbagliano" (recupero della puntata saltata, voce Giuseppe) | /lotto, /corsi |
-| lun 2 | 09:00 | IG + TT | carosello n04 settimana (dati USA alle 14:30, elezioni, BoE, payrolls) | DATI → /dati |
-| lun 2 | 18:00 | YT Short | r03 spostare lo stop | /lotto |
-| mar 3 | 13:00 | IG + TT | r02 elezioni USA di notte | USA → /dati |
-| mer 4 | 13:00 | IG + TT | r03 spostare lo stop | LOTTO → /lotto |
-| mer 4 | 18:00 | YT Short | r05 ricominciare da zero | /rovina |
-| gio 5 | 13:00 | IG + TT | carosello c08 "Quello che avrei voluto sapere prima" | PRIMA → /rovina |
-| ven 6 | 09:30 / 10:00 | IG + TT / YT Short | r04 payrolls alle 14:30 | NFP → /dati |
-| sab 7 | 13:00 | IG + TT | r05 ricominciare da zero | ZERO → /rovina |
+## Dal 1° novembre: reel "Il punto" ogni giorno (deciso con Gabriele)
+Gabriele, 1° novembre: "pubblichiamo reel con questo stile su TikTok, Insta e Short tutti i giorni… non devono essere tutti i giorni identici, devi diversificare"; lo stile vale anche per i video YouTube, da adattare.
+- Motore: `social/reel/punto.html` + `node social/reel/punto.js rNN` (voce: `python3 social/youtube/voce.py rNN`, poi `python3 social/reel/parole.py rNN`). Niente video di sfondo: sfondo chiaro, camera in movimento, entrate a scatto, colpi di scena a tutto schermo ("colpi"), scintille, filigrana, nastro con i numeri del giorno ("nastro").
+- Voce: Diego (edge-tts) letta di fila, +8%; " | " nel testo = pausa vera. Con la chiave ElevenLabs si torna a George. Controllare sempre la trascrizione (faster-whisper): parole inglesi come "Wall Street" vanno evitate o riscritte.
+- Diversificare ogni giorno: tema (ambra, blu, verde), sfondo (griglia, punti, righe), etichetta in alto (IL PUNTO, OGGI, STANOTTE, NON FARLO MAI, DA ZERO…), hook diverso, e almeno 3 tipi di scena diversi tra: apertura (contatore + grafico), carta che si gira, termometro + lancetta (fed), catena, ordini, calendario, orologio, quiz, conto (barre), lista, scenari.
+- Orari: IG + TT alle 13:00 (giorni di dato: la mattina, prima del dato) e YouTube Short alle 18:00 (giorni di dato: subito dopo IG/TT).
+
+## Settimana 2–8 novembre (riprogrammata il 1° novembre nello stile Il punto; i caroselli restano)
+| Giorno | Ora | Dove | Contenuto | Hook | CTA |
+|---|---|---|---|---|---|
+| dom 1 | 13:00 / 14:00 | IG + TT / Short | r06 l'oro ha tradito il manuale (3 motivi) | Nessuno vuole ammetterlo | ORO → /dati |
+| dom 1 | 18:30 | YouTube | v12 Rispondi tu: leva e margine, 5 domande | — | /lotto, /corsi |
+| lun 2 | 09:00 | IG + TT | carosello n04 settimana | — | DATI → /dati |
+| lun 2 | 13:00 / 18:00 | IG + TT / Short | r07 da oggi i dati USA alle 14:30 (orologio, carta, lista) | Tutto quello che non sai su… | DATI → /dati |
+| mar 3 | 13:00 / 18:00 | IG + TT / Short | r08 elezioni USA, risultati di notte (orologio, catena, scenari) | Nessuno parla di questo | USA → /dati |
+| mer 4 | 13:00 / 18:00 | IG + TT / Short | r09 spostare lo stop (quiz, conto, lista) | Non farlo mai | LOTTO → /lotto |
+| gio 5 | 09:30 / 10:00 | IG + TT / Short | r10 Banca d'Inghilterra alle 13 (orologio, conto, carta, lista) | Ecco la verità | STERLINA → /dati |
+| gio 5 | 13:00 | IG + TT | carosello c08 "Quello che avrei voluto sapere prima" | — | PRIMA → /rovina |
+| ven 6 | 09:30 / 10:00 | IG + TT / Short | r11 payrolls alle 14:30 (conto, quiz, scenari) | Smettila di… | NFP → /dati |
+| sab 7 | 13:00 / 18:00 | IG + TT / Short | r12 ricominciare da zero (lista, conto, carta) | Se dovessi ricominciare da zero | ZERO → /rovina |
+| dom 8 | 13:00 / 18:00 | IG + TT / Short | r13 raddoppiare dopo una perdita (apertura, conto, lista) | Questo potrebbe farti arrabbiare | SERIE → /rovina |
+I vecchi reel r02–r05 (video di sfondo) non escono più: sostituiti da r08, r09, r11, r12.
 Numeri 23–30 ottobre (Metricool): TikTok 208–283 visualizzazioni a post (t01 283, r01 249), reel Instagram 8–13.
 
 ## Casi veri · puntate

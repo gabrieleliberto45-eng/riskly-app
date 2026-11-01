@@ -102,7 +102,7 @@
    "titolo": "Invece",
    "punti": [
     [
-     "Rischio fisso, mai raddoppiato",
+     "Rischio fisso, sempre uguale",
      "w:fisso"
     ],
     [
@@ -127,7 +127,7 @@
     ]
    ],
    "filigrana": "invece",
-   "voce": "Le serie di perdite capitano a tutti. Invece: rischio fisso, mai raddoppiato. Uno stop giornaliero. E dopo una perdita, una pausa. | Commenta SERIE, e ti mando il simulatore."
+   "voce": "Le serie di perdite capitano a tutti. Invece: rischio fisso, sempre uguale. Uno stop giornaliero. E dopo una perdita, una pausa. | Commenta SERIE, e ti mando il simulatore."
   }
  ],
  "nastro": "ESEMPIO · −10 € · −20 € · −40 € · −80 € · −160 € · −320 € · TOTALE −630 €"

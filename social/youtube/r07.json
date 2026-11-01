@@ -42,12 +42,12 @@
    "fronte": [
     "LA SETTIMANA SCORSA",
     "Dati USA 13:30",
-    "Wall Street 14:30"
+    "Borsa NY 14:30"
    ],
    "retro": [
     "DA OGGI",
     "Dati USA 14:30",
-    "Wall Street 15:30"
+    "Borsa NY 15:30"
    ],
    "gira": "w:domenica",
    "colpi": [
@@ -58,7 +58,7 @@
     ]
    ],
    "filigrana": "ora solare",
-   "voce": "La settimana scorsa l'Italia era già all'ora solare, gli Stati Uniti no. Da domenica anche loro. E tutto torna come prima: dati alle quattordici e trenta, Wall Street alle quindici e trenta."
+   "voce": "La settimana scorsa l'Italia era già all'ora solare, gli Stati Uniti no. Da domenica anche loro. E tutto torna come prima: dati alle quattordici e trenta, e la Borsa di New York alle quindici e trenta."
   },
   {
    "tipo": "lista",
@@ -101,5 +101,5 @@
    "voce": "Questa settimana, in ora italiana. Lunedì alle sedici, l'ISM manifatturiero. Martedì notte, le elezioni americane. Mercoledì alle undici, l'inflazione dell'Eurozona. Giovedì alle tredici, la Banca d'Inghilterra. Venerdì alle quattordici e trenta, i payrolls. | Commenta DATI, e ti mando il calendario."
   }
  ],
- "nastro": "DATI USA 14:30 · WALL STREET 15:30 · ISM LUN 16:00 · ELEZIONI USA MAR · INFLAZIONE EUROZONA MER 11:00 · BOE GIO 13:00 · PAYROLLS VEN 14:30"
+ "nastro": "DATI USA 14:30 · BORSA DI NEW YORK 15:30 · ISM LUN 16:00 · ELEZIONI USA MAR · INFLAZIONE EUROZONA MER 11:00 · BOE GIO 13:00 · PAYROLLS VEN 14:30"
 }
