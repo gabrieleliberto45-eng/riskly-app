@@ -1343,6 +1343,20 @@ body{padding-top:0}
   .jconto-form{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
   .jconto-form input{width:210px;padding:12px 14px}
   .jconto [hidden]{display:none!important}
+  /* conti separati (Premium: fino a 5) */
+  .jconti{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;padding:14px 20px}
+  .jconti-sel{display:flex;flex-direction:column;align-items:flex-start;gap:2px;background:none;border:0;color:inherit;font:inherit;cursor:pointer;text-align:left;padding:0}
+  .jconti-n{font-weight:700;font-size:18px;display:flex;align-items:center;gap:8px}
+  .jconti-n i{font-style:normal;font-size:13px;opacity:.6}
+  .jcl-lista{display:flex;flex-direction:column;gap:10px;margin:6px 0 16px}
+  .jcl-riga{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+  .jcl-riga.on{border-color:var(--accent,#B97C00);box-shadow:0 0 0 2px rgba(185,124,0,.15)}
+  .jcl-scegli{flex:1;display:flex;flex-direction:column;align-items:flex-start;gap:2px;background:none;border:0;color:inherit;font:inherit;cursor:pointer;text-align:left;padding:0}
+  .jcl-scegli b{font-size:16px}
+  .jcl-scegli span{font-size:13px;opacity:.7}
+  .jcl-az{display:flex;gap:6px}
+  .jcl-az .btn{padding:6px 10px;font-size:13px}
+  .jcl-nota{font-size:13px;opacity:.75;margin-top:8px}
   .jconto-form .btn,.jconto>.btn{padding:11px 20px}
   @media(max-width:760px){.jconto{padding:18px}.jconto-form,.jconto-form input{width:100%}.jconto-form input{flex:1 1 100%}}
   .jobi{margin-bottom:16px}
@@ -1622,6 +1636,15 @@ html[data-tema="scuro"] .s-testa .s-tema{border-color:#ECEEEA!important;color:#E
       <div class="jcard jbot" id="jbot" hidden>
         <div class="jcard-head"><h3>I tuoi bot</h3><span class="jmeta" id="jbotAgg"></span></div>
         <div class="jbot-griglia" id="jbotGriglia"></div>
+      </div>
+
+      <!-- conto attivo: ogni conto ha le sue operazioni, il suo saldo e i suoi obiettivi (Premium: fino a 5) -->
+      <div class="jcard jconti" id="jconti" hidden>
+        <button type="button" class="jconti-sel" onclick="j_apriConti()" aria-haspopup="dialog">
+          <span class="jconto-l">Conto</span>
+          <span class="jconti-n"><span id="contiNome">Conto principale</span><i aria-hidden="true">▾</i></span>
+        </button>
+        <button type="button" class="btn" onclick="j_apriConti()">Cambia conto</button>
       </div>
 
       <!-- saldo del conto: iniziale + risultato di tutte le operazioni -->
@@ -1940,6 +1963,19 @@ html[data-tema="scuro"] .s-testa .s-tema{border-color:#ECEEEA!important;color:#E
       <div class="acc-errore" id="pwdErr"></div>
       <button type="submit" class="btn pri wide lg" id="pwdInvia">Salva la password</button>
     </form>
+  </div>
+</div>
+
+<div class="modale" id="modConti" onclick="if(event.target===this) j_chiudiConti()">
+  <div class="mod-box" style="max-width:460px" role="dialog" aria-modal="true" aria-labelledby="contiTit">
+    <button class="mod-x" onclick="j_chiudiConti()" aria-label="Chiudi">✕</button>
+    <div class="mod-head">
+      <div class="mod-kicker">I TUOI CONTI</div>
+      <h3 id="contiTit">Scegli il conto</h3>
+      <p>Ogni conto ha le sue operazioni, il suo saldo e i suoi obiettivi: non si mischiano.</p>
+    </div>
+    <div class="jcl-lista" id="contiLista"></div>
+    <div id="contiPiede"></div>
   </div>
 </div>
 
@@ -2966,7 +3002,23 @@ let j_salvando = false;
 let j_pagina = 1;
 const PER_PAGINA = 25;
 
-const j_lista = () => j_demo || j_trades;
+/* ---------- Conti separati ----------
+   Il conto 1 è quello di sempre (saldo e obiettivi nei campi di prima); gli altri stanno in user_metadata.conti.
+   Ogni operazione ricorda il suo conto nei dettagli (cj); senza cj è del conto 1. Niente modifiche al database. */
+const J_MAX_CONTI = 5;
+let j_contoAttivo = (() => { try{ return localStorage.getItem('riskly-conto') || '1'; }catch{ return '1'; } })();
+function j_conti(){
+  const m = (utente && utente.user_metadata) || {};
+  const altri = Array.isArray(m.conti) ? m.conti.filter(c => c && c.id && c.id !== '1') : [];
+  return [{ id: '1', nome: m.conto1_nome || 'Conto principale' }, ...altri].slice(0, J_MAX_CONTI);
+}
+function j_contoId(){
+  if(j_demo) return '1';
+  return j_conti().some(c => c.id === j_contoAttivo) ? j_contoAttivo : '1';
+}
+function j_contoDati(){ return j_conti().find(c => c.id === j_contoId()) || { id: '1' }; }
+const j_delConto = t => (((t.dettagli || {}).cj) || '1') === j_contoId();
+const j_lista = () => j_demo || j_trades.filter(j_delConto);
 
 /* valuta del conto: la sceglie l'utente, resta salvata in questo browser */
 const VALUTE = ['€','$','£','CHF'];
@@ -3523,6 +3575,7 @@ function j_renderAll(){
   const fs = document.getElementById('fScag'); if(fs && !fs.dataset.pronto) j_renderScag();
   j_renderFiltri();
   const list = j_filtrati();
+  j_renderConti();
   j_renderConto();
   j_renderObiettivi();
   j_renderKPIs(list);
@@ -4152,7 +4205,7 @@ function j_saldoPrimaOp(){
   const iniz = j_saldoIniziale(); if(!iniz) return 0;
   const d = (document.getElementById('f-date') || {}).value || '', o = (document.getElementById('f-ora') || {}).value || '';
   const chiave = d + ' ' + o;
-  const prima = j_trades.filter(t => t.id !== j_modificaId && (!j_modificaId || ((t.date || '') + ' ' + (t.ora || '')) <= chiave));
+  const prima = j_lista().filter(t => t.id !== j_modificaId && (!j_modificaId || ((t.date || '') + ' ' + (t.ora || '')) <= chiave));
   return Math.round((iniz + prima.reduce((a, t) => a + (Number(t.pnl) || 0), 0)) * 100) / 100;
 }
 const j_rapN = () => Math.max(1, Math.min(J_SCAG_MAX, parseInt(j_rap.n) || 10));
@@ -4502,11 +4555,92 @@ function j_forseChiediMetodo(){
   if(!chiesto) j_apriMetodi();
 }
 
+/* ---------- Scelta del conto ---------- */
+function j_renderConti(){
+  const box = document.getElementById('jconti');
+  if(!box) return;
+  box.hidden = !utente || !!j_demo;
+  document.getElementById('contiNome').textContent = j_contoDati().nome || 'Conto principale';
+}
+async function j_salvaConti(lista){
+  const m = (utente && utente.user_metadata) || {};
+  const primo = lista.find(c => c.id === '1');
+  const dati = { conti: lista.filter(c => c.id !== '1') };
+  if(primo && primo.nome && primo.nome !== (m.conto1_nome || 'Conto principale')) dati.conto1_nome = primo.nome;
+  if(!sb || !utente) return false;
+  try{
+    const { data, error } = await sb.auth.updateUser({ data: dati });
+    if(error) throw error;
+    if(data && data.user) utente = data.user;
+    else utente.user_metadata = Object.assign({}, utente.user_metadata, dati);
+    return true;
+  }catch(err){
+    j_flash('Non riesco a salvare i conti: ' + traduciErrore(err.message || String(err)), true);
+    return false;
+  }
+}
+/* aggiorna saldo o obiettivi del conto attivo (non il conto 1) */
+function j_salvaConto(campi){
+  const id = j_contoId();
+  return j_salvaConti(j_conti().map(c => c.id === id ? Object.assign({}, c, campi) : c));
+}
+function j_apriConti(){
+  if(!utente || j_demo) return;
+  const conti = j_conti(), id = j_contoId(), premium = pianoAttivo() === 'premium';
+  document.getElementById('contiLista').innerHTML = conti.map(c => {
+    const ops = j_trades.filter(t => (((t.dettagli || {}).cj) || '1') === c.id);
+    const pnl = ops.reduce((a, t) => a + (Number(t.pnl) || 0), 0);
+    const sotto = `${ops.length} ${ops.length === 1 ? 'operazione' : 'operazioni'}${ops.length ? ' · ' + j_fmt(pnl) : ''}`;
+    return `<div class="jcl-riga${c.id === id ? ' on' : ''}">
+      <button type="button" class="jcl-scegli" onclick="j_scegliConto('${c.id}')"><b>${esc(c.nome || 'Conto')}</b><span>${esc(sotto)}${c.id === id ? ' · in uso' : ''}</span></button>
+      <div class="jcl-az"><button type="button" class="btn" onclick="j_rinominaConto('${c.id}')">Rinomina</button>${c.id !== '1' && !ops.length ? `<button type="button" class="btn" onclick="j_eliminaConto('${c.id}')">Elimina</button>` : ''}</div>
+    </div>`;
+  }).join('');
+  const piede = document.getElementById('contiPiede');
+  if(premium && conti.length < J_MAX_CONTI) piede.innerHTML = `<button type="button" class="btn pri wide" onclick="j_nuovoConto()">+ Aggiungi un conto</button><div class="jcl-nota">Puoi avere fino a ${J_MAX_CONTI} conti (${conti.length} su ${J_MAX_CONTI}).</div>`;
+  else if(premium) piede.innerHTML = `<div class="jcl-nota">Hai raggiunto il massimo di ${J_MAX_CONTI} conti.</div>`;
+  else piede.innerHTML = `<div class="jcl-nota">Con il piano Premium puoi collegare fino a ${J_MAX_CONTI} conti allo stesso account, ognuno con le sue operazioni.</div><button type="button" class="btn wide" style="margin-top:10px" onclick="location.href='https://riskly.trade/#prezzi'">Vedi il piano Premium</button>`;
+  document.getElementById('modConti').classList.add('on');
+}
+function j_chiudiConti(){ document.getElementById('modConti').classList.remove('on'); }
+function j_scegliConto(id){
+  j_contoAttivo = id;
+  try{ localStorage.setItem('riskly-conto', id); }catch{}
+  j_chiudiConti();
+  j_resetForm();
+  j_azzeraFiltri();
+  j_renderAll();
+  j_flash('Conto: ' + (j_contoDati().nome || ''));
+}
+async function j_nuovoConto(){
+  const conti = j_conti();
+  if(pianoAttivo() !== 'premium' || conti.length >= J_MAX_CONTI) return;
+  const nome = (prompt('Nome del nuovo conto (es. FTMO 100k, conto personale):') || '').trim().slice(0, 40);
+  if(!nome) return;
+  const nuovo = { id: 'c' + Date.now().toString(36), nome };
+  if(await j_salvaConti(conti.concat([nuovo]))) j_scegliConto(nuovo.id);
+}
+async function j_rinominaConto(id){
+  const c = j_conti().find(x => x.id === id); if(!c) return;
+  const nome = (prompt('Nuovo nome del conto:', c.nome || '') || '').trim().slice(0, 40);
+  if(!nome || nome === c.nome) return;
+  if(await j_salvaConti(j_conti().map(x => x.id === id ? Object.assign({}, x, { nome }) : x))){ j_renderConti(); j_apriConti(); }
+}
+async function j_eliminaConto(id){
+  if(id === '1' || j_trades.some(t => ((t.dettagli || {}).cj) === id)) return;
+  const c = j_conti().find(x => x.id === id); if(!c) return;
+  if(!confirm(`Eliminare il conto «${c.nome}»? Non ha operazioni.`)) return;
+  if(await j_salvaConti(j_conti().filter(x => x.id !== id))){
+    if(j_contoAttivo === id) j_scegliConto('1'); else j_apriConti();
+  }
+}
+
 /* ---------- Saldo del conto ---------- */
 /* il saldo iniziale sta nel profilo di accesso (vale su tutti i dispositivi);
    il saldo attuale = iniziale + risultato di tutte le operazioni */
 function j_saldoIniziale(){
   if(j_demo) return 10000;
+  if(j_contoId() !== '1'){ const v = Number(j_contoDati().saldo) || 0; return v > 0 ? v : 0; }
   const m = (utente && utente.user_metadata) || {};
   let v = Number(m.saldo_iniziale) || 0;
   if(!v){ try{ v = parseFloat(localStorage.getItem('riskly-saldo-iniziale')) || 0; }catch{} }
@@ -4554,6 +4688,12 @@ async function j_salvaSaldoIniziale(e){
   e.preventDefault();
   const v = Math.round((parseFloat(document.getElementById('contoIniziale').value) || 0) * 100) / 100;
   if(v < 0){ j_flash('Il saldo non può essere negativo.', true); return; }
+  if(j_contoId() !== '1'){
+    await j_salvaConto({ saldo: v });
+    j_renderConto();
+    if(v) j_flash('Saldo iniziale salvato: ora il saldo si aggiorna da solo.');
+    return;
+  }
   try{ localStorage.setItem('riskly-saldo-iniziale', String(v)); }catch{}
   if(sb && utente){
     try{
@@ -4586,8 +4726,12 @@ function j_tendina(id, stato){
 const J_OBI_CHIAVI = ['gp', 'gl', 'sp', 'sl'];
 function j_obiettivi(){
   if(j_demo) return { gp: 200, gl: 150, sp: 800, sl: 400, u: 'val' };
-  let o = (utente && utente.user_metadata && utente.user_metadata.obiettivi) || null;
-  if(!o){ try{ o = JSON.parse(localStorage.getItem('riskly-obiettivi') || 'null'); }catch{} }
+  let o = null;
+  if(j_contoId() !== '1') o = j_contoDati().obiettivi || null;
+  else {
+    o = (utente && utente.user_metadata && utente.user_metadata.obiettivi) || null;
+    if(!o){ try{ o = JSON.parse(localStorage.getItem('riskly-obiettivi') || 'null'); }catch{} }
+  }
   const out = {};
   J_OBI_CHIAVI.forEach(k => { const v = Number(o && o[k]); if(v > 0) out[k] = v; });
   out.u = o && o.u === 'pct' ? 'pct' : 'val';
@@ -4675,6 +4819,12 @@ async function j_salvaObiettivi(e){
     if(J_OBI_CHIAVI.some(k => o[k] >= 100)){ j_flash('In percentuale serve un numero sotto 100.', true); return; }
     o.u = 'pct';
   }
+  if(j_contoId() !== '1'){
+    await j_salvaConto({ obiettivi: o });
+    j_renderObiettivi();
+    if(J_OBI_CHIAVI.some(k => o[k])) j_flash('Obiettivi salvati: si aggiornano da soli con ogni operazione.');
+    return;
+  }
   try{ localStorage.setItem('riskly-obiettivi', JSON.stringify(o)); }catch{}
   if(sb && utente){
     try{
@@ -4742,7 +4892,7 @@ function j_aggiornaSalva(tipo, senzaChips){
     if(document.getElementById('fScag') && document.getElementById('fScag').dataset.pronto){
       if(!j_modificaId && !j_rap.tot){
         const sn = j_simNorm(j_simbolo());
-        const ult = sn && j_ordina(j_trades.filter(t => j_simNorm(t.symbol) === sn && (t.dettagli || {}).scaglioni)).pop();
+        const ult = sn && j_ordina(j_lista().filter(t => j_simNorm(t.symbol) === sn && (t.dettagli || {}).scaglioni)).pop();
         if(ult){ j_rap.tot = j_scagLotti(j_scagParse(ult.dettagli.scaglioni)).toFixed(2); if(ult.dettagli.stop) j_rap.stop = ult.dettagli.stop; }
       }
       j_rapGenera(); j_renderScag(!!j_modificaId);
@@ -4923,6 +5073,9 @@ async function j_addTrade(e){
       delete t.dettagli.shot_conf; t.shot2Url = '';
     }
 
+    /* il conto dell'operazione: resta quello di prima, le nuove vanno nel conto attivo */
+    const cj = vecchio ? ((vecchio.dettagli || {}).cj || '') : (j_contoId() !== '1' ? j_contoId() : '');
+    if(cj) t.dettagli.cj = cj; else delete t.dettagli.cj;
     if(vecchio){
       await aggiornaOperazione(vecchio.id, t);
       j_trades = j_trades.map(x => x.id === vecchio.id ? t : x);
@@ -4975,22 +5128,28 @@ async function j_removeTrade(id){
 }
 
 async function j_clearAll(){
-  if(j_bloccatoDemo() || !j_trades.length) return;
-  const n = j_trades.length;
-  const risposta = prompt(`Stai per eliminare definitivamente tutte le ${n} operazioni e i loro screenshot.\n` +
+  if(j_bloccatoDemo() || !j_lista().length) return;
+  const mie = j_lista(), n = mie.length, soloConto = j_conti().length > 1;
+  const risposta = prompt(`Stai per eliminare definitivamente ${soloConto ? 'le ' + n + ' operazioni del conto «' + (j_contoDati().nome || '') + '»' : 'tutte le ' + n + ' operazioni'} e i loro screenshot.\n` +
     `Ti consigliamo di scaricare prima una copia con "Esporta".\n\nPer confermare scrivi ELIMINA`);
   if(risposta === null) return;
   if(risposta.trim().toUpperCase() !== 'ELIMINA'){ j_flash('Eliminazione annullata.'); return; }
 
-  const shot = j_trades.map(t => t.shot).concat(j_trades.map(j_shot2Di)).filter(Boolean);
+  const shot = mie.map(t => t.shot).concat(mie.map(j_shot2Di)).filter(Boolean);
   try{
-    await svuotaOperazioni();
+    if(soloConto){
+      const ids = mie.map(t => t.id);
+      for(let i = 0; i < ids.length; i += 200){
+        const { error } = await sb.from('operazioni').delete().in('id', ids.slice(i, i + 200)).eq('utente', utente.id);
+        if(error) throw error;
+      }
+    } else await svuotaOperazioni();
   } catch(err){
     console.error(err);
     j_flash('Eliminazione non riuscita. ' + traduciErrore(err.message || String(err)), true);
     return;
   }
-  j_trades = [];
+  j_trades = j_trades.filter(t => !mie.includes(t));
   j_resetForm();
   j_azzeraFiltri();
   rimuoviShot(shot);
@@ -5195,7 +5354,8 @@ function j_importData(ev){
 }
 
 async function j_importa(lista, scartate){
-  const presenti = new Set(j_trades.map(j_impronta));
+  const presenti = new Set(j_lista().map(j_impronta));
+  if(j_contoId() !== '1') lista.forEach(t => { t.dettagli = Object.assign({}, t.dettagli, { cj: j_contoId() }); });
   const nuove = [];
   lista.forEach(t => { const k = j_impronta(t); if(!presenti.has(k)){ presenti.add(k); nuove.push(t); } });
   const doppie = lista.length - nuove.length;
