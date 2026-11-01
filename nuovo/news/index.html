@@ -120,7 +120,7 @@ a{color:inherit}
 const SB_URL = 'https://swlztverwfgdgchgpudt.supabase.co', SB_KEY = 'sb_publishable_j9bujIvCEz6x21yYoCODPw_lIZCJrIR';
 /* link di pagamento Stripe di Riskly News (da creare su Stripe e aggiungere anche in supabase/functions/stripe-webhook) */
 const PAGA = { mensile: '', annuale: '' };
-const PREZZO = { mensile: '', annuale: '' };   /* es. '9,90 € al mese' */
+const PREZZO = { mensile: '6,99 € al mese', annuale: '' };   /* prezzo deciso da Gabriele il 1° novembre */
 const CAT = { tutti: 'Tutti', oro: 'Oro', dollaro: 'Dollaro', fed: 'Fed', tassi: 'Tassi e banche centrali', straordinarie: 'Straordinarie', settimana: 'La settimana' };
 
 let sb = null; try{ sb = window.supabase.createClient(SB_URL, SB_KEY); }catch(e){}
