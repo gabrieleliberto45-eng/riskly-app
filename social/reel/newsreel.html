@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8">
+<!-- Reel "Riskly News" (Gabriele, 2 novembre 2026: "fai anche un post reel per Riskly news").
+     Spunto vero del giorno: petrolio −6,7% dopo l'apertura dell'Iran al dialogo; agli iscritti arriva la notifica.
+     Le schermate del telefono sono quelle reali di news.riskly.trade (social/reel/news/*.png).
+     Montaggio: SCENE=newsreel node social/reel/terminale.js social/reel/newsreel.mp4  (voce: social/youtube/news.json) -->
+<style>
+@font-face{font-family:'Archivo';src:url(../youtube/archivo.woff2) format('woff2');font-weight:100 900;font-stretch:62% 125%}
+@font-face{font-family:'Martian Mono';src:url(../youtube/martian-mono.woff2) format('woff2');font-weight:100 800;font-stretch:75% 112.5%}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--oro:#F2B83A;--rosso:#FF4D5E;--verde:#2BD98B;--testo:#ECEEEA}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#050605}
+body{font-family:'Archivo',sans-serif;color:var(--testo);position:relative}
+#sfondo{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,#1B1607 0%,#070807 55%,#030303 100%)}
+#gancio{position:absolute;left:50px;right:50px;top:150px;text-align:center;font-weight:850;font-stretch:88%;font-size:82px;line-height:1.03;letter-spacing:-.025em;text-shadow:0 6px 30px rgba(0,0,0,.8);z-index:5}
+#gancio mark{background:var(--oro);color:#0B0D0C;padding:0 14px;border-radius:6px}
+#gancio mark.r{background:var(--rosso);color:#fff}
+#sotto{position:absolute;left:60px;right:60px;top:1560px;text-align:center;font-size:44px;font-weight:800;line-height:1.18;z-index:5}
+#sotto em{font-style:normal;color:var(--oro)}
+#nota{position:absolute;left:0;right:0;bottom:110px;text-align:center;font-family:'Martian Mono';font-size:21px;color:#8E968F;z-index:5}
+/* grafico del Brent */
+#grafico{position:absolute;left:60px;right:60px;top:470px;height:900px;opacity:0}
+#grafico .big{font-size:250px;font-weight:900;letter-spacing:-.05em;color:var(--rosso);line-height:1;text-align:center;font-variant-numeric:tabular-nums}
+#grafico .eti{font-family:'Martian Mono';font-size:30px;font-weight:700;color:#C9CEC9;text-align:center;margin-top:10px}
+/* telefono */
+#tel{position:absolute;left:50%;top:430px;width:560px;height:1160px;margin-left:-280px;border-radius:78px;background:#0A0B0A;
+  box-shadow:0 0 0 12px #1C1F1D,0 0 0 14px #2C302D,0 40px 120px rgba(0,0,0,.9);overflow:hidden;opacity:0}
+#tel .isola{position:absolute;top:16px;left:50%;width:150px;height:42px;margin-left:-75px;border-radius:30px;background:#000;z-index:4}
+#schermo{position:absolute;left:20px;top:17px;width:520px;height:1126px;border-radius:60px;overflow:hidden;background:#0E1110}
+#schermo img{position:absolute;left:0;top:0;width:520px;display:none}
+/* schermata di blocco */
+#blocco{position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%,#3A2A08,#0B0C0B 60%),#0B0C0B;display:none;text-align:center}
+#blocco .ora{font-size:150px;font-weight:300;letter-spacing:-.04em;margin-top:120px;font-stretch:100%}
+#blocco .giorno{font-size:28px;font-weight:600;color:#C9CEC9}
+.notifica{position:absolute;left:18px;right:18px;top:430px;border-radius:30px;padding:20px 22px;text-align:left;background:rgba(40,42,40,.82);backdrop-filter:blur(20px);box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.notifica .t{display:flex;align-items:center;gap:12px;font-size:21px;font-weight:700;color:#C9CEC9}
+.notifica .t .ic{width:40px;height:40px;border-radius:10px;background:#F3F4F1;display:grid;place-items:center}
+.notifica .t span.h{margin-left:auto;font-weight:500}
+.notifica b{display:block;font-size:24px;margin-top:12px;line-height:1.25}
+.notifica p{font-size:21px;color:#D5D9D5;margin-top:6px;line-height:1.3}
+#tocco{position:absolute;width:90px;height:90px;border-radius:50%;background:rgba(255,255,255,.35);border:3px solid rgba(255,255,255,.7);opacity:0;z-index:6}
+/* riquadro sovrapposto */
+.badge{position:absolute;left:50%;transform:translateX(-50%);padding:16px 26px;border-radius:18px;font-family:'Martian Mono';font-weight:800;font-size:27px;white-space:nowrap;z-index:6;opacity:0;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+#bDati{top:1400px;background:var(--rosso);color:#fff}
+#bPrezzo{top:1400px;background:var(--oro);color:#0B0D0C}
+/* chiusura */
+#fine{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 40%,#2A2008,#060706 70%);opacity:0;text-align:center;z-index:8}
+#fine .logo{display:flex;align-items:center;gap:22px;font-size:84px;font-weight:850;letter-spacing:-.03em}
+#fine .logo i{font-style:normal;font-family:'Martian Mono';font-size:44px;color:var(--oro);letter-spacing:.06em}
+#fine h2{font-size:92px;font-weight:900;letter-spacing:-.03em;line-height:1.02;margin-top:70px}
+#fine h2 mark{background:var(--oro);color:#0B0D0C;padding:0 14px}
+#fine ul{list-style:none;margin-top:56px;font-size:38px;font-weight:700;line-height:1.7;color:#E2E5E1}
+#fine ul li::before{content:'✓  ';color:var(--verde)}
+#fine .url{font-family:'Martian Mono';font-size:46px;font-weight:800;color:var(--oro);margin-top:56px}
+#fine .prezzo{font-size:30px;color:#C9CEC9;margin-top:16px}
+#fine small{position:absolute;bottom:110px;left:80px;right:80px;font-family:'Martian Mono';font-size:20px;color:#8E968F;line-height:1.5}
+#lampo{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:9}
+</style></head><body>
+<div id="sfondo"></div>
+<div id="gancio"></div>
+<div id="grafico"><div class="big" id="gNum">0,0%</div><div class="eti" id="gEti">BRENT · 2 NOVEMBRE</div><svg id="gSvg" width="960" height="560" viewBox="0 0 960 560" style="margin-top:40px"></svg></div>
+<div id="tel"><div class="isola"></div><div id="schermo">
+  <div id="blocco"><div class="ora">15:40</div><div class="giorno">lunedì 2 novembre</div>
+    <div class="notifica" id="notifica"><div class="t"><span class="ic"><svg width="28" height="28" viewBox="0 0 44 44" fill="none"><path d="M9 31 L17 19.5 L23.5 25 L35 11" stroke="#B97C00" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 36 H35" stroke="#5E656D" stroke-width="4" stroke-linecap="round"/></svg></span>RISKLY NEWS<span class="h">adesso</span></div>
+      <b>Straordinarie · Teheran apre al dialogo con gli USA: il petrolio crolla del 6,7%</b>
+      <p>Il presidente iraniano dice di avere dalla Guida Suprema i poteri per trattare, e il greggio perde fino al 6,7%…</p></div></div>
+  <img id="iArt" src="news/articolo.png"><img id="iLista" src="news/lista.png"><img id="iSetup" src="news/setup.png">
+</div></div>
+<div id="tocco"></div>
+<div class="badge" id="bDati">DATO USA · ANALISI IN 5 MINUTI</div>
+<div class="badge" id="bPrezzo">TITOLI GRATIS · ARTICOLI 6,99 €/MESE</div>
+<div id="sotto"></div>
+<div id="nota">Contenuto informativo · niente segnali, niente previsioni</div>
+<div id="fine">
+  <div class="logo"><svg width="110" height="110" viewBox="0 0 44 44" fill="none"><rect width="44" height="44" rx="11" fill="#F3F4F1"/><path d="M9 31 L17 19.5 L23.5 25 L35 11" stroke="#B97C00" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 36 H35" stroke="#5E656D" stroke-width="3.4" stroke-linecap="round"/></svg>Riskly <i>NEWS</i></div>
+  <h2>Quello che muove<br><mark>il tuo mercato.</mark></h2>
+  <ul><li>Articolo del giorno alle 7:37</li><li>Setup XAU ogni giorno</li><li>Analisi dei dati USA in pochi minuti</li><li>Notifica alle notizie che muovono i prezzi</li></ul>
+  <div class="url">news.riskly.trade</div><div class="prezzo">Titoli e sommari gratis · articoli completi 6,99 € al mese</div>
+  <small>Contenuto informativo ed educativo, non è consulenza finanziaria. Il trading con leva comporta un alto rischio.</small>
+</div>
+<div id="lampo"></div>
+<script>
+const $ = id => document.getElementById(id);
+const cl = (x, a, b) => Math.max(a, Math.min(b, x));
+const ease = x => { x = cl(x, 0, 1); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
+const lerp = (a, b, x) => a + (b - a) * x;
+// confini delle scene (devono coincidere con gli "inizio" di social/youtube/news.json)
+const B = [0, 3.4, 7.0, 11.0, 15.0, 19.0, 23.0], DURATA = 27.5;
+window.DURATA = DURATA;
+// Brent del 2 novembre 2026 a 5 minuti (Yahoo Finance, BZ=F; copia in news/brent-2026-11-02.json)
+const BRENT = {"prec": 113.43, "punti": [["05:00", 109.87], ["05:05", 109.85], ["05:10", 109.79], ["05:15", 109.84], ["05:20", 109.68], ["05:25", 109.75], ["05:30", 109.49], ["05:35", 109.75], ["05:40", 109.63], ["05:45", 109.81], ["05:50", 109.79], ["05:55", 109.8], ["06:00", 109.95], ["06:05", 109.9], ["06:10", 110.02], ["06:15", 110.05], ["06:20", 110.1], ["06:25", 110.0], ["06:30", 110.06], ["06:35", 110.07], ["06:40", 110.26], ["06:45", 110.22], ["06:50", 110.3], ["06:55", 110.2], ["07:00", 110.2], ["07:05", 110.03], ["07:10", 110.07], ["07:15", 110.11], ["07:20", 110.04], ["07:25", 109.98], ["07:30", 110.19], ["07:35", 110.42], ["07:40", 110.5], ["07:45", 110.36], ["07:50", 110.23], ["07:55", 110.25], ["08:00", 110.1], ["08:05", 109.89], ["08:10", 109.65], ["08:15", 109.82], ["08:20", 109.87], ["08:25", 109.59], ["08:30", 109.26], ["08:35", 109.08], ["08:40", 109.39], ["08:45", 109.13], ["08:50", 109.2], ["08:55", 109.3], ["09:00", 109.07], ["09:05", 108.96], ["09:10", 108.85], ["09:15", 108.59], ["09:20", 108.53], ["09:25", 108.68], ["09:30", 108.8], ["09:35", 108.51], ["09:40", 108.47], ["09:45", 108.35], ["09:50", 108.37], ["09:55", 108.56], ["10:00", 108.75], ["10:05", 108.42], ["10:10", 108.54], ["10:15", 108.62], ["10:20", 108.74], ["10:25", 108.83], ["10:30", 108.73], ["10:35", 108.77], ["10:40", 108.77], ["10:45", 108.35], ["10:50", 108.45], ["10:55", 108.59], ["11:00", 108.6], ["11:05", 108.62], ["11:10", 108.67], ["11:15", 108.41], ["11:20", 108.49], ["11:25", 108.45], ["11:30", 108.51], ["11:35", 108.28], ["11:40", 108.36], ["11:45", 108.48], ["11:50", 108.5], ["11:55", 108.7], ["12:00", 108.77], ["12:05", 108.92], ["12:10", 108.96], ["12:15", 108.96], ["12:20", 109.0], ["12:25", 108.94], ["12:30", 108.96], ["12:35", 109.01], ["12:40", 108.66], ["12:45", 108.6], ["12:50", 108.6], ["12:55", 108.75], ["13:00", 108.55], ["13:05", 108.64], ["13:10", 108.39], ["13:15", 108.43], ["13:20", 108.81], ["13:25", 108.93], ["13:30", 108.75], ["13:35", 106.52], ["13:40", 106.39], ["13:45", 106.86], ["13:50", 106.55], ["13:55", 106.59], ["14:00", 106.91], ["14:05", 106.45], ["14:10", 106.55], ["14:15", 106.5], ["14:20", 106.97], ["14:25", 106.49], ["14:30", 106.57], ["14:35", 106.4], ["14:40", 106.36], ["14:45", 106.21], ["14:49", 106.23]]};
+const GANCI = [[0, 'Il petrolio:<br><mark class="r">−6,7%</mark> in un pomeriggio.'], [B[1], 'Chi era iscritto<br><mark>lo ha saputo così.</mark>'], [B[2], 'Cosa è successo,<br><mark>con i numeri.</mark>'], [B[3], 'Ogni mattina<br>alle <mark>7:37.</mark>'], [B[4], 'Esce un dato USA?<br><mark>Analisi subito.</mark>'], [B[5], 'Titoli <mark>gratis.</mark><br>Il resto: 6,99 €.']];
+const SOTTO = [[.3, 'Brent da 113 a <em>106 $</em><br>dopo l\'apertura dell\'Iran al dialogo.'], [B[1] + .2, 'Notifica sul telefono,<br>anche a sito chiuso.'], [B[2] + .2, 'Chi l\'ha detto, quanto si è mosso<br>il greggio, come hanno reagito <em>oro e dollaro</em>.'], [B[3] + .2, 'Articolo del giorno<br>+ <em>Setup XAU</em> con zone e trend.'], [B[4] + .2, 'Payrolls, inflazione, Fed:<br>l\'articolo esce <em>pochi minuti dopo</em>.'], [B[5] + .2, 'Fed, tassi, dollaro, oro.<br><em>Solo fatti, con le fonti.</em>']];
+function ultimo(a, t){ let r = null; for(const x of a) if(t >= x[0]) r = x; return r; }
+function grafico(t){
+  if(!BRENT) return;
+  const p = BRENT.punti, W = 960, H = 560, n = p.length, vmin = 105, vmax = 114.5;
+  const k = cl((t - .3) / 2.6, 0, 1), m = Math.max(2, Math.round(ease(k) * n));
+  const X = i => i / (n - 1) * W, Y = v => H - 20 - (v - vmin) / (vmax - vmin) * (H - 40);
+  const d = p.slice(0, m).map((q, i) => (i ? 'L' : 'M') + X(i).toFixed(1) + ' ' + Y(q[1]).toFixed(1)).join(' ');
+  const yp = Y(BRENT.prec), last = p[m - 1];
+  $('gSvg').innerHTML = `<line x1="0" x2="${W}" y1="${yp}" y2="${yp}" stroke="rgba(255,255,255,.25)" stroke-dasharray="6 8"/><text x="8" y="${yp - 12}" font-family="Martian Mono" font-size="22" fill="#9AA39A">venerdì 113,43 $</text>
+    <path d="${d} L${X(m - 1)} ${H} L0 ${H} Z" fill="#FF4D5E" opacity=".12"/><path d="${d}" fill="none" stroke="#FF4D5E" stroke-width="6" stroke-linejoin="round"/>
+    <circle cx="${X(m - 1)}" cy="${Y(last[1])}" r="12" fill="#FF4D5E"/><text x="${Math.min(X(m - 1), W - 10)}" y="${Y(last[1]) - 26}" text-anchor="end" font-family="Martian Mono" font-size="30" font-weight="800" fill="#fff">${last[1].toFixed(2).replace('.', ',')} $</text>`;
+  const minimo = 105.86, v = lerp(0, (minimo / BRENT.prec - 1) * 100, ease(k));
+  $('gNum').textContent = (v < 0 ? '−' : '') + Math.abs(v).toFixed(1).replace('.', ',') + '%';
+}
+const SUONI = [[.05, 'colpo'], [2.9, 'botto'], [B[1] + .5, 'notifica'], [B[1] + 2.6, 'clic'], [B[2], 'colpo'], [B[3], 'colpo'], [B[4], 'colpo'], [B[4] + .6, 'notifica'], [B[5], 'colpo'], [B[5] + .6, 'clic'], [B[6], 'colpo']];
+window.suoni = () => SUONI;
+function img(id, top, op){ const e = $(id); e.style.display = op > 0 ? 'block' : 'none'; e.style.top = top + 'px'; e.style.opacity = op; }
+window.fotogramma = function(t){
+  const g = ultimo(GANCI, t), gi = g ? cl((t - g[0]) / .25, 0, 1) : 0;
+  $('gancio').innerHTML = g ? g[1] : ''; $('gancio').style.opacity = t < B[6] ? gi : 0; $('gancio').style.transform = `scale(${lerp(1.16, 1, ease(gi))})`;
+  const s = ultimo(SOTTO, t); $('sotto').innerHTML = s && t < B[6] ? s[1] : ''; $('sotto').style.opacity = s ? cl((t - s[0]) / .2, 0, 1) : 0;
+  // scena 1: grafico
+  const g1 = t < B[1] ? cl(t / .3, 0, 1) : 1 - cl((t - B[1]) / .3, 0, 1); $('grafico').style.opacity = g1; grafico(t);
+  // telefono dalle scene 2 alle 6
+  const tv = t < B[1] ? 0 : t < B[6] ? cl((t - B[1]) / .35, 0, 1) : 1 - cl((t - B[6]) / .3, 0, 1);
+  $('tel').style.opacity = tv; $('tel').style.transform = `translateY(${lerp(140, 0, ease(tv))}px) scale(${t >= B[4] && t < B[5] ? 1 + .02 * Math.sin((t - B[4]) * 2) : 1})`;
+  // scena 2: schermata di blocco e notifica che scende, poi il tocco
+  const bl = t >= B[1] && t < B[2] + .3; $('blocco').style.display = bl ? 'block' : 'none';
+  const ni = ease((t - B[1] - .5) / .45); $('notifica').style.transform = `translateY(${lerp(-520, 0, ni)}px)`; $('notifica').style.opacity = ni;
+  const tt = t - (B[1] + 2.6); $('tocco').style.opacity = tt > 0 && tt < .5 ? 1 - tt / .5 : 0;
+  $('tocco').style.left = '495px'; $('tocco').style.top = '960px'; $('tocco').style.transform = `scale(${lerp(.6, 1.4, cl(tt / .5, 0, 1))})`;
+  // scena 3: articolo, scorre fino al muro "Continua a leggere"
+  const a = t >= B[2] && t < B[3] + .3 ? 1 : 0; img('iArt', -lerp(0, 330, ease((t - B[2] - .8) / 3)), a);
+  // scena 4: la lista, scorre sulle schede
+  const l = t >= B[3] && t < B[4] ? 1 : 0; img('iLista', -lerp(1000, 1980, ease((t - B[3] - .4) / 3.2)), l);
+  // scena 5: setup XAU + etichetta dati
+  const st = t >= B[4] && t < B[5] ? 1 : 0; img('iSetup', -lerp(0, 520, ease((t - B[4] - .4) / 3)), st);
+  const bd = t >= B[4] + .6 && t < B[5] ? ease((t - B[4] - .6) / .3) : 0; $('bDati').style.opacity = bd; $('bDati').style.transform = `translateX(-50%) scale(${lerp(1.3, 1, bd)}) rotate(-2deg)`;
+  // scena 6: il muro del paywall + prezzo
+  const pw = t >= B[5] && t < B[6] ? 1 : 0; img('iArt', pw ? -lerp(700, 760, ease((t - B[5]) / 2)) : $('iArt').style.top.replace('px','') * 1, pw || a);
+  const bp = t >= B[5] + .6 && t < B[6] ? ease((t - B[5] - .6) / .3) : 0; $('bPrezzo').style.opacity = bp; $('bPrezzo').style.transform = `translateX(-50%) scale(${lerp(1.3, 1, bp)}) rotate(2deg)`;
+  // chiusura
+  const f = cl((t - B[6]) / .35, 0, 1); $('fine').style.opacity = f; $('fine').querySelector('h2').style.transform = `scale(${lerp(1.1, 1, ease(f))})`;
+  const lam = [B[1], B[6], 2.9].map(x => t >= x && t < x + .16 ? 1 - (t - x) / .16 : 0); $('lampo').style.opacity = Math.max(...lam) * .5;
+};
+window.pronta = () => new Promise(r => { const c = () => BRENT ? r() : setTimeout(c, 50); c(); });
+</script></body></html>

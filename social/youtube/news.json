@@ -1,0 +1,13 @@
+{
+ "titolo": "Riskly News: il petrolio crolla e tu lo sai subito",
+ "nota": "Voce del reel social/reel/newsreel.html (2 novembre 2026). Gli 'inizio' devono coincidere con B nella pagina.",
+ "scene": [
+  {"inizio": 0.15, "voce": "Oggi il petrolio è crollato del sei virgola sette per cento in un pomeriggio."},
+  {"inizio": 3.4, "voce": "Chi era iscritto a Riskly News ha ricevuto la notifica sul telefono."},
+  {"inizio": 7.0, "voce": "Dentro: cosa è successo, chi l'ha detto, e come hanno reagito oro e dollaro."},
+  {"inizio": 11.0, "voce": "Ogni mattina l'articolo del giorno e il Setup dell'oro, con zone e trend."},
+  {"inizio": 15.0, "voce": "Esce un dato americano? L'analisi arriva pochi minuti dopo."},
+  {"inizio": 19.0, "voce": "Titoli e sommari sono gratis. L'articolo completo costa sei euro e novantanove al mese."},
+  {"inizio": 23.0, "voce": "Riskly News. Attiva le notifiche su news punto riskly punto trade."}
+ ]
+}

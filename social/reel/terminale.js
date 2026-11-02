@@ -6,7 +6,9 @@
 const { chromium } = require('playwright');
 const { spawn, spawnSync, execSync } = require('child_process');
 const fs = require('fs'), path = require('path');
-const QUI = __dirname, OUT = process.argv[2] || path.join(QUI, 'terminale.mp4');
+// SCENE (pagina, predefinita terminale) e VOCE (json in social/youtube, predefinito term): così serve anche per altri reel (es. SCENE=newsreel VOCE=news)
+const SCENA = process.env.SCENE || 'terminale', VOCE = process.env.VOCE || 'term';
+const QUI = __dirname, OUT = process.argv[2] || path.join(QUI, SCENA + '.mp4');
 const FF = execSync(`python3 -c "import imageio_ffmpeg as i;print(i.get_ffmpeg_exe())"`).toString().trim();
 const FPS = 25, SR = 44100, PAUSA = 0.3;
 const durata = f => { const o = spawnSync(FF, ['-i', f]).stderr.toString().match(/Duration: (\d+):(\d+):([\d.]+)/); return +o[1]*3600 + +o[2]*60 + +o[3]; };
@@ -31,11 +33,12 @@ function effetti(eventi, totale, out){   // stessi suoni sintetizzati di punto.j
 (async () => {
   const tmp = fs.mkdtempSync(path.join(require('os').tmpdir(), 'term-'));
   const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 1080, height: 1920 } });
-  await p.goto('file://' + path.join(QUI, 'terminale.html')); await p.evaluate(() => document.fonts.ready);
+  await p.goto('file://' + path.join(QUI, SCENA + '.html')); await p.evaluate(() => document.fonts.ready);
+  await p.evaluate(() => window.pronta ? window.pronta() : null);
   const durStoria = await p.evaluate(() => window.DURATA), suoniStoria = await p.evaluate(() => window.suoni());
   // tempo del video (reale) → tempo della pagina (storia), a tratti: ogni pezzo dura quanto la sua frase
-  const spec = JSON.parse(fs.readFileSync(path.join(QUI, '..', 'youtube', 'term.json')));
-  const voci = spec.scene.map((x, i) => path.join(QUI, '..', 'youtube', 'voce', `term-${String(i + 1).padStart(2, '0')}.mp3`));
+  const spec = JSON.parse(fs.readFileSync(path.join(QUI, '..', 'youtube', VOCE + '.json')));
+  const voci = spec.scene.map((x, i) => path.join(QUI, '..', 'youtube', 'voce', `${VOCE}-${String(i + 1).padStart(2, '0')}.mp3`));
   const conVoce = voci.every(f => fs.existsSync(f));
   const S = [0, ...spec.scene.slice(1).map(x => x.inizio), durStoria];        // confini nella pagina
   let R = [0];                                                                  // confini nel video
