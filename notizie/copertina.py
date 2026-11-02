@@ -1,5 +1,6 @@
 # Copertina di un articolo di Riskly News: python3 notizie/copertina.py ID CATEGORIA "TITOLO" [uscita.jpg]
-# categorie: oro, dollaro, fed, tassi, straordinarie, settimana, dati (dato appena uscito: grafico di oggi a 5 minuti)
+# categorie: oro, dollaro, fed, tassi, straordinarie, settimana, dati (dato appena uscito: grafico di oggi a 5 minuti),
+# petrolio (solo per la copertina di una notizia straordinaria sul greggio: Brent di oggi a 5 minuti)
 # Disegna categoria, titolo e il grafico degli ultimi 3 mesi dell'attivo legato al tema (oro, dollaro o rendimento del decennale USA).
 # La copertina del Setup XAU invece è il grafico di notizie/setup_xau.py.
 import json, os, subprocess, sys, urllib.request
@@ -14,10 +15,12 @@ TEMA = {  # categoria: (etichetta, colore, simbolo Yahoo, nome dell'ultimo valor
   'straordinarie': ('Straordinarie', '#FF4D5E', 'GC=F', 'ORO', '{:,.0f} $'),
   'settimana': ('La settimana', '#F2B83A', 'GC=F', 'ORO', '{:,.0f} $'),
   'dati': ('Dato appena uscito', '#FF4D5E', 'GC=F', 'ORO OGGI', '{:,.0f} $'),
+  # notizie straordinarie sul petrolio (articolo in categoria straordinarie): il Brent di oggi a 5 minuti
+  'petrolio': ('Straordinarie', '#FF4D5E', 'BZ=F', 'BRENT OGGI', '{:,.2f} $'),
 }
 et, col, sim, nome, fmt = TEMA.get(CAT, TEMA['oro'])
 # per i dati appena usciti: il grafico a 5 minuti di oggi, per vedere la reazione all'uscita
-url = f'https://query1.finance.yahoo.com/v8/finance/chart/{sim}?' + ('range=1d&interval=5m' if CAT == 'dati' else 'range=3mo&interval=1d')
+url = f'https://query1.finance.yahoo.com/v8/finance/chart/{sim}?' + ('range=1d&interval=5m' if CAT in ('dati', 'petrolio') else 'range=3mo&interval=1d')
 def scarica(u):
     r = json.load(urllib.request.urlopen(urllib.request.Request(u, headers={'User-Agent': 'Mozilla/5.0'}), timeout=30))['chart']['result'][0]
     return [c for c in r['indicators']['quote'][0].get('close', []) if c is not None]
