@@ -35,6 +35,7 @@
 /rovina      https://strumenti.riskly.trade/?da=link-rovina#montecarlo    302
 /prop        https://strumenti.riskly.trade/?da=link-prop#prop            302
 /dati        https://strumenti.riskly.trade/?da=link-dati#calendario      302
+/news        https://news.riskly.trade/?da=link-news                       302
 /prova       https://app.riskly.trade/demo.html?da=link-prova             302
 /corsi       /?vai=corso&da=link-corsi                                     302
 /bot         /?vai=bot&da=link-bot                                         302
