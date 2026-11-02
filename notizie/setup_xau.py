@@ -71,7 +71,7 @@ if len(sys.argv) > 1:
         ax.text(len(v) + .5, z, f'{z:,.0f}'.replace(',', '.'), color=col, fontsize=17, va='center', weight='bold')
     ax.axhline(ult[4], color='#ECEEEA', lw=1, ls='--')
     ax.text(.97, .97, 'XAU · ORO (future COMEX) · giornaliero', transform=ax.transAxes, color='#F2B83A', fontsize=20, weight='bold', va='top', ha='right')
-    ax.text(.97, .91, f'Chiusura {ult[0].strftime("%d/%m")}: {ult[4]:,.1f} $'.replace(',', 'X').replace('.', ',').replace('X', '.'), transform=ax.transAxes, color='#ECEEEA', fontsize=17, va='top', ha='right')
+    ax.text(.97, .91, f'{"Ultimo prezzo" if ult[0] >= dt.datetime.now(dt.timezone.utc).date() else "Chiusura"} {ult[0].strftime("%d/%m")}: {ult[4]:,.1f} $'.replace(',', 'X').replace('.', ',').replace('X', '.'), transform=ax.transAxes, color='#ECEEEA', fontsize=17, va='top', ha='right')
     ax.legend(loc='upper right', bbox_to_anchor=(.97, .86), facecolor='#0B0D0C', edgecolor='#232823', labelcolor='#C3CAC5', fontsize=13)
     ax.tick_params(colors='#9AA39A', labelsize=14); ax.set_xticks([]); ax.yaxis.tick_right()
     ax.yaxis.set_major_formatter(matplotlib.ticker.FuncFormatter(lambda y, _: f'{y:,.0f}'.replace(',', '.')))
