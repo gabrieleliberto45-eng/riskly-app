@@ -4640,18 +4640,21 @@ function j_apriConti(){
   if(!utente || j_demo) return;
   const conti = j_conti(), id = j_contoId(), premium = pianoAttivo() === 'premium';
   const mtVisti = j_mtVisti();
+  /* 3 novembre 2026 (Gabriele: "perché c'è scritto MetaTrader giù mentre il bot scrive nel conto BOT?"):
+     il conto che riceve i bot lo dice nella sua riga; sugli altri il pulsante dice cosa fa: "Sposta qui i bot" */
+  const liberi = mtVisti.filter(n => !conti.some(c => (c.mt || []).includes(n)));
   document.getElementById('contiLista').innerHTML = conti.map(c => {
     const ops = j_trades.filter(t => j_contoDi(t) === c.id);
     const pnl = ops.reduce((a, t) => a + (Number(t.pnl) || 0), 0);
-    const sotto = `${ops.length} ${ops.length === 1 ? 'operazione' : 'operazioni'}${ops.length ? ' · ' + j_fmt(pnl) : ''}${(c.mt || []).length ? ' · MetaTrader ' + c.mt.join(', ') : ''}`;
+    const suoi = (c.mt || []).concat(c.id === '1' ? liberi : []);
+    const sotto = `${ops.length} ${ops.length === 1 ? 'operazione' : 'operazioni'}${ops.length ? ' · ' + j_fmt(pnl) : ''}${suoi.length ? ' · qui arrivano i bot (MetaTrader ' + suoi.join(', ') + ')' : ''}`;
     return `<div class="jcl-riga${c.id === id ? ' on' : ''}">
       <button type="button" class="jcl-scegli" onclick="j_scegliConto('${c.id}')"><b>${esc(c.nome || 'Conto')}</b><span>${esc(sotto)}${c.id === id ? ' · in uso' : ''}</span></button>
-      <div class="jcl-az">${mtVisti.length && c.id !== '1' ? `<button type="button" class="btn" onclick="j_collegaMT('${c.id}')">MetaTrader</button>` : ''}<button type="button" class="btn" onclick="j_rinominaConto('${c.id}')">Rinomina</button>${c.id !== '1' && !ops.length ? `<button type="button" class="btn" onclick="j_eliminaConto('${c.id}')">Elimina</button>` : ''}</div>
+      <div class="jcl-az">${mtVisti.length && c.id !== '1' ? `<button type="button" class="btn" onclick="j_collegaMT('${c.id}')">${(c.mt || []).length ? 'Bot collegati' : 'Sposta qui i bot'}</button>` : ''}<button type="button" class="btn" onclick="j_rinominaConto('${c.id}')">Rinomina</button>${c.id !== '1' && !ops.length ? `<button type="button" class="btn" onclick="j_eliminaConto('${c.id}')">Elimina</button>` : ''}</div>
     </div>`;
   }).join('');
   const piede = document.getElementById('contiPiede');
-  const liberi = mtVisti.filter(n => !conti.some(c => (c.mt || []).includes(n)));
-  const avvisoMT = conti.length > 1 && liberi.length ? `<div class="jcl-nota">Operazioni dei bot dal conto MetaTrader ${liberi.join(', ')}: per ora vanno nel «${esc(conti[0].nome)}». Tocca «MetaTrader» su un conto per mandarle lì.</div>` : '';
+  const avvisoMT = conti.length > 1 && liberi.length ? `<div class="jcl-nota">Le operazioni dei bot (conto MetaTrader ${liberi.join(', ')}) arrivano nel «${esc(conti[0].nome)}». Se vuoi che arrivino in un altro conto, tocca «Sposta qui i bot» su quel conto.</div>` : '';
   if(premium && conti.length < J_MAX_CONTI) piede.innerHTML = avvisoMT + `<button type="button" class="btn pri wide" onclick="j_nuovoConto()">+ Aggiungi un conto</button><div class="jcl-nota">Puoi avere fino a ${J_MAX_CONTI} conti (${conti.length} su ${J_MAX_CONTI}).</div>`;
   else if(premium) piede.innerHTML = avvisoMT + `<div class="jcl-nota">Hai raggiunto il massimo di ${J_MAX_CONTI} conti.</div>`;
   else piede.innerHTML = `<div class="jcl-nota">Con il piano Premium puoi collegare fino a ${J_MAX_CONTI} conti allo stesso account, ognuno con le sue operazioni.</div><button type="button" class="btn wide" style="margin-top:10px" onclick="location.href='https://riskly.trade/#prezzi'">Vedi il piano Premium</button>`;
