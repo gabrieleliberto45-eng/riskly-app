@@ -1740,7 +1740,7 @@ html[data-tema="scuro"] .s-testa .s-tema{border-color:#ECEEEA!important;color:#E
             <div class="jaltro-menu" onclick="this.parentElement.classList.remove('on')">
               <label class="jaltro-val" onclick="event.stopPropagation()">Valuta del conto
                 <select id="fValuta" class="jvaluta" aria-label="Valuta del conto" onchange="j_setValuta(this.value)"></select></label>
-              <button type="button" onclick="j_exportData()">Esporta copia (JSON)</button>
+              <button type="button" onclick="j_exportData()">Esporta copia completa (con screenshot)</button>
               <button type="button" onclick="j_exportCSV()">Esporta in CSV</button>
               <button type="button" onclick="document.getElementById('imp').click()">Importa</button>
               <button type="button" onclick="j_apriMetodi()">Tipo di journal (metodo)</button>
@@ -5203,10 +5203,14 @@ async function j_removeTrade(id){
 async function j_clearAll(){
   if(j_bloccatoDemo() || !j_lista().length) return;
   const mie = j_lista(), n = mie.length, soloConto = j_conti().length > 1;
-  const risposta = prompt(`Stai per eliminare definitivamente ${soloConto ? 'le ' + n + ' operazioni del conto «' + (j_contoDati().nome || '') + '»' : 'tutte le ' + n + ' operazioni'} e i loro screenshot.\n` +
-    `Ti consigliamo di scaricare prima una copia con "Esporta".\n\nPer confermare scrivi ELIMINA`);
+  const risposta = prompt(`Stai per eliminare definitivamente ${soloConto ? 'le ' + n + ' operazioni del conto «' + (j_contoDati().nome || '') + '»' : 'tutte le ' + n + ' operazioni'} (gli screenshot restano salvati: reimportando la copia tornano al loro posto).\n` +
+    `Prima di eliminare scarichiamo in automatico una copia completa, con gli screenshot: con "Importa" la potrai ricaricare.\n\nPer confermare scrivi ELIMINA`);
   if(risposta === null) return;
   if(risposta.trim().toUpperCase() !== 'ELIMINA'){ j_flash('Eliminazione annullata.'); return; }
+  // copia di sicurezza prima di cancellare (3 novembre 2026: gli screenshot cancellati non si recuperano)
+  let copia = false;
+  try{ copia = await j_exportData(true); }catch(e){ console.error(e); }
+  if(!copia && !confirm('La copia non è stata scaricata. Eliminare lo stesso le operazioni?')) return;
 
   const shot = mie.map(t => t.shot).concat(mie.map(j_shot2Di)).filter(Boolean);
   try{
@@ -5225,7 +5229,8 @@ async function j_clearAll(){
   j_trades = j_trades.filter(t => !mie.includes(t));
   j_resetForm();
   j_azzeraFiltri();
-  rimuoviShot(shot);
+  // gli screenshot NON si cancellano più qui (3 novembre 2026): se poi importi la copia, ritornano al loro posto
+  void shot;
   j_flash(`${n} operazioni eliminate.`);
 }
 
@@ -5250,12 +5255,37 @@ function j_scarica(contenuto, tipo, nome){
   setTimeout(() => URL.revokeObjectURL(a.href), 1000);
 }
 
-function j_exportData(){
+/* 3 novembre 2026 (Gabriele: "ho importato il journal e si sono persi gli screen, la cosa più importante"):
+   la copia JSON contiene anche le immagini degli screenshot (shot_img, shot2_img), così l'importazione le ricarica
+   anche dopo "Svuota", su un altro conto o su un altro account. Prima la copia salvava solo il percorso del file. */
+const j_blobADati = b => new Promise((ok, ko) => { const r = new FileReader(); r.onload = () => ok(r.result); r.onerror = ko; r.readAsDataURL(b); });
+async function j_shotDati(valore){
+  const percorso = shotPercorso(valore);
+  if(!percorso || !sb) return '';
+  try{
+    const { data, error } = await sb.storage.from(SHOT_BUCKET).download(percorso);
+    if(error || !data) throw error || new Error('vuoto');
+    return await j_blobADati(data);
+  }catch(e){ console.error('screenshot non scaricato', percorso, e); return ''; }
+}
+async function j_exportData(silenzioso){
   const list = j_lista();
-  if(!list.length){ j_flash('Non ci sono operazioni da esportare.'); return; }
-  const pulite = j_ordina(list).map(({shotUrl, shot2Url, ...t}) => ({ ...t, shot: (t.shot || '').startsWith('data:') ? '' : t.shot }));
+  if(!list.length){ if(!silenzioso) j_flash('Non ci sono operazioni da esportare.'); return false; }
+  const n = list.filter(t => t.shot || j_shot2Di(t)).length;
+  if(n) j_flash(`Preparo la copia con gli screenshot di ${n} operazioni…`);
+  const pulite = [], t0 = Date.now();
+  let mancanti = 0;
+  for(const { shotUrl, shot2Url, ...t } of j_ordina(list)){
+    const r = { ...t, shot: (t.shot || '').startsWith('data:') ? '' : t.shot };
+    if(t.shot){ r.shot_img = t.shot.startsWith('data:') ? t.shot : await j_shotDati(t.shot); if(!r.shot_img){ delete r.shot_img; mancanti++; } }
+    if(j_shot2Di(t)){ r.shot2_img = await j_shotDati(j_shot2Di(t)); if(!r.shot2_img){ delete r.shot2_img; mancanti++; } }
+    pulite.push(r);
+  }
+  // dopo qualche secondo di attesa alcuni browser (Safari su iPhone) bloccano il download: chiedo un tocco
+  if(Date.now() - t0 > 2500 && !confirm('La copia completa è pronta. Tocca OK per scaricarla.')) return false;
   j_scarica(JSON.stringify(pulite, null, 2), 'application/json', `riskly-operazioni-${isoLocale()}.json`);
-  j_flash(`${list.length} operazioni esportate in JSON.`);
+  j_flash(`${list.length} operazioni esportate${n ? ', con gli screenshot' : ''}.` + (mancanti ? ` ${mancanti} screenshot non sono stati trovati.` : ''), !!mancanti);
+  return true;
 }
 
 /* esporta in CSV: si apre in Excel o Fogli Google */
@@ -5344,8 +5374,35 @@ function j_normalizza(o){
     emo,
     nota: String(o.nota ?? o.note ?? '').trim().slice(0, 2000),
     dettagli: (o.dettagli && typeof o.dettagli === 'object' && !Array.isArray(o.dettagli)) ? o.dettagli : {},
-    shot, shotUrl: ''
+    shot, shotUrl: '',
+    _img: j_datiImmagine(o.shot_img), _img2: j_datiImmagine(o.shot2_img)
   };
+}
+
+/* immagine salvata nella copia JSON: solo data:image/…, al massimo ~8 MB */
+const j_datiImmagine = v => typeof v === 'string' && /^data:image\/(png|jpe?g|webp|gif);base64,/.test(v) && v.length < 11e6 ? v : '';
+async function j_datiAFile(dati, nome){
+  const b = await (await fetch(dati)).blob();
+  const est = (b.type.split('/')[1] || 'png').replace('jpeg', 'jpg');
+  return new File([b], `${nome}.${est}`, { type: b.type || 'image/png' });
+}
+/* ricarica sul server gli screenshot della copia; tiene solo i percorsi che sono davvero di questo account */
+async function j_ricaricaShot(lista){
+  let ok = 0, ko = 0;
+  for(const t of lista){
+    const mio = v => typeof v === 'string' && v.startsWith(utente.id + '/');
+    // stesso account e file ancora presente: riuso quello, senza caricarne un doppione
+    const esiste = async v => { if(!mio(v)) return false; const { error } = await sb.storage.from(SHOT_BUCKET).createSignedUrl(v, 60); return !error; };
+    if(t._img && await esiste(t.shot)) t._img = '';
+    if(t._img2 && await esiste(t.dettagli && t.dettagli.shot_conf)) t._img2 = '';
+    if(t._img){ const p = await j_shotSuServer(await j_datiAFile(t._img, 'shot')); if(p){ t.shot = p; ok++; } else ko++; }
+    else if(!mio(t.shot) && !(t.shot || '').startsWith('https://')) t.shot = '';
+    t.dettagli = Object.assign({}, t.dettagli);
+    if(t._img2){ const p = await j_shotSuServer(await j_datiAFile(t._img2, 'conferma')); if(p){ t.dettagli.shot_conf = p; ok++; } else { delete t.dettagli.shot_conf; ko++; } }
+    else if(!mio(t.dettagli.shot_conf)) delete t.dettagli.shot_conf;
+    delete t._img; delete t._img2;
+  }
+  return { ok, ko };
 }
 
 function j_righeCSV(testo){
@@ -5441,14 +5498,16 @@ async function j_importa(lista, scartate){
     .filter(Boolean).join(', ');
   if(!confirm(`Importare ${nuove.length} operazioni?${note ? '\n(' + note + ')' : ''}`)) return;
 
-  j_flash('Importazione in corso…');
+  const conImg = nuove.filter(t => t._img || t._img2).length;
+  j_flash(conImg ? `Importazione in corso: ricarico gli screenshot di ${conImg} operazioni…` : 'Importazione in corso…');
   try{
+    const shot = await j_ricaricaShot(nuove);
     const righe = await inserisciOperazioni(nuove);
     j_trades = j_trades.concat(righe.map(daRiga));
     await j_firmaShot(j_trades);
     j_meseSuUltimo(j_trades);
     j_renderAll();
-    j_flash(`${righe.length} operazioni importate.`);
+    j_flash(`${righe.length} operazioni importate` + (shot.ok ? `, con ${shot.ok} screenshot.` : '.') + (shot.ko ? ` ${shot.ko} screenshot non sono stati caricati.` : ''), !!shot.ko);
   } catch(err){
     console.error(err);
     await caricaOperazioni();   // riallineo con quello che è davvero sul server
