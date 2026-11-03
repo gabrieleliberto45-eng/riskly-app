@@ -11,114 +11,142 @@
 <script>try{ if(localStorage.getItem('riskly-tema') === 'scuro') document.documentElement.setAttribute('data-tema', 'scuro'); }catch(e){}</script>
 <style>
 /* Riskly News (news.riskly.trade): sotto sito in abbonamento (Gabriele, 1° novembre 2026).
-   Titolo e sommario pubblici (vista notizie_anteprima), articolo intero solo per abbonati Riskly News, il Premium del journal non è incluso (tabella notizie, RLS in supabase/news.sql). */
+   Titolo e sommario pubblici (vista notizie_anteprima), articolo intero solo per abbonati Riskly News, il Premium del journal non è incluso (tabella notizie, RLS in supabase/news.sql).
+   3 novembre 2026: struttura "da app" (Gabriele: "una cosa del genere vorrei per Riskly News"): quotazioni in alto, articolo in evidenza,
+   lista con miniature, pagina articolo con immagine grande, barra in basso e menu Altro. */
 @font-face{font-family:'Archivo';src:url(/fonts/archivo.woff2) format('woff2');font-weight:100 900;font-stretch:62% 125%;font-display:swap}
 @font-face{font-family:'Martian Mono';src:url(/fonts/martian-mono.woff2) format('woff2');font-weight:100 800;font-stretch:75% 112.5%;font-display:swap}
-:root{--bg:#F3F4F1;--panel:#FBFBF9;--ink:#15181B;--ink2:#4B525A;--ink3:#6E747A;--line:#D8DBDD;--amber:#F2B83A;--amber-deep:#B97C00;--blu:#1D4FC4;--verde:#0F7A47;--rosso:#B0202E}
-html[data-tema="scuro"]{--bg:#0E1110;--panel:#171B19;--ink:#ECEEEA;--ink2:#C3CAC5;--ink3:#98A09A;--line:#2E3632;--amber-deep:#F2B83A;--blu:#7FA5FF;--verde:#4FD08F;--rosso:#FF7A85}
+:root{--bg:#F2F2EF;--panel:#FFFFFF;--ink:#15181B;--ink2:#4B525A;--ink3:#8A8F94;--line:#E2E3E0;--amber:#F2B83A;--oro:#B88A1E;--blu:#1D4FC4;--verde:#0F8A4F;--rosso:#C62F3B;
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif}
+html[data-tema="scuro"]{--bg:#0E1110;--panel:#171B19;--ink:#ECEEEA;--ink2:#C3CAC5;--ink3:#98A09A;--line:#2A312D;--oro:#F2B83A;--blu:#7FA5FF;--verde:#4FD08F;--rosso:#FF7A85}
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Archivo',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 a{color:inherit}
-.wrap{max-width:860px;margin:0 auto;padding:0 20px}
-.testa{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.testa .wrap{display:flex;align-items:center;gap:12px;height:68px}
-.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;text-decoration:none;margin-right:auto}
-.logo svg{width:34px;height:34px}
-.logo small{font:700 13px 'Martian Mono';letter-spacing:.08em;color:var(--amber-deep)}
+.app{max-width:760px;margin:0 auto;min-height:100vh;padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+/* testata */
+.testa{position:sticky;top:0;z-index:30;background:var(--panel);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
+.testa-in{height:62px;display:flex;align-items:center;justify-content:center;position:relative}
+.testata{font-family:var(--serif);font-size:30px;font-variant:small-caps;letter-spacing:.04em;text-decoration:none;color:var(--ink);font-weight:500}
+.testata b{color:var(--oro);font-weight:500}
+.testa .acc{position:absolute;right:14px;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:none;color:var(--ink);display:grid;place-items:center;cursor:pointer}
+.testa .indietro2{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:none;background:var(--ink);color:var(--panel);display:none;place-items:center;cursor:pointer;font-size:20px}
+body.in-articolo .testa .indietro2{display:grid}
+/* quotazioni */
+.nastro{display:flex;gap:22px;overflow-x:auto;scrollbar-width:none;padding:12px 16px;background:var(--panel);border-bottom:1px solid var(--line)}
+.nastro::-webkit-scrollbar{display:none}
+.q{flex:0 0 auto;font-variant-numeric:tabular-nums}
+.q .n{font:700 11px 'Martian Mono';letter-spacing:.04em;color:var(--ink3)}
+.q .p{font:700 15px 'Archivo';margin-top:2px}
+.q .v{font:600 12px 'Archivo';margin-top:1px}
+.q .v.su{color:var(--verde)}.q .v.giu{color:var(--rosso)}
+/* prossimo dato */
+.oggi{margin:14px 16px 0;background:var(--panel);border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:14px;border:1px solid var(--line)}
+.oggi .ora{font:800 18px 'Martian Mono';color:var(--oro);min-width:60px}
+.oggi .t{font-size:14px;line-height:1.35;color:var(--ink2)}.oggi .t b{color:var(--ink)}
+/* articolo in evidenza */
+.evid{display:block;margin:14px 16px 0;background:var(--panel);border-radius:18px;overflow:hidden;text-decoration:none;color:inherit;border:1px solid var(--line)}
+.evid img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#0B0D0C}
+.evid .txt{padding:14px 16px 16px}
+.evid h2{font-family:var(--serif);font-weight:500;font-size:25px;line-height:1.2;margin:6px 0 6px}
+.evid p{margin:0;color:var(--ink2);font-size:15px;line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.data{font-size:13px;color:var(--oro);font-weight:600}
+/* lista */
+.lista{margin:14px 16px 0;background:var(--panel);border-radius:18px;border:1px solid var(--line);padding:4px 14px}
+.riga{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);text-decoration:none;color:inherit}
+.riga:last-child{border-bottom:none}
+.riga img,.riga .ph{flex:0 0 128px;height:86px;border-radius:10px;object-fit:cover;background:#0B0D0C}
+.riga .txt{min-width:0;display:flex;flex-direction:column;gap:4px}
+.riga h3{font-family:var(--serif);font-weight:500;font-size:18px;line-height:1.22;margin:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.chip{display:inline-flex;align-items:center;gap:5px;font:700 10.5px 'Martian Mono';letter-spacing:.06em;text-transform:uppercase;color:var(--oro)}
+.chip .lk{width:16px;height:16px;border-radius:50%;background:var(--amber);display:inline-grid;place-items:center}
+.chip.fed,.chip.tassi{color:var(--blu)}.chip.dollaro{color:var(--verde)}.chip.straordinarie,.chip.dati{color:var(--rosso)}
+.sez{margin:22px 16px 0;font:700 12px 'Martian Mono';letter-spacing:.12em;color:var(--ink3);text-transform:uppercase}
+/* riquadri */
+.abbonati{margin:14px 16px 0;display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:14px 16px;border:1.5px solid var(--amber);border-radius:16px;background:color-mix(in srgb,var(--amber) 10%,var(--panel))}
+.abbonati p{margin:0;flex:1 1 220px;font-size:14px;line-height:1.45;color:var(--ink2)}.abbonati p b{color:var(--ink)}
+.campana{margin:12px 16px 0;display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 16px;border:1px solid var(--line);border-radius:16px;background:var(--panel);font-size:14px;line-height:1.45;color:var(--ink2)}
+.campana p{margin:0;flex:1 1 220px}.campana p b{color:var(--ink)}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1.5px solid var(--ink);background:none;color:var(--ink);font:700 15px 'Archivo';padding:10px 16px;border-radius:12px;cursor:pointer;text-decoration:none}
-.btn.pri{background:var(--ink);color:var(--bg)}
-.btn.amb{background:var(--amber);border-color:var(--amber);color:#2B1E00}
-.btn.wide{width:100%}
-.ico{width:42px;height:42px;padding:0;border-radius:50%}
-.hero{padding:44px 0 26px}
-.hero .k{font:700 13px 'Martian Mono';letter-spacing:.12em;color:var(--amber-deep)}
-.hero h1{font-size:clamp(38px,7vw,64px);line-height:.98;font-stretch:80%;margin:10px 0 14px;letter-spacing:-.01em}
-.hero h1 em{font-style:normal;background:var(--amber);color:#2B1E00;padding:0 10px}
-.hero p{font-size:18px;line-height:1.5;color:var(--ink2);max-width:640px;margin:0}
-.abbonati{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:22px;padding:18px 20px;border:1.5px solid var(--amber);border-radius:18px;background:color-mix(in srgb,var(--amber) 9%,var(--panel))}
-.abbonati p{margin:0;flex:1 1 260px;font-size:15px;line-height:1.45;color:var(--ink2)}
-.abbonati p b{color:var(--ink)}
-/* notifiche dei nuovi articoli */
-.campana{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:12px;padding:12px 16px;border:1px solid var(--line);border-radius:14px;background:var(--panel);font-size:14px;line-height:1.45;color:var(--ink2)}
-.campana p{margin:0;flex:1 1 240px}
-.campana p b{color:var(--ink)}
-.campana .btn{padding:9px 14px;font-size:14px}
-.piede a[hidden]{display:none!important}
-.campana.on{border-color:color-mix(in srgb,var(--amber) 55%,var(--line))}
-.filtri{display:flex;gap:8px;flex-wrap:wrap;margin:26px 0 18px}
-.filtri button{border:1px solid var(--line);background:var(--panel);color:var(--ink);font:600 14px 'Archivo';padding:8px 14px;border-radius:999px;cursor:pointer}
-.filtri button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.lista{display:flex;flex-direction:column;gap:14px;padding-bottom:40px}
-.art{display:block;width:100%;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px 22px;cursor:pointer;color:inherit;font:inherit;text-decoration:none}
-.art:hover{border-color:var(--amber-deep)}
-.meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:13px;color:var(--ink3);margin-bottom:8px}
-.cat{font:700 11px 'Martian Mono';letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:999px;background:color-mix(in srgb,var(--amber) 18%,transparent);color:var(--amber-deep)}
-.cat.fed,.cat.tassi{background:color-mix(in srgb,var(--blu) 14%,transparent);color:var(--blu)}
-.cat.dollaro{background:color-mix(in srgb,var(--verde) 14%,transparent);color:var(--verde)}
-.cat.straordinarie{background:color-mix(in srgb,var(--rosso) 14%,transparent);color:var(--rosso)}
-.lucch{font:700 11px 'Martian Mono';letter-spacing:.06em;color:var(--ink3)}
-.art h2{font-size:21px;line-height:1.22;margin:0 0 6px}
-.art{overflow:hidden;padding:0}
-.art .cop{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#0B0D0C;border-bottom:1px solid var(--line)}
-.art .txt{padding:18px 22px 20px}
-.pezzo .cop{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:16px;margin:4px 0 18px;background:#0B0D0C}
-.cat.setup{background:#15181B;color:#F2B83A}
-.cat.dati{background:var(--rosso);color:#fff}
-html[data-tema="scuro"] .cat.setup{background:#F2B83A;color:#15181B}
+.btn.pri{background:var(--ink);color:var(--panel)}.btn.amb{background:var(--amber);border-color:var(--amber);color:#2B1E00}.btn.wide{width:100%}
+.campana .btn{padding:8px 13px;font-size:14px}
+.altri{text-align:center;margin:18px 0 8px}
+.vuoto{color:var(--ink2);padding:24px 16px}
+/* pagina articolo */
+.pezzo{background:var(--panel);min-height:80vh;padding-bottom:30px}
+.pezzo .cop{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;background:#0B0D0C}
+.pezzo .corpo{padding:18px 20px 0}
+.bollino{display:table;margin:-14px auto 12px;position:relative;background:var(--amber);color:#2B1E00;font:700 12px 'Archivo';padding:6px 14px;border-radius:999px}
+.bollino.cat{background:var(--ink);color:var(--panel)}
+.pezzo h1{font-family:var(--serif);font-weight:500;font-size:clamp(26px,6vw,36px);line-height:1.18;text-align:center;margin:4px 0 10px}
+.firma{text-align:center;color:var(--oro);font-size:14px;line-height:1.5}
+.sep{width:120px;height:1px;background:var(--line);margin:18px auto 20px}
+.pezzo .somm{font-size:18px;font-weight:600;line-height:1.5;margin:0 0 18px}
+.pezzo p{font-size:17px;line-height:1.7;margin:0 0 16px}
 .tab{width:100%;border-collapse:collapse;margin:6px 0 22px;font-size:15px}
 .tab td{padding:10px 4px;border-bottom:1px solid var(--line)}
-.tab td:last-child{text-align:right;font:700 15px 'Martian Mono';white-space:nowrap}
+.tab td:last-child{text-align:right;font:700 14px 'Martian Mono';white-space:nowrap}
 .nota-setup{font-size:14px;color:var(--ink3);border:1px dashed var(--line);border-radius:12px;padding:10px 14px;margin:0 0 18px}
-.art p{margin:0;font-size:16px;line-height:1.5;color:var(--ink2)}
-.pezzo{padding:30px 0 50px}
-.indietro{background:none;border:none;color:var(--ink);font:700 15px 'Archivo';cursor:pointer;padding:0;margin-bottom:16px}
-.pezzo h1{font-size:clamp(30px,5vw,44px);line-height:1.08;font-stretch:85%;margin:8px 0 14px}
-.pezzo .somm{font-size:19px;font-weight:600;line-height:1.45;margin:0 0 22px}
-.pezzo p{font-size:17px;line-height:1.7;margin:0 0 16px}
-.box{border-left:4px solid var(--amber-deep);background:color-mix(in srgb,var(--amber) 9%,var(--panel));border-radius:12px;padding:14px 18px;margin:22px 0}
-.box b{display:block;margin-bottom:6px}
-.box ul{margin:0;padding-left:20px}.box li{margin:5px 0;line-height:1.5}
+.box{border-left:4px solid var(--oro);background:color-mix(in srgb,var(--amber) 9%,var(--panel));border-radius:12px;padding:14px 18px;margin:22px 0}
+.box b{display:block;margin-bottom:6px}.box ul{margin:0;padding-left:20px}.box li{margin:5px 0;line-height:1.5}
 .fonti{font-size:14px;color:var(--ink2)}
-.muro{position:relative;margin-top:6px;border:1.5px solid var(--amber);border-radius:20px;padding:26px 24px;text-align:center;background:var(--panel)}
-.muro::before{content:'';position:absolute;left:0;right:0;top:-90px;height:90px;background:linear-gradient(transparent,var(--bg));pointer-events:none}
-.muro h3{font-size:24px;margin:0 0 8px;font-stretch:85%}
-.muro p{font-size:16px;line-height:1.5;color:var(--ink2);margin:0 0 18px}
+.muro{position:relative;margin-top:6px;border:1.5px solid var(--amber);border-radius:20px;padding:24px 20px;text-align:center;background:var(--panel)}
+.muro::before{content:'';position:absolute;left:0;right:0;top:-90px;height:90px;background:linear-gradient(transparent,var(--panel));pointer-events:none}
+.muro h3{font-family:var(--serif);font-weight:500;font-size:24px;margin:0 0 8px}
+.muro p{font-size:15px;line-height:1.5;color:var(--ink2);margin:0 0 16px}
 .muro .opz{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 .muro small{display:block;margin-top:12px;color:var(--ink3);font-size:13px}
 .finto{filter:blur(5px);user-select:none;pointer-events:none;opacity:.6}
 .avviso{font-size:13px;color:var(--ink3);line-height:1.5;margin-top:22px}
-.piede{border-top:1px solid var(--line);padding:22px 0 40px;font-size:13px;color:var(--ink3);line-height:1.6}
-.piede a{margin-right:14px}
-.vuoto{color:var(--ink2);padding:20px 0}
+.pezzo .campana{margin:16px 0 0}
+/* barra in basso */
+.barra{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--panel);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+.barra-in{max-width:760px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr)}
+.barra button{background:none;border:none;color:var(--ink);font:500 12px 'Archivo';display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 0 8px;cursor:pointer}
+.barra button svg{width:26px;height:26px}
+.barra button.on{color:var(--oro)}
+/* menu Altro */
+.foglio{position:fixed;inset:0;z-index:50;background:rgba(10,12,11,.45);display:none}
+.foglio.on{display:block}
+.foglio-in{position:absolute;left:0;right:0;bottom:0;max-height:82vh;overflow:auto;background:var(--panel);border-radius:22px 22px 0 0;padding:10px 0 calc(90px + env(safe-area-inset-bottom))}
+.foglio-in .mani{width:44px;height:5px;border-radius:9px;background:var(--line);margin:4px auto 10px}
+.voce{display:flex;align-items:center;gap:16px;padding:14px 22px;border-bottom:1px solid var(--line);font-size:17px;text-decoration:none;color:var(--ink);background:none;border-left:none;border-right:none;border-top:none;width:100%;text-align:left;font-family:'Archivo';cursor:pointer}
+.voce svg{width:22px;height:22px;color:var(--oro);flex:0 0 22px}
+.voce small{margin-left:auto;color:var(--ink3);font-size:13px}
+.legale{padding:16px 22px;font-size:12px;color:var(--ink3);line-height:1.6}
+/* accesso */
 .velo{position:fixed;inset:0;z-index:60;background:rgba(21,24,27,.55);display:none;align-items:center;justify-content:center;padding:18px}
 .velo.on{display:flex}
 .modale{background:var(--panel);border-radius:22px;padding:26px 24px;width:100%;max-width:420px;position:relative}
-.modale h3{margin:0 0 6px;font-size:24px}
+.modale h3{margin:0 0 6px;font-size:24px;font-family:var(--serif);font-weight:500}
 .modale p{margin:0 0 16px;color:var(--ink2);line-height:1.45}
 .modale label{display:block;font-weight:700;font-size:14px;margin:12px 0 6px}
 .modale input{width:100%;font:16px 'Archivo';padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
 .modale .x{position:absolute;right:14px;top:12px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--ink)}
 .modale .err{color:var(--rosso);font-size:14px;min-height:20px;margin:10px 0}
-.modale .cambia{background:none;border:none;color:var(--amber-deep);font:700 14px 'Archivo';cursor:pointer;margin-top:12px;padding:0}
-.flash{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:12px 18px;border-radius:12px;font-weight:600;z-index:70;display:none}
-@media(max-width:560px){.logo small{display:none}.hero{padding-top:30px}.art .txt{padding:16px 18px 18px}.tab{font-size:14px}.tab td:last-child{font-size:13px}}
-.altri{text-align:center;margin:22px 0 8px}
+.modale .cambia{background:none;border:none;color:var(--oro);font:700 14px 'Archivo';cursor:pointer;margin-top:12px;padding:0}
+.flash{position:fixed;left:50%;bottom:100px;transform:translateX(-50%);background:var(--ink);color:var(--panel);padding:12px 18px;border-radius:12px;font-weight:600;z-index:70;display:none;max-width:90vw}
+@media(min-width:761px){.app{border-left:1px solid var(--line);border-right:1px solid var(--line)}}
+@media(max-width:420px){.riga img,.riga .ph{flex-basis:112px;height:78px}.riga h3{font-size:16.5px}.testata{font-size:27px}}
 </style>
 </head>
 <body>
-<header class="testa"><div class="wrap">
-  <a class="logo" href="/"><svg viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="10" fill="#15181B"/><path d="M10 30 L17 20 L23 25 L34 12" stroke="#F2B83A" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M10 34.5 H34" stroke="#9AA09A" stroke-width="3.6" stroke-linecap="round"/></svg>Riskly <small>NEWS</small></a>
-  <button type="button" class="btn ico" onclick="tema()" aria-label="Modalità scura o chiara"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
-  <button type="button" class="btn" id="accBtn" onclick="accPulsante()">Accedi</button>
+<div class="app">
+<header class="testa"><div class="testa-in">
+  <button type="button" class="indietro2" onclick="location.hash=''" aria-label="Indietro">‹</button>
+  <a class="testata" href="#" onclick="vaiSezione('home');return false">Riskly <b>News</b></a>
+  <button type="button" class="acc" id="accBtn" onclick="accPulsante()" aria-label="Account"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></button>
 </div></header>
-
-<main class="wrap" id="vista"></main>
-
-<footer class="wrap piede">
-  <a href="https://riskly.trade">riskly.trade</a><a href="https://strumenti.riskly.trade">Strumenti gratuiti</a><a href="https://app.riskly.trade">Journal</a><a href="https://riskly.trade/privacy.html">Privacy</a><a href="https://riskly.trade/termini.html">Termini</a><a href="#" id="spegni" hidden onclick="avvisiSpegni();return false">Disattiva le notifiche</a>
-  <p>Riskly News è un contenuto informativo ed educativo: non è consulenza finanziaria, né una previsione o un segnale operativo. Il trading con leva (forex, CFD) comporta un alto rischio: puoi perdere tutto il capitale.</p>
-</footer>
-
+<div class="nastro" id="nastro" aria-label="Quotazioni"></div>
+<main id="vista"></main>
+</div>
+<nav class="barra" aria-label="Sezioni"><div class="barra-in">
+  <button type="button" data-s="home" class="on" onclick="vaiSezione('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Home</button>
+  <button type="button" data-s="oro" onclick="vaiSezione('oro')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="7" ry="2.6"/><path d="M5 6v4c0 1.4 3.1 2.6 7 2.6S19 11.4 19 10V6M5 10v4c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6v-4M5 14v4c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6v-4"/></svg>Oro</button>
+  <button type="button" data-s="dati" onclick="vaiSezione('dati')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Dati USA</button>
+  <button type="button" data-s="fed" onclick="vaiSezione('fed')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h18M5 10v8M9 10v8M15 10v8M19 10v8M3 21h18M12 3l9 5H3z"/></svg>Fed e tassi</button>
+  <button type="button" data-s="altro" onclick="apriAltro()"><svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg>Altro</button>
+</div></nav>
+<div class="foglio" id="foglio" onclick="if(event.target===this) chiudiAltro()"><div class="foglio-in" id="foglioIn"></div></div>
 <div class="velo" id="velo" onclick="if(event.target===this) accChiudi()">
   <form class="modale" id="accForm" onsubmit="accInvia(event)">
     <button type="button" class="x" onclick="accChiudi()" aria-label="Chiudi">×</button>
@@ -229,43 +257,54 @@ async function avvisiSpegni(){
 /* se le notifiche sono attive il service worker resta registrato (serve per riceverle) */
 if(AVVISI && navigator.serviceWorker) navigator.serviceWorker.register('/sw.js').catch(() => {});
 
-/* ---------- viste ---------- */
+/* ---------- viste (3 novembre 2026: struttura da app) ---------- */
+const SEZIONI = { home: null, oro: ['setup', 'oro'], dati: ['dati'], fed: ['fed', 'tassi'], straordinarie: ['straordinarie'], settimana: ['settimana'], dollaro: ['dollaro'] };
+const TITOLI_SEZ = { home: '', oro: 'Oro e Setup XAU', dati: 'Dati USA appena usciti', fed: 'Fed, tassi e banche centrali', straordinarie: 'Notizie straordinarie', settimana: 'La settimana', dollaro: 'Dollaro' };
+let sezione = 'home';
+const lucchetto = '<span class="lk"><svg width="9" height="9" viewBox="0 0 24 24" fill="#2B1E00"><path d="M7 10V7a5 5 0 0 1 10 0v3h1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V11a1 1 0 0 1 1-1zm2 0h6V7a3 3 0 0 0-6 0z"/></svg></span>';
+const dataBreve = d => { try{ return new Date(d + 'T12:00:00').toLocaleDateString('it-IT', { day: '2-digit', month: '2-digit', year: 'numeric' }); }catch(e){ return d; } };
+function chip(a){ return `<span class="chip ${esc(a.categoria)}">${ACC.accesso ? '' : lucchetto}${esc(CAT[a.categoria] || a.categoria)}</span>`; }
 function bloccoAbbonati(){ return bloccoAbb() + campana(); }
 function bloccoAbb(){
   if(ACC.accesso) return '';   // già abbonato: il riquadro non serve (Gabriele, 2 novembre)
-  return `<div class="abbonati"><p><b>Titoli e sommari sono gratis.</b> Gli articoli completi, con il riquadro "Da guardare" e le fonti, sono per gli abbonati a Riskly News${PREZZO.mensile ? ' (' + esc(PREZZO.mensile) + ')' : ''}.</p><button type="button" class="btn amb" onclick="abbonati()">Abbonati</button></div>`;
+  return `<div class="abbonati"><p><b>Titoli e sommari sono gratis.</b> Gli articoli completi, con "Da guardare" e le fonti, sono per gli abbonati${PREZZO.mensile ? ' (' + esc(PREZZO.mensile) + ')' : ''}.</p><button type="button" class="btn amb" onclick="abbonati()">Abbonati</button></div>`;
 }
+function vaiSezione(k){ sezione = k; chiudiAltro(); if(location.hash && location.hash !== '#') location.hash = ''; else vistaLista(); window.scrollTo(0, 0); }
+function barraOn(){ const k = ['home', 'oro', 'dati', 'fed'].includes(sezione) ? sezione : 'altro'; document.querySelectorAll('.barra button').forEach(b => b.classList.toggle('on', b.dataset.s === k)); }
 function vistaLista(){
-  const presenti = new Set(ANTE.map(a => a.categoria));
-  const lista = ANTE.filter(a => filtro === 'tutti' || a.categoria === filtro);
+  document.body.classList.remove('in-articolo'); barraOn();
+  const cats = SEZIONI[sezione];
+  const lista = ANTE.filter(a => !cats || cats.includes(a.categoria));
+  const [primo, ...resto] = lista;
   document.getElementById('vista').innerHTML = `
-    <section class="hero"><div class="k">RISKLY NEWS · OGNI GIORNO</div>
-      <h1>Quello che muove <em>il tuo mercato</em></h1>
-      <p>Oro, dollaro, Fed e tassi, banche centrali e notizie straordinarie, più il <b>Setup XAU</b> con le zone e il trend dell'oro: ogni mattina i fatti verificati con le fonti, spiegati in modo semplice e con gli orari italiani. Niente previsioni, niente segnali.</p>
-      ${bloccoAbbonati()}</section>
-    <div class="filtri">${Object.keys(CAT).filter(k => k === 'tutti' || presenti.has(k)).map(k => `<button type="button" class="${k === filtro ? 'on' : ''}" onclick="filtro='${k}';vistaLista()">${CAT[k]}</button>`).join('')}</div>
-    <div class="lista">${lista.length ? lista.map(a => `<a class="art" href="#/${esc(a.id)}">
-      ${a.copertina ? `<img class="cop" src="${esc(a.copertina)}" alt="" loading="lazy">` : ''}<div class="txt"><div class="meta"><span class="cat ${esc(a.categoria)}">${esc(CAT[a.categoria] || a.categoria)}</span><span>${esc(dataIt(a.data))}</span>${ACC.accesso ? '' : '<span class="lucch">🔒 ABBONATI</span>'}</div>
-      <h2>${esc(a.titolo)}</h2><p>${esc(a.sommario)}</p></div></a>`).join('') : '<p class="vuoto">Nessun articolo in questa categoria per ora.</p>'}</div>
+    ${sezione === 'home' ? OGGI_HTML : `<div class="sez">${esc(TITOLI_SEZ[sezione] || '')}</div>`}
+    ${primo ? `<a class="evid" href="#/${esc(primo.id)}">${primo.copertina ? `<img src="${esc(primo.copertina)}" alt="">` : ''}
+      <div class="txt">${chip(primo)}<h2>${esc(primo.titolo)}</h2><p>${esc(primo.sommario)}</p><div class="data" style="margin-top:8px">${esc(dataBreve(primo.data))}</div></div></a>` : '<p class="vuoto">Nessun articolo in questa sezione per ora.</p>'}
+    ${sezione === 'home' ? bloccoAbbonati() : ''}
+    ${resto.length ? `<div class="lista">${resto.map(a => `<a class="riga" href="#/${esc(a.id)}">${a.copertina ? `<img src="${esc(a.copertina)}" alt="" loading="lazy">` : '<span class="ph"></span>'}
+      <div class="txt">${chip(a)}<h3>${esc(a.titolo)}</h3><span class="data">${esc(dataBreve(a.data))}</span></div></a>`).join('')}</div>` : ''}
     ${FINITI ? '' : '<div class="altri"><button type="button" class="btn" onclick="altri(this)">Mostra articoli precedenti</button></div>'}`;
 }
 async function vistaArticolo(id){
   const v = document.getElementById('vista');
+  document.body.classList.add('in-articolo');
   let a = ANTE.find(x => x.id === id);
   if(!a){   // link a un articolo vecchio non ancora caricato nella lista
     const { data } = await sb.from('notizie_anteprima').select('*').eq('id', id).maybeSingle();
     if(data){ a = data; ANTE.push(data); }
   }
-  if(!a){ v.innerHTML = `<div class="pezzo"><button class="indietro" onclick="location.hash=''">← Tutti gli articoli</button><p class="vuoto">Articolo non trovato.</p></div>`; return; }
+  if(!a){ v.innerHTML = `<div class="pezzo"><div class="corpo"><p class="vuoto">Articolo non trovato.</p></div></div>`; return; }
   document.title = a.titolo + ' · Riskly News';
   let pieno = null;
   if(ACC.accesso){
     const { data } = await sb.from('notizie').select('*').eq('id', id).maybeSingle();
     pieno = data;
   }
-  const testa = `<button class="indietro" onclick="location.hash=''">← Tutti gli articoli</button>
-    <div class="meta"><span class="cat ${esc(a.categoria)}">${esc(CAT[a.categoria] || a.categoria)}</span><span>${esc(dataIt(a.data))}</span></div>
-    <h1>${esc(a.titolo)}</h1>${a.copertina ? `<img class="cop" src="${esc(a.copertina)}" alt="">` : ''}<p class="somm">${esc(a.sommario)}</p>`;
+  const testa = `${a.copertina ? `<img class="cop" src="${esc(a.copertina)}" alt="">` : '<div style="height:24px"></div>'}
+    <div class="corpo">${pieno ? `<span class="bollino cat">${esc(CAT[a.categoria] || a.categoria)}</span>` : '<span class="bollino">Solo per gli abbonati</span>'}
+    <h1>${esc(a.titolo)}</h1>
+    <div class="firma">Scritto il ${esc(dataBreve(a.data))}<br>da Redazione Riskly News</div><div class="sep"></div>
+    <p class="somm">${esc(a.sommario)}</p>`;
   if(pieno){
     v.innerHTML = `<article class="pezzo">${testa}
       ${a.categoria === 'setup' ? '<p class="nota-setup">Setup XAU descrive cosa ha fatto l\'oro e dove ha girato di recente: sono livelli osservati, non segnali. Non indicano dove comprare o vendere.</p>' : ''}
@@ -273,7 +312,7 @@ async function vistaArticolo(id){
       ${(pieno.corpo || []).map(p => `<p>${esc(p)}</p>`).join('')}
       ${(pieno.da_guardare || []).length ? `<div class="box"><b>Da guardare</b><ul>${pieno.da_guardare.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>` : ''}
       ${(pieno.fonti || []).length ? `<p class="fonti">Fonti: ${pieno.fonti.map(f => `<a href="${esc(f.url)}" target="_blank" rel="noopener">${esc(f.nome)}</a>`).join(' · ')}</p>` : ''}
-      <p class="avviso">Contenuto informativo ed educativo, non è consulenza finanziaria né una previsione. Il trading con leva comporta un alto rischio: puoi perdere tutto il capitale.</p>${campana()}</article>`;
+      <p class="avviso">Contenuto informativo ed educativo, non è consulenza finanziaria né una previsione. Il trading con leva comporta un alto rischio: puoi perdere tutto il capitale.</p>${campana()}</div></article>`;
   } else {
     v.innerHTML = `<article class="pezzo">${testa}
       <p class="finto">Il resto dell'articolo spiega i numeri della giornata, cosa li ha mossi e cosa guardare nei prossimi giorni, con gli orari italiani e le fonti.</p>
@@ -281,7 +320,7 @@ async function vistaArticolo(id){
         <p>Ogni mattina l'articolo completo su oro, dollaro, Fed e tassi, con il riquadro "Da guardare" e le fonti.${ACC.utente ? '' : ' Prima accedi o crea un account gratis.'}</p>
         <div class="opz">${ACC.utente ? `<button class="btn amb" onclick="abbonati('mensile')">Abbonati${PREZZO.mensile ? ' · ' + esc(PREZZO.mensile) : ''}</button>${PAGA.annuale ? `<button class="btn" onclick="abbonati('annuale')">Annuale${PREZZO.annuale ? ' · ' + esc(PREZZO.annuale) : ''}</button>` : ''}`
           : `<button class="btn pri" onclick="accApri('registrati', 'abbonati')">Crea un account</button><button class="btn" onclick="accApri('accedi')">Accedi</button>`}</div>
-        <small>Disdici quando vuoi.</small></div>${campana()}</article>`;
+        <small>Disdici quando vuoi.</small></div>${campana()}</div></article>`;
   }
   window.scrollTo(0, 0);
 }
@@ -289,6 +328,46 @@ function vista(){
   const h = location.hash.replace(/^#\/?/, '');
   if(h) vistaArticolo(decodeURIComponent(h)); else { document.title = 'Riskly News · oro, dollaro, Fed e tassi ogni giorno'; vistaLista(); }
 }
+/* ---------- quotazioni e prossimo dato (funzione news-prezzi, ogni minuto) ---------- */
+const PREZZI_URL = 'https://swlztverwfgdgchgpudt.supabase.co/functions/v1/news-prezzi';
+let OGGI_HTML = '';
+const num = (x, d) => Number(x).toLocaleString('it-IT', { minimumFractionDigits: d, maximumFractionDigits: d });
+async function prezzi(){
+  try{
+    const j = await (await fetch(PREZZI_URL)).json();
+    document.getElementById('nastro').innerHTML = (j.prezzi || []).map(q => { const su = q.v >= 0, d = q.dec;
+      return `<div class="q"><div class="n">${esc(q.nome)}</div><div class="p">${num(q.p, d)}</div><div class="v ${su ? 'su' : 'giu'}">${su ? '+' : '−'}${num(Math.abs(q.v), d)} (${su ? '+' : '−'}${num(Math.abs(q.vp), 2)}%)</div></div>`; }).join('');
+    const ora = Date.now(), ev = (j.eventi || []).find(e => !e.effettivo && Date.parse(e.ora) > ora - 5 * 60e3) || (j.eventi || []).slice(-1)[0];
+    const prima = OGGI_HTML;
+    OGGI_HTML = ev ? `<div class="oggi"><div class="ora">${new Date(ev.ora).toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Rome' })}</div>
+      <div class="t">${ev.effettivo != null && ev.effettivo !== '' ? `<b>Uscito: ${esc(ev.titolo)}</b> · ${esc(String(ev.effettivo).replace('.', ','))} (attese ${esc(String(ev.attese ?? '—').replace('.', ','))})` : `<b>Oggi: ${esc(ev.titolo)}</b> · attese ${esc(String(ev.attese ?? '—').replace('.', ','))}, precedente ${esc(String(ev.precedente ?? '—').replace('.', ','))}. L'analisi esce qui pochi minuti dopo.`}</div></div>` : '';
+    if(prima !== OGGI_HTML && !location.hash.replace(/^#\/?/, '') && sezione === 'home') vistaLista();
+  }catch(e){}
+}
+prezzi(); setInterval(prezzi, 60000);
+/* ---------- menu Altro ---------- */
+function apriAltro(){
+  const st = avvisiStato();
+  const v = (ico, testo, az, extra = '') => `<button type="button" class="voce" onclick="${az}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ico}</svg>${testo}${extra}</button>`;
+  const l = (ico, testo, href) => `<a class="voce" href="${href}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ico}</svg>${testo}<small>↗</small></a>`;
+  document.getElementById('foglioIn').innerHTML = `<div class="mani"></div>
+    ${v('<path d="M12 2 3 21h18z"/><path d="M12 9v5M12 17h.01"/>', 'Notizie straordinarie', "vaiSezione('straordinarie')")}
+    ${v('<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>', 'La settimana', "vaiSezione('settimana')")}
+    ${v('<path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>', 'Dollaro', "vaiSezione('dollaro')")}
+    ${l('<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 14h.01M12 14h.01M16 14h.01"/>', 'Calendario economico', 'https://strumenti.riskly.trade/#calendario')}
+    ${l('<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 12h.01M12 12h.01M16 12h.01M8 16h.01M12 16h.01M16 16h.01"/>', 'Calcolatori di rischio', 'https://strumenti.riskly.trade/')}
+    ${l('<path d="M4 19V5M4 19h16M7 15l4-5 3 3 5-6"/>', 'Journal di trading', 'https://app.riskly.trade/')}
+    ${st === 'on' ? v('<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10 21h4"/><path d="M3 3l18 18"/>', 'Disattiva le notifiche', 'avvisiSpegni();chiudiAltro()') : st === 'off' ? v('<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10 21h4"/>', 'Attiva le notifiche', 'chiudiAltro();avvisiAccendi()') : ''}
+    ${ACC.accesso ? '' : v('<path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/>', 'Abbonati a Riskly News', "chiudiAltro();abbonati()", PREZZO.mensile ? `<small>${esc(PREZZO.mensile)}</small>` : '')}
+    ${v('<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>', 'Tema chiaro o scuro', 'tema()')}
+    ${v('<circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/>', ACC.utente ? 'Esci dall\'account' : 'Accedi o registrati', 'chiudiAltro();accPulsante()', ACC.utente ? `<small>${esc(ACC.utente.email || '')}</small>` : '')}
+    ${l('<path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/>', 'Privacy', 'https://riskly.trade/privacy.html')}
+    ${l('<path d="M6 3h9l3 3v15H6z"/><path d="M9 9h6M9 13h6M9 17h4"/>', 'Termini', 'https://riskly.trade/termini.html')}
+    <p class="legale">Riskly News è un contenuto informativo ed educativo: non è consulenza finanziaria, né una previsione o un segnale operativo. Il trading con leva (forex, CFD) comporta un alto rischio: puoi perdere tutto il capitale.</p>`;
+  document.getElementById('foglio').classList.add('on');
+  document.querySelectorAll('.barra button').forEach(b => b.classList.toggle('on', b.dataset.s === 'altro'));
+}
+function chiudiAltro(){ document.getElementById('foglio').classList.remove('on'); barraOn(); }
 window.addEventListener('hashchange', vista);
 
 /* ---------- abbonamento ---------- */
@@ -344,7 +423,7 @@ async function accInvia(e){
 }
 async function aggiornaUtente(sessione){
   ACC.utente = sessione ? sessione.user : null;
-  document.getElementById('accBtn').textContent = ACC.utente ? 'Esci' : 'Accedi';
+  document.getElementById('accBtn').title = ACC.utente ? 'Esci (' + (ACC.utente.email || '') + ')' : 'Accedi';
   await controllaAccesso();
   vista();
 }
