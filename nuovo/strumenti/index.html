@@ -1746,6 +1746,50 @@ html[data-tema="scuro"] .s-testa .s-tema{border-color:#ECEEEA!important;color:#E
 @media (min-width:1280px){
   body.dentro #calc .wrap,body.dentro .s-testa .wrap{max-width:1340px}
 }
+
+/* ===== Calendario più pulito e arrotondato (Gabriele, 3 novembre 2026: "è un po' confusionario ed estremamente squadrato") =====
+   ogni dato è una scheda arrotondata: ora in una pillola a sinistra, paese e importanza piccoli sopra il titolo,
+   i tre valori in tre riquadri morbidi sotto; giorni e filtri a pillola. */
+:root{--k-sch:#FFFFFF;--k-pan:#F2F3F0;--k-bordo:rgba(21,24,27,.08);--k-ink:#15181B;--k-dim:#6B7177}
+html[data-tema="scuro"]{--k-sch:#181C1A;--k-pan:#202522;--k-bordo:rgba(255,255,255,.08);--k-ink:#ECEEEA;--k-dim:#9BA39E}
+.cal-giorni{border:0!important;background:var(--k-pan)!important;border-radius:999px!important;padding:4px;gap:2px;overflow:visible!important}
+.cal-giorni button+button{border-left:0!important}
+.cal-giorni button{border:0!important;border-radius:999px!important;height:36px!important;color:var(--k-ink)!important;background:transparent!important;transition:background .25s,color .25s}
+.cal-giorni button[aria-selected="true"]{background:var(--k-ink)!important;color:var(--k-sch)!important}
+.cal-apri{border-radius:999px!important;border:1px solid var(--k-bordo)!important;background:var(--k-sch)!important;color:var(--k-ink)!important}
+.cal-filtri{border-radius:22px!important}
+.cal-cornice{border:0!important;background:transparent!important;border-radius:0!important;min-height:200px}
+.cal-giorno{position:static!important;background:transparent!important;border:0!important;padding:18px 4px 10px!important;font:700 12px 'Archivo',sans-serif!important;letter-spacing:.1em!important;color:var(--k-dim)!important}
+.cal-ev{display:grid!important;grid-template-columns:62px minmax(0,1fr) 36px!important;grid-template-areas:"ora paese stella" "ora tit stella" "ora valori valori" "info info info";
+  gap:4px 14px!important;align-items:start!important;background:var(--k-sch)!important;border:1px solid var(--k-bordo)!important;border-radius:20px!important;
+  padding:14px 14px 14px 14px!important;margin:0 0 10px!important;box-shadow:0 1px 2px rgba(21,24,27,.03);transition:transform .2s,box-shadow .2s,border-color .2s}
+@media (hover:hover){.cal-ev:hover{transform:translateY(-2px);box-shadow:0 12px 26px -18px rgba(21,24,27,.4)}}
+.cal-ora{grid-area:ora;align-self:start;text-align:center;background:var(--k-pan);border-radius:14px;padding:9px 0;font:600 15px 'Martian Mono',monospace!important;color:var(--k-ink)!important}
+.cal-prossimo{box-shadow:none!important;border-color:rgba(242,184,58,.7)!important}
+.cal-prossimo .cal-ora{background:#F2B83A;color:#2B1E00!important}
+.cal-ev.passato{opacity:.72}
+.cal-paese{grid-area:paese;font:600 12px 'Archivo',sans-serif!important;color:var(--k-dim)!important;gap:6px}
+.cal-tit{grid-area:tit;font:700 16px/1.3 'Archivo',sans-serif!important;color:var(--k-ink)!important}
+.cal-tit small{display:inline;margin-left:6px;font:500 12.5px 'Archivo',sans-serif;color:var(--k-dim)}
+.cal-tit .cal-i{background:transparent!important;border:1px solid var(--k-bordo);color:var(--k-dim)!important;font:600 11.5px 'Archivo',sans-serif!important;padding:2px 9px!important}
+.cal-ev.aperto .cal-i{background:var(--k-ink)!important;color:var(--k-sch)!important}
+.cal-valori{grid-area:valori;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:6px!important;text-align:left!important;margin-top:6px;color:var(--k-ink)!important;font:600 14px 'Martian Mono',monospace!important}
+.cal-valori>span{background:var(--k-pan);border-radius:12px;padding:7px 10px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cal-valori i{display:block;font:600 10px 'Archivo',sans-serif;font-style:normal;letter-spacing:.06em;text-transform:uppercase;color:var(--k-dim);margin-bottom:2px}
+.cal-valori>span:first-child{background:rgba(242,184,58,.16)}
+.cal-stella{grid-area:stella;align-self:start}
+.cal-info{grid-area:info;border-radius:14px!important;border-left:0!important}
+.cal-avvisi{border-radius:18px!important}
+.cal-card{border-radius:26px!important;background:var(--k-pan)!important;border:1px solid var(--k-bordo)!important}
+@media(max-width:620px){
+  .cal-card{border-radius:22px!important;padding-left:12px!important;padding-right:12px!important}
+  .cal-valori{font-size:13px!important}
+  .cal-valori>span{white-space:normal;overflow:visible;padding:7px 8px;word-break:break-word}
+  .cal-ev{grid-template-columns:54px minmax(0,1fr) 34px!important;grid-template-areas:"ora paese stella" "ora tit tit" "valori valori valori" "info info info";padding:12px!important}
+  .cal-ora{font-size:13.5px!important;padding:8px 0}
+  .cal-tit{font-size:15.5px!important}
+  .cal-valori{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+}
 </style>
 </head>
 <body>
@@ -2610,6 +2654,8 @@ function calAvvisiBarra(){
   const b = document.getElementById('calAvvisi'); if(!b) return;
   const n = Object.keys(calPref).length; b.hidden = !n;
   if(!n) return;
+  // 3 novembre: niente più riquadro quando gli avvisi sono già attivi (Gabriele: "togli quel coso avvisi attivi"); se sono spenti, solo nei Preferiti
+  if(calAvvisiStato() === 'on' || calGiorno !== 'preferiti'){ b.hidden = true; return; }
   const st = calAvvisiStato(), t = document.getElementById('calAvvisiTesto'), btn = document.getElementById('calAvvisiBtn');
   const ios = /iPhone|iPad/.test(navigator.userAgent), app = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
   btn.style.display = st === 'off' ? '' : 'none';
