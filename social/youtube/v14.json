@@ -1,0 +1,164 @@
+{
+ "id": "v14",
+ "serie": "Casi veri",
+ "titolo": "6 miliardi persi in un mese sul gas naturale: il crollo di Amaranth (settembre 2006)",
+ "scene": [
+  {
+   "capitolo": "Introduzione",
+   "tipo": "cifra",
+   "titolo": "Settembre 2006",
+   "cifra": "6 mld $",
+   "etichetta": "quanto perse in un mese il fondo Amaranth sul gas naturale",
+   "nota": "Perdita stimata in circa 6 miliardi di dollari nel settembre 2006 (alcune fonti indicano 6,6). Fonti: Senato USA, rapporto del 25 giugno 2007; Risk.net; Reuters.",
+   "voce": "Nessuno parla di questo, ma uno dei crolli più grandi della storia degli hedge fund non è avvenuto sulle azioni, né sulle valute. È avvenuto sul gas naturale. Settembre duemilasei: un fondo americano, Amaranth Advisors, perde circa sei miliardi di dollari in un solo mese. Non in anni di errori: in poche settimane. E la cosa più interessante non è quanto ha perso. È come ci è arrivato, perché è lo stesso schema che può bruciare anche un conto da mille euro."
+  },
+  {
+   "capitolo": "Chi erano",
+   "tipo": "punti",
+   "titolo": "Chi erano",
+   "punti": [
+    [
+     "Amaranth Advisors",
+     "un hedge fund del Connecticut nato per fare un po' di tutto: azioni, obbligazioni, materie prime"
+    ],
+    [
+     "Brian Hunter",
+     "il trader dell'energia, che negli anni prima aveva guadagnato molto proprio sul gas"
+    ],
+    [
+     "Il gas diventa tutto",
+     "nel 2006 il risultato del fondo dipende sempre di più dalle sue posizioni sul gas naturale"
+    ],
+    [
+     "Posizioni enormi",
+     "il Senato americano scriverà che un solo fondo dominava il mercato del gas"
+    ]
+   ],
+   "voce": "Chi erano? Amaranth era un hedge fund del Connecticut. In teoria un fondo diversificato: azioni, obbligazioni, materie prime, un po' di tutto. Il suo trader dell'energia si chiamava Brian Hunter, e negli anni prima aveva guadagnato molto proprio sul gas naturale. Quando un trader vince, gli si dà più spazio. E così, nel duemilasei, il risultato di tutto il fondo dipendeva sempre di più da una sola cosa: le scommesse sul prezzo del gas. Le posizioni erano così grandi che l'anno dopo una commissione del Senato americano scriverà che un solo fondo dominava il mercato del gas naturale degli Stati Uniti."
+  },
+  {
+   "capitolo": "La decisione sbagliata",
+   "tipo": "confronto",
+   "titolo": "Il ragionamento che sembrava giusto",
+   "no": {
+    "titolo": "Come ragionavano",
+    "righe": [
+     "È uno spread tra due scadenze: il rischio è basso",
+     "Ha sempre funzionato: si aumenta",
+     "Se la borsa ci chiede di ridurre, spostiamo altrove"
+    ]
+   },
+   "si": {
+    "titolo": "Cosa è successo davvero",
+    "righe": [
+     "Anche gli spread si muovono, e con quelle dimensioni moltissimo",
+     "Più grande era la posizione, più difficile uscire",
+     "La posizione è rimasta, solo meno visibile"
+    ]
+   },
+   "voce": "Qual era il ragionamento? Lo vediamo affiancato a quello che è successo davvero. Primo: molte posizioni erano spread, cioè comprare una scadenza del gas e vendere un'altra. Sembra prudente: se il prezzo sale o scende tutto insieme, le due gambe si compensano. Ma lo spread tra due scadenze può muoversi tanto, e con posizioni enormi anche un piccolo movimento diventa una perdita gigantesca. Secondo: ha sempre funzionato, quindi aumentiamo. È la frase più pericolosa del trading. Terzo: ad agosto duemilasei la borsa di New York, il NYMEX, chiede ad Amaranth di ridurre alcune posizioni sul gas. Secondo il Senato, il fondo le sposta su un'altra piattaforma, meno controllata. Il rischio non scende: diventa solo meno visibile."
+  },
+  {
+   "capitolo": "Il giorno del crollo",
+   "tipo": "numeri",
+   "titolo": "Settembre 2006, giorno per giorno",
+   "colonne": [
+    "Cosa",
+    "Quanto"
+   ],
+   "righe": [
+    [
+     "14 settembre",
+     "−560 mln $ in un giorno"
+    ],
+    [
+     "20 settembre",
+     "posizioni cedute a JPMorgan e Citadel"
+    ],
+    [
+     "Sconto pagato per uscire",
+     "circa 2,15 mld $"
+    ],
+    [
+     "Perdita del mese",
+     "circa 6 mld $"
+    ]
+   ],
+   "nota": "Fonti: rapporto del Senato USA (25 giugno 2007); EDHEC, \"Amaranth: lessons thus far\"; Risk.net.",
+   "voce": "Settembre duemilasei. Il prezzo del gas e gli spread su cui era esposto il fondo si muovono nella direzione sbagliata. Giovedì quattordici settembre, in un solo giorno, le perdite sul gas sono di circa cinquecentosessanta milioni di dollari. E il problema delle posizioni enormi è che non puoi semplicemente cliccare chiudi: se vendi tutto insieme, sei tu stesso a spingere il prezzo contro di te. Mercoledì venti settembre il fondo cede le posizioni sull'energia a JPMorgan e a Citadel. Per farsele prendere paga uno sconto di circa due miliardi e centocinquanta milioni rispetto al valore del giorno prima. Alla fine del mese, la perdita è di circa sei miliardi di dollari. Poco dopo il fondo chiude."
+  },
+  {
+   "capitolo": "Cosa è successo dopo",
+   "tipo": "punti",
+   "titolo": "Cosa è successo dopo",
+   "punti": [
+    [
+     "25 giugno 2007",
+     "il Senato USA pubblica il rapporto \"Excessive Speculation in the Natural Gas Market\""
+    ],
+    [
+     "2007",
+     "la CFTC accusa Amaranth e Hunter di tentata manipolazione del prezzo del gas"
+    ],
+    [
+     "Anni dopo",
+     "la FERC stabilisce una sanzione di 30 milioni di dollari per Hunter, che ha sempre contestato le accuse"
+    ]
+   ],
+   "voce": "E dopo? Il venticinque giugno duemilasette una commissione del Senato americano pubblica un rapporto intitolato, in italiano, speculazione eccessiva nel mercato del gas naturale. Lo stesso anno l'autorità americana sui derivati, la CFTC, accusa Amaranth e Hunter di tentata manipolazione del prezzo. E anni dopo un'altra autorità, la FERC, stabilisce per Hunter una sanzione di trenta milioni di dollari. Lui ha sempre contestato le accuse. Ma per chi aveva i soldi nel fondo, la storia era già finita a settembre duemilasei."
+  },
+  {
+   "capitolo": "Tu cosa avresti fatto?",
+   "tipo": "domanda",
+   "titolo": "La posizione va bene da mesi. Poi il mercato gira e ti chiedono più margine. Cosa fai?",
+   "opzioni": [
+    "Aggiungo: ha sempre funzionato",
+    "Sposto la posizione su un altro conto",
+    "Riduco e rispetto il mio limite di perdita",
+    "Aspetto che torni"
+   ],
+   "giusta": 2,
+   "spiegazione": "A e B sono quello che ha fatto Amaranth. D è sperare. Un limite deciso prima va rispettato quando fa male.",
+   "voce": "Adesso tocca a te. Hai una posizione che va bene da mesi. A un certo punto il broker ti chiede più margine, e il mercato si muove contro di te. Cosa fai? A: aggiungo, perché ha sempre funzionato. B: sposto la posizione su un altro conto. C: riduco subito il lotto e rispetto il limite di perdita che avevo deciso. D: aspetto che torni. Metti in pausa e scrivi la tua risposta nei commenti. | La risposta giusta è la C. La A e la B sono esattamente quello che ha fatto Amaranth: aumentare e spostare il rischio invece di ridurlo. La D è sperare. Un limite si decide prima, da lucidi, e si rispetta proprio quando fa male."
+  },
+  {
+   "capitolo": "Quanto vale un contratto",
+   "tipo": "formula",
+   "titolo": "Esempio: un contratto di gas naturale (NYMEX)",
+   "formula": "10.000 MMBtu × 1 $<br>= <span>10.000 $ a contratto</span>",
+   "voce": "Facciamo un conto per capire le dimensioni. Un contratto di gas naturale del NYMEX vale diecimila unità di misura del gas, gli MMBtu. Se il prezzo si muove di un dollaro, su un solo contratto sono diecimila dollari. Il gas può muoversi di un dollaro anche in pochi giorni. Ora moltiplica per migliaia di contratti, e capisci come si arriva a centinaia di milioni in un giorno. È lo stesso principio del lotto su MetaTrader: non conta quanto vale il conto, conta quanto vale ogni movimento del prezzo moltiplicato per quanti lotti hai aperto."
+  },
+  {
+   "capitolo": "Cosa porti nel tuo conto",
+   "tipo": "punti",
+   "titolo": "Cosa porti nel tuo conto",
+   "visual": "scudo",
+   "punti": [
+    [
+     "Ha sempre funzionato non è un motivo",
+     "per aumentare il lotto"
+    ],
+    [
+     "Una sola idea non deve decidere tutto il conto",
+     "nemmeno se è la migliore che hai"
+    ],
+    [
+     "Se devi ridurre, riduci",
+     "non spostare il rischio su un altro conto"
+    ],
+    [
+     "Un limite di perdita al giorno",
+     "deciso prima, rispettato quando fa male"
+    ]
+   ],
+   "voce": "Cosa porti nel tuo conto da questa storia? Primo: ha sempre funzionato non è un motivo per aumentare il lotto. Il lotto si calcola dallo stop e da quanto sei disposto a perdere, non da quanto hai vinto finora. Secondo: una sola idea non deve decidere tutto il conto, nemmeno se è la migliore che hai. Terzo: se devi ridurre, riduci. Spostare il rischio su un altro conto, o su un'altra piattaforma, non lo fa sparire. Quarto: un limite di perdita al giorno, deciso prima, quando sei lucido, e rispettato quando fa male."
+  },
+  {
+   "capitolo": "Per approfondire",
+   "tipo": "chiusura",
+   "grande": "Quanto rischi <mark>con la tua leva?</mark>",
+   "piccolo": "Simula una serie di perdite sul tuo conto, gratis: riskly.trade/rovina",
+   "voce": "Se vuoi vedere cosa può fare una serie di perdite al tuo conto, con il tuo rischio per operazione e la tua leva, c'è un simulatore gratuito su riskly punto trade barra rovina. Lo trovi anche in descrizione, insieme ai corsi Riskly. E se ti è piaciuta questa storia, scrivi nei commenti quale crollo vuoi che raccontiamo la prossima volta."
+  }
+ ]
+}
