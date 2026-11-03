@@ -84,7 +84,10 @@ body.in-articolo .testa .indietro2{display:grid}
 .pezzo p{font-size:17px;line-height:1.7;margin:0 0 16px}
 .tab{width:100%;border-collapse:collapse;margin:6px 0 22px;font-size:15px}
 .tab td{padding:10px 4px;border-bottom:1px solid var(--line)}
-.tab td:last-child{text-align:right;font:700 14px 'Martian Mono';white-space:nowrap}
+.tab{table-layout:fixed}.tab td:first-child{width:38%;padding-right:10px}
+.tab td:last-child{text-align:right;font:700 13px 'Martian Mono';white-space:normal;overflow-wrap:anywhere;line-height:1.45}
+/* 3 novembre: righe lunghe (zone del Setup XAU) uscivano dallo schermo e allargavano la pagina */
+html,body{overflow-x:hidden}.pezzo,.corpo{max-width:100%;min-width:0}
 .nota-setup{font-size:14px;color:var(--ink3);border:1px dashed var(--line);border-radius:12px;padding:10px 14px;margin:0 0 18px}
 .box{border-left:4px solid var(--oro);background:color-mix(in srgb,var(--amber) 9%,var(--panel));border-radius:12px;padding:14px 18px;margin:22px 0}
 .box b{display:block;margin-bottom:6px}.box ul{margin:0;padding-left:20px}.box li{margin:5px 0;line-height:1.5}
