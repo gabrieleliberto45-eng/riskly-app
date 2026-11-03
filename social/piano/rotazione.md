@@ -171,7 +171,8 @@ Numeri 23–30 ottobre (Metricool): TikTok 208–283 visualizzazioni a post (t01
 |---|---|---|
 | 20 ott 18:30 | v09 | Petrolio a −37,63 $ (20 aprile 2020): Bank of China «Yuan You Bao», clienti di Interactive Brokers. Fonti: CFTC, Caixin. |
 | 27 ott 18:30 | v11 | Franco svizzero −29% (15 gennaio 2015): fine del minimo a 1,20, FXCM 225 mln $ di saldi negativi dei clienti e prestito Leucadia da 300 mln, Interactive Brokers ~120 mln, Alpari UK insolvente. Fonti: BNS, Reuters, FXCM, Interactive Brokers. Voce Giuseppe (container nuovo, chiave ElevenLabs da reinserire). |
-Prossimi casi non ancora usati su YouTube: Amaranth (2006), Melvin Capital e GameStop (2021), Credit Suisse (2023), e in versione lunga quelli già raccontati nelle storie brevi (Barings, Archegos, LTCM, Knight Capital, nichel).
+| 3 nov 18:30 | v14 | Amaranth, circa 6 mld $ persi in un mese sul gas naturale (settembre 2006): spread, posizioni enormi, rischio spostato su ICE, −560 mln $ il 14/9, cessione a JPMorgan e Citadel il 20/9. Fonti: Senato USA (25/6/2007), EDHEC, Risk.net, CFTC, FERC. Voce George. |
+Prossimi casi non ancora usati su YouTube: Melvin Capital e GameStop (2021), Credit Suisse (2023), e in versione lunga quelli già raccontati nelle storie brevi (Barings, Archegos, LTCM, Knight Capital, nichel).
 
 ## Dal 26 ottobre: grafiche del sito ovunque e video educativi (decisi con Gabriele il 23 ottobre)
 Dati 9–23 ottobre: TikTok 210–270 visualizzazioni a video (picchi 740–765 per "come funziona" dei bot e storia LTCM), Instagram reel 11–48,
