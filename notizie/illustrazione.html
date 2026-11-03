@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8">
+<!-- Copertine illustrate di Riskly News (Gabriele, 3 novembre 2026: "copertine che rappresentano quello che racconti").
+     Una scena disegnata per argomento (niente persone reali, niente foto inventate) + categoria, titolo e numero chiave.
+     Uso: python3 notizie/illustra.py ID SCENA CATEGORIA "TITOLO" ["NUMERO"] -->
+<style>
+@font-face{font-family:'Archivo';src:url(../nuovo/news/fonts/archivo.woff2) format('woff2');font-weight:100 900;font-stretch:62% 125%}
+@font-face{font-family:'Martian Mono';src:url(../nuovo/news/fonts/martian-mono.woff2) format('woff2');font-weight:100 800}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1600px;height:900px;overflow:hidden;background:#0B0D0C}
+#scena{position:absolute;inset:0}
+#velo{position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,7,7,0) 38%,rgba(6,7,7,.55) 62%,rgba(6,7,7,.94) 100%)}
+#testo{position:absolute;left:84px;right:84px;bottom:70px;color:#F5F3EC;font-family:'Archivo'}
+#chip{display:inline-block;font:800 26px 'Martian Mono';letter-spacing:.12em;text-transform:uppercase;padding:9px 20px;border-radius:99px;background:#F2B83A;color:#1B1300;margin-bottom:22px}
+#tit{font-family:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;font-size:64px;line-height:1.1;font-weight:600;text-shadow:0 4px 24px rgba(0,0,0,.6);max-width:1300px}
+#num{position:absolute;right:70px;top:62px;font:800 64px 'Archivo';font-stretch:85%;color:#fff;background:rgba(10,12,11,.72);border:2px solid rgba(242,184,58,.75);padding:10px 26px;border-radius:18px;display:none}
+#logo{position:absolute;left:84px;top:58px;display:flex;align-items:center;gap:14px;font:800 30px 'Archivo';color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.6)}
+#logo i{font:700 22px 'Martian Mono';color:#F2B83A;font-style:normal;letter-spacing:.08em}
+</style></head><body>
+<svg id="scena" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice"></svg>
+<div id="velo"></div>
+<div id="logo"><svg width="46" height="46" viewBox="0 0 44 44"><rect width="44" height="44" rx="10" fill="#F3F4F1"/><path d="M9 31 L17 19.5 L23.5 25 L35 11" stroke="#B97C00" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M9 36 H35" stroke="#5E656D" stroke-width="3.4" stroke-linecap="round"/></svg>Riskly <i>NEWS</i></div>
+<div id="num"></div>
+<div id="testo"><div id="chip"></div><div id="tit"></div></div>
+<script>
+// numeri pseudo-casuali ripetibili (stessa copertina a ogni rigenerazione)
+let seme = 7; const R = () => (seme = (seme * 16807) % 2147483647) / 2147483647;
+const cielo = (id, a, b, c) => `<defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${a}"/><stop offset=".6" stop-color="${b}"/><stop offset="1" stop-color="${c}"/></linearGradient></defs><rect width="1600" height="900" fill="url(#${id})"/>`;
+const stelle = n => Array.from({ length: n }, () => `<circle cx="${R() * 1600}" cy="${R() * 380}" r="${R() * 1.8 + .4}" fill="#fff" opacity="${R() * .6 + .2}"/>`).join('');
+const finestre = (x, y, w, h, col, righe, colonne, acc = .55) => { let s = ''; for(let r = 0; r < righe; r++) for(let c = 0; c < colonne; c++) if(R() < acc) s += `<rect x="${x + c * w / colonne + 3}" y="${y + r * h / righe + 3}" width="${w / colonne - 6}" height="${h / righe - 6}" fill="${col}" opacity="${R() * .5 + .5}"/>`; return s; };
+const skyline = (y, col, n = 26) => { let s = '', x = 0; while(x < 1600){ const w = 50 + R() * 90, h = 80 + R() * 260; s += `<rect x="${x}" y="${y - h}" width="${w}" height="${h + 400}" fill="${col}"/>` + finestre(x + 6, y - h + 10, w - 12, h - 20, '#F2C766', Math.floor(h / 26), Math.max(2, Math.floor(w / 22)), .28); x += w + 6; } return s; };
+
+const SCENE = {
+  // palazzo della Fed (neoclassico, colonne, aquila) al tramonto
+  fed: () => cielo('c', '#1B2440', '#53436A', '#E59A5B') + stelle(40) +
+    `<circle cx="1330" cy="300" r="110" fill="#F7C873" opacity=".35"/>` +
+    `<rect x="0" y="700" width="1600" height="200" fill="#20242B"/>` +
+    `<g transform="translate(330 250)">
+      <rect x="-40" y="420" width="1020" height="40" fill="#C9BFAE"/><rect x="-70" y="455" width="1080" height="30" fill="#B3A894"/>
+      <rect x="0" y="80" width="940" height="60" fill="#E2D8C6"/><polygon points="0,80 470,-40 940,80" fill="#EDE4D3"/>
+      <polygon points="80,72 470,-12 860,72" fill="#D3C8B4"/>
+      <circle cx="470" cy="34" r="30" fill="#B88A1E"/><path d="M430 34 q40 -40 80 0 q-40 18 -80 0z" fill="#8A6510"/>
+      ${Array.from({ length: 10 }, (_, i) => `<rect x="${30 + i * 92}" y="140" width="46" height="280" fill="#F1E9DA"/><rect x="${36 + i * 92}" y="140" width="6" height="280" fill="#D9CFBD"/><rect x="${22 + i * 92}" y="140" width="62" height="16" fill="#D6CBB7"/><rect x="${22 + i * 92}" y="404" width="62" height="16" fill="#D6CBB7"/>`).join('')}
+      <rect x="0" y="140" width="940" height="10" fill="#CFC4AF"/>
+      <text x="470" y="122" text-anchor="middle" font-family="Georgia" font-size="30" letter-spacing="10" fill="#7A6B52">FEDERAL RESERVE</text>
+    </g>` + `<rect x="0" y="760" width="1600" height="140" fill="#14171B"/>`,
+  // torre della BCE (vetro) e simbolo dell'euro
+  bce: () => cielo('c', '#0E1A33', '#24406F', '#6C88B8') + stelle(60) +
+    `<g transform="translate(560 120)"><polygon points="0,700 120,40 300,0 300,700" fill="#2B4A78"/><polygon points="300,0 480,40 600,700 300,700" fill="#1D3459"/>
+      ${finestre(30, 80, 260, 600, '#9CC3FF', 30, 8, .5)}${finestre(310, 80, 260, 600, '#6E9BE0', 30, 8, .4)}</g>` +
+    `<g transform="translate(1180 230)" fill="none" stroke="#F2B83A" stroke-width="26" stroke-linecap="round"><path d="M150 40 A120 120 0 1 0 150 230"/><path d="M-20 110 H110 M-20 165 H110"/></g>` +
+    skyline(820, '#0B1322') + `<rect x="0" y="820" width="1600" height="80" fill="#08101C"/>`,
+  // lingotti d'oro in un caveau, con una linea di grafico
+  lingotti: () => cielo('c', '#120E06', '#2A1E09', '#4A3410') +
+    `<defs><linearGradient id="o" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFE9A6"/><stop offset=".45" stop-color="#E7B33A"/><stop offset="1" stop-color="#8E6413"/></linearGradient>
+      <radialGradient id="l" cx=".5" cy=".55" r=".6"><stop offset="0" stop-color="#F2B83A" stop-opacity=".45"/><stop offset="1" stop-color="#F2B83A" stop-opacity="0"/></radialGradient></defs>
+      <rect width="1600" height="900" fill="url(#l)"/>` +
+    (() => { let s = ''; const bar = (x, y) => `<g transform="translate(${x} ${y})"><polygon points="0,60 40,0 300,0 340,60" fill="url(#o)"/><rect x="0" y="60" width="340" height="70" fill="#C99526"/><rect x="0" y="60" width="340" height="10" fill="#F6D98A" opacity=".6"/><text x="170" y="42" text-anchor="middle" font-family="Georgia" font-size="22" fill="#7A560E" letter-spacing="3">999.9 · 1 KG</text></g>`;
+      for(const [x, y] of [[300,480],[650,480],[1000,480],[475,360],[825,360],[650,240]]) s += bar(x, y); return s; })() +
+    `<polyline points="80,250 260,220 420,280 600,170 760,220 940,110 1120,180 1300,90 1520,150" fill="none" stroke="#FFE7A0" stroke-width="5" opacity=".55"/>`,
+  // Setup XAU: grafico a candele sopra un lingotto
+  setup: () => cielo('c', '#0E0C08', '#1C160B', '#33260E') +
+    `<defs><linearGradient id="o" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFE9A6"/><stop offset=".45" stop-color="#E7B33A"/><stop offset="1" stop-color="#8E6413"/></linearGradient></defs>` +
+    Array.from({ length: 9 }, (_, i) => `<line x1="0" x2="1600" y1="${80 + i * 70}" y2="${80 + i * 70}" stroke="#fff" opacity=".05"/>`).join('') +
+    (() => { let s = '', y = 330; for(let i = 0; i < 26; i++){ const x = 120 + i * 52, d = (R() - .5) * 90, a = y, b = y + d, top = Math.min(a, b) - R() * 40, bot = Math.max(a, b) + R() * 40, su = b < a, c = su ? '#2BD98B' : '#FF4D5E';
+      s += `<line x1="${x + 14}" x2="${x + 14}" y1="${top}" y2="${bot}" stroke="${c}" stroke-width="3"/><rect x="${x}" y="${Math.min(a, b)}" width="28" height="${Math.max(4, Math.abs(d))}" fill="${c}"/>`; y = Math.max(140, Math.min(480, b)); } return s; })() +
+    `<line x1="80" x2="1520" y1="230" y2="230" stroke="#F2B83A" stroke-width="3" stroke-dasharray="14 10" opacity=".8"/><line x1="80" x2="1520" y1="440" y2="440" stroke="#F2B83A" stroke-width="3" stroke-dasharray="14 10" opacity=".8"/>`,
+  // petroliera nello stretto al tramonto, coste montuose
+  petroliera: () => cielo('c', '#2B1B3E', '#C2563B', '#F6B35B') +
+    `<circle cx="1180" cy="430" r="120" fill="#FFD27A" opacity=".9"/>` +
+    `<path d="M0 470 L120 420 L260 450 L380 400 L520 460 L600 470 L0 520Z" fill="#5B2E3E"/><path d="M1000 470 L1150 430 L1300 455 L1450 410 L1600 440 L1600 520 L1000 520Z" fill="#4A2635"/>` +
+    `<rect x="0" y="470" width="1600" height="430" fill="#1E2A44"/>` + Array.from({ length: 40 }, () => `<rect x="${R() * 1600}" y="${480 + R() * 300}" width="${40 + R() * 140}" height="3" fill="#F6B35B" opacity="${R() * .4 + .1}"/>`).join('') +
+    `<g transform="translate(330 470)"><polygon points="0,0 940,0 900,90 60,90" fill="#26201F"/><rect x="40" y="-24" width="820" height="26" fill="#7E2F2B"/>
+      <rect x="760" y="-120" width="90" height="100" fill="#E9E2D6"/><rect x="772" y="-104" width="66" height="14" fill="#2A3346"/><rect x="790" y="-160" width="22" height="44" fill="#3B3533"/>
+      ${Array.from({ length: 7 }, (_, i) => `<rect x="${90 + i * 95}" y="-40" width="60" height="18" rx="4" fill="#B5492F"/>`).join('')}</g>`,
+  // fabbrica (ISM, industria) con ciminiere e luci
+  fabbrica: () => cielo('c', '#151B26', '#3A4458', '#B6764A') + stelle(20) +
+    `<g fill="#232A36">${[220, 330, 1240].map(x => `<rect x="${x}" y="220" width="46" height="420"/>`).join('')}</g>` +
+    [220, 330, 1240].map(x => `<ellipse cx="${x + 23}" cy="190" rx="60" ry="26" fill="#9AA3B2" opacity=".35"/><ellipse cx="${x + 70}" cy="150" rx="90" ry="34" fill="#9AA3B2" opacity=".22"/>`).join('') +
+    `<path d="M120 640 V430 L320 520 V430 L520 520 V430 L720 520 V430 L920 520 V640Z" fill="#2E3644"/>` + finestre(140, 540, 760, 90, '#F2C766', 2, 18, .6) +
+    `<rect x="980" y="400" width="420" height="240" fill="#2A3240"/>` + finestre(1000, 420, 380, 200, '#F2C766', 5, 10, .5) +
+    `<rect x="0" y="640" width="1600" height="260" fill="#161B23"/>`,
+  // calendario della settimana
+  calendario: () => cielo('c', '#141210', '#221E16', '#2E2719') +
+    `<g transform="translate(470 120) rotate(-4)"><rect width="680" height="560" rx="26" fill="#F4EFE4"/><rect width="680" height="120" rx="26" fill="#C9342F"/><rect y="90" width="680" height="30" fill="#C9342F"/>
+      ${[0,1,2,3,4,5,6].map(i => `<circle cx="${80 + i * 87}" cy="30" r="12" fill="#2A2420"/>`).join('')}
+      <text x="340" y="96" text-anchor="middle" font-family="Archivo" font-weight="800" font-size="56" fill="#fff">LA SETTIMANA</text>
+      ${['LUN','MAR','MER','GIO','VEN'].map((d, i) => `<text x="${80 + i * 130}" y="190" font-family="Martian Mono" font-weight="700" font-size="26" fill="#6B6157">${d}</text><rect x="${60 + i * 130}" y="215" width="110" height="300" rx="12" fill="${i === 4 ? '#F2B83A' : '#E6DFD1'}"/>`).join('')}
+    </g>`,
+  // Campidoglio (elezioni, Congresso)
+  capitol: () => cielo('c', '#0E1630', '#2D3D6E', '#B47B5A') + stelle(50) +
+    `<g transform="translate(400 160)"><rect x="0" y="420" width="800" height="120" fill="#E8E2D4"/><rect x="-80" y="470" width="960" height="70" fill="#D9D1C0"/>
+      ${Array.from({ length: 12 }, (_, i) => `<rect x="${20 + i * 66}" y="430" width="22" height="100" fill="#F5F0E4"/>`).join('')}
+      <rect x="250" y="300" width="300" height="130" fill="#EFE9DC"/>${Array.from({ length: 8 }, (_, i) => `<rect x="${262 + i * 37}" y="310" width="14" height="110" fill="#fff"/>`).join('')}
+      <path d="M230 300 Q400 40 570 300Z" fill="#F4EFE4"/><path d="M290 300 Q400 110 510 300" fill="none" stroke="#D5CDBB" stroke-width="6"/>
+      <rect x="380" y="60" width="40" height="70" fill="#F4EFE4"/><circle cx="400" cy="52" r="14" fill="#F4EFE4"/></g>` +
+    `<rect x="0" y="700" width="1600" height="200" fill="#121624"/>`,
+  // banconota da 100 dollari stilizzata
+  dollaro: () => cielo('c', '#0A1410', '#13261C', '#1F3A2A') +
+    [[-8, 420, 260], [6, 640, 200], [-2, 520, 420]].map(([r, x, y]) => `<g transform="translate(${x} ${y}) rotate(${r})"><rect x="-360" y="-160" width="720" height="320" rx="18" fill="#C9D6BE" stroke="#6E8B62" stroke-width="6"/>
+      <rect x="-330" y="-130" width="660" height="260" rx="10" fill="none" stroke="#7C9870" stroke-width="3"/><circle cx="0" cy="0" r="92" fill="#AFC2A2" stroke="#6E8B62" stroke-width="4"/>
+      <text x="0" y="34" text-anchor="middle" font-family="Georgia" font-size="110" fill="#3E5A37">$</text><text x="-300" y="-80" font-family="Georgia" font-size="56" fill="#3E5A37">100</text><text x="300" y="120" text-anchor="end" font-family="Georgia" font-size="56" fill="#3E5A37">100</text></g>`).join(''),
+  // lavoro USA: ufficio con cartello "assumiamo" e valigetta
+  lavoro: () => cielo('c', '#141A24', '#28354A', '#3E5068') + skyline(560, '#1A2231') +
+    `<rect x="0" y="560" width="1600" height="340" fill="#1C222C"/>` +
+    `<g transform="translate(560 300)"><rect width="480" height="250" rx="16" fill="#F4EFE4"/><rect x="18" y="18" width="444" height="214" rx="8" fill="none" stroke="#C9342F" stroke-width="6"/>
+      <text x="240" y="110" text-anchor="middle" font-family="Archivo" font-weight="900" font-size="66" fill="#C9342F">WE'RE</text><text x="240" y="190" text-anchor="middle" font-family="Archivo" font-weight="900" font-size="66" fill="#C9342F">HIRING</text>
+      <rect x="230" y="-80" width="20" height="80" fill="#5C6470"/></g>` +
+    `<g transform="translate(1150 560)"><rect width="230" height="160" rx="16" fill="#5A3B22"/><rect x="75" y="-34" width="80" height="40" rx="10" fill="none" stroke="#5A3B22" stroke-width="14"/><rect y="62" width="230" height="10" fill="#3E2816"/></g>`,
+  // inflazione: carrello della spesa e cartellini dei prezzi che salgono
+  inflazione: () => cielo('c', '#1A120E', '#2E1F18', '#4A2E22') +
+    `<g transform="translate(560 260)" fill="none" stroke="#E9E2D6" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"><path d="M-80 0 H20 L80 300 H420 L480 80 H50"/><circle cx="120" cy="380" r="34" fill="#E9E2D6"/><circle cx="380" cy="380" r="34" fill="#E9E2D6"/></g>` +
+    [[1080, 230, '+3,6%'], [1240, 360, '+0,4%'], [1080, 490, 'CPI']].map(([x, y, t]) => `<g transform="translate(${x} ${y}) rotate(-8)"><polygon points="0,0 220,0 260,50 220,100 0,100" fill="#F2B83A"/><circle cx="214" cy="50" r="10" fill="#4A2E22"/><text x="100" y="66" text-anchor="middle" font-family="Archivo" font-weight="900" font-size="44" fill="#2B1E00">${t}</text></g>`).join(''),
+  // Borsa di New York (facciata)
+  borsa: () => cielo('c', '#0F1522', '#273452', '#5A6E96') +
+    `<g transform="translate(360 170)"><rect x="0" y="120" width="880" height="80" fill="#E4DCCB"/><polygon points="0,120 440,0 880,120" fill="#EDE5D4"/>
+      ${Array.from({ length: 6 }, (_, i) => `<rect x="${60 + i * 150}" y="200" width="60" height="380" fill="#F3ECDE"/>`).join('')}<rect x="-40" y="580" width="960" height="40" fill="#CFC5B1"/></g>` +
+    Array.from({ length: 16 }, (_, i) => `<rect x="${380 + i * 54}" y="${380 + (i % 3) * 8}" width="30" height="${60 + R() * 120}" fill="${R() > .5 ? '#2BD98B' : '#FF4D5E'}" opacity=".85"/>`).join('') +
+    `<rect x="0" y="790" width="1600" height="110" fill="#10141E"/>`,
+};
+
+window.disegna = ({ scena, categoria, titolo, numero, colore }) => {
+  seme = [...(titolo || 'x')].reduce((a, c) => (a * 31 + c.charCodeAt(0)) % 2147483647, 7) || 7;
+  document.getElementById('scena').innerHTML = (SCENE[scena] || SCENE.lingotti)();
+  const chip = document.getElementById('chip'); chip.textContent = categoria; if(colore){ chip.style.background = colore; chip.style.color = '#fff'; }
+  document.getElementById('tit').textContent = titolo;
+  const n = document.getElementById('num'); n.textContent = numero || ''; n.style.display = numero ? 'block' : 'none';
+};
+</script></body></html>
