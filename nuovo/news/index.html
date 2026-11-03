@@ -125,6 +125,23 @@ body.in-articolo .testa .indietro2{display:grid}
 .modale .err{color:var(--rosso);font-size:14px;min-height:20px;margin:10px 0}
 .modale .cambia{background:none;border:none;color:var(--oro);font:700 14px 'Archivo';cursor:pointer;margin-top:12px;padding:0}
 .flash{position:fixed;left:50%;bottom:100px;transform:translateX(-50%);background:var(--ink);color:var(--panel);padding:12px 18px;border-radius:12px;font-weight:600;z-index:70;display:none;max-width:90vw}
+/* assistente AI (3 novembre 2026) */
+.barra-in{grid-template-columns:repeat(6,1fr)}.barra button{font-size:11.5px}
+.ai{padding:8px 16px 150px}
+.ai-int{margin:18px 0 8px}.ai-int h2{font:500 28px var(--serif);margin:0 0 6px}.ai-int p{color:var(--ink2);margin:0 0 12px;line-height:1.45}
+.ai-es{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.ai-es button{text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font:15px 'Archivo';color:var(--ink);cursor:pointer}
+.ai-m{margin:14px 0;line-height:1.55;font-size:16px}
+.ai-m.tu{margin-left:15%;background:var(--ink);color:var(--panel);padding:10px 14px;border-radius:16px 16px 4px 16px;white-space:pre-wrap}
+.ai-m.ai-r{background:var(--panel);border:1px solid var(--line);padding:12px 16px;border-radius:16px 16px 16px 4px}
+.ai-m.ai-r p{margin:0 0 10px}.ai-m.ai-r p:last-child{margin:0}.ai-m.ai-r ul{margin:4px 0 10px;padding-left:20px}
+.ai-m .stato{color:var(--ink3);font-size:14px}
+.ai-fonti{margin-top:10px;font-size:13px;color:var(--ink3)}.ai-fonti a{color:var(--ink2);display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ai-box{position:fixed;left:0;right:0;bottom:calc(64px + env(safe-area-inset-bottom));z-index:39;background:var(--bg);border-top:1px solid var(--line);padding:10px 12px}
+.ai-box form{max-width:736px;margin:0 auto;display:flex;gap:8px;align-items:flex-end}
+.ai-box textarea{flex:1;resize:none;font:16px 'Archivo';padding:11px 14px;border:1.5px solid var(--line);border-radius:14px;background:var(--panel);color:var(--ink);max-height:140px}
+.ai-box button{flex:none;width:46px;height:46px;border-radius:50%;border:none;background:var(--amber);color:#2B1E00;cursor:pointer;display:grid;place-items:center}
+.ai-box small{display:block;max-width:736px;margin:6px auto 0;color:var(--ink3);font-size:11.5px}
 @media(min-width:761px){.app{border-left:1px solid var(--line);border-right:1px solid var(--line)}}
 @media(max-width:420px){.riga img,.riga .ph{flex-basis:112px;height:78px}.riga h3{font-size:16.5px}.testata{font-size:27px}}
 </style>
@@ -143,7 +160,8 @@ body.in-articolo .testa .indietro2{display:grid}
   <button type="button" data-s="home" class="on" onclick="vaiSezione('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Home</button>
   <button type="button" data-s="oro" onclick="vaiSezione('oro')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="7" ry="2.6"/><path d="M5 6v4c0 1.4 3.1 2.6 7 2.6S19 11.4 19 10V6M5 10v4c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6v-4M5 14v4c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6v-4"/></svg>Oro</button>
   <button type="button" data-s="dati" onclick="vaiSezione('dati')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Dati USA</button>
-  <button type="button" data-s="fed" onclick="vaiSezione('fed')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h18M5 10v8M9 10v8M15 10v8M19 10v8M3 21h18M12 3l9 5H3z"/></svg>Fed e tassi</button>
+  <button type="button" data-s="fed" onclick="vaiSezione('fed')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h18M5 10v8M9 10v8M15 10v8M19 10v8M3 21h18M12 3l9 5H3z"/></svg>Fed</button>
+  <button type="button" data-s="ai" onclick="chiudiAltro();location.hash='ai'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12z"/><path d="M12 8.2l.9 2 2 .9-2 .9-.9 2-.9-2-2-.9 2-.9z" fill="currentColor"/></svg>Chiedi AI</button>
   <button type="button" data-s="altro" onclick="apriAltro()"><svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg>Altro</button>
 </div></nav>
 <div class="foglio" id="foglio" onclick="if(event.target===this) chiudiAltro()"><div class="foglio-in" id="foglioIn"></div></div>
@@ -270,7 +288,7 @@ function bloccoAbb(){
   return `<div class="abbonati"><p><b>Titoli e sommari sono gratis.</b> Gli articoli completi, con "Da guardare" e le fonti, sono per gli abbonati${PREZZO.mensile ? ' (' + esc(PREZZO.mensile) + ')' : ''}.</p><button type="button" class="btn amb" onclick="abbonati()">Abbonati</button></div>`;
 }
 function vaiSezione(k){ sezione = k; chiudiAltro(); if(location.hash && location.hash !== '#') location.hash = ''; else vistaLista(); window.scrollTo(0, 0); }
-function barraOn(){ const k = ['home', 'oro', 'dati', 'fed'].includes(sezione) ? sezione : 'altro'; document.querySelectorAll('.barra button').forEach(b => b.classList.toggle('on', b.dataset.s === k)); }
+function barraOn(){ const k = location.hash.replace(/^#\/?/, '') === 'ai' ? 'ai' : ['home', 'oro', 'dati', 'fed'].includes(sezione) ? sezione : 'altro'; document.querySelectorAll('.barra button').forEach(b => b.classList.toggle('on', b.dataset.s === k)); }
 function vistaLista(){
   document.body.classList.remove('in-articolo'); barraOn();
   const cats = SEZIONI[sezione];
@@ -326,7 +344,8 @@ async function vistaArticolo(id){
 }
 function vista(){
   const h = location.hash.replace(/^#\/?/, '');
-  if(h) vistaArticolo(decodeURIComponent(h)); else { document.title = 'Riskly News · oro, dollaro, Fed e tassi ogni giorno'; vistaLista(); }
+  document.body.classList.remove('in-ai'); const box = document.getElementById('aiBox'); if(box) box.remove();
+  if(h === 'ai') vistaAI(); else if(h) vistaArticolo(decodeURIComponent(h)); else { document.title = 'Riskly News · oro, dollaro, Fed e tassi ogni giorno'; vistaLista(); }
 }
 /* ---------- quotazioni e prossimo dato (funzione news-prezzi, ogni minuto) ---------- */
 const PREZZI_URL = 'https://swlztverwfgdgchgpudt.supabase.co/functions/v1/news-prezzi';
@@ -345,6 +364,86 @@ async function prezzi(){
   }catch(e){}
 }
 prezzi(); setInterval(prezzi, 60000);
+/* ---------- assistente AI (Gabriele, 3 novembre 2026: "un'intelligenza artificiale che risponda alle domande
+   sulla geopolitica, sull'oro, sul dollaro, sulle reazioni degli asset a notizie e dati") ----------
+   Funzione news-ai (Supabase): solo abbonati, risposte in streaming con gli articoli di Riskly News, le quotazioni
+   di adesso e la ricerca web. La conversazione resta solo in questa pagina (non la salviamo). */
+const AI_URL = 'https://swlztverwfgdgchgpudt.supabase.co/functions/v1/news-ai';
+const AI_ESEMPI = ['Cosa succede di solito all\'oro se i payrolls escono molto sopra le attese?', 'Perché un rialzo dei tassi Fed rafforza il dollaro?', 'Come può reagire il petrolio se l\'Iran chiude lo stretto di Hormuz?', 'Che differenza c\'è tra CPI e PCE, e quale guarda la Fed?'];
+let AI_STORIA = [], AI_OCCUPATO = false;
+function aiMd(t){   // markdown minimo e sicuro: escape, poi grassetto, elenchi, paragrafi, link
+  const righe = esc(t).split('\n'); let h = '', lista = false, par = [];
+  const chiudiPar = () => { if(par.length){ h += '<p>' + par.join('<br>') + '</p>'; par = []; } };
+  for(const r of righe){
+    const li = r.match(/^\s*(?:[-*•]|\d+[.)])\s+(.*)/);
+    if(li){ chiudiPar(); if(!lista){ h += '<ul>'; lista = true; } h += '<li>' + li[1] + '</li>'; continue; }
+    if(lista){ h += '</ul>'; lista = false; }
+    if(!r.trim()){ chiudiPar(); continue; }
+    par.push(r.replace(/^#+\s*/, ''));
+  }
+  chiudiPar(); if(lista) h += '</ul>';
+  return h.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+}
+function aiMsgHtml(m){
+  if(m.role === 'user') return `<div class="ai-m tu">${esc(m.content)}</div>`;
+  const fonti = (m.fonti || []).length ? `<div class="ai-fonti">Fonti:${m.fonti.map(f => { let d = f.url; try{ d = new URL(f.url).hostname.replace(/^www\./, ''); }catch(e){} return `<a href="${esc(f.url)}" target="_blank" rel="noopener">${esc(d)} · ${esc(f.titolo)}</a>`; }).join('')}</div>` : '';
+  return `<div class="ai-m ai-r">${m.content ? aiMd(m.content) : `<span class="stato">${esc(m.stato || 'Sto pensando…')}</span>`}${m.content && m.stato ? `<p class="stato">${esc(m.stato)}</p>` : ''}${fonti}</div>`;
+}
+function vistaAI(){
+  document.body.classList.remove('in-articolo'); document.body.classList.add('in-ai');
+  document.title = 'Chiedi a Riskly AI · Riskly News';
+  document.querySelectorAll('.barra button').forEach(b => b.classList.toggle('on', b.dataset.s === 'ai'));
+  const v = document.getElementById('vista');
+  const intro = `<div class="ai-int"><h2>Chiedi a Riskly AI</h2><p>Fai una domanda su oro, dollaro, Fed e tassi, dati USA, petrolio e geopolitica: come reagiscono di solito i mercati e perché. Risponde con gli articoli di Riskly News, le quotazioni di adesso e le notizie dal web, citando le fonti.</p></div>`;
+  if(!ACC.accesso){
+    v.innerHTML = `<div class="ai">${intro}<div class="ai-es">${AI_ESEMPI.map(e => `<button type="button" disabled>${esc(e)}</button>`).join('')}</div>
+      <div class="abbonati"><p><b>Riskly AI è incluso nell'abbonamento a Riskly News</b>${PREZZO.mensile ? ' (' + esc(PREZZO.mensile) + ')' : ''}, insieme agli articoli completi.${ACC.utente ? '' : ' Prima accedi o crea un account gratis.'}</p>
+      ${ACC.utente ? '<button type="button" class="btn amb" onclick="abbonati()">Abbonati</button>' : `<button type="button" class="btn pri" onclick="accApri('registrati', 'abbonati')">Crea un account</button> <button type="button" class="btn" onclick="accApri('accedi')">Accedi</button>`}</div></div>`;
+    return;
+  }
+  v.innerHTML = `<div class="ai">${AI_STORIA.length ? '' : intro + `<div class="ai-es">${AI_ESEMPI.map(e => `<button type="button" onclick="aiChiedi(this.textContent)">${esc(e)}</button>`).join('')}</div>`}<div id="aiChat">${AI_STORIA.map(aiMsgHtml).join('')}</div></div>`;
+  const box = document.createElement('div'); box.className = 'ai-box'; box.id = 'aiBox';
+  box.innerHTML = `<form onsubmit="event.preventDefault();aiChiedi()"><textarea id="aiIn" rows="1" maxlength="2000" placeholder="Scrivi la tua domanda…" onkeydown="if(event.key==='Enter'&&!event.shiftKey&&!event.isComposing){event.preventDefault();aiChiedi()}" oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'"></textarea>
+    <button type="submit" aria-label="Invia"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button></form>
+    <small>Risposte generate dall'AI: possono contenere errori. Informazione educativa, non consulenza né segnali operativi.</small>`;
+  document.body.appendChild(box);
+  window.scrollTo(0, document.body.scrollHeight);
+}
+async function aiChiedi(testo){
+  const inp = document.getElementById('aiIn');
+  const domanda = (testo || (inp && inp.value) || '').trim();
+  if(!domanda || AI_OCCUPATO) return;
+  if(inp){ inp.value = ''; inp.style.height = 'auto'; }
+  const storia = AI_STORIA.filter(m => m.content && !m.errore).map(m => ({ role: m.role, content: m.content }));
+  AI_STORIA.push({ role: 'user', content: domanda });
+  const r = { role: 'assistant', content: '', stato: 'Sto pensando…', fonti: [] }; AI_STORIA.push(r);
+  AI_OCCUPATO = true; vistaAI();
+  const chat = () => document.getElementById('aiChat');
+  const ridisegnaUltimo = () => { const c = chat(); if(!c || !c.lastElementChild) return; const giu = innerHeight + scrollY > document.body.scrollHeight - 200; c.lastElementChild.outerHTML = aiMsgHtml(r); if(giu) window.scrollTo(0, document.body.scrollHeight); };
+  try{
+    const { data } = await sb.auth.getSession();
+    const res = await fetch(AI_URL, { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + (data.session ? data.session.access_token : '') }, body: JSON.stringify({ domanda, storia }) });
+    if(!res.ok || !res.body){ let m = 'Non sono riuscito a rispondere, riprova.'; try{ m = (await res.json()).errore || m; }catch(e){} throw new Error(m); }
+    const rd = res.body.getReader(), dec = new TextDecoder(); let buf = '', t0 = 0;
+    for(;;){
+      const { value, done } = await rd.read(); if(done) break;
+      buf += dec.decode(value, { stream: true });
+      let i; while((i = buf.indexOf('\n\n')) >= 0){
+        const riga = buf.slice(0, i).replace(/^data:\s*/, ''); buf = buf.slice(i + 2);
+        let ev; try{ ev = JSON.parse(riga); }catch(e){ continue; }
+        if(ev.t){ r.content += ev.t; r.stato = ''; }
+        if(ev.cerca !== undefined) r.stato = 'Cerco le ultime notizie…';
+        if(ev.fonti) r.fonti = ev.fonti;
+        if(ev.errore) throw new Error(ev.errore);
+        if(ev.fine && ev.rimaste != null && ev.rimaste <= 5) r.stato = ev.rimaste ? `Ti restano ${ev.rimaste} domande oggi.` : 'Hai finito le domande di oggi.';
+      }
+      if(Date.now() - t0 > 80){ t0 = Date.now(); ridisegnaUltimo(); }
+    }
+    if(!r.content) throw new Error('Non sono riuscito a rispondere, riprova.');
+  }catch(e){ r.errore = true; r.content = ''; r.stato = (e && e.message) || 'Non sono riuscito a rispondere, riprova.'; }
+  AI_OCCUPATO = false;
+  if(location.hash.replace(/^#\/?/, '') === 'ai') ridisegnaUltimo();
+}
 /* ---------- menu Altro ---------- */
 function apriAltro(){
   const st = avvisiStato();
