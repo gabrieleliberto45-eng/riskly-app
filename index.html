@@ -1693,6 +1693,28 @@ body.in-app .jkpi,body.in-app .app-corpo .wrap>section,body.in-app .jgrid>*{tran
 body.in-app .jbarra button{transition:background .3s ease,color .3s ease,transform .15s ease}
 body.in-app .jbarra button:active{transform:scale(.96)}
 .jtitolo h1{transition:opacity .2s}
+/* si adatta quando la finestra si allarga o si stringe (Gabriele, 3 novembre: "le scritte sopra e tutto il resto si devono adattare") */
+@media (min-width:900px){
+  body.in-app .jvtabs{position:relative;transform:none;left:auto;top:auto;margin:0 auto;flex:0 1 auto;min-width:0;overflow-x:auto;scrollbar-width:none;padding:2px}
+  body.in-app .jvtabs::-webkit-scrollbar{display:none}
+  body.in-app .app-nav .wrap{gap:16px}
+  body.in-app .app-nav .brand,body.in-app .nav-azioni{flex:0 0 auto}
+  .jvtabs button{flex:0 0 auto;white-space:nowrap;padding:clamp(7px,.7vw,10px) clamp(12px,1.4vw,20px)!important;font-size:clamp(12.5px,1vw,14px)!important}
+  body.in-app .nav-azioni{gap:clamp(8px,1vw,16px)}
+  body.in-app .app-corpo .wrap>*{min-width:0}
+  body.in-app .jt-scroll{overflow-x:auto;max-width:100%}
+  body.in-app .app-corpo .wrap{padding:clamp(16px,2vw,28px)!important}
+  .jtitolo h1{font-size:clamp(21px,2vw,26px)}
+}
+@media (max-width:1399px){ body.in-app .acc-utente .nome::after{display:none} }
+@media (max-width:1199px){ body.in-app .acc-utente .nome{display:none!important} body.in-app a.nav-link{display:none} }
+@media (min-width:900px) and (max-width:1279px){
+  body.in-app .jbarra button{border-radius:16px!important}
+  body.in-app .jbarra .jb-piu{border-radius:16px!important}
+}
+/* tema scuro: la scritta della voce attiva si legge sempre */
+html[data-tema="scuro"] body.in-app .jvtabs button.on,html[data-tema="scuro"] body.in-app .jbarra button.on,html[data-tema="scuro"] body.in-app .jbarra button.on span{color:#0E1110!important}
+html[data-tema="scuro"] body.in-app .jvtabs .jv-ind{background:#ECEEEA}
 @media (prefers-reduced-motion:reduce){
   body.in-app .app-corpo .wrap>.jentra,body.in-app .jkpis>.jentra{animation:none}
   .jvtabs .jv-ind{transition:none}
@@ -6099,7 +6121,7 @@ document.addEventListener('visibilitychange', async () => {
   const tabs = document.createElement('div'); tabs.className = 'jvtabs';
   tabs.innerHTML = '<span class="jv-ind"></span>' + ['panoramica','calendario','statistiche','operazioni'].map(v => `<button type="button" data-v="${v}">${NOMI[v]}</button>`).join('');
   tabs.addEventListener('click', e => { const b = e.target.closest('button'); if(b) jVista(b.dataset.v); });
-  const navW = document.querySelector('.app-nav .wrap'); if(navW) navW.appendChild(tabs);
+  const navW = document.querySelector('.app-nav .wrap'); if(navW){ const az = navW.querySelector('.nav-azioni'); if(az) navW.insertBefore(tabs, az); else navW.appendChild(tabs); }
   const titolo = document.createElement('div'); titolo.className = 'jtitolo';
   titolo.innerHTML = '<div><h1 id="jTit">Panoramica</h1><small id="jSot">Journal › Panoramica</small></div>';
   wrap.insertBefore(titolo, wrap.firstChild);
@@ -6107,7 +6129,7 @@ document.addEventListener('visibilitychange', async () => {
     const ind = tabs.querySelector('.jv-ind'), b = tabs.querySelector(`button[data-v="${id}"]`);
     if(!ind) return;
     if(!b){ ind.style.width = '0px'; return; }
-    ind.style.left = b.offsetLeft + 'px'; ind.style.width = b.offsetWidth + 'px';
+    ind.style.left = b.offsetLeft + 'px'; ind.style.width = b.offsetWidth + 'px'; ind.style.top = b.offsetTop + 'px'; ind.style.height = b.offsetHeight + 'px'; ind.style.bottom = 'auto';
   }
   function jAnima(){
     const vis = [...wrap.children].filter(el => el.offsetParent !== null);
