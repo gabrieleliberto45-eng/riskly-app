@@ -3064,9 +3064,11 @@ function j_contoDati(){ return j_conti().find(c => c.id === j_contoId()) || { id
 function j_contoDi(t){
   const cj = (t.dettagli || {}).cj;
   if(cj) return cj;
-  if(t.fonte === 'bot' && t.conto){ const c = j_conti().find(x => (x.mt || []).includes(String(t.conto))); if(c) return c.id; }
+  if(t.fonte === 'bot' && t.conto) return j_contoDiMT(t.conto);
   return '1';
 }
+/* conto del journal di un conto MetaTrader (quello che lo ha nella lista mt; altrimenti il principale) */
+function j_contoDiMT(n){ const c = j_conti().find(x => (x.mt || []).includes(String(n))); return c ? c.id : '1'; }
 const j_delConto = t => j_contoDi(t) === j_contoId();
 const j_lista = () => j_demo || j_trades.filter(j_delConto);
 
@@ -4663,6 +4665,7 @@ function j_scegliConto(id){
   j_resetForm();
   j_azzeraFiltri();
   j_renderAll();
+  if(typeof b_renderStato === 'function') b_renderStato();   /* i bot del conto appena aperto */
   j_flash('Conto: ' + (j_contoDati().nome || ''));
 }
 async function j_nuovoConto(){
@@ -4675,7 +4678,7 @@ async function j_nuovoConto(){
 }
 /* numeri dei conti MetaTrader da cui sono arrivate operazioni dei bot */
 function j_mtVisti(){
-  return [...new Set(j_trades.filter(t => t.fonte === 'bot' && t.conto).map(t => String(t.conto)))].sort();
+  return [...new Set([...j_trades.filter(t => t.fonte === 'bot' && t.conto).map(t => String(t.conto)), ...(typeof b_stati !== 'undefined' ? b_stati : []).map(s => String(s.conto))].filter(Boolean))].sort();
 }
 /* collega uno o più conti MetaTrader a un conto del journal: le operazioni dei bot da quel numero vanno lì */
 async function j_collegaMT(id){
@@ -5642,8 +5645,27 @@ async function b_caricaStato(){
     b_stati = [];
   } else {
     b_stati = data || [];
+    await b_assegnaNuovi();
   }
   b_renderStato();
+}
+/* un bot appena collegato (conto MetaTrader mai visto, senza operazioni) va nel conto del journal aperto in quel momento
+   (Gabriele, 3 novembre 2026: "apro un altro conto nel journal e inserisco un bot: spunta in tutti e due i conti") */
+async function b_assegnaNuovi(){
+  if(j_demo || !utente) return;
+  let visti = {}; try{ visti = JSON.parse(localStorage.getItem('riskly-mt-visti') || '{}') || {}; }catch(e){}
+  const mappati = new Set(j_conti().flatMap(x => x.mt || []));
+  const nuovi = b_stati.map(s => String(s.conto)).filter(n => n && !mappati.has(n) && !(n in visti)
+    && !j_trades.some(t => t.fonte === 'bot' && String(t.conto) === n));
+  if(!nuovi.length) return;
+  const id = j_contoId();
+  nuovi.forEach(n => visti[n] = id);
+  try{ localStorage.setItem('riskly-mt-visti', JSON.stringify(visti)); }catch(e){}
+  if(id === '1') return;   /* nel conto principale non serve collegarlo: è già il conto di partenza */
+  const conti = j_conti(), c = conti.find(x => x.id === id);
+  if(c && await j_salvaConti(conti.map(x => x.id === id ? Object.assign({}, x, { mt: [...new Set([...(x.mt || []), ...nuovi])] }) : x))){
+    j_renderAll(); j_flash(`Bot collegato a «${c.nome}»: le sue operazioni andranno in questo conto.`);
+  }
 }
 
 function b_quandoFa(iso){
@@ -5679,12 +5701,13 @@ function b_giornata(s){
 function b_renderStato(){
   const box = document.getElementById('jbot');
   if(!box) return;
-  if(!b_stati.length){ box.hidden = true; return; }
+  const stati = j_demo ? b_stati : b_stati.filter(s => j_contoDiMT(s.conto) === j_contoId());
+  if(!stati.length){ box.hidden = true; return; }
   box.hidden = false;
 
   document.getElementById('jbotAgg').textContent = 'si aggiorna da solo';
 
-  document.getElementById('jbotGriglia').innerHTML = b_stati.map(s => {
+  document.getElementById('jbotGriglia').innerHTML = stati.map(s => {
     const d = s.dati || {};
     const minuti = (Date.now() - new Date(s.aggiornato).getTime()) / 60000;
     const offline = minuti > 3;
