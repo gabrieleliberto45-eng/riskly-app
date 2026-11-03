@@ -128,6 +128,17 @@ html,body{overflow-x:hidden}.pezzo,.corpo{max-width:100%;min-width:0}
 .modale .err{color:var(--rosso);font-size:14px;min-height:20px;margin:10px 0}
 .modale .cambia{background:none;border:none;color:var(--oro);font:700 14px 'Archivo';cursor:pointer;margin-top:12px;padding:0}
 .flash{position:fixed;left:50%;bottom:100px;transform:translateX(-50%);background:var(--ink);color:var(--panel);padding:12px 18px;border-radius:12px;font-weight:600;z-index:70;display:none;max-width:90vw}
+/* guida "aggiungi alla Home" (3 novembre 2026) */
+.passi{list-style:none;margin:6px 0 18px;padding:0;counter-reset:p}
+.passi li{counter-increment:p;display:flex;gap:12px;align-items:flex-start;margin:0 0 14px;line-height:1.45;color:var(--ink2)}
+.passi li::before{content:counter(p);flex:none;width:28px;height:28px;border-radius:50%;background:var(--amber);color:#2B1E00;font:800 14px 'Archivo';display:grid;place-items:center}
+.passi li b{color:var(--ink)}.passi svg{vertical-align:-4px}
+.invito{position:fixed;left:12px;right:12px;bottom:calc(76px + env(safe-area-inset-bottom));z-index:41;max-width:560px;margin:0 auto;background:var(--panel);border:1px solid var(--line);border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,.18);padding:14px 44px 14px 14px;display:flex;gap:12px;align-items:center;font-size:14px;line-height:1.4;color:var(--ink2);animation:su .35s ease-out}
+.invito img{width:44px;height:44px;border-radius:11px;flex:none}.invito b{color:var(--ink)}
+.invito .btn{padding:7px 12px;font-size:13.5px;margin-top:8px}
+.invito .x{position:absolute;right:8px;top:6px;background:none;border:none;font-size:22px;color:var(--ink3);cursor:pointer;padding:4px 8px}
+@keyframes su{from{transform:translateY(20px);opacity:0}}
+body.in-ai .invito{display:none}
 /* assistente AI (3 novembre 2026) */
 .barra-in{grid-template-columns:repeat(6,1fr)}.barra button{font-size:11.5px}
 .ai{padding:8px 16px 150px}
@@ -181,6 +192,7 @@ html,body{overflow-x:hidden}.pezzo,.corpo{max-width:100%;min-width:0}
     <button type="button" class="cambia" id="accCambia" onclick="accModo(ACC.modo === 'accedi' ? 'registrati' : 'accedi')">Non hai un account? Registrati gratis</button>
   </form>
 </div>
+<div class="velo" id="guidaVelo" onclick="if(event.target===this) guidaChiudi()"><div class="modale" id="guidaIn"></div></div>
 <div class="flash" id="flash"></div>
 
 <script src="/js/supabase.js"></script>
@@ -248,7 +260,7 @@ function campana(){
   const sp = document.getElementById('spegni'); if(sp) sp.hidden = st !== 'on';
   if(st === 'on') return '';
   if(st === 'negato') return `<div class="campana"><p>🔕 Hai bloccato le notifiche per questo sito: riattivale dalle impostazioni del browser (lucchetto accanto all'indirizzo).</p></div>`;
-  if(st === 'ios') return `<div class="campana"><p>🔔 <b>Vuoi un avviso a ogni articolo?</b> Su iPhone tocca Condividi → <b>Aggiungi alla schermata Home</b>, apri Riskly News da lì e attiva le notifiche.</p></div>`;
+  if(st === 'ios') return `<div class="campana"><p>🔔 <b>Vuoi un avviso a ogni articolo?</b> Su iPhone serve aggiungere Riskly News alla schermata Home: ci vogliono 10 secondi.</p><button type="button" class="btn amb" onclick="guidaApri()">Come si fa</button></div>`;
   if(st === 'no') return '';
   return `<div class="campana"><p>🔔 <b>Avvisami quando esce un articolo:</b> l'articolo del giorno, il Setup XAU e l'analisi appena esce un dato.</p><button type="button" class="btn amb" onclick="avvisiAccendi(this)">Attiva le notifiche</button></div>`;
 }
@@ -447,6 +459,53 @@ async function aiChiedi(testo){
   AI_OCCUPATO = false;
   if(location.hash.replace(/^#\/?/, '') === 'ai') ridisegnaUltimo();
 }
+/* ---------- "aggiungi alla schermata Home" (Gabriele, 3 novembre 2026: sì alla guida, "però non sempre in vista
+   altrimenti diventa noiosa") ----------
+   Su iPhone le notifiche arrivano solo se Riskly News è aggiunto alla Home. L'invito in basso compare al massimo
+   una volta ogni 5 giorni, mai alla prima visita, mai più dopo che l'hai chiuso 3 volte o l'hai installato.
+   La guida resta sempre nel menu Altro. Su Android usa il pulsante di installazione del browser. */
+const GUIDA = { ios: /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1),
+  app: matchMedia('(display-mode: standalone)').matches || navigator.standalone === true,
+  dentroApp: /Instagram|FBAN|FBAV|TikTok|musical_ly|Bytedance|Line\//i.test(navigator.userAgent),
+  chromeIos: /CriOS|FxiOS|EdgiOS/.test(navigator.userAgent), android: /Android/.test(navigator.userAgent), evento: null };
+window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); GUIDA.evento = e; });
+window.addEventListener('appinstalled', () => { try{ localStorage.setItem('riskly-guida', JSON.stringify({ fatto: 1 })); }catch(e){} invitoChiudi(true); });
+const icoCondividi = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A84FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7.5 7.5 12 3l4.5 4.5"/><path d="M8 11H6a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-2"/></svg>';
+const icoAggiungi = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M12 8.5v7M8.5 12h7"/></svg>';
+function guidaApri(){
+  invitoChiudi();
+  let h;
+  if(GUIDA.app) h = `<h3>Sei già nell'app</h3><p>Riskly News è già sulla tua schermata Home. Per gli avvisi a ogni articolo attiva le notifiche dalla home o dal menu Altro.</p>`;
+  else if(GUIDA.dentroApp) h = `<h3>Prima apri il sito nel browser</h3><p>Dentro Instagram o TikTok non si può aggiungere alla Home.</p>
+    <ol class="passi"><li><span>Tocca i <b>tre puntini</b> in alto a destra.</span></li><li><span>Scegli <b>Apri nel browser</b> (o "Apri in Safari").</span></li><li><span>Lì riapri questa guida dal menu <b>Altro</b>.</span></li></ol>`;
+  else if(GUIDA.ios) h = `<h3>Aggiungi Riskly News alla Home</h3><p>Così lo apri come un'app e ricevi una notifica appena esce un articolo.</p>
+    <ol class="passi"><li><span>Tocca ${icoCondividi} <b>Condividi</b>${GUIDA.chromeIos ? ', in alto a destra accanto all\'indirizzo' : ', nella barra di Safari (in basso, o in alto su iPad). Se non la vedi, tocca prima i tre puntini ⋯'}.</span></li>
+      <li><span>Scorri e tocca ${icoAggiungi} <b>Aggiungi alla schermata Home</b>, poi <b>Aggiungi</b>.</span></li>
+      <li><span>Apri <b>Riskly News</b> dalla nuova icona sulla Home e tocca <b>Attiva le notifiche</b>.</span></li></ol>`;
+  else if(GUIDA.evento) h = `<h3>Installa Riskly News</h3><p>Lo apri come un'app, dalla schermata Home, e ricevi gli avvisi a ogni articolo.</p>`;
+  else h = `<h3>Aggiungi Riskly News alla Home</h3><p>${GUIDA.android ? 'Tocca i tre puntini ⋮ del browser e scegli <b>Installa app</b> o <b>Aggiungi a schermata Home</b>.' : 'Dal menu del browser scegli <b>Installa</b> o <b>Aggiungi alla schermata Home</b>. Le notifiche le puoi attivare anche senza.'}</p>`;
+  document.getElementById('guidaIn').innerHTML = `<button type="button" class="x" onclick="guidaChiudi()" aria-label="Chiudi">×</button>${h}
+    ${!GUIDA.app && GUIDA.evento ? '<button type="button" class="btn amb wide" onclick="guidaInstalla()">Installa</button>' : '<button type="button" class="btn pri wide" onclick="guidaChiudi()">Ho capito</button>'}`;
+  document.getElementById('guidaVelo').classList.add('on');
+}
+function guidaChiudi(){ document.getElementById('guidaVelo').classList.remove('on'); }
+async function guidaInstalla(){ const e = GUIDA.evento; if(!e) return; guidaChiudi(); e.prompt(); try{ await e.userChoice; }catch(x){} GUIDA.evento = null; }
+function guidaStato(){ try{ return JSON.parse(localStorage.getItem('riskly-guida') || '{}'); }catch(e){ return {}; } }
+function guidaSalva(o){ try{ localStorage.setItem('riskly-guida', JSON.stringify(Object.assign(guidaStato(), o))); }catch(e){} }
+function invitoChiudi(per){ const el = document.getElementById('invito'); if(!el) return; el.remove(); if(per !== true){ const g = guidaStato(); guidaSalva({ chiusi: (g.chiusi || 0) + 1, ultimo: Date.now() }); } }
+function invito(){
+  if(GUIDA.app || (!GUIDA.ios && !GUIDA.evento)) return;
+  const g = guidaStato(), visite = (g.visite || 0) + 1; guidaSalva({ visite });
+  if(g.fatto || visite < 2 || (g.chiusi || 0) >= 3 || (g.ultimo && Date.now() - g.ultimo < 5 * 864e5)) return;
+  setTimeout(() => {
+    if(document.getElementById('invito') || document.querySelector('.velo.on')) return;
+    guidaSalva({ ultimo: Date.now() });
+    const el = document.createElement('div'); el.className = 'invito'; el.id = 'invito';
+    el.innerHTML = `<img src="/apple-touch-icon.png" alt=""><div><b>Tieni Riskly News sul telefono</b><br>Aprilo come un'app e ricevi un avviso a ogni articolo.<br><button type="button" class="btn amb" onclick="guidaApri()">${GUIDA.ios ? 'Come si fa' : 'Installa'}</button></div><button type="button" class="x" onclick="invitoChiudi()" aria-label="Chiudi">×</button>`;
+    document.body.appendChild(el);
+  }, 8000);
+}
+if(GUIDA.app) guidaSalva({ fatto: 1 });
 /* ---------- menu Altro ---------- */
 function apriAltro(){
   const st = avvisiStato();
@@ -460,6 +519,7 @@ function apriAltro(){
     ${l('<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 12h.01M12 12h.01M16 12h.01M8 16h.01M12 16h.01M16 16h.01"/>', 'Calcolatori di rischio', 'https://strumenti.riskly.trade/')}
     ${l('<path d="M4 19V5M4 19h16M7 15l4-5 3 3 5-6"/>', 'Journal di trading', 'https://app.riskly.trade/')}
     ${st === 'on' ? v('<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10 21h4"/><path d="M3 3l18 18"/>', 'Disattiva le notifiche', 'avvisiSpegni();chiudiAltro()') : st === 'off' ? v('<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10 21h4"/>', 'Attiva le notifiche', 'chiudiAltro();avvisiAccendi()') : ''}
+    ${GUIDA.app ? '' : v('<rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/>', 'Aggiungi alla schermata Home', 'chiudiAltro();guidaApri()')}
     ${ACC.accesso ? '' : v('<path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/>', 'Abbonati a Riskly News', "chiudiAltro();abbonati()", PREZZO.mensile ? `<small>${esc(PREZZO.mensile)}</small>` : '')}
     ${v('<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>', 'Tema chiaro o scuro', 'tema()')}
     ${v('<circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/>', ACC.utente ? 'Esci dall\'account' : 'Accedi o registrati', 'chiudiAltro();accPulsante()', ACC.utente ? `<small>${esc(ACC.utente.email || '')}</small>` : '')}
@@ -544,6 +604,7 @@ async function aggiornaUtente(sessione){
     vista();
     flash(ACC.accesso ? 'Abbonamento attivo: buona lettura!' : 'Pagamento ricevuto. Se gli articoli restano chiusi, ricarica la pagina tra un minuto.');
   }
+  invito();
   sb.auth.onAuthStateChange((ev, s) => { if(ev === 'SIGNED_IN' || ev === 'SIGNED_OUT') aggiornaUtente(s); });
 })();
 </script>
