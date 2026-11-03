@@ -92,7 +92,7 @@ body.in-articolo .testa .indietro2{display:grid}
 .tab{table-layout:fixed}.tab td:first-child{width:38%;padding-right:10px}
 .tab td:last-child{text-align:right;font:700 13px 'Martian Mono';white-space:normal;overflow-wrap:anywhere;line-height:1.45}
 /* 3 novembre: righe lunghe (zone del Setup XAU) uscivano dallo schermo e allargavano la pagina */
-html,body{overflow-x:hidden}.pezzo,.corpo{max-width:100%;min-width:0}
+html,body{overflow-x:clip}.pezzo,.corpo{max-width:100%;min-width:0}
 .nota-setup{font-size:14px;color:var(--ink3);border:1px dashed var(--line);border-radius:12px;padding:10px 14px;margin:0 0 18px}
 .box{border-left:4px solid var(--oro);background:color-mix(in srgb,var(--amber) 9%,var(--panel));border-radius:12px;padding:14px 18px;margin:22px 0}
 .box b{display:block;margin-bottom:6px}.box ul{margin:0;padding-left:20px}.box li{margin:5px 0;line-height:1.5}
@@ -178,6 +178,11 @@ body.in-ai .invito{display:none}
   #vista.v-lista .lista{grid-column:2;grid-row:2 / span 6;margin-top:18px}
   #vista.v-lista .evid{grid-row:2}
   #vista.v-lista .abbonati,#vista.v-lista .campana{grid-column:1}
+  #vista.v-lista .schede{grid-column:1;display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+  .scheda{display:block;background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;text-decoration:none;color:inherit}
+  .scheda img,.scheda .ph{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#0B0D0C}
+  .scheda .txt{padding:10px 14px 14px;display:flex;flex-direction:column;gap:5px}
+  .scheda h3{font-family:var(--serif);font-weight:500;font-size:19px;line-height:1.22;margin:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
   .riga img,.riga .ph{flex-basis:140px;height:92px}
   .pezzo{max-width:860px;margin:24px auto 0;border-radius:20px;border:1px solid var(--line);overflow:hidden}
   .pezzo .cop{aspect-ratio:16/8;max-height:460px}
@@ -341,11 +346,15 @@ function vistaLista(){
   document.getElementById('vista').className = 'v-lista';
   const cats = SEZIONI[sezione];
   const lista = ANTE.filter(a => !cats || cats.includes(a.categoria));
-  const [primo, ...resto] = lista;
+  const [primo, ...tutti] = lista;
+  // sul computer 4 articoli vanno a schede sotto quello in evidenza, gli altri nella colonna a destra (3 novembre)
+  const pc = window.matchMedia && matchMedia('(min-width:980px)').matches;
+  const schede = pc ? tutti.slice(0, 4) : [], resto = pc ? tutti.slice(4) : tutti;
   document.getElementById('vista').innerHTML = `
     ${sezione === 'home' ? OGGI_HTML : `<div class="sez">${esc(TITOLI_SEZ[sezione] || '')}</div>`}
     ${primo ? `<a class="evid" href="#/${esc(primo.id)}">${primo.copertina ? `<img src="${esc(primo.copertina)}" alt="">` : ''}
       <div class="txt">${chip(primo)}<h2>${esc(primo.titolo)}</h2><p>${esc(primo.sommario)}</p><div class="data" style="margin-top:8px">${esc(quando(primo))}</div></div></a>` : '<p class="vuoto">Nessun articolo in questa sezione per ora.</p>'}
+    ${schede.length ? `<div class="schede">${schede.map(a => `<a class="scheda" href="#/${esc(a.id)}">${a.copertina ? `<img src="${esc(a.copertina)}" alt="" loading="lazy">` : '<span class="ph"></span>'}<div class="txt">${chip(a)}<h3>${esc(a.titolo)}</h3><span class="data">${esc(quando(a))}</span></div></a>`).join('')}</div>` : ''}
     ${sezione === 'home' ? bloccoAbbonati() : ''}
     ${resto.length ? `<div class="lista">${resto.map(a => `<a class="riga" href="#/${esc(a.id)}">${a.copertina ? `<img src="${esc(a.copertina)}" alt="" loading="lazy">` : '<span class="ph"></span>'}
       <div class="txt">${chip(a)}<h3>${esc(a.titolo)}</h3><span class="data">${esc(quando(a))}</span></div></a>`).join('')}</div>` : ''}
@@ -546,7 +555,7 @@ if(GUIDA.app) guidaSalva({ fatto: 1 });
 /* sul computer la barra va in alto, sotto la testata (3 novembre) */
 const PC = matchMedia('(min-width:980px)');
 function posBarra(){ const b = document.querySelector('.barra'); if(PC.matches) document.querySelector('.testa').after(b); else document.body.insertBefore(b, document.getElementById('foglio')); }
-posBarra(); PC.addEventListener ? PC.addEventListener('change', posBarra) : PC.addListener(posBarra);
+posBarra(); const cambiaPC = () => { posBarra(); vista(); }; PC.addEventListener ? PC.addEventListener('change', cambiaPC) : PC.addListener(cambiaPC);
 /* ---------- menu Altro ---------- */
 function apriAltro(){
   const st = avvisiStato();
