@@ -32,7 +32,12 @@ a{color:inherit}
 .testa .indietro2{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:none;background:var(--ink);color:var(--panel);display:none;place-items:center;cursor:pointer;font-size:20px}
 body.in-articolo .testa .indietro2{display:grid}
 /* quotazioni */
-.nastro{display:flex;gap:22px;overflow-x:auto;scrollbar-width:none;padding:12px 16px;background:var(--panel);border-bottom:1px solid var(--line)}
+.nastro{overflow:hidden;padding:12px 0;background:var(--panel);border-bottom:1px solid var(--line);-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+/* 3 novembre: le quotazioni scorrono da sole (Gabriele); si fermano col dito o col mouse sopra */
+.nastro .scorre{display:flex;gap:28px;width:max-content;padding-left:16px;animation:nastro var(--durata,40s) linear infinite}
+.nastro:hover .scorre,.nastro:active .scorre{animation-play-state:paused}
+@keyframes nastro{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.nastro{overflow-x:auto}.nastro .scorre{animation:none}}
 .nastro::-webkit-scrollbar{display:none}
 .q{flex:0 0 auto;font-variant-numeric:tabular-nums}
 .q .n{font:700 11px 'Martian Mono';letter-spacing:.04em;color:var(--ink3)}
@@ -140,7 +145,7 @@ html,body{overflow-x:hidden}.pezzo,.corpo{max-width:100%;min-width:0}
 @keyframes su{from{transform:translateY(20px);opacity:0}}
 body.in-ai .invito{display:none}
 /* assistente AI (3 novembre 2026) */
-.barra-in{grid-template-columns:repeat(6,1fr)}.barra button{font-size:11.5px}
+
 .ai{padding:8px 16px 150px}
 .ai-int{margin:18px 0 8px}.ai-int h2{font:500 28px var(--serif);margin:0 0 6px}.ai-int p{color:var(--ink2);margin:0 0 12px;line-height:1.45}
 .ai-es{display:flex;flex-direction:column;gap:8px;margin:12px 0}
@@ -156,6 +161,32 @@ body.in-ai .invito{display:none}
 .ai-box textarea{flex:1;resize:none;font:16px 'Archivo';padding:11px 14px;border:1.5px solid var(--line);border-radius:14px;background:var(--panel);color:var(--ink);max-height:140px}
 .ai-box button{flex:none;width:46px;height:46px;border-radius:50%;border:none;background:var(--amber);color:#2B1E00;cursor:pointer;display:grid;place-items:center}
 .ai-box small{display:block;max-width:736px;margin:6px auto 0;color:var(--ink3);font-size:11.5px}
+/* 3 novembre: versione per computer (Gabriele: "dal computer si vede male") */
+@media (min-width:980px){
+  .app{max-width:1180px;padding-bottom:40px}
+  .testa .indietro2{left:24px}.testa .acc{right:24px}
+  .barra{position:sticky;top:calc(62px + env(safe-area-inset-top));bottom:auto;border-top:none;border-bottom:1px solid var(--line);max-width:1180px;margin:0 auto;padding:0}
+  .barra-in{max-width:none;display:flex;justify-content:center;gap:8px}
+  .barra button{flex-direction:row;gap:8px;font-size:15px;padding:12px 18px;border-bottom:2px solid transparent}
+  .barra button svg{width:20px;height:20px}
+  .barra button.on{border-bottom-color:var(--oro)}
+  #vista.v-lista{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:0 24px;padding:0 24px 30px;align-items:start}
+  #vista.v-lista>*{margin-left:0;margin-right:0}
+  #vista.v-lista .oggi,#vista.v-lista .sez,#vista.v-lista .altri,#vista.v-lista .vuoto{grid-column:1/-1}
+  #vista.v-lista .evid{grid-column:1;margin-top:18px}
+  #vista.v-lista .evid h2{font-size:32px}
+  #vista.v-lista .lista{grid-column:2;grid-row:2 / span 6;margin-top:18px}
+  #vista.v-lista .evid{grid-row:2}
+  #vista.v-lista .abbonati,#vista.v-lista .campana{grid-column:1}
+  .riga img,.riga .ph{flex-basis:140px;height:92px}
+  .pezzo{max-width:860px;margin:24px auto 0;border-radius:20px;border:1px solid var(--line);overflow:hidden}
+  .pezzo .cop{aspect-ratio:16/8;max-height:460px}
+  .pezzo .corpo{padding:26px 56px 0}
+  .pezzo p{font-size:18px}
+  .ai{max-width:860px;margin:0 auto}
+  .ai-box{bottom:0}
+  .invito{bottom:24px}
+}
 @media(min-width:761px){.app{border-left:1px solid var(--line);border-right:1px solid var(--line)}}
 @media(max-width:420px){.riga img,.riga .ph{flex-basis:112px;height:78px}.riga h3{font-size:16.5px}.testata{font-size:27px}}
 </style>
@@ -174,8 +205,7 @@ body.in-ai .invito{display:none}
   <button type="button" data-s="home" class="on" onclick="vaiSezione('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Home</button>
   <button type="button" data-s="oro" onclick="vaiSezione('oro')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="7" ry="2.6"/><path d="M5 6v4c0 1.4 3.1 2.6 7 2.6S19 11.4 19 10V6M5 10v4c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6v-4M5 14v4c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6v-4"/></svg>Oro</button>
   <button type="button" data-s="dati" onclick="vaiSezione('dati')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Dati USA</button>
-  <button type="button" data-s="fed" onclick="vaiSezione('fed')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h18M5 10v8M9 10v8M15 10v8M19 10v8M3 21h18M12 3l9 5H3z"/></svg>Fed</button>
-  <button type="button" data-s="ai" onclick="chiudiAltro();location.hash='ai'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12z"/><path d="M12 8.2l.9 2 2 .9-2 .9-.9 2-.9-2-2-.9 2-.9z" fill="currentColor"/></svg>Chiedi AI</button>
+  <button type="button" data-s="fed" onclick="vaiSezione('fed')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h18M5 10v8M9 10v8M15 10v8M19 10v8M3 21h18M12 3l9 5H3z"/></svg>Fed e tassi</button>
   <button type="button" data-s="altro" onclick="apriAltro()"><svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg>Altro</button>
 </div></nav>
 <div class="foglio" id="foglio" onclick="if(event.target===this) chiudiAltro()"><div class="foglio-in" id="foglioIn"></div></div>
@@ -220,11 +250,11 @@ function tema(){
 /* gli articoli vecchi restano tutti nel database: la lista li carica a pagine, senza un tetto */
 const PAGINA = 60; let FINITI = false, LETTI = 0;
 async function caricaAnteprime(){
-  const { data, error } = await sb.from('notizie_anteprima').select('*').order('data', { ascending: false }).order('id', { ascending: false }).range(LETTI, LETTI + PAGINA - 1);
+  const { data, error } = await sb.from('notizie_anteprima').select('*').order('data', { ascending: false }).order('creato', { ascending: false }).range(LETTI, LETTI + PAGINA - 1);
   LETTI += (data || []).length;
   if(error) throw error;
   const nuovi = (data || []).filter(a => !ANTE.some(x => x.id === a.id));
-  ANTE = ANTE.concat(nuovi).sort((x, y) => x.data < y.data ? 1 : x.data > y.data ? -1 : (x.id < y.id ? 1 : -1));
+  ANTE = ANTE.concat(nuovi).sort((x, y) => x.data < y.data ? 1 : x.data > y.data ? -1 : String(y.creato || '').localeCompare(String(x.creato || '')) || (x.id < y.id ? 1 : -1));
   FINITI = (data || []).length < PAGINA;
 }
 async function altri(b){
@@ -295,6 +325,8 @@ const SEZIONI = { home: null, oro: ['setup', 'oro'], dati: ['dati'], fed: ['fed'
 const TITOLI_SEZ = { home: '', oro: 'Oro e Setup XAU', dati: 'Dati USA appena usciti', fed: 'Fed, tassi e banche centrali', straordinarie: 'Notizie straordinarie', settimana: 'La settimana', dollaro: 'Dollaro' };
 let sezione = 'home';
 const lucchetto = '<span class="lk"><svg width="9" height="9" viewBox="0 0 24 24" fill="#2B1E00"><path d="M7 10V7a5 5 0 0 1 10 0v3h1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V11a1 1 0 0 1 1-1zm2 0h6V7a3 3 0 0 0-6 0z"/></svg></span>';
+const oraIt = c => { try{ return c ? new Date(c).toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Rome' }) : ''; }catch(e){ return ''; } };
+const quando = a => dataBreve(a.data) + (a.creato ? ' · ' + oraIt(a.creato) : '');
 const dataBreve = d => { try{ return new Date(d + 'T12:00:00').toLocaleDateString('it-IT', { day: '2-digit', month: '2-digit', year: 'numeric' }); }catch(e){ return d; } };
 function chip(a){ return `<span class="chip ${esc(a.categoria)}">${ACC.accesso ? '' : lucchetto}${esc(CAT[a.categoria] || a.categoria)}</span>`; }
 function bloccoAbbonati(){ return bloccoAbb() + campana(); }
@@ -306,16 +338,17 @@ function vaiSezione(k){ sezione = k; chiudiAltro(); if(location.hash && location
 function barraOn(){ const k = location.hash.replace(/^#\/?/, '') === 'ai' ? 'ai' : ['home', 'oro', 'dati', 'fed'].includes(sezione) ? sezione : 'altro'; document.querySelectorAll('.barra button').forEach(b => b.classList.toggle('on', b.dataset.s === k)); }
 function vistaLista(){
   document.body.classList.remove('in-articolo'); barraOn();
+  document.getElementById('vista').className = 'v-lista';
   const cats = SEZIONI[sezione];
   const lista = ANTE.filter(a => !cats || cats.includes(a.categoria));
   const [primo, ...resto] = lista;
   document.getElementById('vista').innerHTML = `
     ${sezione === 'home' ? OGGI_HTML : `<div class="sez">${esc(TITOLI_SEZ[sezione] || '')}</div>`}
     ${primo ? `<a class="evid" href="#/${esc(primo.id)}">${primo.copertina ? `<img src="${esc(primo.copertina)}" alt="">` : ''}
-      <div class="txt">${chip(primo)}<h2>${esc(primo.titolo)}</h2><p>${esc(primo.sommario)}</p><div class="data" style="margin-top:8px">${esc(dataBreve(primo.data))}</div></div></a>` : '<p class="vuoto">Nessun articolo in questa sezione per ora.</p>'}
+      <div class="txt">${chip(primo)}<h2>${esc(primo.titolo)}</h2><p>${esc(primo.sommario)}</p><div class="data" style="margin-top:8px">${esc(quando(primo))}</div></div></a>` : '<p class="vuoto">Nessun articolo in questa sezione per ora.</p>'}
     ${sezione === 'home' ? bloccoAbbonati() : ''}
     ${resto.length ? `<div class="lista">${resto.map(a => `<a class="riga" href="#/${esc(a.id)}">${a.copertina ? `<img src="${esc(a.copertina)}" alt="" loading="lazy">` : '<span class="ph"></span>'}
-      <div class="txt">${chip(a)}<h3>${esc(a.titolo)}</h3><span class="data">${esc(dataBreve(a.data))}</span></div></a>`).join('')}</div>` : ''}
+      <div class="txt">${chip(a)}<h3>${esc(a.titolo)}</h3><span class="data">${esc(quando(a))}</span></div></a>`).join('')}</div>` : ''}
     ${FINITI ? '' : '<div class="altri"><button type="button" class="btn" onclick="altri(this)">Mostra articoli precedenti</button></div>'}`;
 }
 async function vistaArticolo(id){
@@ -336,7 +369,7 @@ async function vistaArticolo(id){
   const testa = `${a.copertina ? `<img class="cop" src="${esc(a.copertina)}" alt="">` : '<div style="height:24px"></div>'}
     <div class="corpo">${pieno ? `<span class="bollino cat">${esc(CAT[a.categoria] || a.categoria)}</span>` : '<span class="bollino">Solo per gli abbonati</span>'}
     <h1>${esc(a.titolo)}</h1>
-    <div class="firma">Scritto il ${esc(dataBreve(a.data))}<br>da Redazione Riskly News</div><div class="sep"></div>
+    <div class="firma">Scritto il ${esc(dataBreve(a.data))}${a.creato ? ' alle ' + esc(oraIt(a.creato)) : ''}<br>da Redazione Riskly News</div><div class="sep"></div>
     <p class="somm">${esc(a.sommario)}</p>`;
   if(pieno){
     v.innerHTML = `<article class="pezzo">${testa}
@@ -369,8 +402,12 @@ const num = (x, d) => Number(x).toLocaleString('it-IT', { minimumFractionDigits:
 async function prezzi(){
   try{
     const j = await (await fetch(PREZZI_URL)).json();
-    document.getElementById('nastro').innerHTML = (j.prezzi || []).map(q => { const su = q.v >= 0, d = q.dec;
+    const pezzi = (j.prezzi || []).map(q => { const su = q.v >= 0, d = q.dec;
       return `<div class="q"><div class="n">${esc(q.nome)}</div><div class="p">${num(q.p, d)}</div><div class="v ${su ? 'su' : 'giu'}">${su ? '+' : '−'}${num(Math.abs(q.v), d)} (${su ? '+' : '−'}${num(Math.abs(q.vp), 2)}%)</div></div>`; }).join('');
+    // due copie una dopo l'altra: l'animazione scorre di metà e riparte senza salti
+    const n = document.getElementById('nastro'), sc = n.querySelector('.scorre');
+    if(sc){ sc.innerHTML = pezzi + pezzi; } else { n.innerHTML = `<div class="scorre">${pezzi + pezzi}</div>`; }
+    n.style.setProperty('--durata', Math.max(25, (j.prezzi || []).length * 6) + 's');
     const ora = Date.now(), ev = (j.eventi || []).find(e => !e.effettivo && Date.parse(e.ora) > ora - 5 * 60e3) || (j.eventi || []).slice(-1)[0];
     const prima = OGGI_HTML;
     OGGI_HTML = ev ? `<div class="oggi"><div class="ora">${new Date(ev.ora).toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Rome' })}</div>
@@ -506,12 +543,17 @@ function invito(){
   }, 8000);
 }
 if(GUIDA.app) guidaSalva({ fatto: 1 });
+/* sul computer la barra va in alto, sotto la testata (3 novembre) */
+const PC = matchMedia('(min-width:980px)');
+function posBarra(){ const b = document.querySelector('.barra'); if(PC.matches) document.querySelector('.testa').after(b); else document.body.insertBefore(b, document.getElementById('foglio')); }
+posBarra(); PC.addEventListener ? PC.addEventListener('change', posBarra) : PC.addListener(posBarra);
 /* ---------- menu Altro ---------- */
 function apriAltro(){
   const st = avvisiStato();
   const v = (ico, testo, az, extra = '') => `<button type="button" class="voce" onclick="${az}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ico}</svg>${testo}${extra}</button>`;
   const l = (ico, testo, href) => `<a class="voce" href="${href}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ico}</svg>${testo}<small>↗</small></a>`;
   document.getElementById('foglioIn').innerHTML = `<div class="mani"></div>
+    ${v('<path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12z"/>', 'Chiedi a Riskly AI', "chiudiAltro();location.hash='ai'")}
     ${v('<path d="M12 2 3 21h18z"/><path d="M12 9v5M12 17h.01"/>', 'Notizie straordinarie', "vaiSezione('straordinarie')")}
     ${v('<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>', 'La settimana', "vaiSezione('settimana')")}
     ${v('<path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>', 'Dollaro', "vaiSezione('dollaro')")}
