@@ -1113,5 +1113,477 @@
     "link": "Calcola il lotto giusto, gratis: riskly.trade/lotto"
    }
   ]
+ },
+ {
+  "id": "n05-settimana",
+  "stile": "notizie",
+  "titolo": "La settimana dei mercati · 9–15 novembre",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "Martedì esce <mark>l'inflazione USA.</mark>",
+    "sotto": "9–15 novembre · CPI e PPI · orari italiani"
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "1 · Gli appuntamenti",
+    "righe": [
+     [
+      "USA, inflazione CPI di ottobre",
+      "<mark>mar 10 · 14:30</mark>"
+     ],
+     [
+      "USA, vendite di case esistenti",
+      "gio 12 · 16:00"
+     ],
+     [
+      "USA, prezzi alla produzione PPI",
+      "ven 13 · 14:30"
+     ]
+    ],
+    "nota": "Fonte: calendario economico."
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "2 · Da dove ripartiamo",
+    "righe": [
+     [
+      "Payrolls di ottobre",
+      "+165 mila"
+     ],
+     [
+      "Disoccupazione",
+      "4,1%"
+     ],
+     [
+      "Salari in un anno",
+      "+3,1%"
+     ],
+     [
+      "Prossima Fed",
+      "8–9 dicembre"
+     ]
+    ],
+    "nota": "Attese sui payrolls: +65 mila. Fonte: BLS, 6 novembre."
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "3 · Cosa si aspetta per martedì",
+    "righe": [
+     [
+      "CPI core, nel mese",
+      "+0,2%"
+     ],
+     [
+      "CPI core, in un anno",
+      "2,8%"
+     ],
+     [
+      "CPI totale, in un anno, prima",
+      "3,7%"
+     ]
+    ],
+    "nota": "Attese del consenso (il mese scorso: +0,3% e 2,6%). Possono cambiare fino all'uscita."
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Martedì alle 14:30 <mark>stai dentro o fuori?</mark>",
+    "sotto": "Scrivi DATI nei commenti 👇",
+    "link": "I dati della settimana, gratis: riskly.trade/dati"
+   }
+  ]
+ },
+ {
+  "id": "c14-indici",
+  "titolo": "Il lotto sugli indici",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "Sugli indici il lotto <mark>non è come sul forex.</mark>",
+    "sotto": "US30 e NAS100: la formula in 4 slide →"
+   },
+   {
+    "tipo": "testo",
+    "titolo": "Il punto non vale uguale ovunque",
+    "testo": "Su un indice il valore di <b>1 punto per 1 lotto</b> lo decide il broker: può essere 1 $, 10 $ o altro.",
+    "nota": "Lo trovi nelle specifiche del contratto, alla voce dimensione o valore del tick."
+   },
+   {
+    "tipo": "testo",
+    "titolo": "La formula",
+    "testo": "<b>Lotti = rischio in $ ÷ (stop in punti × valore di 1 punto)</b>",
+    "nota": "Stessa logica del forex, cambia solo il valore del punto."
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "Esempio (1 punto = 1 $ per lotto)",
+    "righe": [
+     [
+      "Conto",
+      "1.000 $"
+     ],
+     [
+      "Rischio 1%",
+      "10 $"
+     ],
+     [
+      "Stop",
+      "50 punti"
+     ],
+     [
+      "10 ÷ (50 × 1)",
+      "<mark>0,2 lotti</mark>"
+     ]
+    ]
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Il tuo broker: <mark>quanto vale 1 punto?</mark>",
+    "sotto": "Scrivi INDICI nei commenti 👇",
+    "link": "Riskly Pro calcola il lotto da solo su MT4 e MT5: riskly.trade/bot · è un mio prodotto"
+   }
+  ]
+ },
+ {
+  "id": "c15-pareggio",
+  "titolo": "Stop in pareggio: quando sì e quando no",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "Stop in pareggio: <mark>quando sì, quando no.</mark>",
+    "sotto": "La regola in 4 slide →"
+   },
+   {
+    "tipo": "frasi",
+    "voci": [
+     [
+      "Sì",
+      "Il prezzo ha fatto almeno 1R a favore.",
+      "Hai guadagnato quanto rischiavi: proteggere ha senso."
+     ],
+     [
+      "Sì",
+      "Sta per uscire un dato forte.",
+      "Payrolls, CPI, Fed: il prezzo può saltare."
+     ]
+    ]
+   },
+   {
+    "tipo": "frasi",
+    "voci": [
+     [
+      "No",
+      "Dopo pochi pip, per paura.",
+      "Lo stop va dove l'idea è sbagliata, non dove ti tranquillizza."
+     ],
+     [
+      "No",
+      "Su ogni operazione, sempre.",
+      "Esci a zero sulle normali oscillazioni e perdi i movimenti buoni."
+     ]
+    ]
+   },
+   {
+    "tipo": "testo",
+    "titolo": "In pratica",
+    "testo": "Decidi <b>prima</b> di entrare a quanti R sposti lo stop, e rispettalo.",
+    "nota": "Una regola scritta batte una decisione presa a mercato aperto."
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Tu quando <mark>sposti lo stop?</mark>",
+    "sotto": "Scrivi PAREGGIO nei commenti 👇",
+    "link": "Calcola il lotto e l'R di ogni operazione, gratis: riskly.trade/lotto"
+   }
+  ]
+ },
+ {
+  "id": "c16-segnali",
+  "titolo": "Fate segnali? No.",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "«Fate segnali?» <mark>No.</mark>",
+    "sotto": "E questi 3 numeri spiegano perché →"
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "1 · Perdite di fila per perdere il 20%",
+    "righe": [
+     [
+      "Rischio 1% a operazione",
+      "23"
+     ],
+     [
+      "Rischio 5% a operazione",
+      "5"
+     ]
+    ],
+    "nota": "Calcolo: 0,99²³ ≈ 0,79 · 0,95⁵ ≈ 0,77."
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "2 · Il rapporto",
+    "righe": [
+     [
+      "Vinci 3 su 10 (+3R)",
+      "+9R"
+     ],
+     [
+      "Perdi 7 su 10 (−1R)",
+      "−7R"
+     ],
+     [
+      "Totale",
+      "<mark>+2R</mark>"
+     ]
+    ],
+    "nota": "Esempio con rapporto 1:3, senza costi."
+   },
+   {
+    "tipo": "testo",
+    "titolo": "3 · Il punto",
+    "testo": "Lo stesso segnale con il lotto sbagliato <b>brucia il conto</b>. Con il lotto giusto sopravvivi alle serie di perdite.",
+    "nota": "Per questo insegniamo il rischio, non le entrate."
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Hai mai seguito <mark>un canale di segnali?</mark>",
+    "sotto": "Scrivi SEGNALI nei commenti 👇",
+    "link": "Simula le tue perdite di fila, gratis: riskly.trade/rovina"
+   }
+  ]
+ },
+ {
+  "id": "c17-controllo",
+  "titolo": "Il mercato non lo controlli",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "Il mercato non lo controlli. <mark>Tutto il resto sì.</mark>",
+    "sotto": "Le 3 cose che decidi tu →"
+   },
+   {
+    "tipo": "frasi",
+    "voci": [
+     [
+      "1",
+      "Quanto rischi.",
+      "Una percentuale fissa del conto, sempre uguale."
+     ],
+     [
+      "2",
+      "Quando ti fermi.",
+      "Un limite di perdita al giorno, scritto prima."
+     ]
+    ]
+   },
+   {
+    "tipo": "frasi",
+    "voci": [
+     [
+      "3",
+      "Quante operazioni fai.",
+      "Più operazioni non vuol dire più guadagni: vuol dire più costi."
+     ],
+     [
+      "",
+      "Il resto non dipende da te.",
+      "Notizie, dati, gap: li gestisci solo con le prime tre."
+     ]
+    ]
+   },
+   {
+    "tipo": "testo",
+    "titolo": "La regola più difficile",
+    "testo": "Fermarsi <b>dopo una serie di perdite</b>, quando vorresti recuperare subito.",
+    "nota": "È lì che la maggior parte dei conti si rompe."
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Tu hai un limite <mark>di perdita al giorno?</mark>",
+    "sotto": "Scrivi LIMITE nei commenti 👇",
+    "link": "RiskGuard ti ferma dopo N perdite su MT4 e MT5: riskly.trade/bot · è un mio prodotto"
+   }
+  ]
+ },
+ {
+  "id": "c18-situazioni",
+  "titolo": "Situazioni che solo chi fa trading riconosce",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "6 situazioni che <mark>solo chi fa trading</mark> riconosce.",
+    "sotto": "Quante ne hai vissute? →"
+   },
+   {
+    "tipo": "frasi",
+    "voci": [
+     [
+      "1",
+      "Lo stop preso al pip.",
+      "E poi il prezzo va esattamente dove pensavi."
+     ],
+     [
+      "2",
+      "«Ancora 5 minuti».",
+      "E sono le 2 di notte."
+     ]
+    ]
+   },
+   {
+    "tipo": "frasi",
+    "voci": [
+     [
+      "3",
+      "Chiudi in profitto troppo presto.",
+      "Il prezzo fa altri 200 pip senza di te."
+     ],
+     [
+      "4",
+      "Il dato esce mentre sei in bagno.",
+      "Torni e il grafico è un altro."
+     ]
+    ]
+   },
+   {
+    "tipo": "frasi",
+    "voci": [
+     [
+      "5",
+      "Tre operazioni per recuperarne una.",
+      "E alla fine sei sotto di quattro."
+     ],
+     [
+      "6",
+      "Il conto demo va benissimo.",
+      "Il conto vero un po' meno."
+     ]
+    ]
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Quale ti è <mark>successa di più?</mark>",
+    "sotto": "Scrivi il numero nei commenti 👇",
+    "link": "Simula le tue perdite di fila, gratis: riskly.trade/rovina"
+   }
+  ]
+ },
+ {
+  "id": "c19-perdita",
+  "titolo": "Perché la maggior parte dei conti perde",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "La maggior parte dei conti retail <mark>perde.</mark>",
+    "sotto": "I 3 motivi più comuni →"
+   },
+   {
+    "tipo": "testo",
+    "titolo": "Il dato",
+    "testo": "Negli avvisi obbligatori dei broker europei sui CFD la quota di conti retail in perdita sta <b>di solito tra il 70% e il 90%</b>.",
+    "nota": "Fonte: avvisi di rischio richiesti dall'ESMA, pubblicati da ogni broker."
+   },
+   {
+    "tipo": "frasi",
+    "voci": [
+     [
+      "1",
+      "Rischio troppo alto.",
+      "Con il 5% a operazione bastano 5 perdite per perdere un quinto del conto."
+     ],
+     [
+      "2",
+      "Nessuna regola per fermarsi.",
+      "Dopo una perdita si raddoppia per recuperare."
+     ]
+    ]
+   },
+   {
+    "tipo": "frasi",
+    "voci": [
+     [
+      "3",
+      "Troppe operazioni.",
+      "Spread e commissioni si pagano a ogni entrata."
+     ],
+     [
+      "",
+      "Nessuno dei tre è la strategia.",
+      "Sono tutti problemi di gestione del rischio."
+     ]
+    ]
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Quale dei tre <mark>ti riconosci?</mark>",
+    "sotto": "Scrivi 1, 2 o 3 nei commenti 👇",
+    "link": "Simula le tue perdite di fila, gratis: riskly.trade/rovina"
+   }
+  ]
+ },
+ {
+  "id": "c20-500",
+  "titolo": "Il lotto con 500 €",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "Con 500 € <mark>quanti lotti?</mark>",
+    "sotto": "Meno di quanto pensi. La formula in 4 slide →"
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "I dati (EUR/USD)",
+    "righe": [
+     [
+      "Conto",
+      "500 $"
+     ],
+     [
+      "Rischio 1%",
+      "5 $"
+     ],
+     [
+      "Stop",
+      "20 pip"
+     ],
+     [
+      "1 lotto",
+      "10 $ a pip"
+     ]
+    ]
+   },
+   {
+    "tipo": "testo",
+    "titolo": "La formula",
+    "testo": "<b>Lotti = rischio ÷ (stop in pip × valore del pip)</b>",
+    "nota": "5 ÷ (20 × 10) = 0,025 → si arrotonda per difetto."
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "Quanto rischi con stop di 20 pip",
+    "righe": [
+     [
+      "0,02 lotti",
+      "<mark>1% del conto</mark>"
+     ],
+     [
+      "0,10 lotti",
+      "4% del conto"
+     ],
+     [
+      "1 lotto",
+      "40% del conto"
+     ]
+    ],
+    "nota": "Esempio illustrativo: il valore del pip dipende dalla coppia e dal broker."
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Tu con quanto <mark>hai iniziato?</mark>",
+    "sotto": "Scrivi 500 nei commenti 👇",
+    "link": "Riskly Pro calcola il lotto da solo su MT4 e MT5: riskly.trade/bot · è un mio prodotto"
+   }
+  ]
  }
 ]
