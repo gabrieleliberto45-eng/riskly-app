@@ -1,0 +1,142 @@
+{
+ "id": "v15",
+ "serie": "La settimana dell'oro",
+ "titolo": "La settimana dell'oro: +4,3%, tra elezioni USA e payrolls (2–6 novembre 2026)",
+ "scene": [
+  {
+   "capitolo": "Introduzione",
+   "tipo": "cifra",
+   "titolo": "Oro, dal 2 al 6 novembre 2026",
+   "cifra": "+4,3%",
+   "etichetta": "rimbalzo dopo due settimane in calo: di nuovo sopra i 4.000 $",
+   "nota": "Future COMEX: da 3.903,0 a 4.072,7 $. Fonte: Yahoo Finance (GC=F).",
+   "voce": "Più quattro virgola tre per cento. È quanto ha guadagnato il future sull'oro questa settimana, dal due al sei novembre. Dopo due settimane in calo, il prezzo è tornato sopra i quattromila dollari l'oncia. In mezzo ci sono state le elezioni americane di metà mandato e, venerdì, un dato sul lavoro molto più forte del previsto. Vediamo i numeri, cosa l'ha mosso e cosa esce la settimana prossima. Niente previsioni: solo fatti e rischio."
+  },
+  {
+   "capitolo": "Il grafico della settimana",
+   "tipo": "grafico",
+   "titolo": "Oro, future COMEX, dati orari",
+   "img": "oro/2026-11-02.png",
+   "nota": "Fonte: Yahoo Finance (GC=F). Giorni in ora italiana.",
+   "voce": "Ecco il grafico della settimana, con i dati orari del future sull'oro. Lunedì e martedì il prezzo resta poco sotto i tremilanovecentosessanta dollari. Nella notte tra martedì e mercoledì arrivano i risultati delle elezioni, e mercoledì l'oro chiude a quattromilasettantacinque: più centoventotto dollari in un giorno. Giovedì, alle quattro del mattino, tocca il massimo della settimana, quattromilacentocinquantasei. Venerdì, dopo il dato sul lavoro, scende fin verso i quattromilatrentacinque e chiude a quattromilasettantatré."
+  },
+  {
+   "capitolo": "I numeri",
+   "tipo": "numeri",
+   "titolo": "I numeri della settimana",
+   "colonne": [
+    "Mercato",
+    "Variazione"
+   ],
+   "righe": [
+    [
+     "Oro (future COMEX)",
+     "3.903,0 → 4.072,7 $ · +4,3%"
+    ],
+    [
+     "Massimo · minimo",
+     "4.155,8 · 3.900,0 $"
+    ],
+    [
+     "Indice del dollaro",
+     "101,97 → 102,28 · +0,3%"
+    ],
+    [
+     "Treasury 10 anni",
+     "4,90% → 4,86% · −5 punti base"
+    ]
+   ],
+   "nota": "Fonte: Yahoo Finance, dati orari dal 2 al 6 novembre 2026.",
+   "voce": "I numeri. L'oro apre la settimana a tremilanovecentotré dollari e chiude a quattromilasettantatré: quasi centosettanta dollari in più, più quattro virgola tre per cento. Tra massimo e minimo ci sono più di duecentocinquanta dollari. L'indice del dollaro sale dello zero virgola tre per cento, quasi tutto venerdì. E il rendimento del Treasury a dieci anni scende di cinque punti base. Quindi questa volta l'oro è salito anche con un dollaro un po' più forte."
+  },
+  {
+   "capitolo": "Cosa l'ha mosso",
+   "tipo": "punti",
+   "titolo": "Cosa ha mosso l'oro",
+   "punti": [
+    [
+     "Mercoledì: elezioni di metà mandato",
+     "i Democratici conquistano Camera e Senato: oro +3,2% nella seduta"
+    ],
+    [
+     "Fino a giovedì: rendimenti in calo",
+     "il Treasury a 10 anni scende fino al 4,81%"
+    ],
+    [
+     "Venerdì: payrolls a sorpresa",
+     "+165 mila posti contro 65 mila attesi, disoccupazione al 4,1%: dollaro su, oro giù"
+    ]
+   ],
+   "nota": "Fonti: BLS (6 novembre), Reuters, CNBC, Yahoo Finance.",
+   "voce": "Cosa ha mosso l'oro. Primo: le elezioni di metà mandato. I Democratici hanno conquistato sia la Camera sia il Senato, e mercoledì l'oro ha guadagnato più del tre per cento in una sola seduta. Secondo: fino a giovedì i rendimenti americani sono scesi, con il decennale fino al quattro virgola ottantuno per cento. L'oro non paga interessi: quando i rendimenti scendono, tenerlo costa meno. Terzo: venerdì i payrolls. A ottobre sono stati creati centosessantacinquemila posti di lavoro, contro i sessantacinquemila attesi, e la disoccupazione è scesa al quattro virgola uno per cento. Il dollaro è salito e l'oro ha perso circa l'uno per cento nella giornata. Secondo Reuters, dopo il dato i mercati danno a circa il settantotto per cento la probabilità di un rialzo dei tassi della Fed a dicembre."
+  },
+  {
+   "capitolo": "Tu cosa ne pensi?",
+   "tipo": "domanda",
+   "titolo": "Cosa ha spinto di più l'oro questa settimana?",
+   "opzioni": [
+    "Un dollaro molto più debole",
+    "Le elezioni di metà mandato",
+    "Un taglio dei tassi della Fed",
+    "Payrolls sotto le attese"
+   ],
+   "giusta": 1,
+   "spiegazione": "Il dollaro è salito, la Fed non si è riunita e i payrolls sono usciti molto sopra le attese: il salto più grande è arrivato mercoledì, dopo le elezioni.",
+   "voce": "Adesso tocca a te. Cosa ha spinto di più l'oro questa settimana? Prima risposta: un dollaro molto più debole. Seconda: le elezioni di metà mandato. Terza: un taglio dei tassi della Fed. Quarta: payrolls sotto le attese. Metti in pausa e scrivi nei commenti la tua lettera. La risposta è la seconda. Il dollaro in settimana è salito, la Fed non si è riunita e i payrolls sono usciti molto sopra le attese. Il salto più grande è arrivato mercoledì, dopo i risultati delle elezioni."
+  },
+  {
+   "capitolo": "La settimana prossima",
+   "tipo": "numeri",
+   "titolo": "La settimana prossima",
+   "colonne": [
+    "Ora italiana",
+    "Cosa"
+   ],
+   "righe": [
+    [
+     "mar 10 · 14:30",
+     "<mark>USA: inflazione CPI</mark> di ottobre"
+    ],
+    [
+     "gio 12 · 16:00",
+     "USA: vendite di case esistenti"
+    ],
+    [
+     "ven 13 · 14:30",
+     "USA: prezzi alla produzione PPI"
+    ]
+   ],
+   "nota": "CPI core atteso +0,2% nel mese e 2,8% in un anno. Prossima Fed: 8–9 dicembre.",
+   "voce": "La settimana prossima. Il dato principale è martedì alle quattordici e trenta: l'inflazione americana CPI di ottobre. Per l'inflazione di fondo, quella senza energia e alimentari, il consenso si aspetta più zero virgola due per cento nel mese e due virgola otto per cento in un anno. Giovedì alle sedici le vendite di case esistenti, e venerdì alle quattordici e trenta i prezzi alla produzione. Sono i dati che possono confermare o cambiare le attese su un rialzo della Fed a dicembre."
+  },
+  {
+   "capitolo": "Il rischio",
+   "tipo": "confronto",
+   "titolo": "Il CPI di martedì: due modi di stare sull'oro",
+   "no": {
+    "titolo": "Senza piano",
+    "righe": [
+     "Stesso lotto anche con 130 $ di movimento in un giorno",
+     "Ordini pendenti vicino al prezzo alle 14:30",
+     "Stop stretto proprio nel minuto del dato"
+    ]
+   },
+   "si": {
+    "titolo": "Con piano",
+    "righe": [
+     "Stop in dollari più largo, lotto più piccolo",
+     "Decidi prima delle 14:30 se restare dentro",
+     "Spread controllato e lotto deciso prima del dato"
+    ]
+   },
+   "voce": "Il rischio. Questa settimana l'oro si è mosso di più di cento dollari in un giorno, e martedì alle quattordici e trenta esce l'inflazione. Mettiamo vicini due modi di stare sull'oro. Senza piano: lo stesso lotto di sempre, anche se il prezzo si muove il doppio; ordini pendenti vicino al prezzo all'uscita del dato; uno stop stretto proprio nel minuto in cui lo spread si allarga. Con piano: se lo stop in dollari è più largo, il lotto è più piccolo, così la perdita massima resta la stessa; si decide prima delle quattordici e trenta se restare dentro; e si controllano spread e lotto prima del dato."
+  },
+  {
+   "capitolo": "Per approfondire",
+   "tipo": "chiusura",
+   "grande": "I dati della settimana,<br><mark>gratis</mark>",
+   "piccolo": "Calendario in ora italiana su riskly.trade/dati · Corso Riskly · Analisi fondamentale: banche centrali, inflazione, petrolio, oro",
+   "voce": "I dati della settimana prossima, già in ora italiana, li trovi gratis su riskly punto trade barra dati. E se vuoi capire come Fed, inflazione e tassi muovono l'oro, c'è il corso Riskly Analisi fondamentale, con grafici sui dati veri: lo trovi su riskly punto trade barra corsi. Sono miei prodotti. Contenuto informativo ed educativo, non consulenza finanziaria: il trading con leva può farti perdere tutto il capitale."
+  }
+ ]
+}
