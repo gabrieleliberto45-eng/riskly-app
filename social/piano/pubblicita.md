@@ -49,3 +49,16 @@ Gabriele: "per ora non sto vendendo niente: crea un piano pubblicitario con i re
 ## Cosa misuriamo ogni venerdì
 Visualizzazioni per formato, visite a /lotto, /bot, /news (pannello Gestione), account nuovi, prove del journal, vendite.
 Dopo 2 settimane: se i caroselli chiari superano di nuovo 1.000 su TikTok, si passa a 2 caroselli al giorno su TikTok.
+
+## Revisione del 7 novembre (Gabriele: "controlla tutte le statistiche, guarda cosa funziona e cosa no e adattati")
+Numeri dal 15 ottobre al 7 novembre (Metricool e database):
+- **TikTok:** quasi tutto sta tra 200 e 300 visualizzazioni, qualunque sia il formato. Sopra la media: c01 lotto (25.993, unico caso), TradeManager e ScaleIn "come funziona" e LTCM (740–765, 15–16 ottobre), quiz "quanti lotti con 1.000 €" (535), c08 "quello che avrei voluto sapere prima" (412). I caroselli chiari dopo c01 non si sono ripetuti: c09 221, c10 223. Il 7 novembre TikTok ha dato un **avviso** (prima violazione lieve, motivo da verificare).
+- **Instagram reel:** vanno i reel di attualità (elezioni USA 158, oro della settimana 129, petrolio e Riskly News 125, quiz sul lotto 126). Restano sotto i 25 i reel con il prodotto ("bot disponibili", "lista d'attesa", "come funziona") e quelli senza notizia. Caroselli su Instagram: 15–25 persone raggiunte.
+- **YouTube:** i video lunghi fanno 1–7 visualizzazioni (Casi veri, Rispondi tu, Domani esce); "La settimana dell'oro" 4–7. Gli Shorts fanno 23–146, i migliori sono le definizioni brevi di inizio ottobre (conto demo 146, swap 85, stop mentale 82). Iscritti: da 13 a 20.
+- **Sito:** 157 visite in 14 giorni (strumenti 43, journal 37, home 27), tutte senza provenienza. Il 6 novembre: 1 account nuovo e 1 acquisto di RiskGuard (99 €) avviato ma "in attesa", non pagato.
+
+Cosa cambio:
+1. **TikTok:** niente prodotto nei post finché non si chiarisce l'avviso. I caroselli del 9, 12 e 15 novembre con Riskly Pro e RiskGuard escono solo su Instagram. Su TikTok: quiz e "quello che avrei voluto sapere", i formati sopra la media.
+2. **Instagram:** reel di attualità legati a Riskly News (dato del giorno, oro della settimana, notizia che muove i prezzi): sono i migliori. Niente più reel solo promozionali.
+3. **YouTube:** in pausa Casi veri, Rispondi tu e Domani esce (1–5 visualizzazioni, molto lavoro e crediti di voce). Resta "La settimana dell'oro" il sabato. Lo sforzo va sugli Shorts brevi a domanda ("Cos'è…", "Quanto vale…", "Perché…"), che rendono 10–30 volte di più.
+4. **Misura:** aggiungere ?da=tiktok, ?da=ig, ?da=yt ai link in bio per sapere da dove arrivano le visite.
