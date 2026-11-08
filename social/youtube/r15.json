@@ -1,0 +1,104 @@
+{
+ "stile": "punto",
+ "pause": false,
+ "voce_edge": "it-IT-GiuseppeMultilingualNeural",
+ "velocita": "+0%",
+ "id": "r15",
+ "titolo": "Inflazione oggi alle 14:30: conta la sorpresa",
+ "data": "MAR 10 NOV",
+ "testa": "OGGI 14:30",
+ "tema": "blu",
+ "sfondo": "punti",
+ "scene": [
+  {
+   "tipo": "carta",
+   "fronte": [
+    "QUELLO CHE GUARDI",
+    "Il numero",
+    "dell'inflazione"
+   ],
+   "retro": [
+    "QUELLO CHE MUOVE",
+    "La sorpresa",
+    "rispetto alle attese"
+   ],
+   "gira": "w:ma",
+   "colpi": [
+    [
+     "w:sorpresa",
+     "La sorpresa",
+     "blu"
+    ]
+   ],
+   "filigrana": "CPI",
+   "voce": "Questo cambierà il modo in cui vedi i dati. Oggi alle quattordici e trenta esce l'inflazione americana. Tutti guardano il numero. Ma quello che muove il prezzo è la sorpresa rispetto alle attese."
+  },
+  {
+   "tipo": "quiz",
+   "etichetta": "ESEMPIO",
+   "domanda": "Attese 2,8%. Esce 2,8%. È una sorpresa?",
+   "opzioni": [
+    [
+     "Sì, è molto alta",
+     "w:prima"
+    ],
+    [
+     "No, è in linea",
+     "w:seconda"
+    ],
+    [
+     "Dipende dall'ora",
+     "w:terza"
+    ],
+    [
+     "Dipende dal broker",
+     "w:quarta"
+    ]
+   ],
+   "giusta": 1,
+   "rivela": "w:giusta",
+   "colpi": [
+    [
+     "w:giusta",
+     "In linea",
+     "verde"
+    ]
+   ],
+   "filigrana": "in linea",
+   "voce": "Un esempio. Le attese sono due virgola otto per cento, e il dato esce due virgola otto. È una sorpresa? Prima: sì, molto alta. Seconda: no, è in linea. Terza: dipende dall'ora. Quarta: dipende dal broker. | La risposta giusta è la seconda."
+  },
+  {
+   "tipo": "lista",
+   "titolo": "Prima delle 14:30",
+   "punti": [
+    [
+     "Il lotto lo calcoli adesso",
+     "w:lotto"
+    ],
+    [
+     "Lo stop è deciso prima",
+     "w:stop"
+    ],
+    [
+     "Nei primi minuti, se non sei sicuro, stai fuori",
+     "w:minuti"
+    ]
+   ],
+   "cta": [
+    "CPI",
+    "riskly.trade/lotto",
+    "w:commenta"
+   ],
+   "colpi": [
+    [
+     "w:fuori",
+     "Stai fuori",
+     "blu"
+    ]
+   ],
+   "filigrana": "prima",
+   "voce": "Prima delle quattordici e trenta. Il lotto lo calcoli adesso. Lo stop è deciso prima. E nei primi minuti, se non sei sicuro, stai fuori. | Commenta CPI, e ti mando il calcolatore."
+  }
+ ],
+ "nastro": "INFLAZIONE USA OGGI 14:30 · CORE ATTESO +0,2% IN UN MESE · 2,8% IN UN ANNO · ESEMPIO: ATTESO 2,8%, ESCE 2,8% = IN LINEA"
+}

@@ -1,0 +1,92 @@
+{
+ "stile": "punto",
+ "pause": false,
+ "voce_edge": "it-IT-GiuseppeMultilingualNeural",
+ "velocita": "+0%",
+ "id": "r18",
+ "titolo": "PPI oggi alle 14:30: che cos'è davvero",
+ "data": "VEN 13 NOV",
+ "testa": "OGGI 14:30",
+ "tema": "blu",
+ "sfondo": "griglia",
+ "scene": [
+  {
+   "tipo": "orologio",
+   "etichetta": "PREZZI ALLA PRODUZIONE · ORA ITALIANA",
+   "titolo": "Oggi",
+   "da": "12:00",
+   "tappe": [
+    [
+     "14:30",
+     "Esce il PPI",
+     "w:quattordici"
+    ]
+   ],
+   "colpi": [
+    [
+     "w:verità",
+     "Il PPI",
+     "blu"
+    ]
+   ],
+   "filigrana": "PPI",
+   "voce": "Ecco la verità sul PPI. Oggi alle quattordici e trenta escono i prezzi alla produzione americani."
+  },
+  {
+   "tipo": "carta",
+   "fronte": [
+    "CPI",
+    "Prezzi pagati",
+    "dai consumatori"
+   ],
+   "retro": [
+    "PPI",
+    "Prezzi alla produzione",
+    "delle aziende"
+   ],
+   "gira": "w:ppi",
+   "colpi": [
+    [
+     "w:aziende",
+     "Aziende",
+     "blu"
+    ]
+   ],
+   "filigrana": "CPI e PPI",
+   "voce": "Il CPI misura i prezzi che pagano i consumatori. Il PPI misura i prezzi lungo la produzione, cioè quelli delle aziende. Due dati diversi, due letture diverse."
+  },
+  {
+   "tipo": "lista",
+   "titolo": "Il venerdì",
+   "punti": [
+    [
+     "Dato alle 14:30: lotto più piccolo",
+     "w:dato"
+    ],
+    [
+     "Fine settimana: decidi cosa tenere",
+     "w:fine"
+    ],
+    [
+     "Il lunedì il prezzo può aprire lontano",
+     "w:lunedì"
+    ]
+   ],
+   "cta": [
+    "PPI",
+    "riskly.trade/dati",
+    "w:commenta"
+   ],
+   "colpi": [
+    [
+     "w:lontano",
+     "Più lontano",
+     "ambra"
+    ]
+   ],
+   "filigrana": "venerdì",
+   "voce": "Il venerdì ha tre regole. Dato alle quattordici e trenta: lotto più piccolo. Fine settimana: decidi cosa tenere. E ricorda che il lunedì il prezzo può aprire più lontano. | Commenta PPI, e ti mando il calendario."
+  }
+ ],
+ "nastro": "PPI USA VEN 14:30 · PREZZI ALLA PRODUZIONE · CPI = PREZZI AL CONSUMO · WEEKEND: DECIDI COSA TENERE"
+}

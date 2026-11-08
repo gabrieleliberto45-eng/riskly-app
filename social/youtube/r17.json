@@ -1,0 +1,116 @@
+{
+ "stile": "punto",
+ "pause": false,
+ "voce_edge": "it-IT-GiuseppeMultilingualNeural",
+ "velocita": "+0%",
+ "id": "r17",
+ "titolo": "Non farlo mai: recuperare la perdita di ieri",
+ "data": "GIO 12 NOV",
+ "testa": "NON FARLO MAI",
+ "tema": "ambra",
+ "sfondo": "punti",
+ "scene": [
+  {
+   "tipo": "quiz",
+   "etichetta": "NON FARLO MAI",
+   "domanda": "Ieri hai perso il 3%. Oggi cosa fai?",
+   "opzioni": [
+    [
+     "Raddoppio per recuperare",
+     "w:prima"
+    ],
+    [
+     "Rischio come sempre, o mi fermo",
+     "w:seconda"
+    ],
+    [
+     "Aggiungo operazioni",
+     "w:terza"
+    ],
+    [
+     "Tolgo gli stop",
+     "w:quarta"
+    ]
+   ],
+   "giusta": 1,
+   "rivela": "w:giusta",
+   "colpi": [
+    [
+     "w:giusta",
+     "La seconda",
+     "verde"
+    ]
+   ],
+   "filigrana": "ieri",
+   "voce": "Non farlo mai. Ieri hai perso il tre per cento. Oggi cosa fai? Prima: raddoppio per recuperare. Seconda: rischio come sempre, o mi fermo. Terza: aggiungo operazioni. Quarta: tolgo gli stop. | La risposta giusta è la seconda."
+  },
+  {
+   "tipo": "conto",
+   "etichetta": "QUANTO SERVE PER TORNARE PARI",
+   "titolo": "Più perdi, più è dura",
+   "barre": [
+    [
+     "Dopo −10%",
+     11,
+     "w:dieci"
+    ],
+    [
+     "Dopo −20%",
+     25,
+     "w:venti"
+    ],
+    [
+     "Dopo −50%",
+     100,
+     "w:cinquanta",
+     "rossa"
+    ]
+   ],
+   "prima": "+",
+   "dopo": " %",
+   "nota": "Calcolo: dopo −10% serve +11,1%; dopo −20% serve +25%; dopo −50% serve +100%.",
+   "colpi": [
+    [
+     "w:cento",
+     "+100%",
+     "rosso"
+    ]
+   ],
+   "filigrana": "+100%",
+   "voce": "Perché? Perché perdere e recuperare non pesano uguale. Dopo una perdita del dieci per cento, serve guadagnare l'undici per cento. Dopo il venti, il venticinque. Dopo il cinquanta per cento, serve il cento per cento."
+  },
+  {
+   "tipo": "lista",
+   "titolo": "Il giorno dopo",
+   "punti": [
+    [
+     "Stesso rischio di sempre",
+     "w:stesso"
+    ],
+    [
+     "Oppure un giorno di pausa",
+     "w:giorno"
+    ],
+    [
+     "Il recupero è un effetto, non l'obiettivo",
+     "w:recupero"
+    ]
+   ],
+   "cta": [
+    "RECUPERO",
+    "riskly.trade/rovina",
+    "w:commenta"
+   ],
+   "colpi": [
+    [
+     "w:pausa",
+     "Pausa",
+     "ambra"
+    ]
+   ],
+   "filigrana": "pausa",
+   "voce": "Il giorno dopo, stesso rischio di sempre. Oppure un giorno di pausa. Il recupero è un effetto, non l'obiettivo. | Commenta RECUPERO, e ti mando il simulatore."
+  }
+ ],
+ "nastro": "PERDI 10% → SERVE +11,1% · PERDI 20% → SERVE +25% · PERDI 50% → SERVE +100%"
+}

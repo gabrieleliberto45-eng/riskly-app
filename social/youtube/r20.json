@@ -1,0 +1,98 @@
+{
+ "stile": "punto",
+ "pause": false,
+ "voce_edge": "it-IT-GiuseppeMultilingualNeural",
+ "velocita": "+0%",
+ "id": "r20",
+ "titolo": "Senza diario ripeti lo stesso errore",
+ "data": "DOM 15 NOV",
+ "testa": "IL DIARIO",
+ "tema": "ambra",
+ "sfondo": "righe",
+ "scene": [
+  {
+   "tipo": "carta",
+   "fronte": [
+    "SENZA DIARIO",
+    "Un'operazione persa",
+    "è solo sfortuna"
+   ],
+   "retro": [
+    "CON DIARIO",
+    "Lo stesso errore",
+    "ripetuto 5 volte"
+   ],
+   "gira": "w:ma#2",
+   "colpi": [
+    [
+     "w:volte",
+     "5 volte",
+     "ambra"
+    ]
+   ],
+   "filigrana": "diario",
+   "voce": "Nessuno vuole ammetterlo, ma senza un diario non sai quale errore ripeti. Una operazione persa sembra sfortuna. Ma sul diario vedi che lo stesso errore è tornato cinque volte."
+  },
+  {
+   "tipo": "lista",
+   "etichetta": "DA ANNOTARE",
+   "titolo": "Dopo ogni operazione",
+   "punti": [
+    [
+     "Perché sei entrato",
+     "w:perché"
+    ],
+    [
+     "Stop e lotto",
+     "w:stop"
+    ],
+    [
+     "Come stavi",
+     "w:come"
+    ]
+   ],
+   "colpi": [
+    [
+     "w:come",
+     "Come stavi",
+     "ambra"
+    ]
+   ],
+   "filigrana": "3 righe",
+   "voce": "Bastano tre righe dopo ogni operazione. Perché sei entrato. Stop e lotto. E come stavi: stanco, agitato, in pari."
+  },
+  {
+   "tipo": "scenari",
+   "titolo": "Dopo 20 operazioni",
+   "a": [
+    "SENZA DIARIO",
+    "Ricordi le vincite",
+    "e dimentichi gli errori",
+    "giu",
+    "w:senza"
+   ],
+   "b": [
+    "CON DIARIO",
+    "Vedi cosa si ripete",
+    "e correggi una cosa alla volta",
+    "su",
+    "w:con"
+   ],
+   "cta": [
+    "DIARIO",
+    "app.riskly.trade",
+    "w:commenta"
+   ],
+   "colpi": [
+    [
+     "w:alla",
+     "Una alla volta",
+     "verde"
+    ]
+   ],
+   "filigrana": "diario",
+   "voce": "Dopo venti operazioni. Senza diario, ricordi le vincite e dimentichi gli errori. Con il diario, vedi cosa si ripete e correggi una cosa alla volta. | Commenta DIARIO, e ti mando il link."
+  }
+ ],
+ "nastro": "DIARIO: PERCHÉ SEI ENTRATO · STOP E LOTTO · COME STAVI · DOPO 20 OPERAZIONI VEDI COSA SI RIPETE"
+}

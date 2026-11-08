@@ -1,0 +1,112 @@
+{
+ "stile": "punto",
+ "pause": false,
+ "voce_edge": "it-IT-GiuseppeMultilingualNeural",
+ "velocita": "+0%",
+ "id": "r19",
+ "titolo": "Ogni operazione ha un costo prima di partire",
+ "data": "SAB 14 NOV",
+ "testa": "DA SAPERE",
+ "tema": "verde",
+ "sfondo": "punti",
+ "scene": [
+  {
+   "tipo": "conto",
+   "etichetta": "ESEMPIO · COSTO 7 € A OPERAZIONE · 20 GIORNI",
+   "titolo": "Quanto costa operare",
+   "barre": [
+    [
+     "1 al giorno",
+     140,
+     "w:una",
+     "verde"
+    ],
+    [
+     "3 al giorno",
+     420,
+     "w:tre",
+     "rossa"
+    ]
+   ],
+   "prima": "−",
+   "dopo": " €",
+   "nota": "Esempio illustrativo: spread e commissione di 7 € a operazione, 20 giorni di mercato, conto da 1.000 €.",
+   "colpi": [
+    [
+     "w:quattrocentoventi",
+     "−420 €",
+     "rosso"
+    ]
+   ],
+   "filigrana": "costi",
+   "voce": "Quello che avrei voluto sapere prima. Ogni operazione ha un costo, spread e commissione, prima ancora di partire. Esempio: sette euro a operazione. Una al giorno, in venti giorni sono centoquaranta euro. Tre al giorno, quattrocentoventi."
+  },
+  {
+   "tipo": "quiz",
+   "etichetta": "LA DOMANDA",
+   "domanda": "Su un conto da 1.000 €, 420 € di costi sono…",
+   "opzioni": [
+    [
+     "Il 4,2%",
+     "w:prima"
+    ],
+    [
+     "Il 42%",
+     "w:seconda"
+    ],
+    [
+     "Lo 0,42%",
+     "w:terza"
+    ],
+    [
+     "Il 14%",
+     "w:quarta"
+    ]
+   ],
+   "giusta": 1,
+   "rivela": "w:giusta",
+   "colpi": [
+    [
+     "w:giusta",
+     "Il 42%",
+     "rosso"
+    ]
+   ],
+   "filigrana": "42%",
+   "voce": "Su un conto da mille euro, quattrocentoventi euro di costi sono… Prima: il quattro virgola due per cento. Seconda: il quarantadue per cento. Terza: lo zero virgola quarantadue. Quarta: il quattordici per cento. | La risposta giusta è la seconda."
+  },
+  {
+   "tipo": "lista",
+   "titolo": "Meno operazioni, più peso",
+   "punti": [
+    [
+     "Solo setup del tuo piano",
+     "w:setup"
+    ],
+    [
+     "Un massimo di operazioni al giorno",
+     "w:massimo"
+    ],
+    [
+     "Controlla lo spread prima di entrare",
+     "w:spread"
+    ]
+   ],
+   "cta": [
+    "COSTI",
+    "riskly.trade/rovina",
+    "w:commenta"
+   ],
+   "colpi": [
+    [
+     "w:massimo",
+     "Un massimo",
+     "verde"
+    ]
+   ],
+   "filigrana": "costi",
+   "voce": "Meno operazioni, più peso a ciascuna. Solo setup del tuo piano. Un massimo di operazioni al giorno. E controlla lo spread prima di entrare. | Commenta COSTI, e ti mando il simulatore."
+  }
+ ],
+ "nastro": "ESEMPIO · COSTO 7 € A OPERAZIONE · 1 AL GIORNO = 140 € · 3 AL GIORNO = 420 € · CONTO 1.000 €"
+}

@@ -1,0 +1,102 @@
+{
+ "stile": "punto",
+ "pause": false,
+ "voce_edge": "it-IT-GiuseppeMultilingualNeural",
+ "velocita": "+0%",
+ "id": "r14",
+ "titolo": "L'inflazione di domani: nessuno sa come andrà",
+ "data": "LUN 9 NOV",
+ "testa": "DOMANI 14:30",
+ "tema": "ambra",
+ "sfondo": "righe",
+ "scene": [
+  {
+   "tipo": "orologio",
+   "etichetta": "INFLAZIONE USA · ORA ITALIANA",
+   "titolo": "Martedì",
+   "da": "12:00",
+   "tappe": [
+    [
+     "14:30",
+     "Esce il CPI",
+     "w:quattordici"
+    ],
+    [
+     "15:30",
+     "Apre la Borsa di New York",
+     "w:quindici"
+    ]
+   ],
+   "colpi": [
+    [
+     "w:nessuno",
+     "Nessuno lo sa",
+     "ambra"
+    ]
+   ],
+   "filigrana": "CPI",
+   "voce": "Se ti offende che io non faccia previsioni, mi dispiace: domani esce l'inflazione americana, e nessuno sa come andrà. Alle quattordici e trenta il dato. Alle quindici e trenta, apre la Borsa di New York."
+  },
+  {
+   "tipo": "lista",
+   "etichetta": "LE ATTESE · CONSENSO, NON CERTEZZA",
+   "titolo": "Cosa è atteso",
+   "punti": [
+    [
+     "Core, in un mese: +0,2%",
+     "w:mese"
+    ],
+    [
+     "Core, in un anno: 2,8%",
+     "w:anno"
+    ],
+    [
+     "Totale, in un anno: 3,9%",
+     "w:totale"
+    ]
+   ],
+   "colpi": [
+    [
+     "w:totale",
+     "3,9%",
+     "rosso"
+    ]
+   ],
+   "filigrana": "attese",
+   "voce": "Le attese. Il core, in un mese: più zero virgola due per cento. Il core, in un anno: due virgola otto. Il totale, in un anno: tre virgola nove. Sono attese, non certezze."
+  },
+  {
+   "tipo": "scenari",
+   "titolo": "Hai posizioni aperte?",
+   "a": [
+    "SE LE TIENI",
+    "Lotto più piccolo",
+    "e uno stop che regge un salto",
+    "su",
+    "w:tieni"
+   ],
+   "b": [
+    "SE NON SEI SICURO",
+    "Aspetta il dato",
+    "e decidi dopo",
+    "giu",
+    "w:sicuro"
+   ],
+   "cta": [
+    "CPI",
+    "riskly.trade/dati",
+    "w:commenta"
+   ],
+   "colpi": [
+    [
+     "w:decidi",
+     "Decidi prima",
+     "ambra"
+    ]
+   ],
+   "filigrana": "decidi",
+   "voce": "Hai posizioni aperte? Se le tieni: lotto più piccolo, e uno stop che regge un salto del prezzo. Se non sei sicuro, puoi aspettare il dato e decidere dopo. | Commenta CPI, e ti mando il calendario."
+  }
+ ],
+ "nastro": "CPI USA MAR 14:30 · CORE +0,2% IN UN MESE · CORE 2,8% IN UN ANNO · TOTALE 3,9% IN UN ANNO · BORSA DI NEW YORK 15:30 · ORA ITALIANA"
+}

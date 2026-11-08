@@ -1,0 +1,100 @@
+{
+ "stile": "punto",
+ "pause": false,
+ "voce_edge": "it-IT-GiuseppeMultilingualNeural",
+ "velocita": "+0%",
+ "id": "r16",
+ "titolo": "Tre operazioni da 1% non sono 1%",
+ "data": "MER 11 NOV",
+ "testa": "SOLO 1%?",
+ "tema": "verde",
+ "sfondo": "griglia",
+ "scene": [
+  {
+   "tipo": "conto",
+   "etichetta": "ESEMPIO · RISCHIO PER OPERAZIONE 1%",
+   "titolo": "Il rischio che apri insieme",
+   "barre": [
+    [
+     "1 operazione",
+     1,
+     "w:una",
+     "verde"
+    ],
+    [
+     "3 operazioni",
+     3,
+     "w:tre",
+     "rossa"
+    ]
+   ],
+   "dopo": " % del conto",
+   "nota": "Esempio illustrativo: tre operazioni aperte insieme, ognuna con rischio dell'1%.",
+   "colpi": [
+    [
+     "w:tre",
+     "3%",
+     "rosso"
+    ]
+   ],
+   "filigrana": "3%",
+   "voce": "Nessuno parla di questo. Una operazione, rischio dell'uno per cento. Ma tre operazioni aperte insieme, ognuna con rischio dell'uno per cento, sono il tre per cento del conto."
+  },
+  {
+   "tipo": "carta",
+   "fronte": [
+    "TRE OPERAZIONI",
+    "Rischio 1% ognuna",
+    "sembra poco"
+   ],
+   "retro": [
+    "SE SONO LEGATE",
+    "Euro, sterlina, oro",
+    "si muovono insieme"
+   ],
+   "gira": "w:ma",
+   "colpi": [
+    [
+     "w:insieme",
+     "Insieme",
+     "rosso"
+    ]
+   ],
+   "filigrana": "correlate",
+   "voce": "Sembra poco. Ma se le operazioni sono legate, per esempio euro dollaro e sterlina dollaro, spesso si muovono insieme. E per te è una sola idea, con il rischio triplo."
+  },
+  {
+   "tipo": "lista",
+   "titolo": "Una regola in più",
+   "punti": [
+    [
+     "Un tetto al rischio aperto",
+     "w:tetto"
+    ],
+    [
+     "Scritto prima di operare",
+     "w:scritto"
+    ],
+    [
+     "Legate? Contale come una",
+     "w:legate"
+    ]
+   ],
+   "cta": [
+    "TETTO",
+    "riskly.trade/lotto",
+    "w:commenta"
+   ],
+   "colpi": [
+    [
+     "w:tetto",
+     "Il tetto",
+     "verde"
+    ]
+   ],
+   "filigrana": "tetto",
+   "voce": "Una regola in più. Un tetto al rischio aperto, scritto prima di operare. E se le operazioni sono legate, contale come una sola. | Commenta TETTO, e ti mando il calcolatore."
+  }
+ ],
+ "nastro": "ESEMPIO · 3 OPERAZIONI × 1% = 3% DEL CONTO · OPERAZIONI LEGATE = UNA SOLA IDEA · TETTO AL RISCHIO APERTO"
+}
