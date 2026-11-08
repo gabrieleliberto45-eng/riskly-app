@@ -26,11 +26,12 @@ Gabriele scrive in italiano: rispondi in italiano semplice, frasi brevi.
 ## Prossimi appuntamenti
 - Martedì 10 novembre 14:30: CPI di ottobre (core atteso +0,2% m/m, 2,8% a/a; totale 3,9% a/a). Venerdì 13 14:30: PPI. Mercoledì 18: verbali Fed. Fed 8–9 dicembre (rialzo stimato ~78% secondo Reuters dopo i payrolls).
 - Social 9–15 novembre già programmati (8 caroselli: n05 + c14–c20; c14, c17, c20 con prodotto SOLO su Instagram).
+- Reel "Il punto" r14–r20 (9–15 novembre) programmati l'8 novembre: IG + TikTok alle 13:00 (martedì 10 e venerdì 13 alle 09:30) e Short YouTube alle 18:00. Voce: Marco di ElevenLabs (ID `13Cuh3NuYvWOVQtLbRN8`, variabile `ELEVEN_VOCE`; chiave in `ELEVEN_API_KEY`, solo come variabile, mai nei file). La chiave data da Gabriele non può leggere voci né crediti, solo sintetizzare; è comparsa in chat: consigliato rigenerarla. Hook già usati fino a r20; ripartire dalla rotazione.
 
 ## Cose aperte con Gabriele
 - TikTok gli ha dato un AVVISO il 7 novembre: aspettiamo lo screenshot di "Vedi azioni coercitive". Finché non è chiaro, niente prodotto nei post TikTok.
 - Acquisto RiskGuard 99 € "in_attesa" del 6 novembre: deve controllare su Stripe.
-- Chiave ElevenLabs risponde 401 (la voce del 7 novembre è uscita comunque con George; da ricontrollare).
+- ElevenLabs: l'8 novembre nuova chiave (solo sintesi) con voce Marco; funziona. Da rigenerare perché è stata scritta in chat.
 - Assistente AI di Riskly News (`supabase/functions/news-ai`): pronto ma senza chiave; Gabriele non vuole pagare: da scegliere Haiku (pochi centesimi) o Gemini gratuito.
 - Pubblicità a pagamento (~50 €, vedi `social/piano/pubblicita.md`): decide e paga lui.
 - Plugin ECC installato: consigliato spegnere gli hook o mettere il profilo "minimal" (pesa sui token). OmniRoute sconsigliato (non funziona nel cloud, manda i dati a terzi; zip da cancellare).
