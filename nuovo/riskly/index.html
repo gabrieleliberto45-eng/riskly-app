@@ -5122,7 +5122,7 @@ function aggiornaNavAccount(){
   }
 }
 
-const NOMI_STATO = { attivo:'attivo', in_attesa:'in attesa di pagamento', rifiutato:'annullato' };
+const NOMI_STATO = { attivo:'attivo', in_attesa:'in attesa di pagamento', rifiutato:'annullato', scaduto:'scaduto' };
 
 function disegnaAccount(){
   document.getElementById('acc-email-corrente').textContent = utente ? utente.email : '';
@@ -5148,7 +5148,7 @@ function disegnaAccount(){
             <div class="acq-meta">${data}${a.prezzo ? ' · €' + esc(a.prezzo) : ''}</div>
           </div>
           <div style="display:flex;align-items:center;gap:11px">
-            <span class="acq-stato ${attivo?'attivo':'attesa'}">${NOMI_STATO[a.stato] || esc(a.stato)}</span>
+            <span class="acq-stato ${attivo?'attivo':((a.stato==='scaduto'||a.stato==='rifiutato')?'rifiutato':'attesa')}">${NOMI_STATO[a.stato] || esc(a.stato)}</span>
             ${attivo ? `<a class="btn pri" href="download.html">Area clienti</a>` : ''}
           </div>
         </div>`;
@@ -5301,6 +5301,18 @@ function chiediTermini(prodotto){
   });
 }
 
+/* registra l'ordine in attesa, ma non ne crea un altro uguale se il cliente ha gia' un ordine in attesa per lo stesso prodotto
+   (prima ogni clic su "Acquista" aggiungeva una riga: 9 novembre) */
+async function registraOrdine(prodotto, prezzo, termini){
+  if(!sb) return;
+  try{
+    const { data: gia } = await sb.from('acquisti').select('id').eq('utente', utente.id).eq('prodotto', prodotto).eq('stato', 'in_attesa').limit(1);
+    if(gia && gia.length) return;
+  }catch(e){}
+  const { error } = await sb.from('acquisti').insert({ utente: utente.id, prodotto, prezzo: prezzo || null, stato: 'in_attesa', termini_accettati: termini });
+  if(error) console.error('Ordine non registrato:', error);
+}
+
 async function azioneProdotto(nome){
   if(inVendita(nome)){
     if(!utente){ apriAccesso('registrati'); return; }
@@ -5308,12 +5320,7 @@ async function azioneProdotto(nome){
     if(!termini) return;
     /* l'ordine entra subito in "Gestione" come da confermare: quando vedi il pagamento su Stripe
        (stessa email, stesso codice cliente) lo confermi e il cliente vede il gruppo Telegram */
-    if(sb){
-      const { error } = await sb.from('acquisti').insert({
-        utente: utente.id, prodotto: nome, prezzo: PREZZO_LANCIO[nome] || null, stato: 'in_attesa', termini_accettati: termini
-      });
-      if(error) console.error('Ordine non registrato:', error);
-    }
+    await registraOrdine(nome, PREZZO_LANCIO[nome], termini);
     const link = STRIPE[nome]
       + (STRIPE[nome].includes('?') ? '&' : '?')
       + 'prefilled_email=' + encodeURIComponent(utente.email || '')
@@ -5335,12 +5342,7 @@ async function azioneJournal(btn){
   const termini = await chiediTermini('Journal ' + piano + ' ' + NOME_CICLO[ciclo]);
   if(!termini) return;
   const prodotto = 'Journal ' + piano + ' ' + NOME_CICLO[ciclo];
-  if(sb){
-    const { error } = await sb.from('acquisti').insert({
-      utente: utente.id, prodotto, prezzo: PREZZO_JOURNAL[piano][ciclo], stato: 'in_attesa', termini_accettati: termini
-    });
-    if(error) console.error('Ordine non registrato:', error);
-  }
+  await registraOrdine(prodotto, PREZZO_JOURNAL[piano][ciclo], termini);
   try{ localStorage.setItem('riskly-pagamento', Date.now()); }catch(e){}
   window.location.href = link + '?prefilled_email=' + encodeURIComponent(utente.email || '')
                        + '&client_reference_id=' + encodeURIComponent(utente.id);
@@ -5553,11 +5555,13 @@ function gsDisegnaOrdini(){
   const box = document.getElementById('gs-lista-ordini');
   if(!gsOrdini.length){ box.innerHTML = '<div class="gs-vuoto">Nessun ordine.</div>'; return; }
   box.innerHTML = gsOrdini.map(o => {
-    const att = o.stato === 'attivo', rif = o.stato === 'rifiutato';
+    const att = o.stato === 'attivo', rif = o.stato === 'rifiutato', scad = o.stato === 'scaduto';
     const cl = gsCliente(o);
     const id = esc(o.id);
     const azioni = att
       ? `<button class="btn" onclick="gsStato('${id}','in_attesa')">Annulla</button>`
+      : scad
+      ? `<button class="btn pri" onclick="gsStato('${id}','attivo')">Riattiva</button>`
       : rif
       ? `<button class="btn" onclick="gsStato('${id}','in_attesa')">Ripristina</button>`
       : `<button class="btn pri" onclick="gsStato('${id}','attivo')">Conferma</button>
@@ -5570,7 +5574,7 @@ function gsDisegnaOrdini(){
         <div class="d">${gsData(o.creato)}${o.conto ? ' · conto '+esc(o.conto) : ''}${o.termini_accettati ? ' · termini accettati ✓' : ''}</div>
       </div>
       <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-        <span class="acq-stato ${att?'attivo':(rif?'rifiutato':'attesa')}">${att?'attivo':(rif?'rifiutato':'da confermare')}</span>
+        <span class="acq-stato ${att?'attivo':((rif||scad)?'rifiutato':'attesa')}">${att?'attivo':(scad?'scaduto':(rif?'rifiutato':'da confermare'))}</span>
         ${azioni}
         <button class="btn" style="color:var(--down,#C2361F)" onclick="gsElimina('${id}')">Elimina</button>
       </div>

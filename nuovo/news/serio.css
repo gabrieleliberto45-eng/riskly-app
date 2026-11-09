@@ -1,0 +1,31 @@
+/* Riskly News · aspetto "serio" (9 novembre 2026): stessa palette e stessi caratteri di riskly.trade. Solo aspetto. */
+@font-face{font-family:'Archivo';font-weight:100 450;font-style:normal;font-display:swap;src:url(/fonts/InstrumentSans-400-normal-latin.woff2) format('woff2')}
+@font-face{font-family:'Archivo';font-weight:451 550;font-style:normal;font-display:swap;src:url(/fonts/InstrumentSans-500-normal-latin.woff2) format('woff2')}
+@font-face{font-family:'Archivo';font-weight:551 650;font-style:normal;font-display:swap;src:url(/fonts/InstrumentSans-600-normal-latin.woff2) format('woff2')}
+@font-face{font-family:'Archivo';font-weight:651 900;font-style:normal;font-display:swap;src:url(/fonts/InstrumentSans-700-normal-latin.woff2) format('woff2')}
+@font-face{font-family:'Instrument Sans';font-weight:400;font-style:normal;font-display:swap;src:url(/fonts/InstrumentSans-400-normal-latin.woff2) format('woff2')}
+@font-face{font-family:'Instrument Sans';font-weight:500;font-style:normal;font-display:swap;src:url(/fonts/InstrumentSans-500-normal-latin.woff2) format('woff2')}
+@font-face{font-family:'Instrument Sans';font-weight:600;font-style:normal;font-display:swap;src:url(/fonts/InstrumentSans-600-normal-latin.woff2) format('woff2')}
+@font-face{font-family:'Instrument Sans';font-weight:700;font-style:normal;font-display:swap;src:url(/fonts/InstrumentSans-700-normal-latin.woff2) format('woff2')}
+@font-face{font-family:'Instrument Serif';font-weight:400;font-style:normal;font-display:swap;src:url(/fonts/InstrumentSerif-400-normal-latin.woff2) format('woff2')}
+@font-face{font-family:'Instrument Serif';font-weight:400;font-style:italic;font-display:swap;src:url(/fonts/InstrumentSerif-400-italic-latin.woff2) format('woff2')}
+@font-face{font-family:'Martian Mono';font-weight:100 500;font-style:normal;font-display:swap;src:url(/fonts/JetBrainsMono-400-normal-latin.woff2) format('woff2')}
+@font-face{font-family:'Martian Mono';font-weight:501 900;font-style:normal;font-display:swap;src:url(/fonts/JetBrainsMono-600-normal-latin.woff2) format('woff2')}
+:root{--bg:#F6F6F3;--panel:#FFFFFF;--ink:#0E1B2C;--ink2:#3A485C;--ink3:#5F6E83;--line:#DADFE6;--amber:#12263F;--oro:#8A6420;--blu:#1B3A5C;--verde:#1E6B4A;--rosso:#A3321F;--serif:'Instrument Serif',Georgia,'Times New Roman',serif}
+*{font-stretch:100%!important}
+html body{background:#F6F6F3!important;color:#0E1B2C!important;font-family:'Instrument Sans','Archivo',system-ui,sans-serif!important}
+html body button,html body input{font-family:'Instrument Sans','Archivo',system-ui,sans-serif!important}
+html body .evid h2,html body .riga h3,html body h1,html body h2,html body h3,html body .art h1,html body .art h2{font-family:'Instrument Serif',Georgia,serif!important;font-weight:400!important;letter-spacing:-.01em!important;color:#0E1B2C!important}
+html body .evid h2{font-size:28px!important;line-height:1.12!important}
+html body .riga h3{font-size:21px!important;line-height:1.15!important}
+html body .chip,html body .sez,html body .data{font-family:'Instrument Sans',sans-serif!important;letter-spacing:.07em!important}
+html body .chip{font-size:11.5px!important;font-weight:600!important}
+html body .chip .lk{background:#E8EEF5!important}
+html body .lista,html body .abbonati,html body .evid,html body .card,html body .riquadro{border-radius:8px!important;box-shadow:none!important}
+html body .riga img,html body .riga .ph,html body .evid img{border-radius:6px!important}
+html body .abbonati{border:1px solid #DADFE6!important;background:#EEF2F7!important}
+html body .btn.amb,html body .btn.pri{background:#12263F!important;border-color:#12263F!important;color:#FFFFFF!important;border-radius:6px!important;font-weight:600!important}
+html body .btn.amb *,html body .btn.pri *{color:#FFFFFF!important}
+html body .btn{border-radius:6px!important}
+html body header,html body .top,html body nav{background:rgba(246,246,243,.94)!important}
+html body .logo,html body .testata,html body h1.logo{font-family:'Instrument Serif',Georgia,serif!important;font-weight:400!important}
