@@ -11,6 +11,7 @@ html,body{margin:0;background:#07101c}canvas{display:block;width:1080px;height:1
 /* Reel sponsor Riskly (1080x1920). Tutto disegnato a canvas in funzione del tempo: disegna(t) è deterministico, così ogni fotogramma si può rendere.
    Scene: 0 hook · 1 la perdita · 2 cosa è Riskly · 3 i quattro prodotti · 4 journal e calcolatori · 5 invito.
    I grafici e i numeri sono illustrazioni, non operazioni reali (c'è scritto nel video). */
+const V = new URLSearchParams(location.search).get('v') || 'prodotti';
 const W = 1080, H = 1920, cv = document.getElementById('c'), g = cv.getContext('2d');
 const NAVY = '#0A1626', NAVY2 = '#12263F', ORO = '#D4AE5A', ORO2 = '#F1D58F', ACC = '#6FA3D4', ROSSO = '#E5594F', VERDE = '#4FBF8F', BIANCO = '#F4F1EA';
 const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x)), lerp = (a, b, k) => a + (b - a) * k;
@@ -19,7 +20,7 @@ const ob = x => { x = clamp(x); const c1 = 1.70158, c3 = c1 + 1; return 1 + c3 *
 const seme = n => { let s = (n * 9301 + 49297) % 233280; return () => (s = (s * 9301 + 49297) % 233280) / 233280; };
 let S = [], PAROLE = [], TOT = 0;
 window.prepara = (durate, parole) => {
-  PAROLE = parole; let t = 0; S = durate.map((d, i) => { const o = { ini: t, dur: d + (i === durate.length - 1 ? 1.0 : 0.45) }; t += o.dur; return o; });
+  PAROLE = parole; let t = 0; S = durate.map((d, i) => { const o = { ini: t, dur: Math.max(d + (i === durate.length - 1 ? 1.0 : 0.45), i === 0 ? 4.2 : 3.2) }; t += o.dur; return o; });
   TOT = t; return t;
 };
 const scena = t => { let i = S.findIndex(s => t >= s.ini && t < s.ini + s.dur); return i < 0 ? S.length - 1 : i; };
@@ -78,7 +79,12 @@ function testata(t, vis){
 function avviso(){ testo('Contenuto promozionale · Riskly è un mio prodotto · Non è consulenza finanziaria', W/2, 1796, '500 22px IMono', 'rgba(244,241,234,.55)');
   testo('Il trading con leva comporta un alto rischio di perdita del capitale', W/2, 1828, '500 22px IMono', 'rgba(244,241,234,.55)'); }
 
-/* --- scena 0: il mercato non lo controlli --- */
+const HOOK = {
+  prodotti: ['Il mercato', 'non lo controlli.', 'Le tue regole sì.', 'GUARDA COSA SUCCEDE ALLA TERZA PERDITA'],
+  news: ['Quando il mercato', 'si muove,', 'lo sai subito.', 'GUARDA COME'],
+  calc: ['Quanto rischi', 'davvero?', 'Fallo calcolare.', 'BASTANO TRE NUMERI'],
+  journal: ['Sai davvero', 'perché perdi?', 'I numeri lo dicono.', 'GUARDA IL TUO JOURNAL'] }[V];
+/* --- scena 0: gancio --- */
 function mercato(t, tl){
   /* linea di mercato (passeggiata casuale deterministica) che scorre dietro */
   const r = seme(11); const pts = []; let y = 0; for(let k = 0; k < 140; k++){ y += (r() - .5) * 60; pts.push(y); }
@@ -87,14 +93,14 @@ function mercato(t, tl){
   const a1 = ob(tl / .7), bl = 1 - clamp(tl / .6);
   g.save(); g.globalAlpha = clamp(tl / .25); g.filter = `blur(${bl * 18}px)`; const z = 1.9 - .9 * eo(tl / .35) + .04 * Math.sin(tl * 2);
   g.translate(W/2, 560); g.scale(z, z); g.translate(-W/2, -560);
-  testo('Il mercato', W/2, 520, '400 150px ISerif', BIANCO); testo('non lo controlli.', W/2, 690, 'italic 400 150px ISerif', BIANCO); g.restore(); g.filter = 'none';
+  testo(HOOK[0], W/2, 520, '400 150px ISerif', BIANCO); testo(HOOK[1], W/2, 690, 'italic 400 150px ISerif', BIANCO); g.restore(); g.filter = 'none';
   if(tl < .3){ g.fillStyle = `rgba(255,245,220,${(1 - tl / .3) * .85})`; g.fillRect(0, 0, W, H); }
   /* scanner: linea di luce che attraversa il grafico */
   const sx = ((tl * 700) % (W + 400)) - 200; g.save(); g.globalCompositeOperation = 'lighter'; const sg = g.createLinearGradient(sx - 120, 0, sx + 8, 0); sg.addColorStop(0, 'rgba(111,163,212,0)'); sg.addColorStop(1, 'rgba(180,220,255,.45)'); g.fillStyle = sg; g.fillRect(sx - 120, 940, 128, 380); g.restore();
   const a2 = eo((tl - 1.45) / .6);
-  if(a2 > 0){ g.save(); g.globalAlpha = a2; const dy = (1 - a2) * 50; testo('Le tue regole sì.', W/2, 930 + dy, '400 120px ISerif', ORO2); g.restore(); }
+  if(a2 > 0){ g.save(); g.globalAlpha = a2; const dy = (1 - a2) * 50; testo(HOOK[2], W/2, 930 + dy, '400 120px ISerif', ORO2); g.restore(); }
   flare(lerp(-300, W + 300, eio((tl - 1.3) / 1.1)), 800, 380, Math.sin(clamp((tl - 1.3) / 1.1) * Math.PI) * .9);
-  const tz = clamp((tl - 2.3) / .4); if(tz > 0){ const pul = .65 + .35 * Math.sin(tl * 9); g.globalAlpha = tz * pul; testo('GUARDA COSA SUCCEDE ALLA TERZA PERDITA', W/2, 1010, '500 30px IMono', ORO2, 'center', 3); g.globalAlpha = 1; testo('▼', W/2, 1060, '500 40px IMono', ORO2); }
+  const tz = clamp((tl - 2.3) / .4); if(tz > 0){ const pul = .65 + .35 * Math.sin(tl * 9); g.globalAlpha = tz * pul; testo(HOOK[3], W/2, 1010, '500 30px IMono', ORO2, 'center', 3); g.globalAlpha = 1; testo('▼', W/2, 1060, '500 40px IMono', ORO2); }
 }
 
 /* --- scena 1: la perdita (simulazione) --- */
@@ -135,7 +141,7 @@ function cosa(t, tl){
   g.save(); g.globalAlpha = eo((tl - .5) / .5); const z = 1 + (1 - eo((tl - .5) / .8)) * .15; g.translate(cx, cy); g.scale(z, z);
   testo('RISKLY', 0, 40, '400 200px ISerif', BIANCO, 'center', 14); g.restore();
   const lg = eo((tl - 1.0) / .6); g.fillStyle = ORO; g.fillRect(cx - 230 * lg, cy + 80, 460 * lg, 4);
-  const a = eo((tl - 1.2) / .5); if(a > 0){ g.globalAlpha = a; testo('4 software per MetaTrader 4 e 5', cx, cy + 160, '600 44px ISans', 'rgba(244,241,234,.9)'); g.globalAlpha = 1; }
+  const a = eo((tl - 1.2) / .5); if(a > 0){ g.globalAlpha = a; testo('5 software per MetaTrader 4 e 5', cx, cy + 160, '600 44px ISans', 'rgba(244,241,234,.9)'); g.globalAlpha = 1; }
   /* due negazioni barrate */
   [['Non aprono operazioni', 3.05, 1080], ['Non danno segnali', 4.4, 1200]].forEach(([s, tt, y]) => {
     const e = eo((tl - tt) / .4); if(e <= 0) return; const sl = eo((tl - tt - .55) / .35);
@@ -148,9 +154,10 @@ function cosa(t, tl){
 /* --- scena 3: i quattro prodotti, schede con luce che scorre --- */
 const PROD = [
   { nome: 'RiskGuard', riga: 'Ti ferma dopo N perdite di fila', parola: 'riskguard' },
-  { nome: 'TradeManager', riga: 'Stop a pareggio e trailing', parola: 'trademanager' },
+  { nome: 'TradeManager', riga: 'Stop a pareggio e trailing stop', parola: 'trademanager' },
   { nome: 'ScaleIn', riga: 'Più take profit sulla stessa posizione', parola: 'scalein' },
   { nome: 'Riskly Pro', riga: 'I tre insieme, rischio sull\'insieme', parola: 'riskly' },
+  { nome: 'RisklyCopy', riga: 'Copia su altri conti, stesso rischio', parola: 'copy' },
 ];
 function icona(k, cx, cy, p, t){
   g.save(); g.translate(cx, cy); g.lineWidth = 7; g.lineCap = 'round'; g.lineJoin = 'round'; g.shadowColor = ORO; g.shadowBlur = 20; g.strokeStyle = ORO2;
@@ -162,6 +169,9 @@ function icona(k, cx, cy, p, t){
     g.moveTo(-95, 80); g.lineTo(-40, 80); g.lineTo(-40, 60 * (1 - s) + 80 * s - 20 * s); g.lineTo(10, 60 - 20 * s); g.lineTo(10, 40 - 20 * s); g.lineTo(95, 40 - 20 * s); g.stroke();
   } else if(k === 2){ /* tre take profit */
     for(let j = 0; j < 3; j++){ const e = eo(p * 1.5 - j * .3); g.globalAlpha = e; g.beginPath(); g.moveTo(-90, 60 - j * 50); g.lineTo(-90 + 180 * e, 60 - j * 50); g.stroke(); g.fillStyle = ORO2; g.beginPath(); g.arc(-90 + 180 * e, 60 - j * 50, 8, 0, 6.28); g.fill(); }
+  } else if(k === 4){ /* un conto principale che copia su due conti */
+    g.globalAlpha = p; g.beginPath(); g.arc(-60, 0, 30, 0, 6.28); g.stroke(); g.setLineDash([10, 9]); g.strokeStyle = ACC;
+    [[70, -50], [70, 50]].forEach(([x, y], j) => { const e = eo(p * 1.4 - j * .25); g.beginPath(); g.moveTo(-26, 0); g.lineTo(-26 + (x - 26 + 26) * e, y * e); g.stroke(); g.setLineDash([]); g.strokeStyle = ORO2; g.beginPath(); g.arc(x, y, 22 * e, 0, 6.28); g.stroke(); g.setLineDash([10, 9]); g.strokeStyle = ACC; });
   } else { /* i tre simboli uniti dentro un anello */
     g.globalAlpha = p; g.beginPath(); g.arc(0, 0, 92, 0, 6.28 * eo(p)); g.stroke();
     g.save(); g.rotate(t * .8); g.setLineDash([6, 18]); g.strokeStyle = ACC; g.beginPath(); g.arc(0, 0, 112, 0, 6.28); g.stroke(); g.restore();
@@ -170,25 +180,23 @@ function icona(k, cx, cy, p, t){
   g.restore();
 }
 function prodotti(t, tl){
-  const ti = PROD.map(p => trova(3, p.parola)); ti[3] = Math.max(ti[3], trova(3, 'riskly') );
-  /* "Riskly Pro" compare già nel testo come "Riskly Pro li unisce": cerco l'ultima occorrenza */
-  const ult = PAROLE[3].filter(w => w[1].toLowerCase().startsWith('riskly')).pop(); if(ult) ti[3] = ult[0];
+  const ti = PROD.map(p => trova(3, p.parola)); const rk = PAROLE[3].filter(w => /^riskly/i.test(w[1])); if(rk[0]) ti[3] = rk[0][0]; if(rk[1]) ti[4] = rk[1][0];
   let att = 0; ti.forEach((x, k) => { if(tl >= x - .1) att = k; });
-  testo('I QUATTRO SOFTWARE', W/2, 290, '500 28px IMono', 'rgba(244,241,234,.6)', 'center', 6);
+  testo('I CINQUE SOFTWARE', W/2, 290, '500 28px IMono', 'rgba(244,241,234,.6)', 'center', 6);
   PROD.forEach((p, k) => {
     const q = clamp((tl - ti[k] + .1) / .6); if(q <= 0) return; const e = ob(q); const sel = k === att;
-    const y = 360 + k * 270, sc = sel ? 1 : .965, x = 90 + (1 - e) * (k % 2 ? 700 : -700), w = 900, h = 240;
+    const y = 340 + k * 210, sc = sel ? 1 : .965, x = 90 + (1 - e) * (k % 2 ? 700 : -700), w = 900, h = 190;
     g.save(); g.globalAlpha = clamp(q * 2); g.translate(x + w/2, y + h/2); g.rotate((1 - e) * (k % 2 ? .25 : -.25)); g.scale(sc, sc); g.translate(-w/2, -h/2);
     const gr = g.createLinearGradient(0, 0, w, h); gr.addColorStop(0, 'rgba(27,58,92,.92)'); gr.addColorStop(1, 'rgba(10,22,38,.92)');
     g.shadowColor = sel ? 'rgba(212,174,90,.6)' : 'rgba(0,0,0,.5)'; g.shadowBlur = sel ? 40 : 20; g.fillStyle = gr; g.beginPath(); g.roundRect(0, 0, w, h, 22); g.fill(); g.shadowBlur = 0;
     g.strokeStyle = sel ? ORO : 'rgba(111,163,212,.35)'; g.lineWidth = sel ? 3 : 2; g.stroke();
     /* luce che scorre nel bordo */
     g.save(); g.clip(); const sw = ((tl - ti[k]) * .9) % 2 * (w + 500) - 400; const lg = g.createLinearGradient(sw, 0, sw + 260, 120); lg.addColorStop(0, 'rgba(255,230,170,0)'); lg.addColorStop(.5, 'rgba(255,230,170,.16)'); lg.addColorStop(1, 'rgba(255,230,170,0)'); g.fillStyle = lg; g.fillRect(0, 0, w, h); g.restore();
-    icona(k, 140, h / 2, clamp((tl - ti[k]) / 1.0), t);
-    testo(p.nome, 270, 110, '400 78px ISerif', BIANCO, 'left'); testo(p.riga, 270, 168, '600 30px ISans', 'rgba(244,241,234,.78)', 'left');
+    g.save(); g.translate(0, h / 2); g.scale(.78, .78); g.translate(0, -h / 2); icona(k, 140 / .78, h / 2, clamp((tl - ti[k]) / 1.0), t); g.restore();
+    testo(p.nome, 250, 88, '400 68px ISerif', BIANCO, 'left'); testo(p.riga, 250, 138, '600 27px ISans', 'rgba(244,241,234,.78)', 'left');
     g.restore();
   });
-  const e = eo((tl - (ti[3] + 2.2)) / .5); if(e > 0){ g.globalAlpha = e; testo('MT4 · MT5 · si paga una volta', W/2, 1480, '500 28px IMono', ORO2); g.globalAlpha = 1; }
+  const e = eo((tl - (ti[4] + 2.0)) / .5); if(e > 0){ g.globalAlpha = e; testo('MT4 · MT5 · si paga una volta', W/2, 1440, '500 28px IMono', ORO2); g.globalAlpha = 1; }
 }
 
 /* --- scena 4: journal e calcolatori (numeri di esempio) --- */
@@ -199,35 +207,113 @@ function journal(t, tl){
   righe.forEach((r, k) => { const e = eo((tl - .1 - k * .3) / .35); if(e <= 0) return; const y = 420 + k * 98 + (1 - e) * 30; g.globalAlpha = e;
     testo(r[0], x + 40, y, '500 38px IMono', BIANCO, 'left'); testo(r[1], x + 330, y, '500 32px IMono', 'rgba(244,241,234,.6)', 'left'); testo(r[2], x + w - 40, y, '500 40px IMono', r[3], 'right');
     g.fillStyle = 'rgba(111,163,212,.18)'; g.fillRect(x + 40, y + 26, w - 80, 2); g.globalAlpha = 1; });
-  const m = eo((tl - 1.9) / .6); if(m > 0){ g.globalAlpha = m;
+  const m = V === 'prodotti' ? eo((tl - 1.9) / .6) : 0; if(m > 0){ g.globalAlpha = m;
     const vals = [['Winrate', '60%'], ['Drawdown', '−1,8R'], ['Orari', 'dove perdi']]; vals.forEach((v, k) => { const cx = 150 + k * 300; testo(v[1], cx + 60, 1040, '400 64px ISerif', ORO2); testo(v[0].toUpperCase(), cx + 60, 1084, '500 22px IMono', 'rgba(244,241,234,.65)', 'center', 3); }); g.globalAlpha = 1; }
-  testo('dati di esempio', W/2, 1135, '500 22px IMono', 'rgba(244,241,234,.5)');
-  const c = eo((tl - 3.6) / .5); if(c > 0){ g.globalAlpha = c; ['Rischio', 'Lotti', 'Rapporto R:R', 'Drawdown', 'Pips'].forEach((s, k) => { const ee = ob((tl - 3.7 - k * .22) / .4); if(ee <= 0) return; const xx = 90 + (k % 3) * 305, yy = 1170 + Math.floor(k / 3) * 115;
+  testo('dati di esempio', W/2, V === 'prodotti' ? 1135 : 1010, '500 22px IMono', 'rgba(244,241,234,.5)');
+  const c = V === 'prodotti' ? eo((tl - 3.6) / .5) : 0; if(c > 0){ g.globalAlpha = c; ['Rischio', 'Lotti', 'Rapporto R:R', 'Drawdown', 'Pips'].forEach((s, k) => { const ee = ob((tl - 3.7 - k * .22) / .4); if(ee <= 0) return; const xx = 90 + (k % 3) * 305, yy = 1170 + Math.floor(k / 3) * 115;
     g.save(); g.globalAlpha = clamp(ee); g.fillStyle = 'rgba(27,58,92,.9)'; g.strokeStyle = ORO; g.lineWidth = 2; g.beginPath(); g.roundRect(xx, yy + (1 - ee) * 20, 285, 90, 45); g.fill(); g.stroke(); testo(s, xx + 142, yy + 58 + (1 - ee) * 20, '600 30px ISans', BIANCO); g.restore(); });
     g.globalAlpha = 1; testo('5 calcolatori gratuiti', W/2, 1440, '500 28px IMono', ORO2); }
 }
 
 /* --- scena 5: invito --- */
+const INV = { prodotti: ['Visita', 'il nostro sito.', 'riskly.trade'], news: ['Visita', 'il nostro sito.', 'news.riskly.trade'], calc: ['Visita', 'il nostro sito.', 'strumenti.riskly.trade'], journal: ['7 giorni di prova', 'senza carta.', 'app.riskly.trade'] }[V];
 function invito(t, tl){
   const cx = W/2; raggi(cx, 760, t, eo(tl / 1)); bagliore(cx, 760, 600, 'rgba(212,174,90,A)', .22 * eo(tl / 1));
   for(let k = 0; k < 3; k++){ const q = ((tl * .6 + k / 3) % 1); g.save(); g.strokeStyle = `rgba(111,163,212,${(1 - q) * .5})`; g.lineWidth = 3; g.beginPath(); g.arc(cx, 760, 120 + q * 520, 0, 6.28); g.stroke(); g.restore(); }
   const a = ob(tl / .8); g.save(); g.globalAlpha = clamp(tl / .5); g.translate(cx, 700); g.scale(.85 + .15 * a, .85 + .15 * a);
-  testo('Provalo prima', 0, -20, 'italic 400 120px ISerif', BIANCO); testo('su conto demo.', 0, 120, '400 120px ISerif', ORO2); g.restore();
-  const b = eo((tl - 1.0) / .5); if(b > 0){ g.save(); g.globalAlpha = b; g.fillStyle = ORO; g.beginPath(); g.roundRect(cx - 330, 1010 + (1 - b) * 30, 660, 130, 65); g.fill();
-    testo('riskly.trade', cx, 1095 + (1 - b) * 30, '600 62px ISans', NAVY); g.restore(); const sw = (tl * .8) % 1.6 * 1100 - 300; flare(sw, 1075, 220, .45 * b); }
+  testo(INV[0], 0, -20, 'italic 400 120px ISerif', BIANCO); testo(INV[1], 0, 120, '400 120px ISerif', ORO2); g.restore();
+  const b = eo((tl - 1.0) / .5); if(b > 0){ g.save(); g.globalAlpha = b; g.fillStyle = ORO; g.font = '600 56px ISans'; const bw = g.measureText(INV[2]).width + 120; g.beginPath(); g.roundRect(cx - bw / 2, 1010 + (1 - b) * 30, bw, 130, 65); g.fill();
+    testo(INV[2], cx, 1093 + (1 - b) * 30, '600 56px ISans', NAVY); g.restore(); const sw = (tl * .8) % 1.6 * 1100 - 300; flare(sw, 1075, 220, .45 * b); }
 }
 
+
+/* --- scene nuove: Riskly News, calcolatori, journal --- */
+function etichetta(tx, y = 290){ testo(tx, W/2, y, '500 28px IMono', 'rgba(244,241,234,.6)', 'center', 6); }
+function scheda(x, y, w, h, bordo, glow){ g.save(); g.shadowColor = glow || 'rgba(0,0,0,.5)'; g.shadowBlur = glow ? 36 : 20; const gr = g.createLinearGradient(x, y, x + w, y + h); gr.addColorStop(0, 'rgba(27,58,92,.92)'); gr.addColorStop(1, 'rgba(10,22,38,.92)'); g.fillStyle = gr; g.beginPath(); g.roundRect(x, y, w, h, 22); g.fill(); g.shadowBlur = 0; g.strokeStyle = bordo || 'rgba(111,163,212,.35)'; g.lineWidth = 2; g.stroke(); g.restore(); }
+function notifica(t, tl){
+  etichetta('ESEMPI DI AVVISO');
+  const NT = [['Oro', 'sopra 4.100 $ prima del CPI'], ['Dollaro', 'l\'indice scende dopo i dati USA'], ['Fed', 'cosa cambia per i tassi di dicembre']];
+  NT.forEach((n, k) => { const t0 = .6 + k * 1.1, q = ob((tl - t0) / .5); if(q <= 0) return; const y = 400 + k * 200 + (1 - q) * -420, vib = Math.max(0, 1 - (tl - t0 - .35) / .5) * (tl > t0 + .35 ? 1 : 0);
+    g.save(); g.translate(Math.sin(tl * 70) * 7 * vib, 0); g.globalAlpha = clamp(q * 2);
+    for(let r = 0; r < 2; r++){ const rq = clamp((tl - t0 - .3 - r * .15) / .6); if(rq > 0 && rq < 1){ g.strokeStyle = `rgba(212,174,90,${(1 - rq) * .6})`; g.lineWidth = 3; g.beginPath(); g.roundRect(90 - rq * 36, y - rq * 36, 900 + rq * 72, 160 + rq * 72, 28 + rq * 30); g.stroke(); } }
+    scheda(90, y, 900, 160, ORO, 'rgba(212,174,90,.35)');
+    g.fillStyle = ORO; g.beginPath(); g.roundRect(125, y + 40, 80, 80, 20); g.fill(); testo('R', 165, y + 98, '400 66px ISerif', NAVY);
+    testo('RISKLY NEWS · ORA', 235, y + 58, '500 24px IMono', 'rgba(244,241,234,.6)', 'left', 2); testo(n[0] + ': ' + n[1], 235, y + 112, '600 36px ISans', BIANCO, 'left'); g.restore(); });
+  const a = eo((tl - 4.2) / .6); if(a > 0){ g.globalAlpha = a; testo('anche con l\'app chiusa', W/2, 1150, 'italic 400 80px ISerif', ORO2); g.globalAlpha = 1; }
+}
+function categorie(t, tl){
+  const cx = W/2, cy = 760; etichetta('SOLO CIÒ CHE MUOVE I MERCATI');
+  const CH = ['Fed e tassi', 'Oro', 'Dollaro', 'Petrolio', 'Dati USA', 'Setup XAU'];
+  for(let r = 0; r < 3; r++){ const q = ((tl * .5 + r / 3) % 1); g.strokeStyle = `rgba(111,163,212,${(1 - q) * .35})`; g.lineWidth = 2; g.beginPath(); g.arc(cx, cy, 110 + q * 400, 0, 6.28); g.stroke(); }
+  bagliore(cx, cy, 320, 'rgba(212,174,90,A)', .25);
+  testo('RISKLY', cx, cy + 10, '400 100px ISerif', BIANCO, 'center', 8); testo('NEWS', cx, cy + 60, '500 30px IMono', ORO2, 'center', 10);
+  CH.forEach((c, k) => { const e = ob((tl - .3 - k * .55) / .45); if(e <= 0) return; const a = k * 1.0472 - 1.2 + t * .22, x = cx + Math.cos(a) * 360, y = cy + Math.sin(a) * 330;
+    g.save(); g.globalAlpha = clamp(e); g.translate(x, y); g.scale(e, e); g.font = '600 38px ISans'; const w = g.measureText(c).width + 70; g.fillStyle = 'rgba(27,58,92,.95)'; g.strokeStyle = ORO; g.lineWidth = 2.5; g.shadowColor = 'rgba(212,174,90,.5)'; g.shadowBlur = 22; g.beginPath(); g.roundRect(-w/2, -38, w, 76, 38); g.fill(); g.stroke(); g.shadowBlur = 0; testo(c, 0, 13, '600 38px ISans', BIANCO); g.restore(); });
+  const a2 = eo((tl - 4.6) / .6); if(a2 > 0){ g.globalAlpha = a2; testo('Niente rumore. Niente segnali.', W/2, 1330, 'italic 400 72px ISerif', ORO2); g.globalAlpha = 1; }
+}
+function tempi(t, tl){
+  etichetta('ESEMPIO');
+  const k1 = eo(tl / .6), pul = .6 + .4 * Math.sin(tl * 8);
+  g.save(); g.shadowColor = ORO; g.shadowBlur = 40 * pul; testo('14:30', W/2, 640, '500 190px IMono', ORO2); g.restore(); testo('ESCE IL DATO', W/2, 720, '500 30px IMono', 'rgba(244,241,234,.7)', 'center', 8);
+  const l = eio((tl - 1.2) / 1.2); g.fillStyle = 'rgba(111,163,212,.3)'; g.fillRect(140, 830, 800, 4); g.fillStyle = ORO; g.fillRect(140, 830, 800 * l, 4); g.beginPath(); g.arc(140 + 800 * l, 832, 12, 0, 6.28); g.fill();
+  const c = ob((tl - 2.4) / .5); if(c > 0){ g.save(); g.globalAlpha = clamp(c); g.translate(0, (1 - c) * 60); scheda(90, 900, 900, 330, ORO, 'rgba(212,174,90,.3)'); testo('L\'ANALISI È ONLINE', 140, 965, '500 28px IMono', ORO2, 'left', 4);
+    for(let k = 0; k < 4; k++){ const w = [700, 620, 680, 420][k], sh = (tl * 500 + k * 120) % 1400 - 200; g.fillStyle = 'rgba(111,163,212,.22)'; g.beginPath(); g.roundRect(140, 1000 + k * 48, w, 26, 13); g.fill(); g.save(); g.clip(); const sg = g.createLinearGradient(sh, 0, sh + 160, 0); sg.addColorStop(0, 'rgba(255,230,170,0)'); sg.addColorStop(.5, 'rgba(255,230,170,.35)'); sg.addColorStop(1, 'rgba(255,230,170,0)'); g.fillStyle = sg; g.fillRect(140, 1000 + k * 48, 700, 26); g.restore(); }
+    testo('numeri e orari italiani', 140, 1218, '500 24px IMono', 'rgba(244,241,234,.6)', 'left'); g.restore(); }
+  [['✕ segnali', 3.7], ['✕ previsioni', 4.3]].forEach(([s, t0], k) => { const e = ob((tl - t0) / .4); if(e <= 0) return; g.save(); g.globalAlpha = clamp(e); g.font = '600 38px ISans'; const w = g.measureText(s).width + 70; g.fillStyle = 'rgba(229,89,79,.15)'; g.strokeStyle = ROSSO; g.lineWidth = 2.5; g.beginPath(); g.roundRect(W/2 + (k ? 20 : -20 - w), 1290, w, 76, 38); g.fill(); g.stroke(); testo(s, W/2 + (k ? 20 + w/2 : -20 - w/2), 1342, '600 38px ISans', BIANCO); g.restore(); });
+}
+function posizione(t, tl){
+  etichetta('DIMENSIONE DELLA POSIZIONE');
+  scheda(90, 340, 900, 560, ORO, 'rgba(212,174,90,.25)');
+  const R = [['Conto', 10000, v => Math.round(v).toLocaleString('it-IT') + ' €'], ['Rischio', 1, v => v.toFixed(1).replace('.', ',') + ' %'], ['Stop loss', 20, v => Math.round(v) + ' pip']];
+  R.forEach((r, k) => { const q = eo((tl - .3 - k * .8) / .7); if(q <= 0) return; const y = 460 + k * 130; g.globalAlpha = clamp(q * 2); testo(r[0].toUpperCase(), 140, y, '500 28px IMono', 'rgba(244,241,234,.65)', 'left', 3); testo(r[2](r[1] * q), 940, y + 10, '500 62px IMono', BIANCO, 'right'); g.fillStyle = 'rgba(111,163,212,.25)'; g.fillRect(140, y + 40, 800, 2); g.globalAlpha = 1; });
+  const b = ob((tl - 3.0) / .6); if(b > 0){ g.save(); g.globalAlpha = clamp(b); g.translate(W/2, 1090); g.scale(b, b); g.shadowColor = ORO; g.shadowBlur = 50; testo('0,50 lotti', 0, 0, '400 190px ISerif', ORO2); g.restore();
+    g.globalAlpha = clamp(b); testo('RISCHIO MASSIMO 100 €', W/2, 1180, '500 30px IMono', 'rgba(244,241,234,.8)', 'center', 4); testo('esempio indicativo · EUR/USD', W/2, 1230, '500 22px IMono', 'rgba(244,241,234,.5)'); g.globalAlpha = 1; }
+}
+function recupero(t, tl){
+  etichetta('PER RECUPERARE SERVE');
+  const RR = [[10, 11.1, .3], [25, 33.3, 1.6], [50, 100, Math.max(2.4, trova(2, 'cinquanta') - .3)]];
+  RR.forEach(([p, n, t0], k) => { const y = 420 + k * 300, q = eo((tl - t0) / .8), q2 = eo((tl - t0 - .9) / 1.0); if(q <= 0) return;
+    testo('PERDI', 90, y, '500 26px IMono', 'rgba(244,241,234,.6)', 'left', 3); g.fillStyle = ROSSO; g.shadowColor = ROSSO; g.shadowBlur = 18; g.beginPath(); g.roundRect(90, y + 18, 7 * p * q * 1.9, 52, 12); g.fill(); g.shadowBlur = 0; testo('−' + p + '%', 90 + 7 * p * 1.9 + 24, y + 62, '500 40px IMono', ROSSO, 'left');
+    if(q2 > 0){ testo('SERVE', 90, y + 130, '500 26px IMono', 'rgba(244,241,234,.6)', 'left', 3); g.fillStyle = ORO; g.shadowColor = ORO; g.shadowBlur = 24; g.beginPath(); g.roundRect(90, y + 148, Math.max(10, 7 * n * q2 * .95), 52, 12); g.fill(); g.shadowBlur = 0; testo('+' + (n * q2).toFixed(1).replace('.', ',') + '%', 90 + 7 * n * q2 * .95 + 24, y + 192, '500 40px IMono', ORO2, 'left'); } });
+}
+function cinque(t, tl){
+  etichetta('5 STRUMENTI GRATUITI');
+  const LI = [['Dimensione della posizione', 'dimensione'], ['Rischio di rovina', 'rischio'], ['Tracker prop firm', 'tracker'], ['Recupero dopo una perdita', 'recupero'], ['Crescita composta', 'crescita']];
+  LI.forEach(([nm, p], k) => { const t0 = trova(3, p) - .05, e = ob((tl - t0) / .5); if(e <= 0) return; const y = 350 + k * 185 + 0, x = 90 + (1 - e) * (k % 2 ? 500 : -500);
+    g.save(); g.globalAlpha = clamp(e * 2); g.translate(x, 0); scheda(0, y, 900, 150, k === 4 ? ORO : null, k === 4 ? 'rgba(212,174,90,.3)' : null); g.fillStyle = ORO; g.beginPath(); g.arc(70, y + 75, 30, 0, 6.28); g.fill(); testo(String(k + 1), 70, y + 90, '600 36px ISans', NAVY); testo(nm, 130, y + 92, '400 54px ISerif', BIANCO, 'left'); g.restore(); });
+  const a = eo((tl - Math.max(trova(3, 'cinque'), 4) - .2) / .5); if(a > 0){ g.globalAlpha = a; testo('gratuiti · senza registrazione', W/2, 1330, '500 30px IMono', ORO2); g.globalAlpha = 1; }
+}
+function statistiche(t, tl){
+  etichetta('LE STATISTICHE');
+  scheda(90, 340, 900, 480, null); testo('CURVA DEL CAPITALE', 130, 395, '500 24px IMono', 'rgba(244,241,234,.6)', 'left', 3);
+  const r = seme(31); let y = 0; const pts = Array.from({ length: 60 }, (_, k) => (y += (r() - .38) * 18)); const mn = Math.min(...pts), mx = Math.max(...pts), q = eo(tl / 1.6), n = Math.floor(59 * q) + 1;
+  g.save(); g.beginPath(); g.rect(110, 410, 860, 380); g.clip(); g.strokeStyle = VERDE; g.lineWidth = 5; g.lineJoin = 'round'; g.shadowColor = VERDE; g.shadowBlur = 20; g.beginPath(); for(let k = 0; k < n; k++){ const px = 130 + k * 14.2, py = 770 - (pts[k] - mn) / (mx - mn) * 320; k ? g.lineTo(px, py) : g.moveTo(px, py); } g.stroke(); g.restore();
+  testo('dati di esempio', 940, 395, '500 22px IMono', 'rgba(244,241,234,.5)', 'right');
+  [['Winrate', '60%'], ['Drawdown', '−1,8R'], ['Orari', 'dove perdi']].forEach((v, k) => { const e = ob((tl - 1.8 - k * .5) / .45); if(e <= 0) return; g.save(); g.globalAlpha = clamp(e); const cx = 240 + k * 300; g.translate(cx, 940 + (1 - e) * 30); testo(v[1], 0, 0, '400 64px ISerif', ORO2); testo(v[0].toUpperCase(), 0, 44, '500 22px IMono', 'rgba(244,241,234,.65)', 'center', 3); g.restore(); });
+  const m = eo((tl - 4.2) / .6); if(m > 0){ g.globalAlpha = m; scheda(90, 1060, 900, 330, null); testo('COME TI SENTIVI', 130, 1115, '500 24px IMono', 'rgba(244,241,234,.6)', 'left', 3);
+    [['Calmo', 150, VERDE], ['Ansioso', 90, ORO], ['Rabbia', -60, ROSSO]].forEach(([nm, v, c], k) => { const x = 150 + k * 280, hh = Math.abs(v) * m; g.fillStyle = c; g.shadowColor = c; g.shadowBlur = 14; g.beginPath(); g.roundRect(x, v > 0 ? 1290 - hh : 1290, 160, hh, 8); g.fill(); g.shadowBlur = 0; testo(nm, x + 80, 1370, '500 26px IMono', BIANCO); }); g.globalAlpha = 1; }
+}
+
+const ELENCO = { prodotti: [mercato, perdita, cosa, prodotti, journal, invito], news: [mercato, notifica, categorie, tempi, invito], calc: [mercato, posizione, recupero, cinque, invito], journal: [mercato, journal, statistiche, invito] }[V];
+window.eventi = () => { const e = [[S[0].ini, 'colpo']]; S.slice(1).forEach(x => e.push([x.ini - .05, 'whoosh']));
+  const at = (n, k) => { const i = ELENCO.findIndex(f => f.name === n); return i < 0 ? null : S[i].ini + k; };
+  if(V === 'prodotti'){ const p = at('perdita', 0), c = at('cosa', 0), pr = ELENCO.findIndex(f => f.name === 'prodotti'); e.push([c + .02, 'colpo'], [p + 2.05, 'glitch'], [p + 2.05, 'colpo'], [p + 1.05, 'riser'], [p + .2, 'batti'], [p + 1.05, 'batti'], [p + 1.9, 'batti']);
+    PAROLE[pr].filter(w => /^(riskguard|trademanager|scalein|riskly|copy)/i.test(w[1])).forEach(w => e.push([S[pr].ini + w[0], 'tic'])); }
+  if(V === 'news'){ const n = at('notifica', 0); [.6, 1.7, 2.8].forEach(x => e.push([n + x + .3, 'notifica'])); const c = at('categorie', 0); for(let k = 0; k < 6; k++) e.push([c + .3 + k * .55, 'tic']); }
+  if(V === 'calc'){ const p = at('posizione', 0); [.3, 1.1, 1.9].forEach(x => e.push([p + x, 'tic'])); e.push([p + 3.0, 'colpo']); const r = at('recupero', 0); [.3, 1.6, 2.4].forEach(x => e.push([r + x, 'tic'])); }
+  if(V === 'journal'){ const j = at('journal', 0); for(let k = 0; k < 5; k++) e.push([j + .1 + k * .3, 'tic']); const st = at('statistiche', 0); e.push([st + 1.8, 'tic'], [st + 2.3, 'tic'], [st + 2.8, 'tic']); }
+  return e; };
 window.disegna = (t) => {
   const i = scena(t), tl = t - S[i].ini; g.globalAlpha = 1;
   /* telecamera: piccola spinta in avanti e tremore sui colpi */
-  const imp = i === 1 ? Math.max(0, 1 - Math.abs(tl - 2.05) / .25) : i === 2 ? Math.max(0, 1 - tl / .5) : 0;
-  const zoom = 1 + .02 * (t / TOT) + .03 * imp + (i === 1 ? .07 * eio(tl / 4.5) : 0), dx = Math.sin(t * 60) * 8 * imp, dy = Math.cos(t * 70) * 8 * imp;
+  const nm = ELENCO[i].name, imp = nm === 'perdita' ? Math.max(0, 1 - Math.abs(tl - 2.05) / .25) : nm === 'cosa' ? Math.max(0, 1 - tl / .5) : 0;
+  const zoom = 1 + .02 * (t / TOT) + .03 * imp + (nm === 'perdita' ? .07 * eio(tl / 4.5) : 0), dx = Math.sin(t * 60) * 8 * imp, dy = Math.cos(t * 70) * 8 * imp;
   g.save(); g.translate(W/2 + dx, H/2 + dy); g.scale(zoom, zoom); g.translate(-W/2, -H/2);
   sfondo(t, i);
-  [mercato, perdita, cosa, prodotti, journal, invito][i](t, tl);
+  ELENCO[i](t, tl);
   g.restore();
   vignetta(); g.fillStyle = ORO; g.fillRect(0, 0, W * clamp(t / TOT), 8); testata(t, clamp((t - .4) / .6));
-  if(i < 5) sottotitoli(i, tl);
+  sottotitoli(i, tl);
   avviso();
   /* transizioni: lampo bianco sottile all'inizio di ogni scena */
   if(i > 0){ const f = Math.max(0, 1 - tl / .25); if(f > 0){ g.fillStyle = `rgba(255,236,200,${f * .28})`; g.fillRect(0, 0, W, H); } }

@@ -1,0 +1,30 @@
+{
+ "prodotti": [
+  "Il mercato non lo controlli. Le tue regole sì.",
+  "Il problema nasce quando, dopo tre perdite di fila, smetti di rispettarle.",
+  "Riskly sono cinque software per MetaTrader. Non aprono operazioni e non danno segnali: fanno rispettare le regole che hai deciso tu.",
+  "RiskGuard ti ferma dopo le perdite di fila. TradeManager sposta lo stop a pareggio e gestisce il trailing stop. ScaleIn divide la posizione in più take profit. Riskly Pro li unisce, e calcola il rischio sull'insieme. E Riskly Copy copia le tue operazioni su altri conti, con lo stesso rischio.",
+  "Ogni operazione chiusa arriva da sola nel journal. E hai cinque calcolatori gratuiti.",
+  "Visita il nostro sito: riskly punto trade."
+ ],
+ "news": [
+  "Quando il mercato si muove, lo sai subito.",
+  "Riskly News ti manda un avviso sul telefono, anche con l'app chiusa, quando esce qualcosa che conta.",
+  "Fed e tassi, oro, dollaro, petrolio e dati americani. Solo quello che muove davvero i mercati.",
+  "Esce il dato, e l'analisi arriva con numeri e orari. Niente segnali, niente previsioni.",
+  "Visita il nostro sito."
+ ],
+ "calc": [
+  "Quanto dovresti rischiare su questa operazione?",
+  "Inserisci conto, rischio e stop: il lotto lo calcola lo strumento.",
+  "E guarda cosa serve per recuperare: dopo una perdita del cinquanta per cento, devi guadagnare il cento per cento.",
+  "Dimensione della posizione, rischio di rovina, tracker per le prop firm, recupero dopo una perdita e crescita composta. Cinque strumenti gratuiti, senza registrazione.",
+  "Visita il nostro sito."
+ ],
+ "journal": [
+  "Sai davvero perché perdi?",
+  "Ogni operazione chiusa arriva da sola nel journal.",
+  "Vedi winrate, drawdown, gli orari in cui perdi di più, e come ti sentivi quando hai sbagliato.",
+  "Sette giorni di prova, senza carta. Visita il nostro sito."
+ ]
+}
