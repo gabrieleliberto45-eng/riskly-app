@@ -13,6 +13,8 @@ function effetti(ev, tot, out){
     if(k === 'colpo') for(let i = 0; i < SR * .6 && i0 + i < n; i++){ const s = i / SR; a[i0 + i] += (Math.sin(2*Math.PI*(75 - 40*s)*s) * 1.0 + rnd() * .4 * Math.exp(-s/.02)) * Math.exp(-s/.14); }
     if(k === 'whoosh') for(let i = 0; i < SR * .7 && i0 + i < n; i++){ const s = i / SR, e = Math.sin(Math.PI * Math.min(1, s / .7)); a[i0 + i] += rnd() * .22 * e * e; }
     if(k === 'glitch') for(let i = 0; i < SR * .3 && i0 + i < n; i++){ const s = i / SR; a[i0 + i] += (Math.sign(Math.sin(2*Math.PI*(180 + 900*Math.floor(s*40)%7*60)*s)) * .25) * Math.exp(-s/.12); }
+    if(k === 'riser') for(let i = 0; i < SR * 1.0 && i0 + i < n; i++){ const s = i / SR; a[i0 + i] += (rnd() * .25 + Math.sin(2*Math.PI*(200 + 1400*s*s)*s) * .12) * s * s; }
+    if(k === 'batti') for(let i = 0; i < SR * .3 && i0 + i < n; i++){ const s = i / SR; a[i0 + i] += Math.sin(2*Math.PI*(60 - 20*s)*s) * .8 * Math.exp(-s/.06); }
     if(k === 'tic') for(let i = 0; i < SR * .02 && i0 + i < n; i++) a[i0 + i] += rnd() * .3 * Math.exp(-i/(SR*.003)); }
   const b = Buffer.alloc(44 + n*2); b.write('RIFF',0); b.writeUInt32LE(36+n*2,4); b.write('WAVEfmt ',8); b.writeUInt32LE(16,16); b.writeUInt16LE(1,20); b.writeUInt16LE(1,22);
   b.writeUInt32LE(SR,24); b.writeUInt32LE(SR*2,28); b.writeUInt16LE(2,32); b.writeUInt16LE(16,34); b.write('data',36); b.writeUInt32LE(n*2,40);
@@ -28,7 +30,7 @@ function effetti(ev, tot, out){
   console.log('durata', tot.toFixed(2), 'scene', ini.map(x => x.toFixed(2)).join(', '));
   if(process.argv[2] === 'prova'){ for(const s of process.argv.slice(3)){ await p.evaluate(t => window.disegna(t), +s); await p.screenshot({ path: path.join(os.tmpdir(), `sp-${s}.png`) }); console.log(`/tmp/sp-${s}.png`); } return b.close(); }
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'sp-')), fx = path.join(tmp, 'fx.wav');
-  const ev = [[ini[2] + .02, 'colpo'], [ini[1] + 2.05, 'glitch'], [ini[1] + 2.05, 'colpo']]; ini.slice(1).forEach(x => ev.push([x - .05, 'whoosh']));
+  const ev = [[ini[2] + .02, 'colpo'], [ini[1] + 2.05, 'glitch'], [ini[1] + 2.05, 'colpo'], [ini[0] + .0, 'colpo'], [ini[1] + 1.05, 'riser'], [ini[1] + .2, 'batti'], [ini[1] + 1.05, 'batti'], [ini[1] + 1.9, 'batti']]; ini.slice(1).forEach(x => ev.push([x - .05, 'whoosh']));
   [.2, 1.05, 1.9].forEach(x => ev.push([ini[1] + x, 'tic'])); parole[3].filter(w => /^(riskguard|trademanager|scalein)/i.test(w[1]) || /^riskly/i.test(w[1])).forEach(w => ev.push([ini[3] + w[0], 'tic']));
   effetti(ev, tot, fx);
   const musica = path.join(QUI, '..', 'generatore', 'musica', 'h.m4a');
