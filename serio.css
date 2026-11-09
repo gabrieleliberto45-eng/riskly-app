@@ -11,23 +11,28 @@
 @font-face{font-family:'Instrument Serif';font-weight:400;font-style:italic;font-display:swap;src:url(/fonts/InstrumentSerif-400-italic-latin.woff2) format('woff2')}
 @font-face{font-family:'Martian Mono';font-weight:100 500;font-style:normal;font-display:swap;src:url(/fonts/JetBrainsMono-400-normal-latin.woff2) format('woff2')}
 @font-face{font-family:'Martian Mono';font-weight:501 900;font-style:normal;font-display:swap;src:url(/fonts/JetBrainsMono-600-normal-latin.woff2) format('woff2')}
-:root{--bg:#F6F6F3;--bg2:#EFF1F4;--panel:#FFFFFF;--panel-hi:#FFFFFF;--line:#DADFE6;--line-hi:rgba(27,58,92,.35);--text:#0E1B2C;--dim:#5F6E83;--dim2:#5F6E83;
+html:not([data-tema="scuro"]){--bg:#F6F6F3;--bg2:#EFF1F4;--panel:#FFFFFF;--panel-hi:#FFFFFF;--line:#DADFE6;--line-hi:rgba(27,58,92,.35);--text:#0E1B2C;--dim:#5F6E83;--dim2:#5F6E83;
   --accent:#1B3A5C;--accent-2:#2D5B8A;--accent-hi:#2D5B8A;--accent-soft:rgba(27,58,92,.07);--gold:#8A6420;--grad:linear-gradient(135deg,#12263F,#12263F);
   --up:#1E6B4A;--down:#A3321F;--r:8px;--paper:#F6F6F3;--sheet:#FFFFFF;--ink:#0E1B2C;--ink-2:#3A485C;--ink-3:#5F6E83;--rule:#DADFE6;--amber:#12263F;--amber-deep:#1B3A5C;--amber-ink:#FFFFFF;--focus:#2D5B8A}
 *{font-stretch:100%!important}
-html body{background:#F6F6F3!important;color:#0E1B2C!important;font-family:'Instrument Sans','Archivo',system-ui,sans-serif!important}
-html body button,html body input,html body select,html body textarea{font-family:'Instrument Sans','Archivo',system-ui,sans-serif!important}
-html body h1,html body h2,html body h3{font-family:'Instrument Serif',Georgia,serif!important;font-weight:400!important;letter-spacing:-.012em!important;text-transform:none!important;color:#0E1B2C!important;line-height:1.1!important}
-html body h1{font-size:clamp(34px,4.6vw,56px)!important}
-html body h2{font-size:clamp(26px,3vw,38px)!important}
-html body h1 em,html body h2 em{font-style:italic!important;color:#2D5B8A!important}
-html body .sez-num,html body .kicker,html body .eyebrow,html body .mod-kicker{background:transparent!important;border:0!important;border-radius:0!important;padding:0!important;font-family:'Instrument Sans',sans-serif!important;font-size:12.5px!important;font-weight:600!important;letter-spacing:.08em!important;text-transform:uppercase!important;color:#8A6420!important}
-html body nav,html body header,html body .topbar{background:rgba(246,246,243,.94)!important;box-shadow:none!important;border-bottom:1px solid #DADFE6!important}
-html body .btn,html body button.btn,html body .btn-pri,html body .pri{border-radius:6px!important;box-shadow:none!important;font-weight:600!important}
-html body .btn.pri,html body .btn-pri,html body .btn.amb,html body .btn-ambra{background:#12263F!important;color:#fff!important;border:1px solid #12263F!important}
-html body .btn.pri *,html body .btn.amb *{color:#fff!important}
-html body .acc-invito,html body .cal-avvisi,html body .jbot-avviso{background:#EEF2F7!important;border:1px solid #DADFE6!important;border-radius:8px!important}
-html body .cal-chip.alta,html body .cal-chip.media,html body .cal-chip{border-radius:6px!important}
-html body .card,html body .panel,html body .glass{background:#fff!important;border:1px solid #DADFE6!important;border-radius:8px!important;box-shadow:none!important}
-html body .mono,html body .meta{font-family:'JetBrains Mono','Martian Mono',ui-monospace,monospace!important}
-html body input,html body select,html body textarea{border-radius:6px!important}
+html:not([data-tema="scuro"]) body{background:#F6F6F3!important;color:#0E1B2C!important;font-family:'Instrument Sans','Archivo',system-ui,sans-serif!important}
+html:not([data-tema="scuro"]) body button,html:not([data-tema="scuro"]) body input,html:not([data-tema="scuro"]) body select,html:not([data-tema="scuro"]) body textarea{font-family:'Instrument Sans','Archivo',system-ui,sans-serif!important}
+html:not([data-tema="scuro"]) body h1,html:not([data-tema="scuro"]) body h2,html:not([data-tema="scuro"]) body h3{font-family:'Instrument Serif',Georgia,serif!important;font-weight:400!important;letter-spacing:-.012em!important;text-transform:none!important;color:#0E1B2C!important;line-height:1.1!important}
+html:not([data-tema="scuro"]) body h1{font-size:clamp(34px,4.6vw,56px)!important}
+html:not([data-tema="scuro"]) body h2{font-size:clamp(26px,3vw,38px)!important}
+html:not([data-tema="scuro"]) body h1 em,html:not([data-tema="scuro"]) body h2 em{font-style:italic!important;color:#2D5B8A!important}
+html:not([data-tema="scuro"]) body .sez-num,html:not([data-tema="scuro"]) body .kicker,html:not([data-tema="scuro"]) body .eyebrow,html:not([data-tema="scuro"]) body .mod-kicker{background:transparent!important;border:0!important;border-radius:0!important;padding:0!important;font-family:'Instrument Sans',sans-serif!important;font-size:12.5px!important;font-weight:600!important;letter-spacing:.08em!important;text-transform:uppercase!important;color:#8A6420!important}
+html:not([data-tema="scuro"]) body nav,html:not([data-tema="scuro"]) body header,html:not([data-tema="scuro"]) body .topbar{background:rgba(246,246,243,.94)!important;box-shadow:none!important;border-bottom:1px solid #DADFE6!important}
+html:not([data-tema="scuro"]) body .btn,html:not([data-tema="scuro"]) body button.btn,html:not([data-tema="scuro"]) body .btn-pri,html:not([data-tema="scuro"]) body .pri{border-radius:6px!important;box-shadow:none!important;font-weight:600!important}
+html:not([data-tema="scuro"]) body .btn.pri,html:not([data-tema="scuro"]) body .btn-pri,html:not([data-tema="scuro"]) body .btn.amb,html:not([data-tema="scuro"]) body .btn-ambra{background:#12263F!important;color:#fff!important;border:1px solid #12263F!important}
+html:not([data-tema="scuro"]) body .btn.pri *,html:not([data-tema="scuro"]) body .btn.amb *{color:#fff!important}
+html:not([data-tema="scuro"]) body .acc-invito,html:not([data-tema="scuro"]) body .cal-avvisi,html:not([data-tema="scuro"]) body .jbot-avviso{background:#EEF2F7!important;border:1px solid #DADFE6!important;border-radius:8px!important}
+html:not([data-tema="scuro"]) body .cal-chip.alta,html:not([data-tema="scuro"]) body .cal-chip.media,html:not([data-tema="scuro"]) body .cal-chip{border-radius:6px!important}
+html:not([data-tema="scuro"]) body .card,html:not([data-tema="scuro"]) body .panel,html:not([data-tema="scuro"]) body .glass{background:#fff!important;border:1px solid #DADFE6!important;border-radius:8px!important;box-shadow:none!important}
+html:not([data-tema="scuro"]) body .mono,html:not([data-tema="scuro"]) body .meta{font-family:'JetBrains Mono','Martian Mono',ui-monospace,monospace!important}
+html:not([data-tema="scuro"]) body input,html:not([data-tema="scuro"]) body select,html:not([data-tema="scuro"]) body textarea{border-radius:6px!important}
+
+/* tema scuro: restano i colori originali del sito, cambiano solo i caratteri */
+html[data-tema="scuro"] body,html[data-tema="scuro"] body button,html[data-tema="scuro"] body input,html[data-tema="scuro"] body select,html[data-tema="scuro"] body textarea{font-family:'Instrument Sans','Archivo',system-ui,sans-serif!important}
+html[data-tema="scuro"] body h1,html[data-tema="scuro"] body h2,html[data-tema="scuro"] body h3{font-family:'Instrument Serif',Georgia,serif!important;font-weight:400!important;letter-spacing:-.012em!important;text-transform:none!important}
+html[data-tema="scuro"] body .mono,html[data-tema="scuro"] body .meta{font-family:'JetBrains Mono','Martian Mono',ui-monospace,monospace!important}
