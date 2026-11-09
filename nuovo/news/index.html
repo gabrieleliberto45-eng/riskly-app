@@ -324,6 +324,15 @@ async function avvisiSpegni(){
 }
 /* se le notifiche sono attive il service worker resta registrato (serve per riceverle) */
 if(AVVISI && navigator.serviceWorker) navigator.serviceWorker.register('/sw.js').catch(() => {});
+/* a ogni apertura, con le notifiche accese, riallinea l'iscrizione con il server (9 novembre: una iscrizione persa o vecchia non faceva arrivare gli avvisi) */
+(async () => {
+  try{
+    if(!AVVISI || !('Notification' in window) || Notification.permission !== 'granted' || !navigator.serviceWorker || !('PushManager' in window)) return;
+    const reg = await navigator.serviceWorker.register('/sw.js'); await navigator.serviceWorker.ready;
+    const sub = (await reg.pushManager.getSubscription()) || await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: b64(NEWS_VAPID) });
+    await fetch(NEWS_ISCRIVI, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sub: sub.toJSON() }) });
+  }catch(e){}
+})();
 
 /* ---------- viste (3 novembre 2026: struttura da app) ---------- */
 const SEZIONI = { home: null, oro: ['setup', 'oro'], dati: ['dati'], fed: ['fed', 'tassi'], straordinarie: ['straordinarie'], settimana: ['settimana'], dollaro: ['dollaro'] };
