@@ -24,3 +24,6 @@ select cron.schedule('cal-avvisi', '* * * * *', $$
     headers := jsonb_build_object('Content-Type', 'application/json', 'x-cron', '<<CRON_SECRET>>'),
     body := '{}'::jsonb)
 $$);
+
+-- 9 novembre 2026: serie seguite (tutte le uscite di un dato, es. ogni CPI)
+alter table public.cal_iscrizioni add column if not exists serie jsonb not null default '{}'::jsonb;   -- { "indicatore|paese": { t: titolo, c: paese } }

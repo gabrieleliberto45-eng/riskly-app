@@ -2581,7 +2581,7 @@ function calPeriodo(){
   const piu = (d, n) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
   if(calGiorno === 'preferiti'){
     const t = Object.values(calPref).map(x => new Date(x.d).getTime());
-    return [new Date(Math.min(Date.now() - 12 * 3600e3, ...t)), new Date(Math.max(Date.now(), ...t) + 3600e3)];
+    return [new Date(Math.min(Date.now() - 12 * 3600e3, ...t)), new Date(Math.max(Date.now() + 14 * 86400e3, ...t) + 3600e3)];
   }
   if(calGiorno === 'domani') return [piu(d0, 1), piu(d0, 2)];
   if(calGiorno === 'settimana'){
@@ -2600,7 +2600,7 @@ async function calCarica(forza){
   if(!forza && chiave === calCaricato){ calMostra(); return; }
   if(chiave !== calCaricato) box.innerHTML = '<div class="cal-stato">Carico il calendario…</div>';
   try{
-    const r = await fetch('/api/calendario?from=' + da.toISOString() + '&to=' + a.toISOString() + '&countries=' + Object.keys(CAL_BAND).map(x => x.toUpperCase()).join(','));
+    const r = await fetch('/api/calendario?from=' + da.toISOString() + '&to=' + a.toISOString() + '&countries=' + Object.keys(CAL_BAND).map(x => x.toUpperCase()).join(','), { cache: 'no-store' });
     const j = await r.json();
     if(!r.ok || !Array.isArray(j.result)) throw new Error('risposta');
     calDati = j.result.sort((x, y) => x.date.localeCompare(y.date)); calCaricato = chiave;
@@ -2611,9 +2611,9 @@ function calMostra(){
   const box = document.getElementById('calCornice'); if(!box) return;
   const soloPref = calGiorno === 'preferiti';
   calAvvisiBarra();
-  if(soloPref && !Object.keys(calPref).length){ box.innerHTML = '<div class="cal-stato">Nessun preferito.<br>Tocca la stella ☆ accanto a un dato di oggi, domani o della settimana per salvarlo qui.</div>'; return; }
+  if(soloPref && !Object.keys(calPref).length && !Object.keys(calSerie).length){ box.innerHTML = '<div class="cal-stato">Nessun preferito.<br>Tocca la stella ☆ accanto a un dato (per esempio il CPI): lo segui, e ti avviso a ogni sua uscita.</div>'; return; }
   if(!soloPref && (!calStato.imp.length || !calStato.paesi.length)){ box.innerHTML = '<div class="cal-stato">Scegli almeno un livello di importanza e un paese nei filtri.</div>'; return; }
-  const ev = soloPref ? calDati.filter(e => calPref[e.id]) : calDati.filter(e => calStato.imp.includes(String(e.importance)) && calStato.paesi.includes(String(e.country).toLowerCase()));
+  const ev = soloPref ? calDati.filter(calSegue) : calDati.filter(e => calStato.imp.includes(String(e.importance)) && calStato.paesi.includes(String(e.country).toLowerCase()));
   if(!ev.length){ box.innerHTML = '<div class="cal-stato">Nessun evento con questi filtri' + (calGiorno === 'oggi' ? ' oggi' : calGiorno === 'domani' ? ' domani' : ' questa settimana') + '.</div>'; return; }
   const ora = Date.now(); let prossimo = ev.find(e => new Date(e.date).getTime() >= ora); let html = '', giorno = '';
   for(const e of ev){
@@ -2622,7 +2622,7 @@ function calMostra(){
     const h = d.toLocaleTimeString('it-IT', { hour:'2-digit', minute:'2-digit' });
     const p = String(e.country).toLowerCase(), pm = /^([A-Z][a-z]{2})\/(\d{2})$/.exec(e.period || ''), per = pm ? (+pm[2]) + ' ' + (CAL_MESI[pm[1]] || pm[1]) : e.period ? (CAL_MESI[e.period] || e.period) : '';
     const aperto = calAperto === e.id;
-    const pr = !!calPref[e.id];
+    const pr = calSegue(e);
     html += `<div class="cal-ev${d.getTime() < ora ? ' passato' : ''}${e === prossimo ? ' cal-prossimo' : ''}${pr ? ' pref' : ''}${aperto ? ' aperto' : ''}" data-id="${calEsc(e.id)}">
       <span class="cal-ora">${h}</span>
       <span class="cal-paese">${CAL_BAND[p] || ''} ${calEsc(e.currency || e.country)} <span class="cal-imp i${e.importance}"><b></b><b></b><b></b></span></span>
@@ -2635,8 +2635,13 @@ function calMostra(){
   box.innerHTML = html;
 }
 /* preferiti e avvisi: salvati in questo browser */
-let calPref = {}, calAvvisati = {};
-try { calPref = JSON.parse(localStorage.getItem('riskly-cal-pref')) || {}; calAvvisati = JSON.parse(localStorage.getItem('riskly-cal-avvisati')) || {}; } catch(e) {}
+let calPref = {}, calAvvisati = {}, calSerie = {};
+try { calPref = JSON.parse(localStorage.getItem('riskly-cal-pref')) || {}; calAvvisati = JSON.parse(localStorage.getItem('riskly-cal-avvisati')) || {}; calSerie = JSON.parse(localStorage.getItem('riskly-cal-serie')) || {}; } catch(e) {}
+/* la stella segue TUTTE le uscite di quel dato (9 novembre, Gabriele: "se metto il CPI nei preferiti ogni CPI deve arrivarmi la notifica"):
+   la chiave è l'indicatore + il paese, uguale per ogni mese. calPref resta solo per i preferiti vecchi, una singola uscita. */
+function calSerieChiave(e){ return String(e.ticker || e.indicator || e.title || '').replace(/\s+/g, '').toLowerCase() + '|' + String(e.country || '').toLowerCase(); }
+function calSegue(e){ return !!calSerie[calSerieChiave(e)] || !!calPref[e.id]; }
+function calNPref(){ return Object.keys(calSerie).length + Object.keys(calPref).length; }
 (function(){ const lim = Date.now() - 8 * 86400e3; for(const k in calPref) if(new Date(calPref[k].d).getTime() < lim) delete calPref[k];
   for(const k in calAvvisati) if(calAvvisati[k] < lim) delete calAvvisati[k]; })();
 /* notifiche push vere: il server (Supabase) controlla i preferiti ogni minuto e avvisa anche ad app chiusa */
@@ -2650,21 +2655,22 @@ async function calPushIscrivi(){
     if(!navigator.serviceWorker || !('PushManager' in window)) return false;
     const reg = await navigator.serviceWorker.ready;
     const sub = (await reg.pushManager.getSubscription()) || await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: calB64(CAL_VAPID) });
-    const r = await fetch(CAL_ISCRIVI, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sub: sub.toJSON(), preferiti: calPref }) });
+    const r = await fetch(CAL_ISCRIVI, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sub: sub.toJSON(), preferiti: calPref, serie: calSerie }) });
     calPushOk = r.ok;
   } catch(e) { calPushOk = false; }
   try { localStorage.setItem('riskly-cal-push', calPushOk ? '1' : '0'); } catch(e) {}
   return calPushOk;
 }
 function calPrefSalva(){
-  try { localStorage.setItem('riskly-cal-pref', JSON.stringify(calPref)); localStorage.setItem('riskly-cal-avvisati', JSON.stringify(calAvvisati)); } catch(e) {}
+  try { localStorage.setItem('riskly-cal-pref', JSON.stringify(calPref)); localStorage.setItem('riskly-cal-serie', JSON.stringify(calSerie)); localStorage.setItem('riskly-cal-avvisati', JSON.stringify(calAvvisati)); } catch(e) {}
   if(calPushOk && calAvvisiStato() === 'on'){ clearTimeout(calPushTimer); calPushTimer = setTimeout(calPushIscrivi, 800); }
-  const n = Object.keys(calPref).length, el = document.getElementById('calPrefN'); if(el) el.textContent = n || '';
+  const n = calNPref(), el = document.getElementById('calPrefN'); if(el) el.textContent = n || '';
 }
 function calPrefCambia(id){
-  if(calPref[id]) delete calPref[id];
-  else { const e = calDati.find(x => x.id === id); if(!e) return;
-    calPref[id] = { d: e.date, t: calNomeNuovo(e.title), c: String(e.country).toLowerCase(), u: e.unit || '' }; }
+  const e = calDati.find(x => x.id === id); if(!e) return;
+  const k = calSerieChiave(e);
+  if(calSegue(e)){ delete calSerie[k]; delete calPref[id]; }
+  else calSerie[k] = { t: calNomeNuovo(e.title), c: String(e.country).toLowerCase(), u: e.unit || '' };
   calPrefSalva(); calMostra();
 }
 function calAvvisiStato(){
@@ -2673,14 +2679,14 @@ function calAvvisiStato(){
 }
 function calAvvisiBarra(){
   const b = document.getElementById('calAvvisi'); if(!b) return;
-  const n = Object.keys(calPref).length; b.hidden = !n;
+  const n = calNPref(); b.hidden = !n;
   if(!n) return;
   // 3 novembre: niente più riquadro quando gli avvisi sono già attivi (Gabriele: "togli quel coso avvisi attivi"); se sono spenti, solo nei Preferiti
   if(calAvvisiStato() === 'on' || calGiorno !== 'preferiti'){ b.hidden = true; return; }
   const st = calAvvisiStato(), t = document.getElementById('calAvvisiTesto'), btn = document.getElementById('calAvvisiBtn');
   const ios = /iPhone|iPad/.test(navigator.userAgent), app = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
   btn.style.display = st === 'off' ? '' : 'none';
-  if(st === 'on') t.innerHTML = '🔔 <b>Avvisi attivi</b> sui ' + n + ' preferiti: 5 minuti prima e appena esce il valore' + (calPushOk ? ', anche con l\'app chiusa.' : '. Tieni il sito aperto (anche in un\'altra scheda).');
+  if(st === 'on') t.innerHTML = '🔔 <b>Avvisi attivi</b> sui ' + n + ' preferiti: 5 minuti prima e appena esce il valore, a ogni uscita' + (calPushOk ? ', anche con l\'app chiusa.' : '. Tieni il sito aperto (anche in un\'altra scheda).');
   else if(st === 'negato') t.textContent = '🔕 Hai bloccato le notifiche per questo sito: riattivale dalle impostazioni del browser.';
   else if(st === 'no') t.textContent = ios && !app ? '🔔 Su iPhone gli avvisi funzionano se aggiungi il sito alla schermata Home: Condividi → Aggiungi a Home, poi aprilo da lì.' : '🔔 Questo browser non supporta le notifiche.';
   else t.textContent = '🔔 Vuoi un avviso 5 minuti prima e appena escono i tuoi ' + n + ' preferiti?';
@@ -2704,23 +2710,25 @@ function calToast(tit, testo){
   const v = document.createElement('div'); v.className = 'cal-toast';
   v.innerHTML = '<b>' + calEsc(tit) + '</b><br>' + calEsc(testo); pila.appendChild(v); setTimeout(() => v.remove(), 9000);
 }
-/* ogni 30 secondi controlla i preferiti vicini: avviso 5 minuti prima e quando compare il valore effettivo */
+/* ogni 30 secondi controlla i preferiti vicini (singole uscite e serie seguite): avviso 5 minuti prima e quando compare il valore effettivo.
+   Con le notifiche push attive ci pensa anche il server; qui restano il messaggio sulla pagina e il caso senza push. */
 async function calControlla(){
   if(calAvvisiStato() !== 'on') return;
-  const ora = Date.now(), vicini = Object.entries(calPref).filter(([, x]) => { const t = new Date(x.d).getTime(); return t > ora - 3 * 3600e3 && t < ora + 6 * 60e3; });
-  if(!vicini.length) return;
-  for(const [id, x] of vicini){ const t = new Date(x.d).getTime();
-    if(t > ora && t - ora <= 5 * 60e3 && !calAvvisati[id + ':p']){ calAvvisati[id + ':p'] = ora; calPrefSalva();
-      calNotifica('Tra ' + Math.max(1, Math.round((t - ora) / 60e3)) + ' min: ' + x.t, (CAL_BAND[x.c] || '') + ' esce alle ' + new Date(t).toLocaleTimeString('it-IT', { hour:'2-digit', minute:'2-digit' }) + '. Occhio a spread e stop stretti.'); } }
-  const usciti = vicini.filter(([id, x]) => new Date(x.d).getTime() <= ora + 60e3 && !calAvvisati[id + ':u']);
-  if(!usciti.length) return;
+  if(!calNPref()) return;
+  const ora = Date.now();
+  let eventi = [];
   try {
-    const r = await fetch('/api/calendario?from=' + new Date(ora - 3 * 3600e3).toISOString() + '&to=' + new Date(ora + 3600e3).toISOString() + '&countries=' + Object.keys(CAL_BAND).map(x => x.toUpperCase()).join(','));
-    const j = await r.json(); if(!Array.isArray(j.result)) return;
-    for(const [id, x] of usciti){ const e = j.result.find(y => y.id === id); if(!e || e.actual === null || e.actual === undefined || e.actual === '') continue;
-      calAvvisati[id + ':u'] = ora; calPrefSalva();
-      calNotifica('Uscito: ' + x.t, (CAL_BAND[x.c] || '') + ' Effettivo ' + calNum(e.actual, e.unit) + ' · previsto ' + calNum(e.forecast, e.unit) + ' · precedente ' + calNum(e.previous, e.unit)); }
-  } catch(e) {}
+    const r = await fetch('/api/calendario?from=' + new Date(ora - 3 * 3600e3).toISOString() + '&to=' + new Date(ora + 10 * 60e3).toISOString() + '&countries=' + Object.keys(CAL_BAND).map(x => x.toUpperCase()).join(','), { cache: 'no-store' });
+    const j = await r.json(); if(!Array.isArray(j.result)) return; eventi = j.result;
+  } catch(e) { return; }
+  for(const e of eventi){
+    if(!calSegue(e)) continue;
+    const id = e.id, t = new Date(e.date).getTime(), nome = calNomeNuovo(e.title), band = CAL_BAND[String(e.country).toLowerCase()] || '';
+    if(t > ora && t - ora <= 5 * 60e3 && !calAvvisati[id + ':p']){ calAvvisati[id + ':p'] = ora; calPrefSalva();
+      calNotifica('Tra ' + Math.max(1, Math.round((t - ora) / 60e3)) + ' min: ' + nome, band + ' esce alle ' + new Date(t).toLocaleTimeString('it-IT', { hour:'2-digit', minute:'2-digit' }) + '. Occhio a spread e stop stretti.'); }
+    if(t <= ora + 60e3 && e.actual !== null && e.actual !== undefined && e.actual !== '' && !calAvvisati[id + ':u']){ calAvvisati[id + ':u'] = ora; calPrefSalva();
+      calNotifica('Uscito: ' + nome, band + ' Effettivo ' + calNum(e.actual, e.unit) + ' · previsto ' + calNum(e.forecast, e.unit) + ' · precedente ' + calNum(e.previous, e.unit)); }
+  }
 }
 setInterval(() => calControlla(), 30000);
 /* quando torni sull'app (anche dalla schermata Home) e il sito è stato aggiornato, ricarica da solo la versione nuova */
@@ -2748,7 +2756,10 @@ function calDisegna(){
   document.querySelectorAll('.cal-giorni button').forEach(b => b.setAttribute('aria-selected', b.dataset.g === calGiorno));
   calCarica();
   clearInterval(calTimer);
-  calTimer = setInterval(() => { if(document.visibilityState === 'visible' && document.getElementById('st-calendario').classList.contains('on')) calCarica(true); }, 60000);
+  calTimer = setInterval(() => { if(document.visibilityState === 'visible' && document.getElementById('st-calendario').classList.contains('on')) calCarica(true); }, 30000);
+  if(!window.__calVis){ window.__calVis = true;
+    const subito = () => { if(document.visibilityState === 'visible' && document.getElementById('st-calendario') && document.getElementById('st-calendario').classList.contains('on')) calCarica(true); };
+    document.addEventListener('visibilitychange', subito); window.addEventListener('pageshow', subito); window.addEventListener('focus', subito); window.addEventListener('online', subito); }
 }
 document.addEventListener('click', e => {
   const b = e.target.closest('.cal-giorni button'); if(b){ calGiornoScegli(b.dataset.g); return; }
@@ -2826,7 +2837,7 @@ temaEtichetta();
    vanno nella tabella strumenti_dati (una riga per utente) e tornano su ogni dispositivo. */
 const ACC = { sb: null, utente: null, modo: 'registrati', timer: null, applico: false, ultimaLettura: 0 };
 /* chiavi che seguono l'account; avvisi e iscrizione push restano del singolo dispositivo */
-const ACC_CHIAVI = ['riskly-calendario', 'riskly-cal-pref', 'riskly-cal-giorno', 'riskly-calc-sym', 'riskly-strumento', 'riskly-tema', 'riskly-campi'];
+const ACC_CHIAVI = ['riskly-calendario', 'riskly-cal-pref', 'riskly-cal-serie', 'riskly-cal-giorno', 'riskly-calc-sym', 'riskly-strumento', 'riskly-tema', 'riskly-campi'];
 try { ACC.sb = window.supabase.createClient('https://swlztverwfgdgchgpudt.supabase.co', 'sb_publishable_j9bujIvCEz6x21yYoCODPw_lIZCJrIR'); } catch(e) {}
 if(document.getElementById('st-news') && document.getElementById('st-news').classList.contains('on')) nwMostra();
 const accEsc = t => String(t == null ? '' : t).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
@@ -2879,7 +2890,7 @@ async function accScarica(){
   try {
     ACC_CHIAVI.forEach(k => {
       let v = server[k];
-      if(k === 'riskly-cal-pref' || k === 'riskly-campi'){
+      if(k === 'riskly-cal-pref' || k === 'riskly-cal-serie' || k === 'riskly-campi'){
         let a = {}, b = {}; try { a = JSON.parse(locale[k] || '{}') || {}; b = JSON.parse(v || '{}') || {}; } catch(e) {}
         const unito = JSON.stringify(k === 'riskly-cal-pref' ? Object.assign({}, a, b) : Object.assign({}, a, b));
         if(Object.keys(a).some(x => !(x in b))) daCaricare = true;

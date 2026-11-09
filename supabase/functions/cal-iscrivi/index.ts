@@ -1,7 +1,7 @@
 // Riskly · iscrizione agli avvisi del calendario
 //
 // La chiama strumenti.riskly.trade quando l'utente attiva gli avvisi o cambia i preferiti.
-//   POST   { sub: PushSubscription JSON, preferiti: { id: { d, t, c } } }  → salva
+//   POST   { sub: PushSubscription JSON, preferiti: { id: { d, t, c } }, serie: { chiave: { t, c } } }  → salva
 //   DELETE { endpoint }                                                  → toglie
 // Pubblicata SENZA verifica JWT (la chiama il browser senza account).
 
@@ -45,10 +45,16 @@ Deno.serve(async (req) => {
     if (!/^[\w-]{1,40}$/.test(id) || isNaN(Date.parse(x?.d))) continue;
     pref[id] = { d: new Date(x.d).toISOString(), t: String(x?.t || "").slice(0, 120), c: String(x?.c || "").slice(0, 4) };
   }
+  // serie seguite: tutte le uscite di un dato (es. ogni CPI). Chiave = indicatore + paese. Al massimo 80.
+  const serie: Record<string, { t: string; c: string }> = {};
+  for (const [k, x] of Object.entries(j?.serie || {}).slice(0, 80) as [string, any][]) {
+    if (!/^[\w:.\-|]{1,80}$/.test(k)) continue;
+    serie[k] = { t: String(x?.t || "").slice(0, 120), c: String(x?.c || "").slice(0, 4) };
+  }
   const { error } = await db.from("cal_iscrizioni").upsert({
     endpoint: s.endpoint, p256dh: s.keys.p256dh.slice(0, 200), auth: s.keys.auth.slice(0, 100),
-    preferiti: pref, aggiornato: new Date().toISOString(),
+    preferiti: pref, serie, aggiornato: new Date().toISOString(),
   });
   if (error) return risposta(req, 500, { errore: "salvataggio" });
-  return risposta(req, 200, { ok: true, preferiti: Object.keys(pref).length });
+  return risposta(req, 200, { ok: true, preferiti: Object.keys(pref).length, serie: Object.keys(serie).length });
 });

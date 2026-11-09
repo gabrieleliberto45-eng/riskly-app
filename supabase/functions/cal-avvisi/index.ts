@@ -19,6 +19,8 @@ webpush.setVapidDetails("mailto:info@riskly.trade", Deno.env.get("VAPID_PUBLIC")
 
 const BANDIERE: Record<string, string> = { us: "🇺🇸", eu: "🇪🇺", it: "🇮🇹", de: "🇩🇪", gb: "🇬🇧", jp: "🇯🇵", ch: "🇨🇭", ca: "🇨🇦", au: "🇦🇺", nz: "🇳🇿", cn: "🇨🇳" };
 const MIN = 60_000;
+// stessa chiave del sito (strumenti.riskly.trade): indicatore + paese, uguale ogni mese
+const chiave = (e: any) => String(e.ticker || e.indicator || e.title || "").replace(/\s+/g, "").toLowerCase() + "|" + String(e.country || "").toLowerCase();
 
 function num(v: unknown, u?: string) {
   if (v === null || v === undefined || v === "") return "—";
@@ -36,7 +38,8 @@ Deno.serve(async (req) => {
 
   // quali preferiti sono vicini: 5 minuti prima, oppure usciti nelle ultime 3 ore
   const vicino = (d: string) => { const t = Date.parse(d); return t > adesso - 180 * MIN && t < adesso + 6 * MIN; };
-  const servono = righe!.some((r) => Object.values(r.preferiti as Record<string, any>).some((x) => vicino(x.d)));
+  const servono = righe!.some((r) => Object.keys((r.serie || {}) as Record<string, unknown>).length > 0 ||
+    Object.values(r.preferiti as Record<string, any>).some((x) => vicino(x.d)));
   let eventi: Record<string, any> = {};
   if (servono) {
     try {
@@ -54,7 +57,15 @@ Deno.serve(async (req) => {
     const nuovi: { tit: string; testo: string; tag: string }[] = [];
     let cambiato = false;
 
-    for (const [id, x] of Object.entries(pref)) {
+    // serie seguite: ogni uscita di quel dato nella finestra diventa un obiettivo, come un preferito (9 novembre: "ogni CPI deve arrivarmi")
+    const serie = (r.serie || {}) as Record<string, { t: string; c: string }>;
+    const obiettivi: Record<string, { d: string; t: string; c: string }> = { ...pref };
+    for (const e of Object.values(eventi)) {
+      const k = chiave(e);
+      if (serie[k] && !obiettivi[e.id]) obiettivi[e.id] = { d: e.date, t: serie[k].t || String(e.title || ""), c: String(e.country || "").toLowerCase() };
+    }
+
+    for (const [id, x] of Object.entries(obiettivi)) {
       const t = Date.parse(x.d), b = BANDIERE[x.c] || "";
       if (t > adesso && t - adesso <= 5 * MIN && !inviati[id + ":p"]) {
         inviati[id + ":p"] = adesso; cambiato = true;
