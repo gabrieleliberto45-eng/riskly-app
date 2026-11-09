@@ -34,3 +34,28 @@ html:not([data-tema="scuro"]) body .logo,html:not([data-tema="scuro"]) body .tes
 html[data-tema="scuro"] body,html[data-tema="scuro"] body button,html[data-tema="scuro"] body input,html[data-tema="scuro"] body select,html[data-tema="scuro"] body textarea{font-family:'Instrument Sans','Archivo',system-ui,sans-serif!important}
 html[data-tema="scuro"] body h1,html[data-tema="scuro"] body h2,html[data-tema="scuro"] body h3{font-family:'Instrument Serif',Georgia,serif!important;font-weight:400!important;letter-spacing:-.012em!important;text-transform:none!important}
 html[data-tema="scuro"] body .mono,html[data-tema="scuro"] body .meta{font-family:'JetBrains Mono','Martian Mono',ui-monospace,monospace!important}
+
+/* ---- computer: pagina a tutto schermo, stesso schema del telefono (9 novembre 2026, richiesta di Gabriele) ---- */
+@media (min-width:980px){
+  html body .app{max-width:none!important;width:100%;border-left:0!important;border-right:0!important;padding-bottom:40px}
+  html body .barra{max-width:none!important}
+  html body .testa{max-width:none}
+  html body .nastro{max-width:none}
+  html body #vista.v-lista{display:grid!important;grid-template-columns:minmax(0,1fr) clamp(380px,26vw,520px)!important;gap:0 clamp(20px,2.2vw,40px)!important;padding:0 clamp(20px,3vw,56px) 36px!important;align-items:start!important}
+  html body #vista.v-lista>*{grid-column:1;grid-row:auto!important;margin-left:0!important;margin-right:0!important}
+  html body #vista.v-lista .oggi,html body #vista.v-lista .sez,html body #vista.v-lista .altri,html body #vista.v-lista .vuoto{grid-column:1/-1!important}
+  html body #vista.v-lista .lista{grid-column:2!important;grid-row:1 / span 8!important;margin-top:18px!important;position:sticky;top:130px;max-height:calc(100vh - 150px);overflow:auto}
+  html body #vista.v-lista .evid{grid-column:1!important;margin-top:18px!important}
+  html body #vista.v-lista .evid{display:grid!important;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);align-items:stretch}
+  html body #vista.v-lista .evid img,html body #vista.v-lista .evid .ph{width:100%;height:auto;max-height:none;aspect-ratio:16/9;object-fit:cover;align-self:center}
+  html body #vista.v-lista .evid .txt{padding:clamp(18px,2vw,32px)!important;align-self:center}
+  html body #vista.v-lista .evid h2{font-size:clamp(26px,2.2vw,38px)!important}
+  html body #vista.v-lista .evid p{-webkit-line-clamp:5!important;font-size:16px!important}
+  html body #vista.v-lista .schede{grid-column:1!important;display:grid!important;grid-template-columns:repeat(auto-fill,minmax(290px,1fr))!important;gap:clamp(14px,1.4vw,22px)!important;margin-top:18px!important}
+  html body #vista.v-lista .abbonati,html body #vista.v-lista .campana{grid-column:1!important}
+  html body .pezzo{max-width:980px}
+  html body .ai,html body .ai-box form,html body .ai-box small{max-width:980px}
+}
+@media (min-width:1700px){
+  html body #vista.v-lista .schede{grid-template-columns:repeat(auto-fill,minmax(320px,1fr))!important}
+}
