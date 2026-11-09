@@ -41,3 +41,17 @@ Gabriele scrive in italiano: rispondi in italiano semplice, frasi brevi.
 ## Documenti da leggere
 - `social/piano/pubblicita.md` (sezione "Revisione del 7 novembre": cosa funziona e cosa no sui social).
 - `social/piano/rotazione.md`, `social/piano/conversione.md`.
+
+## Aggiornamento del 9 novembre 2026 (sessione "come ti sembra")
+- Autorizzazione di Gabriele: le uscite automatiche (Riskly News, social, setup XAU, ecc.) si pubblicano da sole, senza chiedere e SENZA scrivere in chat cosa è uscito; in chat solo errori o decisioni.
+- Orari: ora italiana = UTC+1 fino a marzo (errore corretto il 9 novembre: scrivere sempre l'ora italiana, non UTC).
+- Voce reel: Marco di ElevenLabs, ID `13Cuh3NuYvWOVQtLbRN8`, variabili `ELEVEN_API_KEY` e `ELEVEN_VOCE` (la chiave ha solo il permesso di sintesi; è stata scritta in chat: da rigenerare). Reel r14–r20 (9–15 novembre) programmati su Metricool (IG+TikTok 13:00, martedì 10 e venerdì 13 alle 9:30; Short YouTube 18:00). Strumenti per rifarli: `python3 social/youtube/voce.py rNN`, `python3 social/reel/parole.py rNN`, `node social/reel/punto.js rNN` (serve `pip install edge-tts faster-whisper "av<17"`, certificati in /root/.ccr/ca-bundle.crt).
+- Notifiche Riskly News: il server funziona (news-avvisi); il sito ora riallinea da solo l'iscrizione a ogni apertura. Se un telefono non le riceve: aprire l'app dall'icona Home e riprovare.
+- Aspetto "serio" (blu notte e bianco, Instrument Serif/Sans): file `serio.css` in nuovo/riskly, nuovo/strumenti, nuovo/news e nella radice (journal). Vale solo col tema chiaro (`html:not([data-tema="scuro"])`); il tema scuro resta quello vecchio, cambiano solo i caratteri. Per tornare indietro basta togliere il `<link>` a serio.css.
+- Riskly News su computer: pagina a tutto schermo con elenco a destra (blocco @media in nuovo/news/serio.css).
+- Journal: i file stanno su main; il ramo di lavoro NON ha la versione aggiornata di index.html/demo.html. Modificare solo da un ramo `claude/journal-*` creato da main, poi PR e merge.
+- Ordini: nuova `registraOrdine()` (niente doppioni "in attesa"); stato "scaduto" visibile in Gestione e Account. Oggi in `acquisti` non c'è nessun ordine (quello RiskGuard del 6 novembre non c'è più).
+- Calendario (strumenti): la stella segue l'INDICATORE (chiave = ticker + paese, colonna `serie` in `cal_iscrizioni`); funzioni `cal-iscrivi` e `cal-avvisi` aggiornate (versione 2). I dati "effettivo" arrivano da TradingView: possono tardare per i dati minori. Il sito si aggiorna ogni 30 s e al ritorno sulla pagina.
+- Deploy funzioni Supabase senza CLI: `POST https://api.supabase.com/v1/projects/swlztverwfgdgchgpudt/functions/deploy?slug=NOME` con file multipart `index.ts` e metadata `{"entrypoint_path":"index.ts","name":"NOME","verify_jwt":false}`. Il controllo di sicurezza può bloccare deploy e modifiche al database di produzione: serve l'ok esplicito di Gabriele ("metti online" / "approvo"), poi si riesegue.
+- Netlify siti: riskly `44a1076d-45d2-4c1e-a702-541fbc7a3010`, strumenti `0f4adbce-96a2-4a3f-ba7c-e500a0f3f4ad`, news `abca6d6e-64d8-40cb-a0c5-776d787d16ac`.
+- Da fare: video dei bot e copertina del corso hanno ancora nero/giallo acceso (andrebbero rifatti nello stile nuovo); rigenerare la chiave ElevenLabs; mercoledì 18 verbali Fed.
