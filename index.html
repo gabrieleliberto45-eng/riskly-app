@@ -4159,7 +4159,12 @@ function j_sessioniAperte(data, ora){
     return h >= 8 && h < 17;
   }).map(([n]) => n);
 }
-const j_multi = v => String(v || '').split(' + ').filter(Boolean);
+/* le voci si salvano unite da « + »: «P.B. EMA200 + Alligator» contiene già quel separatore, quindi lo proteggo prima di dividere (altrimenti non si poteva selezionare) */
+const j_multi = v => {
+  const comp = J_SETUP_IC.filter(o => o.includes(' + ')); let s = String(v || '');
+  comp.forEach((o, i) => { s = s.split(o).join('\u0001' + i + '\u0002'); });
+  return s.split(' + ').filter(Boolean).map(x => x.replace(/\u0001(\d+)\u0002/g, (m, i) => comp[+i]));
+};
 
 const METODI = {
   generale: { nome: 'Generale', desc: 'Il journal classico: simbolo, risultato, rischio, strategia e stato d\'animo.', campi: [] },
