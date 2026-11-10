@@ -55,3 +55,12 @@ Gabriele scrive in italiano: rispondi in italiano semplice, frasi brevi.
 - Deploy funzioni Supabase senza CLI: `POST https://api.supabase.com/v1/projects/swlztverwfgdgchgpudt/functions/deploy?slug=NOME` con file multipart `index.ts` e metadata `{"entrypoint_path":"index.ts","name":"NOME","verify_jwt":false}`. Il controllo di sicurezza può bloccare deploy e modifiche al database di produzione: serve l'ok esplicito di Gabriele ("metti online" / "approvo"), poi si riesegue.
 - Netlify siti: riskly `44a1076d-45d2-4c1e-a702-541fbc7a3010`, strumenti `0f4adbce-96a2-4a3f-ba7c-e500a0f3f4ad`, news `abca6d6e-64d8-40cb-a0c5-776d787d16ac`.
 - Da fare: video dei bot e copertina del corso hanno ancora nero/giallo acceso (andrebbero rifatti nello stile nuovo); rigenerare la chiave ElevenLabs; mercoledì 18 verbali Fed.
+
+## Aggiornamento del 10 novembre 2026 (copertine senza Netlify)
+- Il 10 novembre Netlify ha bloccato i nuovi deploy ("Account credit usage exceeded"): ogni nuova copertina obbligava a rifare il deploy del sito news.
+- Soluzione (approvata da Gabriele): le copertine stanno nell'archivio pubblico `copertine` di Supabase. `python3 notizie/carica_copertina.py ID` carica `nuovo/news/copertine/ID.jpg` (tramite la funzione `supabase/functions/copertina-carica`, che legge il codice di caricamento dalla tabella privata `config_interna`) e stampa l'indirizzo completo da mettere nel campo `copertina` dell'articolo. NIENTE più deploy Netlify per gli articoli (Netlify serve solo per modifiche al sito). Tutte le copertine esistenti sono state caricate e i campi `copertina` aggiornati.
+- Le routine (articolo del giorno, straordinarie, Setup XAU pomeriggio) sono già aggiornate a questo metodo. Per i dati USA il prompt della sessione separata ora parte 25 minuti prima e dice di clonare il repository (il 10 novembre la sessione per il CPI è partita 8 minuti in ritardo, senza repository, e ha chiuso senza pubblicare: l'articolo del CPI l'ha scritto questa sessione).
+- Da fare: Gabriele deve aggiungere crediti Netlify per poter di nuovo pubblicare modifiche ai siti (riskly.trade, strumenti, news).
+- Lezione: l'insert in `notizie` manda subito la notifica: caricare la copertina PRIMA dell'insert.
+- Reel sponsor: social/sponsor (4 versioni: prodotti, news, calc, journal; `node social/sponsor/rendi.js <versione>`; voce Marco con `ELEVEN_API_KEY` senza spazi). Programmati su Metricool dal 10 al 14 novembre, tutti su Instagram, TikTok e YouTube.
+- Journal: corretto (PR #62) il bug per cui non si potevano selezionare «P.B./B.O. EMA200 + Alligator».
