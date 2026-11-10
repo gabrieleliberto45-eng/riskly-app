@@ -6,6 +6,7 @@ Gabriele scrive in italiano: rispondi in italiano semplice, frasi brevi.
 ## Regole fisse di Gabriele
 - NON mandare in chat articoli o post pubblicati (8 novembre: "sprechi solo token"). Scrivere solo per errori o decisioni.
 - Chiavi mai nel repository né nei commit, mai stampate. Il testo degli articoli MAI nel repository (solo Supabase o scratchpad); le copertine sì.
+- Articoli di Riskly News (10 novembre, richiesta di Gabriele): ogni parte dell'articolo ha un TITOLO, scritto come paragrafo breve in MAIUSCOLO subito prima del paragrafo (es. IL DATO · LA REAZIONE DEI MERCATI · PERCHÉ L'ORO SCENDE · ASPETTATIVE SUI TASSI; per il Setup XAU: COSA HA FATTO L'ORO · IL TREND SULLE MEDIE · LE ZONE OSSERVATE · QUANTO SI MUOVE (ATR) E RSI). Il sito non ha ancora uno stile per i titoli (servirebbe un deploy Netlify, bloccato per i crediti): per ora sono righe in maiuscolo. Non ripetere il titolo come prima frase del paragrafo. Nei dati USA spiega sempre perché i mercati reagiscono alla SORPRESA rispetto alle attese e non al confronto col mese prima.
 - Autorizzazione di Gabriele (9 novembre): tutte le uscite automatiche già previste (Riskly News, social, setup XAU, ecc.) si pubblicano senza chiedere permesso; in chat solo errori o decisioni.
 - Niente segnali, previsioni, "compra/vendi"; i numeri di esempio vanno segnati come esempio.
 - Riskly News: solo USA/Fed/oro/dollaro (niente Banca d'Inghilterra o altre banche centrali; BCE solo nei giorni di decisione).
