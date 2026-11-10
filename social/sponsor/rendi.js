@@ -4,7 +4,7 @@
 const { chromium } = require('playwright');
 const { spawn, spawnSync, execSync } = require('child_process');
 const fs = require('fs'), path = require('path'), os = require('os');
-const VAR = ['prodotti','news','calc','journal'].includes(process.argv[2]) ? process.argv[2] : 'prodotti', ARG = process.argv.slice(['prodotti','news','calc','journal'].includes(process.argv[2]) ? 3 : 2);
+const VAR = ['prodotti','news','calc','journal','prenews'].includes(process.argv[2]) ? process.argv[2] : 'prodotti', ARG = process.argv.slice(['prodotti','news','calc','journal','prenews'].includes(process.argv[2]) ? 3 : 2);
 const QUI = __dirname, FPS = 30, SR = 44100;
 const FF = execSync(`python3 -c "import imageio_ffmpeg as i;print(i.get_ffmpeg_exe())"`).toString().trim();
 const durata = f => { const o = spawnSync(FF, ['-i', f]).stderr.toString().match(/Duration: (\d+):(\d+):([\d.]+)/); return +o[1]*3600 + +o[2]*60 + +o[3]; };

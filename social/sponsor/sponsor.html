@@ -83,7 +83,8 @@ const HOOK = {
   prodotti: ['Il mercato', 'non lo controlli.', 'Le tue regole sì.', 'GUARDA COSA SUCCEDE ALLA TERZA PERDITA'],
   news: ['Quando il mercato', 'si muove,', 'lo sai subito.', 'GUARDA COME'],
   calc: ['Quanto rischi', 'davvero?', 'Fallo calcolare.', 'BASTANO TRE NUMERI'],
-  journal: ['Sai davvero', 'perché perdi?', 'I numeri lo dicono.', 'GUARDA IL TUO JOURNAL'] }[V];
+  journal: ['Sai davvero', 'perché perdi?', 'I numeri lo dicono.', 'GUARDA IL TUO JOURNAL'],
+  prenews: ['Venerdì, 14:30:', 'esce il PPI.', 'Oro e dollaro: 3 scenari.', 'COME POTREBBERO REAGIRE'] }[V];
 /* --- scena 0: gancio --- */
 function mercato(t, tl){
   /* linea di mercato (passeggiata casuale deterministica) che scorre dietro */
@@ -216,7 +217,7 @@ function journal(t, tl){
 }
 
 /* --- scena 5: invito --- */
-const INV = { prodotti: ['Visita', 'il nostro sito.', 'riskly.trade'], news: ['Visita', 'il nostro sito.', 'news.riskly.trade'], calc: ['Visita', 'il nostro sito.', 'strumenti.riskly.trade'], journal: ['7 giorni di prova', 'senza carta.', 'app.riskly.trade'] }[V];
+const INV = { prodotti: ['Visita', 'il nostro sito.', 'riskly.trade'], news: ['Visita', 'il nostro sito.', 'news.riskly.trade'], calc: ['Visita', 'il nostro sito.', 'strumenti.riskly.trade'], journal: ['7 giorni di prova', 'senza carta.', 'app.riskly.trade'], prenews: ['Visita', 'il nostro sito.', 'news.riskly.trade'] }[V];
 function invito(t, tl){
   const cx = W/2; raggi(cx, 760, t, eo(tl / 1)); bagliore(cx, 760, 600, 'rgba(212,174,90,A)', .22 * eo(tl / 1));
   for(let k = 0; k < 3; k++){ const q = ((tl * .6 + k / 3) % 1); g.save(); g.strokeStyle = `rgba(111,163,212,${(1 - q) * .5})`; g.lineWidth = 3; g.beginPath(); g.arc(cx, 760, 120 + q * 520, 0, 6.28); g.stroke(); g.restore(); }
@@ -294,13 +295,52 @@ function statistiche(t, tl){
     [['Calmo', 150, VERDE], ['Ansioso', 90, ORO], ['Rabbia', -60, ROSSO]].forEach(([nm, v, c], k) => { const x = 150 + k * 280, hh = Math.abs(v) * m; g.fillStyle = c; g.shadowColor = c; g.shadowBlur = 14; g.beginPath(); g.roundRect(x, v > 0 ? 1290 - hh : 1290, 160, hh, 8); g.fill(); g.shadowBlur = 0; testo(nm, x + 80, 1370, '500 26px IMono', BIANCO); }); g.globalAlpha = 1; }
 }
 
-const ELENCO = { prodotti: [mercato, perdita, cosa, prodotti, journal, invito], news: [mercato, notifica, categorie, tempi, invito], calc: [mercato, posizione, recupero, cinque, invito], journal: [mercato, journal, statistiche, invito] }[V];
+/* --- formato «pre-news»: oro e dollaro prima di un dato (dati e attese da cambiare a ogni uscita) --- */
+const PRE = { nome: 'PPI', quando: '14:30', atteso: '+0,4%', prec: '+1,3%', etich: 'PPI · PREZZI ALLA PRODUZIONE USA' };
+function freccia(x, y, d, col, sc = 1){ g.save(); g.translate(x, y); g.scale(sc, sc); g.fillStyle = col; g.shadowColor = col; g.shadowBlur = 14; g.beginPath();
+  if(d > 0){ g.moveTo(0, -26); g.lineTo(24, 8); g.lineTo(9, 8); g.lineTo(9, 26); g.lineTo(-9, 26); g.lineTo(-9, 8); g.lineTo(-24, 8); }
+  else if(d < 0){ g.moveTo(0, 26); g.lineTo(24, -8); g.lineTo(9, -8); g.lineTo(9, -26); g.lineTo(-9, -26); g.lineTo(-9, -8); g.lineTo(-24, -8); }
+  else { g.moveTo(28, 0); g.lineTo(2, -22); g.lineTo(2, -9); g.lineTo(-28, -9); g.lineTo(-28, 9); g.lineTo(2, 9); g.lineTo(2, 22); }
+  g.closePath(); g.fill(); g.restore(); }
+function attese(t, tl){
+  etichetta(PRE.etich);
+  const pul = .6 + .4 * Math.sin(tl * 8);
+  g.save(); g.shadowColor = ORO; g.shadowBlur = 40 * pul; testo(PRE.quando, W/2, 600, '500 190px IMono', ORO2); g.restore();
+  const c = ob((tl - .5) / .5); if(c > 0){ g.save(); g.globalAlpha = clamp(c); g.translate(0, (1 - c) * 50); scheda(90, 700, 900, 260, ORO, 'rgba(212,174,90,.3)');
+    testo('ATTESO', 270, 780, '500 28px IMono', 'rgba(244,241,234,.65)', 'center', 4); testo(PRE.atteso, 270, 900, '400 120px ISerif', BIANCO);
+    g.fillStyle = 'rgba(111,163,212,.35)'; g.fillRect(538, 740, 3, 180);
+    testo('PRECEDENTE', 810, 780, '500 28px IMono', 'rgba(244,241,234,.65)', 'center', 4); testo(PRE.prec, 810, 900, '400 120px ISerif', 'rgba(244,241,234,.7)'); g.restore(); }
+  [['ORO', 'XAU/USD', 1040, ORO2], ['DOLLARO', 'indice DXY', 1040, ACC]].forEach(([n, s2, y, col], k) => { const e = ob((tl - 3.2 - k * .5) / .45); if(e <= 0) return; g.save(); g.globalAlpha = clamp(e); g.translate(k ? 560 : 90, y + (1 - e) * 40); scheda(0, 0, 430, 200, col, 'rgba(0,0,0,.4)');
+    testo(n, 215, 90, '400 66px ISerif', col); testo(s2, 215, 150, '500 28px IMono', 'rgba(244,241,234,.7)'); g.restore(); });
+}
+function scenari(t, tl){
+  etichetta('TRE SCENARI · TENDENZE, NON PREVISIONI');
+  const S3 = [['IN LINEA', 'linea', 0, 0], ['PIÙ ALTO DELLE ATTESE', 'alto', 1, -1], ['PIÙ BASSO DELLE ATTESE', 'basso', -1, 1]];
+  S3.forEach(([nome, p, dol, oro], k) => { const t0 = trova(2, p) - .1, e = ob((tl - t0) / .5); if(e <= 0) return; const y = 340 + k * 330;
+    g.save(); g.globalAlpha = clamp(e * 2); g.translate((1 - e) * (k % 2 ? 500 : -500), 0); scheda(90, y, 900, 300, k === 1 ? ROSSO : (k === 2 ? VERDE : null), k ? 'rgba(0,0,0,.45)' : null);
+    testo(nome, 140, y + 70, '600 40px ISans', BIANCO, 'left');
+    testo('DOLLARO', 190, y + 150, '500 28px IMono', 'rgba(244,241,234,.7)', 'center', 3); freccia(190, y + 215, dol, dol > 0 ? VERDE : (dol < 0 ? ROSSO : ORO2), 1.3);
+    testo('ORO', 450, y + 150, '500 28px IMono', 'rgba(244,241,234,.7)', 'center', 3); freccia(450, y + 215, oro, oro > 0 ? VERDE : (oro < 0 ? ROSSO : ORO2), 1.3);
+    testo(k === 0 ? 'movimento di solito contenuto' : (k === 1 ? 'più probabile un rialzo Fed' : 'meno pressione sulla Fed'), 770, y + 215, '500 26px ISans', 'rgba(244,241,234,.85)', 'center'); g.restore(); });
+}
+function esempio(t, tl){
+  etichetta('ESEMPIO · CPI DI MARTEDÌ 10 NOVEMBRE');
+  const a = eo(tl / .6); g.save(); g.globalAlpha = a; testo('atteso +0,3% · uscito +0,4%', W/2, 440, '600 46px ISans', BIANCO); g.restore();
+  [['ORO (COMEX)', '4.080 → 4.057 $', -.6, ROSSO, 560, 1.0], ['DOLLARO (DXY)', '101,76 → 102,01', .25, VERDE, 960, 2.0]].forEach(([n, r, v, col, y, t0]) => { const q = eo((tl - t0) / 1.0); if(q <= 0) return;
+    g.save(); g.globalAlpha = clamp(q * 2); scheda(90, y, 900, 330, col, 'rgba(0,0,0,.45)'); testo(n, 140, y + 70, '500 30px IMono', 'rgba(244,241,234,.75)', 'left', 3);
+    g.shadowColor = col; g.shadowBlur = 30; testo((v > 0 ? '+' : '−') + Math.abs(v * q).toFixed(Math.abs(v) === .6 ? 1 : 2).replace('.', ',') + '%', 140, y + 230, '400 150px ISerif', col, 'left'); g.shadowBlur = 0;
+    testo(r, 940, y + 290, '500 30px IMono', 'rgba(244,241,234,.8)', 'right'); freccia(850, y + 150, v > 0 ? 1 : -1, col, 1.8); g.restore(); });
+  const b = eo((tl - 3.4) / .5); if(b > 0){ g.globalAlpha = b; testo('in un minuto, alle 14:30 · Yahoo Finance', W/2, 1360, '500 26px IMono', 'rgba(244,241,234,.6)'); g.globalAlpha = 1; }
+}
+
+const ELENCO = { prodotti: [mercato, perdita, cosa, prodotti, journal, invito], news: [mercato, notifica, categorie, tempi, invito], calc: [mercato, posizione, recupero, cinque, invito], journal: [mercato, journal, statistiche, invito], prenews: [mercato, attese, scenari, esempio, invito] }[V];
 window.eventi = () => { const e = [[S[0].ini, 'colpo']]; S.slice(1).forEach(x => e.push([x.ini - .05, 'whoosh']));
   const at = (n, k) => { const i = ELENCO.findIndex(f => f.name === n); return i < 0 ? null : S[i].ini + k; };
   if(V === 'prodotti'){ const p = at('perdita', 0), c = at('cosa', 0), pr = ELENCO.findIndex(f => f.name === 'prodotti'); e.push([c + .02, 'colpo'], [p + 2.05, 'glitch'], [p + 2.05, 'colpo'], [p + 1.05, 'riser'], [p + .2, 'batti'], [p + 1.05, 'batti'], [p + 1.9, 'batti']);
     PAROLE[pr].filter(w => /^(riskguard|trademanager|scalein|riskly|copy)/i.test(w[1])).forEach(w => e.push([S[pr].ini + w[0], 'tic'])); }
   if(V === 'news'){ const n = at('notifica', 0); [.6, 1.7, 2.8].forEach(x => e.push([n + x + .3, 'notifica'])); const c = at('categorie', 0); for(let k = 0; k < 6; k++) e.push([c + .3 + k * .55, 'tic']); }
   if(V === 'calc'){ const p = at('posizione', 0); [.3, 1.1, 1.9].forEach(x => e.push([p + x, 'tic'])); e.push([p + 3.0, 'colpo']); const r = at('recupero', 0); [.3, 1.6, 2.4].forEach(x => e.push([r + x, 'tic'])); }
+  if(V === 'prenews'){ const sc = at('scenari', 0); ['linea','alto','basso'].forEach(p => e.push([sc + trova(2, p) - .1, 'tic'])); const a = at('attese', 0); e.push([a + 3.2, 'tic'], [a + 3.7, 'tic']); const x = at('esempio', 0); e.push([x + 1.0, 'tic'], [x + 2.0, 'colpo']); }
   if(V === 'journal'){ const j = at('journal', 0); for(let k = 0; k < 5; k++) e.push([j + .1 + k * .3, 'tic']); const st = at('statistiche', 0); e.push([st + 1.8, 'tic'], [st + 2.3, 'tic'], [st + 2.8, 'tic']); }
   return e; };
 window.disegna = (t) => {
