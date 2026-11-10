@@ -313,15 +313,40 @@ function attese(t, tl){
   [['ORO', 'XAU/USD', 1040, ORO2], ['DOLLARO', 'indice DXY', 1040, ACC]].forEach(([n, s2, y, col], k) => { const e = ob((tl - 3.2 - k * .5) / .45); if(e <= 0) return; g.save(); g.globalAlpha = clamp(e); g.translate(k ? 560 : 90, y + (1 - e) * 40); scheda(0, 0, 430, 200, col, 'rgba(0,0,0,.4)');
     testo(n, 215, 90, '400 66px ISerif', col); testo(s2, 215, 150, '500 28px IMono', 'rgba(244,241,234,.7)'); g.restore(); });
 }
+function tassi(t, tl){
+  etichetta('INFLUISCE SUI TASSI?');
+  const cx = W/2, cy = 700, R = 290, q = eo((tl - .4) / 2.2), pct = 84 * q;
+  raggi(cx, cy, t, .5 * eo(tl / 1));
+  /* quadrante: arco di 240 gradi che si riempie fino all'84% (FedWatch dopo il CPI) */
+  g.save(); g.lineCap = 'round'; g.lineWidth = 46; const a0 = Math.PI * .75, a1 = Math.PI * 2.25;
+  g.strokeStyle = 'rgba(111,163,212,.22)'; g.beginPath(); g.arc(cx, cy, R, a0, a1); g.stroke();
+  const gr = g.createLinearGradient(cx - R, 0, cx + R, 0); gr.addColorStop(0, ACC); gr.addColorStop(1, ORO2); g.strokeStyle = gr; g.shadowColor = ORO; g.shadowBlur = 30;
+  g.beginPath(); g.arc(cx, cy, R, a0, a0 + (a1 - a0) * pct / 100); g.stroke(); g.restore();
+  for(let k = 0; k <= 10; k++){ const a = a0 + (a1 - a0) * k / 10; g.strokeStyle = 'rgba(244,241,234,.35)'; g.lineWidth = 3; g.beginPath(); g.moveTo(cx + Math.cos(a) * (R + 40), cy + Math.sin(a) * (R + 40)); g.lineTo(cx + Math.cos(a) * (R + 56), cy + Math.sin(a) * (R + 56)); g.stroke(); }
+  const ang = a0 + (a1 - a0) * pct / 100; g.save(); g.shadowColor = '#fff'; g.shadowBlur = 20; g.fillStyle = '#fff'; g.beginPath(); g.arc(cx + Math.cos(ang) * R, cy + Math.sin(ang) * R, 16, 0, 6.28); g.fill(); g.restore();
+  g.save(); g.shadowColor = ORO; g.shadowBlur = 36; testo(Math.round(pct) + '%', cx, cy + 40, '400 190px ISerif', ORO2); g.restore();
+  testo('RIALZO A DICEMBRE', cx, cy + 110, '500 28px IMono', 'rgba(244,241,234,.8)', 'center', 4); testo('stima FedWatch dopo il CPI', cx, cy + 150, '500 24px IMono', 'rgba(244,241,234,.55)');
+  const e1 = ob((tl - 3.0) / .5); if(e1 > 0){ g.save(); g.globalAlpha = clamp(e1); g.translate(0, (1 - e1) * 40);
+    scheda(90, 1040, 430, 130, ORO); testo('TASSO FED ORA', 305, 1090, '500 22px IMono', 'rgba(244,241,234,.65)', 'center', 3); testo('3,75–4,00%', 305, 1146, '600 44px ISans', BIANCO);
+    scheda(560, 1040, 430, 130, ORO); testo('RIUNIONE', 775, 1090, '500 22px IMono', 'rgba(244,241,234,.65)', 'center', 3); testo('8–9 dicembre', 775, 1146, '600 44px ISans', BIANCO); g.restore(); }
+  /* peso del dato sulle decisioni: CPI diretto, PPI indiretto */
+  const e2 = eo((tl - 5.2) / .8); if(e2 > 0){ g.save(); g.globalAlpha = clamp(e2);
+    testo('PESO SULLE DECISIONI DELLA FED', W/2, 1236, '500 22px IMono', 'rgba(244,241,234,.6)', 'center', 3);
+    [['CPI', 'diretto', .9, ORO2, 1262], [PRE.nome, 'indiretto', .55, ACC, 1322]].forEach(([n, d, w, col, y]) => { testo(n, 100, y + 28, '600 30px ISans', BIANCO, 'left'); g.fillStyle = 'rgba(111,163,212,.2)'; g.fillRect(230, y + 6, 560, 28); g.fillStyle = col; g.shadowColor = col; g.shadowBlur = 14; g.fillRect(230, y + 6, 560 * w * e2, 28); g.shadowBlur = 0; testo(d, 810, y + 30, '500 24px IMono', 'rgba(244,241,234,.75)', 'left'); });
+    g.restore(); }
+}
+
 function scenari(t, tl){
   etichetta('TRE SCENARI · TENDENZE, NON PREVISIONI');
   const S3 = [['IN LINEA', 'linea', 0, 0], ['PIÙ ALTO DELLE ATTESE', 'alto', 1, -1], ['PIÙ BASSO DELLE ATTESE', 'basso', -1, 1]];
-  S3.forEach(([nome, p, dol, oro], k) => { const t0 = trova(2, p) - .1, e = ob((tl - t0) / .5); if(e <= 0) return; const y = 340 + k * 330;
+  S3.forEach(([nome, p, dol, oro], k) => { const t0 = trova(3, p) - .1, e = ob((tl - t0) / .5); if(e <= 0) return; const y = 340 + k * 330;
     g.save(); g.globalAlpha = clamp(e * 2); g.translate((1 - e) * (k % 2 ? 500 : -500), 0); scheda(90, y, 900, 300, k === 1 ? ROSSO : (k === 2 ? VERDE : null), k ? 'rgba(0,0,0,.45)' : null);
     testo(nome, 140, y + 70, '600 40px ISans', BIANCO, 'left');
     testo('DOLLARO', 190, y + 150, '500 28px IMono', 'rgba(244,241,234,.7)', 'center', 3); freccia(190, y + 215, dol, dol > 0 ? VERDE : (dol < 0 ? ROSSO : ORO2), 1.3);
     testo('ORO', 450, y + 150, '500 28px IMono', 'rgba(244,241,234,.7)', 'center', 3); freccia(450, y + 215, oro, oro > 0 ? VERDE : (oro < 0 ? ROSSO : ORO2), 1.3);
-    testo(k === 0 ? 'movimento di solito contenuto' : (k === 1 ? 'più probabile un rialzo Fed' : 'meno pressione sulla Fed'), 770, y + 215, '500 26px ISans', 'rgba(244,241,234,.85)', 'center'); g.restore(); });
+    const L = k === 0 ? ['movimento di solito contenuto', 'il rialzo resta nei prezzi'] : (k === 1 ? ['più pressione per un rialzo', 'anche più forte'] : ['meno pressione sulla Fed', 'rialzo meno urgente']);
+    testo('TASSI FED', 770, y + 150, '500 28px IMono', ORO2, 'center', 3); testo(L[0], 770, y + 200, '600 27px ISans', BIANCO, 'center'); testo(L[1], 770, y + 238, '500 25px ISans', 'rgba(244,241,234,.75)', 'center');
+    if(e > .9){ const sw = ((tl - t0) * 700) % 1300 - 200; g.save(); g.beginPath(); g.roundRect(90, y, 900, 300, 22); g.clip(); const lg = g.createLinearGradient(sw, 0, sw + 160, 0); lg.addColorStop(0, 'rgba(255,230,170,0)'); lg.addColorStop(.5, 'rgba(255,230,170,.16)'); lg.addColorStop(1, 'rgba(255,230,170,0)'); g.fillStyle = lg; g.fillRect(90, y, 900, 300); g.restore(); } g.restore(); });
 }
 function esempio(t, tl){
   etichetta('ESEMPIO · CPI DI MARTEDÌ 10 NOVEMBRE');
@@ -333,14 +358,14 @@ function esempio(t, tl){
   const b = eo((tl - 3.4) / .5); if(b > 0){ g.globalAlpha = b; testo('in un minuto, alle 14:30 · Yahoo Finance', W/2, 1360, '500 26px IMono', 'rgba(244,241,234,.6)'); g.globalAlpha = 1; }
 }
 
-const ELENCO = { prodotti: [mercato, perdita, cosa, prodotti, journal, invito], news: [mercato, notifica, categorie, tempi, invito], calc: [mercato, posizione, recupero, cinque, invito], journal: [mercato, journal, statistiche, invito], prenews: [mercato, attese, scenari, esempio, invito] }[V];
+const ELENCO = { prodotti: [mercato, perdita, cosa, prodotti, journal, invito], news: [mercato, notifica, categorie, tempi, invito], calc: [mercato, posizione, recupero, cinque, invito], journal: [mercato, journal, statistiche, invito], prenews: [mercato, attese, tassi, scenari, esempio, invito] }[V];
 window.eventi = () => { const e = [[S[0].ini, 'colpo']]; S.slice(1).forEach(x => e.push([x.ini - .05, 'whoosh']));
   const at = (n, k) => { const i = ELENCO.findIndex(f => f.name === n); return i < 0 ? null : S[i].ini + k; };
   if(V === 'prodotti'){ const p = at('perdita', 0), c = at('cosa', 0), pr = ELENCO.findIndex(f => f.name === 'prodotti'); e.push([c + .02, 'colpo'], [p + 2.05, 'glitch'], [p + 2.05, 'colpo'], [p + 1.05, 'riser'], [p + .2, 'batti'], [p + 1.05, 'batti'], [p + 1.9, 'batti']);
     PAROLE[pr].filter(w => /^(riskguard|trademanager|scalein|riskly|copy)/i.test(w[1])).forEach(w => e.push([S[pr].ini + w[0], 'tic'])); }
   if(V === 'news'){ const n = at('notifica', 0); [.6, 1.7, 2.8].forEach(x => e.push([n + x + .3, 'notifica'])); const c = at('categorie', 0); for(let k = 0; k < 6; k++) e.push([c + .3 + k * .55, 'tic']); }
   if(V === 'calc'){ const p = at('posizione', 0); [.3, 1.1, 1.9].forEach(x => e.push([p + x, 'tic'])); e.push([p + 3.0, 'colpo']); const r = at('recupero', 0); [.3, 1.6, 2.4].forEach(x => e.push([r + x, 'tic'])); }
-  if(V === 'prenews'){ const sc = at('scenari', 0); ['linea','alto','basso'].forEach(p => e.push([sc + trova(2, p) - .1, 'tic'])); const a = at('attese', 0); e.push([a + 3.2, 'tic'], [a + 3.7, 'tic']); const x = at('esempio', 0); e.push([x + 1.0, 'tic'], [x + 2.0, 'colpo']); }
+  if(V === 'prenews'){ const sc = at('scenari', 0); ['linea','alto','basso'].forEach(p => e.push([sc + trova(3, p) - .1, 'tic'])); const ta = at('tassi', 0); e.push([ta + .4, 'riser'], [ta + 2.6, 'colpo'], [ta + 3.0, 'tic'], [ta + 3.5, 'tic']); const a = at('attese', 0); e.push([a + 3.2, 'tic'], [a + 3.7, 'tic']); const x = at('esempio', 0); e.push([x + 1.0, 'tic'], [x + 2.0, 'colpo']); }
   if(V === 'journal'){ const j = at('journal', 0); for(let k = 0; k < 5; k++) e.push([j + .1 + k * .3, 'tic']); const st = at('statistiche', 0); e.push([st + 1.8, 'tic'], [st + 2.3, 'tic'], [st + 2.8, 'tic']); }
   return e; };
 window.disegna = (t) => {
