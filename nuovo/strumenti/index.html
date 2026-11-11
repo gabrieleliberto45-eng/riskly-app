@@ -1415,6 +1415,9 @@ function rSegnaGestore(email){ if(['gabrieleliberto1212@gmail.com','gabrielelibe
   html[data-tema="scuro"] .nw-art{background:#171B19}
   html[data-tema="scuro"] .nw-cat{color:#F2B83A}
   .str-pannello.on{display:block}
+  .cal-modo{display:flex;gap:8px;margin:0 0 12px}.cal-modo button{flex:1;padding:10px 12px;border-radius:999px;border:1px solid var(--line,#ddd);background:transparent;color:inherit;font:600 14px inherit;cursor:pointer}.cal-modo button.on{background:var(--amber,#F5A623);color:#2B1E00;border-color:transparent}
+  .cal-inv{background:#fff;border-radius:14px;overflow:hidden;padding:4px}.cal-inv iframe{width:100%;height:640px;border:0;display:block}
+
   #st-calendario{max-width:none}
   @media(max-width:760px){
     .str-nav{width:100%;justify-content:flex-start;overflow-x:auto;scrollbar-width:none;border-radius:16px;top:calc(8px + env(safe-area-inset-top))}
@@ -1833,7 +1836,14 @@ html[data-tema="scuro"]{--k-sch:#181C1A;--k-pan:#202522;--k-bordo:rgba(255,255,2
       <div class="acc-invito" id="accInvito" hidden><span><b>Gratis, anche senza account.</b> Registrati per ritrovare preferiti, avvisi, filtri e i valori dei calcolatori su ogni dispositivo.</span><button type="button" class="btn pri" onclick="accApri('registrati')">Crea account gratis</button><button type="button" class="btn" onclick="accApri('accedi')">Accedi</button><button type="button" class="acc-x" aria-label="Chiudi" onclick="accInvitoChiudi()">×</button></div>
       <div class="str-nav" role="tablist" aria-label="Strumenti"><button role="tab" data-st="calendario" class="on" onclick="strTab('calendario')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span>Calendario</span></button><button role="tab" data-st="news" class="" onclick="strTab('news')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><path d="M7.5 9h9M7.5 12.5h9M7.5 16h5"/></svg><span>News</span></button><button role="tab" data-st="posizione" class="" onclick="strTab('posizione')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 8h14M7 13h10M9 18h6"/></svg><span>Posizione</span></button><button role="tab" data-st="montecarlo" class="" onclick="strTab('montecarlo')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17c3-1 4-8 7-8s3 6 6 6 3-9 5-10"/><path d="M3 21h18"/></svg><span>Monte Carlo</span></button><button role="tab" data-st="prop" class="" onclick="strTab('prop')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><span>Prop firm</span></button><button role="tab" data-st="recupero" class="" onclick="strTab('recupero')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg><span>Recupero</span></button><button role="tab" data-st="crescita" class="" onclick="strTab('crescita')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m3 17 6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg><span>Crescita</span></button></div>
 <div class="str-pannello on" id="st-calendario">
-        <div class="card cal-card">
+        <div class="cal-modo" role="tablist" aria-label="Calendario"><button type="button" class="on" id="calmInv" onclick="calModo('inv')">Calendario</button><button type="button" id="calmPref" onclick="calModo('pref')">Preferiti e avvisi</button></div>
+        <div class="card" id="calInv">
+          <div class="card-head"><h3>Calendario economico</h3><span class="meta cal-live"><i></i>in tempo reale</span></div>
+          <p class="cal-sotto">Dati USA ed Eurozona in italiano, con il valore effettivo appena esce. Usa il selettore in alto per cambiare giorno.</p>
+          <div class="cal-inv"><iframe title="Calendario economico" src="https://sslecal2.investing.com?columns=exc_flags,exc_currency,exc_importance,exc_actual,exc_forecast,exc_previous&features=datepicker,timezone&countries=5,72&importance=2,3&calType=day&timeZone=16&lang=9" loading="lazy" frameborder="0" allowtransparency="true" marginwidth="0" marginheight="0"></iframe></div>
+          <div class="poweredBy" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:8px">Calendario economico in tempo reale fornito <a href="https://www.investing.com/" rel="nofollow noopener" target="_blank" style="font-weight:bold">da Investing.com</a>.</div>
+        </div>
+        <div class="card cal-card" id="calVecchio" hidden>
           <div class="card-head"><h3>Calendario economico</h3><span class="meta cal-live"><i></i>in tempo reale</span></div>
           <p class="cal-sotto">I dati che muovono forex, oro e indici. Il valore effettivo compare appena il dato esce; gli orari sono nella tua ora locale. Tocca un evento per leggere cosa misura, e la stella ☆ per salvarlo nei preferiti e ricevere un avviso quando esce.</p>
           <div class="cal-barra">
@@ -2279,6 +2289,8 @@ const set=(id,t)=>document.getElementById(id).textContent=t;
 calcPos(); calcRuin(); calcProp(); calcBE(); calcComp();
 
 /* ═══ STRUMENTI: sotto-pagine e calendario economico ═══ */
+function calModo(m){ var i=document.getElementById('calInv'), v=document.getElementById('calVecchio'); i.hidden = m!=='inv'; v.hidden = m!=='pref'; document.getElementById('calmInv').classList.toggle('on', m==='inv'); document.getElementById('calmPref').classList.toggle('on', m==='pref'); }
+
 /* ---------- Riskly News: gli ultimi titoli (pubblici) e il link al sotto sito news.riskly.trade, in abbonamento ---------- */
 const NW_CAT = { oro: 'Oro', dollaro: 'Dollaro', fed: 'Fed', tassi: 'Tassi', straordinarie: 'Straordinarie', settimana: 'La settimana' };
 let nwFatto = false;
