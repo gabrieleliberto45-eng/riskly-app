@@ -86,6 +86,7 @@ body.in-articolo .testa .indietro2{display:grid}
 .firma{text-align:center;color:var(--oro);font-size:14px;line-height:1.5}
 .sep{width:120px;height:1px;background:var(--line);margin:18px auto 20px}
 .pezzo .somm{font-size:18px;font-weight:600;line-height:1.5;margin:0 0 18px}
+.pat{display:block;margin:10px 0 6px;line-height:1.5}.term{display:flex;gap:8px;align-items:flex-start;font-size:13px;line-height:1.4;margin:8px 0}.term input{margin-top:3px}
 .pezzo h2.par{font:700 13px 'Archivo';letter-spacing:.08em;color:var(--oro);margin:26px 0 8px;padding-top:14px;border-top:1px solid var(--line)}
 .pezzo p{font-size:17px;line-height:1.7;margin:0 0 16px}
 .tab{width:100%;border-collapse:collapse;margin:6px 0 22px;font-size:15px}
@@ -222,6 +223,7 @@ body.in-ai .invito{display:none}
     <h3 id="accTit">Accedi</h3>
     <p id="accSub">Usa lo stesso account di riskly.trade e del journal.</p>
     <div id="accNomeBox"><label for="accNome">Nome</label><input id="accNome" autocomplete="given-name"></div>
+    <div id="accEtaBox" class="eta-box"><label for="accNasc">Data di nascita</label><input id="accNasc" type="date" autocomplete="bday" max="2100-01-01"><small style="display:block;opacity:.75;margin:4px 0 8px">Serve solo a verificare l'età minima (14 anni). Non la salviamo.</small><label style="display:flex;gap:8px;align-items:flex-start;font-weight:400;line-height:1.4"><input id="accTerm" type="checkbox" style="width:auto;margin-top:3px"><span>Ho letto i <a href="https://riskly.trade/#termini" target="_blank" rel="noopener">Termini di servizio</a> e l'<a href="https://riskly.trade/privacy.html" target="_blank" rel="noopener">Informativa privacy</a>.</span></label></div>
     <label for="accEmail">Email</label><input id="accEmail" type="email" required autocomplete="email">
     <label for="accPass">Password</label><input id="accPass" type="password" required minlength="6" autocomplete="current-password">
     <div class="err" id="accErr"></div>
@@ -237,6 +239,16 @@ body.in-ai .invito{display:none}
 /* ---------- impostazioni ---------- */
 const SB_URL = 'https://swlztverwfgdgchgpudt.supabase.co', SB_KEY = 'sb_publishable_j9bujIvCEz6x21yYoCODPw_lIZCJrIR';
 /* link di pagamento Stripe di Riskly News (da creare su Stripe e aggiungere anche in supabase/functions/stripe-webhook) */
+function etaControllo(){
+  const v = (document.getElementById('accNasc')||{}).value, t = document.getElementById('accTerm');
+  if(!v) return 'Inserisci la tua data di nascita.';
+  const n = new Date(v), o = new Date(); let e = o.getFullYear() - n.getFullYear();
+  if(o.getMonth() < n.getMonth() || (o.getMonth() === n.getMonth() && o.getDate() < n.getDate())) e--;
+  if(isNaN(e) || e < 0 || e > 120) return 'Data di nascita non valida.';
+  if(e < 14) return 'Per creare un account serve avere almeno 14 anni. Se ne hai meno, chiedi a un genitore di scrivere a info@riskly.trade.';
+  if(!t || !t.checked) return 'Per continuare accetta i Termini e l\'Informativa privacy.';
+  return '';
+}
 const PAGA = { mensile: 'https://buy.stripe.com/6oUbJ0eHM1rZ5Bf2jgdnW0m', annuale: '' };
 const PREZZO = { mensile: '6,99 € al mese', annuale: '' };   /* prezzo deciso da Gabriele il 1° novembre */
 const CAT = { tutti: 'Tutti', dati: 'Dati appena usciti', setup: 'Setup XAU', oro: 'Oro', dollaro: 'Dollaro', fed: 'Fed', tassi: 'Tassi e banche centrali', straordinarie: 'Straordinarie', settimana: 'La settimana' };
@@ -406,7 +418,7 @@ async function vistaArticolo(id){
         <p>Ogni mattina l'articolo completo su oro, dollaro, Fed e tassi, con il riquadro "Da guardare" e le fonti.${ACC.utente ? '' : ' Prima accedi o crea un account gratis.'}</p>
         <div class="opz">${ACC.utente ? `<button class="btn amb" onclick="abbonati('mensile')">Abbonati${PREZZO.mensile ? ' · ' + esc(PREZZO.mensile) : ''}</button>${PAGA.annuale ? `<button class="btn" onclick="abbonati('annuale')">Annuale${PREZZO.annuale ? ' · ' + esc(PREZZO.annuale) : ''}</button>` : ''}`
           : `<button class="btn pri" onclick="accApri('registrati', 'abbonati')">Crea un account</button><button class="btn" onclick="accApri('accedi')">Accedi</button>`}</div>
-        <small>Disdici quando vuoi.</small></div>${campana()}</div></article>`;
+        <small class="pat">Abbonamento mensile: <b>6,99 € al mese</b>, si rinnova da solo ogni mese. Disdici quando vuoi scrivendo a info@riskly.trade: resta attivo fino alla fine del mese pagato.</small>${ACC.utente ? '<label class="term"><input type="checkbox" id="abTerm"> Accetto i <a href="https://riskly.trade/#termini" target="_blank" rel="noopener">Termini di servizio</a> e il rinnovo automatico mensile.</label>' : ''}</div>${campana()}</div></article>`;
   }
   window.scrollTo(0, 0);
 }
@@ -598,6 +610,7 @@ window.addEventListener('hashchange', vista);
 function abbonati(tipo){
   if(!ACC.utente){ accApri('registrati', 'abbonati'); return; }
   if(ACC.accesso){ flash('Sei già abbonato.'); return; }
+  const at = document.getElementById('abTerm'); if(at && !at.checked){ flash('Per abbonarti accetta i Termini e il rinnovo automatico.'); return; }
   const link = PAGA[tipo || 'mensile'] || PAGA.mensile;
   if(!link){ flash('L\'abbonamento apre a breve.'); return; }
   const u = new URL(link);
@@ -612,7 +625,7 @@ function accModo(m){
   const reg = m === 'registrati';
   document.getElementById('accTit').textContent = reg ? 'Crea un account' : 'Accedi';
   document.getElementById('accSub').textContent = reg ? 'Gratis. Lo stesso account vale per riskly.trade e per il journal.' : 'Usa lo stesso account di riskly.trade e del journal.';
-  document.getElementById('accNomeBox').hidden = !reg;
+  document.getElementById('accNomeBox').hidden = !reg; document.getElementById('accEtaBox').hidden = !reg;
   document.getElementById('accInvio').textContent = reg ? 'Crea account' : 'Accedi';
   document.getElementById('accCambia').textContent = reg ? 'Hai già un account? Accedi' : 'Non hai un account? Registrati gratis';
   document.getElementById('accPass').autocomplete = reg ? 'new-password' : 'current-password';
@@ -631,7 +644,8 @@ async function accInvia(e){
   try{
     if(ACC.modo === 'registrati'){
       const nome = document.getElementById('accNome').value.trim();
-      const { data, error } = await sb.auth.signUp({ email, password: pass, options: { emailRedirectTo: location.origin + '/', data: { nome } } });
+      const ee = etaControllo(); if(ee){ err.textContent = ee; return; }
+      const { data, error } = await sb.auth.signUp({ email, password: pass, options: { emailRedirectTo: location.origin + '/', data: { nome, eta_14: true, termini: new Date().toISOString() } } });
       if(error) throw error;
       if(!data.session){ err.style.color = 'var(--verde)'; err.textContent = 'Ti abbiamo mandato un\'email: conferma l\'indirizzo e poi accedi.'; return; }
     } else {

@@ -2825,6 +2825,7 @@ temaEtichetta();
     <p class="acc-perche">Gli strumenti restano gratis anche senza. Con l'account:</p>
     <ul><li>preferiti e avvisi del calendario su tutti i dispositivi</li><li>filtri, giorni e paesi come li hai lasciati</li><li>i valori dei calcolatori (saldo, rischio, prop firm…) sempre pronti</li></ul>
     <div id="accNomeF"><label for="accNome">Nome</label><input id="accNome" autocomplete="given-name" maxlength="40"></div>
+    <div id="accEtaF" class="eta-box"><label for="accNasc">Data di nascita</label><input id="accNasc" type="date" autocomplete="bday" max="2100-01-01"><small style="display:block;opacity:.75;margin:4px 0 8px">Serve solo a verificare l'età minima (14 anni). Non la salviamo.</small><label style="display:flex;gap:8px;align-items:flex-start;font-weight:400;line-height:1.4"><input id="accTerm" type="checkbox" style="width:auto;margin-top:3px"><span>Ho letto i <a href="https://riskly.trade/#termini" target="_blank" rel="noopener">Termini di servizio</a> e l'<a href="https://riskly.trade/privacy.html" target="_blank" rel="noopener">Informativa privacy</a>.</span></label></div>
     <div id="accEmailF"><label for="accEmail">Email</label><input id="accEmail" type="email" autocomplete="email" required></div>
     <div id="accPassF"><label for="accPass" id="accPassL">Password</label><input id="accPass" type="password" autocomplete="new-password" minlength="6" required></div>
     <div id="accPass2F" hidden><label for="accPass2">Ripeti la nuova password</label><input id="accPass2" type="password" autocomplete="new-password" minlength="6"></div>
@@ -2947,7 +2948,7 @@ function accModo(m){
   ACC.modo = m; const nuovo = m === 'registrati', rec = m === 'recupero', nuova = m === 'nuova';
   document.getElementById('accTit').textContent = { registrati: 'Crea il tuo account', accedi: 'Bentornato', recupero: 'Password dimenticata', nuova: 'Scegli una nuova password' }[m];
   document.querySelector('.acc-perche').hidden = document.querySelector('.acc-box ul').hidden = rec || nuova;
-  document.getElementById('accNomeF').hidden = !nuovo;
+  document.getElementById('accNomeF').hidden = !nuovo; document.getElementById('accEtaF').hidden = !nuovo;
   document.getElementById('accEmailF').hidden = nuova; document.getElementById('accEmail').required = !nuova;
   document.getElementById('accPassF').hidden = rec; document.getElementById('accPass').required = !rec;
   document.getElementById('accPass2F').hidden = !nuova; document.getElementById('accPass2').required = nuova;
@@ -2995,7 +2996,8 @@ async function accInvia(e){
       return;
     }
     if(ACC.modo === 'registrati'){
-      const { data, error } = await ACC.sb.auth.signUp({ email, password: pass, options: { emailRedirectTo: location.origin + '/', data: { nome } } });
+      const ee = etaControllo(); if(ee){ accErrore(ee); return; }
+      const { data, error } = await ACC.sb.auth.signUp({ email, password: pass, options: { emailRedirectTo: location.origin + '/', data: { nome, eta_14: true, termini: new Date().toISOString() } } });
       if(error) throw error;
       if(!data.session){
         accErrore(`Ci siamo quasi: ti abbiamo mandato un'email a <b>${accEsc(email)}</b> con il link per confermare l'account. Se non arriva entro 2 minuti guarda in <b>Spam</b> o <b>Promozioni</b>. Intanto i tuoi dati restano salvati su questo dispositivo.`, true);
@@ -3011,6 +3013,16 @@ async function accInvia(e){
     if(/not confirmed/i.test(err.message || '')) accErrore('Prima di accedere conferma l\'email: cerca il messaggio di Riskly nella posta (anche in Spam).');
     else accErrore(accTraduci(err.message || String(err)));
   } finally { b.disabled = false; b.textContent = testo; }
+}
+function etaControllo(){
+  const v = (document.getElementById('accNasc')||{}).value, t = document.getElementById('accTerm');
+  if(!v) return 'Inserisci la tua data di nascita.';
+  const n = new Date(v), o = new Date(); let e = o.getFullYear() - n.getFullYear();
+  if(o.getMonth() < n.getMonth() || (o.getMonth() === n.getMonth() && o.getDate() < n.getDate())) e--;
+  if(isNaN(e) || e < 0 || e > 120) return 'Data di nascita non valida.';
+  if(e < 14) return 'Per creare un account serve avere almeno 14 anni. Se ne hai meno, chiedi a un genitore di scrivere a info@riskly.trade.';
+  if(!t || !t.checked) return 'Per continuare accetta i Termini e l\'Informativa privacy.';
+  return '';
 }
 async function accEsci(){ if(ACC.sb) await ACC.sb.auth.signOut(); const m = document.getElementById('accMenu'); if(m) m.remove(); }
 document.addEventListener('keydown', e => { if(e.key === 'Escape') accChiudi(); });
