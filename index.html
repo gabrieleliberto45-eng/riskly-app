@@ -2209,6 +2209,8 @@ html[data-tema="scuro"] body.in-app .jvtabs .jv-ind{background:#ECEEEA}
         <input type="text" id="a-nome" placeholder="Mario Rossi" autocomplete="name">
       </div>
 
+      <div class="mod-campo" id="acc-campo-eta"><label for="a-nasc">Data di nascita</label><input type="date" id="a-nasc" autocomplete="bday" max="2100-01-01"><small style="display:block;opacity:.75;margin:4px 0 8px">Serve solo a verificare l'età minima (14 anni). Non la salviamo.</small><label style="display:flex;gap:8px;align-items:flex-start;font-weight:400;line-height:1.4"><input type="checkbox" id="a-term" style="width:auto;margin-top:3px"><span>Ho letto i <a href="https://riskly.trade/#termini" target="_blank" rel="noopener">Termini di servizio</a> e l'<a href="https://riskly.trade/privacy.html" target="_blank" rel="noopener">Informativa privacy</a>.</span></label></div>
+
       <div class="mod-campo" id="acc-campo-metodo">
         <label for="a-metodo">Come fai trading? <span style="color:var(--dim2)">(adatta il journal, lo cambi quando vuoi)</span></label>
         <select id="a-metodo"></select>
@@ -2281,6 +2283,16 @@ function alternaAccesso(){
   document.getElementById('acc-errore').textContent = '';
 }
 
+function etaControllo(){
+  const v = document.getElementById('a-nasc').value, t = document.getElementById('a-term');
+  if(!v) return 'Inserisci la tua data di nascita.';
+  const n = new Date(v), o = new Date(); let e = o.getFullYear() - n.getFullYear();
+  if(o.getMonth() < n.getMonth() || (o.getMonth() === n.getMonth() && o.getDate() < n.getDate())) e--;
+  if(isNaN(e) || e < 0 || e > 120) return 'Data di nascita non valida.';
+  if(e < 14) return 'Per creare un account serve avere almeno 14 anni. Se ne hai meno, chiedi a un genitore di scrivere a info@riskly.trade.';
+  if(!t.checked) return 'Per continuare accetta i Termini e l\'Informativa privacy.';
+  return '';
+}
 function aggiornaModaleAccesso(){
   const nuovo = (accModo === 'registrati');
 
@@ -2291,6 +2303,7 @@ function aggiornaModaleAccesso(){
     : 'Accedi per ritrovare le tue operazioni.';
 
   document.getElementById('acc-campo-nome').style.display = nuovo ? 'block' : 'none';
+  document.getElementById('acc-campo-eta').style.display = nuovo ? 'block' : 'none';
   const dim = document.getElementById('acc-dimenticata'); if(dim) dim.style.display = nuovo ? 'none' : 'block';
   document.getElementById('acc-campo-metodo').style.display = nuovo ? 'block' : 'none';
   const selM = document.getElementById('a-metodo');
@@ -2317,9 +2330,10 @@ async function inviaAccesso(e){
 
   try{
     if(accModo === 'registrati'){
+      const ee = etaControllo(); if(ee){ mostraErrore(ee); bottone.disabled = false; bottone.textContent = 'Crea account'; return; }
       const { data, error } = await sb.auth.signUp({
         email, password: pass,
-        options: { emailRedirectTo: location.origin + '/', data: { nome, metodo: document.getElementById('a-metodo').value || 'generale' } }
+        options: { emailRedirectTo: location.origin + '/', data: { nome, eta_14: true, termini: new Date().toISOString(), metodo: document.getElementById('a-metodo').value || 'generale' } }
       });
       if(error) throw error;
       try{ localStorage.setItem('riskly-metodo', document.getElementById('a-metodo').value || 'generale'); localStorage.setItem('riskly-metodo-chiesto', '1'); }catch{}
