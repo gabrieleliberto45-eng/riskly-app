@@ -86,6 +86,7 @@ body.in-articolo .testa .indietro2{display:grid}
 .firma{text-align:center;color:var(--oro);font-size:14px;line-height:1.5}
 .sep{width:120px;height:1px;background:var(--line);margin:18px auto 20px}
 .pezzo .somm{font-size:18px;font-weight:600;line-height:1.5;margin:0 0 18px}
+.pezzo h2.par{font:700 13px 'Archivo';letter-spacing:.08em;color:var(--oro);margin:26px 0 8px;padding-top:14px;border-top:1px solid var(--line)}
 .pezzo p{font-size:17px;line-height:1.7;margin:0 0 16px}
 .tab{width:100%;border-collapse:collapse;margin:6px 0 22px;font-size:15px}
 .tab td{padding:10px 4px;border-bottom:1px solid var(--line)}
@@ -394,7 +395,7 @@ async function vistaArticolo(id){
     v.innerHTML = `<article class="pezzo">${testa}
       ${a.categoria === 'setup' ? '<p class="nota-setup">Setup XAU descrive cosa ha fatto l\'oro e dove ha girato di recente: sono livelli osservati, non segnali. Non indicano dove comprare o vendere.</p>' : ''}
       ${(pieno.tabella || []).length ? `<table class="tab">${pieno.tabella.map(r => `<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td></tr>`).join('')}</table>` : ''}
-      ${(pieno.corpo || []).map(p => `<p>${esc(p)}</p>`).join('')}
+      ${(pieno.corpo || []).map(p => (p.length < 90 && p === p.toUpperCase() && /[A-ZÀ-Ü]{3}/.test(p)) ? `<h2 class="par">${esc(p)}</h2>` : `<p>${esc(p)}</p>`).join('')}
       ${(pieno.da_guardare || []).length ? `<div class="box"><b>Da guardare</b><ul>${pieno.da_guardare.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>` : ''}
       ${(pieno.fonti || []).length ? `<p class="fonti">Fonti: ${pieno.fonti.map(f => `<a href="${esc(f.url)}" target="_blank" rel="noopener">${esc(f.nome)}</a>`).join(' · ')}</p>` : ''}
       <p class="avviso">Contenuto informativo ed educativo, non è consulenza finanziaria né una previsione. Il trading con leva comporta un alto rischio: puoi perdere tutto il capitale.</p>${campana()}</div></article>`;
