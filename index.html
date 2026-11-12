@@ -1190,6 +1190,24 @@ body{padding-top:0}
 
 /* ── BOT: stato dal telefono e collegamento ── */
 .jbot{margin-bottom:16px}
+.jmon{display:grid;gap:10px;margin-bottom:14px}
+.jmon-sintesi{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;font-size:.8rem;color:var(--dim)}
+.jmon-chip{display:inline-flex;gap:5px;align-items:center;padding:4px 10px;border-radius:20px;border:1px solid var(--line);
+  font-family:'JetBrains Mono','SF Mono',Menlo,monospace;font-size:.72rem;color:var(--text)}
+.jmon-chip i{width:7px;height:7px;border-radius:50%;background:var(--dim2)}
+.jmon-chip.ok i{background:var(--up)} .jmon-chip.allarme i{background:var(--down)} .jmon-chip.attenzione i{background:var(--gold)}
+.jmon-avvisi{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.jmon-avvisi li{display:flex;gap:10px;align-items:flex-start;font-size:.82rem;padding:8px 12px;border-radius:10px;border:1px solid var(--line)}
+.jmon-avvisi li b{font-weight:600}
+.jmon-avvisi li.allarme{border-color:rgba(194,54,31,.45);background:rgba(194,54,31,.07)}
+.jmon-avvisi li.attenzione{border-color:rgba(245,158,11,.45);background:rgba(245,158,11,.08)}
+.jmon-avvisi li.calmo{color:var(--dim)}
+.jmon-avvisi li span.liv{font-family:'JetBrains Mono','SF Mono',Menlo,monospace;font-size:.66rem;padding:2px 7px;border-radius:20px;white-space:nowrap;margin-top:1px}
+.jmon-avvisi li.allarme span.liv{background:rgba(194,54,31,.16);color:var(--down)}
+.jmon-avvisi li.attenzione span.liv{background:rgba(245,158,11,.16);color:var(--gold)}
+.jmon-tutti{justify-self:start;background:none;border:1px solid var(--line);color:var(--dim);font:inherit;font-size:.76rem;padding:6px 12px;border-radius:20px;cursor:pointer}
+.jmon-tutti[aria-pressed="true"]{color:var(--text);border-color:var(--text)}
+.jbot-vuoto{font-size:.82rem;color:var(--dim)}
 .jbot-griglia{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
 .jbot-card{background:rgba(21,24,27,0.077);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
 .jbot-card.ok{border-color:rgba(242,184,58,.35)}
@@ -1777,6 +1795,12 @@ html[data-tema="scuro"] body.in-app .jvtabs .jv-ind{background:#ECEEEA}
       <!-- stato dei bot di MetaTrader: si aggiorna da solo, anche dal telefono -->
       <div class="jcard jbot" id="jbot" hidden>
         <div class="jcard-head"><h3>I tuoi bot</h3><span class="jmeta" id="jbotAgg"></span></div>
+        <!-- Monitor: tutti i conti collegati insieme, con gli avvisi -->
+        <div class="jmon" id="jmon" hidden>
+          <div class="jmon-sintesi" id="jmonSintesi"></div>
+          <ul class="jmon-avvisi" id="jmonAvvisi"></ul>
+          <button type="button" class="jmon-tutti" id="jmonTutti" onclick="b_tuttiCambia()" aria-pressed="false">Mostra i bot di tutti i conti</button>
+        </div>
         <div class="jbot-griglia" id="jbotGriglia"></div>
       </div>
 
@@ -5771,7 +5795,7 @@ function avviaJournal(){
 /* ═══════════════ BOT DI METATRADER ═══════════════ */
 
 const B_PREDEF = { importa:true, scaglioni_uniti:true, nota_auto:true, strategia:'', emozione:'lucido', simboli:'' };
-let b_chiave = '', b_stati = [], b_timer = null;
+let b_chiave = '', b_stati = [], b_timer = null, b_tutti = false;
 
 /* la tabella o la funzione non esistono: bot.sql non è ancora stato eseguito */
 function b_sqlMancante(err){
@@ -5859,12 +5883,99 @@ function b_giornata(s){
   return { risultato: cum, risultatoPct: pct(cum), dd, ddPct: pct(dd), n: ops.length };
 }
 
+/* ---------- Monitor: tutti i bot collegati insieme, con gli avvisi ---------- */
+
+function b_tuttiCambia(){
+  b_tutti = !b_tutti;
+  const b = document.getElementById('jmonTutti');
+  b.setAttribute('aria-pressed', String(b_tutti));
+  b.textContent = b_tutti ? 'Mostra solo i bot di questo conto' : 'Mostra i bot di tutti i conti';
+  b_renderStato();
+}
+
+/* nome del conto del journal a cui arriva un conto MetaTrader */
+function b_nomeConto(n){
+  const c = j_conti().find(x => x.id === j_contoDiMT(n));
+  return c ? c.nome : 'Conto principale';
+}
+
+/* gli avvisi di un bot: il peggiore per primo */
+function b_avvisi(s){
+  const d = s.dati || {}, out = [];
+  const nome = [esc(d.bot || s.bot), esc(d.simbolo || ''), `conto ${esc(s.conto)} (${esc(b_nomeConto(s.conto))})`].filter(Boolean).join(' · ');
+  const minuti = (Date.now() - new Date(s.aggiornato).getTime()) / 60000;
+  if(minuti > 3 && d.stato !== 'bloccato')
+    out.push({ liv:2, testo:`<b>${nome}</b>: non in linea da ${b_quandoFa(s.aggiornato).replace(' fa','')}. Controlla che MetaTrader sia aperto e il bot sul grafico.` });
+  if(d.stato === 'bloccato')
+    out.push({ liv:2, testo:`<b>${nome}</b>: bloccato${d.motivo ? ' — ' + esc(d.motivo) : ''}.` });
+  const perdita = Math.max(Number(d.perdita_oggi) || 0, 0), limite = Number(d.limite_perdita) || 0;
+  if(limite > 0 && d.stato !== 'bloccato'){
+    const q = perdita / limite;
+    if(q >= .8) out.push({ liv:2, testo:`<b>${nome}</b>: perdita di oggi ${perdita.toFixed(2)}% su ${limite.toFixed(1)}%, quasi al limite.` });
+    else if(q >= .5) out.push({ liv:1, testo:`<b>${nome}</b>: perdita di oggi ${perdita.toFixed(2)}% su ${limite.toFixed(1)}%.` });
+  }
+  if(Number(d.senza_stop) > 0)
+    out.push({ liv:2, testo:`<b>${nome}</b>: ${Number(d.senza_stop) === 1 ? 'una posizione' : Number(d.senza_stop) + ' posizioni'} senza stop loss.` });
+  const mf = Number(d.max_perdite) || 0, pf = Number(d.perdite_fila) || 0;
+  if(mf > 0 && pf >= mf - 1 && pf > 0 && d.stato !== 'bloccato')
+    out.push({ liv:1, testo:`<b>${nome}</b>: ${pf} perdite di fila su un massimo di ${mf}.` });
+  if(d.stato === 'pausa')
+    out.push({ liv:1, testo:`<b>${nome}</b>: in pausa${d.pausa_fine ? ' fino alle ' + esc(d.pausa_fine) : ''}.` });
+  return out;
+}
+
+function b_renderMonitor(){
+  const box = document.getElementById('jmon');
+  if(!box) return;
+  /* il Monitor serve quando i bot sono più di uno o stanno su conti diversi */
+  const conti = new Set(b_stati.map(s => String(s.conto)));
+  const avvisi = b_stati.flatMap(b_avvisi).sort((a, b) => b.liv - a.liv);
+  const tuttiQui = j_demo || b_stati.every(s => j_contoDiMT(s.conto) === j_contoId());
+  box.hidden = b_stati.length < 2 && !avvisi.length && tuttiQui;
+  if(box.hidden) return;
+
+  let online = 0, offline = 0, bloccati = 0;
+  const equity = {}, aperto = {};
+  for(const s of b_stati){
+    const d = s.dati || {};
+    const minuti = (Date.now() - new Date(s.aggiornato).getTime()) / 60000;
+    if(d.stato === 'bloccato') bloccati++;
+    else if(minuti > 3) offline++;
+    else online++;
+    const v = d.valuta || '';
+    /* l'equity si conta una volta per conto MetaTrader, anche se ci sono più bot */
+    if(!(String(s.conto) in equity)) equity[String(s.conto)] = { v, e: Number(d.equity) || 0 };
+    aperto[v] = (aperto[v] || 0) + (Number(d.pnl_aperto) || 0);
+  }
+  const perValuta = {};
+  Object.values(equity).forEach(x => perValuta[x.v] = (perValuta[x.v] || 0) + x.e);
+  const soldi = o => Object.entries(o).map(([v, n]) => n.toFixed(2) + (v ? ' ' + esc(v) : '')).join(' · ') || '0.00';
+
+  document.getElementById('jmonSintesi').innerHTML = `
+    <span class="jmon-chip ok"><i></i>${online} operativi</span>
+    ${offline ? `<span class="jmon-chip attenzione"><i></i>${offline} non in linea</span>` : ''}
+    ${bloccati ? `<span class="jmon-chip allarme"><i></i>${bloccati} bloccati</span>` : ''}
+    <span class="jmon-chip"><i></i>${b_stati.length} bot · ${conti.size} ${conti.size === 1 ? 'conto' : 'conti'}</span>
+    <span>Equity ${soldi(perValuta)} · aperto ${soldi(aperto)}</span>`;
+
+  document.getElementById('jmonAvvisi').innerHTML = avvisi.length
+    ? avvisi.map(a => `<li class="${a.liv === 2 ? 'allarme' : 'attenzione'}"><span class="liv">${a.liv === 2 ? 'Attenzione' : 'Da guardare'}</span><span>${a.testo}</span></li>`).join('')
+    : '<li class="calmo">Nessun avviso: tutti i bot sono in linea e nei limiti.</li>';
+  document.getElementById('jmonTutti').hidden = tuttiQui && !b_tutti;
+}
+
 function b_renderStato(){
   const box = document.getElementById('jbot');
   if(!box) return;
-  const stati = j_demo ? b_stati : b_stati.filter(s => j_contoDiMT(s.conto) === j_contoId());
-  if(!stati.length){ box.hidden = true; return; }
+  if(!b_stati.length){ box.hidden = true; return; }
   box.hidden = false;
+  b_renderMonitor();
+  const stati = (j_demo || b_tutti) ? b_stati : b_stati.filter(s => j_contoDiMT(s.conto) === j_contoId());
+  if(!stati.length){
+    document.getElementById('jbotAgg').textContent = 'si aggiorna da solo';
+    document.getElementById('jbotGriglia').innerHTML = `<p class="jbot-vuoto">In questo conto del journal non c'è nessun bot. ${b_stati.length === 1 ? 'Un bot è collegato' : b_stati.length + ' bot sono collegati'} ad altri conti: premi «Mostra i bot di tutti i conti».</p>`;
+    return;
+  }
 
   document.getElementById('jbotAgg').textContent = 'si aggiorna da solo';
 
