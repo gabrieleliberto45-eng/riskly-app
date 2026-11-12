@@ -2213,6 +2213,20 @@ body.fuori-home #vaiHome{display:inline-flex}
 .nh .fase{padding:16px 0}
 .nh .fase p{font-size:16px}
 }
+
+/* trova il tuo strumento */
+.trova{border:1px solid var(--rule,#CDD1D4);background:var(--sheet,#FBFBF9);border-radius:14px;padding:20px;margin:0 0 22px}
+.trova-k{font:600 11px 'Martian Mono',monospace;letter-spacing:.12em;color:var(--amber-deep,#B97C00)}
+.trova h3{margin:6px 0 4px;font-size:1.35rem}
+.trova-sub{color:var(--ink-2,#4B525A);margin:0 0 14px;font-size:.95rem}
+.trova-op{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px}
+.trova-op button{text-align:left;padding:12px 14px;border-radius:10px;border:1px solid var(--rule,#CDD1D4);background:transparent;color:inherit;font-family:inherit;font-size:15px;font-weight:500;line-height:1.35;cursor:pointer;min-height:48px}
+.trova-op button[aria-pressed=true]{border-color:var(--amber-deep,#B97C00);background:rgba(242,184,58,.16);box-shadow:inset 0 0 0 1px var(--amber-deep,#B97C00)}
+.trova-ris:empty{display:none}
+.trova-ris{margin-top:16px;display:grid;gap:10px}
+.trova-sug{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;border-radius:10px;padding:12px 14px;background:rgba(21,24,27,.04)}
+.trova-sug b{display:block;font-size:1.05rem}.trova-sug span{color:var(--ink-2,#4B525A);font-size:.92rem}
+.trova-sug .btn{white-space:nowrap}
 </style>
 <link rel="stylesheet" href="/serio.css?v=5">
 <script>
@@ -2492,6 +2506,18 @@ body.fuori-home #vaiHome{display:inline-flex}
       </div>
 
       <div class="bot-pannello on" id="bt-scegli">
+      <div class="trova" id="trova">
+        <div class="trova-k">TROVA IL TUO STRUMENTO</div>
+        <h3>Cosa vuoi che faccia il bot?</h3>
+        <p class="trova-sub">Scegli una o più cose. Tutti i bot funzionano su MetaTrader 4 e MetaTrader 5.</p>
+        <div class="trova-op" role="group" aria-label="Cosa vuoi fare">
+          <button type="button" data-v="stop" aria-pressed="false">Fermarmi quando perdo troppo o faccio troppe operazioni</button>
+          <button type="button" data-v="gestione" aria-pressed="false">Mettere da solo stop, break-even e trailing</button>
+          <button type="button" data-v="scaglioni" aria-pressed="false">Entrare a scaglioni con più take profit</button>
+          <button type="button" data-v="copia" aria-pressed="false">Copiare le operazioni su altri conti (es. prop firm)</button>
+        </div>
+        <div class="trova-ris" id="trovaRis" aria-live="polite"></div>
+      </div>
       <div class="lancio-box">
         <div class="top">
           <div>
@@ -6831,6 +6857,37 @@ document.addEventListener('play', e => { if(e.target.tagName !== 'VIDEO') return
   document.querySelectorAll('.rv,.cifre').forEach(function(e){ io.observe(e); });
   /* le pagine interne si aprono senza ricaricare: mostro subito quello che è già nello schermo */
   if(typeof go === 'function'){ var g0 = go; window.go = function(){ var r = g0.apply(this, arguments); setTimeout(function(){ document.querySelectorAll('.page.on .rv:not(.visto)').forEach(function(e){ var b = e.getBoundingClientRect(); if(b.top < innerHeight) e.classList.add('visto'); }); }, 30); return r; }; }
+})();
+
+/* trova il tuo strumento: da 1 a 3 suggerimenti con il motivo */
+(function(){
+  const box = document.getElementById('trova'); if(!box) return;
+  const scelti = new Set();
+  const PRZ = { 'RiskGuard': '99 €', 'TradeManager': '49 €', 'ScaleIn': '79 €', 'Riskly Pro': '199 €', 'RisklyCopy': '69 €' };
+  function consiglia(){
+    const out = [], b = [...scelti].filter(x => x !== 'copia');
+    if(b.length >= 2) out.push(['Riskly Pro', 'Fa tutte e tre le cose in un solo bot e calcola il rischio sull\'insieme delle posizioni.']);
+    else if(b[0] === 'stop') out.push(['RiskGuard', 'Ti ferma dopo le perdite che decidi tu e blocca MetaTrader fino a mezzanotte.']);
+    else if(b[0] === 'gestione') out.push(['TradeManager', 'Mette stop, break-even e trailing in pip sulle posizioni che apri tu.']);
+    else if(b[0] === 'scaglioni') out.push(['ScaleIn', 'Apri una posizione e il bot apre le altre con take profit scaglionati.']);
+    if(scelti.has('copia')) out.push(['RisklyCopy', 'Copia le operazioni sugli altri conti con lo stesso rischio, non lo stesso lotto.']);
+    if(b.length === 1) out.push(['Riskly Pro', 'Se in futuro ti servono anche le altre funzioni: le ha tutte insieme.']);
+    return out.slice(0, 3);
+  }
+  function disegna(){
+    const r = document.getElementById('trovaRis'), lista = consiglia();
+    r.innerHTML = lista.map(([n, m], i) => `<div class="trova-sug"><div><b>${i === 0 ? 'Consigliato: ' : 'Anche: '}${n} · ${PRZ[n]}</b><span>${m}</span></div><button type="button" class="btn" data-vai="${n}">Vedi ${n}</button></div>`).join('');
+    r.querySelectorAll('[data-vai]').forEach(x => x.onclick = () => {
+      const b = document.querySelector('#bt-scegli [data-prodotto="' + x.dataset.vai + '"]');
+      const c = b && (b.closest('.card') || b.closest('article') || b.parentElement.parentElement);
+      if(c){ c.scrollIntoView({ behavior: 'smooth', block: 'start' }); c.style.outline = '2px solid #B97C00'; setTimeout(() => c.style.outline = '', 2200); }
+      try { if(typeof traccia === 'function') traccia('trova-' + x.dataset.vai); } catch(e) {}
+    });
+  }
+  box.querySelectorAll('.trova-op button').forEach(x => x.onclick = () => {
+    const v = x.dataset.v; scelti.has(v) ? scelti.delete(v) : scelti.add(v);
+    x.setAttribute('aria-pressed', scelti.has(v)); disegna();
+  });
 })();
 </script>
 </body>
