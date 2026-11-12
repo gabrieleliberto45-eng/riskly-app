@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Riskly · Sala di controllo del rischio (prototipo)</title>
+<meta name="robots" content="noindex">
+<style>
+@font-face{font-family:'Archivo';src:url(../riskly/fonts/archivo.woff2) format('woff2');font-weight:100 900;font-stretch:62% 125%;font-display:swap}
+@font-face{font-family:'Martian Mono';src:url(../riskly/fonts/martian-mono.woff2) format('woff2');font-weight:100 800;font-stretch:75% 112.5%;font-display:swap}
+:root{
+  --paper:#F3F4F1;--sheet:#FBFBF9;--ink:#15181B;--ink-2:#4B525A;--ink-3:#6B727A;--rule:#D3D6D8;--rule-2:#E4E6E7;
+  --amber:#F2B83A;--amber-deep:#9E6A00;--amber-ink:#2B1E00;
+  --su:#1F7A4D;--giu:#B3261E;
+  --console:#101315;--console-2:#181C1F;--console-rule:#2A3034;--console-ink:#E9ECEA;--console-dim:#8C949A;
+  --mono:'Martian Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--paper)}
+body{font-family:'Archivo',system-ui,sans-serif;color:var(--ink);background:var(--paper);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.mono{font-family:var(--mono);font-stretch:88%}
+.wrap{max-width:1200px;margin:0 auto;padding:0 16px}
+@media(min-width:760px){.wrap{padding:0 32px}}
+
+/* ═══ BARRA DI CONTROLLO (comune a tutti i siti) ═══ */
+.barra{position:sticky;top:0;z-index:20;background:var(--console);color:var(--console-ink)}
+.barra-su{display:flex;align-items:center;gap:20px;height:56px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;font-stretch:80%;font-size:20px;letter-spacing:-.01em}
+.logo i{width:22px;height:22px;border:2px solid var(--amber);border-radius:3px;position:relative}
+.logo i::after{content:'';position:absolute;left:3px;right:3px;bottom:4px;height:2px;background:var(--amber);box-shadow:0 -5px 0 var(--amber)}
+.menu{display:none;gap:2px;margin-left:8px}
+.menu a{text-decoration:none;font-size:14px;font-weight:600;color:var(--console-dim);padding:8px 11px;border-radius:3px;white-space:nowrap}
+.menu a:hover{color:var(--console-ink);background:var(--console-2)}
+.menu a.on{color:var(--console-ink);box-shadow:inset 0 -2px 0 var(--amber)}
+.menu a .tag{font-family:var(--mono);font-size:9px;letter-spacing:.06em;color:var(--amber);margin-left:5px;vertical-align:2px}
+.acc{margin-left:auto;font-size:14px;font-weight:600;text-decoration:none;border:1px solid var(--console-rule);padding:7px 12px;border-radius:3px}
+.hamb{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid var(--console-rule);border-radius:3px;background:none;color:inherit;cursor:pointer}
+.hamb svg{width:18px;height:18px}
+@media(min-width:1060px){.menu{display:flex}.hamb{display:none}}
+.mm{display:none;border-top:1px solid var(--console-rule)}
+.mm.on{display:block}
+.mm a{display:flex;justify-content:space-between;padding:14px 16px;text-decoration:none;border-bottom:1px solid var(--console-rule);font-weight:600}
+.mm a span{font-family:var(--mono);font-size:11px;color:var(--console-dim)}
+
+/* riga dei dati dal vivo */
+.dati{border-top:1px solid var(--console-rule);background:var(--console-2)}
+.dati-in{display:flex;gap:0;overflow-x:auto;scrollbar-width:none;font-family:var(--mono);font-stretch:88%;font-size:12px;white-space:nowrap}
+.dati-in::-webkit-scrollbar{display:none}
+.d{display:flex;align-items:center;gap:8px;padding:9px 16px 9px 0;margin-right:16px;border-right:1px solid var(--console-rule)}
+.d:last-child{border-right:0}
+.d b{font-weight:500;color:var(--console-dim)}
+.d .v{color:var(--console-ink)}
+.d .p.su{color:#4CC38A}.d .p.giu{color:#FF6B5E}
+.d.prossimo .v{color:var(--amber)}
+.punto{width:7px;height:7px;border-radius:50%;background:#4CC38A;box-shadow:0 0 0 3px rgba(76,195,138,.18)}
+.punto.chiuso{background:var(--console-dim);box-shadow:none}
+
+/* ═══ HOME ═══ */
+.hero{padding:44px 0 36px;border-bottom:1px solid var(--rule)}
+.hero-g{display:grid;gap:36px}
+@media(min-width:980px){.hero{padding:72px 0 64px}.hero-g{grid-template-columns:1.05fr .95fr;align-items:start;gap:56px}}
+.kick{font-family:var(--mono);font-stretch:88%;font-size:12px;letter-spacing:.08em;color:var(--amber-deep);display:flex;gap:10px;align-items:center}
+.kick::before{content:'';width:18px;height:1px;background:currentColor}
+h1{font-weight:800;font-stretch:72%;font-size:clamp(44px,8.6vw,92px);line-height:.94;letter-spacing:-.035em;margin:18px 0 22px}
+h1 em{font-style:normal;color:var(--ink-3)}
+.lead{font-size:clamp(17px,2vw,20px);color:var(--ink-2);max-width:34em}
+.cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:10px;font:700 16px 'Archivo',sans-serif;text-decoration:none;padding:15px 22px;border-radius:3px;border:1px solid var(--ink);cursor:pointer;min-height:48px}
+.btn.pri{background:var(--ink);color:var(--sheet)}
+.btn.pri:hover{background:#000}
+.btn.sec{background:transparent;color:var(--ink)}
+.btn .fr{font-family:var(--mono);font-size:14px}
+.nota{font-size:14px;color:var(--ink-3);margin-top:14px}
+
+/* console: calcolatore vero, utile prima di comprare */
+.console{background:var(--console);color:var(--console-ink);border-radius:6px;overflow:hidden;border:1px solid #000}
+.c-testa{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid var(--console-rule);font-family:var(--mono);font-stretch:88%;font-size:11px;letter-spacing:.08em;color:var(--console-dim)}
+.c-testa .live{display:flex;gap:8px;align-items:center;color:var(--console-ink)}
+.c-corpo{padding:18px 16px 20px;display:grid;gap:16px}
+.c-campi{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.campo label{display:block;font-family:var(--mono);font-stretch:88%;font-size:10.5px;letter-spacing:.07em;color:var(--console-dim);margin-bottom:6px}
+.campo input,.campo select{width:100%;height:44px;background:var(--console-2);border:1px solid var(--console-rule);border-radius:3px;color:var(--console-ink);font:500 16px var(--mono);font-stretch:88%;padding:0 12px;appearance:none}
+.campo input:focus,.campo select:focus{outline:2px solid var(--amber);outline-offset:1px}
+.risul{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--console-rule);border-radius:3px}
+.r{padding:14px}
+.r+.r{border-left:1px solid var(--console-rule)}
+.r .et{font-family:var(--mono);font-stretch:88%;font-size:10.5px;letter-spacing:.07em;color:var(--console-dim)}
+.r .n{font-family:var(--mono);font-stretch:85%;font-size:clamp(26px,6vw,34px);font-weight:600;margin-top:6px;color:var(--amber);font-variant-numeric:tabular-nums}
+.r .s{font-size:13px;color:var(--console-dim);margin-top:2px}
+.serie{display:grid;gap:8px}
+.serie .et{font-family:var(--mono);font-stretch:88%;font-size:10.5px;letter-spacing:.07em;color:var(--console-dim);display:flex;justify-content:space-between}
+.barre{display:grid;grid-template-columns:repeat(10,1fr);gap:4px;align-items:end;height:64px}
+.barre i{display:block;background:#3A4146;border-radius:1px}
+.barre i.lim{background:#FF6B5E}
+.c-piede{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:12px 16px;border-top:1px solid var(--console-rule);font-size:13px;color:var(--console-dim)}
+.c-piede a{color:var(--amber);font-weight:700;text-decoration:none;white-space:nowrap}
+
+/* sezioni */
+.sez{padding:56px 0;border-bottom:1px solid var(--rule)}
+@media(min-width:980px){.sez{padding:84px 0}}
+.sez-t{display:grid;gap:10px;margin-bottom:30px}
+@media(min-width:980px){.sez-t{grid-template-columns:1fr 1fr;align-items:end;gap:40px}}
+h2{font-weight:800;font-stretch:75%;font-size:clamp(32px,5vw,52px);line-height:1;letter-spacing:-.025em}
+.sez-t p{color:var(--ink-2);max-width:32em}
+
+/* tre ingressi per obiettivo */
+.obiettivi{display:grid;border-top:1px solid var(--ink)}
+@media(min-width:900px){.obiettivi{grid-template-columns:repeat(3,1fr)}}
+.ob{display:grid;grid-template-rows:auto auto 1fr auto;gap:12px;padding:24px 0;border-bottom:1px solid var(--rule);text-decoration:none}
+@media(min-width:900px){.ob{padding:28px 28px 30px;border-bottom:0;border-right:1px solid var(--rule)}.ob:first-child{padding-left:0}.ob:last-child{border-right:0;padding-right:0}}
+.ob .num{font-family:var(--mono);font-stretch:88%;font-size:12px;color:var(--ink-3);display:flex;justify-content:space-between}
+.ob .num .gr{color:var(--su)}
+.ob h3{font-weight:800;font-stretch:78%;font-size:30px;line-height:1.05;letter-spacing:-.02em}
+.ob p{color:var(--ink-2);font-size:16px}
+.ob ul{list-style:none;display:grid;gap:0;border-top:1px solid var(--rule-2)}
+.ob li{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--rule-2);font-size:15px;font-weight:600}
+.ob li span{font-family:var(--mono);font-stretch:88%;font-size:11px;color:var(--ink-3);font-weight:400;white-space:nowrap}
+.ob .va{font-weight:700;display:flex;justify-content:space-between;align-items:center}
+.ob:hover .va{color:var(--amber-deep)}
+
+/* il sistema: un circuito, non schede */
+.circuito{display:grid;gap:0;border:1px solid var(--ink);border-radius:4px;overflow:hidden;background:var(--sheet)}
+@media(min-width:980px){.circuito{grid-template-columns:repeat(5,1fr)}}
+.st{padding:20px 18px;display:grid;gap:8px;position:relative;border-bottom:1px solid var(--rule)}
+@media(min-width:980px){.st{border-bottom:0;border-right:1px solid var(--rule);min-height:220px;grid-template-rows:auto auto 1fr auto}.st:last-child{border-right:0}}
+.st:last-child{border-bottom:0}
+.st .fa{font-family:var(--mono);font-stretch:88%;font-size:11px;letter-spacing:.08em;color:var(--ink-3);display:flex;justify-content:space-between;align-items:center}
+.stato{font-size:10px;padding:3px 7px;border-radius:2px;border:1px solid currentColor}
+.stato.on{color:var(--su)}
+.stato.pre{color:var(--amber-deep)}
+.st h3{font-weight:800;font-stretch:78%;font-size:24px;letter-spacing:-.015em;line-height:1.1}
+.st p{font-size:15px;color:var(--ink-2)}
+.st a{font-weight:700;font-size:15px;text-decoration:none}
+.st a:hover{color:var(--amber-deep)}
+.st.futuro{background:repeating-linear-gradient(135deg,transparent 0 9px,rgba(21,24,27,.035) 9px 10px)}
+.freccia{display:none}
+@media(min-width:980px){.freccia{display:block;position:absolute;right:-7px;top:50%;width:12px;height:12px;background:var(--sheet);border-top:1px solid var(--ink);border-right:1px solid var(--ink);transform:translateY(-50%) rotate(45deg);z-index:2}}
+
+/* oggi sui mercati */
+.oggi{display:grid;gap:20px}
+@media(min-width:980px){.oggi{grid-template-columns:1.2fr .8fr}}
+.tab{width:100%;border-collapse:collapse;font-size:15px}
+.tab th{font-family:var(--mono);font-stretch:88%;font-size:10.5px;letter-spacing:.07em;color:var(--ink-3);font-weight:500;text-align:left;padding:0 10px 10px 0;border-bottom:1px solid var(--ink)}
+.tab td{padding:13px 10px 13px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+.tab td.m{font-family:var(--mono);font-stretch:88%;font-size:13px;white-space:nowrap;font-variant-numeric:tabular-nums}
+@media(max-width:640px){.tab thead{display:none}.tab,.tab tbody{display:block}.tab tr{display:grid;grid-template-columns:1fr auto;gap:2px 12px;padding:12px 0;border-bottom:1px solid var(--rule)}.tab td{border:0;padding:0}.tab td:nth-child(1){grid-column:1}.tab td:nth-child(2){grid-column:1;font-weight:700}.tab td:nth-child(3){grid-column:2;grid-row:1}.tab td:nth-child(4)::before{content:"ATTESO ";color:var(--ink-3)}.tab td:nth-child(5)::before{content:"PREC. ";color:var(--ink-3)}.tab td:nth-child(4){grid-column:1}.tab td:nth-child(5){grid-column:2;grid-row:3;text-align:right}.tab tr:first-child{border-top:1px solid var(--ink)}}
+.imp{display:inline-flex;gap:2px}.imp i{width:4px;height:12px;background:var(--rule)}.imp i.on{background:var(--ink)}
+.art{border:1px solid var(--rule);background:var(--sheet);border-radius:4px;padding:20px;display:grid;gap:10px;align-content:start}
+.art .et{font-family:var(--mono);font-stretch:88%;font-size:11px;letter-spacing:.07em;color:var(--amber-deep)}
+.art h3{font-weight:760;font-stretch:85%;font-size:21px;line-height:1.25}
+.art p{color:var(--ink-2);font-size:15px}
+.art a{font-weight:700;text-decoration:none}
+
+/* principi */
+.principi{display:grid;gap:0;border-top:1px solid var(--ink)}
+@media(min-width:760px){.principi{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1100px){.principi{grid-template-columns:repeat(4,1fr)}}
+.pr{padding:22px 20px 22px 0;border-bottom:1px solid var(--rule)}
+.pr b{display:block;font-weight:800;font-stretch:80%;font-size:20px;margin-bottom:6px}
+.pr p{font-size:15px;color:var(--ink-2)}
+.pr .mono{font-size:11px;color:var(--ink-3);display:block;margin-bottom:10px}
+
+footer{background:var(--console);color:var(--console-dim);padding:32px 0;font-size:14px}
+footer .wrap{display:grid;gap:10px}
+footer b{color:var(--console-ink)}
+.proto{position:fixed;left:12px;bottom:12px;z-index:30;font:600 11px var(--mono);background:var(--amber);color:var(--amber-ink);padding:6px 9px;border-radius:3px}
+</style>
+</head>
+<body>
+
+<!-- ═══ BARRA DI CONTROLLO: la stessa su riskly.trade, strumenti, news e journal ═══ -->
+<header class="barra">
+  <div class="wrap barra-su">
+    <a class="logo" href="#"><i></i>Riskly</a>
+    <nav class="menu" aria-label="Sezioni">
+      <a class="on" href="#">Home</a>
+      <a href="#">Prodotti</a>
+      <a href="#">Strumenti</a>
+      <a href="#">Journal</a>
+      <a href="#">Monitor<span class="tag">PRESTO</span></a>
+      <a href="#">News &amp; Academy</a>
+    </nav>
+    <a class="acc" href="#">Accedi</a>
+    <button class="hamb" aria-label="Menu" aria-expanded="false" onclick="const m=document.getElementById('mm');m.classList.toggle('on');this.setAttribute('aria-expanded',m.classList.contains('on'))"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+  <nav class="mm" id="mm" aria-label="Sezioni">
+    <a href="#">Prodotti <span>BOT · CONFRONTO</span></a>
+    <a href="#">Strumenti <span>GRATIS</span></a>
+    <a href="#">Journal <span>DIARIO · STATISTICHE</span></a>
+    <a href="#">Monitor <span>PRESTO</span></a>
+    <a href="#">News &amp; Academy <span>OGNI MATTINA</span></a>
+  </nav>
+  <div class="dati">
+    <div class="wrap dati-in" aria-label="Dati di mercato">
+      <div class="d"><span class="punto" id="pMerc"></span><b>MERCATI</b><span class="v" id="sess">NEW YORK APERTA</span></div>
+      <div class="d"><b>XAU/USD</b><span class="v">3.879,0</span><span class="p giu">−3,04%</span></div>
+      <div class="d"><b>DXY</b><span class="v">103,19</span><span class="p su">+0,27%</span></div>
+      <div class="d"><b>US 10A</b><span class="v">5,10%</span><span class="p su">+10 pb</span></div>
+      <div class="d"><b>EUR/USD</b><span class="v">1,1056</span><span class="p giu">−0,31%</span></div>
+      <div class="d prossimo"><b>PROSSIMO DATO</b><span class="v">PPI USA · VEN 14:30</span><span class="v" id="cd">—</span></div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-g">
+      <div>
+        <div class="kick">SALA DI CONTROLLO DEL RISCHIO</div>
+        <h1>Controlli il rischio.<br><em>Non il mercato.</em></h1>
+        <p class="lead">Strumenti, dati e bot per sapere quanto rischi prima di entrare, fermarti quando serve e capire dove sbagli. Gratis finché ti servono solo i numeri.</p>
+        <div class="cta">
+          <a class="btn pri" href="#">Trova il tuo strumento <span class="fr">→</span></a>
+          <a class="btn sec" href="#">Apri gli strumenti gratis</a>
+        </div>
+        <p class="nota">Nessun segnale, nessuna promessa di guadagno. Solo regole che decidi tu.</p>
+      </div>
+
+      <!-- console: un calcolatore vero, già utile prima di comprare -->
+      <div class="console" aria-label="Calcolatore del rischio">
+        <div class="c-testa"><span>CONSOLE RISCHIO</span><span class="live"><span class="punto"></span>CALCOLO LOCALE</span></div>
+        <div class="c-corpo">
+          <div class="c-campi">
+            <div class="campo"><label for="saldo">SALDO ($)</label><input id="saldo" inputmode="decimal" value="10000"></div>
+            <div class="campo"><label for="risc">RISCHIO PER OP. (%)</label><input id="risc" inputmode="decimal" value="1"></div>
+            <div class="campo"><label for="sim">STRUMENTO</label><select id="sim"><option value="xau">XAU/USD (oro)</option><option value="eur">EUR/USD</option><option value="gbp">GBP/USD</option></select></div>
+            <div class="campo"><label for="stop">STOP (PIP)</label><input id="stop" inputmode="decimal" value="30"></div>
+          </div>
+          <div class="risul">
+            <div class="r"><div class="et">LOTTO MASSIMO</div><div class="n" id="oLot">0,33</div><div class="s" id="oLotS">per rischiare 100 $</div></div>
+            <div class="r"><div class="et">DOPO 10 PERDITE DI FILA</div><div class="n" id="oDd">−9,6%</div><div class="s" id="oDdS">ti restano 9.044 $</div></div>
+          </div>
+          <div class="serie">
+            <div class="et"><span>SALDO DOPO OGNI PERDITA</span><span id="oRec">serve +10,6% per tornare in pari</span></div>
+            <div class="barre" id="barre"></div>
+          </div>
+        </div>
+        <div class="c-piede"><span>Vuoi che il limite lo faccia rispettare un bot?</span><a href="#">RiskGuard →</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRE INGRESSI PER OBIETTIVO -->
+  <section class="sez">
+    <div class="wrap">
+      <div class="sez-t">
+        <h2>Da dove parti?</h2>
+        <p>Scegli il problema, non il nome del prodotto. Ogni strada parte da qualcosa di gratuito.</p>
+      </div>
+      <div class="obiettivi">
+        <a class="ob" href="#">
+          <div class="num"><span>01 · MISURARE</span><span class="gr">GRATIS</span></div>
+          <h3>Sapere quanto rischi prima di entrare</h3>
+          <p>Lotto giusto, rischio di rovina, recupero dal drawdown, regole delle prop firm.</p>
+          <ul><li>Calcolatore di posizione <span>STRUMENTI</span></li><li>Monte Carlo e rovina <span>STRUMENTI</span></li><li>Calendario economico <span>STRUMENTI</span></li></ul>
+          <div class="va">Apri gli strumenti <span class="mono">→</span></div>
+        </a>
+        <a class="ob" href="#">
+          <div class="num"><span>02 · PROTEGGERE</span><span>DA 49 €</span></div>
+          <h3>Far rispettare le regole al posto tuo</h3>
+          <p>Bot che non aprono operazioni: ti fermano, mettono gli stop, gestiscono le uscite.</p>
+          <ul><li>RiskGuard <span>FERMA LE PERDITE</span></li><li>TradeManager <span>STOP E TRAILING</span></li><li>Riskly Pro <span>TUTTO INSIEME</span></li></ul>
+          <div class="va">Trova il bot giusto <span class="mono">→</span></div>
+        </a>
+        <a class="ob" href="#">
+          <div class="num"><span>03 · MIGLIORARE</span><span class="gr">PROVA GRATIS</span></div>
+          <h3>Capire dove sbagli, con i numeri</h3>
+          <p>Diario delle operazioni, statistiche per orario e strategia, errori che si ripetono.</p>
+          <ul><li>Journal <span>DIARIO</span></li><li>Statistiche <span>JOURNAL</span></li><li>Analisi del comportamento <span>JOURNAL</span></li></ul>
+          <div class="va">Apri il journal <span class="mono">→</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- IL SISTEMA -->
+  <section class="sez">
+    <div class="wrap">
+      <div class="sez-t">
+        <h2>Un sistema, non un catalogo.</h2>
+        <p>Ogni parte passa i dati alla successiva. Puoi usarne una sola, ma più ne usi più Riskly ti conosce.</p>
+      </div>
+      <div class="circuito">
+        <div class="st"><div class="fa"><span>01 IMPARA</span><span class="stato on">ATTIVO</span></div><h3>News &amp; Academy</h3><p>Ogni mattina cosa muove oro, dollaro e tassi. Corsi e guide sul rischio.</p><a href="#">Leggi →</a><span class="freccia"></span></div>
+        <div class="st"><div class="fa"><span>02 MISURA</span><span class="stato on">ATTIVO</span></div><h3>Strumenti</h3><p>Calcolatori, simulazioni e calendario. Gratis, anche senza account.</p><a href="#">Calcola →</a><span class="freccia"></span></div>
+        <div class="st"><div class="fa"><span>03 APPLICA</span><span class="stato on">ATTIVO</span></div><h3>Bot</h3><p>Le tue regole dentro MetaTrader 4 e 5. Ti fermano quando non lo faresti.</p><a href="#">Confronta →</a><span class="freccia"></span></div>
+        <div class="st"><div class="fa"><span>04 MIGLIORA</span><span class="stato on">ATTIVO</span></div><h3>Journal</h3><p>Le operazioni arrivano dai bot. Statistiche ed errori, senza scrivere a mano.</p><a href="#">Apri →</a><span class="freccia"></span></div>
+        <div class="st futuro"><div class="fa"><span>05 CONTROLLA</span><span class="stato pre">IN ARRIVO</span></div><h3>Monitor</h3><p>Tutti i tuoi conti in un solo pannello: esposizione, drawdown, limiti, avvisi.</p><a href="#">Avvisami →</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OGGI SUI MERCATI -->
+  <section class="sez">
+    <div class="wrap">
+      <div class="sez-t">
+        <h2>Oggi sui mercati.</h2>
+        <p>Prima di aprire una posizione: cosa esce e cosa è appena successo. Orari italiani.</p>
+      </div>
+      <div class="oggi">
+        <table class="tab">
+          <thead><tr><th>QUANDO</th><th>DATO USA</th><th>IMPATTO</th><th>ATTESO</th><th>PREC.</th></tr></thead>
+          <tbody>
+            <tr><td class="m">VEN 13 · 14:30</td><td>Prezzi alla produzione (PPI)</td><td><span class="imp"><i class="on"></i><i class="on"></i><i class="on"></i></span></td><td class="m">+0,4%</td><td class="m">+1,3%</td></tr>
+            <tr><td class="m">MAR 17 · 14:30</td><td>Vendite al dettaglio</td><td><span class="imp"><i class="on"></i><i class="on"></i><i class="on"></i></span></td><td class="m">0,0%</td><td class="m">+0,8%</td></tr>
+            <tr><td class="m">MAR 9 DIC</td><td>Decisione Fed sui tassi</td><td><span class="imp"><i class="on"></i><i class="on"></i><i class="on"></i></span></td><td class="m">+25 pb</td><td class="m">3,75–4,00%</td></tr>
+          </tbody>
+        </table>
+        <article class="art">
+          <div class="et">RISKLY NEWS · ORO · OGGI</div>
+          <h3>L'oro scivola sotto i 4.000 $: il decennale USA tocca il 5%, il dollaro è ai massimi dell'anno</h3>
+          <p>Il mercato dà quasi per certo un rialzo Fed di 25 punti base a dicembre. Cosa significa per chi opera sull'oro.</p>
+          <a href="#">Leggi l'articolo →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRINCIPI -->
+  <section class="sez">
+    <div class="wrap">
+      <div class="sez-t"><h2>Le regole di Riskly.</h2><p>Quello che non facciamo conta quanto quello che facciamo.</p></div>
+      <div class="principi">
+        <div class="pr"><span class="mono">01</span><b>Nessun segnale</b><p>I bot non decidono cosa comprare o vendere. Applicano le regole che hai deciso tu.</p></div>
+        <div class="pr"><span class="mono">02</span><b>Numeri veri</b><p>Niente grafici finti né risultati inventati. Ogni dato ha una fonte e un orario.</p></div>
+        <div class="pr"><span class="mono">03</span><b>Utile prima di pagare</b><p>Strumenti, calendario e notizie si usano gratis, anche senza account.</p></div>
+        <div class="pr"><span class="mono">04</span><b>Limiti dichiarati</b><p>Ogni prodotto dice cosa fa e cosa non fa, prima del pulsante di acquisto.</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap"><b>Riskly</b><span>Il trading con leva comporta un alto rischio di perdita del capitale. Contenuti informativi, non consulenza finanziaria.</span><span class="mono" style="font-size:11px">P. IVA 04948840162 · Privacy · Termini</span></div></footer>
+<div class="proto">PROTOTIPO · DATI DEL 12/11 22:37</div>
+
+<script>
+/* conto alla rovescia al prossimo dato (PPI, venerdì 13 novembre 14:30 ora italiana = 13:30 UTC) */
+const USCITA = Date.parse('2026-11-13T13:30:00Z');
+function cd(){
+  const s = Math.max(0, Math.floor((USCITA - Date.now()) / 1000));
+  const h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60), x = s % 60;
+  document.getElementById('cd').textContent = s ? `T−${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(x).padStart(2,'0')}` : 'USCITO';
+}
+cd(); setInterval(cd, 1000);
+
+/* sessione di mercato in ora italiana (Asia 1–9, Londra 9–17:30, New York 15:30–22) */
+(function(){
+  const h = new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Rome' })), t = h.getHours() + h.getMinutes() / 60, g = h.getDay();
+  let s = 'MERCATI CHIUSI';
+  if(g >= 1 && g <= 5){ if(t >= 1 && t < 9) s = 'ASIA APERTA'; else if(t >= 9 && t < 15.5) s = 'LONDRA APERTA'; else if(t >= 15.5 && t < 17.5) s = 'LONDRA + NEW YORK'; else if(t >= 17.5 && t < 22) s = 'NEW YORK APERTA'; }
+  document.getElementById('sess').textContent = s;
+  if(s === 'MERCATI CHIUSI') document.getElementById('pMerc').classList.add('chiuso');
+})();
+
+/* console: lotto massimo e serie di perdite (valore del pip per lotto standard: 10 $) */
+const PIP = { xau: 10, eur: 10, gbp: 10 };
+const num = v => parseFloat(String(v).replace(/\./g, '').replace(',', '.')) || 0;
+const it = (v, d) => { const [a, b] = Math.abs(v).toFixed(d).split('.'); return (v < 0 ? '−' : '') + a.replace(/\B(?=(\d{3})+(?!\d))/g, '.') + (b ? ',' + b : ''); };
+function calcola(){
+  const saldo = num(document.getElementById('saldo').value), r = num(document.getElementById('risc').value) / 100;
+  const stop = num(document.getElementById('stop').value), sim = document.getElementById('sim').value;
+  const rischio = saldo * r, lot = stop > 0 ? Math.floor(rischio / (stop * PIP[sim]) * 100) / 100 : 0;
+  document.getElementById('oLot').textContent = it(lot, 2);
+  document.getElementById('oLotS').textContent = `per rischiare ${it(rischio, 0)} $`;
+  const resto = saldo * Math.pow(1 - r, 10), dd = saldo ? (resto / saldo - 1) * 100 : 0;
+  document.getElementById('oDd').textContent = (dd < 0 ? '−' : '') + it(Math.abs(dd), 1) + '%';
+  document.getElementById('oDdS').textContent = `ti restano ${it(resto, 0)} $`;
+  const rec = resto > 0 ? (saldo / resto - 1) * 100 : 0;
+  document.getElementById('oRec').textContent = `serve +${it(rec, 1)}% per tornare in pari`;
+  const b = document.getElementById('barre'); b.innerHTML = '';
+  for(let i = 1; i <= 10; i++){
+    const v = Math.pow(1 - r, i), el = document.createElement('i');
+    el.style.height = Math.max(4, (v - Math.pow(1 - r, 10) * .9) / (1 - Math.pow(1 - r, 10) * .9) * 100) + '%';
+    if(i === 10) el.className = 'lim';
+    el.title = `Dopo ${i} perdite: ${it(saldo * v, 0)} $`;
+    b.appendChild(el);
+  }
+}
+['saldo', 'risc', 'stop', 'sim'].forEach(id => document.getElementById(id).addEventListener('input', calcola));
+calcola();
+</script>
+</body>
+</html>
