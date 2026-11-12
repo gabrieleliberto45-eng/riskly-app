@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Primi passi con i bot · Riskly</title>
+<meta name="description" content="Come installare, attivare e verificare un bot Riskly su MetaTrader 4 e 5 dopo l'acquisto.">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link href="/fonts.css" rel="stylesheet">
+<style>
+  :root{--bg:#F3F4F1;--text:#15181B;--dim:#4B525A;--accent:#B97C00;--line:rgba(21,24,27,.09)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:'Instrument Sans',-apple-system,system-ui,sans-serif;line-height:1.7}
+  header{border-bottom:1px solid var(--line);padding:16px}
+  header a{color:var(--text);text-decoration:none;font-weight:600;font-size:1.1rem}
+  main{max-width:760px;margin:0 auto;padding:44px 16px 80px}
+  .k{font-size:.72rem;letter-spacing:.14em;color:var(--accent);font-weight:600}
+  h1{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:2.3rem;line-height:1.15;margin:10px 0 6px}
+  .agg{color:var(--dim);font-size:.9rem;margin-bottom:30px}
+  h2{font-size:1.1rem;margin:30px 0 8px}
+  p{color:var(--dim);margin-bottom:12px}
+  p b{color:var(--text)}
+  a{color:var(--accent)}
+  footer{border-top:1px solid var(--line);padding:22px 16px;text-align:center;color:var(--dim);font-size:.85rem}
+/* TEMA CHIARO RISKLY */
+@font-face{font-family:'Archivo';src:url(/fonts/archivo.woff2) format('woff2');font-weight:100 900;font-stretch:62% 125%;font-display:swap}
+@font-face{font-family:'Martian Mono';src:url(/fonts/martian-mono.woff2) format('woff2');font-weight:100 800;font-stretch:75% 112.5%;font-display:swap}
+:root{--paper:#F3F4F1;--sheet:#FBFBF9;--ink:#15181B;--ink-2:#4B525A;--ink-3:#5E656D;--rule:#CDD1D4;--amber:#F2B83A;--amber-deep:#B97C00;--amber-ink:#2B1E00;--focus:#1F5FD6;--ease-out:cubic-bezier(.23,1,.32,1);
+  --r:4px;--line-hi:#15181B;--accent:#B97C00;--grad:#15181B}
+html{background:var(--paper)}
+body{background:var(--paper)!important;color:var(--ink);font-family:'Archivo',system-ui,sans-serif!important;font-size:17px;font-feature-settings:normal}
+body::before{display:none!important}
+::selection{background:var(--amber);color:var(--amber-ink)}
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+h1,h2,h3{font-family:'Archivo',system-ui,sans-serif!important;font-weight:760;font-stretch:80%;letter-spacing:-.015em;color:var(--ink)}
+h1{font-weight:780;font-stretch:78%;letter-spacing:-.025em}
+em{color:var(--ink-3)}
+.mono,.meta,.kicker{font-family:'Martian Mono',ui-monospace,monospace!important;font-stretch:88%}
+.kicker{color:var(--amber-deep)!important;letter-spacing:.02em}
+.lead,.dim{color:var(--ink-2)}
+/* niente bagliori, ombre colorate o sollevamenti */
+*{text-shadow:none!important}
+.card,.glass{background:var(--sheet)!important;border:1px solid var(--rule)!important;border-radius:4px!important;box-shadow:none!important}
+.card:hover{transform:none!important;border-color:var(--ink)!important;box-shadow:none!important}
+.btn{border-radius:4px!important;box-shadow:none!important;padding:13px 22px;border-color:var(--ink)!important;color:var(--ink)!important;background:transparent!important;filter:none!important}
+.btn:hover{background:var(--sheet)!important;transform:none!important}
+.btn.pri{background:var(--ink)!important;color:var(--sheet)!important;border-color:var(--ink)!important}
+.btn.pri:hover{background:#000!important}
+.btn:active{transform:scale(.97)!important}
+.btn.lg{padding:15px 26px}
+/* barra superiore classica, niente barre in basso */
+.dbarra,.sbarra,.saltro,#tornaSu,#progressoLettura{display:none!important}
+body{padding-bottom:0!important}
+nav{background:color-mix(in srgb,var(--paper) 94%,transparent)!important;border-bottom:1px solid var(--rule)!important}
+nav .brand{color:var(--ink)}
+.tabs{display:flex!important;background:none!important;border:none!important;padding:0!important;gap:22px!important;border-radius:0!important}
+.tabs button,.tabs a{padding:6px 0!important;border-radius:0!important;background:none!important;box-shadow:none!important;color:var(--ink-2)!important;font-size:15px!important;font-weight:500!important;text-decoration:none;font-family:inherit}
+.tabs button:hover,.tabs a:hover{color:var(--ink)!important}
+.tabs button.on{color:var(--ink)!important;font-weight:700!important;box-shadow:inset 0 -2px 0 var(--amber)!important}
+.nav-link{color:var(--ink-2)!important}
+.lancio-bar{background:var(--amber)!important;color:var(--amber-ink)!important;border:none!important}
+.lancio-bar *{color:var(--amber-ink)!important;font-family:'Archivo',sans-serif!important}
+/* assistente: un pulsante discreto */
+#chatBtn{border-radius:4px!important;background:var(--sheet)!important;color:var(--ink)!important;border:1px solid var(--ink)!important;box-shadow:0 8px 24px -12px rgba(21,24,27,.4)!important}
+#chatBox{border-radius:6px!important;background:var(--sheet)!important;border:1px solid var(--ink)!important}
+/* menu del telefono */
+.apri-menu{display:none;height:40px;padding:0 14px;border:1px solid var(--ink);border-radius:4px;background:transparent;font:600 15px 'Archivo',sans-serif;color:var(--ink);cursor:pointer}
+#menu-mobile{border-top:1px solid var(--rule);background:var(--paper)}
+#menu-mobile a,#menu-mobile button{display:block;width:100%;text-align:left;padding:14px 24px;border:0;border-bottom:1px solid var(--rule);background:none;text-decoration:none;font:600 16px 'Archivo',sans-serif;color:var(--ink)}
+@media (max-width:960px){.tabs{display:none!important}.apri-menu{display:inline-flex;align-items:center}}
+@media (min-width:961px){#menu-mobile{display:none!important}}
+input,select,textarea{border-radius:3px!important}
+ol.p{margin:0 0 14px 20px;color:var(--ink-2)}ol.p li{margin:6px 0;line-height:1.6}code{font-family:"Martian Mono",monospace;font-size:.85em;background:rgba(21,24,27,.06);padding:1px 5px;border-radius:3px;word-break:break-all}.nota{border-left:3px solid var(--amber);padding:10px 14px;background:var(--sheet);margin:14px 0;color:var(--ink-2)}.passo{font:600 11px "Martian Mono",monospace;letter-spacing:.1em;color:var(--amber-deep)}
+</style>
+</head>
+<body>
+<header><a href="/">Riskly</a></header>
+<main>
+  <div class="k">DOPO L'ACQUISTO</div>
+  <h1>Primi passi con il tuo bot</h1>
+  <p class="agg">Cinque passi, circa 10 minuti. Valgono per RiskGuard, TradeManager, ScaleIn, Riskly Pro e RisklyCopy.</p>
+
+  <div class="passo">PASSO 1</div>
+  <h2>Ricevi i file</h2>
+  <ol class="p">
+    <li>Accedi a <a href="/">riskly.trade</a> con l'account usato per pagare: nell'area clienti trovi il pulsante per entrare nel gruppo Telegram dei clienti.</li>
+    <li>Scrivici in privato l'<b>email dell'acquisto</b> e il <b>numero del conto MetaTrader</b> su cui userai il bot.</li>
+    <li>Entro 24 ore lavorative ricevi il file già abilitato per quel conto: <code>.ex5</code> per MetaTrader 5, <code>.ex4</code> per MetaTrader 4.</li>
+  </ol>
+
+  <div class="passo">PASSO 2</div>
+  <h2>Installa il bot</h2>
+  <ol class="p">
+    <li>Apri MetaTrader e vai su <b>File → Apri cartella dati</b>.</li>
+    <li>Entra in <code>MQL5/Experts</code> (MetaTrader 5) oppure <code>MQL4/Experts</code> (MetaTrader 4) e copia lì il file.</li>
+    <li>Nel <b>Navigatore</b> (Ctrl+N) fai clic destro su <b>Consulenti esperti</b> → <b>Aggiorna</b>, oppure chiudi e riapri MetaTrader.</li>
+  </ol>
+
+  <div class="passo">PASSO 3</div>
+  <h2>Attivalo sul grafico</h2>
+  <ol class="p">
+    <li>Trascina il bot dal Navigatore su un grafico.</li>
+    <li>Nella finestra che si apre, scheda <b>Comune</b>, spunta la casella che consente il trading automatico (Algo Trading in MetaTrader 5, trading live in MetaTrader 4).</li>
+    <li>Nella scheda <b>Parametri</b> imposta le tue regole (per esempio le perdite massime o le distanze in pip) e premi OK.</li>
+    <li>In alto, il pulsante <b>Algo Trading</b> (MetaTrader 5) o <b>AutoTrading</b> (MetaTrader 4) deve essere verde.</li>
+  </ol>
+  <p class="nota">MetaTrader 5 accetta un bot per grafico: se usi più bot, mettili su grafici diversi. Il bot lavora solo finché MetaTrader resta aperto: per tenerlo attivo sempre serve una VPS.</p>
+
+  <div class="passo">PASSO 4 · SOLO RISKGUARD E RISKLY PRO</div>
+  <h2>Collega il journal (facoltativo)</h2>
+  <ol class="p">
+    <li>In MetaTrader: <b>Strumenti → Opzioni</b> (Ctrl+O) → <b>Consulenti esperti</b> → spunta <b>Consenti WebRequest per gli URL elencati</b> e aggiungi <code>https://swlztverwfgdgchgpudt.supabase.co</code>.</li>
+    <li>Nel <a href="https://app.riskly.trade">journal</a> copia la tua chiave dalla sezione <b>Bot → collegamento</b> e incollala nei parametri del bot.</li>
+    <li>MetaTrader 4 e MetaTrader 5 hanno impostazioni separate: va fatto in ogni terminale.</li>
+  </ol>
+
+  <div class="passo">PASSO 5</div>
+  <h2>Verifica che funzioni</h2>
+  <ol class="p">
+    <li>In alto a destra del grafico compare l'icona del bot: se è attiva, il bot sta lavorando.</li>
+    <li>Apri la scheda <b>Esperti</b> in basso (Ctrl+T): non devono esserci errori in rosso.</li>
+    <li>Fai qualche operazione piccola su un <b>conto demo</b> e controlla che il bot si comporti come ti aspetti prima di usarlo sul conto reale.</li>
+  </ol>
+
+  <h2>Se qualcosa non va</h2>
+  <p>Scrivici nel gruppo Telegram o a <a href="mailto:supporto@riskly.trade">supporto@riskly.trade</a> con: email dell'acquisto, numero del conto, MetaTrader 4 o 5, e una foto della scheda <b>Esperti</b>. Se cambi conto o broker aggiorniamo la licenza senza costi.</p>
+  <p class="nota">I bot gestiscono il rischio secondo le regole che imposti tu, ma non lo eliminano. Il trading con leva comporta un alto rischio di perdita. Alcune prop firm vietano i bot: controlla il regolamento della tua.</p>
+</main>
+<footer>Riskly · <a href="/">riskly.trade</a> · <a href="/privacy.html">Privacy</a></footer>
+</body>
+</html>

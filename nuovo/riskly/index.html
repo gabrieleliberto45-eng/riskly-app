@@ -3234,7 +3234,7 @@ body.fuori-home #vaiHome{display:inline-flex}
 
 
         <details><summary>Come ricevo i bot dopo l'acquisto?</summary>
-          <p>Dopo il pagamento il tuo account sblocca l'accesso al gruppo Telegram riservato ai clienti. Lì trovi le guide e ci scrivi in privato con l'email dell'acquisto e il numero del tuo conto MetaTrader: ti inviamo i file già abilitati per quel conto, entro 24 ore lavorative. La consegna è manuale di proposito: così ogni licenza è legata al conto giusto e possiamo aiutarti sull'installazione.</p></details>
+          <p>Dopo il pagamento il tuo account sblocca l'accesso al gruppo Telegram riservato ai clienti. Lì trovi le guide e ci scrivi in privato con l'email dell'acquisto e il numero del tuo conto MetaTrader: ti inviamo i file già abilitati per quel conto, entro 24 ore lavorative. La consegna è manuale di proposito: così ogni licenza è legata al conto giusto e possiamo aiutarti sull'installazione. Qui trovi i <a href="/primi-passi.html">primi passi per installarli</a>.</p></details>
 
         <details><summary>Su quanti conti posso usare un bot?</summary>
           <p>Due conti per RiskGuard, TradeManager e ScaleIn; tre per Riskly Pro; per RisklyCopy un conto principale e due che ricevono (le copie). Puoi usarli su conto demo e reale. Se cambi broker o numero di conto, scrivici e aggiorniamo la licenza senza costi.</p></details>
@@ -3839,7 +3839,7 @@ body.fuori-home #vaiHome{display:inline-flex}
           <ol style="color:var(--dim);font-size:.85rem;line-height:1.75;padding-left:18px">
             <li>Entra nel gruppo Telegram riservato: la richiesta viene approvata a mano.</li>
             <li>Scrivici in privato con l'email dell'acquisto e il numero del tuo conto MetaTrader.</li>
-            <li>Ricevi i file abilitati per quel conto, <span id="acc-tempi">entro 24 ore lavorative</span>, con la guida all'installazione.</li>
+            <li>Ricevi i file abilitati per quel conto, <span id="acc-tempi">entro 24 ore lavorative</span>. Poi segui i <a href="/primi-passi.html">primi passi</a>: installazione, attivazione e verifica in 10 minuti.</li>
           </ol>
         </div>
       </div>
@@ -6908,7 +6908,7 @@ document.addEventListener('play', e => { if(e.target.tagName !== 'VIDEO') return
     const d = document.createElement('div'); d.className = 'scheda-extra';
     d.innerHTML = `<details class="programma"><summary>Cosa non fa</summary><ul class="no">${NONFA[n].concat(COMUNE).map(x => '<li>' + x + '</li>').join('')}</ul></details>
       <details class="programma"><summary>Requisiti e licenza</summary><ul><li>La licenza vale sia per MetaTrader 4 sia per MetaTrader 5.</li><li>Licenza per ${CONTI[n]}, demo o reale. Se cambi conto la aggiorniamo gratis.</li><li>Alcune prop firm vietano i bot: controlla il regolamento della tua prima di comprare.</li></ul></details>
-      <details class="programma"><summary>Cosa succede dopo il pagamento</summary><ol><li>Paghi su Stripe e il tuo account Riskly sblocca il gruppo Telegram dei clienti.</li><li>Ci scrivi in privato l'email dell'acquisto e il numero del tuo conto MetaTrader.</li><li>Entro 24 ore lavorative ricevi i file abilitati per quel conto e la guida all'installazione. Provalo prima su conto demo.</li></ol></details>`;
+      <details class="programma"><summary>Cosa succede dopo il pagamento</summary><ol><li>Paghi su Stripe e il tuo account Riskly sblocca il gruppo Telegram dei clienti.</li><li>Ci scrivi in privato l'email dell'acquisto e il numero del tuo conto MetaTrader.</li><li>Entro 24 ore lavorative ricevi i file abilitati per quel conto. Poi segui i <a href="/primi-passi.html">primi passi</a> (10 minuti) e provalo prima su conto demo.</li></ol></details>`;
     const prog = card.querySelector('details.programma');
     (prog || b).insertAdjacentElement('afterend', d);
   });
