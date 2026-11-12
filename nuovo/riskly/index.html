@@ -2227,6 +2227,7 @@ body.fuori-home #vaiHome{display:inline-flex}
 .trova-sug{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;border-radius:10px;padding:12px 14px;background:rgba(21,24,27,.04)}
 .trova-sug b{display:block;font-size:1.05rem}.trova-sug span{color:var(--ink-2,#4B525A);font-size:.92rem}
 .trova-sug .btn{white-space:nowrap}
+.scheda-extra details{margin-top:8px}.page:not(.nh) .bot .scheda-extra .no li::before{content:'—'!important;border:0!important;transform:none!important;width:auto;height:auto;top:9px;color:var(--ink-3,#5E656D)}.scheda-extra ol{list-style:none;margin-left:0!important;counter-reset:pas}.scheda-extra ol li{counter-increment:pas}.page:not(.nh) .bot .scheda-extra ol li::before{content:counter(pas)'.'!important;border:0!important;transform:none!important;width:auto;height:auto;top:9px;font-weight:700}.scheda-extra ul,.scheda-extra ol{margin:8px 0 4px 18px;font-size:.92rem;line-height:1.5}.scheda-extra li{margin:3px 0}
 </style>
 <link rel="stylesheet" href="/serio.css?v=5">
 <script>
@@ -6887,6 +6888,29 @@ document.addEventListener('play', e => { if(e.target.tagName !== 'VIDEO') return
   box.querySelectorAll('.trova-op button').forEach(x => x.onclick = () => {
     const v = x.dataset.v; scelti.has(v) ? scelti.delete(v) : scelti.add(v);
     x.setAttribute('aria-pressed', scelti.has(v)); disegna();
+  });
+})();
+
+/* schede dei bot: cosa NON fa, requisiti e cosa succede dopo il pagamento */
+(function(){
+  const COMUNE = ['Non dà segnali e non decide cosa comprare o vendere.', 'Non garantisce risultati: riduce gli errori, non il rischio del mercato.', 'Lavora solo con MetaTrader aperto (sul tuo computer o su una VPS).'];
+  const NONFA = {
+    'RiskGuard': ['Non gestisce stop, break-even e trailing: per quello c\'è TradeManager.', 'Non apre operazioni.'],
+    'TradeManager': ['Non ti ferma dopo le perdite e non blocca MetaTrader: per quello c\'è RiskGuard.', 'Non apre operazioni.'],
+    'ScaleIn': ['Non sceglie quando entrare: parte solo dopo la posizione che apri tu.', 'Non fa trailing: per quello c\'è TradeManager.'],
+    'Riskly Pro': ['Non copia su altri conti: per quello c\'è RisklyCopy, che si usa insieme.'],
+    'RisklyCopy': ['Non copia tra computer diversi: i conti devono stare sullo stesso computer o sulla stessa VPS.', 'Non apre operazioni sue: replica solo quelle del conto principale.']
+  };
+  const CONTI = { 'RiskGuard': '2 conti', 'TradeManager': '2 conti', 'ScaleIn': '2 conti', 'Riskly Pro': '3 conti', 'RisklyCopy': '1 conto principale + 2 copie' };
+  Object.keys(NONFA).forEach(n => {
+    const b = document.querySelector('#bt-scegli .bot [data-prodotto="' + n + '"]'); if(!b) return;
+    const card = b.closest('.bot'); if(!card || card.querySelector('.scheda-extra')) return;
+    const d = document.createElement('div'); d.className = 'scheda-extra';
+    d.innerHTML = `<details class="programma"><summary>Cosa non fa</summary><ul class="no">${NONFA[n].concat(COMUNE).map(x => '<li>' + x + '</li>').join('')}</ul></details>
+      <details class="programma"><summary>Requisiti e licenza</summary><ul><li>La licenza vale sia per MetaTrader 4 sia per MetaTrader 5.</li><li>Licenza per ${CONTI[n]}, demo o reale. Se cambi conto la aggiorniamo gratis.</li><li>Alcune prop firm vietano i bot: controlla il regolamento della tua prima di comprare.</li></ul></details>
+      <details class="programma"><summary>Cosa succede dopo il pagamento</summary><ol><li>Paghi su Stripe e il tuo account Riskly sblocca il gruppo Telegram dei clienti.</li><li>Ci scrivi in privato l'email dell'acquisto e il numero del tuo conto MetaTrader.</li><li>Entro 24 ore lavorative ricevi i file abilitati per quel conto e la guida all'installazione. Provalo prima su conto demo.</li></ol></details>`;
+    const prog = card.querySelector('details.programma');
+    (prog || b).insertAdjacentElement('afterend', d);
   });
 })();
 </script>
