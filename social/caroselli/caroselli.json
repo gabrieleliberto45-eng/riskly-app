@@ -1585,5 +1585,508 @@
     "link": "Riskly Pro calcola il lotto da solo su MT4 e MT5: riskly.trade/bot · è un mio prodotto"
    }
   ]
+ },
+ {
+  "id": "n06-settimana",
+  "stile": "notizie",
+  "titolo": "La settimana dei mercati · 16–22 novembre",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "Martedì si vede <mark>quanto spendono gli americani.</mark>",
+    "sotto": "16–22 novembre · vendite al dettaglio · orari italiani"
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "1 · Gli appuntamenti",
+    "righe": [
+     [
+      "USA, vendite al dettaglio di ottobre",
+      "<mark>mar 17 · 14:30</mark>"
+     ],
+     [
+      "USA, cantieri e permessi edilizi",
+      "mer 18 · 14:30"
+     ],
+     [
+      "USA, sussidi e Philadelphia Fed",
+      "gio 19 · 14:30"
+     ],
+     [
+      "USA, fiducia Michigan (finale)",
+      "ven 20 · 16:00"
+     ]
+    ],
+    "nota": "Fonte: calendario economico."
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "2 · Da dove ripartiamo",
+    "righe": [
+     [
+      "CPI di ottobre, nel mese",
+      "+0,4%"
+     ],
+     [
+      "CPI core, nel mese",
+      "+0,3%"
+     ],
+     [
+      "Attese sul core",
+      "+0,2%"
+     ],
+     [
+      "Prossima Fed",
+      "8–9 dicembre"
+     ]
+    ],
+    "nota": "Inflazione sopra le attese. Fonte: BLS, 10 novembre."
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "3 · Cosa si aspetta per martedì",
+    "righe": [
+     [
+      "Vendite al dettaglio, nel mese",
+      "0,0%"
+     ],
+     [
+      "Il mese prima",
+      "+0,8%"
+     ],
+     [
+      "Senza auto, attese",
+      "+0,4%"
+     ]
+    ],
+    "nota": "Attese del consenso. Possono cambiare fino all'uscita."
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Martedì alle 14:30 <mark>stai dentro o fuori?</mark>",
+    "sotto": "Scrivi DATI nei commenti 👇",
+    "link": "I dati della settimana, gratis: riskly.trade/dati"
+   }
+  ]
+ },
+ {
+  "id": "c21-argento",
+  "titolo": "Il lotto sull'argento",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "Sull'argento <mark>0,01 lotti</mark> pesano più che sull'oro.",
+    "sotto": "La formula in 4 slide →"
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "Come si muove l'argento (XAGUSD)",
+    "righe": [
+     [
+      "1 lotto",
+      "5.000 once"
+     ],
+     [
+      "L'argento si muove di 1 $",
+      "5.000 $ per lotto"
+     ],
+     [
+      "0,01 lotti",
+      "50 $ per ogni dollaro"
+     ]
+    ],
+    "nota": "Contratto più comune. Controlla le specifiche del tuo broker."
+   },
+   {
+    "tipo": "testo",
+    "titolo": "La formula",
+    "testo": "<b>Lotti = rischio in $ ÷ (stop in $ × 5.000)</b>",
+    "nota": "Lo stop si misura in dollari di prezzo: 0,20 $ sull'argento sono già tanti."
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "Esempio",
+    "righe": [
+     [
+      "Conto",
+      "1.000 $"
+     ],
+     [
+      "Rischio 1%",
+      "10 $"
+     ],
+     [
+      "Stop",
+      "0,20 $ di prezzo"
+     ],
+     [
+      "10 ÷ (0,20 × 5.000)",
+      "<mark>0,01 lotti</mark>"
+     ]
+    ]
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Hai mai aperto l'argento <mark>con il lotto dell'oro?</mark>",
+    "sotto": "Scrivi ARGENTO nei commenti 👇",
+    "link": "Calcola il lotto giusto, gratis: riskly.trade/lotto"
+   }
+  ]
+ },
+ {
+  "id": "c22-erre",
+  "titolo": "Quante volte devi vincere",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "Puoi perdere <mark>2 volte su 3</mark> e restare in pari.",
+    "sotto": "Dipende da quanto guadagni rispetto a quanto rischi →"
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "Percentuale per restare in pari",
+    "righe": [
+     [
+      "Guadagni 1 volta il rischio",
+      "50%"
+     ],
+     [
+      "Guadagni 2 volte il rischio",
+      "33,3%"
+     ],
+     [
+      "Guadagni 3 volte il rischio",
+      "<mark>25%</mark>"
+     ]
+    ],
+    "nota": "Senza costi. Spread e commissioni alzano un po' questi numeri."
+   },
+   {
+    "tipo": "testo",
+    "titolo": "La formula",
+    "testo": "<b>Percentuale minima = 1 ÷ (1 + R)</b>",
+    "nota": "R è quanto guadagni quando vinci, diviso quanto perdi quando perdi."
+   },
+   {
+    "tipo": "frasi",
+    "voci": [
+     [
+      "!",
+      "Un R alto non basta.",
+      "Se il prezzo non ci arriva quasi mai, vinci meno spesso."
+     ],
+     [
+      "→",
+      "Guarda i tuoi numeri veri.",
+      "Win rate e R medio delle ultime 30 operazioni, non quelli che speri."
+     ]
+    ]
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Tu sai <mark>il tuo R medio?</mark>",
+    "sotto": "Scrivi R nei commenti 👇",
+    "link": "Calcola il lotto e l'R di ogni operazione, gratis: riskly.trade/lotto"
+   }
+  ]
+ },
+ {
+  "id": "c23-limite",
+  "titolo": "Il limite giornaliero della prop firm",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "Con la prop firm <mark>5 perdite</mark> e la giornata è finita.",
+    "sotto": "Fai il conto prima di entrare →"
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "Esempio",
+    "righe": [
+     [
+      "Conto",
+      "100.000 $"
+     ],
+     [
+      "Perdita massima al giorno, 5%",
+      "5.000 $"
+     ],
+     [
+      "Rischio 1% a operazione",
+      "1.000 $"
+     ],
+     [
+      "Perdite di fila per toccare il limite",
+      "<mark>5</mark>"
+     ]
+    ],
+    "nota": "Esempio. Ogni prop firm ha regole sue: leggi il regolamento."
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "Con mezzo punto",
+    "righe": [
+     [
+      "Rischio 0,5% a operazione",
+      "500 $"
+     ],
+     [
+      "Perdite di fila per toccare il limite",
+      "<mark>10</mark>"
+     ]
+    ]
+   },
+   {
+    "tipo": "testo",
+    "titolo": "La regola",
+    "testo": "Decidi <b>prima</b> quante perdite ti fermano oggi. Meno del limite della prop.",
+    "nota": "Il limite spesso conta anche le operazioni ancora aperte."
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Quante perdite <mark>ti fermano oggi?</mark>",
+    "sotto": "Scrivi STOP nei commenti 👇",
+    "link": "RiskGuard ti ferma dopo N perdite su MT4 e MT5: riskly.trade/bot · è un mio prodotto"
+   }
+  ]
+ },
+ {
+  "id": "c24-recupero",
+  "titolo": "Perdere è facile, recuperare no",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "Se perdi il 50% <mark>ti serve il 100%</mark> per tornare in pari.",
+    "sotto": "I numeri del recupero →"
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "Quanto serve per tornare in pari",
+    "righe": [
+     [
+      "Perdi il 10%",
+      "+11,1%"
+     ],
+     [
+      "Perdi il 20%",
+      "+25%"
+     ],
+     [
+      "Perdi il 30%",
+      "+42,9%"
+     ],
+     [
+      "Perdi il 50%",
+      "<mark>+100%</mark>"
+     ]
+    ]
+   },
+   {
+    "tipo": "testo",
+    "titolo": "La formula",
+    "testo": "<b>Recupero = perdita ÷ (100 − perdita)</b>",
+    "nota": "Più scendi, più la salita diventa ripida."
+   },
+   {
+    "tipo": "frasi",
+    "voci": [
+     [
+      "?",
+      "Il conto è più piccolo.",
+      "Il 25% di 800 € è 200 €: torni a 1.000 € solo così."
+     ],
+     [
+      "!",
+      "Proteggere viene prima.",
+      "Rischiare poco a operazione tiene la perdita lontana dalla zona difficile."
+     ]
+    ]
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Qual è stata <mark>la tua perdita più grande?</mark>",
+    "sotto": "Scrivi il numero nei commenti 👇",
+    "link": "Simula le tue perdite di fila, gratis: riskly.trade/rovina"
+   }
+  ]
+ },
+ {
+  "id": "c25-diario",
+  "titolo": "5 cose da scrivere nel diario",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "Il diario serve <mark>solo se scrivi queste 5 cose.</mark>",
+    "sotto": "Salvalo per la prossima operazione →"
+   },
+   {
+    "tipo": "frasi",
+    "voci": [
+     [
+      "1",
+      "Perché sei entrato.",
+      "Una riga. Se non la sai scrivere, non era un'idea."
+     ],
+     [
+      "2",
+      "Dove era lo stop e quanto rischiavi.",
+      "In euro e in R, prima di entrare."
+     ]
+    ]
+   },
+   {
+    "tipo": "frasi",
+    "voci": [
+     [
+      "3",
+      "Com'è finita, in R.",
+      "Non in euro: in R confronti operazioni di dimensioni diverse."
+     ],
+     [
+      "4",
+      "Hai seguito le tue regole?",
+      "Sì o no. Senza scuse."
+     ]
+    ]
+   },
+   {
+    "tipo": "frasi",
+    "voci": [
+     [
+      "5",
+      "Come ti sentivi.",
+      "Calmo, di fretta, arrabbiato dopo una perdita."
+     ],
+     [
+      "+",
+      "Rileggi tutto.",
+      "Cerca l'errore che torna più spesso."
+     ]
+    ]
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Quale delle 5 <mark>non scrivi mai?</mark>",
+    "sotto": "Scrivi il numero nei commenti 👇",
+    "link": "Il journal Riskly le raccoglie da solo da MT4 e MT5: app.riskly.trade · è un mio prodotto"
+   }
+  ]
+ },
+ {
+  "id": "c26-petrolio",
+  "titolo": "Il lotto sul petrolio",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "Sul petrolio <mark>1 dollaro</mark> può valere 1.000 $.",
+    "sotto": "La formula in 4 slide →"
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "Come si muove il petrolio (WTI)",
+    "righe": [
+     [
+      "1 lotto",
+      "1.000 barili"
+     ],
+     [
+      "Il petrolio si muove di 1 $",
+      "1.000 $ per lotto"
+     ],
+     [
+      "0,01 lotti",
+      "10 $ per ogni dollaro"
+     ]
+    ],
+    "nota": "Contratto più comune. Alcuni broker usano 100 barili: controlla le specifiche."
+   },
+   {
+    "tipo": "testo",
+    "titolo": "La formula",
+    "testo": "<b>Lotti = rischio in $ ÷ (stop in $ × barili per lotto)</b>",
+    "nota": "Il mercoledì alle 16:30 escono le scorte EIA: il prezzo può saltare."
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "Esempio",
+    "righe": [
+     [
+      "Conto",
+      "1.000 $"
+     ],
+     [
+      "Rischio 1%",
+      "10 $"
+     ],
+     [
+      "Stop",
+      "0,50 $ di prezzo"
+     ],
+     [
+      "10 ÷ (0,50 × 1.000)",
+      "<mark>0,02 lotti</mark>"
+     ]
+    ]
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Sul petrolio <mark>sai quanti barili ha il tuo lotto?</mark>",
+    "sotto": "Scrivi PETROLIO nei commenti 👇",
+    "link": "Calcola il lotto giusto, gratis: riskly.trade/lotto"
+   }
+  ]
+ },
+ {
+  "id": "c27-dato",
+  "titolo": "Il giorno del dato",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "Alle 14:30 <mark>lo stop può non bastare.</mark>",
+    "sotto": "3 cose che succedono quando esce un dato →"
+   },
+   {
+    "tipo": "frasi",
+    "voci": [
+     [
+      "1",
+      "Lo spread si allarga.",
+      "Per qualche secondo entrare o uscire costa di più."
+     ],
+     [
+      "2",
+      "Lo stop può slittare.",
+      "Se il prezzo salta, chiudi al primo prezzo disponibile, non al tuo."
+     ]
+    ]
+   },
+   {
+    "tipo": "frasi",
+    "voci": [
+     [
+      "3",
+      "Il primo movimento può tornare indietro.",
+      "Spesso in pochi minuti."
+     ],
+     [
+      "→",
+      "Sai l'ora prima di entrare.",
+      "Il calendario si guarda la mattina, non dopo."
+     ]
+    ]
+   },
+   {
+    "tipo": "testo",
+    "titolo": "La regola",
+    "testo": "Con un dato forte in arrivo: <b>fuori, oppure dentro con meno rischio.</b>",
+    "nota": "Esempio di regola, non un consiglio su cosa fare."
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Tu sui dati <mark>chiudi o resti dentro?</mark>",
+    "sotto": "Scrivi DATI nei commenti 👇",
+    "link": "Il calendario in italiano, gratis: strumenti.riskly.trade"
+   }
+  ]
  }
 ]
