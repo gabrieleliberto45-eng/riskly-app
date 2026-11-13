@@ -94,3 +94,9 @@ Gabriele: "Non bloccare mai gli articoli… non devono mai fermarsi, anche gli s
 - Un messaggio di una routine ha la precedenza sul lavoro in corso: se arriva mentre si lavora ad altro, prima l'articolo, poi si riprende.
 - Durante lavori lunghi (più di 30 minuti) controllare l'orologio: se è passata l'ora di un articolo (7:37, 11:00, 18:00, dati USA) e manca in public.notizie, pubblicarlo subito.
 - Controllo del mattino (punto G): select degli articoli di ieri; se manca il Setup XAU o un dato USA importante, recuperarlo.
+
+## 14 novembre 2026: partner e affiliazioni
+- Pagina nuovo/riskly/partner.html (riskly.trade/partner): si compila dall'array PARTNER in fondo al file (nome, tipo, descrizione, punti verificabili, link di affiliazione https, codice, vantaggio, logo in /img/partner/). Con la lista vuota mostra "Stiamo selezionando i partner" ed è noindex; con almeno un partner attivo toglie il noindex da sola. Link con rel="sponsored", scritta "Link di affiliazione" su ogni scheda, avviso in alto. Non è nel menu: aggiungerla al menu e al piè di pagina quando c'è il primo partner.
+- MAI mettere un partner senza accordo firmato e link vero di Gabriele. Niente broker (CONSOB/ESMA): solo prop firm e servizi.
+- Concorrente di riferimento: riskguardmanagement.com (Montorio Michele, Sossano VI, dal 2021). ATTENZIONE: il loro prodotto si chiama RiskGuard come il nostro software: proposto a Gabriele di rinominare il nostro.
+- Banner dei cookie: nuovo/cookie.js copiato in ogni sito (riskly, strumenti, news, journal) con <script src="/cookie.js" defer>. Consenso in localStorage riskly-consenso; "Contenuti esterni" = calendario TradingView (riskly-tv-ok).

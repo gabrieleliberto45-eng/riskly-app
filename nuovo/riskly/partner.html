@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Partner selezionati · Riskly</title>
+<!-- 14 novembre 2026: resta noindex finché non c'è almeno un partner attivo -->
+<meta name="robots" content="noindex">
+<meta name="description" content="Le prop firm e i servizi che Riskly ha scelto per chi fa trading con regole chiare. Alcuni link sono di affiliazione.">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link href="/fonts.css" rel="stylesheet">
+<style>
+  :root{--bg:#F6F6F3;--card:#FFFFFF;--ink:#0F1B2D;--ink2:#4B5565;--ink3:#788494;--line:#DCE1E8;--line2:#EBEEF3;--navy:#12263F;--su:#12805A;--att:#A86400}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{background:var(--bg)}
+  body{background:var(--bg);color:var(--ink);font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:16px;line-height:1.6;font-variant-numeric:tabular-nums}
+  a{color:inherit}
+  header{position:sticky;top:0;z-index:5;background:rgba(246,246,243,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.15rem;text-decoration:none}
+  header nav{display:flex;gap:20px;font-size:15px}
+  header nav a{text-decoration:none;color:var(--ink2)}
+  header nav a:hover{color:var(--ink)}
+  @media(max-width:700px){header nav a:not(.su){display:none}}
+  .hero{padding:56px 0 28px}
+  .k{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--att)}
+  h1{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(2.3rem,5vw,3.4rem);line-height:1.05;letter-spacing:-.01em;margin:10px 0 14px}
+  .lead{color:var(--ink2);font-size:1.08rem;max-width:62ch}
+  .avviso{margin:22px 0 0;border-left:3px solid var(--att);background:rgba(168,100,0,.08);border-radius:0 10px 10px 0;padding:12px 16px;font-size:14.5px;color:var(--ink2);max-width:780px}
+  .avviso b{color:var(--ink)}
+  h2{font-size:1.25rem;font-weight:700;letter-spacing:-.01em;margin:0 0 14px}
+  section{padding:26px 0}
+  .griglia{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+  .p{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:10px}
+  .p-t{display:flex;align-items:center;gap:12px}
+  .p-logo{width:44px;height:44px;border-radius:10px;border:1px solid var(--line2);display:grid;place-items:center;font-weight:800;font-size:15px;background:var(--bg);overflow:hidden;flex:0 0 44px}
+  .p-logo img{width:100%;height:100%;object-fit:contain}
+  .p h3{font-size:1.1rem;line-height:1.2}
+  .p small{display:block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
+  .p p{color:var(--ink2);font-size:14.5px}
+  .p ul{list-style:none;display:grid;gap:4px;font-size:14px;color:var(--ink2)}
+  .p li::before{content:'✓ ';color:var(--su);font-weight:700}
+  .p-cod{display:flex;justify-content:space-between;align-items:center;gap:10px;border:1px dashed var(--line);border-radius:8px;padding:8px 12px;font-size:14px}
+  .p-cod b{font-family:ui-monospace,Menlo,monospace;letter-spacing:.04em}
+  .p-cod button{border:0;background:none;color:var(--navy);font:600 13px inherit;font-family:inherit;cursor:pointer;text-decoration:underline}
+  .p .btn{margin-top:auto}
+  .btn{display:inline-flex;justify-content:center;align-items:center;gap:8px;border-radius:8px;padding:12px 18px;font-weight:600;font-size:15px;text-decoration:none;border:1px solid var(--navy);color:var(--navy);background:transparent;cursor:pointer}
+  .btn.pri{background:var(--navy);color:#fff}
+  .p-nota{font-size:12px;color:var(--ink3)}
+  .vuoto{background:var(--card);border:1px dashed var(--line);border-radius:12px;padding:28px 22px;text-align:center;color:var(--ink2)}
+  .vuoto b{display:block;color:var(--ink);font-size:1.05rem;margin-bottom:4px}
+  .criteri{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+  .c{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .c b{display:block;margin-bottom:4px}
+  .c p{color:var(--ink2);font-size:14.5px}
+  .collabora{background:var(--navy);color:#fff;border-radius:14px;padding:28px 24px;display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+  .collabora h2{margin-bottom:6px;color:#fff}
+  .collabora p{color:#C9D3E0;max-width:60ch;font-size:15px}
+  .collabora .btn{border-color:#fff;color:var(--navy);background:#fff}
+  footer{border-top:1px solid var(--line);margin-top:30px;padding:24px 0 40px;color:var(--ink3);font-size:13.5px}
+  footer .wrap{display:flex;gap:10px 22px;flex-wrap:wrap;justify-content:space-between}
+  footer a{color:var(--ink2)}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 44 44" fill="none" aria-hidden="true"><path d="M9 31 L17 19.5 L23.5 25 L35 11" stroke="#B97C00" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 36 H35" stroke="#5E656D" stroke-width="3.4" stroke-linecap="round"/></svg>Riskly</a>
+  <nav aria-label="Menu"><a href="/#ecosistema">Ecosistema</a><a href="/#software">Software</a><a href="https://news.riskly.trade">News</a><a class="su" href="/">Torna al sito</a></nav>
+</div></header>
+
+<main class="wrap">
+  <div class="hero">
+    <div class="k">Partner selezionati</div>
+    <h1>Le prop firm e i servizi che usiamo e consigliamo.</h1>
+    <p class="lead">Riskly vende software che fanno rispettare le regole di rischio. Qui trovi le realtà che abbiamo scelto per chi fa trading con regole chiare: prop firm con regolamenti leggibili, pagamenti verificabili e piattaforme compatibili con MetaTrader 4 e 5.</p>
+    <p class="avviso"><b>Link di affiliazione.</b> Alcuni link di questa pagina sono di affiliazione: se acquisti, Riskly riceve una commissione e per te il prezzo non cambia. Non è consulenza finanziaria. Le challenge delle prop firm sono a pagamento, hanno regole severe e la maggior parte di chi partecipa non le supera: leggi sempre il regolamento prima di comprare.</p>
+  </div>
+
+  <section aria-labelledby="t-partner">
+    <h2 id="t-partner">I nostri partner</h2>
+    <div class="griglia" id="partner"></div>
+  </section>
+
+  <section aria-labelledby="t-criteri">
+    <h2 id="t-criteri">Come li scegliamo</h2>
+    <div class="criteri">
+      <div class="c"><b>Regole scritte e chiare</b><p>Perdita massima giornaliera e totale spiegate in modo semplice, senza clausole nascoste.</p></div>
+      <div class="c"><b>Pagamenti verificabili</b><p>Storico pubblico dei pagamenti ai trader e assistenza che risponde.</p></div>
+      <div class="c"><b>Compatibili con i nostri software</b><p>MetaTrader 4 o 5, con software di gestione del rischio ammessi dal regolamento.</p></div>
+      <div class="c"><b>Niente promesse di guadagno</b><p>Non lavoriamo con chi pubblicizza rendimenti garantiti o segnali.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="collabora">
+      <div><h2>Hai una prop firm, una scuola o una community?</h2><p>Se il tuo progetto rispetta questi criteri e vuoi collaborare con Riskly, scrivici: rispondiamo entro due giorni lavorativi.</p></div>
+      <a class="btn" href="mailto:info@riskly.trade?subject=Collaborazione%20con%20Riskly">Scrivici</a>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap"><span>© Riskly · I link di affiliazione sono segnalati. Il trading con leva comporta un alto rischio di perdita.</span><span><a href="/privacy.html">Privacy</a> · <a href="/#termini">Termini</a></span></div></footer>
+
+<script>
+/* PARTNER: per aggiungerne uno copia un blocco qui sotto, compila i campi e metti attivo: true.
+   nome, tipo ("Prop firm", "Broker", "Servizio"), descrizione (2 righe, niente promesse di guadagno),
+   punti (2–4 fatti verificabili), link (il tuo link di affiliazione), codice (sconto, facoltativo),
+   vantaggio (cosa ottiene chi usa il codice, facoltativo), logo (percorso in /img/partner/, facoltativo). */
+const PARTNER = [
+  // { attivo: false, nome: 'Nome della prop firm', tipo: 'Prop firm', descrizione: '...', punti: ['...', '...'],
+  //   link: 'https://...', codice: '', vantaggio: '', logo: '' },
+];
+
+(function(){
+  const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+  const el = document.getElementById('partner');
+  const attivi = PARTNER.filter(p => p && p.attivo && p.nome && /^https:\/\//.test(p.link || ''));
+  if(!attivi.length){
+    el.innerHTML = '<div class="vuoto" style="grid-column:1/-1"><b>Stiamo selezionando i partner.</b>Pubblicheremo qui solo prop firm e servizi che rispettano i criteri qui sotto.</div>';
+    return;
+  }
+  /* con almeno un partner la pagina può essere trovata dai motori di ricerca */
+  const r = document.querySelector('meta[name="robots"]'); if(r) r.remove();
+  el.innerHTML = attivi.map((p, i) => `
+    <article class="p">
+      <div class="p-t"><div class="p-logo">${p.logo ? `<img src="${esc(p.logo)}" alt="">` : esc(p.nome.slice(0, 2).toUpperCase())}</div>
+        <div><small>${esc(p.tipo || 'Partner')}</small><h3>${esc(p.nome)}</h3></div></div>
+      ${p.descrizione ? `<p>${esc(p.descrizione)}</p>` : ''}
+      ${(p.punti || []).length ? `<ul>${p.punti.map(x => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}
+      ${p.codice ? `<div class="p-cod"><span>Codice: <b>${esc(p.codice)}</b>${p.vantaggio ? ` · ${esc(p.vantaggio)}` : ''}</span><button type="button" data-i="${i}">Copia</button></div>` : ''}
+      <a class="btn pri" href="${esc(p.link)}" target="_blank" rel="sponsored noopener" data-partner="${esc(p.nome)}">Vai su ${esc(p.nome)} ↗</a>
+      <span class="p-nota">Link di affiliazione</span>
+    </article>`).join('');
+  el.addEventListener('click', e => {
+    const b = e.target.closest('button[data-i]');
+    if(b){ const c = attivi[Number(b.dataset.i)].codice; (navigator.clipboard ? navigator.clipboard.writeText(c) : Promise.reject()).then(() => { b.textContent = 'Copiato'; }, () => {}); }
+    const a = e.target.closest('a[data-partner]');
+    if(a && typeof window.traccia === 'function') try { traccia('partner-' + a.dataset.partner.toLowerCase().replace(/[^a-z0-9]+/g, '-')); } catch(err) {}
+  });
+})();
+</script>
+<script>
+/* RISKLY TRACCIA · conteggio anonimo di visite e azioni, senza cookie.
+   Una riga per sessione nella tabella "visite": percorso = pagina (es. "strumenti") oppure "#azione", referer = provenienza o sito. */
+(function(){
+  var URL = 'https://swlztverwfgdgchgpudt.supabase.co/rest/v1/visite',
+      KEY = 'sb_publishable_j9bujIvCEz6x21yYoCODPw_lIZCJrIR',
+      sito = location.hostname.replace(/^www\./, '').split('.')[0] || 'locale';
+  function invia(percorso, referer){
+    if(window.rNonContare && rNonContare()) return;
+    try{ fetch(URL, { method:'POST', keepalive:true, headers:{ apikey:KEY, 'Content-Type':'application/json', Prefer:'return=minimal' },
+                      body: JSON.stringify({ percorso: String(percorso).slice(0, 80), referer: String(referer).slice(0, 80) }) }).catch(function(){}); }catch(e){}
+  }
+  function unaVolta(k){ try{ if(sessionStorage.getItem(k)) return false; sessionStorage.setItem(k, '1'); }catch(e){} return true; }
+  window.traccia = function(ev){ if(unaVolta('riskly_ev_' + ev)) invia('#' + ev, sito); };
+  window.tracciaVisita = function(nome){
+    if(!unaVolta('riskly_visita_' + nome)) return;
+    var da = ''; try{ da = document.referrer ? new URL(document.referrer).hostname.replace(/^www\./, '') : ''; }catch(e){}
+    var q = new URLSearchParams(location.search);
+    invia(nome, q.get('da') || q.get('utm_source') || da || 'diretto');
+  };
+  /* passaggi da un sito Riskly all'altro */
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href]'); if(!a) return;
+    var h = a.href, qui = location.hostname;
+    if(/\/\/app\.riskly\.trade/.test(h) && qui.indexOf('app.') !== 0) traccia(/demo/.test(h) ? 'vai-journal-demo' : 'vai-journal');
+    else if(/\/\/strumenti\.riskly\.trade/.test(h) && qui.indexOf('strumenti.') !== 0) traccia('vai-strumenti');
+    else if(/\/\/(www\.)?riskly\.trade/.test(h) && qui.replace(/^www\./, '') !== 'riskly.trade') traccia('vai-negozio');
+  }, true);
+  /* avvolge una funzione globale per contare quando viene usata */
+  window.tracciaFunzione = function(nome, evento){
+    var f = window[nome]; if(typeof f !== 'function') return;
+    window[nome] = function(){ try{ traccia(typeof evento === 'function' ? evento.apply(null, arguments) : evento); }catch(e){} return f.apply(this, arguments); };
+  };
+})();
+</script>
+
+<script>try{ tracciaVisita('partner'); }catch(e){}</script>
+<script src="/cookie.js" defer></script>
+</body>
+</html>

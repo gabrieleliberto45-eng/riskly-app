@@ -6,6 +6,12 @@
   force = true
   headers = {Origin = "https://www.tradingview.com"}
 
+# pagina dei partner selezionati
+[[redirects]]
+  from = "/partner"
+  to = "/partner.html"
+  status = 200
+
 # qualsiasi altro indirizzo (es. link delle email di conferma) apre il sito invece di "Page not found"
 [[redirects]]
   from = "/*"
