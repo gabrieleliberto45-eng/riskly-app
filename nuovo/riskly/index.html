@@ -2278,12 +2278,17 @@ body.fuori-home #vaiHome{display:inline-flex}
 .h2-eco a:last-child{border-bottom:0}
 @media(min-width:992px){.h2-eco a{border-bottom:0;border-right:1px solid var(--bordo)}.h2-eco a:last-child{border-right:0}}
 .h2-eco a:hover{background:var(--paper)}
-.h2-eco .fase{font-size:.8125rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold,#8A6420);display:flex;justify-content:space-between;gap:.5rem;align-items:center}
+.h2-eco .h2-fase{font-size:.8125rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold,#8A6420);display:flex;justify-content:space-between;gap:.5rem;align-items:center}
 .h2-eco .st{font-size:.6875rem;letter-spacing:.04em;padding:.2rem .4rem;border:1px solid currentColor;border-radius:3px;color:var(--pos,#1E6B4A);white-space:nowrap}
 .h2-eco .st.pre{color:var(--gold,#8A6420)}
 .h2-eco h3{font-size:1.6rem}
 .h2-eco p{margin:0;font-size:.9375rem;color:var(--ink-2)}
 .h2-eco .va{margin-top:.3rem;font-weight:700}
+.h2-eco .doppio{position:relative;display:grid;gap:.45rem;align-content:start;padding:1.25rem 1.1rem 1.35rem;border-bottom:1px solid var(--bordo);min-width:0}
+@media(min-width:992px){.h2-eco .doppio{border-bottom:0;border-right:1px solid var(--bordo)}}
+.h2-eco .doppio .va{display:flex;flex-wrap:wrap;gap:.4rem 1rem}
+.h2-eco .doppio .va a{display:inline;padding:0;border:0;color:var(--ink);text-decoration:none;font-weight:700}
+.h2-eco .doppio .va a:hover{text-decoration:underline;background:none}
 .h2-eco a.fut{background:repeating-linear-gradient(135deg,transparent 0 9px,rgba(14,27,44,.04) 9px 10px)}
 .h2-ciclo{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;margin-top:1.25rem;font-size:1rem;color:var(--ink-2)}
 .h2-ciclo b{color:var(--ink)}
@@ -2427,11 +2432,11 @@ body.fuori-home #vaiHome{display:inline-flex}
   <section class="h2-sez alt" id="ecosistema"><div class="h2w">
     <div class="h2-t"><h2>Riskly è un sistema, non un catalogo.</h2><p>Cinque parti collegate per gestire il rischio prima, durante e dopo ogni operazione. Puoi usarne una sola: più ne usi, più il quadro è completo.</p></div>
     <div class="h2-eco">
-      <a href="https://news.riskly.trade"><div class="fase"><span>1 · Impara</span><span class="st">ATTIVO</span></div><h3>News e Corsi</h3><p>Ogni mattina cosa muove oro, dollaro e tassi. Videocorso sulla gestione del rischio.</p><span class="va">Leggi →</span></a>
-      <a href="https://strumenti.riskly.trade/#posizione"><div class="fase"><span>2 · Misura</span><span class="st">ATTIVO</span></div><h3>Strumenti</h3><p>Calcolatori, simulazioni e calendario. Gratis, anche senza account.</p><span class="va">Calcola →</span></a>
-      <a href="#" onclick="go('bot');return false"><div class="fase"><span>3 · Applica</span><span class="st">ATTIVO</span></div><h3>Bot</h3><p>Le tue regole dentro MetaTrader 4 e 5. Ti fermano quando non lo faresti.</p><span class="va">Confronta →</span></a>
-      <a href="#" onclick="vaiA('journal','pz-journal');return false"><div class="fase"><span>4 · Migliora</span><span class="st">ATTIVO</span></div><h3>Journal</h3><p>Le operazioni arrivano dai bot. Statistiche ed errori, senza scrivere a mano.</p><span class="va">Apri →</span></a>
-      <a class="fut" href="#" onclick="apriModulo('attesa','Monitor',0);return false"><div class="fase"><span>5 · Controlla</span><span class="st pre">IN ARRIVO</span></div><h3>Monitor</h3><p>Tutti i tuoi conti in un pannello: esposizione, drawdown, limiti, avvisi.</p><span class="va">Avvisami →</span></a>
+      <div class="doppio"><div class="h2-fase"><span>1 · Impara</span><span class="st">ATTIVO</span></div><h3>News e Corsi</h3><p>Ogni mattina cosa muove oro, dollaro e tassi. Videocorso sulla gestione del rischio.</p><span class="va"><a href="https://news.riskly.trade">Leggi le news →</a><a href="#" onclick="go('corso');return false">Vedi i corsi →</a></span></div>
+      <a href="https://strumenti.riskly.trade/#posizione"><div class="h2-fase"><span>2 · Misura</span><span class="st">ATTIVO</span></div><h3>Strumenti</h3><p>Calcolatori, simulazioni e calendario. Gratis, anche senza account.</p><span class="va">Calcola →</span></a>
+      <a href="#" onclick="go('bot');return false"><div class="h2-fase"><span>3 · Applica</span><span class="st">ATTIVO</span></div><h3>Bot</h3><p>Le tue regole dentro MetaTrader 4 e 5. Ti fermano quando non lo faresti.</p><span class="va">Confronta →</span></a>
+      <a href="#" onclick="vaiA('journal','pz-journal');return false"><div class="h2-fase"><span>4 · Migliora</span><span class="st">ATTIVO</span></div><h3>Journal</h3><p>Le operazioni arrivano dai bot. Statistiche ed errori, senza scrivere a mano.</p><span class="va">Apri →</span></a>
+      <a class="fut" href="#" onclick="apriModulo('attesa','Monitor',0);return false"><div class="h2-fase"><span>5 · Controlla</span><span class="st pre">IN ARRIVO</span></div><h3>Monitor</h3><p>Tutti i tuoi conti in un pannello: esposizione, drawdown, limiti, avvisi.</p><span class="va">Avvisami →</span></a>
     </div>
     <p class="h2-ciclo"><span><b>Prima</b> decidi quanto rischiare</span><span><b>Durante</b> i bot applicano le regole</span><span><b>Dopo</b> il journal misura se le hai rispettate</span></p>
   </div></section>
