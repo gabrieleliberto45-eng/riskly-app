@@ -16,8 +16,8 @@ function rSegnaGestore(email){ if(['gabrieleliberto1212@gmail.com','gabrielelibe
 <link rel="manifest" href="/manifest.webmanifest">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Riskly — Bot, corsi, journal e strumenti per il trading</title>
-<meta name="description" content="Tutto quello che serve a un trader: bot di gestione per MetaTrader 4 e 5, corso di gestione del rischio, journal, calcolatori e calendario economico. Nessun segnale.">
+<title>Riskly — Software, corsi, journal e strumenti per il trading</title>
+<meta name="description" content="Tutto quello che serve a un trader: software di gestione per MetaTrader 4 e 5, corso di gestione del rischio, journal, calcolatori e calendario economico. Nessun segnale.">
 <link rel="canonical" href="https://riskly.trade/">
 <!-- anteprima quando il link viene condiviso (WhatsApp, Telegram, Instagram, Facebook, X) -->
 <meta property="og:type" content="website">
@@ -25,7 +25,7 @@ function rSegnaGestore(email){ if(['gabrieleliberto1212@gmail.com','gabrielelibe
 <meta property="og:locale" content="it_IT">
 <meta property="og:url" content="https://riskly.trade/">
 <meta property="og:title" content="Riskly — Il mercato non lo controlli. Tutto il resto sì.">
-<meta property="og:description" content="Bot per MT4 e MT5, corso di gestione del rischio, journal, calcolatori e calendario economico. Nessun segnale, nessuna promessa di guadagno.">
+<meta property="og:description" content="Software per MT4 e MT5, corso di gestione del rischio, journal, calcolatori e calendario economico. Nessun segnale, nessuna promessa di guadagno.">
 <meta property="og:image" content="https://riskly.trade/anteprima.png?v=2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -2230,12 +2230,12 @@ body.fuori-home #vaiHome{display:inline-flex}
 .scheda-extra details{margin-top:8px}.page:not(.nh) .bot .scheda-extra .no li::before{content:'—'!important;border:0!important;transform:none!important;width:auto;height:auto;top:9px;color:var(--ink-3,#5E656D)}.scheda-extra ol{list-style:none;margin-left:0!important;counter-reset:pas}.scheda-extra ol li{counter-increment:pas}.page:not(.nh) .bot .scheda-extra ol li::before{content:counter(pas)'.'!important;border:0!important;transform:none!important;width:auto;height:auto;top:9px;font-weight:700}.scheda-extra ul,.scheda-extra ol{margin:8px 0 4px 18px;font-size:.92rem;line-height:1.5}.scheda-extra li{margin:3px 0}
 
 /* ══ NUOVA HOME (13 novembre 2026): colori e caratteri del sito (serio.css): blu, serif, blocchi separati ══ */
-#home{--az:var(--navy,#12263F);--az-ink:#fff;--chiaro:#C9D6E6;--sbiadito:#AEBBCB;--bordo:#E1E5EA}
-#home .h2w{max-width:76rem;margin:0 auto;padding:0 max(16px,env(safe-area-inset-left,0px))}
-@media(min-width:768px){#home .h2w{padding:0 32px}}
-#home h1,#home h2,#home h3{margin:0}
-#home h1{margin-bottom:1.3rem}
-#home h3{font-size:1.6rem}
+#home,#ecosistema{--az:var(--navy,#12263F);--az-ink:#fff;--chiaro:#C9D6E6;--sbiadito:#AEBBCB;--bordo:#E1E5EA}
+#home .h2w,#ecosistema .h2w{max-width:76rem;margin:0 auto;padding:0 max(16px,env(safe-area-inset-left,0px))}
+@media(min-width:768px){#home .h2w,#ecosistema .h2w{padding:0 32px}}
+#home h1,#home h2,#home h3,#ecosistema h1,#ecosistema h2,#ecosistema h3{margin:0}
+#home h1,#ecosistema h1{margin-bottom:1.3rem}
+#home h3,#ecosistema h3{font-size:1.6rem}
 .h2-hero{padding:2.25rem 0 3rem}
 @media(min-width:992px){.h2-hero{padding:4rem 0 5rem}}
 .h2-due{display:grid;gap:2.25rem}
@@ -2252,7 +2252,7 @@ body.fuori-home #vaiHome{display:inline-flex}
 .h2-gar li{display:flex;gap:.6rem;align-items:center;font-size:.9375rem;font-weight:600}
 .h2-gar li::before,.h2-carta.chiara li::before{content:"";width:.9rem;height:.5rem;border:solid var(--pos,#1E6B4A);border-width:0 0 2.5px 2.5px;transform:rotate(-45deg) translateY(-2px);flex:none}
 .h2-vet{background:#fff;border:1px solid var(--bordo);border-radius:14px;padding:.5rem;box-shadow:0 18px 40px -24px rgba(14,27,44,.35)}
-.h2-vet h2{font-size:.9375rem!important;font-family:'Instrument Sans',system-ui,sans-serif!important;font-weight:700!important;letter-spacing:0!important;color:var(--ink-3)!important;padding:.8rem .9rem .6rem;line-height:1.3!important}
+html body #home .h2-vet h2{font-size:.9375rem!important;font-family:'Instrument Sans',system-ui,sans-serif!important;font-weight:700!important;letter-spacing:0!important;color:var(--ink-3)!important;padding:.8rem .9rem .6rem;line-height:1.3!important}
 .h2-vet a{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.9rem;border-radius:10px;text-decoration:none;color:var(--ink);transition:background .15s}
 .h2-vet a:hover{background:var(--paper)}
 .h2-vet a b{display:block;font-size:1.125rem;font-weight:700}
@@ -2334,6 +2334,37 @@ body.fuori-home #vaiHome{display:inline-flex}
 .h2-carta.chiara li{display:flex;gap:.7rem;padding:.7rem 0;border-bottom:1px solid var(--bordo);font-size:1rem}
 .h2-carta.chiara li:last-child{border-bottom:0}
 .h2-carta.chiara li::before{margin-top:.5em}
+
+/* pagina L'ecosistema Riskly */
+.eco-ind{display:inline-block;margin-bottom:1.2rem;font-weight:700;font-size:.9375rem;color:var(--ink-3);text-decoration:none}
+.eco-flusso{display:grid;gap:.75rem}
+@media(min-width:900px){.eco-flusso{grid-template-columns:1fr 40px 1fr 40px 1fr;align-items:stretch}}
+.eco-fase{background:var(--paper);border:1px solid var(--bordo);border-radius:14px;padding:1.4rem;display:grid;gap:.5rem;align-content:start}
+.eco-quando{font-size:.8125rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold,#8A6420)}
+.eco-fase b{font-size:1.25rem}
+.eco-fase ul{list-style:none;margin:.2rem 0;padding:0;display:flex;flex-wrap:wrap;gap:.4rem}
+.eco-fase li{font-size:.875rem;font-weight:600;padding:.3rem .6rem;border-radius:999px;background:#fff;border:1px solid var(--bordo)}
+.eco-fase p{margin:0;font-size:.9375rem;color:var(--ink-2)}
+.eco-freccia{display:flex;align-items:center;justify-content:center;min-height:24px}
+.eco-freccia::before{content:"";width:14px;height:14px;border-top:2.5px solid var(--az);border-right:2.5px solid var(--az);transform:rotate(135deg)}
+@media(min-width:900px){.eco-freccia::before{transform:rotate(45deg)}}
+.eco-giro{margin:1.25rem 0 0;font-size:1rem;color:var(--ink-2)}
+.eco-lista{display:grid;gap:1rem}
+@media(min-width:900px){.eco-lista{grid-template-columns:repeat(2,1fr)}.eco-voce.larga{grid-column:1/-1}}
+.eco-voce{background:#fff;border:1px solid var(--bordo);border-radius:14px;padding:1.5rem;display:grid;gap:.75rem;align-content:start}
+.eco-voce p{margin:0;font-size:.9375rem;color:var(--ink-2);line-height:1.55}
+.eco-voce p b{color:var(--ink)}
+.eco-testa{display:flex;gap:.9rem;align-items:center}
+.eco-n{flex:none;display:grid;place-items:center;width:2.4rem;height:2.4rem;border-radius:50%;background:var(--az);color:#fff;font-weight:700}
+.eco-tipo{display:block;font-size:.8125rem;font-weight:600;color:var(--gold,#8A6420);margin-top:.2rem}
+.eco-vai{justify-self:start;font-weight:700;color:var(--ink);text-decoration:none;border-bottom:2px solid var(--az);padding-bottom:2px}
+.eco-vai:hover{color:var(--az)}
+.eco-bot{list-style:none;margin:0;padding:0;display:grid;gap:.5rem}
+@media(min-width:700px){.eco-bot{grid-template-columns:repeat(2,1fr)}}
+.eco-bot li{background:var(--paper);border:1px solid var(--bordo);border-radius:10px;padding:.8rem .9rem;display:grid;gap:.15rem}
+.eco-bot span{font-size:.875rem;color:var(--ink-2)}
+.eco-voce.futura{background:repeating-linear-gradient(135deg,#fff 0 9px,#F4F6F8 9px 10px)}
+.eco-voce.futura .eco-n{background:#7C8AA0}
 /* striscia dei mercati, sotto il menu, su tutte le pagine */
 #striscia{background:var(--navy,#12263F);color:#fff;overflow:hidden;font:400 .8125rem/1 'JetBrains Mono','Martian Mono',ui-monospace,monospace;border-top:1px solid rgba(255,255,255,.08)}
 #striscia .rotola{display:flex;width:max-content;animation:rotola 55s linear infinite}
@@ -2379,7 +2410,8 @@ body.fuori-home #vaiHome{display:inline-flex}
     </a>
     <div class="tabs">
       <button class="on" onclick="go('home',this)">Home</button>
-      <button onclick="go('bot',this)">Bot</button>
+      <button onclick="go('ecosistema',this)">Ecosistema</button>
+      <button onclick="go('bot',this)">Software</button>
       <button onclick="go('corso',this)">Corsi</button>
       <button onclick="go('journal',this)">Journal</button>
       <a href="https://strumenti.riskly.trade">Strumenti</a>
@@ -2393,7 +2425,7 @@ body.fuori-home #vaiHome{display:inline-flex}
     </div>
   </div>
   <div id="menu-mobile" hidden>
-    <button onclick="go('home');chiudiMenu()">Home</button><button onclick="go('bot');chiudiMenu()">Bot</button><button onclick="go('corso');chiudiMenu()">Corsi</button><button onclick="go('journal');chiudiMenu()">Journal</button><a href="https://strumenti.riskly.trade">Strumenti gratuiti</a><a href="https://news.riskly.trade">Riskly News</a><button onclick="go('metodo');chiudiMenu()">Metodo</button><button onclick="go('faq');chiudiMenu()">FAQ</button><a href="/download.html" style="font-weight:800">Area clienti</a><button id="menu-accedi" onclick="if(utente){go('account')}else{apriAccesso('entra')};chiudiMenu()">Accedi</button>
+    <button onclick="go('home');chiudiMenu()">Home</button><button onclick="go('ecosistema');chiudiMenu()">Ecosistema</button><button onclick="go('bot');chiudiMenu()">Software</button><button onclick="go('corso');chiudiMenu()">Corsi</button><button onclick="go('journal');chiudiMenu()">Journal</button><a href="https://strumenti.riskly.trade">Strumenti gratuiti</a><a href="https://news.riskly.trade">Riskly News</a><button onclick="go('metodo');chiudiMenu()">Metodo</button><button onclick="go('faq');chiudiMenu()">FAQ</button><a href="/download.html" style="font-weight:800">Area clienti</a><button id="menu-accedi" onclick="if(utente){go('account')}else{apriAccesso('entra')};chiudiMenu()">Accedi</button>
   </div>
 
 </nav>
@@ -2408,10 +2440,10 @@ body.fuori-home #vaiHome{display:inline-flex}
   <section class="h2-hero"><div class="h2w h2-due">
     <div>
       <h1>Proteggi il conto dagli errori che fai tu.</h1>
-      <p class="h2-lead">Riskly vende bot per MetaTrader 4 e 5 che fanno rispettare le tue regole: ti fermano dopo le perdite, mettono gli stop, gestiscono le uscite. Non aprono operazioni e non danno segnali.</p>
+      <p class="h2-lead">Riskly vende software per MetaTrader 4 e 5 che fanno rispettare le tue regole: ti fermano dopo le perdite, mettono gli stop, gestiscono le uscite. Non aprono operazioni e non danno segnali.</p>
       <div class="h2-az">
-        <a class="h2-btn pri" href="#" onclick="go('bot');return false">Vedi i bot, da 49 € <span aria-hidden="true">→</span></a>
-        <a class="h2-btn" href="https://strumenti.riskly.trade/#posizione">Prova gli strumenti gratis</a>
+        <a class="h2-btn pri" href="#" onclick="go('bot');return false">Vedi i software, da 49 € <span aria-hidden="true">→</span></a>
+        <a class="h2-btn" href="#ecosistema" onclick="go('ecosistema');return false">Scopri l'ecosistema Riskly</a>
       </div>
       <ul class="h2-gar">
         <li>Paghi una volta, nessun abbonamento</li>
@@ -2421,7 +2453,7 @@ body.fuori-home #vaiHome{display:inline-flex}
     </div>
     <div class="h2-vet" aria-label="Cosa trovi su Riskly">
       <h2>Cosa trovi su Riskly</h2>
-      <a class="primo" href="#" onclick="go('bot');return false"><div><b>Bot per MetaTrader</b><span>Cinque software che applicano le tue regole</span></div><em>da 49 €<small>una volta</small></em></a>
+      <a class="primo" href="#" onclick="go('bot');return false"><div><b>Software per MetaTrader</b><span>Cinque software che applicano le tue regole</span></div><em>da 49 €<small>una volta</small></em></a>
       <a href="#" onclick="vaiA('journal','pz-journal');return false"><div><b>Journal</b><span>Il diario che misura la tua disciplina</span></div><em>da 2,99 €<small>al mese · 7 giorni gratis</small></em></a>
       <a href="https://news.riskly.trade"><div><b>Riskly News</b><span>Ogni mattina oro, dollaro e Fed</span></div><em>6,99 €<small>al mese</small></em></a>
       <a href="#" onclick="go('corso');return false"><div><b>Videocorso</b><span>50 lezioni sulla gestione del rischio</span></div><em>199 €<small>una volta</small></em></a>
@@ -2429,42 +2461,43 @@ body.fuori-home #vaiHome{display:inline-flex}
     </div>
   </div></section>
 
-  <section class="h2-sez alt" id="ecosistema"><div class="h2w">
+  <section class="h2-sez alt" id="eco-home"><div class="h2w">
     <div class="h2-t"><h2>Riskly è un sistema, non un catalogo.</h2><p>Cinque parti collegate per gestire il rischio prima, durante e dopo ogni operazione. Puoi usarne una sola: più ne usi, più il quadro è completo.</p></div>
     <div class="h2-eco">
       <div class="doppio"><div class="h2-fase"><span>1 · Impara</span><span class="st">ATTIVO</span></div><h3>News e Corsi</h3><p>Ogni mattina cosa muove oro, dollaro e tassi. Videocorso sulla gestione del rischio.</p><span class="va"><a href="https://news.riskly.trade">Leggi le news →</a><a href="#" onclick="go('corso');return false">Vedi i corsi →</a></span></div>
       <a href="https://strumenti.riskly.trade/#posizione"><div class="h2-fase"><span>2 · Misura</span><span class="st">ATTIVO</span></div><h3>Strumenti</h3><p>Calcolatori, simulazioni e calendario. Gratis, anche senza account.</p><span class="va">Calcola →</span></a>
-      <a href="#" onclick="go('bot');return false"><div class="h2-fase"><span>3 · Applica</span><span class="st">ATTIVO</span></div><h3>Bot</h3><p>Le tue regole dentro MetaTrader 4 e 5. Ti fermano quando non lo faresti.</p><span class="va">Confronta →</span></a>
-      <a href="#" onclick="vaiA('journal','pz-journal');return false"><div class="h2-fase"><span>4 · Migliora</span><span class="st">ATTIVO</span></div><h3>Journal</h3><p>Le operazioni arrivano dai bot. Statistiche ed errori, senza scrivere a mano.</p><span class="va">Apri →</span></a>
+      <a href="#" onclick="go('bot');return false"><div class="h2-fase"><span>3 · Applica</span><span class="st">ATTIVO</span></div><h3>Software</h3><p>Le tue regole dentro MetaTrader 4 e 5. Ti fermano quando non lo faresti.</p><span class="va">Confronta →</span></a>
+      <a href="#" onclick="vaiA('journal','pz-journal');return false"><div class="h2-fase"><span>4 · Migliora</span><span class="st">ATTIVO</span></div><h3>Journal</h3><p>Le operazioni arrivano dai software. Statistiche ed errori, senza scrivere a mano.</p><span class="va">Apri →</span></a>
       <a class="fut" href="#" onclick="apriModulo('attesa','Monitor',0);return false"><div class="h2-fase"><span>5 · Controlla</span><span class="st pre">IN ARRIVO</span></div><h3>Monitor</h3><p>Tutti i tuoi conti in un pannello: esposizione, drawdown, limiti, avvisi.</p><span class="va">Avvisami →</span></a>
     </div>
-    <p class="h2-ciclo"><span><b>Prima</b> decidi quanto rischiare</span><span><b>Durante</b> i bot applicano le regole</span><span><b>Dopo</b> il journal misura se le hai rispettate</span></p>
+    <p class="h2-ciclo"><span><b>Prima</b> decidi quanto rischiare</span><span><b>Durante</b> i software applicano le regole</span><span><b>Dopo</b> il journal misura se le hai rispettate</span></p>
+    <div class="h2-az"><a class="h2-btn pri" href="#ecosistema" onclick="go('ecosistema');return false">Scopri l'ecosistema Riskly →</a></div>
   </div></section>
 
   <section class="h2-sez"><div class="h2w">
-    <div class="h2-t"><h2>Comprare un bot, in tre passi.</h2><p>Sai sempre cosa stai pagando e cosa succede dopo.</p></div>
+    <div class="h2-t"><h2>Comprare un software, in tre passi.</h2><p>Sai sempre cosa stai pagando e cosa succede dopo.</p></div>
     <ol class="h2-passi">
-      <li><b>Scegli quello che ti serve</b><p>Dici cosa vuoi che faccia e ti indichiamo il bot giusto. Ogni scheda spiega cosa fa e cosa non fa.</p><a href="#" onclick="go('bot');return false">Trova il tuo strumento →</a></li>
+      <li><b>Scegli quello che ti serve</b><p>Dici cosa vuoi che faccia e ti indichiamo il software giusto. Ogni scheda spiega cosa fa e cosa non fa.</p><a href="#" onclick="go('bot');return false">Trova il tuo strumento →</a></li>
       <li><b>Paghi una volta</b><p>Sulla pagina sicura di Stripe. Il prezzo è scritto prima del pulsante e non ci sono rinnovi.</p></li>
       <li><b>Lo ricevi e lo installi</b><p>Entro 24 ore lavorative ti mandiamo il file per il tuo conto e la guida passo passo. Se serve, ti seguiamo noi.</p></li>
     </ol>
   </div></section>
 
   <section class="h2-sez alt"><div class="h2w">
-    <div class="h2-t"><h2>I nostri bot.</h2><p>Prezzi di lancio. Ognuno fa una cosa precisa, Riskly Pro le fa tutte.</p></div>
+    <div class="h2-t"><h2>I nostri software.</h2><p>Prezzi di lancio. Ognuno fa una cosa precisa, Riskly Pro le fa tutte.</p></div>
     <div class="h2-carte">
       <div class="h2-carta"><small>Ti ferma dopo le perdite</small><h3>RiskGuard</h3><p>Dopo N perdite di fila, il numero lo scegli tu, blocca le nuove operazioni e chiude MetaTrader fino a mezzanotte.</p><div class="costo">99 €<em>una volta · poi 149 €</em></div><a class="h2-btn" href="#" onclick="go('bot');return false">Vedi RiskGuard →</a></div>
       <div class="h2-carta"><small>Stop, break-even e trailing</small><h3>TradeManager</h3><p>Mette stop loss e take profit se mancano, sposta lo stop in pari e poi lo fa seguire il prezzo. Tutto in pip.</p><div class="costo">49 €<em>una volta · poi 79 €</em></div><a class="h2-btn" href="#" onclick="go('bot');return false">Vedi TradeManager →</a></div>
       <div class="h2-carta"><small>Ingressi a scaglioni</small><h3>ScaleIn</h3><p>Replica la tua posizione in più scaglioni con take profit diversi. Si ferma se il rischio totale è troppo alto.</p><div class="costo">79 €<em>una volta · poi 129 €</em></div><a class="h2-btn" href="#" onclick="go('bot');return false">Vedi ScaleIn →</a></div>
-      <div class="h2-carta pro"><small>Il più completo</small><h3>Riskly Pro</h3><p>RiskGuard, TradeManager e ScaleIn in un solo bot che conosce tutte le posizioni aperte. Il lotto è già calcolato sui pulsanti BUY e SELL.</p><div class="costo">199 €<em>una volta · poi 299 €</em></div><a class="h2-btn pri" href="#" onclick="go('bot');return false">Vedi Riskly Pro →</a></div>
+      <div class="h2-carta pro"><small>Il più completo</small><h3>Riskly Pro</h3><p>RiskGuard, TradeManager e ScaleIn in un solo software che conosce tutte le posizioni aperte. Il lotto è già calcolato sui pulsanti BUY e SELL.</p><div class="costo">199 €<em>una volta · poi 299 €</em></div><a class="h2-btn pri" href="#" onclick="go('bot');return false">Vedi Riskly Pro →</a></div>
       <div class="h2-carta"><small>Copia su altri conti</small><h3>RisklyCopy</h3><p>Il lotto si ricalcola sul saldo di ogni conto: stesso rischio, non lo stesso lotto. Funziona tra MetaTrader 4 e 5.</p><div class="costo">69 €<em>una volta · poi 129 €</em></div><a class="h2-btn" href="#" onclick="go('bot');return false">Vedi RisklyCopy →</a></div>
     </div>
   </div></section>
 
   <section class="lavoro" id="lavoro">
     <div class="wrap">
-      <h2>I bot al lavoro</h2>
-      <p class="intro">Gli stessi video che pubblichiamo su TikTok e Instagram: il grafico si muove e vedi passo passo cosa fa ogni bot. Tocca un video per farlo partire con l'audio.</p>
+      <h2>I software al lavoro</h2>
+      <p class="intro">Gli stessi video che pubblichiamo su TikTok e Instagram: il grafico si muove e vedi passo passo cosa fa ogni software. Tocca un video per farlo partire con l'audio.</p>
       <div class="lav-fila">
         <figure class="lav">
           <video src="/video/riskguard.mp4" poster="/video/riskguard.jpg" muted loop playsinline preload="none" controls aria-label="Video dimostrativo di RiskGuard"></video>
@@ -2487,7 +2520,7 @@ body.fuori-home #vaiHome{display:inline-flex}
           <figcaption><b>RisklyCopy</b><span>Copia sugli altri conti con il lotto ricalcolato sul saldo di ognuno.</span></figcaption>
         </figure>
       </div>
-      <p class="lav-nota">Simulazioni illustrative, non registrazioni di operazioni reali e non rappresentative di risultati ottenibili. <a href="#" onclick="go('bot');return false">Tutti i dettagli dei bot →</a></p>
+      <p class="lav-nota">Simulazioni illustrative, non registrazioni di operazioni reali e non rappresentative di risultati ottenibili. <a href="#" onclick="go('bot');return false">Tutti i dettagli dei software →</a></p>
     </div>
   </section>
 
@@ -2504,14 +2537,14 @@ body.fuori-home #vaiHome{display:inline-flex}
   <section class="h2-sez"><div class="h2w h2-due">
     <div class="h2-col">
       <h2>E dopo, misura come operi.</h2>
-      <p class="h2-lead">Il journal registra le operazioni, anche in automatico dai bot, e ti mostra dove sbagli: orari, strategie, regole non rispettate.</p>
+      <p class="h2-lead">Il journal registra le operazioni, anche in automatico dai software, e ti mostra dove sbagli: orari, strategie, regole non rispettate.</p>
       <div class="h2-az"><a class="h2-btn pri" href="#" onclick="vaiA('journal','pz-journal');return false">Scopri il journal →</a></div>
       <p class="h2-nota">7 giorni di prova senza carta, poi da 2,99 € al mese.</p>
     </div>
     <div class="h2-carta chiara">
       <h3>Perché Riskly non è un sito di segnali</h3>
       <ul>
-        <li>I bot applicano le regole che scegli tu, non decidono cosa comprare</li>
+        <li>I software applicano le regole che scegli tu, non decidono cosa comprare</li>
         <li>Nessuna promessa di guadagno e nessun risultato inventato</li>
         <li>Ogni scheda dice cosa il prodotto non fa, prima del pulsante di acquisto</li>
       </ul>
@@ -2530,7 +2563,7 @@ body.fuori-home #vaiHome{display:inline-flex}
         <h2>Chi c'è dietro Riskly</h2>
         <p>Sono <b>Gabriele</b>, trader e sviluppatore. Riskly nasce da un problema mio e di molti colleghi con cui lavoro ogni giorno.</p>
         <p>Nel trading il mercato non lo controlli, il rischio sì, ed è l'unica variabile che quasi nessuno gestisce con regole scritte. Sapevo cosa mi serviva per fermarmi al momento giusto, e sapevo scriverlo. Così l'ho costruito.</p>
-        <p>Non vendo segnali e non prometto rendimenti. I bot sono in test su conto demo MT5: pubblico gli screenshot datati sul canale Telegram.</p>
+        <p>Non vendo segnali e non prometto rendimenti. I software sono in test su conto demo MT5: pubblico gli screenshot datati sul canale Telegram.</p>
         <div class="link"><a href="https://t.me/+mlCyBs21_7A3ZDg0" target="_blank" rel="noopener">Canale Telegram</a><a href="mailto:info@riskly.trade">Scrivimi</a></div>
         <p class="firma">Riskly · P. IVA 04948840162</p>
       </div>
@@ -2548,11 +2581,84 @@ body.fuori-home #vaiHome{display:inline-flex}
 
 </div>
 
+<div class="page nh" id="ecosistema">
+  <section class="h2-hero"><div class="h2w">
+    <a class="eco-ind" href="#" onclick="go('home');return false">← Home</a>
+    <h1>L'ecosistema Riskly.</h1>
+    <p class="h2-lead">Sei strumenti, un solo obiettivo: gestire il rischio prima, durante e dopo ogni operazione. Qui trovi a cosa serve ognuno e come si passano le informazioni. Per acquistare, ogni voce ti porta alla sua pagina.</p>
+  </div></section>
+
+  <section class="h2-sez alt"><div class="h2w">
+    <div class="h2-t"><h2>Come si collegano.</h2><p>Il percorso è sempre lo stesso: impari, decidi i numeri, li fai rispettare, misuri come è andata. Quello che il journal ti mostra torna nelle regole della volta dopo.</p></div>
+    <div class="eco-flusso">
+      <div class="eco-fase"><div class="eco-quando">Prima</div><b>Impari e decidi</b><ul><li>Riskly News</li><li>Corsi</li><li>Strumenti</li></ul><p>Sai cosa muove il mercato e quanto puoi rischiare.</p></div>
+      <div class="eco-freccia" aria-hidden="true"></div>
+      <div class="eco-fase"><div class="eco-quando">Durante</div><b>Le regole lavorano</b><ul><li>I software in MetaTrader</li></ul><p>Stop, limiti e pause vengono applicati anche quando sei sotto pressione.</p></div>
+      <div class="eco-freccia" aria-hidden="true"></div>
+      <div class="eco-fase"><div class="eco-quando">Dopo</div><b>Misuri e correggi</b><ul><li>Journal</li><li>Monitor (in arrivo)</li></ul><p>Vedi dove sbagli e cambi le regole della volta dopo.</p></div>
+    </div>
+    <p class="eco-giro">↺ Il ciclo ricomincia: i numeri del journal diventano i nuovi parametri di strumenti e software.</p>
+  </div></section>
+
+  <section class="h2-sez"><div class="h2w">
+    <div class="h2-t"><h2>Cosa fa ogni parte.</h2><p>In ordine di percorso. Ogni scheda dice a cosa serve, con cosa si collega e dove trovarla.</p></div>
+    <div class="eco-lista">
+      <article class="eco-voce"><div class="eco-testa"><span class="eco-n">1</span><div><h3>Riskly News</h3><span class="eco-tipo">Notizie · abbonamento</span></div></div>
+        <p><b>A cosa serve.</b> Ogni mattina cosa muove oro, dollaro, Fed e tassi, con gli orari italiani dei dati. Ogni giorno alle 11 il Setup XAU: zone importanti, pivot e scenari della giornata.</p>
+        <p><b>Con cosa si collega.</b> Ti dice quando escono i dati che possono muovere il prezzo: è il momento in cui usare i limiti dei software o stare fermo.</p>
+        <a class="eco-vai" href="https://news.riskly.trade">Vai a Riskly News →</a></article>
+      <article class="eco-voce"><div class="eco-testa"><span class="eco-n">2</span><div><h3>Corsi</h3><span class="eco-tipo">Videocorso · pagamento unico</span></div></div>
+        <p><b>A cosa serve.</b> Imparare quanto rischiare, come calcolare il lotto, il drawdown, le regole delle prop firm. 50 lezioni con dispense, quiz e attestato.</p>
+        <p><b>Con cosa si collega.</b> Le lezioni usano gli stessi calcolatori degli strumenti e ti insegnano a leggere i numeri del journal.</p>
+        <a class="eco-vai" href="#" onclick="go('corso');return false">Vai alla pagina dei corsi →</a></article>
+      <article class="eco-voce"><div class="eco-testa"><span class="eco-n">3</span><div><h3>Strumenti</h3><span class="eco-tipo">Calcolatori e calendario · gratis</span></div></div>
+        <p><b>A cosa serve.</b> Calcolare il lotto giusto, il rischio di bruciare il conto, il margine di una prova prop firm, quanto serve per recuperare. Più il calendario dei dati economici.</p>
+        <p><b>Con cosa si collega.</b> I numeri che trovi qui (rischio per operazione, perdita massima del giorno) sono gli stessi che imposti nei software.</p>
+        <a class="eco-vai" href="https://strumenti.riskly.trade">Vai agli strumenti →</a></article>
+      <article class="eco-voce larga"><div class="eco-testa"><span class="eco-n">4</span><div><h3>Software per MetaTrader 4 e 5</h3><span class="eco-tipo">Software · pagamento unico</span></div></div>
+        <p><b>A cosa serve.</b> Fanno rispettare le tue regole dentro MetaTrader. Non aprono operazioni al posto tuo e non danno segnali.</p>
+        <ul class="eco-bot">
+          <li><b>RiskGuard</b><span>Ti ferma dopo le perdite di fila e al limite del giorno.</span></li>
+          <li><b>TradeManager</b><span>Stop, pareggio e trailing sulle posizioni che apri tu.</span></li>
+          <li><b>ScaleIn</b><span>Ingressi a scaglioni con take profit diversi.</span></li>
+          <li><b>Riskly Pro</b><span>I tre insieme, con il rischio calcolato su tutte le posizioni.</span></li>
+          <li><b>RisklyCopy</b><span>Copia sui tuoi altri conti con lo stesso rischio.</span></li>
+        </ul>
+        <p><b>Con cosa si collega.</b> RiskGuard e Riskly Pro mandano le operazioni al journal da soli: non devi scrivere niente a mano.</p>
+        <a class="eco-vai" href="#" onclick="go('bot');return false">Vai alla pagina dei software →</a></article>
+      <article class="eco-voce"><div class="eco-testa"><span class="eco-n">5</span><div><h3>Journal</h3><span class="eco-tipo">App · abbonamento, 7 giorni gratis</span></div></div>
+        <p><b>A cosa serve.</b> Il diario delle operazioni: statistiche per orario e strategia, curva del saldo, regole delle prop firm, gli errori che ripeti.</p>
+        <p><b>Con cosa si collega.</b> Riceve le operazioni dai software e ti mostra quali regole funzionano. Da qui torni agli strumenti per cambiare i numeri.</p>
+        <a class="eco-vai" href="#" onclick="vaiA('journal','pz-journal');return false">Vai alla pagina del journal →</a></article>
+      <article class="eco-voce futura"><div class="eco-testa"><span class="eco-n">6</span><div><h3>Monitor</h3><span class="eco-tipo">In arrivo · non ancora disponibile</span></div></div>
+        <p><b>A cosa servirà.</b> Tutti i tuoi conti in un solo pannello: esposizione, drawdown, distanza dai limiti, avvisi.</p>
+        <p><b>Con cosa si collegherà.</b> Leggerà gli stessi limiti dei software e scriverà nel journal gli eventi importanti.</p>
+        <a class="eco-vai" href="#" onclick="apriModulo('attesa','Monitor',0);return false">Avvisami quando esce →</a></article>
+    </div>
+  </div></section>
+
+  <section class="h2-sez alt"><div class="h2w h2-due">
+    <div class="h2-col">
+      <h2>Un solo account.</h2>
+      <p class="h2-lead">Con lo stesso indirizzo email entri nel sito, nel journal, negli strumenti e in Riskly News. I tuoi acquisti, i valori dei calcolatori e i preferiti del calendario ti seguono su telefono e computer.</p>
+    </div>
+    <div class="h2-carta chiara">
+      <h3>Non sai da dove partire?</h3>
+      <ul>
+        <li>Se perdi perché non ti fermi: guarda RiskGuard.</li>
+        <li>Se non sai quanto rischiare: parti dagli strumenti, sono gratis.</li>
+        <li>Se vuoi capire dove sbagli: prova il journal per 7 giorni.</li>
+      </ul>
+      <div class="h2-az" style="margin-top:.75rem"><a class="h2-btn pri" href="#" onclick="go('bot');return false">Trova il tuo strumento →</a></div>
+    </div>
+  </div></section>
+</div>
+
 <div class="page" id="bot">
   <section>
     <div class="wrap">
       <div class="sez-titolo pagina">
-        <span class="sez-num">BOT</span>
+        <span class="sez-num">SOFTWARE</span>
         <h2>Cinque software di gestione.<br><em>Nessun segnale.</em></h2>
         <p class="lead">Non decidono cosa comprare e non aprono operazioni per conto loro. Proteggono il conto, gestiscono le posizioni che hai già aperto, e fanno rispettare le regole che hai deciso quando eri lucido — anche quando non lo sei più. E ogni operazione finisce da sola nel tuo journal.</p>
         <div class="plats" style="margin-top:18px">
@@ -2569,7 +2675,7 @@ body.fuori-home #vaiHome{display:inline-flex}
 
       <!-- sotto-pagine dei bot: una cosa per volta -->
       <div class="bot-nav" role="tablist">
-        <button class="on" data-bt="scegli" onclick="botTab('scegli')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="7" width="14" height="12" rx="3"/><path d="M12 7V4"/><path d="M9.5 12v1.5M14.5 12v1.5"/></svg>I bot</button>
+        <button class="on" data-bt="scegli" onclick="botTab('scegli')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="7" width="14" height="12" rx="3"/><path d="M12 7V4"/><path d="M9.5 12v1.5M14.5 12v1.5"/></svg>I software</button>
         <button data-bt="come" onclick="botTab('come')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg>Come funzionano</button>
         <button data-bt="confronti" onclick="botTab('confronti')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4v16M16 4v16"/><path d="M4 8h4M16 16h4"/></svg>Confronti</button>
       </div>
@@ -2577,8 +2683,8 @@ body.fuori-home #vaiHome{display:inline-flex}
       <div class="bot-pannello on" id="bt-scegli">
       <div class="trova" id="trova">
         <div class="trova-k">TROVA IL TUO STRUMENTO</div>
-        <h3>Cosa vuoi che faccia il bot?</h3>
-        <p class="trova-sub">Scegli una o più cose. Tutti i bot funzionano su MetaTrader 4 e MetaTrader 5.</p>
+        <h3>Cosa vuoi che faccia il software?</h3>
+        <p class="trova-sub">Scegli una o più cose. Tutti i software funzionano su MetaTrader 4 e MetaTrader 5.</p>
         <div class="trova-op" role="group" aria-label="Cosa vuoi fare">
           <button type="button" data-v="stop" aria-pressed="false">Fermarmi quando perdo troppo o faccio troppe operazioni</button>
           <button type="button" data-v="gestione" aria-pressed="false">Mettere da solo stop, break-even e trailing</button>
@@ -2688,7 +2794,7 @@ body.fuori-home #vaiHome{display:inline-flex}
               MT4
             </span>
           </div>
-          <p class="sub">Apri una posizione a mano, il bot apre le altre con take profit scaglionati in pip (es. 20, 40, 60). Nessun altro lo fa a questo prezzo.</p>
+          <p class="sub">Apri una posizione a mano, il software apre le altre con take profit scaglionati in pip (es. 20, 40, 60). Nessun altro lo fa a questo prezzo.</p>
           <div class="price">€79</div>
           <div class="price-off">prezzo di lancio · poi €129</div>
           <div class="plabel">una tantum · 2 conti · aggiornamenti inclusi</div>
@@ -2708,7 +2814,7 @@ body.fuori-home #vaiHome{display:inline-flex}
 
         <!-- RISKLY PRO -->
         <div class="bot">
-          <picture class="bot-cop"><source srcset="/img/bot-riskly-pro-v2.webp" type="image/webp"><img src="/img/bot-riskly-pro-v2.jpg" width="1200" height="675" loading="lazy" alt="Riskly Pro: esempio di come lavora"></picture>
+          <picture class="bot-cop"><source srcset="/img/bot-riskly-pro-v3.webp" type="image/webp"><img src="/img/bot-riskly-pro-v3.jpg" width="1200" height="675" loading="lazy" alt="Riskly Pro: esempio di come lavora"></picture>
           <span class="badge">Il più completo</span>
           <h3>Riskly Pro</h3>
           <div class="plats" style="margin-bottom:11px">
@@ -2721,7 +2827,7 @@ body.fuori-home #vaiHome{display:inline-flex}
               MT4
             </span>
           </div>
-          <p class="sub">I tre moduli in un solo bot con stato condiviso: il rischio è calcolato sull'insieme delle posizioni, non su ciascuna separatamente.</p>
+          <p class="sub">I tre moduli in un solo software con stato condiviso: il rischio è calcolato sull'insieme delle posizioni, non su ciascuna separatamente.</p>
           <div class="price">€199</div>
           <div class="price-off">prezzo di lancio · poi €299</div>
           <div class="plabel">una tantum · 3 conti · aggiornamenti a vita</div>
@@ -2788,18 +2894,18 @@ body.fuori-home #vaiHome{display:inline-flex}
           </div>
           <div>
             <h3 style="font-family:'Instrument Sans',-apple-system,system-ui,sans-serif;font-size:.92rem;font-weight:600;margin-bottom:6px">Simulazioni prima dell'acquisto</h3>
-            <p style="color:var(--dim);font-size:.85rem">Nella sezione dei bot c'è un video per ognuno: vedi passo passo come si comporta. Dopo l'acquisto provalo prima su conto demo.</p>
+            <p style="color:var(--dim);font-size:.85rem">Nella sezione dei software c'è un video per ognuno: vedi passo passo come si comporta. Dopo l'acquisto provalo prima su conto demo.</p>
           </div>
         </div>
       </details>
 
       <div class="bot-rimandi">
-      <button class="bot-rimando" onclick="botTab('come')"><b>Come funzionano →</b><span>Un video per ogni bot e i test su conto demo.</span></button>
-      <button class="bot-rimando" onclick="botTab('confronti')"><b>Confronti →</b><span>Quale bot fa per te, Riskly e gli altri, prop firm.</span></button>
+      <button class="bot-rimando" onclick="botTab('come')"><b>Come funzionano →</b><span>Un video per ogni software e i test su conto demo.</span></button>
+      <button class="bot-rimando" onclick="botTab('confronti')"><b>Confronti →</b><span>Quale software fa per te, Riskly e gli altri, prop firm.</span></button>
       </div>
 
       <div class="cap-slim">
-        <div class="t"><b>Prima di scegliere un software, leggi le regole</b><span>Le 7 regole di rischio in PDF, gratis. Ti serviranno comunque, anche senza i nostri bot.</span></div>
+        <div class="t"><b>Prima di scegliere un software, leggi le regole</b><span>Le 7 regole di rischio in PDF, gratis. Ti serviranno comunque, anche senza i nostri software.</span></div>
         <form onsubmit="iscrivi(event,'mail3','capmsg3')">
           <input type="email" id="mail3" placeholder="La tua email" required>
           <button class="btn pri" type="submit">Ricevi la guida</button>
@@ -2825,12 +2931,12 @@ body.fuori-home #vaiHome{display:inline-flex}
             <p style="color:var(--dim);font-size:.85rem">Quanto puoi perdere oggi, quante operazioni, quante perdite di fila, quanto rischiare per trade. Le scegli a mente fredda, una volta sola. Noi non ti diciamo cosa comprare.</p>
           </div>
           <div>
-            <h3 style="font-family:'Instrument Sans',-apple-system,system-ui,sans-serif;font-size:.92rem;font-weight:600;margin-bottom:6px">I bot le fanno rispettare</h3>
+            <h3 style="font-family:'Instrument Sans',-apple-system,system-ui,sans-serif;font-size:.92rem;font-weight:600;margin-bottom:6px">I software le fanno rispettare</h3>
             <p style="color:var(--dim);font-size:.85rem">Dentro MetaTrader, in tempo reale: stop automatico, lotto giusto, pausa dopo una perdita. Quando superi un limite il blocco è vero: MetaTrader si chiude fino a mezzanotte.</p>
           </div>
           <div>
             <h3 style="font-family:'Instrument Sans',-apple-system,system-ui,sans-serif;font-size:.92rem;font-weight:600;margin-bottom:6px">Il journal ti mostra il perché</h3>
-            <p style="color:var(--dim);font-size:.85rem">Le operazioni chiuse arrivano da sole nel journal, con rischio, R e pip. Lì aggiungi note e stato d'animo, e scopri quali abitudini ti costano. Dal telefono vedi anche lo stato dei bot.</p>
+            <p style="color:var(--dim);font-size:.85rem">Le operazioni chiuse arrivano da sole nel journal, con rischio, R e pip. Lì aggiungi note e stato d'animo, e scopri quali abitudini ti costano. Dal telefono vedi anche lo stato dei software.</p>
           </div>
         </div>
       </div>
@@ -2839,7 +2945,7 @@ body.fuori-home #vaiHome{display:inline-flex}
       <div style="margin-bottom:38px">
         <div class="sim-head">
           <h3>Guarda come lavorano</h3>
-          <p>Un video per ogni bot: il grafico si muove e vedi passo passo cosa fa. Partono senza audio, tocca il video per alzare il volume.</p>
+          <p>Un video per ogni software: il grafico si muove e vedi passo passo cosa fa. Partono senza audio, tocca il video per alzare il volume.</p>
         </div>
         <div class="vbot">
           <figure class="vb">
@@ -2856,7 +2962,7 @@ body.fuori-home #vaiHome{display:inline-flex}
           </figure>
           <figure class="vb">
             <video src="video/scalein.mp4" poster="video/scalein.jpg" muted loop playsinline preload="none" controls></video>
-            <figcaption><b>ScaleIn</b><span>Apri una posizione: il bot apre le altre parti con take profit scaglionati.</span></figcaption>
+            <figcaption><b>ScaleIn</b><span>Apri una posizione: il software apre le altre parti con take profit scaglionati.</span></figcaption>
           </figure>
           <figure class="vb">
             <video src="video/risklycopy.mp4" poster="video/risklycopy.jpg" muted loop playsinline preload="none" controls></video>
@@ -2909,7 +3015,7 @@ body.fuori-home #vaiHome{display:inline-flex}
               <tr><td class="lbl">Pulsanti con lotto calcolato</td><td class="c no">—</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">✓</td></tr>
               <tr><td class="lbl">Filtro spread e notizie</td><td class="c no">—</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">✓</td></tr>
               <tr><td class="lbl" style="color:var(--up)">Operazioni nel journal in automatico</td><td class="c yes">✓</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">✓</td></tr>
-              <tr><td class="lbl">Stato dei bot dal telefono</td><td class="c yes">✓</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">✓</td></tr>
+              <tr><td class="lbl">Stato dei software dal telefono</td><td class="c yes">✓</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">✓</td></tr>
               <tr><td class="lbl">MetaTrader 5</td><td class="c yes">✓</td><td class="c yes">✓</td><td class="c yes">✓</td><td class="c yes">✓</td></tr>
               <tr><td class="lbl">MetaTrader 4</td><td class="c yes">✓</td><td class="c yes">✓</td><td class="c yes">✓</td><td class="c yes">✓</td></tr>
               <tr><td class="lbl">Conti per licenza</td><td class="c">2</td><td class="c">2</td><td class="c">2</td><td class="c yes">3</td></tr>
@@ -2927,7 +3033,7 @@ body.fuori-home #vaiHome{display:inline-flex}
             <li>Bloccano quando l'equity è già scesa del 4%</li>
             <li>Il "blocco" chiude le posizioni, ma puoi riaprire subito e pagare di nuovo lo spread</li>
             <li>Lotto troppo grande: chiudono tutto oppure si limitano ad avvisarti</li>
-            <li>Un bot per il rischio, un altro per la gestione, un journal a parte da compilare a mano</li>
+            <li>Un software per il rischio, un altro per la gestione, un journal a parte da compilare a mano</li>
             <li>Il pannello si vede solo sul computer</li>
           </ul>
         </div>
@@ -2938,7 +3044,7 @@ body.fuori-home #vaiHome{display:inline-flex}
             <li>Il blocco chiude MetaTrader<small>Nessun EA può impedire a MetaTrader di mandare un ordine manuale. Per questo, quando scatta un limite, Riskly chiude le posizioni e poi chiude MetaTrader: se lo riapri prima di mezzanotte si richiude subito. E riavviare non serve: il blocco resta.</small></li>
             <li>Riduce il lotto invece di chiudere<small>Se apri troppo grande, chiude solo la parte in eccesso: l'operazione resta aperta con il rischio che hai deciso. Con i pulsanti BUY e SELL di Riskly Pro il lotto giusto è calcolato prima di entrare.</small></li>
             <li>Rischio calcolato sull'insieme<small>Somma il rischio della posizione e dei suoi scaglioni prima di aprirli. Se il totale supera la soglia, non ne apre nessuno. Niente aperture con lo spread troppo largo o vicino alle notizie importanti.</small></li>
-            <li>Journal automatico, anche dal telefono<small>Le operazioni chiuse arrivano da sole nel journal e le modifichi come vuoi. Lo stato dei bot (perdita di oggi, pausa, blocco) lo vedi dal telefono, dove l'app MetaTrader non mostra i pannelli.</small></li>
+            <li>Journal automatico, anche dal telefono<small>Le operazioni chiuse arrivano da sole nel journal e le modifichi come vuoi. Lo stato dei software (perdita di oggi, pausa, blocco) lo vedi dal telefono, dove l'app MetaTrader non mostra i pannelli.</small></li>
           </ul>
         </div>
       </div>
@@ -2952,7 +3058,7 @@ body.fuori-home #vaiHome{display:inline-flex}
               <tr>
                 <th>Cosa conta</th>
                 <th class="c" style="color:#2EE06C">Riskly</th>
-                <th class="c">Bot che fanno trading<br><span style="font-weight:400;color:var(--dim2);font-size:.72rem">segnali, griglie, martingala</span></th>
+                <th class="c">Software che fanno trading<br><span style="font-weight:400;color:var(--dim2);font-size:.72rem">segnali, griglie, martingala</span></th>
                 <th class="c">Gestori di rischio tipici</th>
               </tr>
             </thead>
@@ -2967,7 +3073,7 @@ body.fuori-home #vaiHome{display:inline-flex}
               <tr><td class="lbl">Lotto calcolato dal rischio con un clic</td><td class="c yes">✓ Riskly Pro</td><td class="c no">—</td><td class="c no">alcuni</td></tr>
               <tr><td class="lbl">Niente aperture con spread largo o vicino alle notizie</td><td class="c yes">✓ Riskly Pro</td><td class="c no">varia</td><td class="c no">raro</td></tr>
               <tr><td class="lbl" style="color:var(--up)">Operazioni nel journal in automatico</td><td class="c yes">✓</td><td class="c no">—</td><td class="c no">—</td></tr>
-              <tr><td class="lbl">Stato dei bot dal telefono</td><td class="c yes">✓ dal journal</td><td class="c no">raro</td><td class="c no">raro</td></tr>
+              <tr><td class="lbl">Stato dei software dal telefono</td><td class="c yes">✓ dal journal</td><td class="c no">raro</td><td class="c no">raro</td></tr>
               <tr><td class="lbl">Tutto in pip, niente formule</td><td class="c yes">✓</td><td class="c no">varia</td><td class="c no">varia</td></tr>
               <tr><td class="lbl">Come si paga</td><td class="c yes">una volta sola</td><td class="c">spesso abbonamento</td><td class="c">varia</td></tr>
             </tbody>
@@ -2981,7 +3087,7 @@ body.fuori-home #vaiHome{display:inline-flex}
         <p style="margin-bottom:12px">I nostri software <b style="color:var(--text)">non aprono operazioni</b>: gestiscono il rischio di quelle che apri tu. È la categoria di strumenti che le prop firm ammettono più facilmente.</p>
         <div class="prop-wrap"><table class="prop-tab">
           <tr><th>Prop firm</th><th>Expert Advisor</th><th>Note</th></tr>
-          <tr><td>FTMO</td><td class="si">consentiti</td><td>Vietati HFT e bot oltre 2.000 richieste al server al giorno. I nostri sono a frequenza bassissima.</td></tr>
+          <tr><td>FTMO</td><td class="si">consentiti</td><td>Vietati HFT e software oltre 2.000 richieste al server al giorno. I nostri sono a frequenza bassissima.</td></tr>
           <tr><td>FundedNext</td><td class="si">consentiti</td><td>Stessa modalità dalla challenge al conto finanziato. Nelle competizioni a premi solo trading manuale.</td></tr>
           <tr><td>The5ers</td><td class="si">consentiti</td><td>Vietati HFT, tick scalping e sfruttamento del rollover notturno.</td></tr>
           <tr><td>Funding Pips</td><td class="si">consentiti</td><td>Rientrano tra gli strumenti di gestione del rischio.</td></tr>
@@ -2992,7 +3098,7 @@ body.fuori-home #vaiHome{display:inline-flex}
 
       </div>
 
-      <p class="disc" style="margin-top:26px">I bot non forniscono segnali né raccomandazioni di investimento e non aprono operazioni in autonomia: agiscono solo su posizioni che hai già aperto tu. Vanno testati su conto demo prima dell'uso reale. Alcune prop firm limitano l'uso di Expert Advisor: verifica il regolamento della tua. Il trading comporta il rischio di perdere il capitale investito.</p>
+      <p class="disc" style="margin-top:26px">I software non forniscono segnali né raccomandazioni di investimento e non aprono operazioni in autonomia: agiscono solo su posizioni che hai già aperto tu. Vanno testati su conto demo prima dell'uso reale. Alcune prop firm limitano l'uso di Expert Advisor: verifica il regolamento della tua. Il trading comporta il rischio di perdere il capitale investito.</p>
     </div>
   </section>
 </div>
@@ -3130,9 +3236,9 @@ body.fuori-home #vaiHome{display:inline-flex}
       </div>
 
       <div class="capture" style="margin-top:22px">
-        <h3>Vuoi che li calcoli il bot al posto tuo?</h3>
+        <h3>Vuoi che li calcoli il software al posto tuo?</h3>
         <p>Riskly Pro applica questi limiti direttamente su MetaTrader e blocca l'operatività prima che tu li superi.</p>
-        <button class="btn pri lg" onclick="go('bot')">Vedi i bot</button>
+        <button class="btn pri lg" onclick="go('bot')">Vedi i software</button>
       </div>
     </div>
   </section>
@@ -3145,10 +3251,10 @@ body.fuori-home #vaiHome{display:inline-flex}
       <div class="sez-titolo pagina">
         <span class="sez-num">JOURNAL</span>
         <h2>Il diario che ti dice<br><em>se stai rispettando le regole</em></h2>
-        <p class="lead">Registra le operazioni (anche in automatico dai bot), misura winrate, drawdown e disciplina, e segui le regole delle prop firm. 7 giorni di prova, senza carta.</p>
+        <p class="lead">Registra le operazioni (anche in automatico dai software), misura winrate, drawdown e disciplina, e segui le regole delle prop firm. 7 giorni di prova, senza carta.</p>
       </div>
 
-      <picture class="j-cop"><source srcset="/img/journal-v2.webp" type="image/webp"><img src="/img/journal-v2.jpg" width="1200" height="675" loading="lazy" alt="Il journal Riskly: regole rispettate, winrate, drawdown e limiti delle prop firm"></picture>
+      <picture class="j-cop"><source srcset="/img/journal-v3.webp" type="image/webp"><img src="/img/journal-v3.jpg" width="1200" height="675" loading="lazy" alt="Il journal Riskly: regole rispettate, winrate, drawdown e limiti delle prop firm"></picture>
 
       <div class="pz-sez" id="pz-journal"><h3>Piani del journal</h3><span>7 GIORNI DI PROVA · SENZA CARTA</span></div>
       <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:22px">
@@ -3207,7 +3313,7 @@ body.fuori-home #vaiHome{display:inline-flex}
             <li class="inc">Screenshot illimitati</li>
             <li class="inc">Conti illimitati</li>
             <li class="inc">Supporto prioritario</li>
-            <li class="inc">Sconto 30% sui bot</li>
+            <li class="inc">Sconto 30% sui software</li>
           </ul>
           </details>
         </div>
@@ -3217,7 +3323,7 @@ body.fuori-home #vaiHome{display:inline-flex}
         <a href="https://app.riskly.trade/demo.html" style="color:var(--accent);text-decoration:underline">Prova la demo</a>.</p>
 
 
-      <p class="pz-altri">Cerchi i prezzi dei bot o dei corsi? Li trovi nelle loro pagine: <a href="#" onclick="go('bot');return false">Bot</a> · <a href="#" onclick="go('corso');return false">Corsi</a>.</p>
+      <p class="pz-altri">Cerchi i prezzi dei software o dei corsi? Li trovi nelle loro pagine: <a href="#" onclick="go('bot');return false">Software</a> · <a href="#" onclick="go('corso');return false">Corsi</a>.</p>
 
       <div class="cap-slim" style="margin-top:40px">
         <div class="t"><b>Non sai da dove partire?</b><span>Scarica "Le 7 regole di rischio che salvano un conto", gratis, e decidi dopo.</span></div>
@@ -3283,14 +3389,14 @@ body.fuori-home #vaiHome{display:inline-flex}
       </div>
 
       <div class="faq">
-        <details open><summary>Quando saranno disponibili i bot?</summary>
+        <details open><summary>Quando saranno disponibili i software?</summary>
           <p>Stiamo completando i test su conto demo: è la parte che non si può accelerare, perché questi Expert Advisor agiscono su posizioni reali e devono comportarsi correttamente con broker e condizioni di mercato diversi. Chi si iscrive alla lista d'attesa viene avvisato per primo e blocca il prezzo di lancio. Nessun pagamento fino a quel momento.</p></details>
 
-        <details><summary>Posso usare i bot Riskly sulle prop firm?</summary>
-          <p>Nella maggior parte dei casi sì, e per un motivo preciso: i nostri software <b>non aprono operazioni</b>. Gestiscono il rischio di quelle che apri tu. Molte prop distinguono proprio tra bot che fanno trading e strumenti di gestione (calcolo lotti, stop loss, break-even, limiti di perdita): i secondi sono la categoria meno soggetta a restrizioni.</p>
+        <details><summary>Posso usare i software Riskly sulle prop firm?</summary>
+          <p>Nella maggior parte dei casi sì, e per un motivo preciso: i nostri software <b>non aprono operazioni</b>. Gestiscono il rischio di quelle che apri tu. Molte prop distinguono proprio tra software che fanno trading e strumenti di gestione (calcolo lotti, stop loss, break-even, limiti di perdita): i secondi sono la categoria meno soggetta a restrizioni.</p>
           <div class="prop-wrap"><table class="prop-tab">
             <tr><th>Prop firm</th><th>Expert Advisor</th><th>Note</th></tr>
-            <tr><td>FTMO</td><td class="si">consentiti</td><td>Vietati HFT, latency arbitrage e bot che generano oltre 2.000 richieste al server al giorno. I nostri sono a bassissima frequenza.</td></tr>
+            <tr><td>FTMO</td><td class="si">consentiti</td><td>Vietati HFT, latency arbitrage e software che generano oltre 2.000 richieste al server al giorno. I nostri sono a bassissima frequenza.</td></tr>
             <tr><td>FundedNext</td><td class="si">consentiti</td><td>Nessun divieto di categoria sulle challenge; vietati HFT e arbitraggio. Nelle competizioni a premi invece è ammesso solo il trading manuale.</td></tr>
             <tr><td>The5ers</td><td class="si">consentiti</td><td>Vietati HFT, tick scalping e sfruttamento del rollover notturno.</td></tr>
             <tr><td>Funding Pips</td><td class="si">consentiti</td><td>Rientrano nella categoria degli strumenti di gestione del rischio: calcolo lotti, stop, take profit, break-even.</td></tr>
@@ -3301,10 +3407,10 @@ body.fuori-home #vaiHome{display:inline-flex}
           <p>I software si pagano <b>una volta sola</b>, non sono un abbonamento: la licenza resta tua, aggiornamenti inclusi. Prezzi di lancio: RiskGuard <b>99 €</b>, TradeManager <b>49 €</b>, ScaleIn <b>79 €</b>, Riskly Pro <b>199 €</b>, videocorso <b>199 €</b>. RisklyCopy, il copiatore tra conti, <b>69 €</b> (poi 129 €). Dopo il lancio i prezzi saranno 149 €, 79 €, 129 €, 299 € e, per il videocorso, 249 €: per i primi 10 iscritti quelli di lancio restano bloccati a vita, aggiornamenti inclusi. Il journal è a parte, da 29 € l'anno (prezzo di lancio fino al 31 dicembre), con 7 giorni di prova gratuita. Chi acquista un software ha il 50% di sconto sul videocorso.</p></details>
 
 
-        <details><summary>Come ricevo i bot dopo l'acquisto?</summary>
+        <details><summary>Come ricevo i software dopo l'acquisto?</summary>
           <p>Dopo il pagamento il tuo account sblocca l'accesso al gruppo Telegram riservato ai clienti. Lì trovi le guide e ci scrivi in privato con l'email dell'acquisto e il numero del tuo conto MetaTrader: ti inviamo i file già abilitati per quel conto, entro 24 ore lavorative. La consegna è manuale di proposito: così ogni licenza è legata al conto giusto e possiamo aiutarti sull'installazione. Qui trovi i <a href="/primi-passi.html">primi passi per installarli</a>.</p></details>
 
-        <details><summary>Su quanti conti posso usare un bot?</summary>
+        <details><summary>Su quanti conti posso usare un software?</summary>
           <p>Due conti per RiskGuard, TradeManager e ScaleIn; tre per Riskly Pro; per RisklyCopy un conto principale e due che ricevono (le copie). Puoi usarli su conto demo e reale. Se cambi broker o numero di conto, scrivici e aggiorniamo la licenza senza costi.</p></details>
 
         <details><summary>Cosa comprende il videocorso?</summary>
@@ -3318,28 +3424,28 @@ body.fuori-home #vaiHome{display:inline-flex}
         <details><summary>Vendete segnali o consigli su cosa comprare?</summary>
           <p>No, e non è previsto. Tutti gli strumenti riguardano la gestione del rischio, la disciplina e l'analisi dei tuoi risultati. Le decisioni operative restano tue.</p></details>
 
-        <details><summary>Vedo il pannello dei bot anche dal telefono?</summary>
-          <p>Non nell'app MetaTrader: sul telefono gli Expert Advisor non girano e l'app non mostra quello che disegnano sul grafico, per nessun bot. Per questo RiskGuard e Riskly Pro mandano il loro stato al journal: aprilo dal telefono e trovi il riquadro "I tuoi bot" con la perdita di oggi, le operazioni, le perdite di fila, la pausa e il blocco, aggiornato da solo.</p></details>
+        <details><summary>Vedo il pannello dei software anche dal telefono?</summary>
+          <p>Non nell'app MetaTrader: sul telefono gli Expert Advisor non girano e l'app non mostra quello che disegnano sul grafico, per nessun software. Per questo RiskGuard e Riskly Pro mandano il loro stato al journal: aprilo dal telefono e trovi il riquadro "I tuoi software" con la perdita di oggi, le operazioni, le perdite di fila, la pausa e il blocco, aggiornato da solo.</p></details>
 
         <details><summary>Posso aprire operazioni durante un blocco?</summary>
-          <p>Da MetaTrader sul computer no: quando scatta un limite il bot chiude le posizioni e poi chiude MetaTrader, e se lo riapri prima di mezzanotte si richiude subito. Nessun EA può impedire un ordine già partito, per questo togliamo proprio il terminale da cui partirebbe. Dall'app sul telefono invece si può ancora aprire: l'operazione viene chiusa appena riapri MetaTrader sul computer, ma lo spread lo paghi. Se vuoi un blocco totale, non tenere l'app di trading sul telefono.</p></details>
+          <p>Da MetaTrader sul computer no: quando scatta un limite il software chiude le posizioni e poi chiude MetaTrader, e se lo riapri prima di mezzanotte si richiude subito. Nessun EA può impedire un ordine già partito, per questo togliamo proprio il terminale da cui partirebbe. Dall'app sul telefono invece si può ancora aprire: l'operazione viene chiusa appena riapri MetaTrader sul computer, ma lo spread lo paghi. Se vuoi un blocco totale, non tenere l'app di trading sul telefono.</p></details>
 
-        <details><summary>I bot funzionano su MT4 o su MT5?</summary>
-          <p>Entrambe. Ogni bot esiste sia per MetaTrader 4 che per MetaTrader 5, e la licenza copre tutte e due le piattaforme: se cambi versione non paghi nulla in più. L'unica differenza: il filtro notizie di Riskly Pro c'è solo su MT5, perché MetaTrader 4 non ha il calendario economico.</p></details>
+        <details><summary>I software funzionano su MT4 o su MT5?</summary>
+          <p>Entrambe. Ogni software esiste sia per MetaTrader 4 che per MetaTrader 5, e la licenza copre tutte e due le piattaforme: se cambi versione non paghi nulla in più. L'unica differenza: il filtro notizie di Riskly Pro c'è solo su MT5, perché MetaTrader 4 non ha il calendario economico.</p></details>
 
-        <details><summary>Cosa fa Riskly che gli altri bot di gestione rischio non fanno?</summary>
+        <details><summary>Cosa fa Riskly che gli altri software di gestione rischio non fanno?</summary>
           <p>Il blocco al raggiungimento del limite di perdita ce l'hanno quasi tutti: è lo standard della categoria. Quello che cambia è <b>quando</b> interviene. Gli altri aspettano che l'equity scenda sotto una soglia, cioè che i soldi siano già persi. Riskly ti ferma prima, sul comportamento: pausa obbligatoria dopo ogni perdita e stop dopo N perdite consecutive, anche se il conto è ancora perfettamente sano. Se apri una posizione durante la pausa, viene chiusa — non è un avviso, è un blocco. In più il rischio è calcolato sull'insieme delle posizioni aperte invece che su ciascuna separatamente. Quando scatta un blocco, Riskly chiude anche MetaTrader fino a mezzanotte, così non puoi rientrare e pagare di nuovo lo spread; se apri un lotto troppo grande, toglie solo la parte in eccesso invece di chiudere tutto; e ogni operazione chiusa arriva da sola nel tuo journal.</p></details>
 
-        <details><summary>I bot vanno bene per le challenge delle prop firm?</summary>
-          <p>Sì, RiskGuard e Riskly Pro aiutano proprio lì: imposti una perdita giornaliera un po' più bassa di quella della tua prop e il bot blocca l'operatività, chiudendo anche MetaTrader, prima della violazione. I limiti dei bot sono tutti giornalieri: il drawdown massimo complessivo della challenge tienilo d'occhio a parte, per esempio con il tracker nei calcolatori. Verifica anche il regolamento della tua prop firm, perché alcune limitano l'uso di Expert Advisor.</p></details>
+        <details><summary>I software vanno bene per le challenge delle prop firm?</summary>
+          <p>Sì, RiskGuard e Riskly Pro aiutano proprio lì: imposti una perdita giornaliera un po' più bassa di quella della tua prop e il software blocca l'operatività, chiudendo anche MetaTrader, prima della violazione. I limiti dei software sono tutti giornalieri: il drawdown massimo complessivo della challenge tienilo d'occhio a parte, per esempio con il tracker nei calcolatori. Verifica anche il regolamento della tua prop firm, perché alcune limitano l'uso di Expert Advisor.</p></details>
 
-        <details><summary>C'è una prova gratuita dei bot?</summary>
-          <p>No, i bot non hanno una prova gratuita. Prima dell'acquisto puoi vedere le simulazioni passo passo di ognuno e chiederci qualsiasi dubbio. Se dopo l'acquisto qualcosa non va sul tuo broker, ti aiutiamo noi a farlo funzionare.</p></details>
+        <details><summary>C'è una prova gratuita dei software?</summary>
+          <p>No, i software non hanno una prova gratuita. Prima dell'acquisto puoi vedere le simulazioni passo passo di ognuno e chiederci qualsiasi dubbio. Se dopo l'acquisto qualcosa non va sul tuo broker, ti aiutiamo noi a farlo funzionare.</p></details>
 
-        <details><summary>Il bot apre operazioni da solo?</summary>
+        <details><summary>Il software apre operazioni da solo?</summary>
           <p>No. RiskGuard e TradeManager agiscono solo su posizioni che hai già aperto tu. ScaleIn apre posizioni aggiuntive, ma solo dopo che tu hai aperto la prima manualmente, e con i parametri che hai impostato. Riskly Pro ha i pulsanti BUY e SELL, che aprono solo quando li premi tu, con il lotto calcolato sul rischio che hai scelto.</p></details>
 
-        <details><summary>Posso usare più bot insieme?</summary>
+        <details><summary>Posso usare più software insieme?</summary>
           <p>Sì, purché non facciano la stessa cosa sulle stesse posizioni: RiskGuard insieme a TradeManager o a ScaleIn va benissimo, mentre Riskly Pro contiene già tutti e tre e non va affiancato agli altri sullo stesso simbolo. Se ti servono più moduli, Riskly Pro costa meno della somma e i moduli comunicano tra loro: il rischio viene calcolato sull'insieme delle posizioni, non su ciascuna separatamente.</p></details>
 
         <details><summary>Come funziona la prova del journal?</summary>
@@ -3349,16 +3455,16 @@ body.fuori-home #vaiHome{display:inline-flex}
           <p>Sì, quando vuoi, dalle impostazioni dell'account. L'abbonamento resta attivo fino alla scadenza del periodo già pagato e puoi esportare i tuoi dati in qualsiasi momento.</p></details>
 
         <details><summary>I miei dati sono al sicuro?</summary>
-          <p>I calcolatori girano interamente nel tuo browser, senza inviare nulla. I dati del journal sono legati al tuo account, non vengono condivisi né venduti. I bot funzionano in locale su MetaTrader e non trasmettono nulla, a meno che tu non li colleghi al tuo journal: in quel caso mandano solo al tuo account le operazioni chiuse e il loro stato, con una chiave che generi e puoi cambiare quando vuoi.</p></details>
+          <p>I calcolatori girano interamente nel tuo browser, senza inviare nulla. I dati del journal sono legati al tuo account, non vengono condivisi né venduti. I software funzionano in locale su MetaTrader e non trasmettono nulla, a meno che tu non li colleghi al tuo journal: in quel caso mandano solo al tuo account le operazioni chiuse e il loro stato, con una chiave che generi e puoi cambiare quando vuoi.</p></details>
 
         <details><summary>Riskly ha accesso ai miei fondi?</summary>
-          <p>No, mai. Il journal legge soltanto lo storico delle operazioni in sola lettura. I bot girano in locale sulla tua installazione di MetaTrader, sul tuo computer: agiscono su stop loss e take profit delle posizioni, ma non possono effettuare prelievi, trasferimenti o accedere al tuo denaro. Non chiediamo mai le credenziali di accesso al conto reale, solo il numero identificativo per la licenza.</p></details>
+          <p>No, mai. Il journal legge soltanto lo storico delle operazioni in sola lettura. I software girano in locale sulla tua installazione di MetaTrader, sul tuo computer: agiscono su stop loss e take profit delle posizioni, ma non possono effettuare prelievi, trasferimenti o accedere al tuo denaro. Non chiediamo mai le credenziali di accesso al conto reale, solo il numero identificativo per la licenza.</p></details>
 
         <details><summary>Le prop firm permettono di collegare un diario di trading?</summary>
-          <p>Sì, praticamente tutte. Il journal accede in sola lettura allo storico e non interferisce con l'operatività, quindi non viola i regolamenti. Per i bot il discorso è diverso: alcune prop firm limitano o vietano gli Expert Advisor, quindi verifica il regolamento della tua prima dell'acquisto.</p></details>
+          <p>Sì, praticamente tutte. Il journal accede in sola lettura allo storico e non interferisce con l'operatività, quindi non viola i regolamenti. Per i software il discorso è diverso: alcune prop firm limitano o vietano gli Expert Advisor, quindi verifica il regolamento della tua prima dell'acquisto.</p></details>
 
         <details><summary>Quali broker e prop firm sono supportati?</summary>
-          <p>Il journal accetta inserimento manuale e import CSV da qualsiasi broker, quindi funziona con tutti i broker e le prop firm. Chi usa RiskGuard o Riskly Pro può collegarli al journal: le operazioni chiuse arrivano da sole, e nel journal scegli cosa importare. I bot funzionano su qualunque installazione MT4 o MT5.</p></details>
+          <p>Il journal accetta inserimento manuale e import CSV da qualsiasi broker, quindi funziona con tutti i broker e le prop firm. Chi usa RiskGuard o Riskly Pro può collegarli al journal: le operazioni chiuse arrivano da sole, e nel journal scegli cosa importare. I software funzionano su qualunque installazione MT4 o MT5.</p></details>
 
         <details><summary>Posso importare le operazioni passate?</summary>
           <p>Sì. Puoi esportare lo storico da MetaTrader in CSV e caricarlo: le metriche vengono ricalcolate su tutto lo storico, così parti già con dati reali invece che da zero.</p></details>
@@ -3578,7 +3684,7 @@ body.fuori-home #vaiHome{display:inline-flex}
             <li class="inc">Screenshot illimitati</li>
             <li class="inc">Conti illimitati</li>
             <li class="inc">Supporto prioritario</li>
-            <li class="inc">Sconto 30% sui bot</li>
+            <li class="inc">Sconto 30% sui software</li>
           </ul>
           <button class="btn pri wide" data-journal="Premium" data-ciclo="a" onclick="azioneJournal(this)">Attiva il piano</button>
         </div>
@@ -3899,7 +4005,7 @@ body.fuori-home #vaiHome{display:inline-flex}
 
       <div class="acc-card">
         <h3>I miei prodotti</h3>
-        <div class="sub">Bot e corsi acquistati. A pagamento confermato si sblocca il gruppo Telegram riservato, dove ricevi i file.</div>
+        <div class="sub">Software e corsi acquistati. A pagamento confermato si sblocca il gruppo Telegram riservato, dove ricevi i file.</div>
         <div id="acc-lista"></div>
 
         <div id="acc-procedura" style="display:none;border-top:1px solid var(--line);margin-top:18px;padding-top:16px">
@@ -3952,7 +4058,7 @@ body.fuori-home #vaiHome{display:inline-flex}
       <p><b>Se usi il journal in versione dimostrativa</b>: le operazioni che inserisci restano nel tuo browser e non vengono trasmesse. Con un account, invece, i dati sono conservati per permetterti di ritrovarli da qualsiasi dispositivo.</p>
 
       <h3>Gli Expert Advisor</h3>
-      <p>I bot funzionano in locale sulla tua installazione di MetaTrader. Se non li colleghi al journal, non trasmettono le tue operazioni, i tuoi saldi o le tue strategie. Se scegli di collegare RiskGuard o Riskly Pro al journal, il bot invia al tuo account le operazioni chiuse e il suo stato (per esempio la perdita del giorno, la pausa o il blocco), solo per mostrarteli nel journal: puoi scollegarlo quando vuoi. Nella versione con licenza verificata online, l'unica informazione inviata è il numero di conto, necessario a controllare che la licenza sia valida, insieme al nome del broker per finalità di sicurezza.</p>
+      <p>I software funzionano in locale sulla tua installazione di MetaTrader. Se non li colleghi al journal, non trasmettono le tue operazioni, i tuoi saldi o le tue strategie. Se scegli di collegare RiskGuard o Riskly Pro al journal, il software invia al tuo account le operazioni chiuse e il suo stato (per esempio la perdita del giorno, la pausa o il blocco), solo per mostrarteli nel journal: puoi scollegarlo quando vuoi. Nella versione con licenza verificata online, l'unica informazione inviata è il numero di conto, necessario a controllare che la licenza sia valida, insieme al nome del broker per finalità di sicurezza.</p>
       <p>Non chiediamo mai le credenziali di accesso al tuo conto di trading e non ne abbiamo bisogno.</p>
 
       <h3>Perché trattiamo i dati</h3>
@@ -3999,7 +4105,7 @@ body.fuori-home #vaiHome{display:inline-flex}
       <p>Gli strumenti Riskly aiutano a gestire il rischio, ma non lo eliminano e non garantiscono alcun risultato economico.</p>
 
       <h3>Gli Expert Advisor</h3>
-      <p>I nostri bot agiscono su posizioni reali: modificano stop loss e take profit, effettuano chiusure parziali e possono chiudere tutte le posizioni aperte e chiudere il terminale MetaTrader fino a mezzanotte al raggiungimento dei limiti che hai impostato.</p>
+      <p>I nostri software agiscono su posizioni reali: modificano stop loss e take profit, effettuano chiusure parziali e possono chiudere tutte le posizioni aperte e chiudere il terminale MetaTrader fino a mezzanotte al raggiungimento dei limiti che hai impostato.</p>
       <p><b>Sei tenuto a testarli su conto demo prima dell'uso su conto reale.</b> Non rispondiamo di perdite derivanti da configurazioni errate, malfunzionamenti della piattaforma, interruzioni di connessione, disservizi del broker, slippage o condizioni di mercato anomale.</p>
       <p>Alcune prop firm limitano o vietano l'uso di Expert Advisor: verificare il regolamento della propria è responsabilità dell'utente.</p>
 
@@ -4029,7 +4135,7 @@ body.fuori-home #vaiHome{display:inline-flex}
 
       <h3>Diritto di recesso e rimborsi</h3>
       <p>Software, videocorso e journal sono contenuti e servizi digitali forniti immediatamente dopo il pagamento. Prima dell'acquisto il cliente chiede espressamente che la fornitura inizi subito e dichiara di sapere che, così facendo, perde il diritto di recesso (art. 59, comma 1, lettera o, del Codice del Consumo). Per questo <b>non sono previsti rimborsi</b> per ripensamento, per risultati di trading o per incompatibilità con regolamenti di terzi (broker, prop firm) non verificata prima dell'acquisto.</p>
-      <p>Per valutare i prodotti prima di comprarli sono disponibili la prova gratuita del journal, le simulazioni dei bot e il programma del corso.</p>
+      <p>Per valutare i prodotti prima di comprarli sono disponibili la prova gratuita del journal, le simulazioni dei software e il programma del corso.</p>
       <p>Restano salvi i diritti di garanzia previsti dalla legge per i contenuti digitali non conformi: se un prodotto non funziona come descritto, scrivi a <a href="mailto:supporto@riskly.trade">supporto@riskly.trade</a> e lo correggiamo. Gli abbonamenti al journal si possono disdire in qualsiasi momento: il servizio resta attivo fino alla fine del periodo già pagato.</p>
 
       <h3>Limitazione di responsabilità</h3>
@@ -4050,7 +4156,7 @@ body.fuori-home #vaiHome{display:inline-flex}
 <div class="cta">
   <div class="wrap">
     <h2>Il rischio si gestisce prima, non dopo</h2>
-    <button class="btn pri lg" onclick="go('bot')">Scegli il bot</button>
+    <button class="btn pri lg" onclick="go('bot')">Scegli il software</button>
     <button class="btn lg" onclick="go('corso')" style="margin-left:9px">Vedi il corso</button>
   </div>
 </div>
@@ -4075,7 +4181,7 @@ body.fuori-home #vaiHome{display:inline-flex}
 
       <div class="f-col">
         <h4>Prodotti</h4>
-        <a onclick="go('bot')">Bot MT4 e MT5</a>
+        <a onclick="go('bot')">Software MT4 e MT5</a>
         <a href="https://app.riskly.trade">Journal ↗</a>
         <a href="https://strumenti.riskly.trade">Calcolatori e calendario ↗</a>
         <a href="https://news.riskly.trade">Riskly News ↗</a>
@@ -4817,7 +4923,7 @@ function apriModulo(tipo, prodotto, prezzo){
     : prodotto + ' — 7 giorni';
 
   document.getElementById('mod-sotto').textContent =
-    (attesa && prezzo === 0) ? 'I bot sono in fase di test finale ed escono il 23 ottobre. Lasciaci il contatto: sarai tra i primi a saperlo e, se sei tra i primi 10, bloccherai il prezzo di lancio a vita.'
+    (attesa && prezzo === 0) ? 'I software sono in fase di test finale ed escono il 23 ottobre. Lasciaci il contatto: sarai tra i primi a saperlo e, se sei tra i primi 10, bloccherai il prezzo di lancio a vita.'
     : (attesa && /Corso|Pacchetto/.test(prodotto)) ? 'Il corso è pronto ed esce a breve. Lasciaci il contatto: ti avvisiamo appena puoi acquistarlo.'
     : attesa ? 'Non è ancora in vendita: stiamo completando i test. Lasciaci il contatto e sarai tra i primi ad averlo, al prezzo di lancio.'
     : acquisto ? 'Ti mandiamo le istruzioni di pagamento. A conferma ricevuta entri nel gruppo Telegram dei clienti e ricevi i file.'
@@ -4871,7 +4977,7 @@ function apriModulo(tipo, prodotto, prezzo){
     : 'Numero di conto demo';
   document.getElementById('m-conto-aiuto').textContent = acquisto
     ? 'Serve a generare la licenza. Puoi cambiarlo in seguito scrivendo a supporto.'
-    : 'Durante la prova il bot funziona solo su conto demo.';
+    : 'Durante la prova il software funziona solo su conto demo.';
 
   document.getElementById('mod-invia').textContent =
     attesa ? 'Avvisami quando esce' : (acquisto ? 'Richiedi ' + prodotto : 'Richiedi la prova');
@@ -5047,7 +5153,7 @@ function aggiornaModoAccesso(){
                    recupero:'Password dimenticata', nuova:'Scegli una nuova password' };
   const sotto  = {
     entra:'Bentornato. Trovi qui i tuoi prodotti e i tuoi acquisti.',
-    registrati:'Un solo account per i bot, il corso e il journal.',
+    registrati:'Un solo account per i software, il corso e il journal.',
     recupero:'Scrivi la tua email: ti mandiamo un link per reimpostarla.',
     nuova:'Scegli una password di almeno 6 caratteri.'
   };
@@ -5239,8 +5345,8 @@ function disegnaAccount(){
     lista.innerHTML =
       `<div class="acc-vuoto">
          <strong>Non hai ancora prodotti</strong>
-         Quando acquisti un bot o il corso lo trovi qui, con il download.
-         <div style="margin-top:16px"><button class="btn pri" onclick="go('bot')">Vedi i bot</button></div>
+         Quando acquisti un software o il corso lo trovi qui, con il download.
+         <div style="margin-top:16px"><button class="btn pri" onclick="go('bot')">Vedi i software</button></div>
        </div>`;
   } else {
     lista.innerHTML = acquisti.map(a => {
@@ -5464,14 +5570,14 @@ function etichettaProdotto(nome){
 function testiLancio(){
   if(!VENDITA_ATTIVA) return;
   const testo = (sel, t) => document.querySelectorAll(sel).forEach(e => { e.innerHTML = t; });
-  testo('.lancio-bar .wrap > span:first-child', '<b>I bot per MT4 e MT5 sono disponibili</b>');
+  testo('.lancio-bar .wrap > span:first-child', '<b>I software per MT4 e MT5 sono disponibili</b>');
   document.querySelectorAll('.of-prezzo').forEach(e => { e.textContent = e.textContent.replace('dal 23 ottobre', 'disponibili ora'); });
   testo('.lancio .data', 'Disponibili');
   document.querySelectorAll('.tile-badge').forEach(e => { if(/dal 23 ottobre/.test(e.textContent)) e.textContent = 'disponibili'; });
-  document.querySelectorAll('.lancio p').forEach(e => { if(/Escono i bot/.test(e.textContent)) e.innerHTML = 'I bot per <b>MetaTrader 4 e 5</b> sono in vendita. Ai primi 10 acquisti il prezzo di lancio resta bloccato a vita. Si paga una volta sola.'; });
+  document.querySelectorAll('.lancio p').forEach(e => { if(/Escono i (bot|software)/.test(e.textContent)) e.innerHTML = 'I bot per <b>MetaTrader 4 e 5</b> sono in vendita. Ai primi 10 acquisti il prezzo di lancio resta bloccato a vita. Si paga una volta sola.'; });
   document.querySelectorAll('h3').forEach(h => { if(h.textContent.trim() === 'Non sono ancora in vendita'){ h.textContent = 'Disponibili ora';
     const p = h.parentElement.querySelector('p'); if(p) p.textContent = 'I primi 10 acquisti hanno il prezzo di lancio, bloccato per sempre. Paghi una volta sola, ricevi file, licenza e guida.'; } });
-  document.querySelectorAll('.faq summary').forEach(sm => { if(/Quando saranno disponibili i bot/.test(sm.textContent)){ sm.textContent = 'Quando sono disponibili i bot?';
+  document.querySelectorAll('.faq summary').forEach(sm => { if(/Quando saranno disponibili i (bot|software)/.test(sm.textContent)){ sm.textContent = 'Quando sono disponibili i bot?';
     const p = sm.parentElement.querySelector('p'); if(p) p.textContent = 'Sono in vendita dal 23 ottobre 2026. Dopo il pagamento ricevi file, licenza e guida all\'installazione per MetaTrader 4 o 5.'; } });
 }
 
@@ -6010,7 +6116,7 @@ function aggiornaLancio(){
 
 /* ---------- Navigazione ---------- */
 /* quale scheda evidenziare per ogni pagina */
-const SCHEDA = {home:0, bot:1, corso:2, journal:3, metodo:4, faq:5,
+const SCHEDA = {home:0, ecosistema:1, bot:2, corso:3, journal:4, metodo:-1, faq:5,
                 privacy:-1, termini:-1, account:-1, gestione:-1};
 
 /* toglie la sfumatura delle schede quando sei arrivato in fondo */
@@ -6077,7 +6183,7 @@ addEventListener('popstate', function(e){
 try{ if(!history.state) history.replaceState({ pagina: 'home' }, '', location.pathname + location.search + location.hash); }catch(e){}
 /* link diretti da fuori, es. riskly.trade/#prezzi (dal journal), #bot, #corso */
 (function(){ const h = location.hash.slice(1); if(!h || h.includes('=')) return;
-  const alias = { prezzi:['journal','pz-journal'], piani:['journal','pz-journal'], corsi:['corso'], journal:['journal'], bot:['bot'], corso:['corso'], metodo:['metodo'], faq:['faq'] };
+  const alias = { ecosistema:['ecosistema'], software:['bot'], prezzi:['journal','pz-journal'], piani:['journal','pz-journal'], corsi:['corso'], journal:['journal'], bot:['bot'], corso:['corso'], metodo:['metodo'], faq:['faq'] };
   const d = alias[h]; if(!d) return;
   setTimeout(() => d[1] ? vaiA(d[0], d[1]) : go(d[0]), 0); })();
 
@@ -6502,7 +6608,7 @@ function calDisegna(){
     <button class="acc-x" onclick="chiudiAccesso()" aria-label="Chiudi">✕</button>
 
     <h3 id="acc-titolo">Accedi</h3>
-    <p id="acc-sotto">Un solo account per i bot, il corso e il journal.</p>
+    <p id="acc-sotto">Un solo account per i software, il corso e il journal.</p>
 
     <form onsubmit="inviaAccesso(event)">
       <div class="acc-campo" id="acc-campo-nome" style="display:none">
@@ -6634,7 +6740,7 @@ function calDisegna(){
 <!-- barra in basso (computer) -->
 <div class="dbarra" id="dbarra" aria-label="Navigazione">
   <button data-p="home" class="on" onclick="go('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20h14V9.5"/><path d="M10 20v-5h4v5"/></svg><span>Home</span></button>
-  <button data-p="bot" onclick="go('bot')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="7" width="14" height="12" rx="3"/><path d="M12 7V4"/><circle cx="12" cy="3.5" r=".8"/><path d="M9.5 12v1.5M14.5 12v1.5"/><path d="M2.5 12v3M21.5 12v3"/></svg><span>Bot</span></button>
+  <button data-p="bot" onclick="go('bot')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="7" width="14" height="12" rx="3"/><path d="M12 7V4"/><circle cx="12" cy="3.5" r=".8"/><path d="M9.5 12v1.5M14.5 12v1.5"/><path d="M2.5 12v3M21.5 12v3"/></svg><span>Software</span></button>
   <button data-p="calc" onclick="go('calc')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8.5 7h7"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01M8.5 15h.01M12 15h.01M15.5 15h.01M8.5 18h.01M12 18h.01M15.5 18h.01"/></svg><span>Strumenti</span></button>
   <button data-p="corso" onclick="go('corso')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="13" rx="2.5"/><path d="m10 9 5 2.5-5 2.5Z"/></svg><span>Corso</span></button>
   <button data-p="app" class="db-piu" aria-label="Journal" onclick="go('app')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5"/><path d="M4 19h16"/><path d="m7 15 4-4 3 3 5-6"/></svg></button>
@@ -6645,7 +6751,7 @@ function calDisegna(){
 <!-- barra in basso (solo telefono) -->
 <div class="sbarra" id="sbarra" aria-label="Navigazione">
   <button data-p="home" class="on" onclick="go('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20h14V9.5"/><path d="M10 20v-5h4v5"/></svg>Home</button>
-  <button data-p="bot" onclick="go('bot')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="7" width="14" height="12" rx="3"/><path d="M12 7V4"/><circle cx="12" cy="3.5" r=".8"/><path d="M9.5 12v1.5M14.5 12v1.5"/><path d="M2.5 12v3M21.5 12v3"/></svg>Bot</button>
+  <button data-p="bot" onclick="go('bot')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="7" width="14" height="12" rx="3"/><path d="M12 7V4"/><circle cx="12" cy="3.5" r=".8"/><path d="M9.5 12v1.5M14.5 12v1.5"/><path d="M2.5 12v3M21.5 12v3"/></svg>Software</button>
   <button data-p="corso" onclick="go('corso')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="13" rx="2.5"/><path d="m10 9 5 2.5-5 2.5Z"/></svg>Corso</button>
   <button data-p="app" class="sb-piu" onclick="go('app')" aria-label="Journal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5"/><path d="M4 19h16"/><path d="m7 15 4-4 3 3 5-6"/></svg></button>
   <button data-p="calc" onclick="go('calc')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8.5 7h7"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01M8.5 15h.01M12 15h.01M15.5 15h.01M8.5 18h.01M12 18h.01M15.5 18h.01"/></svg>Strumenti</button>
@@ -6687,7 +6793,7 @@ document.addEventListener('keydown', e=>{ if(e.key === 'Escape') chiudiAltro(); 
 <div id="chatBox" role="dialog" aria-label="Assistente Riskly">
   <div class="ch-top">
     <svg width="28" height="28" viewBox="0 0 44 44" fill="none"><rect width="44" height="44" rx="10" fill="#FBFBF9"/><path d="M9 31 L17 19.5 L23.5 25 L35 11" stroke="#B97C00" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 36 H35" stroke="#5E656D" stroke-width="3" stroke-linecap="round"/></svg>
-    <div><b>Assistente Riskly</b><small>Risposte immediate su bot, journal e prezzi</small></div>
+    <div><b>Assistente Riskly</b><small>Risposte immediate su software, journal e prezzi</small></div>
     <button type="button" onclick="chatChiudi()" aria-label="Chiudi">×</button>
   </div>
   <div class="ch-msgs" id="chatMsgs"></div>
@@ -6700,19 +6806,19 @@ document.addEventListener('keydown', e=>{ if(e.key === 'Escape') chiudiAltro(); 
 /* ---------- Assistente: cerca la risposta tra FAQ e schede del sito ---------- */
 const CHAT_EXTRA = [
   { q: 'Quanto costa il corso? Videocorso', k: 'corso corsi videocorso videocorsi prezzo costano costa rischio lezioni telegram attestato',
-    a: '<p>Il corso si paga <b>una volta sola</b>, con accesso a vita:</p><p><b>Gestione del rischio</b> 199 € al lancio (poi 249 €) · 50 lezioni</p><p>Le lezioni sono in un gruppo Telegram privato, con dispense, quiz e attestato. Chi ha un bot ha il 50% di sconto sul corso di gestione del rischio.</p>',
+    a: '<p>Il corso si paga <b>una volta sola</b>, con accesso a vita:</p><p><b>Gestione del rischio</b> 199 € al lancio (poi 249 €) · 50 lezioni</p><p>Le lezioni sono in un gruppo Telegram privato, con dispense, quiz e attestato. Chi ha un software ha il 50% di sconto sul corso di gestione del rischio.</p>',
     azioni: [['Vedi il corso', "chatChiudi();go('corso')"]] },
-  { q: 'Quanto costano i bot?', k: 'prezzo prezzi bot riskguard trademanager scalein riskly pro costano listino sconto lancio',
-    a: '<p>Si pagano <b>una volta sola</b>, niente abbonamento, aggiornamenti inclusi:</p><p><b>RiskGuard</b> 99 € · <b>TradeManager</b> 49 € · <b>ScaleIn</b> 79 € · <b>Riskly Pro</b> 199 € · <b>RisklyCopy</b> 69 €</p><p>Sono prezzi di lancio: dopo diventano 149 €, 79 €, 129 €, 299 € e 129 €. Per i primi 10 restano bloccati a vita. Chi compra un bot ha il 50% di sconto sul videocorso.</p>',
-    azioni: [['Vedi i bot', "chatChiudi();go('bot')"]] },
-  { q: 'Quando escono i bot? Data di lancio', k: 'quando lancio data uscita escono esce esci disponibili 23 ottobre acquistare comprare',
-    a: '<p>I bot escono <b>giovedì 23 ottobre</b>. I primi 10 che acquistano tengono il prezzo di lancio per sempre, aggiornamenti compresi.</p><p>Iscriviti alla lista d\'attesa per essere avvisato per primo: nessun pagamento fino al lancio.</p>',
+  { q: 'Quanto costano i software?', k: 'prezzo prezzi bot software riskguard trademanager scalein riskly pro costano listino sconto lancio',
+    a: '<p>Si pagano <b>una volta sola</b>, niente abbonamento, aggiornamenti inclusi:</p><p><b>RiskGuard</b> 99 € · <b>TradeManager</b> 49 € · <b>ScaleIn</b> 79 € · <b>Riskly Pro</b> 199 € · <b>RisklyCopy</b> 69 €</p><p>Sono prezzi di lancio: dopo diventano 149 €, 79 €, 129 €, 299 € e 129 €. Per i primi 10 restano bloccati a vita. Chi compra un software ha il 50% di sconto sul videocorso.</p>',
+    azioni: [['Vedi i software', "chatChiudi();go('software')"]] },
+  { q: 'Quando escono i software? Data di lancio', k: 'quando lancio data uscita escono esce esci disponibili 23 ottobre acquistare comprare',
+    a: '<p>I software escono <b>giovedì 23 ottobre</b>. I primi 10 che acquistano tengono il prezzo di lancio per sempre, aggiornamenti compresi.</p><p>Iscriviti alla lista d\'attesa per essere avvisato per primo: nessun pagamento fino al lancio.</p>',
     azioni: [['Iscriviti alla lista d\'attesa', "chatChiudi();apriModulo('attesa','tutti i prodotti',0)"]] },
-  { q: 'Che differenza c\'è tra i bot? Quale scegliere', k: 'differenza quale scegliere bot riskguard trademanager scalein riskly pro confronto consigli',
+  { q: 'Che differenza c\'è tra i software? Quale scegliere', k: 'differenza quale scegliere bot riskguard trademanager scalein riskly pro confronto consigli software',
     a: '<p><b>RiskGuard</b> (99 €): ti ferma. Pausa dopo una perdita, stop dopo N perdite di fila, limite di perdita giornaliero, stop loss obbligatorio.</p><p><b>TradeManager</b> (49 €): gestisce la posizione aperta. Stop loss e take profit automatici, break-even, trailing stop, tutto in pip.</p><p><b>ScaleIn</b> (79 €): replica la tua posizione in più scaglioni con take profit diversi.</p><p><b>Riskly Pro</b> (199 €): tutti e tre insieme, con il rischio calcolato sull\'insieme delle posizioni, pulsanti BUY/SELL con lotto già calcolato e filtro su spread e notizie.</p><p><b>RisklyCopy</b> (69 €): copia le operazioni dal conto principale agli altri, con il lotto ricalcolato sul saldo di ogni conto.</p><p>Se il problema è fermarti: RiskGuard. Se è gestire le posizioni: TradeManager. Se vuoi tutto: Riskly Pro.</p>',
-    azioni: [['Vedi i bot', "chatChiudi();go('bot')"]] },
+    azioni: [['Vedi i software', "chatChiudi();go('software')"]] },
   { q: 'Quanto costa il journal? Piani', k: 'journal diario prezzo costo piani base pro premium abbonamento mensile annuale vita',
-    a: '<p>Il journal ha 3 piani, con <b>7 giorni di prova gratis</b> senza carta:</p><p><b>Base</b>: 29 €/anno (2,99 €/mese, 89 € a vita)<br><b>Pro</b>: 64 €/anno (6,49 €/mese, 174 € a vita)<br><b>Premium</b>: 114 €/anno (11,49 €/mese, 274 € a vita)</p><p>Sono prezzi di lancio, validi fino al 31 dicembre: chi si abbona entro quella data mantiene lo stesso prezzo ai rinnovi. Premium ha anche il 30% di sconto sui bot.</p>',
+    a: '<p>Il journal ha 3 piani, con <b>7 giorni di prova gratis</b> senza carta:</p><p><b>Base</b>: 29 €/anno (2,99 €/mese, 89 € a vita)<br><b>Pro</b>: 64 €/anno (6,49 €/mese, 174 € a vita)<br><b>Premium</b>: 114 €/anno (11,49 €/mese, 274 € a vita)</p><p>Sono prezzi di lancio, validi fino al 31 dicembre: chi si abbona entro quella data mantiene lo stesso prezzo ai rinnovi. Premium ha anche il 30% di sconto sui software.</p>',
     azioni: [['Vedi i piani', "chatChiudi();go('journal')"], ['Apri il journal', "location.href='https://app.riskly.trade'"]] },
   { q: 'Quali calcolatori ci sono? Sono gratis?', k: 'calcolatori calcolatore gratis lotti lotto position size rovina tracker recupero composta',
     a: '<p>Cinque calcolatori gratuiti, senza registrazione: <b>dimensione della posizione</b> (quanti lotti aprire), <b>rischio di rovina</b>, <b>tracker challenge prop firm</b>, <b>recupero dopo una perdita</b> e <b>crescita composta</b>.</p>',
@@ -6724,7 +6830,7 @@ const CHAT_EXTRA = [
     azioni: [['Apri il journal', "location.href='https://app.riskly.trade'"]] },
   { q: 'Come contattarvi? Assistenza', k: 'contatti contattare assistenza supporto email telegram parlare persona aiuto',
     a: '<p>Scrivi a <a href="mailto:supporto@riskly.trade">supporto@riskly.trade</a> o sul <a href="https://t.me/+mlCyBs21_7A3ZDg0" target="_blank" rel="noopener">canale Telegram</a>. Rispondiamo di solito entro un giorno lavorativo.</p>' },
-  { q: 'Come si installa il bot?', k: 'installare installazione installo guida file ex4 ex5 metatrader cartella experts',
+  { q: 'Come si installa il software?', k: 'installare installazione installo guida file ex4 ex5 metatrader cartella experts',
     a: '<p>Dopo l\'acquisto entri nel gruppo Telegram dei clienti: lì trovi la guida passo passo e ricevi i file abilitati per il tuo conto. Ti aiutiamo noi se qualcosa non va. Prova sempre prima su conto demo.</p>' },
   { q: 'Chi c\'è dietro Riskly?', k: 'chi siete chi è gabriele azienda società partita iva affidabile truffa',
     a: '<p>Riskly è di <b>Gabriele</b>, trader e sviluppatore (P. IVA 04948840162). Non vendiamo segnali né promettiamo guadagni: solo strumenti per gestire il rischio.</p>',
@@ -6748,7 +6854,7 @@ function chatPrepara(){
   CHAT_KB = CHAT_EXTRA.map(e => ({ q: e.q, a: e.a, azioni: e.azioni || [], k: chatToken(e.k), t: chatToken(e.q), b: [] }));
   /* parole chiave in più per alcune FAQ */
   const EXTRA_K = {
-    'bot Riskly sulle prop firm': 'propfirm ftmo fundednext the5ers funding pips consentiti regolamento vietati ammessi',
+    'software Riskly sulle prop firm': 'propfirm ftmo fundednext the5ers funding pips consentiti regolamento vietati ammessi',
     'MT4 o su MT5': 'metatrader mt4 mt5 versione piattaforma usarlo',
     'quanti conti': 'conti licenza account numero conto cambiare broker',
     'rimborsate': 'rimborsate soldi indietro garanzia',
@@ -6780,7 +6886,7 @@ function chatCerca(domanda){
   }).filter(x => x.s > 0).sort((a, b) => b.s - a.s);
 }
 
-const CHAT_INIZIO = ['Quando escono i bot?', 'Che differenza c\'è tra i bot?', 'Funzionano sulle prop firm?', 'Come ricevo i bot dopo l\'acquisto?', 'Quanto costa il journal?', 'Quanto costano i corsi?'];
+const CHAT_INIZIO = ['Quando escono i software?', 'Che differenza c\'è tra i software?', 'Funzionano sulle prop firm?', 'Come ricevo i software dopo l\'acquisto?', 'Quanto costa il journal?', 'Quanto costano i corsi?'];
 function chatMsg(html, chi){
   const box = document.getElementById('chatMsgs');
   const m = document.createElement('div');
@@ -6807,7 +6913,7 @@ function chatApri(){
   const box = document.getElementById('chatBox');
   box.classList.add('on');
   if(!document.getElementById('chatMsgs').children.length){
-    chatMsg('<p>Ciao! Sono l\'assistente di Riskly. Chiedimi quello che vuoi su bot, journal, prezzi, prop firm o pagamenti.</p>', 'bot');
+    chatMsg('<p>Ciao! Sono l\'assistente di Riskly. Chiedimi quello che vuoi su software, journal, prezzi, prop firm o pagamenti.</p>', 'software');
     chatChips(CHAT_INIZIO.map(t => [t]));
   }
   setTimeout(() => document.getElementById('chatIn').focus(), 50);
@@ -6825,7 +6931,7 @@ function chatDomanda(t){
   const r = chatCerca(t);
   setTimeout(() => {
     if(/^\s*(ciao|salve|buongiorno|buonasera|hey|ehi)\b/i.test(t) && (!r.length || r[0].s < 3.5)){
-      chatMsg('<p>Ciao! Dimmi pure: bot, journal, prezzi, prop firm, pagamenti…</p>', 'bot');
+      chatMsg('<p>Ciao! Dimmi pure: software, journal, prezzi, prop firm, pagamenti…</p>', 'software');
       chatChips(CHAT_INIZIO.map(x => [x]));
       return;
     }
@@ -6936,10 +7042,10 @@ document.addEventListener('play', e => { if(e.target.tagName !== 'VIDEO') return
   const PRZ = { 'RiskGuard': '99 €', 'TradeManager': '49 €', 'ScaleIn': '79 €', 'Riskly Pro': '199 €', 'RisklyCopy': '69 €' };
   function consiglia(){
     const out = [], b = [...scelti].filter(x => x !== 'copia');
-    if(b.length >= 2) out.push(['Riskly Pro', 'Fa tutte e tre le cose in un solo bot e calcola il rischio sull\'insieme delle posizioni.']);
+    if(b.length >= 2) out.push(['Riskly Pro', 'Fa tutte e tre le cose in un solo software e calcola il rischio sull\'insieme delle posizioni.']);
     else if(b[0] === 'stop') out.push(['RiskGuard', 'Ti ferma dopo le perdite che decidi tu e blocca MetaTrader fino a mezzanotte.']);
     else if(b[0] === 'gestione') out.push(['TradeManager', 'Mette stop, break-even e trailing in pip sulle posizioni che apri tu.']);
-    else if(b[0] === 'scaglioni') out.push(['ScaleIn', 'Apri una posizione e il bot apre le altre con take profit scaglionati.']);
+    else if(b[0] === 'scaglioni') out.push(['ScaleIn', 'Apri una posizione e il software apre le altre con take profit scaglionati.']);
     if(scelti.has('copia')) out.push(['RisklyCopy', 'Copia le operazioni sugli altri conti con lo stesso rischio, non lo stesso lotto.']);
     if(b.length === 1) out.push(['Riskly Pro', 'Se in futuro ti servono anche le altre funzioni: le ha tutte insieme.']);
     return out.slice(0, 3);
@@ -6976,7 +7082,7 @@ document.addEventListener('play', e => { if(e.target.tagName !== 'VIDEO') return
     const card = b.closest('.bot'); if(!card || card.querySelector('.scheda-extra')) return;
     const d = document.createElement('div'); d.className = 'scheda-extra';
     d.innerHTML = `<details class="programma"><summary>Cosa non fa</summary><ul class="no">${NONFA[n].concat(COMUNE).map(x => '<li>' + x + '</li>').join('')}</ul></details>
-      <details class="programma"><summary>Requisiti e licenza</summary><ul><li>La licenza vale sia per MetaTrader 4 sia per MetaTrader 5.</li><li>Licenza per ${CONTI[n]}, demo o reale. Se cambi conto la aggiorniamo gratis.</li><li>Alcune prop firm vietano i bot: controlla il regolamento della tua prima di comprare.</li></ul></details>
+      <details class="programma"><summary>Requisiti e licenza</summary><ul><li>La licenza vale sia per MetaTrader 4 sia per MetaTrader 5.</li><li>Licenza per ${CONTI[n]}, demo o reale. Se cambi conto la aggiorniamo gratis.</li><li>Alcune prop firm vietano i software automatici: controlla il regolamento della tua prima di comprare.</li></ul></details>
       <details class="programma"><summary>Cosa succede dopo il pagamento</summary><ol><li>Paghi su Stripe e il tuo account Riskly sblocca il gruppo Telegram dei clienti.</li><li>Ci scrivi in privato l'email dell'acquisto e il numero del tuo conto MetaTrader.</li><li>Entro 24 ore lavorative ricevi i file abilitati per quel conto. Poi segui i <a href="/primi-passi.html">primi passi</a> (10 minuti) e provalo prima su conto demo.</li></ol></details>`;
     const prog = card.querySelector('details.programma');
     (prog || b).insertAdjacentElement('afterend', d);
