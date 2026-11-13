@@ -62,7 +62,7 @@ P = [
        video='risklypro', didascalia='Lotto calcolato sul rischio, niente aperture vicino alle notizie, entrata in 3 parti con pareggio e trailing stop.',
        funzioni=['Tutto di RiskGuard', 'Tutto di TradeManager', 'Tutto di ScaleIn', "Rischio calcolato sull'insieme delle posizioni",
                  'Pulsanti BUY e SELL con il lotto già calcolato (l\'ordine parte solo al tuo clic)', 'Niente aperture con spread largo o vicino alle notizie',
-                 'Pannello unico con barre di avanzamento', 'Operazioni nel journal e stato visibile dal telefono', '50% di sconto sul videocorso'],
+                 'Pannello unico con barre di avanzamento', 'Operazioni nel journal e stato visibile dal telefono', '50% di sconto sul videocorso: mandaci la ricevuta MQL5 e ti diamo il codice'],
        per='Chi vuole un solo software per rischio, gestione e uscite, invece di tre separati.',
        nonfa='Non copia le operazioni su altri conti: per quello serve RisklyCopy, che funziona insieme a Riskly Pro.',
        simili=['riskguard', 'trademanager', 'scalein']),
