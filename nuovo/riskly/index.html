@@ -2367,6 +2367,15 @@ html body #home .h2-vet h2{font-size:.9375rem!important;font-family:'Instrument 
 .eco-voce.futura .eco-n{background:#7C8AA0}
 /* il menu resta in alto scorrendo (la classe .z lo rendeva relative), con la striscia dei mercati dentro */
 nav.z{position:sticky;top:0;z-index:60}
+/* telefono e tablet: le voci del menu sempre in vista, in una riga che scorre di lato (14 novembre, Gabriele: "nel telefono non c'è il menu in vista sopra ma è a tendina") */
+@media (max-width:960px){
+  html body nav.z .wrap{flex-wrap:wrap;height:auto!important;row-gap:0;padding-top:6px}
+  html body nav.z .tabs{display:flex!important;order:3;flex:1 1 100%;gap:20px!important;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:2px 2px 0!important;margin:0 -2px;scroll-snap-type:x proximity}
+  html body nav.z .tabs::-webkit-scrollbar{display:none}
+  html body nav.z .tabs button,html body nav.z .tabs a{flex:0 0 auto;white-space:nowrap;padding:10px 0 9px!important;font-size:15px!important;scroll-snap-align:start}
+  html body nav.z .apri-menu{display:none!important}
+  html body nav.z #menu-mobile{display:none!important}
+}
 /* striscia dei mercati, sotto il menu, su tutte le pagine */
 #striscia{background:var(--navy,#12263F);color:#fff;overflow:hidden;font:400 .8125rem/1 'JetBrains Mono','Martian Mono',ui-monospace,monospace;border-top:1px solid rgba(255,255,255,.08)}
 #striscia .rotola{display:flex;width:max-content;animation:rotola 55s linear infinite}
