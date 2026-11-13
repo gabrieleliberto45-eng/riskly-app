@@ -2013,7 +2013,7 @@ nav .brand{text-decoration:none}
 .btn:active{transform:scale(.97)!important}
 #chatBtn{border-radius:999px!important}
 nav .btn.pri{border-radius:999px!important}
-.lancio-bar{border-radius:0!important}
+.lancio-bar,.siti-barra{display:none!important}
 /* simulazione in apertura */
 .nh .scheda{border-radius:var(--r-l);overflow:hidden;box-shadow:var(--ombra-su);border:1px solid var(--rule)}
 .nh .voce input{border-radius:8px}
@@ -2361,12 +2361,7 @@ body.fuori-home #vaiHome{display:inline-flex}
 </head>
 <body>
 
-<div class="lancio-bar z">
-  <div class="wrap">
-    <span><b>Bot per MT4 e MT5 dal 23 ottobre</b></span>
-    <span class="rest">Prezzo di lancio bloccato a vita per i primi 10</span>
-  </div>
-</div>
+
 
 <div id="progressoLettura"></div>
 
@@ -2382,7 +2377,8 @@ body.fuori-home #vaiHome{display:inline-flex}
       <button onclick="go('bot',this)">Bot</button>
       <button onclick="go('corso',this)">Corsi</button>
       <button onclick="go('journal',this)">Journal</button>
-      <button onclick="go('metodo',this)">Metodo</button>
+      <a href="https://strumenti.riskly.trade">Strumenti</a>
+      <a href="https://news.riskly.trade">News</a>
       <button onclick="go('faq',this)">FAQ</button>
     </div>
     <div class="nav-azioni">
@@ -2392,15 +2388,9 @@ body.fuori-home #vaiHome{display:inline-flex}
     </div>
   </div>
   <div id="menu-mobile" hidden>
-    <button onclick="go('home');chiudiMenu()">Home</button><button onclick="go('bot');chiudiMenu()">Bot</button><button onclick="go('corso');chiudiMenu()">Corsi</button><button onclick="go('journal');chiudiMenu()">Piani del journal</button><button onclick="go('metodo');chiudiMenu()">Metodo</button><button onclick="go('faq');chiudiMenu()">FAQ</button><a href="https://app.riskly.trade">Journal</a><a href="https://strumenti.riskly.trade">Strumenti gratuiti</a><a href="https://news.riskly.trade">Riskly News</a><a href="/download.html" style="font-weight:800">Area clienti</a><button id="menu-accedi" onclick="if(utente){go('account')}else{apriAccesso('entra')};chiudiMenu()">Accedi</button>
+    <button onclick="go('home');chiudiMenu()">Home</button><button onclick="go('bot');chiudiMenu()">Bot</button><button onclick="go('corso');chiudiMenu()">Corsi</button><button onclick="go('journal');chiudiMenu()">Journal</button><a href="https://strumenti.riskly.trade">Strumenti gratuiti</a><a href="https://news.riskly.trade">Riskly News</a><button onclick="go('metodo');chiudiMenu()">Metodo</button><button onclick="go('faq');chiudiMenu()">FAQ</button><a href="/download.html" style="font-weight:800">Area clienti</a><button id="menu-accedi" onclick="if(utente){go('account')}else{apriAccesso('entra')};chiudiMenu()">Accedi</button>
   </div>
-  <div class="siti-barra"><div class="wrap">
-    <span class="sb-testo">Riskly ha anche</span>
-    <a href="https://app.riskly.trade"><b>Journal</b><span>app.riskly.trade</span><i aria-hidden="true">↗</i></a>
-    <a href="https://strumenti.riskly.trade"><b><span class="sb-lungo">Calcolatori e calendario</span><span class="sb-corto">Strumenti</span></b><span>strumenti.riskly.trade</span><i aria-hidden="true">↗</i></a>
-    <a href="https://news.riskly.trade"><b>Riskly News</b><span>news.riskly.trade</span><i aria-hidden="true">↗</i></a>
-    <a href="/download.html" class="sb-clienti"><b>Area clienti</b><span>i tuoi acquisti</span><i aria-hidden="true">→</i></a>
-  </div></div>
+
 </nav>
 <div id="striscia" aria-label="Mercati e prossimo dato USA"><div class="rotola" id="rotola"></div></div>
 <script>function chiudiMenu(){const m=document.getElementById('menu-mobile');if(m)m.hidden=true;const b=document.querySelector('.apri-menu');if(b)b.setAttribute('aria-expanded','false');}</script>

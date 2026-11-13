@@ -26,6 +26,7 @@ a{color:inherit}
 /* testata */
 .testa{position:sticky;top:0;z-index:30;background:var(--panel);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
 .testa-in{height:62px;display:flex;align-items:center;justify-content:center;position:relative}
+.siti{position:absolute;left:16px;display:flex;gap:4px}.siti a{font-size:14px;color:var(--ink2,#555);text-decoration:none;padding:8px 10px;border-radius:6px}.siti a:hover{color:var(--ink);background:rgba(0,0,0,.05)}@media(max-width:760px){.siti{display:none}}body.in-articolo .siti{display:none}
 .testata{font-family:var(--serif);font-size:30px;font-variant:small-caps;letter-spacing:.04em;text-decoration:none;color:var(--ink);font-weight:500}
 .testata b{color:var(--oro);font-weight:500}
 .testa .acc{position:absolute;right:14px;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:none;color:var(--ink);display:grid;place-items:center;cursor:pointer}
@@ -204,6 +205,7 @@ body.in-ai .invito{display:none}
 <header class="testa"><div class="testa-in">
   <button type="button" class="indietro2" onclick="location.hash=''" aria-label="Indietro">‹</button>
   <a class="testata" href="#" onclick="vaiSezione('home');return false">Riskly <b>News</b></a>
+  <nav class="siti" aria-label="Siti Riskly"><a href="https://riskly.trade/?da=news#bot">Bot</a><a href="https://strumenti.riskly.trade">Strumenti</a><a href="https://app.riskly.trade">Journal</a></nav>
   <button type="button" class="acc" id="accBtn" onclick="accPulsante()" aria-label="Account"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></button>
 </div></header>
 <div class="nastro" id="nastro" aria-label="Quotazioni"></div>
@@ -592,6 +594,7 @@ function apriAltro(){
     ${l('<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 14h.01M12 14h.01M16 14h.01"/>', 'Calendario economico', 'https://strumenti.riskly.trade/#calendario')}
     ${l('<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 12h.01M12 12h.01M16 12h.01M8 16h.01M12 16h.01M16 16h.01"/>', 'Calcolatori di rischio', 'https://strumenti.riskly.trade/')}
     ${l('<path d="M4 19V5M4 19h16M7 15l4-5 3 3 5-6"/>', 'Journal di trading', 'https://app.riskly.trade/')}
+    ${l('<path d="M12 3v18M3 12h18"/>', 'Bot e corsi Riskly', 'https://riskly.trade/?da=news#bot')}
     ${st === 'on' ? v('<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10 21h4"/><path d="M3 3l18 18"/>', 'Disattiva le notifiche', 'avvisiSpegni();chiudiAltro()') : st === 'off' ? v('<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10 21h4"/>', 'Attiva le notifiche', 'chiudiAltro();avvisiAccendi()') : ''}
     ${GUIDA.app ? '' : v('<rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/>', 'Aggiungi alla schermata Home', 'chiudiAltro();guidaApri()')}
     ${ACC.accesso ? '' : v('<path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/>', 'Abbonati a Riskly News', "chiudiAltro();abbonati()", PREZZO.mensile ? `<small>${esc(PREZZO.mensile)}</small>` : '')}
