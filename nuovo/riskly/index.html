@@ -2376,7 +2376,8 @@ html body #home .h2-vet h2{font-size:.9375rem!important;font-family:'Instrument 
 #striscia .sp{width:.45rem;height:.45rem;border-radius:50%;background:#6FD3A4}
 #striscia .sp.off{background:#7C8AA0}
 @keyframes rotola{to{transform:translateX(-50%)}}
-@media(prefers-reduced-motion:reduce){#striscia{overflow-x:auto}#striscia .rotola{animation:none}#striscia .gr+.gr{display:none}}
+@media(prefers-reduced-motion:reduce){#striscia .rotola{animation-duration:110s}}
+@media(max-width:760px){#striscia{font-size:.75rem}#striscia .v{padding:.6rem 1rem}#striscia .rotola{animation-duration:40s}}
 </style>
 <link rel="stylesheet" href="/serio.css?v=5">
 <script>
@@ -2428,8 +2429,9 @@ html body #home .h2-vet h2{font-size:.9375rem!important;font-family:'Instrument 
     <button onclick="go('home');chiudiMenu()">Home</button><button onclick="go('ecosistema');chiudiMenu()">Ecosistema</button><button onclick="go('bot');chiudiMenu()">Software</button><button onclick="go('corso');chiudiMenu()">Corsi</button><button onclick="go('journal');chiudiMenu()">Journal</button><a href="https://strumenti.riskly.trade">Strumenti gratuiti</a><a href="https://news.riskly.trade">Riskly News</a><button onclick="go('metodo');chiudiMenu()">Metodo</button><button onclick="go('faq');chiudiMenu()">FAQ</button><a href="/download.html" style="font-weight:800">Area clienti</a><button id="menu-accedi" onclick="if(utente){go('account')}else{apriAccesso('entra')};chiudiMenu()">Accedi</button>
   </div>
 
-</nav>
+<!-- striscia dei mercati dentro il menu: resta in vista anche scorrendo, sul telefono e sul computer (13 novembre) -->
 <div id="striscia" aria-label="Mercati e prossimo dato USA"><div class="rotola" id="rotola"></div></div>
+</nav>
 <script>function chiudiMenu(){const m=document.getElementById('menu-mobile');if(m)m.hidden=true;const b=document.querySelector('.apri-menu');if(b)b.setAttribute('aria-expanded','false');}</script>
 
 <div class="z">
@@ -4122,7 +4124,7 @@ html body #home .h2-vet h2{font-size:.9375rem!important;font-family:'Instrument 
       <p>Riskly News costa <b>6,99 € al mese</b> (IVA inclusa dove dovuta) e si <b>rinnova automaticamente ogni mese</b> sulla carta usata al primo pagamento, finché non lo disdici. Puoi <b>disdire in qualsiasi momento</b> scrivendo a <a href="mailto:info@riskly.trade">info@riskly.trade</a> dall'indirizzo del tuo account: la disdetta ferma i rinnovi successivi e l'accesso resta attivo fino alla fine del mese già pagato. Prima di pagare ti viene chiesto di accettare questi Termini.</p>
 
       <h3>Età minima</h3>
-      <p>Per creare un account serve avere almeno 14 anni. Chiediamo la data di nascita solo per verificarlo e non la conserviamo. Se scopriamo che un account è di una persona sotto i 14 anni lo chiudiamo e cancelliamo i dati collegati. Un genitore o tutore può scrivere a <a href="mailto:info@riskly.trade">info@riskly.trade</a> per chiedere la cancellazione.</p>
+      <p>Per creare un account serve avere almeno 18 anni, perché Riskly parla di trading e vende prodotti per il trading. Chiediamo la data di nascita solo per verificarlo e non la conserviamo. Se scopriamo che un account è di una persona sotto i 18 anni lo chiudiamo e cancelliamo i dati collegati. Un genitore o tutore può scrivere a <a href="mailto:info@riskly.trade">info@riskly.trade</a> per chiedere la cancellazione.</p>
 
       <h3>Contenuti caricati e segnalazioni di copyright</h3>
       <p>Nel journal puoi caricare immagini (per esempio screenshot dei grafici). Restano private, visibili solo a te, e devi caricare solo materiale che hai il diritto di usare. Se ritieni che un contenuto presente su un nostro sito violi il tuo diritto d'autore, scrivi a <a href="mailto:info@riskly.trade">info@riskly.trade</a> con oggetto «Segnalazione copyright» indicando: l'opera protetta, l'indirizzo preciso del contenuto, i tuoi dati di contatto, la dichiarazione che la segnalazione è in buona fede e che le informazioni sono corrette, e la tua firma. Rimuoviamo rapidamente i contenuti segnalati e possiamo sospendere gli account che violano ripetutamente i diritti altrui. Chi si vede rimuovere un contenuto può rispondere scrivendo allo stesso indirizzo. Ogni utente può cancellare in qualsiasi momento le immagini che ha caricato.</p>
