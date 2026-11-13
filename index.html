@@ -2047,6 +2047,71 @@ html[data-tema="scuro"] .pant{background:#111926;border-color:#202C3F}
 /* ospite nella versione dimostrativa: niente pulsanti che servono solo a chi ha un account */
 body.ospite #btnDemo,body.ospite .jactions>.btn[onclick="b_apri()"],body.ospite .jaltro{display:none!important}
 </style>
+<style id="pdash">
+/* ===== Pannello denso (14 novembre 2026): tutto in una schermata, come i journal delle prop firm ===== */
+html body.in-app #kpis:not(:has(.empty)){display:none!important}
+.pdash{margin-bottom:14px}
+.pd-kpi{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));background:var(--p-card);border:1px solid var(--p-line);border-radius:10px;margin-bottom:10px}
+.pd-k{padding:11px 14px;border-left:1px solid var(--p-line2);min-width:0}
+.pd-k:first-child{border-left:0}
+.pd-k span{display:block;font-size:10.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--p-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pd-k b{display:block;font-size:19px;font-weight:700;letter-spacing:-.015em;margin:5px 0 2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pd-k small{display:block;font-size:11px;color:var(--p-dim2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pd-griglia{display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
+.pd-sls,.pd-tabelle{background:var(--p-card);border:1px solid var(--p-line);border-radius:10px;padding:10px 10px 12px;min-width:0}
+.pd-sl-testa{display:flex;justify-content:space-between;align-items:center;padding:2px 4px 8px;font-size:13px}
+.pd-sl-testa span{font-size:11.5px;color:var(--p-dim2)}
+.pd-sl-testa button{border:0;background:none;color:var(--p-blu);font-weight:600;font-size:12px;cursor:pointer;padding:0}
+.pd-sl{border-top:1px solid var(--p-line2);padding:8px 2px 6px}
+.pd-sl-t{display:flex;justify-content:space-between;align-items:center;padding:0 2px 6px}
+.pd-sl-t span{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--p-dim)}
+.pd-sl-t button{border:0;background:none;color:var(--p-dim2);cursor:pointer;font-size:12px;padding:0 2px}
+.pd-sl-v{display:flex;flex-direction:column;gap:3px}
+.pd-sl-v button{display:block;width:100%;text-align:left;border:1px solid var(--p-line);background:var(--p-line2);color:var(--p-ink);border-radius:6px;padding:4px 8px;font-size:12px;font-weight:500;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pd-sl-v button:hover{border-color:var(--line-hi)}
+.pd-sl-v button.on{background:var(--p-navy);border-color:var(--p-navy);color:var(--p-bg)}
+.pd-sl-v button.spento{opacity:.55}
+.pd-centro{display:grid;grid-template-rows:1fr 1fr;gap:10px;min-width:0}
+html body.in-app .pd-g{padding:12px 14px;display:flex;flex-direction:column;min-height:240px;margin:0}
+html body.in-app .pd-g .jcard-head{margin-bottom:6px;flex-wrap:wrap;gap:6px 10px}
+.pd-tabs{display:flex;gap:4px;margin-left:auto}
+.pd-tabs button{border:1px solid var(--p-line);background:var(--p-card);color:var(--p-dim);border-radius:6px;padding:3px 9px;font-size:11.5px;font-weight:600;cursor:pointer}
+.pd-tabs button.on{background:var(--p-line2);color:var(--p-ink);border-color:var(--line-hi)}
+.pd-svg{position:relative;flex:1 1 auto;min-height:190px}
+.pd-svg svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.pd-tabelle{padding:6px 10px;display:flex;flex-direction:column;gap:2px}
+.pd-tb{border-bottom:1px solid var(--p-line2);padding:6px 0 8px}
+.pd-tb:last-child{border-bottom:0}
+.pd-tb table{width:100%!important;min-width:0!important;border-collapse:collapse;font-size:12px;table-layout:fixed}
+.pd-tb col:first-child,.pd-tb th:first-child{width:28%}
+.pd-tb th{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--p-dim2);text-align:right;padding:3px 4px 5px;white-space:nowrap}
+.pd-tb th:first-child{text-align:left;color:var(--p-ink)}
+.pd-tb td{padding:3px 4px;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-top:1px solid var(--p-line2)}
+.pd-tb th:last-child,.pd-tb td:last-child{width:11%}
+.pd-tb td:first-child{text-align:left;font-weight:600}
+@media (min-width:1200px){
+  .pd-griglia{grid-template-columns:180px minmax(0,1fr) 360px;height:max(520px,calc(100vh - 330px))}
+  .pd-sls,.pd-tabelle{overflow-y:auto;scrollbar-width:thin}
+  html body.in-app .pd-g{min-height:0}
+}
+@media (min-width:900px) and (max-width:1199px){
+  .pd-griglia{grid-template-columns:170px minmax(0,1fr)}
+  .pd-tabelle{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:4px 16px}
+  .pd-kpi{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .pd-k:nth-child(5){border-left:0}.pd-k:nth-child(n+5){border-top:1px solid var(--p-line2)}
+}
+@media (max-width:899px){
+  .pd-kpi{grid-template-columns:1fr 1fr}
+  .pd-k:nth-child(odd){border-left:0}.pd-k:nth-child(n+3){border-top:1px solid var(--p-line2)}
+  .pd-sls{padding:8px}
+  .pd-sl{padding:6px 0 4px}
+  .pd-sl-v{flex-direction:row;overflow-x:auto;scrollbar-width:none;gap:5px}
+  .pd-sl-v::-webkit-scrollbar{display:none}
+  .pd-sl-v button{width:auto;flex:0 0 auto;padding:6px 10px;font-size:12.5px}
+  html body.in-app .pd-g .jcard-head{flex-direction:column;align-items:flex-start}
+  .pd-tabs{margin-left:0}
+}
+</style>
 </head>
 <body>
 
@@ -2159,6 +2224,19 @@ body.ospite #btnDemo,body.ospite .jactions>.btn[onclick="b_apri()"],body.ospite 
       </div>
       <div class="jchips" id="fChips"></div>
 
+      </div>
+
+      <!-- pannello denso: numeri, filtri da cliccare, grafici e tabelle in una schermata (14 novembre 2026) -->
+      <div class="pdash" id="pDash" data-pv="panoramica">
+        <div class="pd-kpi" id="pdKpi"></div>
+        <div class="pd-griglia">
+          <aside class="pd-sls" id="pdSl" aria-label="Filtri"></aside>
+          <div class="pd-centro">
+            <div class="jcard pd-g"><div class="jcard-head"><h3>Risultato per mese</h3><div class="pd-tabs" id="pdMeseTab"><button type="button" data-v="n" onclick="p_vista('mese','n')">Numero</button><button type="button" data-v="pnl" onclick="p_vista('mese','pnl')">Risultato</button><button type="button" data-v="r" onclick="p_vista('mese','r')">R</button></div></div><div class="pd-svg"><svg id="pdMese" role="img" aria-label="Risultato per mese"></svg></div></div>
+            <div class="jcard pd-g"><div class="jcard-head"><h3>Per fascia oraria · 30 minuti</h3><span class="jmeta" id="pdOraMeta"></span><div class="pd-tabs" id="pdOraTab"><button type="button" data-v="n" onclick="p_vista('ora','n')">Numero</button><button type="button" data-v="pnl" onclick="p_vista('ora','pnl')">Risultato</button><button type="button" data-v="r" onclick="p_vista('ora','r')">R</button></div></div><div class="pd-svg"><svg id="pdOra" role="img" aria-label="Operazioni vinte e perse per mezz'ora"></svg></div></div>
+          </div>
+          <div class="pd-tabelle" id="pdTab"></div>
+        </div>
       </div>
 
       <!-- stato dei software di MetaTrader: si aggiorna da solo, anche dal telefono -->
@@ -3640,6 +3718,7 @@ function j_filtrati(opz = {}){
     (!f.simbolo || t.symbol === f.simbolo) &&
     (!f.strategia || (f.strategia === SENZA_STRATEGIA ? !t.strategy : t.strategy === f.strategia)) &&
     (!f.dir || t.dir === f.dir) &&
+    (typeof p_slicePassa !== 'function' || p_slicePassa(t, opz)) &&
     (!f.emo || (t.emo || 'lucido') === f.emo) &&
     (!q || `${t.symbol} ${t.strategy} ${t.nota}`.toLowerCase().includes(q))
   );
@@ -3657,6 +3736,7 @@ function j_setFiltro(k, v){
 
 function j_azzeraFiltri(){
   j_filtro = { ...FILTRO_VUOTO };
+  if(typeof P_SL_VUOTO === 'function') p_sl = P_SL_VUOTO();
   document.getElementById('fCerca').value = '';
   j_pagina = 1;
   j_renderAll();
@@ -4120,6 +4200,7 @@ function j_renderAll(){
   j_renderKPIs(list);
   j_renderSpunti(list);
   p_render(list);
+  p_renderDash(list);
   j_renderCalendario();
   j_renderEquity(list);
   j_renderDist(list);
@@ -6667,6 +6748,197 @@ function p_render(list){
   p_regoleUI();
 }
 
+/* ---------- Pannello denso (14 novembre 2026, Gabriele: "il journal è come prima, anzi più brutto"; riferimento: i journal
+   delle prop firm e dei concorrenti, tutto in una schermata) ----------
+   In alto i numeri, a sinistra i filtri da cliccare (come gli "slicer" di Excel), al centro i grafici per mese e per mezz'ora,
+   a destra le tabelle per direzione, trimestre, mese e simbolo. I filtri a sinistra valgono per tutto il journal. */
+
+const P_SL_VUOTO = () => ({ strategia: new Set(), simbolo: new Set(), dir: new Set(), dow: new Set(), mese: new Set(), anno: new Set() });
+let p_sl = P_SL_VUOTO();
+let p_vMese = 'pnl', p_vOra = 'n';
+const P_MESI3 = ['Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'];
+
+function p_slicePassa(t, opz){
+  const s = p_sl;
+  if(s.strategia.size && !s.strategia.has(t.strategy || '—')) return false;
+  if(s.simbolo.size && !s.simbolo.has(t.symbol)) return false;
+  if(s.dir.size && !s.dir.has(t.dir)) return false;
+  if(s.dow.size && !s.dow.has(String(j_giornoSett(t)))) return false;
+  if(opz && opz.senzaData) return true;
+  if(s.mese.size && !s.mese.has(String(Number(t.date.slice(5, 7)) - 1))) return false;
+  if(s.anno.size && !s.anno.has(t.date.slice(0, 4))) return false;
+  return true;
+}
+function p_sliceAttivi(){ return Object.values(p_sl).reduce((a, x) => a + x.size, 0); }
+function p_slTocca(k, v){
+  const x = p_sl[k]; if(x.has(v)) x.delete(v); else x.add(v);
+  j_pagina = 1; j_renderAll();
+}
+function p_slAzzera(k){ if(k) p_sl[k].clear(); else p_sl = P_SL_VUOTO(); j_pagina = 1; j_renderAll(); }
+
+/* statistiche di un gruppo di operazioni */
+function p_gruppo(l){
+  const W = l.filter(t => t.pnl > 0), L = l.filter(t => t.pnl < 0);
+  const gp = W.reduce((a, t) => a + t.pnl, 0), gl = -L.reduce((a, t) => a + t.pnl, 0);
+  const conR = l.filter(t => t.risk > 0);
+  return { n: l.length, w: W.length, l: L.length, net: gp - gl, wr: l.length ? W.length / l.length * 100 : 0,
+    pf: gl ? gp / gl : (gp > 0 ? Infinity : 0), payoff: (W.length && L.length) ? (gp / W.length) / (gl / L.length) : null,
+    r: conR.length ? conR.reduce((a, t) => a + t.pnl / t.risk, 0) : null };
+}
+const p_pf = v => v === Infinity ? '∞' : j_num(v, 2);
+const p_r = v => v === null ? '—' : (v >= 0 ? '+' : '−') + j_num(Math.abs(v), 1) + 'R';
+const p_breve = v => (v >= 0 ? '+' : '−') + j_num(Math.abs(v), 0);
+
+/* i filtri a sinistra: valori presi da tutte le operazioni del conto */
+function p_renderSlicer(){
+  const el = document.getElementById('pdSl'); if(!el) return;
+  const tutte = j_lista();
+  const conta = f => { const m = new Map(); tutte.forEach(t => { const k = f(t); m.set(k, (m.get(k) || 0) + 1); }); return m; };
+  const blocco = (k, titolo, voci) => {
+    if(!voci.length) return '';
+    const sel = p_sl[k];
+    return `<div class="pd-sl"><div class="pd-sl-t"><span>${titolo}</span>${sel.size ? `<button type="button" onclick="p_slAzzera('${k}')" title="Togli il filtro">✕</button>` : ''}</div>
+      <div class="pd-sl-v">${voci.map(([v, nome, n]) => `<button type="button" class="${sel.has(v) ? 'on' : ''}${sel.size && !sel.has(v) ? ' spento' : ''}" onclick="p_slTocca('${k}','${esc(v)}')" title="${n} operazioni">${esc(nome)}</button>`).join('')}</div></div>`;
+  };
+  const ord = m => [...m.entries()].sort((a, b) => b[1] - a[1]);
+  const strat = ord(conta(t => t.strategy || '—')).map(([v, n]) => [v, v === '—' ? 'Senza strategia' : v, n]);
+  const sim = ord(conta(t => t.symbol)).map(([v, n]) => [v, v, n]);
+  const dir = [...conta(t => t.dir).entries()].map(([v, n]) => [v, v === 'long' ? 'Long' : 'Short', n]);
+  const dowM = conta(t => String(j_giornoSett(t)));
+  const dow = [0,1,2,3,4,5,6].filter(i => dowM.has(String(i))).map(i => [String(i), ['Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato','Domenica'][i], dowM.get(String(i))]);
+  const meseM = conta(t => String(Number(t.date.slice(5, 7)) - 1));
+  const mesi = [...Array(12).keys()].filter(i => meseM.has(String(i))).map(i => [String(i), MESI[i], meseM.get(String(i))]);
+  const anni = [...conta(t => t.date.slice(0, 4)).entries()].sort().map(([v, n]) => [v, v, n]);
+  const n = p_sliceAttivi();
+  el.innerHTML = `<div class="pd-sl-testa"><b>Filtri</b>${n ? `<button type="button" onclick="p_slAzzera()">Azzera (${n})</button>` : '<span>tocca per filtrare</span>'}</div>` +
+    blocco('strategia', 'Strategia', strat) + blocco('simbolo', 'Simbolo', sim) + blocco('dir', 'Direzione', dir) +
+    blocco('dow', 'Giorno', dow) + blocco('mese', 'Mese', mesi) + blocco('anno', 'Anno', anni);
+}
+
+/* numeri in alto */
+function p_renderKpiDensi(list){
+  const el = document.getElementById('pdKpi'); if(!el) return;
+  const m = j_metrics(list), iniz = j_saldoIniziale();
+  if(!m){ el.innerHTML = '<div class="pd-k" style="grid-column:1/-1"><span>Nessuna operazione con questi filtri</span></div>'; return; }
+  const g = p_gruppo(list), pari = m.n - m.w - m.l;
+  const k = (nome, v, cl, sotto) => `<div class="pd-k"><span>${nome}</span><b class="${cl || ''}">${v}</b>${sotto ? `<small>${sotto}</small>` : ''}</div>`;
+  el.innerHTML =
+    k('Operazioni', m.n, '', `${m.w} vinte · ${m.l} perse${pari ? ' · ' + pari + ' pari' : ''}`) +
+    k('Risultato netto', esc(j_fmt(m.net)), j_cl(m.net), iniz ? (m.net >= 0 ? '+' : '−') + j_num(Math.abs(m.net / iniz * 100), 2) + '% sul saldo iniziale' : '') +
+    k('Vincita', j_num(m.winrate, 1) + '%', m.winrate >= 50 ? 'up' : 'down', 'operazioni chiuse in guadagno') +
+    k('Profit factor', p_pf(m.pf), m.pf >= 1 ? 'up' : 'down', 'profitti ÷ perdite') +
+    k('Rapporto medio', m.payoff === null ? '∞' : j_num(m.payoff, 2), '', 'vincita media ÷ perdita media') +
+    k('Somma R', p_r(g.r), g.r === null ? '' : j_cl(g.r), m.avgR === null ? 'indica il rischio' : 'media ' + p_r(m.avgR).replace('R', 'R')) +
+    k('Drawdown max', '−' + esc(j_soldi(m.maxDD, 2)), m.maxDD ? 'down' : '', 'dal punto più alto') +
+    k('Saldo', iniz ? esc(j_soldi(iniz + j_lista().reduce((a, t) => a + (Number(t.pnl) || 0), 0), 2)) : '—', '', iniz ? 'iniziale ' + esc(j_soldi(iniz, 0)) : 'imposta il saldo iniziale');
+}
+
+/* grafico a barre con scala, adatto al riquadro; serie = [{etichetta, valori:[{v, col}]}] */
+function p_barre(svg, serie, opz){
+  const box = svg.parentElement.getBoundingClientRect();
+  const W = Math.max(300, Math.round(box.width) || 600), H = Math.max(170, Math.round(box.height) || 220), L = 52, R = 8, T = 10, B = opz.etRuotate ? 46 : 24;
+  const tutti = serie.flatMap(s => s.valori.map(x => x.v));
+  let mx = Math.max(0, ...tutti), mn = Math.min(0, ...tutti); if(mx === mn) mx = 1;
+  const passo = p_passo(mx - mn), y0 = Math.floor(mn / passo) * passo, y1 = Math.ceil(mx / passo) * passo;
+  const Y = v => T + (1 - (v - y0) / (y1 - y0)) * (H - T - B);
+  const n = serie.length, cw = (W - L - R) / Math.max(n, 1), k = serie[0] ? serie[0].valori.length : 1, bw = Math.max(2, Math.min(26, cw * .72 / k));
+  let o = '';
+  for(let v = y0; v <= y1 + passo / 2; v += passo){
+    o += `<line x1="${L}" x2="${W - R}" y1="${Y(v).toFixed(1)}" y2="${Y(v).toFixed(1)}" style="stroke:var(--p-line,#DCE1E8)"${Math.abs(v) < passo / 1e3 ? '' : ' stroke-dasharray="2 4"'}/>` +
+      `<text x="${L - 6}" y="${(Y(v) + 3.5).toFixed(1)}" text-anchor="end" font-size="10.5" style="fill:var(--p-dim2,#788494)">${esc(opz.fmt(v))}</text>`;
+  }
+  serie.forEach((s, i) => {
+    const cx = L + cw * i + cw / 2, x0 = cx - bw * k / 2;
+    s.valori.forEach((x, j) => {
+      if(!x.v) return;
+      const y = Y(Math.max(x.v, 0)), h = Math.abs(Y(x.v) - Y(0));
+      o += `<rect x="${(x0 + j * bw).toFixed(1)}" y="${y.toFixed(1)}" width="${(bw - 1).toFixed(1)}" height="${Math.max(h, 1).toFixed(1)}" rx="1.5" style="fill:${x.col}"><title>${esc(s.titolo || s.etichetta)}: ${esc(opz.fmt(x.v, true))}</title></rect>`;
+    });
+    if(!opz.ogni || i % opz.ogni === 0){
+      o += opz.etRuotate
+        ? `<text transform="translate(${cx.toFixed(1)},${H - B + 10}) rotate(-50)" text-anchor="end" font-size="10" style="fill:var(--p-dim2,#788494)">${esc(s.etichetta)}</text>`
+        : `<text x="${cx.toFixed(1)}" y="${H - 7}" text-anchor="middle" font-size="10.5" style="fill:var(--p-dim2,#788494)">${esc(s.etichetta)}</text>`;
+    }
+  });
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.innerHTML = o;
+}
+const P_SU = 'var(--p-su,#12805A)', P_GIU = 'var(--p-giu,#C8372D)';
+function p_valore(l, modo){
+  if(modo === 'n') return l.length;
+  if(modo === 'r'){ const c = l.filter(t => t.risk > 0); return c.reduce((a, t) => a + t.pnl / t.risk, 0); }
+  return l.reduce((a, t) => a + (Number(t.pnl) || 0), 0);
+}
+const P_FMT = { n: v => j_num(v, 0), pnl: (v, lungo) => lungo ? j_fmt(v) : j_fmtBreve(v), r: v => (v >= 0 ? '' : '−') + j_num(Math.abs(v), 1) + 'R' };
+
+function p_renderGrafMese(list){
+  const svg = document.getElementById('pdMese'); if(!svg) return;
+  document.querySelectorAll('#pdMeseTab button').forEach(b => b.classList.toggle('on', b.dataset.v === p_vMese));
+  if(!list.length){ svg.innerHTML = ''; return; }
+  const g = {}; list.forEach(t => (g[t.date.slice(0, 7)] = g[t.date.slice(0, 7)] || []).push(t));
+  const chiavi = Object.keys(g).sort().slice(-18);
+  const serie = chiavi.map(k => {
+    const l = g[k], et = P_MESI3[Number(k.slice(5)) - 1] + ' ' + k.slice(2, 4);
+    if(p_vMese === 'n') return { etichetta: et, valori: [{ v: l.filter(t => t.pnl > 0).length, col: P_SU }, { v: l.filter(t => t.pnl < 0).length, col: P_GIU }] };
+    const v = p_valore(l, p_vMese);
+    return { etichetta: et, valori: [{ v, col: v >= 0 ? P_SU : P_GIU }] };
+  });
+  p_barre(svg, serie, { fmt: P_FMT[p_vMese], etRuotate: false, ogni: chiavi.length > 12 ? 2 : 1 });
+}
+function p_renderGrafOra(list){
+  const svg = document.getElementById('pdOra'); if(!svg) return;
+  document.querySelectorAll('#pdOraTab button').forEach(b => b.classList.toggle('on', b.dataset.v === p_vOra));
+  const conOra = list.filter(t => /^\d{1,2}:\d{2}/.test(t.ora || ''));
+  document.getElementById('pdOraMeta').textContent = conOra.length < list.length ? `${conOra.length} su ${list.length} hanno l'ora` : 'ora italiana';
+  if(!conOra.length){ svg.innerHTML = ''; return; }
+  const fascia = t => { const [h, m] = t.ora.split(':').map(Number); return h * 2 + (m >= 30 ? 1 : 0); };
+  const g = Array.from({ length: 48 }, () => []); conOra.forEach(t => g[fascia(t)].push(t));
+  let a = g.findIndex(x => x.length), z = 47 - [...g].reverse().findIndex(x => x.length);
+  a = Math.max(0, a - 2); z = Math.min(47, z + 2);
+  const hh = i => String(Math.floor(i / 2)).padStart(2, '0') + ':' + (i % 2 ? '30' : '00');
+  const serie = [];
+  for(let i = a; i <= z; i++){
+    const l = g[i], W = l.filter(t => t.pnl > 0), L = l.filter(t => t.pnl < 0);
+    serie.push({ etichetta: hh(i), titolo: `${hh(i)}–${hh(i + 1)}`, valori: p_vOra === 'n'
+      ? [{ v: W.length, col: P_SU }, { v: L.length, col: P_GIU }]
+      : [{ v: p_valore(W, p_vOra), col: P_SU }, { v: p_valore(L, p_vOra), col: P_GIU }] });
+  }
+  p_barre(svg, serie, { fmt: P_FMT[p_vOra], etRuotate: true, ogni: serie.length > 24 ? 2 : 1 });
+}
+
+/* tabelle a destra */
+function p_renderTabDense(list){
+  const el = document.getElementById('pdTab'); if(!el) return;
+  if(!list.length){ el.innerHTML = '<div class="pvuoto">Nessuna operazione con questi filtri.</div>'; return; }
+  const iniz = j_saldoIniziale();
+  const tab = (titolo, colonne, righe) => `<div class="pd-tb"><table><thead><tr><th>${titolo}</th>${colonne.map(c => `<th>${c}</th>`).join('')}</tr></thead><tbody>${righe.join('')}</tbody></table></div>`;
+  const per = (f, ordina) => { const m = {}; list.forEach(t => (m[f(t)] = m[f(t)] || []).push(t)); return Object.entries(m).sort(ordina || ((a, b) => a[0] < b[0] ? -1 : 1)); };
+  const rigaPnl = (nome, l, base) => { const g = p_gruppo(l);
+    return `<tr><td>${esc(nome)}</td><td class="${j_cl(g.net)}">${p_breve(g.net)}</td><td>${base > 0 ? (g.net >= 0 ? '+' : '−') + j_num(Math.abs(g.net / base * 100), 1) + '%' : '—'}</td><td>${p_r(g.r)}</td><td>${g.n}</td></tr>`; };
+  const saldoA = d => iniz ? iniz + j_lista().filter(t => t.date < d).reduce((a, t) => a + (Number(t.pnl) || 0), 0) : 0;
+  const dir = per(t => t.dir).map(([k, l]) => rigaPnl(k === 'long' ? 'Long' : 'Short', l, iniz));
+  const trim = per(t => 'T' + (Math.floor((Number(t.date.slice(5, 7)) - 1) / 3) + 1) + ' ' + t.date.slice(2, 4)).slice(-6)
+    .map(([k, l]) => rigaPnl(k, l, saldoA(j_ordina(l)[0].date)));
+  const mesi = per(t => t.date.slice(0, 7)).slice(-12).reverse()
+    .map(([k, l]) => rigaPnl(P_MESI3[Number(k.slice(5)) - 1] + ' ' + k.slice(2, 4), l, saldoA(k + '-01')));
+  const sim = per(t => t.symbol, (a, b) => b[1].length - a[1].length).slice(0, 12).map(([k, l]) => { const g = p_gruppo(l);
+    return `<tr><td>${esc(k)}</td><td>${j_num(g.wr, 0)}%</td><td class="${g.pf >= 1 ? 'up' : 'down'}">${p_pf(g.pf)}</td><td>${g.payoff === null ? '—' : j_num(g.payoff, 1)}</td><td>${g.n}</td></tr>`; });
+  el.innerHTML = tab('Direzione', ['Risult.', '%', 'R', 'N.'], dir) + tab('Trimestre', ['Risult.', '%', 'R', 'N.'], trim) +
+    tab('Mese', ['Risult.', '%', 'R', 'N.'], mesi) + tab('Simbolo', ['Vinc.', 'PF', 'Rapp.', 'N.'], sim);
+}
+
+function p_renderDash(list){
+  if(!document.getElementById('pDash')) return;
+  p_renderSlicer();
+  p_renderKpiDensi(list);
+  p_renderGrafMese(list);
+  p_renderGrafOra(list);
+  p_renderTabDense(list);
+}
+function p_vista(quale, v){ if(quale === 'mese') p_vMese = v; else p_vOra = v; const l = j_filtrati(); if(quale === 'mese') p_renderGrafMese(l); else p_renderGrafOra(l); }
+let p_dashAttesa;
+window.addEventListener('resize', () => { clearTimeout(p_dashAttesa); p_dashAttesa = setTimeout(() => { if(document.body.dataset.vista === 'panoramica' && typeof j_filtrati === 'function'){ const l = j_filtrati(); p_renderGrafMese(l); p_renderGrafOra(l); } }, 180); });
+
 /* ---------- Schermata di benvenuto ---------- */
 /* ospite: chi apre /?esempio=1 vede il journal con dati di esempio, senza account */
 const OSPITE = (() => { try{ return new URLSearchParams(location.search).has('esempio'); }catch{ return false; } })();
@@ -6775,7 +7047,7 @@ document.addEventListener('visibilitychange', async () => {
     barra.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.v === id));
     tabs.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.v === id));
     jSposta(id); jAnima();
-    if(id === 'panoramica' && typeof p_renderEq === 'function' && typeof j_filtrati === 'function') p_renderEq(j_filtrati());   /* la curva prende le misure quando la pagina è visibile */
+    if(id === 'panoramica' && typeof p_renderEq === 'function' && typeof j_filtrati === 'function'){ const l = j_filtrati(); p_renderEq(l); p_renderGrafMese(l); p_renderGrafOra(l); }   /* la curva prende le misure quando la pagina è visibile */
     const t = document.getElementById('jTit'); if(t){ t.textContent = NOMI[id] || ''; document.getElementById('jSot').textContent = SOTTO[id] || ''; }
     window.scrollTo(0,0);
   };
@@ -6794,6 +7066,7 @@ document.addEventListener('click', () => { const m = document.getElementById('ja
   try{ if(typeof sb !== 'undefined' && sb) sb.auth.onAuthStateChange(function(ev){ if(ev === 'SIGNED_IN') traccia('dentro-il-journal'); }); }catch(e){}
 })();
 </script>
+<script src="/cookie.js" defer></script>
 </body>
 </html>
 
