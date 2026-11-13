@@ -11,7 +11,10 @@ OUT.mkdir(exist_ok=True)
 e = html.escape
 
 # link dei prodotti su MQL5 (Gabriele, 14 novembre: "tutti e due"): appena c'è il link compare il pulsante principale "Acquista su MQL5" e Stripe resta come seconda scelta
-MQL5 = {'riskguard': '', 'trademanager': '', 'scalein': '', 'riskly-pro': '', 'risklycopy': ''}
+# dal profilo venditore https://www.mql5.com/it/users/riskly/seller (14 novembre 2026): (MT5, MT4)
+MQL5 = {'riskguard': ('205467', '205470'), 'trademanager': ('205484', '205486'), 'scalein': ('205481', '205483'),
+        'riskly-pro': ('205282', '205462'), 'risklycopy': ('205472', '205475')}
+MQL5_URL = 'https://www.mql5.com/it/market/product/'
 
 LIMITI = [
     "Funziona solo con MetaTrader aperto sul computer o su una VPS. Se il computer è spento o MetaTrader è chiuso, il software non agisce: per lasciarlo sempre attivo serve una VPS.",
@@ -135,9 +138,10 @@ footer{border-top:1px solid var(--line);margin-top:24px;padding:22px 0 30px;colo
 
 def bottoni(p):
     stripe = f'href="/?compra={e(p["stripe"]).replace(" ", "%20")}#software" data-compra="{e(p["nome"])}"'
-    m = MQL5.get(p['slug'], '')
+    m = MQL5.get(p['slug'])
     if m:
-        return (f'<a class="btn pri" href="{e(m)}" target="_blank" rel="noopener" data-mql5="{e(p["nome"])}">Acquista su MQL5</a>'
+        return (f'<a class="btn pri" href="{MQL5_URL}{m[0]}" target="_blank" rel="noopener" data-mql5="{e(p["nome"])}">Acquista su MQL5 · MetaTrader 5</a>'
+                f'<a class="btn" style="width:100%;margin-top:8px" href="{MQL5_URL}{m[1]}" target="_blank" rel="noopener" data-mql5="{e(p["nome"])}">Acquista su MQL5 · MetaTrader 4</a>'
                 f'<a class="btn" style="width:100%;margin-top:8px" {stripe}>Oppure paga con carta sul sito · {p["prezzo"]} €</a>'
                 '<p class="nota">Su MQL5 la licenza e gli aggiornamenti li gestisce MetaTrader. Sul sito paghi con Stripe: ti serve un account Riskly gratuito e ricevi file, licenza e guida entro 24 ore lavorative.</p>')
     return (f'<a class="btn pri" {stripe}>Acquista {e(p["nome"])} · {p["prezzo"]} €</a>'
