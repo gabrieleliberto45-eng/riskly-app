@@ -5362,6 +5362,7 @@ async function azioneProdotto(nome){
       + 'prefilled_email=' + encodeURIComponent(utente.email || '')
       + '&client_reference_id=' + encodeURIComponent(utente.id);
     try{ localStorage.setItem('riskly-pagamento', Date.now()); }catch(e){}
+    try{ traccia('stripe-' + String(nome).toLowerCase().replace(/[^a-z0-9]+/g, '-')); }catch(e){}
     window.location.href = link;   /* stessa scheda: i browser dentro TikTok e Instagram bloccano le finestre nuove */
     return;
   }
