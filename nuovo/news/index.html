@@ -45,6 +45,11 @@ body.in-articolo .testa .indietro2{display:grid}
 .q .p{font:700 15px 'Archivo';margin-top:2px}
 .q .v{font:600 12px 'Archivo';margin-top:1px}
 .q .v.su{color:var(--verde)}.q .v.giu{color:var(--rosso)}
+/* 14 novembre: striscia dei prezzi blu notte come su riskly.trade (Gabriele: "i colori uguali a tutti i siti") */
+.nastro{background:#12263F!important;border-bottom:1px solid rgba(255,255,255,.08)!important;color:#fff}
+.nastro .q .n{color:#AEBBCB}.nastro .q .p{color:#fff}
+.nastro .q .v.su{color:#6FD3A4}.nastro .q .v.giu{color:#FF8E82}
+html[data-tema="scuro"] .nastro{background:#0B1626!important}
 /* prossimo dato */
 .oggi{margin:14px 16px 0;background:var(--panel);border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:14px;border:1px solid var(--line)}
 .oggi .ora{font:800 18px 'Martian Mono';color:var(--oro);min-width:60px}
