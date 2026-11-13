@@ -406,6 +406,83 @@ footer a{display:block;padding:.3rem 0;text-decoration:none}
 footer a:hover{color:var(--c-ink)}
 .legale{margin-top:2rem;padding-top:1.25rem;border-top:1px solid var(--c-rule);font-size:.8125rem;max-width:60em}
 .proto{position:fixed;left:max(12px,env(safe-area-inset-left,0px));bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:40;font:600 .75rem/1 var(--mono);font-stretch:88%;background:var(--amber);color:var(--amber-ink);padding:.45rem .6rem;border-radius:2px;box-shadow:0 6px 16px -6px rgba(0,0,0,.35)}
+
+/* ══ REVISIONE: meno linee, blocchi separati, un solo colore per l'azione ══ */
+.btn{border-radius:8px;border-color:var(--rule)}
+.btn:hover{border-color:var(--ink)}
+.btn.pri{background:var(--amber);border-color:var(--amber);color:var(--amber-ink)}
+.btn.pri:hover{background:#F7C655;border-color:#F7C655}
+.scuro,.cassa{border-radius:12px}
+.campo input,.campo select,.scelte button,.sim-az button,.stato,.esiti,.quadro,.verdetto,.consiglio{border-radius:8px}
+.testa,.hero,.sch-t,.prima{border-bottom:0}
+.sez{border-bottom:0}
+.vista>.sez:nth-child(even){background:var(--sheet)}
+.vista>.sez.nera{background:var(--c-bg);color:var(--c-ink)}
+.sez.nera .sez-t p{color:var(--c-dim)}
+.elenco,.listino,.brevi,.corsi,.stati,.scorri{border-top-color:var(--rule)}
+.tab th{border-bottom-color:var(--rule)}
+.carta{display:grid;gap:.6rem;align-content:start;background:var(--sheet);border:1px solid var(--rule-2);border-radius:12px;padding:1.4rem;text-decoration:none;min-width:0}
+.vista>.sez:nth-child(even) .carta,.vista>.sez:nth-child(even) .passi li,.vista>.sez:nth-child(even) .piani .piano{background:var(--paper)}
+.carta p{font-size:.9375rem;color:var(--ink-2)}
+a.carta{transition:border-color .2s,transform .25s var(--ease)}
+a.carta:hover{border-color:var(--ink);transform:translateY(-2px)}
+.sez.nera .carta,.vista>.sez.nera .carta{background:var(--c-2);border-color:var(--c-rule);color:var(--c-ink)}
+.sez.nera .carta p{color:var(--c-dim)}
+.sez.nera a.carta:hover{border-color:var(--amber)}
+.sez.nera .carta .va{color:var(--amber)}
+.tre{display:grid;gap:1rem}
+@media(min-width:56rem){.tre{grid-template-columns:repeat(3,1fr)}}
+/* home */
+.hero{padding-block:2.5rem 3rem}
+@media(min-width:62rem){.hero{padding-block:4.5rem 5rem}}
+.hero h1{font-size:clamp(2.6rem,6.6vw,4.6rem)}
+.garanzie{display:grid;gap:.45rem;margin-top:1.6rem}
+.garanzie li{display:flex;gap:.6rem;align-items:center;font-size:.9375rem;font-weight:600}
+.garanzie .i{color:var(--ok);stroke-width:2.6}
+.vetrina{background:var(--sheet);border:1px solid var(--rule-2);border-radius:14px;padding:.5rem;box-shadow:0 18px 40px -24px rgba(21,24,27,.35)}
+.vetrina h2{font-size:.875rem;font-stretch:100%;font-weight:700;letter-spacing:0;color:var(--ink-3);padding:.8rem .9rem .6rem}
+.vetrina a{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.9rem;border-radius:10px;text-decoration:none;transition:background .15s}
+.vetrina a:hover{background:var(--paper)}
+.vetrina a b{display:block;font-size:1.125rem;font-weight:800;font-stretch:85%}
+.vetrina a span{font-size:.875rem;color:var(--ink-2)}
+.vetrina a em{font-style:normal;font-weight:800;font-size:1.0625rem;text-align:right;white-space:nowrap}
+.vetrina a em small{display:block;font-size:.75rem;font-weight:400;color:var(--ink-3)}
+.vetrina a em.gratis{color:var(--ok)}
+.vetrina a.primo{background:var(--amber);color:var(--amber-ink)}
+.vetrina a.primo:hover{background:#F7C655}
+.vetrina a.primo span,.vetrina a.primo em small{color:#5A4100}
+.passi{border-top:0;gap:1rem}
+.passi li,.passi li:first-child{background:var(--sheet);border:1px solid var(--rule-2);border-radius:12px;padding:1.4rem;display:grid;gap:.4rem;align-content:start}
+.passi li::before{display:grid;place-items:center;width:2.4rem;height:2.4rem;border-radius:50%;background:var(--amber);color:var(--amber-ink);font:800 1.15rem var(--sans);margin-bottom:.5rem}
+.passi .va{margin-top:.4rem}
+/* carte dei bot */
+.carte{display:grid;gap:1rem}
+@media(min-width:44rem){.carte{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:70rem){.carte{grid-template-columns:repeat(6,1fr)}.carte .carta{grid-column:span 2}.carte .carta.pro{grid-column:span 4}}
+.carte .carta{grid-template-rows:auto auto 1fr auto auto;gap:.5rem}
+.carte small{font-size:.8125rem;font-weight:700;color:var(--amber-deep)}
+.carte h3{font-size:1.75rem}
+.carte .costo{font-weight:800;font-size:1.9rem;font-stretch:85%;line-height:1;margin-top:.5rem}
+.carte .costo em{font-style:normal;font-size:.8125rem;font-weight:400;font-stretch:100%;color:var(--ink-3);margin-left:.5rem}
+.carte .btn{margin-top:.6rem;justify-self:start}
+.carte .carta.pro,.vista>.sez:nth-child(even) .carte .carta.pro{background:var(--c-bg);border-color:var(--c-bg);color:var(--c-ink)}
+.carte .carta.pro p{color:var(--c-dim)}
+.carte .carta:not(.pro) .btn{border-color:var(--ink)}
+.carte .carta.pro small{color:var(--amber)}
+.carte .carta.pro .costo em{color:var(--c-dim)}
+.carta.chiara h3{margin-bottom:.4rem}
+.carta.chiara .elenco{border-top:0}
+.carta.chiara .elenco li:last-child{border-bottom:0}
+/* piani e altri blocchi */
+.piani{border-top:0;gap:1rem}
+.piani .piano,.piani .piano:first-child,.piani .piano:last-child{background:var(--sheet);border:1px solid var(--rule-2);border-radius:12px;padding:1.5rem;margin:0}
+.piani .piano.top{border:2px solid var(--amber)}
+.patti{border-top:0;gap:1rem}
+.patti div{background:var(--sheet);border:1px solid var(--rule-2);border-radius:12px;padding:1.2rem}
+.vista>.sez:nth-child(even) .patti div{background:var(--paper)}
+.cassa{border-color:var(--rule-2);box-shadow:0 18px 40px -24px rgba(21,24,27,.35)}
+.ciclo{border-color:var(--rule);border-radius:8px}
+.modulo input{border-color:var(--rule);border-radius:8px}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -451,98 +528,66 @@ footer a:hover{color:var(--c-ink)}
 <section class="vista" id="v-home">
   <div class="hero"><div class="wrap due">
     <div>
-      <h1>Controlli il rischio.<br><span>Non il mercato.</span></h1>
-      <p class="lead">Strumenti, dati e bot per sapere quanto rischi prima di entrare, fermarti quando serve e capire dove sbagli. Gratis finché ti servono solo i numeri.</p>
+      <h1>Proteggi il conto dagli errori che fai tu.</h1>
+      <p class="lead">Riskly vende bot per MetaTrader 4 e 5 che fanno rispettare le tue regole: ti fermano dopo le perdite, mettono gli stop, gestiscono le uscite. Non aprono operazioni e non danno segnali.</p>
       <div class="azioni">
-        <a class="btn pri" href="#prodotti">Trova il tuo strumento <svg class="i"><use href="#i-fr"/></svg></a>
-        <a class="btn" href="#strumenti">Apri gli strumenti gratis</a>
+        <a class="btn pri" href="#prodotti">Vedi i bot, da 49 € <svg class="i"><use href="#i-fr"/></svg></a>
+        <a class="btn" href="#strumenti">Prova gli strumenti gratis</a>
       </div>
-      <p class="nota">Nessun segnale e nessuna promessa di guadagno. Solo regole che decidi tu.</p>
+      <ul class="garanzie">
+        <li><svg class="i"><use href="#i-ok"/></svg>Paghi una volta, nessun abbonamento</li>
+        <li><svg class="i"><use href="#i-ok"/></svg>Licenza a vita su MetaTrader 4 e 5</li>
+        <li><svg class="i"><use href="#i-ok"/></svg>Ti aiutiamo a installarlo</li>
+      </ul>
     </div>
-    <div class="scuro" aria-label="Console del rischio">
-      <div class="s-testa"><span>CONSOLE DEL RISCHIO</span><span><span class="spia"></span>CALCOLA QUI</span></div>
-      <div class="s-corpo">
-        <div class="campi">
-          <div class="campo"><label for="h-saldo">SALDO ($)</label><input id="h-saldo" inputmode="decimal" value="10000"></div>
-          <div class="campo"><label for="h-risc">RISCHIO PER OPERAZIONE (%)</label><input id="h-risc" inputmode="decimal" value="1"></div>
-          <div class="campo"><label for="h-sim">STRUMENTO</label><select id="h-sim"><option value="xau">XAU/USD (oro)</option><option value="eur">EUR/USD</option><option value="gbp">GBP/USD</option></select></div>
-          <div class="campo"><label for="h-stop">STOP (PIP)</label><input id="h-stop" inputmode="decimal" value="30"></div>
-        </div>
-        <div class="esiti">
-          <div class="esito"><small>LOTTO MASSIMO</small><strong id="h-lot">0,33</strong><em id="h-lot-s">per rischiare 100 $</em></div>
-          <div class="esito"><small>DOPO 10 PERDITE DI FILA</small><strong id="h-dd">−9,6%</strong><em id="h-dd-s">ti restano 9.044 $</em></div>
-        </div>
-        <div>
-          <div class="barre-t"><span>SALDO DOPO OGNI PERDITA</span><span id="h-rec">serve +10,6% per tornare in pari</span></div>
-          <div class="barre" id="h-barre" style="margin-top:.6rem"></div>
-        </div>
-      </div>
-      <div class="s-piede"><span>Vuoi che il limite lo faccia rispettare un bot?</span><a href="#riskguard">RiskGuard <svg class="i"><use href="#i-fr"/></svg></a></div>
+    <div class="vetrina" aria-label="Cosa trovi su Riskly">
+      <h2>Cosa trovi su Riskly</h2>
+      <a class="primo" href="#prodotti"><div><b>Bot per MetaTrader</b><span>Cinque software che applicano le tue regole</span></div><em>da 49 €<small>una volta</small></em></a>
+      <a href="#journal"><div><b>Journal</b><span>Il diario che misura la tua disciplina</span></div><em>da 2,99 €<small>al mese · 7 giorni gratis</small></em></a>
+      <a href="#news"><div><b>Riskly News</b><span>Ogni mattina oro, dollaro e Fed</span></div><em>6,99 €<small>al mese</small></em></a>
+      <a href="#news" data-s="academy"><div><b>Videocorso</b><span>50 lezioni sulla gestione del rischio</span></div><em>199 €<small>una volta</small></em></a>
+      <a href="#strumenti"><div><b>Strumenti</b><span>Calcolatori, checklist e calendario</span></div><em class="gratis">Gratis</em></a>
     </div>
   </div></div>
 
   <div class="sez"><div class="wrap">
-    <div class="sez-t"><h2>Da dove parti?</h2><p>Scegli il problema, non il nome del prodotto. Ogni strada comincia da qualcosa che puoi provare senza pagare.</p></div>
-    <div class="strade">
-      <a class="strada" href="#strumenti">
-        <div class="riga"><span>Misurare</span><span class="gratis">GRATIS</span></div>
-        <h3>Voglio sapere quanto rischio prima di entrare</h3>
-        <ul><li>Lotto per ogni operazione <span>calcolatore</span></li><li>Rischio di bruciare il conto <span>simulazione</span></li><li>Controllo prima dell'ordine <span>checklist</span></li></ul>
-        <span class="va">Apri gli strumenti <svg class="i"><use href="#i-fr"/></svg></span>
-      </a>
-      <a class="strada" href="#prodotti">
-        <div class="riga"><span>Proteggere</span><span>DA 49 €, UNA VOLTA</span></div>
-        <h3>Voglio che le regole si rispettino da sole</h3>
-        <ul><li>Fermarmi dopo le perdite <span>RiskGuard</span></li><li>Stop, break-even, trailing <span>TradeManager</span></li><li>Tutto in un pannello <span>Riskly Pro</span></li></ul>
-        <span class="va">Trova il bot giusto <svg class="i"><use href="#i-fr"/></svg></span>
-      </a>
-      <a class="strada" href="#journal">
-        <div class="riga"><span>Migliorare</span><span class="gratis">7 GIORNI DI PROVA</span></div>
-        <h3>Voglio capire dove sbaglio, con i numeri</h3>
-        <ul><li>Diario delle operazioni <span>anche dai bot</span></li><li>Statistiche per orario e strategia <span>journal</span></li><li>Regole delle prop firm <span>tracker</span></li></ul>
-        <span class="va">Apri il journal <svg class="i"><use href="#i-fr"/></svg></span>
-      </a>
-    </div>
+    <div class="sez-t"><h2>Comprare un bot, in tre passi.</h2><p>Sai sempre cosa stai pagando e cosa succede dopo.</p></div>
+    <ol class="passi">
+      <li><b>Scegli quello che ti serve</b><p>Dici cosa vuoi che faccia e ti indichiamo il bot giusto. Ogni scheda spiega cosa fa e cosa non fa.</p><a class="va" href="#prodotti">Trova il tuo strumento <svg class="i"><use href="#i-fr"/></svg></a></li>
+      <li><b>Paghi una volta</b><p>Con carta, sulla pagina sicura di Stripe. Il prezzo è scritto prima del pulsante e non ci sono rinnovi.</p></li>
+      <li><b>Lo ricevi e lo installi</b><p>Entro 24 ore lavorative ti mandiamo il file per il tuo conto e la guida passo passo. Se serve, ti seguiamo noi.</p></li>
+    </ol>
   </div></div>
 
   <div class="sez"><div class="wrap">
-    <div class="sez-t"><h2>Un sistema, non un catalogo.</h2><p>Ogni parte passa i dati alla successiva. Puoi usarne una sola. Più ne usi, più il quadro del tuo rischio è completo.</p></div>
-    <div class="giro">
-      <a class="tappa" href="#news"><div class="riga"><span>Impara</span><span class="chip ok">ATTIVO</span></div><h3>News e Academy</h3><p>Ogni mattina cosa muove oro, dollaro e tassi. Corso e guide sul rischio.</p><span class="va">Leggi <svg class="i"><use href="#i-fr"/></svg></span></a>
-      <a class="tappa" href="#strumenti"><div class="riga"><span>Misura</span><span class="chip ok">ATTIVO</span></div><h3>Strumenti</h3><p>Calcolatori, simulazioni, checklist e calendario. Senza account.</p><span class="va">Calcola <svg class="i"><use href="#i-fr"/></svg></span></a>
-      <a class="tappa" href="#prodotti"><div class="riga"><span>Applica</span><span class="chip ok">ATTIVO</span></div><h3>Bot</h3><p>Le tue regole dentro MetaTrader 4 e 5. Ti fermano quando non lo faresti.</p><span class="va">Confronta <svg class="i"><use href="#i-fr"/></svg></span></a>
-      <a class="tappa" href="#journal"><div class="riga"><span>Migliora</span><span class="chip ok">ATTIVO</span></div><h3>Journal</h3><p>Le operazioni arrivano dai bot. Statistiche ed errori senza scrivere a mano.</p><span class="va">Apri <svg class="i"><use href="#i-fr"/></svg></span></a>
-      <a class="tappa futura" href="#monitor"><div class="riga"><span>Controlla</span><span class="chip pre">IN ARRIVO</span></div><h3>Monitor</h3><p>Tutti i conti in un pannello: esposizione, drawdown, limiti, avvisi.</p><span class="va">Avvisami <svg class="i"><use href="#i-fr"/></svg></span></a>
+    <div class="sez-t"><h2>I nostri bot.</h2><p>Prezzi di lancio. Ognuno fa una cosa precisa, Riskly Pro le fa tutte.</p></div>
+    <div class="carte" id="home-bot"></div>
+    <div class="azioni" style="margin-top:1.5rem"><a class="btn" href="#prodotti" data-s="confronto">Confronta i bot in una tabella</a></div>
+  </div></div>
+
+  <div class="sez nera"><div class="wrap">
+    <div class="sez-t"><h2>Non sei pronto a comprare? Parti gratis.</h2><p>Gli strumenti si usano subito, senza account e senza carta.</p></div>
+    <div class="tre">
+      <a class="carta" href="#strumenti" data-tool="posizione"><h3>Calcola il lotto giusto</h3><p>Saldo, rischio e stop: ti dice quanto grande deve essere la posizione.</p><span class="va">Apri il calcolatore <svg class="i"><use href="#i-fr"/></svg></span></a>
+      <a class="carta" href="#strumenti" data-tool="checklist"><h3>Controlla prima dell'ordine</h3><p>Sei domande per capire se stai seguendo il tuo piano o stai rincorrendo una perdita.</p><span class="va">Apri la checklist <svg class="i"><use href="#i-fr"/></svg></span></a>
+      <a class="carta" href="#news"><h3>Leggi cosa muove l'oro oggi</h3><p>Ogni mattina i fatti su oro, dollaro e Fed, con gli orari italiani dei dati.</p><span class="va">Apri le notizie <svg class="i"><use href="#i-fr"/></svg></span></a>
     </div>
   </div></div>
 
-  <div class="sez"><div class="wrap">
-    <div class="sez-t"><h2>Prima di aprire una posizione.</h2><p>Cosa esce nei prossimi giorni e cosa è appena successo. Orari italiani.</p></div>
-    <div class="oggi">
-      <table class="tab pieg">
-        <thead><tr><th>Quando</th><th>Dato USA</th><th>Impatto</th><th>Atteso</th><th>Precedente</th></tr></thead>
-        <tbody>
-          <tr><td class="num">VEN 13 · 14:30</td><td>Prezzi alla produzione (PPI)</td><td><span class="peso" aria-label="alto"><i class="on"></i><i class="on"></i><i class="on"></i></span></td><td class="num" data-e="atteso">+0,4%</td><td class="num" data-e="prec.">+1,3%</td></tr>
-          <tr><td class="num">MAR 17 · 14:30</td><td>Vendite al dettaglio</td><td><span class="peso" aria-label="alto"><i class="on"></i><i class="on"></i><i class="on"></i></span></td><td class="num" data-e="atteso">0,0%</td><td class="num" data-e="prec.">+0,8%</td></tr>
-          <tr><td class="num">MER 9 DIC · 20:00</td><td>Decisione Fed sui tassi</td><td><span class="peso" aria-label="alto"><i class="on"></i><i class="on"></i><i class="on"></i></span></td><td class="num" data-e="atteso">+25 pb</td><td class="num" data-e="oggi">3,75–4,00%</td></tr>
-        </tbody>
-      </table>
-      <a class="pezzo" href="#news">
-        <small>Riskly News · Oro · 12 novembre</small>
-        <h3>L'oro scivola sotto i 4.000 $: il decennale USA tocca il 5% e il dollaro è ai massimi dell'anno</h3>
-        <p>Il mercato dà quasi per certo un rialzo Fed di 25 punti base a dicembre.</p>
-        <span class="va">Leggi l'articolo <svg class="i"><use href="#i-fr"/></svg></span>
-      </a>
+  <div class="sez"><div class="wrap due">
+    <div style="display:grid;gap:1.1rem;align-content:start">
+      <h2>E dopo, misura come operi.</h2>
+      <p class="lead">Il journal registra le operazioni, anche in automatico dai bot, e ti mostra dove sbagli: orari, strategie, regole non rispettate.</p>
+      <div class="azioni"><a class="btn pri" href="#journal">Scopri il journal <svg class="i"><use href="#i-fr"/></svg></a></div>
+      <p class="nota">7 giorni di prova senza carta, poi da 2,99 € al mese.</p>
     </div>
-  </div></div>
-
-  <div class="sez"><div class="wrap">
-    <div class="sez-t"><h2>Quello che non facciamo.</h2><p>Conta quanto quello che facciamo.</p></div>
-    <div class="patti">
-      <div><b>Nessun segnale</b><p>I bot non decidono cosa comprare o vendere. Applicano le regole che hai scelto tu.</p></div>
-      <div><b>Nessun numero finto</b><p>Niente risultati inventati. Ogni dato ha una fonte e un orario, ogni esempio è segnato come esempio.</p></div>
-      <div><b>Nessun obbligo di pagare</b><p>Strumenti, calendario e anteprime delle notizie si usano gratis, anche senza account.</p></div>
-      <div><b>Nessun limite nascosto</b><p>Ogni scheda dice cosa il prodotto fa e cosa non fa, prima del pulsante di acquisto.</p></div>
+    <div class="carta chiara">
+      <h3>Perché Riskly non è un sito di segnali</h3>
+      <ul class="elenco">
+        <li><svg class="i"><use href="#i-ok"/></svg>I bot applicano le regole che scegli tu, non decidono cosa comprare</li>
+        <li><svg class="i"><use href="#i-ok"/></svg>Nessuna promessa di guadagno e nessun risultato inventato</li>
+        <li><svg class="i"><use href="#i-ok"/></svg>Ogni scheda dice cosa il prodotto non fa, prima del pulsante di acquisto</li>
+      </ul>
     </div>
   </div></div>
 </section>
@@ -942,7 +987,8 @@ document.addEventListener('click', e => {
 addEventListener('hashchange', vai);
 
 /* ── prodotti: listino, confronto, selettore ── */
-$('#listino').innerHTML = ORD.map(k => { const b = BOT[k]; return `<a class="voce" href="#${k}"><div><h3>${b.n}</h3><small>${b.breve}</small></div><p>${b.d}</p><div class="costo">${b.p} €<em>poi ${b.poi} € · ${b.conti}</em></div><span class="va">Scheda ${ic('fr')}</span></a>`; }).join('');
+const carte = () => ORD.map(k => { const b = BOT[k], pro = k === 'riskly-pro'; return `<div class="carta${pro ? ' pro' : ''}"><small>${pro ? 'Il più completo' : b.breve}</small><h3>${b.n}</h3><p>${b.d}</p><div class="costo">${b.p} €<em>una volta · poi ${b.poi} €</em></div><a class="btn${pro ? ' pri' : ''}" href="#${k}">Vedi ${b.n} ${ic('fr')}</a></div>`; }).join('');
+$('#home-bot').innerHTML = carte(); $('#listino').innerHTML = carte(); $('#listino').className = 'carte';
 const RIGHE = [['Blocco dopo le perdite', 1, 0, 0, 1, 0], ['Limite di perdita giornaliero', 1, 0, 0, 1, 0], ['Stop loss sempre presente', 1, 1, 1, 1, 0], ['Break-even e trailing', 0, 1, 0, 1, 0], ['Ingressi a scaglioni', 0, 0, 1, 1, 0], ['Lotto calcolato sul rischio', 0, 0, 0, 1, 1], ['Filtro spread e notizie', 0, 0, 0, 1, 0], ['Copia su altri conti', 0, 0, 0, 0, 1], ['Operazioni nel journal', 1, 0, 0, 1, 0]];
 $('#matrice').innerHTML = `<thead><tr><th class="sr">Funzione</th>${ORD.map(k => `<th scope="col">${BOT[k].n}</th>`).join('')}</tr></thead><tbody>${RIGHE.map(r => `<tr><th scope="row">${r[0]}</th>${r.slice(1).map(v => `<td>${v ? `<svg class="i" aria-label="sì"><use href="#i-ok"/></svg>` : `<span class="no" aria-label="no">·</span>`}</td>`).join('')}</tr>`).join('')}</tbody><tfoot><tr><th scope="row">Conti inclusi</th><td>2</td><td>2</td><td>2</td><td>3</td><td>1 + 2</td></tr><tr><th scope="row">Prezzo di lancio</th>${ORD.map(k => `<td class="num">${BOT[k].p} €</td>`).join('')}</tr></tfoot>`;
 const scelti = new Set();
@@ -1016,17 +1062,6 @@ const SIM = {
 
 /* ── calcoli: console della home e strumento Posizione ── */
 function lotto(saldo, r, stop){ return stop > 0 ? Math.floor(saldo * r / (stop * 10) * 100) / 100 : 0; }
-function console_(){
-  const s = num($('#h-saldo').value), r = num($('#h-risc').value) / 100, lot = lotto(s, r, num($('#h-stop').value));
-  $('#h-lot').textContent = it(lot, 2); $('#h-lot-s').textContent = `per rischiare ${it(s * r)} $`;
-  const resto = s * Math.pow(1 - r, 10), dd = s ? (resto / s - 1) * 100 : 0;
-  $('#h-dd').textContent = it(dd, 1) + '%'; $('#h-dd-s').textContent = `ti restano ${it(resto)} $`;
-  $('#h-rec').textContent = `serve +${it(resto > 0 ? (s / resto - 1) * 100 : 0, 1)}% per tornare in pari`;
-  const b = $('#h-barre'), base = Math.pow(1 - r, 10) * .9;
-  if(!b.children.length) b.innerHTML = '<i></i>'.repeat(10);
-  [...b.children].forEach((el, i) => { const v = Math.pow(1 - r, i + 1); el.style.height = Math.max(6, (v - base) / (1 - base) * 100) + '%'; el.title = `Dopo ${i + 1} perdite: ${it(s * v)} $`; });
-}
-['h-saldo', 'h-risc', 'h-stop', 'h-sim'].forEach(id => $('#' + id).addEventListener('input', console_)); console_();
 function posizione(){
   const s = num($('#p-saldo').value), r = num($('#p-risc').value) / 100, st = num($('#p-stop').value), lot = lotto(s, r, st), perd = lot * st * 10;
   $('#p-lot').textContent = it(lot, 2); $('#p-eur').textContent = it(perd) + ' $'; $('#p-pct').textContent = `${it(s ? perd / s * 100 : 0, 2)}% del saldo`;
