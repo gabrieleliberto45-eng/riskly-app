@@ -2587,7 +2587,7 @@ body.ospite #btnDemo,body.ospite .jactions>.btn[onclick="b_apri()"],body.ospite 
         <input type="text" id="a-nome" placeholder="Mario Rossi" autocomplete="name">
       </div>
 
-      <div class="mod-campo" id="acc-campo-eta"><label for="a-nasc">Data di nascita</label><input type="date" id="a-nasc" autocomplete="bday" max="2100-01-01"><small style="display:block;opacity:.75;margin:4px 0 8px">Serve solo a verificare l'età minima (14 anni). Non la salviamo.</small><label style="display:flex;gap:8px;align-items:flex-start;font-weight:400;line-height:1.4"><input type="checkbox" id="a-term" style="width:auto;margin-top:3px"><span>Ho letto i <a href="https://riskly.trade/#termini" target="_blank" rel="noopener">Termini di servizio</a> e l'<a href="https://riskly.trade/privacy.html" target="_blank" rel="noopener">Informativa privacy</a>.</span></label></div>
+      <div class="mod-campo" id="acc-campo-eta"><label for="a-nasc">Data di nascita</label><input type="date" id="a-nasc" autocomplete="bday" max="2100-01-01"><small style="display:block;opacity:.75;margin:4px 0 8px">Serve solo a verificare l'età minima (18 anni). Non la salviamo.</small><label style="display:flex;gap:8px;align-items:flex-start;font-weight:400;line-height:1.4"><input type="checkbox" id="a-term" style="width:auto;margin-top:3px"><span>Ho letto i <a href="https://riskly.trade/#termini" target="_blank" rel="noopener">Termini di servizio</a> e l'<a href="https://riskly.trade/privacy.html" target="_blank" rel="noopener">Informativa privacy</a>.</span></label></div>
 
       <div class="mod-campo" id="acc-campo-metodo">
         <label for="a-metodo">Come fai trading? <span style="color:var(--dim2)">(adatta il journal, lo cambi quando vuoi)</span></label>
@@ -2667,7 +2667,7 @@ function etaControllo(){
   const n = new Date(v), o = new Date(); let e = o.getFullYear() - n.getFullYear();
   if(o.getMonth() < n.getMonth() || (o.getMonth() === n.getMonth() && o.getDate() < n.getDate())) e--;
   if(isNaN(e) || e < 0 || e > 120) return 'Data di nascita non valida.';
-  if(e < 14) return 'Per creare un account serve avere almeno 14 anni. Se ne hai meno, chiedi a un genitore di scrivere a info@riskly.trade.';
+  if(e < 18) return 'Per creare un account serve avere almeno 18 anni: Riskly parla di trading, che è riservato ai maggiorenni.';
   if(!t.checked) return 'Per continuare accetta i Termini e l\'Informativa privacy.';
   return '';
 }
