@@ -6569,6 +6569,8 @@ function calSegna(){
   document.querySelectorAll('#calPaesi .cal-chip').forEach(b => b.setAttribute('aria-pressed', calStato.paesi.includes(b.dataset.v)));
 }
 function calConsenti(){ try { localStorage.setItem('riskly-tv-ok', '1'); } catch(e) {} window.rtvOk = true; calDisegna(); }
+/* scelta fatta dal banner dei cookie: se accetta i contenuti esterni, il calendario si carica subito */
+window.addEventListener('riskly-consenso', e => { if(e.detail && e.detail.esterni && typeof calDisegna === 'function') try { calDisegna(); } catch(err) {} });
 function calDisegna(){
   const box = document.getElementById('calCornice'); if(!box) return;
   let tvOk = !!window.rtvOk; try { tvOk = tvOk || localStorage.getItem('riskly-tv-ok') === '1'; } catch(e) {}
@@ -7138,6 +7140,7 @@ document.addEventListener('play', e => { if(e.target.tagName !== 'VIDEO') return
   giro(); carica(); setInterval(carica, 60000); setInterval(function(){ if(prox) giro(); }, 1000);
 })();
 </script>
+<script src="/cookie.js" defer></script>
 </body>
 </html>
 
