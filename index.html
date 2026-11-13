@@ -2043,6 +2043,9 @@ html[data-tema="scuro"] .pant{background:#111926;border-color:#202C3F}
   .pant-k div{padding:8px 9px;min-width:0}
   .pant-k span{font-size:9.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 }
+
+/* ospite nella versione dimostrativa: niente pulsanti che servono solo a chi ha un account */
+body.ospite #btnDemo,body.ospite .jactions>.btn[onclick="b_apri()"],body.ospite .jaltro{display:none!important}
 </style>
 </head>
 <body>
@@ -2071,7 +2074,7 @@ html[data-tema="scuro"] .pant{background:#111926;border-color:#202C3F}
       <li>Ogni settimana una revisione: l'errore che torna e la regola per la settimana dopo.</li>
     </ul>
     <div class="azioni">
-      <a class="btn pri lg" href="/demo.html" style="text-decoration:none">Prova la versione dimostrativa</a>
+      <a class="btn pri lg" href="/?esempio=1" style="text-decoration:none">Prova la versione dimostrativa</a>
       <button class="btn lg" onclick="apriAccesso('registrati')">Crea un account</button>
       <button class="btn lg" onclick="apriAccesso('accedi')">Accedi</button>
     </div>
@@ -6104,6 +6107,7 @@ function j_generaDemo(){
 
 /* entra o esce dall'esempio: i dati veri restano intatti */
 function j_anteprima(){
+  if(OSPITE && !utente && j_demo){ apriAccesso('registrati'); return; }   /* l'ospite non ha dati suoi: gli propongo l'account */
   j_demo = j_demo ? null : j_generaDemo();
   j_filtro = { ...FILTRO_VUOTO };
   document.getElementById('fCerca').value = '';
@@ -6128,9 +6132,10 @@ function aggiornaBanner(){
   const t = b.querySelector('.jb-t'), p = b.querySelector('.jb-s'), btn = b.querySelector('.btn');
 
   if(j_demo){
-    t.textContent = 'Stai guardando dati di esempio';
-    p.textContent = 'Esplora metriche, calendario e spunti. Le tue operazioni non vengono toccate.';
-    btn.textContent = 'Torna ai tuoi dati';
+    const osp = OSPITE && !utente;
+    t.textContent = osp ? 'Questa è la versione dimostrativa' : 'Stai guardando dati di esempio';
+    p.textContent = osp ? 'Tutti i numeri sono di esempio. Crea un account per registrare le tue operazioni.' : 'Esplora metriche, calendario e spunti. Le tue operazioni non vengono toccate.';
+    btn.textContent = osp ? 'Crea un account' : 'Torna ai tuoi dati';
     btn.onclick = j_anteprima;
     b.open = true;
     return;
@@ -6663,17 +6668,21 @@ function p_render(list){
 }
 
 /* ---------- Schermata di benvenuto ---------- */
+/* ospite: chi apre /?esempio=1 vede il journal con dati di esempio, senza account */
+const OSPITE = (() => { try{ return new URLSearchParams(location.search).has('esempio'); }catch{ return false; } })();
 function aggiornaVista(){
   const benv = document.getElementById('benvenuto');
   const app  = document.getElementById('appJournal');
   if(!benv || !app) return;
 
-  const dentro = !!utente;
+  const dentro = !!utente || OSPITE;
+  document.body.classList.toggle('ospite', OSPITE && !utente);
   benv.style.display = dentro ? 'none' : 'grid';
   app.style.display  = dentro ? 'block' : 'none';
   document.body.classList.toggle('in-app', dentro);
 
   if(dentro) avviaJournal();
+  if(OSPITE && !utente && !j_demo) j_anteprima();
   if(dentro) setTimeout(j_forseChiediMetodo, 1200);
 }
 
@@ -6779,7 +6788,7 @@ document.addEventListener('click', () => { const m = document.getElementById('ja
 <script>
 /* azioni contate sul journal (vedi nuovo/traccia.html sul ramo del sito) */
 (function(){
-  tracciaVisita('app');
+  tracciaVisita(/[?&]esempio/.test(location.search) ? 'app/demo' : 'app');
   tracciaFunzione('apriAccesso', function(t){ return (t || 'registrati') === 'registrati' ? 'registrazione-aperta' : 'accesso-aperto'; });
   tracciaFunzione('inviaAccesso', function(){ return accModo === 'registrati' ? 'registrazione-inviata' : 'accesso-inviato'; });
   try{ if(typeof sb !== 'undefined' && sb) sb.auth.onAuthStateChange(function(ev){ if(ev === 'SIGNED_IN') traccia('dentro-il-journal'); }); }catch(e){}
