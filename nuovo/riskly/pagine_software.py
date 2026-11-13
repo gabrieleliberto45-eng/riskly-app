@@ -12,7 +12,7 @@ e = html.escape
 
 # link dei prodotti su MQL5 (Gabriele, 14 novembre: "tutti e due"): appena c'è il link compare il pulsante principale "Acquista su MQL5" e Stripe resta come seconda scelta
 # dal profilo venditore https://www.mql5.com/it/users/riskly/seller (14 novembre 2026): (MT5, MT4)
-MQL5 = {'riskguard': ('205467', '205470'), 'trademanager': ('205484', '205486'), 'scalein': ('205481', '205483'),
+MQL5 = {'risklytrailing': ('205477', '205479'), 'riskguard': ('205467', '205470'), 'trademanager': ('205484', '205486'), 'scalein': ('205481', '205483'),
         'riskly-pro': ('205282', '205462'), 'risklycopy': ('205472', '205475')}
 MQL5_URL = 'https://www.mql5.com/it/market/product/'
 
@@ -25,7 +25,7 @@ LIMITI = [
 ]
 
 P = [
-  dict(slug='riskguard', nome='RiskGuard', stripe='RiskGuard', prezzo=99, poi=149, conti='2 conti', agg='aggiornamenti inclusi',
+  dict(slug='riskguard', nome='RiskGuard', stripe='RiskGuard', prezzo=69, poi=None, conti='Licenza MQL5', agg='aggiornamenti inclusi',
        esigenza='Proteggere il conto', titolo='Ti ferma prima che una giornata storta diventi un conto bruciato.',
        sotto="Imposti a mente fredda quante perdite di fila, quante operazioni e quanta perdita al giorno ti concedi. Quando superi un limite, RiskGuard chiude le posizioni e chiude MetaTrader fino a mezzanotte.",
        video='riskguard', didascalia='Massimo 3 perdite di fila: alla terza mette in pausa e la quarta operazione non parte.',
@@ -35,7 +35,7 @@ P = [
        per='Chi sa di avere un problema con le perdite di fila, il revenge trading o i limiti giornalieri delle prop firm.',
        nonfa='Non gestisce stop, break-even o trailing delle posizioni aperte (lo fa TradeManager) e non entra a scaglioni (lo fa ScaleIn).',
        simili=['riskly-pro', 'trademanager']),
-  dict(slug='trademanager', nome='TradeManager', stripe='TradeManager', prezzo=49, poi=79, conti='2 conti', agg='aggiornamenti inclusi',
+  dict(slug='trademanager', nome='TradeManager', stripe='TradeManager', prezzo=49, poi=None, conti='Licenza MQL5', agg='aggiornamenti inclusi',
        esigenza='Gestire le posizioni', titolo='Stop, break-even e trailing, senza toccare il grafico.',
        sotto="Gestisce le posizioni che apri tu: mette stop loss e take profit se mancano, sposta lo stop in pari dopo N pip e poi lo fa seguire il prezzo. Tutto in pip, nessuna formula da ricordare.",
        video='trademanager', didascalia='Stop e take profit automatici, pareggio a +20 pip, poi lo stop segue il prezzo.',
@@ -44,7 +44,7 @@ P = [
        per='Chi apre le operazioni a mano e vuole che stop e uscite vengano gestiti sempre allo stesso modo.',
        nonfa='Non blocca il trading dopo le perdite (lo fa RiskGuard) e non apre posizioni aggiuntive (lo fa ScaleIn).',
        simili=['riskly-pro', 'scalein']),
-  dict(slug='scalein', nome='ScaleIn', stripe='ScaleIn', prezzo=79, poi=129, conti='2 conti', agg='aggiornamenti inclusi',
+  dict(slug='scalein', nome='ScaleIn', stripe='ScaleIn', prezzo=49, poi=None, conti='Licenza MQL5', agg='aggiornamenti inclusi',
        esigenza='Entrare a scaglioni', titolo='Apri una posizione, il software la divide in scaglioni con take profit diversi.',
        sotto="Quando apri un'operazione a mano, ScaleIn apre le altre parti sullo stesso strumento e nella stessa direzione, con take profit scaglionati in pip (per esempio 20, 40, 60). Se il rischio totale supera la soglia, non apre niente.",
        video='scalein', didascalia='Apri una posizione: il software apre le altre parti con take profit scaglionati.',
@@ -54,7 +54,7 @@ P = [
        per='Chi esce a parziali e vuole che gli scaglioni partano sempre con le stesse regole, senza calcoli.',
        nonfa="Non apre mai una posizione senza un'operazione tua e non blocca il trading dopo le perdite (lo fa RiskGuard).",
        simili=['riskly-pro', 'trademanager']),
-  dict(slug='riskly-pro', nome='Riskly Pro', stripe='Riskly Pro', prezzo=199, poi=299, conti='3 conti', agg='aggiornamenti a vita',
+  dict(slug='riskly-pro', nome='Riskly Pro', stripe='Riskly Pro', prezzo=99, poi=None, conti='Licenza MQL5', agg='aggiornamenti inclusi',
        esigenza='Tutto in uno', titolo='RiskGuard, TradeManager e ScaleIn in un solo software.',
        sotto="I tre moduli lavorano con lo stesso stato: il rischio è calcolato sull'insieme delle posizioni, non su ciascuna separatamente. I pulsanti BUY e SELL hanno già il lotto calcolato.",
        video='risklypro', didascalia='Lotto calcolato sul rischio, niente aperture vicino alle notizie, entrata in 3 parti con pareggio e trailing stop.',
@@ -64,7 +64,7 @@ P = [
        per='Chi vuole un solo software per rischio, gestione e uscite, invece di tre separati.',
        nonfa='Non copia le operazioni su altri conti: per quello serve RisklyCopy, che funziona insieme a Riskly Pro.',
        simili=['riskguard', 'trademanager', 'scalein']),
-  dict(slug='risklycopy', nome='RisklyCopy', stripe='RisklyCopy', prezzo=69, poi=129, conti='1 conto principale + 2 copie', agg='aggiornamenti inclusi',
+  dict(slug='risklycopy', nome='RisklyCopy', stripe='RisklyCopy', prezzo=79, poi=None, conti='Licenza MQL5', agg='aggiornamenti inclusi',
        esigenza='Copiare su altri conti', titolo='Apri sul conto principale, gli altri copiano con lo stesso rischio.',
        sotto="Il lotto si ricalcola sul saldo di ogni conto: stesso rischio, non lo stesso lotto. Funziona tra MetaTrader 4 e 5, sullo stesso computer o sulla stessa VPS.",
        video='risklycopy', didascalia='Copia le operazioni dal conto principale agli altri, con il lotto ricalcolato sul saldo di ogni conto.',
@@ -74,13 +74,27 @@ P = [
        per='Chi gestisce più conti propri (per esempio un conto personale e una challenge) e vuole lo stesso rischio su tutti.',
        nonfa='Molte prop firm vietano o limitano la copia tra conti: controlla il regolamento prima di usarlo su un conto prop.',
        simili=['riskly-pro', 'riskguard']),
+  dict(slug='risklytrailing', nome='RisklyTrailing', stripe='', prezzo=49, poi=None, conti='Licenza MQL5', agg='aggiornamenti inclusi',
+       esigenza='Lasciar correre i profitti', titolo='Una sola entrata, più posizioni: le prime incassano presto, le ultime restano nel trend.',
+       sotto="Apri una posizione a mano: RisklyTrailing aggiunge le posizioni che scegli, tutte con lo stesso stop loss e senza take profit, e le gestisce con uno stop a gradini. Gli stop si muovono solo a tuo favore.",
+       video='scalein', didascalia='Video di ScaleIn, che lavora in modo simile: una sola entrata divisa in più posizioni. Il video di RisklyTrailing è in preparazione.',
+       funzioni=['Divide la tua entrata manuale in più posizioni, senza take profit', 'Dopo un profitto impostato, tutte le posizioni vanno in pareggio (con un piccolo margine)',
+                 'Stop a gradini: a +1 passo la prima posizione blocca +1, a +2 passi le prime due bloccano +2, e così via',
+                 'Le ultime posizioni possono restare solo in pareggio, per i movimenti lunghi', 'Opzione "lascia spazio": lo stop sta qualche pip sotto il gradino',
+                 "Rischio massimo dell'intera operazione: se lo superi, non aggiunge posizioni", 'Perdita massima giornaliera: chiude le posizioni e blocca nuove operazioni fino al giorno dopo'],
+       per='Chi vuole incassare una parte presto e lasciare il resto nel trend, con regole fisse invece di decisioni a mercato aperto.',
+       nonfa="Non apre operazioni da solo: aggiunge posizioni solo a quella che apri tu. Serve un conto di tipo hedging. Nel tester di strategia apre operazioni dimostrative al lotto minimo, solo per mostrare come funziona.",
+       simili=['scalein', 'trademanager']),
 ]
 PER = {p['slug']: p for p in P}
 CONFRONTO = {  # righe del confronto: (funzione, chi ce l'ha)
   'Blocco dopo le perdite e limiti giornalieri': {'riskguard', 'riskly-pro'},
+  'Perdita massima giornaliera': {'riskguard', 'riskly-pro', 'risklytrailing'},
   'Stop loss automatico se manca': {'trademanager', 'scalein', 'riskly-pro'},
-  'Break-even e trailing stop': {'trademanager', 'riskly-pro'},
-  'Ingressi a scaglioni con TP diversi': {'scalein', 'riskly-pro'},
+  'Break-even e trailing stop': {'trademanager', 'riskly-pro', 'risklytrailing'},
+  'Più posizioni da una sola entrata': {'scalein', 'riskly-pro', 'risklytrailing'},
+  'Stop a gradini, le ultime posizioni lasciate correre': {'risklytrailing'},
+  'Take profit diversi per ogni scaglione': {'scalein', 'riskly-pro'},
   "Rischio calcolato sull'insieme delle posizioni": {'riskly-pro'},
   'Copia su altri conti': {'risklycopy'},
   'Operazioni nel journal in automatico': {'riskguard', 'riskly-pro'},
@@ -142,20 +156,18 @@ def bottoni(p):
     if m:
         return (f'<a class="btn pri" href="{MQL5_URL}{m[0]}" target="_blank" rel="noopener" data-mql5="{e(p["nome"])}">Acquista su MQL5 · MetaTrader 5</a>'
                 f'<a class="btn" style="width:100%;margin-top:8px" href="{MQL5_URL}{m[1]}" target="_blank" rel="noopener" data-mql5="{e(p["nome"])}">Acquista su MQL5 · MetaTrader 4</a>'
-                f'<a class="btn" style="width:100%;margin-top:8px" {stripe}>Oppure paga con carta sul sito · {p["prezzo"]} €</a>'
-                '<p class="nota">Su MQL5 la licenza e gli aggiornamenti li gestisce MetaTrader. Sul sito paghi con Stripe: ti serve un account Riskly gratuito e ricevi file, licenza e guida entro 24 ore lavorative.</p>')
+                '<p class="nota">Acquisto su MQL5, il negozio ufficiale di MetaTrader: serve un account MQL5 gratuito. Il prezzo è in dollari; licenza, installazione e aggiornamenti passano da MetaTrader. Per aiuto scrivi a info@riskly.trade.</p>')
     return (f'<a class="btn pri" {stripe}>Acquista {e(p["nome"])} · {p["prezzo"]} €</a>'
-            '<p class="nota">Pagamento sicuro con Stripe. Ti serve un account Riskly gratuito: prima del pagamento accetti i termini. Entro 24 ore lavorative ricevi file, licenza e guida.</p>')
+            '<p class="nota">Pagamento sicuro con Stripe. Ti serve un account Riskly gratuito: prima del pagamento accetti i termini.</p>')
 
 def pagina(p):
     s = p['slug']
     confr = [s] + [x for x in p['simili'] if x != s][:2]
     righe = ''.join(f"<tr><td>{e(f)}</td>" + ''.join(f"<td class=\"{'qui' if c == s else ''}\">{'<span class=si>✓</span>' if c in chi else '<span class=no>—</span>'}</td>" for c in confr) + "</tr>"
                     for f, chi in CONFRONTO.items() if any(c in chi for c in confr))
-    righe += "<tr><td>Prezzo di lancio</td>" + ''.join(f"<td class=\"{'qui' if c == s else ''}\">{PER[c]['prezzo']} €</td>" for c in confr) + "</tr>"
-    righe += "<tr><td>Conti per licenza</td>" + ''.join(f"<td class=\"{'qui' if c == s else ''}\">{e(PER[c]['conti'])}</td>" for c in confr) + "</tr>"
+    righe += "<tr><td>Prezzo su MQL5</td>" + ''.join(f"<td class=\"{'qui' if c == s else ''}\">{PER[c]['prezzo']} $</td>" for c in confr) + "</tr>"
     testa = "<tr><th>Funzione</th>" + ''.join(f"<th class=\"{'qui' if c == s else ''}\">{'<a href=\"/software/' + c + '\">' + e(PER[c]['nome']) + '</a>' if c != s else e(PER[c]['nome'])}</th>" for c in confr) + "</tr>"
-    altri = ''.join(f'<a href="/software/{x["slug"]}"><b>{e(x["nome"])}</b><span>{e(x["esigenza"])} · {x["prezzo"]} €</span></a>' for x in P if x['slug'] != s)
+    altri = ''.join(f'<a href="/software/{x["slug"]}"><b>{e(x["nome"])}</b><span>{e(x["esigenza"])} · {x["prezzo"]} $</span></a>' for x in P if x['slug'] != s)
     nav = ''.join(f'<a href="/software/{x["slug"]}"{" class=on" if x["slug"] == s else ""}>{e(x["nome"])}</a>' for x in P)
     return f"""<!doctype html>
 <html lang="it">
@@ -182,8 +194,8 @@ def pagina(p):
       <h1>{e(p['titolo'])}</h1>
       <p class="sotto">{e(p['sotto'])}</p>
       <div class="compra">
-        <div class="prezzo"><b>{p['prezzo']} €</b><s>{p['poi']} €</s><small>prezzo di lancio · paghi una volta</small></div>
-        <ul><li>Licenza a vita</li><li>{e(p['conti'])}</li><li>{e(p['agg'])}</li><li>MT4 e MT5</li></ul>
+        <div class="prezzo"><b>{p['prezzo']} $</b><small>su MQL5 · paghi una volta</small></div>
+        <ul><li>Versione MT4 e MT5</li><li>Licenza gestita da MQL5</li><li>{e(p['agg'])}</li></ul>
         {bottoni(p)}
       </div>
       <p class="nota"><b>Per chi è:</b> {e(p['per'])}</p>
