@@ -10,6 +10,9 @@ OUT = QUI / 'software'
 OUT.mkdir(exist_ok=True)
 e = html.escape
 
+# link dei prodotti su MQL5 (Gabriele, 14 novembre: "tutti e due"): appena c'è il link compare il pulsante principale "Acquista su MQL5" e Stripe resta come seconda scelta
+MQL5 = {'riskguard': '', 'trademanager': '', 'scalein': '', 'riskly-pro': '', 'risklycopy': ''}
+
 LIMITI = [
     "Funziona solo con MetaTrader aperto sul computer o su una VPS. Se il computer è spento o MetaTrader è chiuso, il software non agisce: per lasciarlo sempre attivo serve una VPS.",
     "Non funziona dall'app MetaTrader del telefono: lì l'Expert Advisor non gira. Dal telefono puoi vedere lo stato nel journal Riskly.",
@@ -130,6 +133,16 @@ footer{border-top:1px solid var(--line);margin-top:24px;padding:22px 0 30px;colo
 @media(max-width:820px){.hero{grid-template-columns:1fr}.griglia2,.passi{grid-template-columns:1fr}.video video{max-height:520px}}
 """
 
+def bottoni(p):
+    stripe = f'href="/?compra={e(p["stripe"]).replace(" ", "%20")}#software" data-compra="{e(p["nome"])}"'
+    m = MQL5.get(p['slug'], '')
+    if m:
+        return (f'<a class="btn pri" href="{e(m)}" target="_blank" rel="noopener" data-mql5="{e(p["nome"])}">Acquista su MQL5</a>'
+                f'<a class="btn" style="width:100%;margin-top:8px" {stripe}>Oppure paga con carta sul sito · {p["prezzo"]} €</a>'
+                '<p class="nota">Su MQL5 la licenza e gli aggiornamenti li gestisce MetaTrader. Sul sito paghi con Stripe: ti serve un account Riskly gratuito e ricevi file, licenza e guida entro 24 ore lavorative.</p>')
+    return (f'<a class="btn pri" {stripe}>Acquista {e(p["nome"])} · {p["prezzo"]} €</a>'
+            '<p class="nota">Pagamento sicuro con Stripe. Ti serve un account Riskly gratuito: prima del pagamento accetti i termini. Entro 24 ore lavorative ricevi file, licenza e guida.</p>')
+
 def pagina(p):
     s = p['slug']
     confr = [s] + [x for x in p['simili'] if x != s][:2]
@@ -167,8 +180,7 @@ def pagina(p):
       <div class="compra">
         <div class="prezzo"><b>{p['prezzo']} €</b><s>{p['poi']} €</s><small>prezzo di lancio · paghi una volta</small></div>
         <ul><li>Licenza a vita</li><li>{e(p['conti'])}</li><li>{e(p['agg'])}</li><li>MT4 e MT5</li></ul>
-        <a class="btn pri" href="/?compra={e(p['stripe']).replace(' ', '%20')}#software" data-compra="{e(p['nome'])}">Acquista {e(p['nome'])} · {p['prezzo']} €</a>
-        <p class="nota">Pagamento sicuro con Stripe. Ti serve un account Riskly gratuito: prima del pagamento accetti i termini. Entro 24 ore lavorative ricevi file, licenza e guida.</p>
+        {bottoni(p)}
       </div>
       <p class="nota"><b>Per chi è:</b> {e(p['per'])}</p>
     </div>
@@ -220,7 +232,8 @@ def pagina(p):
 <footer><div class="wrap">© Riskly · Software di gestione del rischio: non danno segnali e non aprono operazioni da soli. Il trading con leva comporta un alto rischio di perdita. <a href="/privacy.html">Privacy</a> · <a href="/#termini">Termini</a></div></footer>
 __TRACCIA__
 <script>try{{ tracciaVisita('software/{s}'); }}catch(e){{}}
-document.querySelectorAll('[data-compra]').forEach(a => a.addEventListener('click', () => {{ try{{ traccia('clic-acquista-{s}'); }}catch(e){{}} }}));</script>
+document.querySelectorAll('[data-compra]').forEach(a => a.addEventListener('click', () => {{ try{{ traccia('clic-acquista-{s}'); }}catch(e){{}} }}));
+document.querySelectorAll('[data-mql5]').forEach(a => a.addEventListener('click', () => {{ try{{ traccia('clic-mql5-{s}'); }}catch(e){{}} }}));</script>
 <script src="/cookie.js" defer></script>
 </body>
 </html>

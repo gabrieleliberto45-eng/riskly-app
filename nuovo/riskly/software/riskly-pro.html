@@ -73,8 +73,7 @@ footer{border-top:1px solid var(--line);margin-top:24px;padding:22px 0 30px;colo
       <div class="compra">
         <div class="prezzo"><b>199 €</b><s>299 €</s><small>prezzo di lancio · paghi una volta</small></div>
         <ul><li>Licenza a vita</li><li>3 conti</li><li>aggiornamenti a vita</li><li>MT4 e MT5</li></ul>
-        <a class="btn pri" href="/?compra=Riskly%20Pro#software" data-compra="Riskly Pro">Acquista Riskly Pro · 199 €</a>
-        <p class="nota">Pagamento sicuro con Stripe. Ti serve un account Riskly gratuito: prima del pagamento accetti i termini. Entro 24 ore lavorative ricevi file, licenza e guida.</p>
+        <a class="btn pri" href="/?compra=Riskly%20Pro#software" data-compra="Riskly Pro">Acquista Riskly Pro · 199 €</a><p class="nota">Pagamento sicuro con Stripe. Ti serve un account Riskly gratuito: prima del pagamento accetti i termini. Entro 24 ore lavorative ricevi file, licenza e guida.</p>
       </div>
       <p class="nota"><b>Per chi è:</b> Chi vuole un solo software per rischio, gestione e uscite, invece di tre separati.</p>
     </div>
@@ -160,7 +159,8 @@ footer{border-top:1px solid var(--line);margin-top:24px;padding:22px 0 30px;colo
 })();
 </script>
 <script>try{ tracciaVisita('software/riskly-pro'); }catch(e){}
-document.querySelectorAll('[data-compra]').forEach(a => a.addEventListener('click', () => { try{ traccia('clic-acquista-riskly-pro'); }catch(e){} }));</script>
+document.querySelectorAll('[data-compra]').forEach(a => a.addEventListener('click', () => { try{ traccia('clic-acquista-riskly-pro'); }catch(e){} }));
+document.querySelectorAll('[data-mql5]').forEach(a => a.addEventListener('click', () => { try{ traccia('clic-mql5-riskly-pro'); }catch(e){} }));</script>
 <script src="/cookie.js" defer></script>
 </body>
 </html>
