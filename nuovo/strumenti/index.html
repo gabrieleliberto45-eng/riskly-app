@@ -2652,23 +2652,25 @@ function calNPref(){ return Object.keys(calSerie).length + Object.keys(calPref).
 /* notifiche push vere: il server (Supabase) controlla i preferiti ogni minuto e avvisa anche ad app chiusa */
 const CAL_VAPID = 'BBOpQfTYpzmSXLrZtGfnu-x-tx4asq_lVhF0Kzb3ahftFAJ2Js6W-2qt7gTiMk7J8nuSahigHEW17B85bn7UWWw';
 const CAL_ISCRIVI = 'https://swlztverwfgdgchgpudt.supabase.co/functions/v1/cal-iscrivi';
-let calPushOk = false, calPushTimer;
+let calPushOk = false, calPushTimer, calPushProvato = false;
+const calPushPuo = () => !!navigator.serviceWorker && 'PushManager' in window;
 try { calPushOk = localStorage.getItem('riskly-cal-push') === '1'; } catch(e) {}
 function calB64(s){ s = s.replace(/-/g, '+').replace(/_/g, '/'); const b = atob(s + '='.repeat((4 - s.length % 4) % 4)); return Uint8Array.from(b, c => c.charCodeAt(0)); }
 async function calPushIscrivi(){
   try {
     if(!navigator.serviceWorker || !('PushManager' in window)) return false;
-    const reg = await navigator.serviceWorker.ready;
+    const reg = await Promise.race([navigator.serviceWorker.ready, new Promise((_, no) => setTimeout(() => no(new Error('tempo')), 8000))]);
     const sub = (await reg.pushManager.getSubscription()) || await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: calB64(CAL_VAPID) });
     const r = await fetch(CAL_ISCRIVI, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sub: sub.toJSON(), preferiti: calPref, serie: calSerie }) });
     calPushOk = r.ok;
   } catch(e) { calPushOk = false; }
   try { localStorage.setItem('riskly-cal-push', calPushOk ? '1' : '0'); } catch(e) {}
+  calPushProvato = true;
   return calPushOk;
 }
 function calPrefSalva(){
   try { localStorage.setItem('riskly-cal-pref', JSON.stringify(calPref)); localStorage.setItem('riskly-cal-serie', JSON.stringify(calSerie)); localStorage.setItem('riskly-cal-avvisati', JSON.stringify(calAvvisati)); } catch(e) {}
-  if(calPushOk && calAvvisiStato() === 'on'){ clearTimeout(calPushTimer); calPushTimer = setTimeout(calPushIscrivi, 800); }
+  if(calPushPuo() && calAvvisiStato() === 'on'){ clearTimeout(calPushTimer); calPushTimer = setTimeout(() => calPushIscrivi().then(calAvvisiBarra), 800); }
   const n = calNPref(), el = document.getElementById('calPrefN'); if(el) el.textContent = n || '';
 }
 function calPrefCambia(id){
@@ -2676,6 +2678,7 @@ function calPrefCambia(id){
   const k = calSerieChiave(e);
   if(calSegue(e)){ delete calSerie[k]; delete calPref[id]; }
   else calSerie[k] = { t: calNomeNuovo(e.title), c: String(e.country).toLowerCase(), u: e.unit || '' };
+  if(!calPushOk && calPushPuo() && calAvvisiStato() === 'on') calPushIscrivi().then(calAvvisiBarra);
   calPrefSalva(); calMostra();
 }
 function calAvvisiStato(){
@@ -2687,8 +2690,12 @@ function calAvvisiBarra(){
   const n = calNPref(); b.hidden = !n;
   if(!n) return;
   // 3 novembre: niente più riquadro quando gli avvisi sono già attivi (Gabriele: "togli quel coso avvisi attivi"); se sono spenti, solo nei Preferiti
-  if(calAvvisiStato() === 'on' || calGiorno !== 'preferiti'){ b.hidden = true; return; }
   const st = calAvvisiStato(), t = document.getElementById('calAvvisiTesto'), btn = document.getElementById('calAvvisiBtn');
+  const scollegato = st === 'on' && calPushPuo() && calPushProvato && !calPushOk;
+  if(scollegato){ b.hidden = false; btn.style.display = ''; btn.textContent = 'Riattiva';
+    t.innerHTML = '⚠️ <b>Gli avvisi arrivano solo con il calendario aperto.</b> Tocca Riattiva per riceverli anche ad app chiusa.'; return; }
+  btn.textContent = 'Attiva gli avvisi';
+  if(st === 'on' || calGiorno !== 'preferiti'){ b.hidden = true; return; }
   const ios = /iPhone|iPad/.test(navigator.userAgent), app = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
   btn.style.display = st === 'off' ? '' : 'none';
   if(st === 'on') t.innerHTML = '🔔 <b>Avvisi attivi</b> sui ' + n + ' preferiti: 5 minuti prima e appena esce il valore, a ogni uscita' + (calPushOk ? ', anche con l\'app chiusa.' : '. Tieni il sito aperto (anche in un\'altra scheda).');
@@ -2744,7 +2751,7 @@ setInterval(() => calControlla(), 30000);
     const f = await leggi(); if(f && f !== firma) location.reload(); });
 })();
 try { if(navigator.serviceWorker) navigator.serviceWorker.register('/sw.js').catch(() => {}); } catch(e) {}
-setTimeout(() => { calPrefSalva(); calControlla(); if(calPushOk && calAvvisiStato() === 'on') calPushIscrivi(); }, 0);
+setTimeout(() => { calPrefSalva(); calControlla(); if(calPushPuo() && calAvvisiStato() === 'on') calPushIscrivi().then(calAvvisiBarra); }, 0);
 function calInfo(e){
   const sp = calSpiega(e.title);
   if(sp) return `<span class="cal-info"><b>Cosa misura</b>${calEsc(sp.cosa)}<b>Perché conta</b>${calEsc(sp.perche)}${e.source ? `<small>Fonte: ${calEsc(e.source)}</small>` : ''}</span>`;
