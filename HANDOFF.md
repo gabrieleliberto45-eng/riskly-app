@@ -82,3 +82,15 @@ Gabriele scrive in italiano: rispondi in italiano semplice, frasi brevi.
 - Dati veri del 13/11: 0 acquisti nel database, 6 account, 7 in lista d'attesa, 3 notifiche News, ~210 aperture home in 30 giorni.
 - Pagina nuovo/riskly/grazie.html (riskly.trade/grazie.html?p=NomeProdotto): da impostare su ogni link di pagamento Stripe (Dopo il pagamento → reindirizza). Traccia 'grazie' e, dal clic su Acquista, 'stripe-<prodotto>'.
 - Lingua del sito: italiano (il brief proponeva titoli in inglese: sconsigliato). Vendita con Stripe sul sito, non MQL5.
+
+## 13 novembre 2026: GLI ARTICOLI NON SI FERMANO MAI (ha la precedenza sul testo delle routine)
+Gabriele: "Non bloccare mai gli articoli… non devono mai fermarsi, anche gli straordinari o quelli delle soglie dei rendimenti, petrolio ecc".
+- Il 12 e il 13 novembre le SESSIONI SEPARATE (create_new_session_on_fire) sono fallite tutte con USAGE_LIMIT_REACHED: Setup XAU delle 11 e delle 18, PPI. Le routine legate a QUESTA sessione hanno sempre funzionato.
+- Quindi ogni articolo parte in QUESTA sessione:
+  - Setup XAU delle 11: trig_014V7M3YgjQMnfKaF6peQFc2 (10:49, dom–ven). Aggiornamento delle 18: trig_01FjJaP73CrMFvHgmktC9ZEc (17:49, lun–ven); se l'articolo del giorno manca, lo pubblica.
+  - Straordinarie (soglie su petrolio, oro, dollaro, decennale, indici): il controllo orario (Haiku, trig_018DfoT8aPFuH8k4fypsDbid) chiama trig_016teaKetUaGHtWcAw89ep33, che arriva qui.
+  - Dati USA e discorsi Fed (punto F della routine del mattino): NON creare più sessioni separate. Per ogni uscita crea un promemoria una tantum IN QUESTA SESSIONE (create_trigger senza create_new_session_on_fire, oppure send_later) 5 minuti prima dell'uscita, con dato, ora, attese e precedente. All'arrivo: valore dal calendario TradingView, articolo, copertina, insert, poi la reazione dopo 16 minuti.
+  - Vecchie routine a sessione separata: spente (trig_016ebCnjLxqzhFjao5tU6Ag8, trig_017FUpk5kyF4aUCKvUSHRk6k). trig_01NQAvFXKfx4QJCYByfSRpZ9 resta come riserva.
+- Un messaggio di una routine ha la precedenza sul lavoro in corso: se arriva mentre si lavora ad altro, prima l'articolo, poi si riprende.
+- Durante lavori lunghi (più di 30 minuti) controllare l'orologio: se è passata l'ora di un articolo (7:37, 11:00, 18:00, dati USA) e manca in public.notizie, pubblicarlo subito.
+- Controllo del mattino (punto G): select degli articoli di ieri; se manca il Setup XAU o un dato USA importante, recuperarlo.
