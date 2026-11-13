@@ -215,3 +215,16 @@ TikTok: 3 video educativi a settimana su rischio e analisi fondamentale (richies
 - Sottotitoli grandi in basso, gruppi di 4 parole, parola detta in ambra.
 - File: social/youtube/rNN.json (tipi di scena: gancio, barre, metro, quadro, scenari, piano) → voce.py rNN → python3 social/reel/parole.py rNN → node social/reel/rendi.js rNN → social/reel/rNN.mp4.
 - Pilota: r01 "Fed domani alle 19:00" (27 ottobre).
+
+**Programmata su Metricool, 16–22 novembre** (caroselli da raw GitHub, commit cc1c04b):
+| Giorno | Instagram + TikTok |
+|---|---|
+| Lun 16 09:00 | n06 "La settimana dei mercati" (scuro): vendite al dettaglio mar 17 14:30 |
+| Lun 16 18:00 | c21 lotto sull'argento |
+| Mar 17 18:00 | c22 quante volte devi vincere (R) |
+| Mer 18 18:00 | c23 limite giornaliero prop firm, RiskGuard (solo Instagram) |
+| Gio 19 18:00 | c24 recupero dopo una perdita |
+| Ven 20 18:00 | c25 5 cose nel diario, journal (solo Instagram) |
+| Sab 21 18:00 | c26 lotto sul petrolio |
+| Dom 22 18:00 | c27 il giorno del dato |
+Da questa settimana si scrive "software", non "bot". Etichette delle slide "frasi": massimo 2 caratteri (numero o simbolo), le parole lunghe escono dal riquadro.

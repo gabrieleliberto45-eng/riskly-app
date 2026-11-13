@@ -62,3 +62,9 @@ Cosa cambio:
 2. **Instagram:** reel di attualità legati a Riskly News (dato del giorno, oro della settimana, notizia che muove i prezzi): sono i migliori. Niente più reel solo promozionali.
 3. **YouTube:** in pausa Casi veri, Rispondi tu e Domani esce (1–5 visualizzazioni, molto lavoro e crediti di voce). Resta "La settimana dell'oro" il sabato. Lo sforzo va sugli Shorts brevi a domanda ("Cos'è…", "Quanto vale…", "Perché…"), che rendono 10–30 volte di più.
 4. **Misura:** aggiungere ?da=tiktok, ?da=ig, ?da=yt ai link in bio per sapere da dove arrivano le visite.
+
+## Revisione del 13 novembre (6–13 novembre)
+- **TikTok:** i caroselli chiari "pratici" tornano sopra 1.000: oro e lotto 1.915, diario 1.242. I video restano tra 217 e 321. Per questo la settimana 16–22 è fatta solo di caroselli numerici (argento, petrolio, R, recupero, prop firm, diario, dato).
+- **Instagram:** feed tra 14 e 26 persone raggiunte.
+- **Sito e vendite:** 0 acquisti, 2 account nuovi, 349 visite registrate (25 da Instagram, 19 dal link in bio). 1 visita a "grazie".
+- **Prossimo passo:** se due caroselli su tre superano 1.000 su TikTok, si passa a 2 caroselli al giorno su TikTok (regola del 7 novembre). Serve il video "schermo vero" di Gabriele.
