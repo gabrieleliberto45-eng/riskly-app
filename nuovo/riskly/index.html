@@ -2229,87 +2229,118 @@ body.fuori-home #vaiHome{display:inline-flex}
 .trova-sug .btn{white-space:nowrap}
 .scheda-extra details{margin-top:8px}.page:not(.nh) .bot .scheda-extra .no li::before{content:'—'!important;border:0!important;transform:none!important;width:auto;height:auto;top:9px;color:var(--ink-3,#5E656D)}.scheda-extra ol{list-style:none;margin-left:0!important;counter-reset:pas}.scheda-extra ol li{counter-increment:pas}.page:not(.nh) .bot .scheda-extra ol li::before{content:counter(pas)'.'!important;border:0!important;transform:none!important;width:auto;height:auto;top:9px;font-weight:700}.scheda-extra ul,.scheda-extra ol{margin:8px 0 4px 18px;font-size:.92rem;line-height:1.5}.scheda-extra li{margin:3px 0}
 
-/* ══ NUOVA HOME (13 novembre 2026): blocchi separati, un solo colore per l'azione ══ */
+/* ══ NUOVA HOME (13 novembre 2026): colori e caratteri del sito (serio.css): blu, serif, blocchi separati ══ */
+#home{--az:var(--navy,#12263F);--az-ink:#fff;--chiaro:#C9D6E6;--sbiadito:#AEBBCB;--bordo:#E1E5EA}
 #home .h2w{max-width:76rem;margin:0 auto;padding:0 max(16px,env(safe-area-inset-left,0px))}
 @media(min-width:768px){#home .h2w{padding:0 32px}}
-#home h1,#home h2,#home h3{font-family:'Archivo',system-ui,sans-serif;font-stretch:74%;font-weight:800;letter-spacing:-.028em;line-height:1;text-wrap:balance;margin:0}
-#home h1{font-size:clamp(2.6rem,6.6vw,4.6rem);line-height:.94;letter-spacing:-.035em;margin-bottom:1.3rem}
-#home h2{font-size:clamp(2rem,5vw,3.25rem)}
-#home h3{font-size:1.6rem;font-stretch:80%;letter-spacing:-.018em;line-height:1.1}
-.h2-hero{padding:2.5rem 0 3rem;background:var(--paper)}
-@media(min-width:992px){.h2-hero{padding:4.5rem 0 5rem}}
+#home h1,#home h2,#home h3{margin:0}
+#home h1{margin-bottom:1.3rem}
+#home h3{font-size:1.6rem}
+.h2-hero{padding:2.25rem 0 3rem}
+@media(min-width:992px){.h2-hero{padding:4rem 0 5rem}}
 .h2-due{display:grid;gap:2.25rem}
 @media(min-width:992px){.h2-due{grid-template-columns:1.05fr .95fr;gap:3.5rem;align-items:start}}
 .h2-due>*{min-width:0}
 .h2-lead{font-size:clamp(1.0625rem,2vw,1.25rem);line-height:1.55;color:var(--ink-2);max-width:36em;margin:0}
 .h2-az{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.75rem}
-.h2-btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;min-height:3rem;padding:.8rem 1.35rem;border:1px solid var(--rule);border-radius:8px;background:transparent;color:var(--ink);font:700 1rem 'Archivo',system-ui,sans-serif;text-decoration:none;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
-.h2-btn:hover{border-color:var(--ink);background:var(--sheet)}
+.h2-btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;min-height:3rem;padding:.8rem 1.35rem;border:1px solid #C3CBD6;border-radius:8px;background:transparent;color:var(--ink);font-weight:700;font-size:1rem;text-decoration:none;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
+.h2-btn:hover{border-color:var(--az);background:#fff}
 .h2-btn:active{transform:scale(.98)}
-.h2-btn.pri{background:var(--amber);border-color:var(--amber);color:var(--amber-ink)}
-.h2-btn.pri:hover{background:#F7C655;border-color:#F7C655}
+.h2-btn.pri{background:var(--az);border-color:var(--az);color:var(--az-ink)}
+.h2-btn.pri:hover{background:#1B3A5C;border-color:#1B3A5C}
 .h2-gar{list-style:none;margin:1.6rem 0 0;padding:0;display:grid;gap:.45rem}
 .h2-gar li{display:flex;gap:.6rem;align-items:center;font-size:.9375rem;font-weight:600}
-.h2-gar li::before{content:"";width:.9rem;height:.5rem;border:solid #1B6B45;border-width:0 0 2.5px 2.5px;transform:rotate(-45deg) translateY(-2px);flex:none}
-.h2-vet{background:var(--sheet);border:1px solid #E2E4E5;border-radius:14px;padding:.5rem;box-shadow:0 18px 40px -24px rgba(21,24,27,.35)}
-.h2-vet h2{font-size:.875rem!important;font-stretch:100%!important;font-weight:700!important;letter-spacing:0!important;color:var(--ink-3);padding:.8rem .9rem .6rem;line-height:1.3!important}
+.h2-gar li::before,.h2-carta.chiara li::before{content:"";width:.9rem;height:.5rem;border:solid var(--pos,#1E6B4A);border-width:0 0 2.5px 2.5px;transform:rotate(-45deg) translateY(-2px);flex:none}
+.h2-vet{background:#fff;border:1px solid var(--bordo);border-radius:14px;padding:.5rem;box-shadow:0 18px 40px -24px rgba(14,27,44,.35)}
+.h2-vet h2{font-size:.9375rem!important;font-family:'Instrument Sans',system-ui,sans-serif!important;font-weight:700!important;letter-spacing:0!important;color:var(--ink-3)!important;padding:.8rem .9rem .6rem;line-height:1.3!important}
 .h2-vet a{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.9rem;border-radius:10px;text-decoration:none;color:var(--ink);transition:background .15s}
 .h2-vet a:hover{background:var(--paper)}
-.h2-vet a b{display:block;font-size:1.125rem;font-weight:800;font-stretch:85%}
+.h2-vet a b{display:block;font-size:1.125rem;font-weight:700}
 .h2-vet a span{font-size:.875rem;color:var(--ink-2)}
-.h2-vet a em{font-style:normal;font-weight:800;font-size:1.0625rem;text-align:right;white-space:nowrap}
+.h2-vet a em{font-style:normal;font-weight:700;font-size:1.0625rem;text-align:right;white-space:nowrap}
 .h2-vet a em small{display:block;font-size:.75rem;font-weight:400;color:var(--ink-3)}
-.h2-vet a em.gr{color:#1B6B45}
-.h2-vet a.primo{background:var(--amber);color:var(--amber-ink)}
-.h2-vet a.primo:hover{background:#F7C655}
-.h2-vet a.primo span,.h2-vet a.primo em small{color:#5A4100}
-.h2-sez{padding:3.25rem 0;background:var(--paper)}
-.h2-sez.alt{background:var(--sheet)}
+.h2-vet a em.gr{color:var(--pos,#1E6B4A)}
+.h2-vet a.primo{background:var(--az);color:#fff}
+.h2-vet a.primo:hover{background:#1B3A5C}
+.h2-vet a.primo b,.h2-vet a.primo em{color:#fff}
+.h2-vet a.primo span,.h2-vet a.primo em small{color:var(--chiaro)}
+.h2-sez{padding:3.25rem 0}
+.h2-sez.alt{background:#fff}
 @media(min-width:992px){.h2-sez{padding:5rem 0}}
 .h2-t{display:grid;gap:.75rem;margin-bottom:2rem}
 @media(min-width:992px){.h2-t{grid-template-columns:1fr 1fr;align-items:end;gap:2.5rem}}
+.h2-t h2{max-width:none!important}
 .h2-t p{color:var(--ink-2);max-width:34em;margin:0;font-size:1.0625rem}
+/* ecosistema */
+.h2-eco{display:grid;gap:0;border:1px solid var(--bordo);border-radius:14px;background:#fff;overflow:hidden}
+@media(min-width:992px){.h2-eco{grid-template-columns:repeat(5,1fr)}}
+.h2-eco a{position:relative;display:grid;gap:.45rem;align-content:start;padding:1.25rem 1.1rem 1.35rem;border-bottom:1px solid var(--bordo);text-decoration:none;color:var(--ink);min-width:0;transition:background .15s}
+.h2-eco a:last-child{border-bottom:0}
+@media(min-width:992px){.h2-eco a{border-bottom:0;border-right:1px solid var(--bordo)}.h2-eco a:last-child{border-right:0}}
+.h2-eco a:hover{background:var(--paper)}
+.h2-eco .fase{font-size:.8125rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold,#8A6420);display:flex;justify-content:space-between;gap:.5rem;align-items:center}
+.h2-eco .st{font-size:.6875rem;letter-spacing:.04em;padding:.2rem .4rem;border:1px solid currentColor;border-radius:3px;color:var(--pos,#1E6B4A);white-space:nowrap}
+.h2-eco .st.pre{color:var(--gold,#8A6420)}
+.h2-eco h3{font-size:1.6rem}
+.h2-eco p{margin:0;font-size:.9375rem;color:var(--ink-2)}
+.h2-eco .va{margin-top:.3rem;font-weight:700}
+.h2-eco a.fut{background:repeating-linear-gradient(135deg,transparent 0 9px,rgba(14,27,44,.04) 9px 10px)}
+.h2-ciclo{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;margin-top:1.25rem;font-size:1rem;color:var(--ink-2)}
+.h2-ciclo b{color:var(--ink)}
+/* passi, carte */
 .h2-passi{list-style:none;margin:0;padding:0;counter-reset:p;display:grid;gap:1rem}
 @media(min-width:800px){.h2-passi{grid-template-columns:repeat(3,1fr)}}
-.h2-passi li{counter-increment:p;display:grid;gap:.4rem;align-content:start;background:var(--paper);border:1px solid #E2E4E5;border-radius:12px;padding:1.4rem}
-.h2-passi li::before{content:counter(p);display:grid;place-items:center;width:2.4rem;height:2.4rem;border-radius:50%;background:var(--amber);color:var(--amber-ink);font:800 1.15rem 'Archivo',sans-serif;margin-bottom:.5rem}
-.h2-passi b{font-size:1.125rem;font-weight:800}
+.h2-passi li{counter-increment:p;display:grid;gap:.4rem;align-content:start;background:#fff;border:1px solid var(--bordo);border-radius:12px;padding:1.4rem}
+.h2-passi li::before{content:counter(p);display:grid;place-items:center;width:2.4rem;height:2.4rem;border-radius:50%;background:var(--az);color:#fff;font:700 1.1rem 'Instrument Sans',sans-serif;margin-bottom:.5rem}
+.h2-passi b{font-size:1.125rem;font-weight:700}
 .h2-passi p{margin:0;font-size:.9375rem;color:var(--ink-2)}
 .h2-passi a{margin-top:.4rem;font-weight:700;color:var(--ink);text-decoration:none}
 .h2-carte{display:grid;gap:1rem}
 @media(min-width:700px){.h2-carte{grid-template-columns:repeat(2,1fr)}}
 @media(min-width:1120px){.h2-carte{grid-template-columns:repeat(6,1fr)}.h2-carte .h2-carta{grid-column:span 2}.h2-carte .h2-carta.pro{grid-column:span 4}}
-.h2-carta{display:grid;gap:.5rem;align-content:start;background:var(--sheet);border:1px solid #E2E4E5;border-radius:12px;padding:1.4rem;text-decoration:none;color:var(--ink);min-width:0}
+.h2-carta{display:grid;gap:.5rem;align-content:start;background:#fff;border:1px solid var(--bordo);border-radius:12px;padding:1.4rem;text-decoration:none;color:var(--ink);min-width:0}
 .h2-carta p{margin:0;font-size:.9375rem;color:var(--ink-2)}
 .h2-carte .h2-carta{grid-template-rows:auto auto 1fr auto auto}
-.h2-carta small{font-size:.8125rem;font-weight:700;color:var(--amber-deep)}
-.h2-carta .costo{font-weight:800;font-size:1.9rem;font-stretch:85%;line-height:1;margin-top:.5rem}
-.h2-carta .costo em{font-style:normal;font-size:.8125rem;font-weight:400;font-stretch:100%;color:var(--ink-3);margin-left:.5rem}
+.h2-carta small{font-size:.8125rem;font-weight:700;color:var(--gold,#8A6420)}
+.h2-carta .costo{font-weight:700;font-size:1.9rem;line-height:1;margin-top:.5rem}
+.h2-carta .costo em{font-style:normal;font-size:.8125rem;font-weight:400;color:var(--ink-3);margin-left:.5rem}
 .h2-carta .h2-btn{margin-top:.6rem;justify-self:start;border-color:var(--ink)}
-.h2-carta .h2-btn.pri{border-color:var(--amber)}
-.h2-carta.pro{background:#101315;border-color:#101315;color:#ECEEEC}
-.h2-carta.pro p,.h2-carta.pro .costo em{color:#9AA2A8}
-.h2-carta.pro small{color:var(--amber)}
-.h2-carta.pro h3{color:#ECEEEC}
-#home .h2-t h2{max-width:none}
-.h2-sez.nera{background:#101315;color:#ECEEEC}
-.h2-sez.nera h2{color:#ECEEEC}
-.h2-sez.nera .h2-t p{color:#9AA2A8}
+.h2-carta .h2-btn.pri{border-color:var(--az)}
+.h2-carta.pro{background:var(--az);border-color:var(--az);color:#fff}
+.h2-carta.pro p,.h2-carta.pro .costo em{color:var(--chiaro)}
+.h2-carta.pro small{color:#E6C98A}
+.h2-carta.pro h3{color:#fff!important}
+.h2-carta.pro .h2-btn.pri{background:#fff;color:var(--az);border-color:#fff}
+.h2-sez.nera{background:var(--az);color:#fff}
+.h2-sez.nera h2{color:#fff!important}
+.h2-sez.nera .h2-t p{color:var(--chiaro)}
 .h2-tre{display:grid;gap:1rem}
 @media(min-width:800px){.h2-tre{grid-template-columns:repeat(3,1fr)}}
-.h2-sez.nera .h2-carta{background:#181C1F;border-color:#2E353A;color:#ECEEEC;transition:border-color .2s,transform .25s}
-.h2-sez.nera .h2-carta:hover{border-color:var(--amber);transform:translateY(-2px)}
-.h2-sez.nera .h2-carta h3{color:#ECEEEC}
-.h2-sez.nera .h2-carta p{color:#9AA2A8}
-.h2-sez.nera .h2-carta .va{color:var(--amber);font-weight:700}
+.h2-sez.nera .h2-carta{background:#1B3A5C;border-color:#2D5B8A;color:#fff;transition:border-color .2s,transform .25s}
+.h2-sez.nera .h2-carta:hover{border-color:#fff;transform:translateY(-2px)}
+.h2-sez.nera .h2-carta h3{color:#fff!important}
+.h2-sez.nera .h2-carta p{color:var(--chiaro)}
+.h2-sez.nera .h2-carta .va{color:#fff;font-weight:700}
 .h2-col{display:grid;gap:1.1rem;align-content:start}
 .h2-col .h2-az{margin-top:.25rem}
 .h2-nota{font-size:.875rem;color:var(--ink-3);margin:0}
 .h2-carta.chiara h3{margin-bottom:.4rem}
 .h2-carta.chiara ul{list-style:none;margin:0;padding:0}
-.h2-carta.chiara li{display:flex;gap:.7rem;padding:.7rem 0;border-bottom:1px solid #E2E4E5;font-size:1rem}
+.h2-carta.chiara li{display:flex;gap:.7rem;padding:.7rem 0;border-bottom:1px solid var(--bordo);font-size:1rem}
 .h2-carta.chiara li:last-child{border-bottom:0}
-.h2-carta.chiara li::before{content:"";flex:none;width:.9rem;height:.5rem;border:solid #1B6B45;border-width:0 0 2.5px 2.5px;transform:rotate(-45deg);margin-top:.5em}
+.h2-carta.chiara li::before{margin-top:.5em}
+/* striscia dei mercati, sotto il menu, su tutte le pagine */
+#striscia{background:var(--navy,#12263F);color:#fff;overflow:hidden;font:400 .8125rem/1 'JetBrains Mono','Martian Mono',ui-monospace,monospace;border-top:1px solid rgba(255,255,255,.08)}
+#striscia .rotola{display:flex;width:max-content;animation:rotola 55s linear infinite}
+#striscia:hover .rotola{animation-play-state:paused}
+#striscia .gr{display:flex;flex:none}
+#striscia .v{display:flex;align-items:center;gap:.5rem;padding:.7rem 1.4rem;border-right:1px solid rgba(255,255,255,.12);white-space:nowrap}
+#striscia b{font-weight:400;color:#AEBBCB}
+#striscia .su{color:#6FD3A4}#striscia .giu{color:#FF8E82}#striscia .am{color:#E6C98A}
+#striscia .sp{width:.45rem;height:.45rem;border-radius:50%;background:#6FD3A4}
+#striscia .sp.off{background:#7C8AA0}
+@keyframes rotola{to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){#striscia{overflow-x:auto}#striscia .rotola{animation:none}#striscia .gr+.gr{display:none}}
 </style>
 <link rel="stylesheet" href="/serio.css?v=5">
 <script>
@@ -2371,6 +2402,7 @@ body.fuori-home #vaiHome{display:inline-flex}
     <a href="/download.html" class="sb-clienti"><b>Area clienti</b><span>i tuoi acquisti</span><i aria-hidden="true">→</i></a>
   </div></div>
 </nav>
+<div id="striscia" aria-label="Mercati e prossimo dato USA"><div class="rotola" id="rotola"></div></div>
 <script>function chiudiMenu(){const m=document.getElementById('menu-mobile');if(m)m.hidden=true;const b=document.querySelector('.apri-menu');if(b)b.setAttribute('aria-expanded','false');}</script>
 
 <div class="z">
@@ -2402,7 +2434,19 @@ body.fuori-home #vaiHome{display:inline-flex}
     </div>
   </div></section>
 
-  <section class="h2-sez alt"><div class="h2w">
+  <section class="h2-sez alt" id="ecosistema"><div class="h2w">
+    <div class="h2-t"><h2>Riskly è un sistema, non un catalogo.</h2><p>Cinque parti collegate per gestire il rischio prima, durante e dopo ogni operazione. Puoi usarne una sola: più ne usi, più il quadro è completo.</p></div>
+    <div class="h2-eco">
+      <a href="https://news.riskly.trade"><div class="fase"><span>1 · Impara</span><span class="st">ATTIVO</span></div><h3>News e Corsi</h3><p>Ogni mattina cosa muove oro, dollaro e tassi. Videocorso sulla gestione del rischio.</p><span class="va">Leggi →</span></a>
+      <a href="https://strumenti.riskly.trade/#posizione"><div class="fase"><span>2 · Misura</span><span class="st">ATTIVO</span></div><h3>Strumenti</h3><p>Calcolatori, simulazioni e calendario. Gratis, anche senza account.</p><span class="va">Calcola →</span></a>
+      <a href="#" onclick="go('bot');return false"><div class="fase"><span>3 · Applica</span><span class="st">ATTIVO</span></div><h3>Bot</h3><p>Le tue regole dentro MetaTrader 4 e 5. Ti fermano quando non lo faresti.</p><span class="va">Confronta →</span></a>
+      <a href="#" onclick="vaiA('journal','pz-journal');return false"><div class="fase"><span>4 · Migliora</span><span class="st">ATTIVO</span></div><h3>Journal</h3><p>Le operazioni arrivano dai bot. Statistiche ed errori, senza scrivere a mano.</p><span class="va">Apri →</span></a>
+      <a class="fut" href="#" onclick="apriModulo('attesa','Monitor',0);return false"><div class="fase"><span>5 · Controlla</span><span class="st pre">IN ARRIVO</span></div><h3>Monitor</h3><p>Tutti i tuoi conti in un pannello: esposizione, drawdown, limiti, avvisi.</p><span class="va">Avvisami →</span></a>
+    </div>
+    <p class="h2-ciclo"><span><b>Prima</b> decidi quanto rischiare</span><span><b>Durante</b> i bot applicano le regole</span><span><b>Dopo</b> il journal misura se le hai rispettate</span></p>
+  </div></section>
+
+  <section class="h2-sez"><div class="h2w">
     <div class="h2-t"><h2>Comprare un bot, in tre passi.</h2><p>Sai sempre cosa stai pagando e cosa succede dopo.</p></div>
     <ol class="h2-passi">
       <li><b>Scegli quello che ti serve</b><p>Dici cosa vuoi che faccia e ti indichiamo il bot giusto. Ogni scheda spiega cosa fa e cosa non fa.</p><a href="#" onclick="go('bot');return false">Trova il tuo strumento →</a></li>
@@ -2411,7 +2455,7 @@ body.fuori-home #vaiHome{display:inline-flex}
     </ol>
   </div></section>
 
-  <section class="h2-sez"><div class="h2w">
+  <section class="h2-sez alt"><div class="h2w">
     <div class="h2-t"><h2>I nostri bot.</h2><p>Prezzi di lancio. Ognuno fa una cosa precisa, Riskly Pro le fa tutte.</p></div>
     <div class="h2-carte">
       <div class="h2-carta"><small>Ti ferma dopo le perdite</small><h3>RiskGuard</h3><p>Dopo N perdite di fila, il numero lo scegli tu, blocca le nuove operazioni e chiude MetaTrader fino a mezzanotte.</p><div class="costo">99 €<em>una volta · poi 149 €</em></div><a class="h2-btn" href="#" onclick="go('bot');return false">Vedi RiskGuard →</a></div>
@@ -6942,6 +6986,51 @@ document.addEventListener('play', e => { if(e.target.tagName !== 'VIDEO') return
     const prog = card.querySelector('details.programma');
     (prog || b).insertAdjacentElement('afterend', d);
   });
+})();
+
+/* striscia dei mercati: prezzi e prossimo dato USA, aggiornati ogni minuto. Se i dati non arrivano resta solo il conto alla rovescia. */
+(function(){
+  var SIMB = [['XAU/USD','GC%3DF',2],['DXY','DX-Y.NYB',2],['US 10A','%5ETNX',3],['EUR/USD','EURUSD%3DX',4]];
+  var box = document.getElementById('rotola'); if(!box) return;
+  var dati = {}, prox = null;
+  function fmt(v, d){ return v.toLocaleString('it-IT', { minimumFractionDigits: d, maximumFractionDigits: d }); }
+  function sessione(){
+    var h = new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Rome' })), t = h.getHours() + h.getMinutes() / 60, g = h.getDay();
+    if(g >= 1 && g <= 5){ if(t >= 1 && t < 9) return ['ASIA APERTA', 1]; if(t >= 9 && t < 15.5) return ['LONDRA APERTA', 1]; if(t >= 15.5 && t < 17.5) return ['LONDRA + NEW YORK', 1]; if(t >= 17.5 && t < 22) return ['NEW YORK APERTA', 1]; }
+    return ['MERCATI CHIUSI', 0];
+  }
+  function cd(){
+    if(!prox) return '';
+    var x = Math.max(0, Math.floor((prox.t - Date.now()) / 1000));
+    if(!x) return 'USCITO';
+    var g = Math.floor(x / 86400), h = Math.floor(x % 86400 / 3600), m = Math.floor(x % 3600 / 60), s = x % 60, p = function(n){ return String(n).padStart(2, '0'); };
+    return (g ? g + 'g ' : '') + p(h) + ':' + p(m) + ':' + p(s);
+  }
+  function giro(){
+    var se = sessione(), v = ['<span class="v"><span class="sp' + (se[1] ? '' : ' off') + '"></span><b>MERCATI</b>' + se[0] + '</span>'];
+    SIMB.forEach(function(s){ var d = dati[s[0]]; if(!d) return;
+      var tasso = s[0] === 'US 10A', ch = tasso ? (d.p - d.c) * 100 : (d.p / d.c - 1) * 100, cl = ch >= 0 ? 'su' : 'giu';
+      v.push('<span class="v"><b>' + s[0] + '</b>' + fmt(d.p, s[2] === 3 ? 2 : s[2]) + (tasso ? '%' : '') + '<span class="' + cl + '">' + (ch >= 0 ? '+' : '−') + fmt(Math.abs(ch), tasso ? 0 : 2) + (tasso ? ' pb' : '%') + '</span></span>'); });
+    if(prox){ var d = new Date(prox.t), gg = d.toLocaleDateString('it-IT', { weekday: 'short', timeZone: 'Europe/Rome' }).toUpperCase().replace('.', ''), hh = d.toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Rome' });
+      v.push('<span class="v"><b>PROSSIMO DATO</b><span class="am">' + prox.n + ' · ' + gg + ' ' + hh + '</span><span class="am">' + cd() + '</span></span>'); }
+    var uno = '<div class="gr">' + v.join('') + '</div>';
+    box.innerHTML = uno + uno.replace(/class="gr"/, 'class="gr" aria-hidden="true"');
+  }
+  var NOMI = { 'CPI': 'CPI USA', 'Core CPI': 'CPI core USA', 'PPI': 'PPI USA', 'Nonfarm Payrolls': 'Payrolls USA', 'Retail Sales': 'Vendite al dettaglio USA', 'Interest Rate Decision': 'Decisione Fed', 'Unemployment Rate': 'Disoccupazione USA', 'GDP': 'PIL USA', 'Core PCE Price Index': 'PCE core USA' };
+  function nome(t){ for(var k in NOMI){ if(t.indexOf(k) === 0) return NOMI[k]; } return t.length > 28 ? t.slice(0, 26) + '…' : t; }
+  function carica(){
+    SIMB.forEach(function(s){
+      fetch('/api/mercato/' + s[1], { cache: 'no-store' }).then(function(r){ return r.json(); }).then(function(j){
+        var m = j.chart.result[0].meta; dati[s[0]] = { p: m.regularMarketPrice, c: m.chartPreviousClose }; giro();
+      }).catch(function(){});
+    });
+    var da = new Date(), a = new Date(Date.now() + 7 * 864e5);
+    fetch('/api/calendario?from=' + da.toISOString() + '&to=' + a.toISOString() + '&countries=US', { cache: 'no-store' }).then(function(r){ return r.json(); }).then(function(j){
+      var ev = (j.result || []).filter(function(e){ return e.importance === 1 && Date.parse(e.date) > Date.now(); }).sort(function(x, y){ return Date.parse(x.date) - Date.parse(y.date); })[0];
+      if(ev) prox = { t: Date.parse(ev.date), n: nome(ev.title) }; giro();
+    }).catch(function(){});
+  }
+  giro(); carica(); setInterval(carica, 60000); setInterval(function(){ if(prox) giro(); }, 1000);
 })();
 </script>
 </body>
