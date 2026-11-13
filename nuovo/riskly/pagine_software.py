@@ -15,6 +15,8 @@ e = html.escape
 MQL5 = {'risklytrailing': ('205477', '205479'), 'riskguard': ('205467', '205470'), 'trademanager': ('205484', '205486'), 'scalein': ('205481', '205483'),
         'riskly-pro': ('205282', '205462'), 'risklycopy': ('205472', '205475')}
 MQL5_URL = 'https://www.mql5.com/it/market/product/'
+# come si chiamano oggi su MQL5, quando il nome è diverso da quello del sito
+MQL5_NOME = {'trademanager': 'RisklyManager', 'scalein': 'RisklyScalen', 'riskly-pro': 'RisklyPro'}
 
 LIMITI = [
     "Funziona solo con MetaTrader aperto sul computer o su una VPS. Se il computer è spento o MetaTrader è chiuso, il software non agisce: per lasciarlo sempre attivo serve una VPS.",
@@ -156,7 +158,8 @@ def bottoni(p):
     if m:
         return (f'<a class="btn pri" href="{MQL5_URL}{m[0]}" target="_blank" rel="noopener" data-mql5="{e(p["nome"])}">Acquista su MQL5 · MetaTrader 5</a>'
                 f'<a class="btn" style="width:100%;margin-top:8px" href="{MQL5_URL}{m[1]}" target="_blank" rel="noopener" data-mql5="{e(p["nome"])}">Acquista su MQL5 · MetaTrader 4</a>'
-                '<p class="nota">Acquisto su MQL5, il negozio ufficiale di MetaTrader: serve un account MQL5 gratuito. Il prezzo è in dollari; licenza, installazione e aggiornamenti passano da MetaTrader. Per aiuto scrivi a info@riskly.trade.</p>')
+                + (f'<p class="nota"><b>Su MQL5 si chiama {MQL5_NOME[p["slug"]]}</b> (versione MT5 e MT4).</p>' if p['slug'] in MQL5_NOME else '')
+                + '<p class="nota">Acquisto su MQL5, il negozio ufficiale di MetaTrader: serve un account MQL5 gratuito. Il prezzo è in dollari; licenza, installazione e aggiornamenti passano da MetaTrader. Per aiuto scrivi a info@riskly.trade.</p>')
     return (f'<a class="btn pri" {stripe}>Acquista {e(p["nome"])} · {p["prezzo"]} €</a>'
             '<p class="nota">Pagamento sicuro con Stripe. Ti serve un account Riskly gratuito: prima del pagamento accetti i termini.</p>')
 

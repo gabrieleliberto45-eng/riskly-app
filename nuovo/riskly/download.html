@@ -169,7 +169,7 @@ input,select,textarea{border-radius:3px!important}
         <div class="sub" id="sconto-testo"></div>
         <div id="sconto-codice" class="codice"></div>
       </div>
-      <div class="grp vant" id="premium-box">
+      <div class="grp vant" id="premium-box" hidden>
         <div class="vant-testa"><h3>30% di sconto sui bot</h3><span class="stato" id="premium-stato"></span></div>
         <div class="sub" id="premium-testo"></div>
         <div id="premium-codice" class="codice"></div>
@@ -333,11 +333,13 @@ input,select,textarea{border-radius:3px!important}
     if(haCorso) imposta('sconto', false, 'Hai già il corso di gestione del rischio, quindi questo sconto non ti serve.');
     else if(haBot && cod1) imposta('sconto', true, 'Hai un software Riskly: con questo codice il corso di gestione del rischio costa la metà. Inseriscilo nella pagina di pagamento, alla voce "Aggiungi codice promozionale".', cod1);
     else imposta('sconto', false, 'Si attiva quando acquisti uno dei bot Riskly: da quel momento il corso di gestione del rischio costa la metà.');
-    /* 30% sui bot: per chi ha il journal Premium */
+    /* 30% sui bot per il journal Premium: tolto il 14 novembre 2026 (i software si comprano su MQL5, dove il codice non vale) */
+    if(false){
     let cod2 = '';
     if(journal && /premium/i.test(journal)){ try{ const { data } = await sb.rpc('codice_sconto_premium'); cod2 = data || ''; }catch(e){} }
     if(cod2) imposta('premium', true, 'Hai il journal Premium: con questo codice RiskGuard, TradeManager, ScaleIn e Riskly Pro costano il 30% in meno. Inseriscilo nella pagina di pagamento, alla voce "Aggiungi codice promozionale". Vale finché il piano Premium è attivo.', cod2);
     else imposta('premium', false, 'Si attiva con il piano Premium del journal: finché è attivo, tutti i bot costano il 30% in meno.');
+    }
     document.getElementById('vantaggi').style.display = 'block';
   }
 
