@@ -2228,6 +2228,88 @@ body.fuori-home #vaiHome{display:inline-flex}
 .trova-sug b{display:block;font-size:1.05rem}.trova-sug span{color:var(--ink-2,#4B525A);font-size:.92rem}
 .trova-sug .btn{white-space:nowrap}
 .scheda-extra details{margin-top:8px}.page:not(.nh) .bot .scheda-extra .no li::before{content:'—'!important;border:0!important;transform:none!important;width:auto;height:auto;top:9px;color:var(--ink-3,#5E656D)}.scheda-extra ol{list-style:none;margin-left:0!important;counter-reset:pas}.scheda-extra ol li{counter-increment:pas}.page:not(.nh) .bot .scheda-extra ol li::before{content:counter(pas)'.'!important;border:0!important;transform:none!important;width:auto;height:auto;top:9px;font-weight:700}.scheda-extra ul,.scheda-extra ol{margin:8px 0 4px 18px;font-size:.92rem;line-height:1.5}.scheda-extra li{margin:3px 0}
+
+/* ══ NUOVA HOME (13 novembre 2026): blocchi separati, un solo colore per l'azione ══ */
+#home .h2w{max-width:76rem;margin:0 auto;padding:0 max(16px,env(safe-area-inset-left,0px))}
+@media(min-width:768px){#home .h2w{padding:0 32px}}
+#home h1,#home h2,#home h3{font-family:'Archivo',system-ui,sans-serif;font-stretch:74%;font-weight:800;letter-spacing:-.028em;line-height:1;text-wrap:balance;margin:0}
+#home h1{font-size:clamp(2.6rem,6.6vw,4.6rem);line-height:.94;letter-spacing:-.035em;margin-bottom:1.3rem}
+#home h2{font-size:clamp(2rem,5vw,3.25rem)}
+#home h3{font-size:1.6rem;font-stretch:80%;letter-spacing:-.018em;line-height:1.1}
+.h2-hero{padding:2.5rem 0 3rem;background:var(--paper)}
+@media(min-width:992px){.h2-hero{padding:4.5rem 0 5rem}}
+.h2-due{display:grid;gap:2.25rem}
+@media(min-width:992px){.h2-due{grid-template-columns:1.05fr .95fr;gap:3.5rem;align-items:start}}
+.h2-due>*{min-width:0}
+.h2-lead{font-size:clamp(1.0625rem,2vw,1.25rem);line-height:1.55;color:var(--ink-2);max-width:36em;margin:0}
+.h2-az{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.75rem}
+.h2-btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;min-height:3rem;padding:.8rem 1.35rem;border:1px solid var(--rule);border-radius:8px;background:transparent;color:var(--ink);font:700 1rem 'Archivo',system-ui,sans-serif;text-decoration:none;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
+.h2-btn:hover{border-color:var(--ink);background:var(--sheet)}
+.h2-btn:active{transform:scale(.98)}
+.h2-btn.pri{background:var(--amber);border-color:var(--amber);color:var(--amber-ink)}
+.h2-btn.pri:hover{background:#F7C655;border-color:#F7C655}
+.h2-gar{list-style:none;margin:1.6rem 0 0;padding:0;display:grid;gap:.45rem}
+.h2-gar li{display:flex;gap:.6rem;align-items:center;font-size:.9375rem;font-weight:600}
+.h2-gar li::before{content:"";width:.9rem;height:.5rem;border:solid #1B6B45;border-width:0 0 2.5px 2.5px;transform:rotate(-45deg) translateY(-2px);flex:none}
+.h2-vet{background:var(--sheet);border:1px solid #E2E4E5;border-radius:14px;padding:.5rem;box-shadow:0 18px 40px -24px rgba(21,24,27,.35)}
+.h2-vet h2{font-size:.875rem!important;font-stretch:100%!important;font-weight:700!important;letter-spacing:0!important;color:var(--ink-3);padding:.8rem .9rem .6rem;line-height:1.3!important}
+.h2-vet a{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.9rem;border-radius:10px;text-decoration:none;color:var(--ink);transition:background .15s}
+.h2-vet a:hover{background:var(--paper)}
+.h2-vet a b{display:block;font-size:1.125rem;font-weight:800;font-stretch:85%}
+.h2-vet a span{font-size:.875rem;color:var(--ink-2)}
+.h2-vet a em{font-style:normal;font-weight:800;font-size:1.0625rem;text-align:right;white-space:nowrap}
+.h2-vet a em small{display:block;font-size:.75rem;font-weight:400;color:var(--ink-3)}
+.h2-vet a em.gr{color:#1B6B45}
+.h2-vet a.primo{background:var(--amber);color:var(--amber-ink)}
+.h2-vet a.primo:hover{background:#F7C655}
+.h2-vet a.primo span,.h2-vet a.primo em small{color:#5A4100}
+.h2-sez{padding:3.25rem 0;background:var(--paper)}
+.h2-sez.alt{background:var(--sheet)}
+@media(min-width:992px){.h2-sez{padding:5rem 0}}
+.h2-t{display:grid;gap:.75rem;margin-bottom:2rem}
+@media(min-width:992px){.h2-t{grid-template-columns:1fr 1fr;align-items:end;gap:2.5rem}}
+.h2-t p{color:var(--ink-2);max-width:34em;margin:0;font-size:1.0625rem}
+.h2-passi{list-style:none;margin:0;padding:0;counter-reset:p;display:grid;gap:1rem}
+@media(min-width:800px){.h2-passi{grid-template-columns:repeat(3,1fr)}}
+.h2-passi li{counter-increment:p;display:grid;gap:.4rem;align-content:start;background:var(--paper);border:1px solid #E2E4E5;border-radius:12px;padding:1.4rem}
+.h2-passi li::before{content:counter(p);display:grid;place-items:center;width:2.4rem;height:2.4rem;border-radius:50%;background:var(--amber);color:var(--amber-ink);font:800 1.15rem 'Archivo',sans-serif;margin-bottom:.5rem}
+.h2-passi b{font-size:1.125rem;font-weight:800}
+.h2-passi p{margin:0;font-size:.9375rem;color:var(--ink-2)}
+.h2-passi a{margin-top:.4rem;font-weight:700;color:var(--ink);text-decoration:none}
+.h2-carte{display:grid;gap:1rem}
+@media(min-width:700px){.h2-carte{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1120px){.h2-carte{grid-template-columns:repeat(6,1fr)}.h2-carte .h2-carta{grid-column:span 2}.h2-carte .h2-carta.pro{grid-column:span 4}}
+.h2-carta{display:grid;gap:.5rem;align-content:start;background:var(--sheet);border:1px solid #E2E4E5;border-radius:12px;padding:1.4rem;text-decoration:none;color:var(--ink);min-width:0}
+.h2-carta p{margin:0;font-size:.9375rem;color:var(--ink-2)}
+.h2-carte .h2-carta{grid-template-rows:auto auto 1fr auto auto}
+.h2-carta small{font-size:.8125rem;font-weight:700;color:var(--amber-deep)}
+.h2-carta .costo{font-weight:800;font-size:1.9rem;font-stretch:85%;line-height:1;margin-top:.5rem}
+.h2-carta .costo em{font-style:normal;font-size:.8125rem;font-weight:400;font-stretch:100%;color:var(--ink-3);margin-left:.5rem}
+.h2-carta .h2-btn{margin-top:.6rem;justify-self:start;border-color:var(--ink)}
+.h2-carta .h2-btn.pri{border-color:var(--amber)}
+.h2-carta.pro{background:#101315;border-color:#101315;color:#ECEEEC}
+.h2-carta.pro p,.h2-carta.pro .costo em{color:#9AA2A8}
+.h2-carta.pro small{color:var(--amber)}
+.h2-carta.pro h3{color:#ECEEEC}
+#home .h2-t h2{max-width:none}
+.h2-sez.nera{background:#101315;color:#ECEEEC}
+.h2-sez.nera h2{color:#ECEEEC}
+.h2-sez.nera .h2-t p{color:#9AA2A8}
+.h2-tre{display:grid;gap:1rem}
+@media(min-width:800px){.h2-tre{grid-template-columns:repeat(3,1fr)}}
+.h2-sez.nera .h2-carta{background:#181C1F;border-color:#2E353A;color:#ECEEEC;transition:border-color .2s,transform .25s}
+.h2-sez.nera .h2-carta:hover{border-color:var(--amber);transform:translateY(-2px)}
+.h2-sez.nera .h2-carta h3{color:#ECEEEC}
+.h2-sez.nera .h2-carta p{color:#9AA2A8}
+.h2-sez.nera .h2-carta .va{color:var(--amber);font-weight:700}
+.h2-col{display:grid;gap:1.1rem;align-content:start}
+.h2-col .h2-az{margin-top:.25rem}
+.h2-nota{font-size:.875rem;color:var(--ink-3);margin:0}
+.h2-carta.chiara h3{margin-bottom:.4rem}
+.h2-carta.chiara ul{list-style:none;margin:0;padding:0}
+.h2-carta.chiara li{display:flex;gap:.7rem;padding:.7rem 0;border-bottom:1px solid #E2E4E5;font-size:1rem}
+.h2-carta.chiara li:last-child{border-bottom:0}
+.h2-carta.chiara li::before{content:"";flex:none;width:.9rem;height:.5rem;border:solid #1B6B45;border-width:0 0 2.5px 2.5px;transform:rotate(-45deg);margin-top:.5em}
 </style>
 <link rel="stylesheet" href="/serio.css?v=5">
 <script>
@@ -2296,95 +2378,49 @@ body.fuori-home #vaiHome{display:inline-flex}
 <!-- ═══════════ HOME ═══════════ -->
 <div class="page on nh" id="home">
 
-  <div class="apertura hero-wow" id="apertura">
-    <canvas class="hero-cv" aria-hidden="true"></canvas>
-    <div class="wrap">
-      <div class="hero-testa">
-        <span class="hero-tag"><i></i>5 bot · videocorso · journal · strumenti gratis</span>
-        <h1>Il mercato non lo controlli. <span class="seconda"><mark>Tutto il resto sì.</mark></span></h1>
-        <p class="sotto">Bot, journal, calcolatori e corsi per gestire il rischio. In un posto solo. Niente segnali, niente promesse.</p>
+  <section class="h2-hero"><div class="h2w h2-due">
+    <div>
+      <h1>Proteggi il conto dagli errori che fai tu.</h1>
+      <p class="h2-lead">Riskly vende bot per MetaTrader 4 e 5 che fanno rispettare le tue regole: ti fermano dopo le perdite, mettono gli stop, gestiscono le uscite. Non aprono operazioni e non danno segnali.</p>
+      <div class="h2-az">
+        <a class="h2-btn pri" href="#" onclick="go('bot');return false">Vedi i bot, da 49 € <span aria-hidden="true">→</span></a>
+        <a class="h2-btn" href="https://strumenti.riskly.trade/#posizione">Prova gli strumenti gratis</a>
       </div>
-      <div class="tiles" role="navigation" aria-label="Cosa trovi su Riskly">
-          <a class="tile t-big" href="#" onclick="go('bot');return false">
-            <span class="tile-ic"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M12 3v3"/><rect x="4" y="6" width="16" height="12" rx="3"/><circle cx="9" cy="12" r="1.3"/><circle cx="15" cy="12" r="1.3"/><path d="M2 11v3M22 11v3M9 21h6"/></svg></span>
-            <span class="tile-badge">dal 23 ottobre</span>
-            <b>Bot per MT4 e MT5</b><span class="tile-d">Ti fermano dopo le perdite, gestiscono stop e lotto al posto tuo.</span>
-            <span class="tile-vai" aria-hidden="true">→</span>
-          </a>
-          <a class="tile t-big" href="#" onclick="vaiA('journal','pz-journal');return false">
-            <span class="tile-ic"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h11a3 3 0 0 1 3 3v15H8a3 3 0 0 1-3-3z"/><path d="M5 18a3 3 0 0 1 3-3h11"/><path d="M9 7h6M9 10.5h4"/></svg></span>
-            <span class="tile-badge">prova gratis</span>
-            <b>Journal</b><span class="tile-d">Misura winrate, drawdown e disciplina. I bot lo aggiornano da soli.</span>
-            <span class="tile-vai" aria-hidden="true">→</span>
-          </a>
-          <a class="tile t-big" href="https://strumenti.riskly.trade/#posizione">
-            <span class="tile-ic"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><path d="M8 6.5h8"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01M8.5 14.5h.01M12 14.5h.01M15.5 14.5h.01M8.5 18h.01M12 18h.01M15.5 18h.01"/></svg></span>
-            <span class="tile-badge">gratis</span>
-            <b>Calcolatori</b><span class="tile-d">Lotto giusto, rischio di rovina, prop firm, recupero del conto.</span>
-            <span class="tile-vai" aria-hidden="true">→</span>
-          </a>
-          <a class="tile " href="#" onclick="go('corso');return false">
-            <span class="tile-ic"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="13" rx="2.5"/><path d="M10 9l5 2.5-5 2.5z"/><path d="M8 21h8"/></svg></span>
-            <span class="tile-badge">disponibili</span>
-            <b>Videocorso</b><span class="tile-d">Gestione del rischio: 50 lezioni.</span>
-            <span class="tile-vai" aria-hidden="true">→</span>
-          </a>
-          <a class="tile " href="https://strumenti.riskly.trade/#calendario">
-            <span class="tile-ic"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/><path d="M7.5 13.5h.01M12 13.5h.01M16.5 13.5h.01M7.5 17h.01M12 17h.01"/></svg></span>
-            <span class="tile-badge">gratis</span>
-            <b>Calendario economico</b><span class="tile-d">I dati di oggi e della settimana, in diretta.</span>
-            <span class="tile-vai" aria-hidden="true">→</span>
-          </a>
-          <a class="tile t-news" href="https://news.riskly.trade">
-            <span class="tile-ic"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><path d="M7.5 9h9M7.5 12.5h9M7.5 16h5"/></svg></span>
-            <span class="tile-badge">ogni giorno</span>
-            <b>Riskly News</b><span class="tile-d">Fed, tassi, dati USA e Setup XAU, con l'analisi appena esce il dato.</span>
-            <span class="tile-vai" aria-hidden="true">→</span>
-          </a>
-      </div>
+      <ul class="h2-gar">
+        <li>Paghi una volta, nessun abbonamento</li>
+        <li>Licenza a vita su MetaTrader 4 e 5</li>
+        <li>Ti aiutiamo a installarlo</li>
+      </ul>
     </div>
-  </div>
-
-
-  <div class="cifre" aria-label="Riskly in numeri">
-    <svg class="candele" viewBox="0 0 1200 150" preserveAspectRatio="none" aria-hidden="true" focusable="false"><g class="c" style="--i:0"><line x1="20.0" y1="15.2" x2="20.0" y2="32.2" stroke="#15181B" stroke-width="2.4"/><rect x="8.8" y="22.3" width="22.4" height="3.0" fill="#15181B"/></g><g class="c" style="--i:1"><line x1="60.0" y1="12.0" x2="60.0" y2="33.1" stroke="#B97C00" stroke-width="2.4"/><rect x="48.8" y="19.1" width="22.4" height="5.6" fill="#B97C00"/></g><g class="c" style="--i:2"><line x1="100.0" y1="13.9" x2="100.0" y2="45.1" stroke="#15181B" stroke-width="2.4"/><rect x="88.8" y="19.1" width="22.4" height="17.5" fill="#15181B"/></g><g class="c" style="--i:3"><line x1="140.0" y1="28.4" x2="140.0" y2="41.2" stroke="#15181B" stroke-width="2.4"/><rect x="128.8" y="36.6" width="22.4" height="3.0" fill="#15181B"/></g><g class="c" style="--i:4"><line x1="180.0" y1="34.7" x2="180.0" y2="50.5" stroke="#15181B" stroke-width="2.4"/><rect x="168.8" y="38.4" width="22.4" height="6.4" fill="#15181B"/></g><g class="c" style="--i:5"><line x1="220.0" y1="42.7" x2="220.0" y2="52.0" stroke="#15181B" stroke-width="2.4"/><rect x="208.8" y="44.8" width="22.4" height="3.7" fill="#15181B"/></g><g class="c" style="--i:6"><line x1="260.0" y1="40.2" x2="260.0" y2="66.9" stroke="#15181B" stroke-width="2.4"/><rect x="248.8" y="48.5" width="22.4" height="11.2" fill="#15181B"/></g><g class="c" style="--i:7"><line x1="300.0" y1="52.2" x2="300.0" y2="76.8" stroke="#15181B" stroke-width="2.4"/><rect x="288.8" y="59.6" width="22.4" height="14.2" fill="#15181B"/></g><g class="c" style="--i:8"><line x1="340.0" y1="71.0" x2="340.0" y2="78.5" stroke="#15181B" stroke-width="2.4"/><rect x="328.8" y="73.8" width="22.4" height="3.0" fill="#15181B"/></g><g class="c" style="--i:9"><line x1="380.0" y1="69.1" x2="380.0" y2="79.9" stroke="#B97C00" stroke-width="2.4"/><rect x="368.8" y="72.6" width="22.4" height="3.8" fill="#B97C00"/></g><g class="c" style="--i:10"><line x1="420.0" y1="58.0" x2="420.0" y2="76.6" stroke="#B97C00" stroke-width="2.4"/><rect x="408.8" y="66.0" width="22.4" height="6.7" fill="#B97C00"/></g><g class="c" style="--i:11"><line x1="460.0" y1="54.1" x2="460.0" y2="72.6" stroke="#B97C00" stroke-width="2.4"/><rect x="448.8" y="59.8" width="22.4" height="6.1" fill="#B97C00"/></g><g class="c" style="--i:12"><line x1="500.0" y1="51.4" x2="500.0" y2="79.7" stroke="#15181B" stroke-width="2.4"/><rect x="488.8" y="59.8" width="22.4" height="13.1" fill="#15181B"/></g><g class="c" style="--i:13"><line x1="540.0" y1="58.5" x2="540.0" y2="77.0" stroke="#B97C00" stroke-width="2.4"/><rect x="528.8" y="66.6" width="22.4" height="6.3" fill="#B97C00"/></g><g class="c" style="--i:14"><line x1="580.0" y1="63.5" x2="580.0" y2="78.8" stroke="#15181B" stroke-width="2.4"/><rect x="568.8" y="66.6" width="22.4" height="9.1" fill="#15181B"/></g><g class="c" style="--i:15"><line x1="620.0" y1="71.6" x2="620.0" y2="98.5" stroke="#15181B" stroke-width="2.4"/><rect x="608.8" y="75.7" width="22.4" height="16.6" fill="#15181B"/></g><g class="c" style="--i:16"><line x1="660.0" y1="85.7" x2="660.0" y2="114.8" stroke="#15181B" stroke-width="2.4"/><rect x="648.8" y="92.3" width="22.4" height="18.2" fill="#15181B"/></g><g class="c" style="--i:17"><line x1="700.0" y1="102.9" x2="700.0" y2="126.2" stroke="#15181B" stroke-width="2.4"/><rect x="688.8" y="110.5" width="22.4" height="10.4" fill="#15181B"/></g><g class="c" style="--i:18"><line x1="740.0" y1="115.6" x2="740.0" y2="138.0" stroke="#15181B" stroke-width="2.4"/><rect x="728.8" y="120.9" width="22.4" height="10.2" fill="#15181B"/></g><g class="c" style="--i:19"><line x1="780.0" y1="122.4" x2="780.0" y2="137.0" stroke="#15181B" stroke-width="2.4"/><rect x="768.8" y="131.1" width="22.4" height="3.6" fill="#15181B"/></g><g class="c" style="--i:20"><line x1="820.0" y1="113.0" x2="820.0" y2="136.9" stroke="#B97C00" stroke-width="2.4"/><rect x="808.8" y="120.8" width="22.4" height="13.9" fill="#B97C00"/></g><g class="c" style="--i:21"><line x1="860.0" y1="101.4" x2="860.0" y2="126.8" stroke="#B97C00" stroke-width="2.4"/><rect x="848.8" y="105.9" width="22.4" height="14.9" fill="#B97C00"/></g><g class="c" style="--i:22"><line x1="900.0" y1="103.6" x2="900.0" y2="114.0" stroke="#15181B" stroke-width="2.4"/><rect x="888.8" y="105.9" width="22.4" height="4.8" fill="#15181B"/></g><g class="c" style="--i:23"><line x1="940.0" y1="88.3" x2="940.0" y2="118.0" stroke="#B97C00" stroke-width="2.4"/><rect x="928.8" y="91.6" width="22.4" height="19.1" fill="#B97C00"/></g><g class="c" style="--i:24"><line x1="980.0" y1="64.7" x2="980.0" y2="96.0" stroke="#B97C00" stroke-width="2.4"/><rect x="968.8" y="73.1" width="22.4" height="18.5" fill="#B97C00"/></g><g class="c" style="--i:25"><line x1="1020.0" y1="63.6" x2="1020.0" y2="80.5" stroke="#B97C00" stroke-width="2.4"/><rect x="1008.8" y="69.2" width="22.4" height="3.9" fill="#B97C00"/></g><g class="c" style="--i:26"><line x1="1060.0" y1="62.1" x2="1060.0" y2="79.0" stroke="#15181B" stroke-width="2.4"/><rect x="1048.8" y="69.2" width="22.4" height="3.0" fill="#15181B"/></g><g class="c" style="--i:27"><line x1="1100.0" y1="52.5" x2="1100.0" y2="80.0" stroke="#B97C00" stroke-width="2.4"/><rect x="1088.8" y="54.8" width="22.4" height="16.7" fill="#B97C00"/></g><g class="c" style="--i:28"><line x1="1140.0" y1="50.5" x2="1140.0" y2="63.8" stroke="#15181B" stroke-width="2.4"/><rect x="1128.8" y="54.8" width="22.4" height="3.0" fill="#15181B"/></g><g class="c" style="--i:29"><line x1="1180.0" y1="35.0" x2="1180.0" y2="65.9" stroke="#B97C00" stroke-width="2.4"/><rect x="1168.8" y="39.4" width="22.4" height="18.2" fill="#B97C00"/></g><line class="stop" x1="0" y1="136.7" x2="1200" y2="136.7" stroke="#F2B83A" stroke-width="2.5" stroke-dasharray="9 7"/><text x="1192" y="128.7" text-anchor="end" font-family="Martian Mono, monospace" font-size="15" font-weight="700" fill="#B97C00">STOP −1%</text></svg>
-    <div class="wrap">
-      <div><b>5</b><span>bot per MT4 e MT5</span></div>
-      <div><b>1</b><span>videocorso</span></div>
-      <div><b>50</b><span>lezioni video</span></div>
-      <div><b>1</b><span>journal con i bot collegati</span></div>
-      <div><b>0€</b><span>calcolatori e calendario</span></div>
+    <div class="h2-vet" aria-label="Cosa trovi su Riskly">
+      <h2>Cosa trovi su Riskly</h2>
+      <a class="primo" href="#" onclick="go('bot');return false"><div><b>Bot per MetaTrader</b><span>Cinque software che applicano le tue regole</span></div><em>da 49 €<small>una volta</small></em></a>
+      <a href="#" onclick="vaiA('journal','pz-journal');return false"><div><b>Journal</b><span>Il diario che misura la tua disciplina</span></div><em>da 2,99 €<small>al mese · 7 giorni gratis</small></em></a>
+      <a href="https://news.riskly.trade"><div><b>Riskly News</b><span>Ogni mattina oro, dollaro e Fed</span></div><em>6,99 €<small>al mese</small></em></a>
+      <a href="#" onclick="go('corso');return false"><div><b>Videocorso</b><span>50 lezioni sulla gestione del rischio</span></div><em>199 €<small>una volta</small></em></a>
+      <a href="https://strumenti.riskly.trade/#posizione"><div><b>Strumenti e calendario</b><span>Calcolatori, prop firm, dati USA</span></div><em class="gr">Gratis</em></a>
     </div>
-  </div>
+  </div></section>
 
-  <section class="offerta" id="offerta">
-    <div class="wrap">
-      <h2>Il nostro compito</h2>
-      <p class="intro">Non ti diciamo cosa comprare o vendere. Ti aiutiamo a non perdere il conto mentre impari a fare trading, perché nessuna strategia funziona se il conto non arriva a domani.</p>
-      <div class="compito">
-        <div class="cmp">
-          <span class="cmp-n">01</span>
-          <b>Il rischio prima di tutto</b>
-          <p>Ogni strumento Riskly risponde alla stessa domanda: quanto puoi perdere, e come ti fermi in tempo. Prima di pensare a quanto guadagnare.</p>
-        </div>
-        <div class="cmp">
-          <span class="cmp-n">02</span>
-          <b>Regole, non segnali</b>
-          <p>Niente previsioni e niente promesse di guadagno. Regole scritte a mente fredda, che i bot applicano al posto tuo anche quando sei sotto pressione.</p>
-        </div>
-        <div class="cmp">
-          <span class="cmp-n">03</span>
-          <b>Insegnare, non dipendere</b>
-          <p>I corsi e il journal ti fanno capire perché perdi e come correggerti. L'obiettivo è che tu sappia gestire il rischio anche senza di noi.</p>
-        </div>
-        <div class="cmp">
-          <span class="cmp-n">04</span>
-          <b>Tutto alla luce del sole</b>
-          <p>I bot li proviamo su conto demo e pubblichiamo i risultati con la data. Se uno strumento non serve a proteggere il conto, non lo facciamo.</p>
-        </div>
-      </div>
+  <section class="h2-sez alt"><div class="h2w">
+    <div class="h2-t"><h2>Comprare un bot, in tre passi.</h2><p>Sai sempre cosa stai pagando e cosa succede dopo.</p></div>
+    <ol class="h2-passi">
+      <li><b>Scegli quello che ti serve</b><p>Dici cosa vuoi che faccia e ti indichiamo il bot giusto. Ogni scheda spiega cosa fa e cosa non fa.</p><a href="#" onclick="go('bot');return false">Trova il tuo strumento →</a></li>
+      <li><b>Paghi una volta</b><p>Sulla pagina sicura di Stripe. Il prezzo è scritto prima del pulsante e non ci sono rinnovi.</p></li>
+      <li><b>Lo ricevi e lo installi</b><p>Entro 24 ore lavorative ti mandiamo il file per il tuo conto e la guida passo passo. Se serve, ti seguiamo noi.</p></li>
+    </ol>
+  </div></section>
+
+  <section class="h2-sez"><div class="h2w">
+    <div class="h2-t"><h2>I nostri bot.</h2><p>Prezzi di lancio. Ognuno fa una cosa precisa, Riskly Pro le fa tutte.</p></div>
+    <div class="h2-carte">
+      <div class="h2-carta"><small>Ti ferma dopo le perdite</small><h3>RiskGuard</h3><p>Dopo N perdite di fila, il numero lo scegli tu, blocca le nuove operazioni e chiude MetaTrader fino a mezzanotte.</p><div class="costo">99 €<em>una volta · poi 149 €</em></div><a class="h2-btn" href="#" onclick="go('bot');return false">Vedi RiskGuard →</a></div>
+      <div class="h2-carta"><small>Stop, break-even e trailing</small><h3>TradeManager</h3><p>Mette stop loss e take profit se mancano, sposta lo stop in pari e poi lo fa seguire il prezzo. Tutto in pip.</p><div class="costo">49 €<em>una volta · poi 79 €</em></div><a class="h2-btn" href="#" onclick="go('bot');return false">Vedi TradeManager →</a></div>
+      <div class="h2-carta"><small>Ingressi a scaglioni</small><h3>ScaleIn</h3><p>Replica la tua posizione in più scaglioni con take profit diversi. Si ferma se il rischio totale è troppo alto.</p><div class="costo">79 €<em>una volta · poi 129 €</em></div><a class="h2-btn" href="#" onclick="go('bot');return false">Vedi ScaleIn →</a></div>
+      <div class="h2-carta pro"><small>Il più completo</small><h3>Riskly Pro</h3><p>RiskGuard, TradeManager e ScaleIn in un solo bot che conosce tutte le posizioni aperte. Il lotto è già calcolato sui pulsanti BUY e SELL.</p><div class="costo">199 €<em>una volta · poi 299 €</em></div><a class="h2-btn pri" href="#" onclick="go('bot');return false">Vedi Riskly Pro →</a></div>
+      <div class="h2-carta"><small>Copia su altri conti</small><h3>RisklyCopy</h3><p>Il lotto si ricalcola sul saldo di ogni conto: stesso rischio, non lo stesso lotto. Funziona tra MetaTrader 4 e 5.</p><div class="costo">69 €<em>una volta · poi 129 €</em></div><a class="h2-btn" href="#" onclick="go('bot');return false">Vedi RisklyCopy →</a></div>
     </div>
-  </section>
+  </div></section>
 
   <section class="lavoro" id="lavoro">
     <div class="wrap">
@@ -2416,39 +2452,32 @@ body.fuori-home #vaiHome{display:inline-flex}
     </div>
   </section>
 
-  <div class="lancio">
-    <div class="wrap">
-      <div class="data">23 ottobre</div>
-      <p>Escono i bot per <b>MetaTrader 4 e 5</b>. Ai primi 10 iscritti il prezzo di lancio resta bloccato a vita. Si paga una volta sola.</p>
-      <button class="btn btn-ambra" type="button" onclick="apriModulo('attesa','tutti i prodotti',0)">Blocca il prezzo</button>
+  
+  <section class="h2-sez nera"><div class="h2w">
+    <div class="h2-t"><h2>Non sei pronto a comprare? Parti gratis.</h2><p>Gli strumenti si usano subito, senza account e senza carta.</p></div>
+    <div class="h2-tre">
+      <a class="h2-carta" href="https://strumenti.riskly.trade/#posizione"><h3>Calcola il lotto giusto</h3><p>Saldo, rischio e stop: ti dice quanto grande deve essere la posizione.</p><span class="va">Apri il calcolatore →</span></a>
+      <a class="h2-carta" href="https://strumenti.riskly.trade/#calendario"><h3>Guarda i dati che escono</h3><p>Calendario economico con orari italiani, filtri per paese e avvisi.</p><span class="va">Apri il calendario →</span></a>
+      <a class="h2-carta" href="https://news.riskly.trade"><h3>Leggi cosa muove l'oro oggi</h3><p>Ogni mattina i fatti su oro, dollaro e Fed, con gli orari italiani dei dati.</p><span class="va">Apri le notizie →</span></a>
     </div>
-  </div>
+  </div></section>
 
-
-  <section id="procedura">
-    <div class="wrap">
-      <h2>La disciplina non è forza di volontà</h2>
-      <p class="intro">È un sistema che interviene nei tre momenti in cui i conti si bruciano. Nessuno dei tre riguarda la scelta del trade.</p>
-      <div class="procedura">
-        <div class="fase">
-          <h3>Prima</h3>
-          <p>Decidi a mente fredda quanto rischiare, dove mettere lo stop, quante operazioni al giorno.</p>
-          <div class="strumento"><b>Calcolatori gratuiti</b><span>su strumenti.riskly.trade</span></div>
-        </div>
-        <div class="fase">
-          <h3>Durante</h3>
-          <p>I bot eseguono quelle regole al posto tuo: gestiscono la posizione, spostano lo stop, e ti fermano quando stai per infrangere i limiti.</p>
-          <div class="strumento"><b>Bot per MT4 e MT5</b><span>su questo sito</span></div>
-        </div>
-        <div class="fase">
-          <h3>Dopo</h3>
-          <p>Il journal misura tutto: non se avevi ragione sul mercato, ma se hai rispettato il tuo sistema.</p>
-          <div class="strumento"><b>Journal</b><span>su app.riskly.trade</span></div>
-        </div>
-      </div>
+  <section class="h2-sez"><div class="h2w h2-due">
+    <div class="h2-col">
+      <h2>E dopo, misura come operi.</h2>
+      <p class="h2-lead">Il journal registra le operazioni, anche in automatico dai bot, e ti mostra dove sbagli: orari, strategie, regole non rispettate.</p>
+      <div class="h2-az"><a class="h2-btn pri" href="#" onclick="vaiA('journal','pz-journal');return false">Scopri il journal →</a></div>
+      <p class="h2-nota">7 giorni di prova senza carta, poi da 2,99 € al mese.</p>
     </div>
-  </section>
-
+    <div class="h2-carta chiara">
+      <h3>Perché Riskly non è un sito di segnali</h3>
+      <ul>
+        <li>I bot applicano le regole che scegli tu, non decidono cosa comprare</li>
+        <li>Nessuna promessa di guadagno e nessun risultato inventato</li>
+        <li>Ogni scheda dice cosa il prodotto non fa, prima del pulsante di acquisto</li>
+      </ul>
+    </div>
+  </div></section>
 
   <div class="frase">
     <div class="wrap">
