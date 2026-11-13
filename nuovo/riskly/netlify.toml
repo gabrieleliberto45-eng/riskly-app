@@ -1,14 +1,13 @@
 # la striscia dei mercati e il prossimo dato leggono questi indirizzi dallo stesso dominio (nessuna richiesta del browser a terzi)
 [[redirects]]
-  from = "/api/mercato/*"
-  to = "https://query1.finance.yahoo.com/v8/finance/chart/:splat?range=1d&interval=5m"
-  status = 200
-  force = true
-  headers = {User-Agent = "Mozilla/5.0"}
-
-[[redirects]]
   from = "/api/calendario"
   to = "https://economic-calendar.tradingview.com/events"
   status = 200
   force = true
   headers = {Origin = "https://www.tradingview.com"}
+
+# qualsiasi altro indirizzo (es. link delle email di conferma) apre il sito invece di "Page not found"
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

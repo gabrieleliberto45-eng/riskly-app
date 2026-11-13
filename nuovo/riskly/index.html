@@ -6990,7 +6990,7 @@ document.addEventListener('play', e => { if(e.target.tagName !== 'VIDEO') return
 
 /* striscia dei mercati: prezzi e prossimo dato USA, aggiornati ogni minuto. Se i dati non arrivano resta solo il conto alla rovescia. */
 (function(){
-  var SIMB = [['XAU/USD','GC%3DF',2],['DXY','DX-Y.NYB',2],['US 10A','%5ETNX',3],['EUR/USD','EURUSD%3DX',4]];
+  var SIMB = [['XAU/USD','OANDA%3AXAUUSD',2],['DXY','TVC%3ADXY',2],['US 10A','TVC%3AUS10Y',3],['EUR/USD','FX%3AEURUSD',4]];
   var box = document.getElementById('rotola'); if(!box) return;
   var dati = {}, prox = null;
   function fmt(v, d){ return v.toLocaleString('it-IT', { minimumFractionDigits: d, maximumFractionDigits: d }); }
@@ -7009,7 +7009,7 @@ document.addEventListener('play', e => { if(e.target.tagName !== 'VIDEO') return
   function giro(){
     var se = sessione(), v = ['<span class="v"><span class="sp' + (se[1] ? '' : ' off') + '"></span><b>MERCATI</b>' + se[0] + '</span>'];
     SIMB.forEach(function(s){ var d = dati[s[0]]; if(!d) return;
-      var tasso = s[0] === 'US 10A', ch = tasso ? (d.p - d.c) * 100 : (d.p / d.c - 1) * 100, cl = ch >= 0 ? 'su' : 'giu';
+      var tasso = s[0] === 'US 10A', ch = tasso ? d.abs * 100 : d.pct, cl = ch >= 0 ? 'su' : 'giu';
       v.push('<span class="v"><b>' + s[0] + '</b>' + fmt(d.p, s[2] === 3 ? 2 : s[2]) + (tasso ? '%' : '') + '<span class="' + cl + '">' + (ch >= 0 ? '+' : '−') + fmt(Math.abs(ch), tasso ? 0 : 2) + (tasso ? ' pb' : '%') + '</span></span>'); });
     if(prox){ var d = new Date(prox.t), gg = d.toLocaleDateString('it-IT', { weekday: 'short', timeZone: 'Europe/Rome' }).toUpperCase().replace('.', ''), hh = d.toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Rome' });
       v.push('<span class="v"><b>PROSSIMO DATO</b><span class="am">' + prox.n + ' · ' + gg + ' ' + hh + '</span><span class="am">' + cd() + '</span></span>'); }
@@ -7020,8 +7020,8 @@ document.addEventListener('play', e => { if(e.target.tagName !== 'VIDEO') return
   function nome(t){ for(var k in NOMI){ if(t.indexOf(k) === 0) return NOMI[k]; } return t.length > 28 ? t.slice(0, 26) + '…' : t; }
   function carica(){
     SIMB.forEach(function(s){
-      fetch('/api/mercato/' + s[1], { cache: 'no-store' }).then(function(r){ return r.json(); }).then(function(j){
-        var m = j.chart.result[0].meta; dati[s[0]] = { p: m.regularMarketPrice, c: m.chartPreviousClose }; giro();
+      fetch('https://scanner.tradingview.com/symbol?symbol=' + s[1] + '&fields=close,change,change_abs', { cache: 'no-store' }).then(function(r){ return r.json(); }).then(function(j){
+        if(typeof j.close === 'number') dati[s[0]] = { p: j.close, pct: j.change, abs: j.change_abs }; giro();
       }).catch(function(){});
     });
     var da = new Date(), a = new Date(Date.now() + 7 * 864e5);
