@@ -1727,6 +1727,326 @@ html[data-tema="scuro"] body.in-app .jvtabs .jv-ind{background:#ECEEEA}
 }
 </style>
 <link rel="stylesheet" href="/serio.css?v=2">
+<style id="prop">
+/* ===== Stile "pannello" (Gabriele, 13 novembre 2026: "un design tipo i journal delle prop firm, che sono dettagliati")
+   Schede squadrate e fitte, etichette piccole in maiuscolo, numeri allineati, obiettivi con lo stato, tabelle.
+   Colori del sito: blu notte #12263F, verde e rosso solo per i risultati. Sostituisce l'aspetto del 3 novembre. ===== */
+html body.in-app{
+  --p-bg:#F2F4F7;--p-card:#FFFFFF;--p-line:#DCE1E8;--p-line2:#EBEEF3;--p-ink:#0F1B2D;--p-dim:#566273;--p-dim2:#788494;
+  --p-navy:#12263F;--p-su:#12805A;--p-giu:#C8372D;--p-blu:#2457C5;--p-att:#A86400;
+  --p-su-bg:rgba(18,128,90,.10);--p-giu-bg:rgba(200,55,45,.09);--p-blu-bg:rgba(36,87,197,.08);--p-att-bg:rgba(168,100,0,.10);
+  --d-sfondo:var(--p-bg);--d-pannello:transparent;--d-scheda:var(--p-card);--d-bordo:var(--p-line);--d-nero:var(--p-navy);--d-ambra:var(--p-navy);
+  --bg:var(--p-bg);--bg2:var(--p-line2);--panel:var(--p-card);--panel-hi:#FFFFFF;--line:var(--p-line);--line-hi:#B9C2CF;
+  --text:var(--p-ink);--dim:var(--p-dim);--dim2:var(--p-dim2);--up:var(--p-su);--down:var(--p-giu);--accent:var(--p-blu);--gold:var(--p-att);
+  background:var(--p-bg)!important;color:var(--p-ink);font-variant-numeric:tabular-nums;
+}
+html[data-tema="scuro"] body.in-app{
+  --p-bg:#0A0F18;--p-card:#111926;--p-line:#202C3F;--p-line2:#182233;--p-ink:#E7ECF3;--p-dim:#9CA8B8;--p-dim2:#7C899D;
+  --p-navy:#E7ECF3;--p-su:#3DBE8B;--p-giu:#F0685C;--p-blu:#6D9BFF;--p-att:#E0A23A;
+  --p-su-bg:rgba(61,190,139,.14);--p-giu-bg:rgba(240,104,92,.13);--p-blu-bg:rgba(109,155,255,.13);--p-att-bg:rgba(224,162,58,.13);
+  --panel-hi:#1A2536;--line-hi:#34435C;
+}
+/* un solo carattere, numeri allineati in colonna */
+html body.in-app #appJournal *:not(code):not(pre),html body.in-app .app-nav *{font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif}
+html body.in-app #appJournal svg text{font-family:'Instrument Sans',system-ui,sans-serif}
+html body.in-app #appJournal h1,html body.in-app #appJournal h2,html body.in-app #appJournal h3,html body.in-app #appJournal h4{font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif!important}
+
+/* barra in alto */
+html body.in-app .app-nav{background:var(--p-card)!important;border-bottom:1px solid var(--p-line)!important}
+html body.in-app .jvtabs{display:none!important}   /* il menu è uno solo: a sinistra sul computer, in basso sul telefono */
+html body.in-app .acc-utente::before{background:var(--p-navy);color:var(--p-bg)}
+
+/* schede */
+html body.in-app .app-corpo .card,html body.in-app .app-corpo .glass,html body.in-app .jcard,html body.in-app .jkpi,html body.in-app #jconto,html body.in-app #jconti,html body.in-app .jobi,
+html body.in-app .app-corpo .wrap>section,html body.in-app .jgrid>*,html body.in-app #scagCard,html body.in-app #strat,html body.in-app #trades{
+  background:var(--p-card)!important;border:1px solid var(--p-line)!important;border-radius:10px!important;box-shadow:none!important}
+html body.in-app .jkpi:hover,html body.in-app .jgrid>*:hover,html body.in-app .app-corpo .card:hover{transform:none!important;box-shadow:none!important;border-color:var(--line-hi)!important}
+html body.in-app .jcard{padding:18px 20px}
+html body.in-app .jcard-head{margin-bottom:14px}
+html body.in-app .jcard-head h3,.ptit{font-size:11.5px!important;font-weight:700!important;letter-spacing:.07em!important;text-transform:uppercase!important;color:var(--p-dim)!important;line-height:1.3}
+html body.in-app #add .jcard-head h3{font-size:1.05rem!important;letter-spacing:0!important;text-transform:none!important;color:var(--p-ink)!important}
+html body.in-app .jmeta{color:var(--p-dim2);font-size:12px}
+
+/* pulsanti e campi */
+html body.in-app .btn{border-radius:8px!important;padding:8px 14px!important;font-size:13.5px;border:1px solid var(--p-line)!important;background:var(--p-card)!important;color:var(--p-ink);font-weight:600}
+html body.in-app .btn:hover{border-color:var(--line-hi)!important}
+html body.in-app .btn.pri,html body.in-app .btn.amb{background:var(--p-navy)!important;color:var(--p-bg)!important;border-color:var(--p-navy)!important}
+html body.in-app .btn.lg{padding:11px 18px!important}
+html body.in-app #appJournal input:not([type=checkbox]):not([type=radio]):not([type=file]),html body.in-app #appJournal select,html body.in-app #appJournal textarea{
+  border-radius:8px!important;background:var(--p-card)!important;border:1px solid var(--p-line)!important;color:var(--p-ink)}
+html body.in-app #appJournal input:focus,html body.in-app #appJournal select:focus,html body.in-app #appJournal textarea:focus{outline:none;border-color:var(--p-blu)!important;box-shadow:0 0 0 3px var(--p-blu-bg)}
+html body.in-app .jseg{background:var(--p-line2);border:1px solid var(--p-line);border-radius:8px;padding:3px;gap:2px}
+html body.in-app .jseg button{border-radius:6px;color:var(--p-dim);font-weight:600}
+html body.in-app .jseg button.on{background:var(--p-card);color:var(--p-ink);box-shadow:0 1px 2px rgba(15,27,45,.12)}
+html body.in-app .jseg button.on[data-d="long"]{background:var(--p-su-bg);color:var(--p-su)}
+html body.in-app .jseg button.on[data-d="short"]{background:var(--p-giu-bg);color:var(--p-giu)}
+html body.in-app .jemo{border-radius:8px;padding:8px 13px}
+html body.in-app .jemo.on{border-color:var(--p-blu);background:var(--p-blu-bg);color:var(--p-ink)}
+
+/* titolo della vista e barra dei filtri, uguali in ogni pagina */
+html body.in-app .jtitolo{margin:0 0 14px}
+html body.in-app .jtitolo h1{font-size:22px!important;font-weight:700!important;letter-spacing:-.015em;line-height:1.2}
+html body.in-app .jtitolo small{font-size:13px;color:var(--p-dim);margin-top:2px}
+.pbarra{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin:0 0 14px}
+.pbarra .jfiltri{order:1;flex:1 1 320px;margin:0}
+.pbarra .jtoolbar{order:2;flex:0 0 auto;margin:0;align-items:center;gap:12px}
+.pbarra .jtoolbar h2{display:none}
+.pbarra .jperiodo{font-size:12px;color:var(--p-dim2);white-space:nowrap}
+.pbarra .jchips{order:3;flex:1 1 100%;margin:0}
+.pbarra .jchips:empty{display:none}
+body[data-vista="nuova"] [data-pv="tutte"]{display:none!important}
+@media (max-width:760px){
+  .pbarra .jtoolbar{flex:1 1 100%;flex-wrap:wrap}
+  .pbarra .jperiodo{display:none}
+  .pbarra .jactions{flex-wrap:nowrap;width:100%}
+  html body.in-app .pbarra .jactions>.btn{flex:1 1 auto;padding:8px 8px!important;font-size:12.5px;white-space:nowrap}
+  html body.in-app .pbarra .jaltro .btn{padding:8px 12px!important}
+  .pbarra .jfiltri .jseg{flex:1 1 100%}
+  .pbarra .jfiltri .jseg button{flex:1 1 0;padding:8px 4px}
+}
+html body.in-app .jfiltri select,html body.in-app .jfiltri input{border-radius:8px!important}
+html body.in-app details.jbanner,html body.in-app .jbanner{background:var(--p-blu-bg)!important;border:1px solid color-mix(in srgb,var(--p-blu) 28%,transparent)!important;border-radius:10px!important;padding:12px 16px;margin-bottom:14px}
+
+/* avviso "oggi basta" */
+.pallerta{display:flex;gap:12px;align-items:flex-start;margin:0 0 14px;padding:13px 16px;border-radius:10px;background:var(--p-giu-bg);border:1px solid color-mix(in srgb,var(--p-giu) 40%,transparent);color:var(--p-ink);font-size:14px;line-height:1.5}
+.pallerta[hidden]{display:none}
+.pallerta b{color:var(--p-giu)}
+.pall-i{flex:0 0 22px;height:22px;border-radius:50%;background:var(--p-giu);color:#fff;display:grid;place-items:center;font-weight:800;font-size:13px}
+
+/* colonna a sinistra (computer) */
+@media (min-width:900px){
+  html body.in-app .app-corpo .wrap{background:transparent;border-radius:0;padding:20px clamp(16px,2vw,28px)!important;margin-top:0;max-width:1400px}
+  html body.in-app .jbarra{background:var(--p-card)!important;border-right:1px solid var(--p-line)!important;padding:16px 10px;gap:2px}
+  html body.in-app .jbarra button{border-radius:8px!important;color:var(--p-dim);font-weight:600}
+  html body.in-app .jbarra button:hover{background:var(--p-line2)}
+  html[data-tema] body.in-app .jbarra button.on:not(.jb-piu){background:var(--p-blu-bg)!important;color:var(--p-blu)!important;box-shadow:inset 3px 0 0 var(--p-blu)!important;border-radius:8px!important}
+  html[data-tema] body.in-app .jbarra button.on span{color:inherit!important}
+  html[data-tema] body.in-app .jbarra .jb-piu,html[data-tema] body.in-app .jbarra .jb-piu.on{order:-2!important;margin:0 0 14px!important;border-radius:8px!important;background:var(--p-navy)!important;color:var(--p-bg)!important;filter:none}
+  html[data-tema] body.in-app .jbarra .jb-piu:hover{filter:brightness(1.12)}
+}
+.jb-eco{display:none}
+@media (min-width:1280px){
+  html body.in-app .jbarra{padding:18px 14px}
+  html body.in-app .jb-ciao{order:-3;padding:2px 6px 16px}
+  html body.in-app .jb-ciao b{font-size:15px;letter-spacing:0;line-height:1.3}
+  html body.in-app .jb-ciao span{font-size:12px;margin-top:2px}
+  html body.in-app .jb-menu{order:-1;font-size:10.5px;font-weight:700;letter-spacing:.1em;padding:4px 8px 6px;color:var(--p-dim2)}
+  html body.in-app .jb-eco{display:block;order:20;margin-top:22px;padding-top:14px;border-top:1px solid var(--p-line2)}
+  .jb-eco span{display:block;font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--p-dim2);padding:4px 8px 6px}
+  .jb-eco a{display:flex;justify-content:space-between;align-items:center;padding:9px 14px;border-radius:8px;color:var(--p-dim);font-size:14px;font-weight:600;text-decoration:none}
+  .jb-eco a::after{content:'↗';font-size:12px;color:var(--p-dim2)}
+  .jb-eco a:hover{background:var(--p-line2);color:var(--p-ink)}
+}
+
+/* griglia della Panoramica */
+@media (min-width:1100px){
+  html body.in-app[data-vista="panoramica"] .app-corpo .wrap{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:14px;align-items:stretch}
+  html body.in-app[data-vista="panoramica"] .app-corpo .wrap>*{grid-column:1/-1}
+  html body.in-app[data-vista="panoramica"] .app-corpo .wrap>#jconti{grid-column:1/-1;margin-bottom:14px}
+  html body.in-app[data-vista="panoramica"] .app-corpo .wrap>#jconto,html body.in-app[data-vista="panoramica"] .app-corpo .wrap>#jconti[hidden]+#jconto,html body.in-app[data-vista="panoramica"] .app-corpo .wrap>#jconti[style*="none"]+#jconto{grid-column:1/span 4;margin-bottom:14px}
+  html body.in-app[data-vista="panoramica"] .app-corpo .wrap>#pStrip{grid-column:5/-1}
+}
+
+/* saldo e riepilogo veloce */
+html body.in-app #jconto{padding:16px 20px;margin-bottom:14px;align-items:flex-start}
+html body.in-app .jconto-l{font-size:11.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--p-dim)}
+html body.in-app .jconto-v{font-size:28px;font-weight:700;letter-spacing:-.02em;margin:6px 0 4px}
+html body.in-app .jconto-v.vuoto{font-size:15px;font-weight:500;letter-spacing:0}
+html body.in-app .jconto-s{font-size:12.5px;color:var(--p-dim)}
+.pstrip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));background:var(--p-card);border:1px solid var(--p-line);border-radius:10px;margin-bottom:14px}
+.pcella{padding:16px 18px;border-left:1px solid var(--p-line2);min-width:0}
+.pcella:first-child{border-left:0}
+.pcella span{display:block;font-size:11.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--p-dim)}
+.pcella b{display:block;font-size:21px;font-weight:700;letter-spacing:-.015em;margin:8px 0 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pcella small{display:block;font-size:12.5px;color:var(--p-dim2)}
+.up{color:var(--p-su,#1E7F45)}.down{color:var(--p-giu,#C2361F)}
+@media (max-width:760px){
+  .pstrip{grid-template-columns:1fr 1fr}
+  .pcella:nth-child(3){border-left:0}
+  .pcella:nth-child(n+3){border-top:1px solid var(--p-line2)}
+  .pcella b{font-size:18px}
+}
+
+/* cosa ti dice il diario */
+.pblocco{margin-bottom:14px}
+.pblocco[hidden]{display:none}
+.pblocco>.ptit{margin:2px 0 8px}
+html body.in-app .jspunti{grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px;margin-bottom:0}
+html body.in-app .jspunto{padding:14px 16px;gap:12px;border-left:3px solid var(--p-blu)!important;background:var(--p-card)!important}
+html body.in-app .jspunto.avviso{border-left-color:var(--p-att)!important}
+html body.in-app .jspunto.buono{border-left-color:var(--p-su)!important}
+html body.in-app .jspunto .ico{width:26px;height:26px;font-size:13px;background:var(--p-blu-bg);color:var(--p-blu);flex-shrink:0}
+html body.in-app .jspunto.avviso .ico{background:var(--p-att-bg);color:var(--p-att)}
+html body.in-app .jspunto.buono .ico{background:var(--p-su-bg);color:var(--p-su)}
+html body.in-app .jspunto h4{font-size:14px;margin-bottom:3px}
+html body.in-app .jspunto p{font-size:13px;line-height:1.5}
+
+/* obiettivi con lo stato, come nei pannelli delle prop firm */
+html body.in-app .jobi{margin-bottom:14px}
+html body.in-app .jobi-griglia{gap:12px}
+html body.in-app .jobi-per{border:1px solid var(--p-line2);border-radius:8px;padding:14px 16px}
+html body.in-app .jobi-t{margin-bottom:6px}
+html body.in-app .jobi-t span{font-size:11.5px;font-weight:700;letter-spacing:.07em;color:var(--p-dim)}
+html body.in-app .jobi-t b{font-size:18px;font-weight:700}
+html body.in-app .jobi-r{margin-top:12px}
+html body.in-app .jobi-r-t{align-items:center;font-size:13px;color:var(--p-ink);margin-bottom:6px}
+html body.in-app .jobi-bar{height:6px;background:var(--p-line2)}
+html body.in-app .jobi-bar i{background:var(--p-su)}
+html body.in-app .jobi-r.perdita .jobi-bar i{background:var(--p-giu)}
+.jobi-r-v{display:flex;justify-content:space-between;gap:10px;margin-top:5px;font-size:12px;color:var(--p-dim2)}
+.jobi-r-v b{font-weight:600;color:var(--p-dim)}
+.pbadge{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:99px;font-size:11.5px;font-weight:700;font-style:normal;white-space:nowrap;background:var(--p-line2);color:var(--p-dim)}
+.pbadge::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor}
+.pbadge.ok{background:var(--p-su-bg);color:var(--p-su)}
+.pbadge.ko{background:var(--p-giu-bg);color:var(--p-giu)}
+.pbadge.att{background:var(--p-att-bg);color:var(--p-att)}
+.pbadge.corso{background:var(--p-blu-bg);color:var(--p-blu)}
+
+/* le quattro metriche principali */
+html body.in-app .jkpis{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:12px;margin-bottom:14px}
+html body.in-app .jkpi{padding:16px 18px}
+html body.in-app .jkpi-label{font-size:11.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--p-dim)}
+html body.in-app .jkpi-val{font-size:24px;font-weight:700;letter-spacing:-.02em;margin:8px 0 4px}
+html body.in-app .jkpi-sub{font-size:12.5px;color:var(--p-dim2)}
+html body.in-app .jkpi.hero{grid-column:auto!important;background:var(--p-card)!important;border-color:var(--p-line)!important;color:var(--p-ink)!important;position:relative}
+html body.in-app .jkpi.hero .jkpi-label{color:var(--p-dim)!important}
+html body.in-app .jkpi.hero .jkpi-sub,html body.in-app .jkpi.hero small,html body.in-app .jkpi.hero span{color:var(--p-dim2)!important}
+html body.in-app .jkpi.hero .jkpi-val{color:var(--p-ink)!important;font-size:24px!important}
+html body.in-app .jkpi.hero .jkpi-val.up{color:var(--p-su)!important}html body.in-app .jkpi.hero .jkpi-val.down{color:var(--p-giu)!important}
+@media (max-width:760px){html body.in-app .jkpis{grid-template-columns:1fr 1fr!important}html body.in-app .jkpi-val{font-size:20px}}
+
+/* curva, statistiche, giorni, revisione */
+.priga{display:grid;gap:14px;margin-bottom:14px;grid-template-columns:minmax(0,1fr)}
+.priga[hidden]{display:none}
+@media (min-width:1000px){.priga.p21{grid-template-columns:minmax(0,1.75fr) minmax(0,1fr)}.priga.p11{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr)}}
+.priga>.jcard{margin:0;min-width:0}
+.priga.p21>.jcard{display:flex;flex-direction:column}
+.peq-box{position:relative;flex:1 1 auto;min-height:280px}
+.peq-box svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+@media (max-width:760px){.peq-box{min-height:230px}}
+.peq-tip{position:absolute;top:0;left:0;pointer-events:none;background:var(--p-ink);color:var(--p-bg);font-size:12px;line-height:1.45;padding:7px 10px;border-radius:6px;white-space:nowrap;transform:translate(-50%,-110%);opacity:0;transition:opacity .12s}
+.peq-tip b{display:block;font-size:13px}
+.pstat{display:grid;grid-template-columns:1fr}
+.pstat-r{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:8px 0;border-bottom:1px solid var(--p-line2);font-size:13.5px}
+.pstat-r:last-child{border-bottom:0}
+.pstat-r span{color:var(--p-dim)}
+.pstat-r b{font-weight:600;text-align:right;white-space:nowrap}
+.pstat-r b small{font-weight:500;color:var(--p-dim2);font-size:12px;margin-left:6px}
+.ptab-s{overflow-x:auto}
+.ptab{width:100%;border-collapse:collapse;font-size:13.5px}
+.ptab th{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--p-dim2);text-align:left;padding:0 8px 9px;border-bottom:1px solid var(--p-line);white-space:nowrap}
+.ptab td{padding:9px 8px;border-bottom:1px solid var(--p-line2);white-space:nowrap}
+.ptab tr:last-child td{border-bottom:0}
+.ptab .n{text-align:right}
+.ptab td small{color:var(--p-dim2);margin-left:6px;font-size:12px}
+.ptab td.f{font-weight:600}
+.ppiu{margin-top:10px;background:none;border:0;padding:0;color:var(--p-blu);font-size:13px;font-weight:600;cursor:pointer}
+.pvuoto{color:var(--p-dim2);font-size:13.5px;padding:8px 0}
+.psett-nav{display:flex;align-items:center;gap:8px}
+.psett-nav button{width:28px;height:28px;border-radius:8px;border:1px solid var(--p-line);background:var(--p-card);color:var(--p-ink);cursor:pointer;font-size:15px;line-height:1}
+.psett-nav button:disabled{opacity:.35;cursor:default}
+.psett-num{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:12px}
+.psett-num div{border:1px solid var(--p-line2);border-radius:8px;padding:10px 12px;min-width:0}
+.psett-num span{display:block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--p-dim2)}
+.psett-num b{display:block;font-size:16px;font-weight:700;margin-top:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:560px){.psett-num{grid-template-columns:1fr 1fr}}
+.psett-err{border-left:3px solid var(--p-att);background:var(--p-att-bg);border-radius:0 8px 8px 0;padding:10px 14px;font-size:13.5px;line-height:1.5;margin-bottom:12px}
+.psett-err.ok{border-left-color:var(--p-su);background:var(--p-su-bg)}
+.psett-err b{display:block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--p-dim);margin-bottom:2px}
+.psett-prima{font-size:13px;color:var(--p-dim);margin-bottom:10px}
+.psett-reg label{display:block;font-size:12.5px;font-weight:600;color:var(--p-dim);margin-bottom:6px}
+.psett-reg textarea{width:100%;min-height:58px;padding:10px 12px;font-size:14px;resize:vertical}
+.psett-reg small{display:block;font-size:12px;color:var(--p-dim2);margin-top:5px}
+
+/* calendario: i giorni vuoti leggeri, quelli con operazioni ben visibili */
+html body.in-app .jcal,html body.in-app .jcal-int{gap:6px}
+html body.in-app .jcal-int span{font-size:11px;font-weight:700;letter-spacing:.07em;color:var(--p-dim2)}
+html body.in-app .jgiorno{aspect-ratio:auto;min-height:86px;border-radius:8px;background:transparent;border:1px solid var(--p-line2);padding:8px 10px;justify-content:flex-start;gap:2px}
+html body.in-app .jgiorno.vuoto{border:0}
+html body.in-app .jgiorno .n{font-size:12px;color:var(--p-dim2);font-weight:600}
+html body.in-app .jgiorno .v{font-size:15px;font-weight:700;margin-top:auto}
+html body.in-app .jgiorno .q{position:static;font-size:11.5px;color:var(--p-dim)}
+html body.in-app .jgiorno.su{background:var(--p-su-bg);border-color:color-mix(in srgb,var(--p-su) 35%,transparent)}
+html body.in-app .jgiorno.giu{background:var(--p-giu-bg);border-color:color-mix(in srgb,var(--p-giu) 35%,transparent)}
+html body.in-app .jgiorno.su .n,html body.in-app .jgiorno.giu .n{color:var(--p-ink)}
+html body.in-app .jgiorno.oggi{border-color:var(--p-blu);box-shadow:inset 0 0 0 1px var(--p-blu)}
+html body.in-app .jgiorno.sel{box-shadow:inset 0 0 0 2px var(--p-ink)}
+html body.in-app .jgiorno.cliccabile{cursor:pointer}
+html body.in-app .jsett{border-radius:8px;background:var(--p-line2);border:0}
+html body.in-app .jsett.vuoto{background:transparent}
+@media (max-width:760px){
+  html body.in-app .jgiorno{min-height:56px;padding:5px 6px}
+  html body.in-app .jgiorno .v{font-size:11.5px}
+  html body.in-app .jgiorno .q{display:none}
+}
+
+/* statistiche: i grafici della stessa riga hanno la stessa altezza; i testi dell'anello si leggono in tutti e due i temi */
+html body.in-app #distChart text{fill:var(--p-dim)}
+html body.in-app #distChart text:first-of-type{fill:var(--p-ink);font-weight:700}
+html body.in-app .axis-lbl{fill:var(--p-dim2)}
+@media (min-width:900px){html body.in-app .jgrid.j2{grid-template-columns:minmax(0,1.92fr) minmax(0,1fr)}}
+html body.in-app .jgrid{gap:14px;margin-bottom:14px}
+
+/* tabella delle operazioni */
+html body.in-app #trades th,html body.in-app #strat th,html body.in-app .jscag-tab th{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--p-dim2)}
+html body.in-app .bar-cell .bar-fill{opacity:.14;border-radius:4px}
+html body.in-app .pill{border-radius:6px}
+.pfuori{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:6px;background:var(--p-att-bg);color:var(--p-att);font-size:11px;font-weight:700}
+
+/* "hai seguito le tue regole?" */
+.pregole{margin-top:16px}
+.pregole[hidden]{display:none}
+.pregole>label{display:block;color:var(--p-dim2);font-size:.75rem;margin-bottom:8px}
+.pregole .jseg{display:inline-flex}
+.pregole .jseg button{padding:8px 22px;flex:0 0 auto}
+html body.in-app .pregole .jseg button.on[data-r="Sì"]{background:var(--p-su-bg);color:var(--p-su)}
+html body.in-app .pregole .jseg button.on[data-r="No"]{background:var(--p-giu-bg);color:var(--p-giu)}
+
+/* telefono: barra in basso con i colori nuovi */
+@media (max-width:899px){
+  html[data-tema] body.in-app .jbarra{background:var(--p-card)!important;border:1px solid var(--p-line)!important}
+  html[data-tema] body.in-app .jbarra button.on:not(.jb-piu){background:var(--p-blu-bg)!important;color:var(--p-blu)!important;box-shadow:none!important}
+  html[data-tema] body.in-app .jbarra button.on span{color:inherit!important}
+  html[data-tema] body.in-app .jbarra .jb-piu{background:var(--p-navy)!important;color:var(--p-bg)!important;box-shadow:0 0 0 5px var(--p-card),0 8px 20px -6px rgba(15,27,45,.55)!important;border-color:transparent!important}
+}
+html body.in-app .jdett-riga{color:var(--p-dim);opacity:1;font-size:12px}
+
+/* pagina di ingresso: si vede subito cosa si ottiene */
+.pbenv{text-align:left;justify-content:normal;min-height:calc(100vh - 66px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:48px;align-items:center;max-width:1180px;margin:0 auto;padding:40px 28px}
+.pbenv h1{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(2.2rem,4.2vw,3.3rem);line-height:1.05;letter-spacing:-.01em;margin:0 0 16px}
+.pbenv .sotto{color:var(--dim);font-size:1.05rem;line-height:1.55;max-width:46ch;margin:0 0 22px}
+.pbenv .nota{max-width:52ch}
+.pbenv ul{list-style:none;padding:0;margin:0 0 26px;display:grid;gap:10px}
+.pbenv li{display:flex;gap:10px;align-items:flex-start;font-size:.98rem;line-height:1.45}
+.pbenv li::before{content:'✓';flex:0 0 20px;height:20px;border-radius:50%;background:rgba(18,128,90,.12);color:#12805A;display:grid;place-items:center;font-size:12px;font-weight:800;margin-top:1px}
+.pbenv .azioni{display:flex;gap:10px;flex-wrap:wrap}
+.pbenv .azioni .btn{border-radius:8px;padding:12px 16px;font-size:.95rem;white-space:nowrap}
+.pbenv .azioni .btn.pri{background:#12263F;border-color:#12263F;color:#fff}
+html[data-tema="scuro"] .pbenv .azioni .btn.pri{background:#E7ECF3;border-color:#E7ECF3;color:#0A0F18}
+.pbenv .nota{color:var(--dim2);font-size:.86rem;margin-top:16px}
+.pbenv .nota a{color:inherit;text-decoration:underline}
+.pant{border:1px solid var(--line);border-radius:14px;background:var(--panel-hi,#fff);padding:16px;box-shadow:0 24px 60px -30px rgba(15,27,45,.35)}
+html[data-tema="scuro"] .pant{background:#111926;border-color:#202C3F}
+.pant-t{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:12px;color:var(--dim2)}
+.pant-t b{font-size:11px;letter-spacing:.07em;text-transform:uppercase;padding:3px 9px;border-radius:99px;background:rgba(36,87,197,.1);color:#2457C5}
+.pant-k{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:12px}
+.pant-k div{border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.pant-k span{display:block;font-size:10.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--dim2)}
+.pant-k b{display:block;font-size:18px;font-weight:700;margin-top:5px;font-variant-numeric:tabular-nums}
+.pant svg{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:8px;margin-bottom:12px}
+.pant-c{border-left:3px solid #A86400;background:rgba(168,100,0,.09);border-radius:0 8px 8px 0;padding:9px 12px;font-size:13px;line-height:1.45}
+.pant-c b{display:block}
+@media (max-width:900px){
+  .pbenv{grid-template-columns:1fr;gap:28px;padding:28px 20px 40px;min-height:0}
+  .pbenv .azioni .btn{flex:1 1 auto;text-align:center;justify-content:center}
+  .pant-k b{font-size:14px;white-space:nowrap}
+  .pant-k div{padding:8px 9px;min-width:0}
+  .pant-k span{font-size:9.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+}
+
+/* ospite nella versione dimostrativa: niente pulsanti che servono solo a chi ha un account */
+body.ospite #btnDemo,body.ospite .jactions>.btn[onclick="b_apri()"],body.ospite .jaltro{display:none!important}
+</style>
 </head>
 <body>
 
@@ -1744,20 +2064,39 @@ html[data-tema="scuro"] body.in-app .jvtabs .jv-ind{background:#ECEEEA}
 </nav>
 
 <!-- schermata per chi non ha ancora effettuato l'accesso -->
-<div class="benvenuto" id="benvenuto">
-  <div class="logo">
-    <svg width="64" height="64" viewBox="0 0 44 44" fill="none">
-      <path d="M9 31 L17 19.5 L23.5 25 L35 11" stroke="#1E7F45" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M9 36 H35" stroke="#5E656D" stroke-width="3.2" stroke-linecap="round"/>
+<div class="benvenuto pbenv" id="benvenuto">
+  <div>
+    <h1>Il diario che ti mostra dove perdi.</h1>
+    <p class="sotto">Registri le operazioni in 20 secondi, o arrivano da sole da MetaTrader. Riskly ti fa vedere numeri, errori che si ripetono e limiti di perdita.</p>
+    <ul>
+      <li>Risultato, percentuale di vincita, profit factor e drawdown sempre aggiornati.</li>
+      <li>Obiettivi e perdita massima del giorno, con l'avviso quando è ora di fermarsi.</li>
+      <li>Ogni settimana una revisione: l'errore che torna e la regola per la settimana dopo.</li>
+    </ul>
+    <div class="azioni">
+      <a class="btn pri lg" href="/?esempio=1" style="text-decoration:none">Prova la versione dimostrativa</a>
+      <button class="btn lg" onclick="apriAccesso('registrati')">Crea un account</button>
+      <button class="btn lg" onclick="apriAccesso('accedi')">Accedi</button>
+    </div>
+    <p class="nota">I dati ti seguono su telefono e computer. Riskly non dà segnali e non dice cosa comprare o vendere.</p>
+  </div>
+  <div class="pant" aria-label="Anteprima del journal con dati di esempio">
+    <div class="pant-t"><span>Panoramica · ultimi 90 giorni</span><b>Dati di esempio</b></div>
+    <div class="pant-k">
+      <div><span>Risultato</span><b style="color:#12805A">+1.606,38 €</b></div>
+      <div><span>Vincita</span><b>44,7%</b></div>
+      <div><span>Profit factor</span><b>1,69</b></div>
+    </div>
+    <svg viewBox="0 0 520 190" role="img" aria-label="Curva del capitale di esempio">
+      <defs><linearGradient id="pantG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#12805A" stop-opacity=".22"/><stop offset="100%" stop-color="#12805A" stop-opacity="0"/></linearGradient></defs>
+      <g stroke="#DCE1E8" stroke-dasharray="2 4"><line x1="16" x2="504" y1="40" y2="40"/><line x1="16" x2="504" y1="85" y2="85"/><line x1="16" x2="504" y1="130" y2="130"/></g>
+      <line x1="16" x2="504" y1="160" y2="160" stroke="#DCE1E8"/>
+      <polygon fill="url(#pantG)" points="16,160 16,150 46,156 76,140 106,148 136,132 166,138 196,118 226,126 256,104 286,112 316,96 346,104 376,78 406,60 436,38 466,50 504,58 504,160"/>
+      <polyline fill="none" stroke="#12805A" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" points="16,150 46,156 76,140 106,148 136,132 166,138 196,118 226,126 256,104 286,112 316,96 346,104 376,78 406,60 436,38 466,50 504,58"/>
+      <circle cx="504" cy="58" r="4.5" fill="#12805A" stroke="#fff" stroke-width="2"/>
     </svg>
+    <div class="pant-c"><b>Tra le 16 e le 18 perdi</b>12 operazioni in quella fascia: −275,50 €. Prova a non operare in quell'orario e confronta.</div>
   </div>
-  <h1>Il tuo journal</h1>
-  <p>Accedi per ritrovare le tue operazioni, le metriche e il calendario. I dati ti seguono da qualsiasi dispositivo.</p>
-  <div class="azioni">
-    <button class="btn pri lg" onclick="apriAccesso('accedi')">Accedi</button>
-    <button class="btn lg" onclick="apriAccesso('registrati')">Crea un account</button>
-  </div>
-  <p class="nota">Non hai ancora deciso? <a href="/demo.html" style="color:var(--accent)">Prova la versione dimostrativa</a></p>
 </div>
 
 <!-- il journal vero -->
@@ -1767,7 +2106,7 @@ html[data-tema="scuro"] body.in-app .jvtabs .jv-ind{background:#ECEEEA}
   <section>
     <div class="wrap">
 
-      <details class="jbanner" id="jbanner">
+      <details class="jbanner" id="jbanner" data-pv="tutte">
         <summary><span class="jb-t"></span><span class="jb-freccia" aria-hidden="true"></span></summary>
         <div class="jb-corpo">
           <div class="jb-s"></div>
@@ -1775,57 +2114,8 @@ html[data-tema="scuro"] body.in-app .jvtabs .jv-ind{background:#ECEEEA}
         </div>
       </details>
 
-      <!-- stato dei bot di MetaTrader: si aggiorna da solo, anche dal telefono -->
-      <div class="jcard jbot" id="jbot" hidden>
-        <div class="jcard-head"><h3>I tuoi bot</h3><span class="jmeta" id="jbotAgg"></span></div>
-        <div class="jbot-griglia" id="jbotGriglia"></div>
-      </div>
-
-      <!-- conto attivo: ogni conto ha le sue operazioni, il suo saldo e i suoi obiettivi (Premium: fino a 5) -->
-      <div class="jcard jconti" id="jconti" hidden>
-        <button type="button" class="jconti-sel" onclick="j_apriConti()" aria-haspopup="dialog">
-          <span class="jconto-l">Conto</span>
-          <span class="jconti-n"><span id="contiNome">Conto principale</span><i aria-hidden="true">▾</i></span>
-        </button>
-        <button type="button" class="btn" onclick="j_apriConti()">Cambia conto</button>
-      </div>
-
-      <!-- saldo del conto: iniziale + risultato di tutte le operazioni -->
-      <div class="jcard jconto" id="jconto">
-        <div class="jconto-sx">
-          <button type="button" class="jtend" onclick="j_tendina('jconto')" aria-expanded="true"><span class="jconto-l">Saldo del conto</span><i class="jtend-f" aria-hidden="true"></i></button>
-          <div class="jconto-v" id="contoSaldo">—</div>
-          <div class="jconto-s" id="contoSub"></div>
-        </div>
-        <form class="jconto-form" id="contoForm" onsubmit="j_salvaSaldoIniziale(event)" hidden>
-          <input type="number" id="contoIniziale" step="0.01" min="0" placeholder="Saldo iniziale, es. 10000" aria-label="Saldo iniziale del conto">
-          <button type="submit" class="btn pri">Salva</button>
-          <button type="button" class="btn" id="contoAnnulla" onclick="j_renderConto()">Annulla</button>
-        </form>
-        <button type="button" class="btn" id="contoModifica" onclick="j_apriConto()">Modifica</button>
-      </div>
-
-      <!-- obiettivi di profitto e limiti di perdita, del giorno e della settimana: si aggiornano con ogni operazione -->
-      <div class="jcard jobi" id="jobi">
-        <div class="jcard-head"><button type="button" class="jtend" onclick="j_tendina('jobi')" aria-expanded="true"><h3>Obiettivi</h3><i class="jtend-f" aria-hidden="true"></i><span class="jobi-riass" id="obiRiass"></span></button><button type="button" class="btn" id="obiModifica" onclick="j_apriObiettivi()">Imposta</button></div>
-        <div id="obiCorpo"></div>
-        <form class="jobi-form" id="obiForm" onsubmit="j_salvaObiettivi(event)" hidden>
-          <div class="jobi-unita"><span>Obiettivi in</span>
-            <div class="junita" id="obiUnita"><button type="button" class="jval on" data-u="val" onclick="j_obiUnita('val')">€</button><button type="button" data-u="pct" onclick="j_obiUnita('pct')">%</button></div></div>
-          <div class="jobi-campi">
-            <div><label for="obi-gp">Profitto del giorno (<span class="obi-u">€</span>)</label><input type="number" id="obi-gp" step="0.01" min="0" placeholder="200"></div>
-            <div><label for="obi-gl">Perdita massima del giorno (<span class="obi-u">€</span>)</label><input type="number" id="obi-gl" step="0.01" min="0" placeholder="150"></div>
-            <div><label for="obi-sp">Profitto della settimana (<span class="obi-u">€</span>)</label><input type="number" id="obi-sp" step="0.01" min="0" placeholder="800"></div>
-            <div><label for="obi-sl">Perdita massima della settimana (<span class="obi-u">€</span>)</label><input type="number" id="obi-sl" step="0.01" min="0" placeholder="400"></div>
-          </div>
-          <div class="jobi-nota" id="obiNota">Lascia vuoto quello che non ti serve. La settimana va da lunedì a domenica.</div>
-          <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <button type="submit" class="btn pri">Salva</button>
-            <button type="button" class="btn" onclick="j_renderObiettivi()">Annulla</button>
-          </div>
-        </form>
-      </div>
-
+      <!-- periodo, filtri e pulsanti: in cima a ogni pagina (13 novembre 2026) -->
+      <div class="pbarra" data-pv="tutte">
       <div class="jtoolbar">
         <div>
           <h2 style="font-size:1.7rem">Il tuo diario</h2>
@@ -1833,7 +2123,7 @@ html[data-tema="scuro"] body.in-app .jvtabs .jv-ind{background:#ECEEEA}
         </div>
         <div class="jactions">
           <button class="btn" id="btnDemo" onclick="j_anteprima()">Guarda un esempio</button>
-          <button class="btn" onclick="b_apri()">Bot</button>
+          <button class="btn" onclick="b_apri()">Software</button>
           <button class="btn jfiltri-btn" type="button" id="fAltriBtn" aria-expanded="false" aria-controls="fAltri" onclick="j_altriFiltri()">Filtri<span id="fAltriN"></span></button>
           <div class="jaltro" id="jaltro">
             <button class="btn jaltro-btn" type="button" aria-haspopup="true" aria-label="Altro" onclick="event.stopPropagation();this.parentElement.classList.toggle('on')">⋯</button>
@@ -1869,11 +2159,94 @@ html[data-tema="scuro"] body.in-app .jvtabs .jv-ind{background:#ECEEEA}
       </div>
       <div class="jchips" id="fChips"></div>
 
+      </div>
+
+      <!-- stato dei software di MetaTrader: si aggiorna da solo, anche dal telefono -->
+      <div class="jcard jbot" id="jbot" hidden>
+        <div class="jcard-head"><h3>I tuoi software</h3><span class="jmeta" id="jbotAgg"></span></div>
+        <div class="jbot-griglia" id="jbotGriglia"></div>
+      </div>
+
+      <!-- conto attivo: ogni conto ha le sue operazioni, il suo saldo e i suoi obiettivi (Premium: fino a 5) -->
+      <div class="jcard jconti" id="jconti" hidden>
+        <button type="button" class="jconti-sel" onclick="j_apriConti()" aria-haspopup="dialog">
+          <span class="jconto-l">Conto</span>
+          <span class="jconti-n"><span id="contiNome">Conto principale</span><i aria-hidden="true">▾</i></span>
+        </button>
+        <button type="button" class="btn" onclick="j_apriConti()">Cambia conto</button>
+      </div>
+
+      <!-- saldo del conto: iniziale + risultato di tutte le operazioni -->
+      <div class="jcard jconto" id="jconto">
+        <div class="jconto-sx">
+          <button type="button" class="jtend" onclick="j_tendina('jconto')" aria-expanded="true"><span class="jconto-l">Saldo del conto</span><i class="jtend-f" aria-hidden="true"></i></button>
+          <div class="jconto-v" id="contoSaldo">—</div>
+          <div class="jconto-s" id="contoSub"></div>
+        </div>
+        <form class="jconto-form" id="contoForm" onsubmit="j_salvaSaldoIniziale(event)" hidden>
+          <input type="number" id="contoIniziale" step="0.01" min="0" placeholder="Saldo iniziale, es. 10000" aria-label="Saldo iniziale del conto">
+          <button type="submit" class="btn pri">Salva</button>
+          <button type="button" class="btn" id="contoAnnulla" onclick="j_renderConto()">Annulla</button>
+        </form>
+        <button type="button" class="btn" id="contoModifica" onclick="j_apriConto()">Modifica</button>
+      </div>
+
+      <!-- oggi, settimana, mese, drawdown -->
+      <div class="pstrip" id="pStrip" data-pv="panoramica"></div>
+
+      <!-- quello che i dati dicono di te -->
+      <div class="pblocco" id="pSpuntiBox" data-pv="panoramica" hidden>
+        <div class="ptit">Cosa ti dice il diario</div>
+        <div class="jspunti" id="spunti"></div>
+      </div>
+
+      <!-- obiettivi di profitto e limiti di perdita, del giorno e della settimana: si aggiornano con ogni operazione -->
+      <div class="jcard jobi" id="jobi">
+        <div class="jcard-head"><button type="button" class="jtend" onclick="j_tendina('jobi')" aria-expanded="true"><h3>Obiettivi e limiti</h3><i class="jtend-f" aria-hidden="true"></i><span class="jobi-riass" id="obiRiass"></span></button><button type="button" class="btn" id="obiModifica" onclick="j_apriObiettivi()">Imposta</button></div>
+        <div id="obiCorpo"></div>
+        <form class="jobi-form" id="obiForm" onsubmit="j_salvaObiettivi(event)" hidden>
+          <div class="jobi-unita"><span>Obiettivi in</span>
+            <div class="junita" id="obiUnita"><button type="button" class="jval on" data-u="val" onclick="j_obiUnita('val')">€</button><button type="button" data-u="pct" onclick="j_obiUnita('pct')">%</button></div></div>
+          <div class="jobi-campi">
+            <div><label for="obi-gp">Profitto del giorno (<span class="obi-u">€</span>)</label><input type="number" id="obi-gp" step="0.01" min="0" placeholder="200"></div>
+            <div><label for="obi-gl">Perdita massima del giorno (<span class="obi-u">€</span>)</label><input type="number" id="obi-gl" step="0.01" min="0" placeholder="150"></div>
+            <div><label for="obi-sp">Profitto della settimana (<span class="obi-u">€</span>)</label><input type="number" id="obi-sp" step="0.01" min="0" placeholder="800"></div>
+            <div><label for="obi-sl">Perdita massima della settimana (<span class="obi-u">€</span>)</label><input type="number" id="obi-sl" step="0.01" min="0" placeholder="400"></div>
+          </div>
+          <div class="jobi-nota" id="obiNota">Lascia vuoto quello che non ti serve. La settimana va da lunedì a domenica.</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button type="submit" class="btn pri">Salva</button>
+            <button type="button" class="btn" onclick="j_renderObiettivi()">Annulla</button>
+          </div>
+        </form>
+      </div>
+
       <!-- metriche principali -->
       <div class="jkpis" id="kpis"></div>
 
-      <!-- quello che i dati dicono di te -->
-      <div class="jspunti" id="spunti"></div>
+      <!-- curva del capitale e statistiche complete -->
+      <div class="priga p21" id="pRiga1" data-pv="panoramica">
+        <div class="jcard">
+          <div class="jcard-head"><h3>Curva del capitale</h3><span class="jmeta" id="pEqMeta"></span></div>
+          <div class="peq-box"><svg id="pEq" viewBox="0 0 760 270" role="img" aria-label="Curva del capitale"></svg><div class="peq-tip" id="pEqTip"></div></div>
+        </div>
+        <div class="jcard">
+          <div class="jcard-head"><h3>Statistiche</h3><span class="jmeta">periodo scelto</span></div>
+          <div class="pstat" id="pStat"></div>
+        </div>
+      </div>
+
+      <!-- riepilogo dei giorni e revisione della settimana -->
+      <div class="priga p11" id="pRiga2" data-pv="panoramica">
+        <div class="jcard">
+          <div class="jcard-head"><h3>Riepilogo giornaliero</h3><span class="jmeta">periodo scelto</span></div>
+          <div id="pGiorni"></div>
+        </div>
+        <div class="jcard">
+          <div class="jcard-head"><h3>Revisione della settimana</h3><div class="psett-nav" id="pSettNav"></div></div>
+          <div id="pSett"></div>
+        </div>
+      </div>
 
       <!-- calendario mensile -->
       <div class="jcard" style="margin-bottom:16px">
@@ -1999,6 +2372,11 @@ html[data-tema="scuro"] body.in-app .jvtabs .jv-ind{background:#ECEEEA}
           <div class="jemo-scelta">
             <label>Come ti sentivi quando l'hai aperta?</label>
             <div class="jemo-righe" id="emoScelta"></div>
+          </div>
+
+          <div class="pregole" id="pRegole">
+            <label>Hai seguito le tue regole?</label>
+            <div class="jseg"><button type="button" data-r="Sì" onclick="p_setRegole('Sì')">Sì</button><button type="button" data-r="No" onclick="p_setRegole('No')">No</button></div>
           </div>
 
           <div class="jnota">
@@ -2134,8 +2512,8 @@ html[data-tema="scuro"] body.in-app .jvtabs .jv-ind{background:#ECEEEA}
     <button class="mod-x" onclick="b_chiudi()" aria-label="Chiudi">✕</button>
 
     <div class="mod-head">
-      <div class="mod-kicker">BOT DI METATRADER</div>
-      <h3>Collega i tuoi bot</h3>
+      <div class="mod-kicker">SOFTWARE DI METATRADER</div>
+      <h3>Collega i tuoi software</h3>
       <p>RisklyPro e RiskGuard scrivono qui le operazioni chiuse e ti mostrano il loro stato, anche dal telefono.</p>
     </div>
 
@@ -2155,21 +2533,21 @@ html[data-tema="scuro"] body.in-app .jvtabs .jv-ind{background:#ECEEEA}
       <div style="margin-top:10px"><button type="button" class="btn" id="bGenera" onclick="b_generaChiave()">Genera la chiave</button></div>
     </div>
 
-    <div class="jbot-sez">2 · NEL BOT</div>
+    <div class="jbot-sez">2 · NEL SOFTWARE</div>
     <ol class="jbot-passi">
       <li>In MetaTrader: <b>Strumenti → Opzioni → Consulenti Esperti</b>, spunta <b>Consenti WebRequest</b> e aggiungi <code>https://swlztverwfgdgchgpudt.supabase.co</code></li>
-      <li>Metti il bot sul grafico e incolla la chiave nel parametro <code>InpChiaveJournal</code></li>
-      <li>Nel pannello del bot compare <b>Journal collegato</b>: da quel momento le operazioni chiuse arrivano qui da sole</li>
+      <li>Metti il software sul grafico e incolla la chiave nel parametro <code>InpChiaveJournal</code></li>
+      <li>Nel pannello del software compare <b>Journal collegato</b>: da quel momento le operazioni chiuse arrivano qui da sole</li>
     </ol>
 
-    <div class="mod-aiuto" style="margin:-4px 0 18px"><b>Cambi conto?</b> Usa la stessa chiave nel bot del nuovo conto, poi premi <b>Scollega</b> sul riquadro del conto vecchio in "I tuoi bot".</div>
+    <div class="mod-aiuto" style="margin:-4px 0 18px"><b>Cambi conto?</b> Usa la stessa chiave nel software del nuovo conto, poi premi <b>Scollega</b> sul riquadro del conto vecchio in "I tuoi bot".</div>
 
     <div class="jbot-sez" id="bScollegatiSez" hidden>CONTI SCOLLEGATI</div>
     <div class="jbot-scollegati" id="bScollegati" hidden style="margin-bottom:18px"></div>
 
     <div class="jbot-sez">3 · COSA ARRIVA NEL JOURNAL</div>
     <form id="bImp" onsubmit="b_salvaImp(event)">
-      <label class="jspunta"><input type="checkbox" id="bImporta"> <span><b>Importa le operazioni</b><br>Se lo togli, il bot continua a proteggerti ma non scrive più qui.</span></label>
+      <label class="jspunta"><input type="checkbox" id="bImporta"> <span><b>Importa le operazioni</b><br>Se lo togli, il software continua a proteggerti ma non scrive più qui.</span></label>
       <label class="jspunta"><input type="checkbox" id="bUniti"> <span><b>Scaglioni come un'operazione sola</b><br>La posizione aperta a mano e i suoi scaglioni diventano una riga, con il risultato complessivo.</span></label>
       <label class="jspunta"><input type="checkbox" id="bNota"> <span><b>Nota automatica</b><br>Lotti, pip e orari di apertura e chiusura scritti nella nota.</span></label>
 
@@ -3190,7 +3568,9 @@ const j_lista = () => j_demo || j_trades.filter(j_delConto);
 const VALUTE = ['€','$','£','CHF'];
 let j_valuta = '€';
 try{ const v = localStorage.getItem('riskly-valuta'); if(VALUTE.includes(v)) j_valuta = v; }catch{}
-const j_soldi = (v, dec = 0) => j_valuta === 'CHF' ? Math.abs(v).toFixed(dec) + ' CHF' : j_valuta + Math.abs(v).toFixed(dec);
+/* numeri all'italiana (13 novembre 2026): 11.606,38 € e non €11606.38 */
+const j_num = (v, dec = 2) => Number(v).toLocaleString('it-IT', { minimumFractionDigits: dec, maximumFractionDigits: dec, useGrouping: 'always' });
+const j_soldi = (v, dec = 0) => j_num(Math.abs(v), dec) + '\u00A0' + j_valuta;
 const j_fmt = v => (v>=0?'+':'−') + j_soldi(v, 2);
 const j_fmtBreve = v => (v>=0?'':'−') + j_soldi(v);
 
@@ -3356,24 +3736,17 @@ function j_renderKPIs(list){
     return;
   }
 
-  const pf = m.pf===Infinity?'∞':m.pf.toFixed(2);
+  const pf = m.pf===Infinity?'∞':j_num(m.pf, 2);
   const spark = j_sparkline(m.curve, m.net>=0);
 
   const items = [
-    {l:'P&L netto', v:j_fmt(m.net), c:j_cl(m.net), s:`${m.n} operazioni`, hero:true, spark,
+    {l:'Risultato netto', v:j_fmt(m.net), c:j_cl(m.net), s:`${m.n} operazioni`, hero:true,
       i:'Il risultato totale: tutti i guadagni meno tutte le perdite.'},
-    {l:'Winrate', v:m.winrate.toFixed(1)+'%', c:m.winrate>=50?'up':'down', s:`${m.w}V · ${m.l}P`, i:'La percentuale di operazioni chiuse in guadagno. Da sola non basta: puoi vincere spesso e perdere comunque, se le perdite sono grandi.'},
+    {l:'Vincita', v:j_num(m.winrate, 1)+'%', c:m.winrate>=50?'up':'down', s:p_vp(m.w, m.l), i:'La percentuale di operazioni chiuse in guadagno. Da sola non basta: puoi vincere spesso e perdere comunque, se le perdite sono grandi.'},
     {l:'Profit factor', v:pf, c:m.pf>=1?'up':'down', s:'profitti / perdite', i:'Quanto guadagni per ogni 1 che perdi. Sopra 1 sei in utile, sopra 1,5 è un buon risultato, sotto 1 stai perdendo.'},
-    {l:'Aspettativa', v:j_fmt(m.exp), c:j_cl(m.exp), s:'per trade', i:'Quanto guadagni o perdi in media a ogni operazione. Se è positiva, continuando così nel tempo sei in utile.'},
-    {l:'Drawdown max', v:j_soldi(m.maxDD), c:'down', s:'dal picco', i:'La discesa più grande dal punto più alto raggiunto. Ti dice quanto hai dovuto sopportare nel momento peggiore.'},
-    {l:'Payoff', v:m.payoff===null?'∞':m.payoff.toFixed(2), c:(m.payoff===null||m.payoff>=1)?'up':'down',
-      s:`${j_soldi(m.avgW)} medio / ${j_soldi(m.avgL)} medio`, i:'Vincita media divisa per perdita media. Sopra 1 le tue vincite sono più grandi delle perdite.'},
-    {l:'Miglior trade', v:j_fmt(m.best.pnl), c:j_cl(m.best.pnl), s:`${esc(m.best.symbol)} · ${j_dataBreve(m.best.date)}`, i:'L\'operazione con il guadagno più alto nel periodo.'},
-    {l:'Peggior trade', v:j_fmt(m.worst.pnl), c:j_cl(m.worst.pnl), s:`${esc(m.worst.symbol)} · ${j_dataBreve(m.worst.date)}`, i:'L\'operazione con la perdita più grande. Se è molto più grande delle altre, forse lo stop non è stato rispettato.'},
-    {l:'Giorni positivi', v:`${m.giorniPos}/${m.giorni}`, c:m.giorniPos*2>=m.giorni?'up':'down', s:`${Math.round(m.giorniPos/m.giorni*100)}% dei giorni`, i:'Quanti giorni di trading hai chiuso in guadagno, sul totale dei giorni in cui hai operato.'},
-    {l:'Serie max', v:`${m.mw} / ${m.ml}`, c:'neu', s:'vincite / perdite', i:'Il numero più lungo di vincite di fila e di perdite di fila. Prepararti alle serie negative ti aiuta a non perdere la calma.'},
+        {l:'Drawdown max', v:j_soldi(m.maxDD), c:'down', s:'dal picco', i:'La discesa più grande dal punto più alto raggiunto. Ti dice quanto hai dovuto sopportare nel momento peggiore.'},
   ];
-  if(m.avgR!==null) items.push({l:'R medio', v:(m.avgR>=0?'+':'')+m.avgR.toFixed(2)+'R', c:j_cl(m.avgR), s:'rischio/rendimento', i:'Quante volte il rischio guadagni in media. +1R vuol dire che guadagni quanto rischiavi. Compare solo se indichi il rischio.'});
+  /* 13 novembre 2026: qui restano le quattro che contano; payoff, serie, giorni e il resto sono nella tabella Statistiche */
 
   el.innerHTML = items.map(i=>`
     <div class="jkpi${i.hero?' hero':''}" onclick="this.classList.toggle('aperto')" title="${esc(i.i||'')}">
@@ -3436,7 +3809,7 @@ function j_renderDist(list){
     <text x="${cx}" y="${cy-2}" text-anchor="middle" fill="#F2F4F8" font-size="21" font-family="JetBrains Mono, monospace">${m.winrate.toFixed(0)}%</text>
     <text x="${cx}" y="${cy+15}" text-anchor="middle" fill="#59637A" font-size="9.5" font-family="Instrument Sans, sans-serif">winrate</text>
     <text x="${cx-10}" y="${H-16.5}" text-anchor="end" fill="#7C879E" font-size="10" font-family="JetBrains Mono, monospace">${m.w} vinti</text>
-    <circle cx="${cx-10-(String(m.w).length+6)*6.1-8}" cy="${H-20}" r="4" fill="#1E7F45"/>
+    <circle cx="${cx-10-(String(m.w).length+6)*5-8}" cy="${H-20}" r="4" fill="#1E7F45"/>
     <circle cx="${cx+14}" cy="${H-20}" r="4" fill="#C2361F"/>
     <text x="${cx+23}" y="${H-16.5}" fill="#7C879E" font-size="10" font-family="JetBrains Mono, monospace">${m.l} persi</text>`;
 }
@@ -3500,7 +3873,7 @@ function j_renderTable(list){
   const bloccato = !!j_demo;
 
   tb.innerHTML=visibili.map(t=>{
-    const r=t.risk>0?(t.pnl/t.risk>=0?'+':'')+(t.pnl/t.risk).toFixed(2)+'R':'—';
+    const r=t.risk>0?(t.pnl/t.risk>=0?'+':'−')+j_num(Math.abs(t.pnl/t.risk),2)+'R':'—';
     const w=Math.abs(t.pnl)/mx*100;
     const emo=j_emoInfo(t.emo||'lucido');
     const id=esc(t.id);
@@ -3508,7 +3881,7 @@ function j_renderTable(list){
     const gruppi = j_dettagliGruppi(t, img);
     return `<tr class="jclic" tabindex="0" role="button" aria-label="Apri la scheda di ${esc(t.symbol)} del ${j_dataBreve(t.date)}" onclick="j_clicRiga(event,'${id}')" onkeydown="if(event.key==='Enter'&&event.target===this)j_apriOp('${id}')">
       <td style="color:var(--dim)">${j_dataBreve(t.date)}${t.ora?' <span style="color:var(--dim2);font-size:.9em">'+esc(t.ora)+'</span>':''}</td>
-      <td>${esc(t.symbol)}${t.fonte==='bot'?'<span class="pill bot" title="Arrivata dal bot di MetaTrader">BOT</span>':''}</td>
+      <td>${esc(t.symbol)}${t.fonte==='bot'?'<span class="pill bot" title="Arrivata dal software di MetaTrader">AUTO</span>':''}</td>
       <td><span class="pill ${t.dir}">${t.dir==='long'?'Long':'Short'}</span></td>
       <td class="bar-cell ${j_cl(t.pnl)}"><span class="bar-fill" style="width:${w}%;background:${t.pnl>=0?'#1E7F45':'#C2361F'}"></span><span style="position:relative">${j_fmt(t.pnl)}</span></td>
       <td class="${t.risk>0?j_cl(t.pnl):''}" style="${t.risk>0?'':'color:var(--dim2)'}">${r}</td>
@@ -3581,7 +3954,7 @@ function j_statGruppo(list, filtro){
   const tot = g.reduce((a, x) => a + (Number(x.pnl) || 0), 0);
   return { n, vinte, wr: n ? Math.round(vinte / n * 100) : 0, tot, media: n ? tot / n : 0 };
 }
-const j_pct = v => (v >= 0 ? '+' : '−') + Math.abs(v).toFixed(2) + '%';
+const j_pct = v => (v >= 0 ? '+' : '−') + j_num(Math.abs(v), 2) + '%';
 
 function j_apriOp(id){
   const lista = j_lista();
@@ -3605,7 +3978,7 @@ function j_apriOp(id){
   const scag = j_scagParse((t.dettagli || {}).scaglioni);
   const dett = Object.entries(t.dettagli || {}).filter(([k, v]) => v && !['scaglioni', 'shot_conf', 'stop'].includes(k)).map(([k, v]) => {
     const c = campi.find(x => x.id === k);
-    return [c ? c.nome : (k === 'ingresso' ? 'Prezzo d\'ingresso' : k), v];
+    return [c ? c.nome : (k === 'ingresso' ? 'Prezzo d\'ingresso' : (k === 'regole' ? 'Regole rispettate' : k)), v];
   });
 
   const img = t.shotUrl || (t.shot && t.shot.startsWith('data:') ? t.shot : '');
@@ -3625,7 +3998,7 @@ function j_apriOp(id){
     <div class="jop-pnl ${j_cl(t.pnl)}">${j_fmt(t.pnl)}</div>
 
     <div class="jop-grid">
-      ${kpi('Multiplo R', R === null ? '—' : (R >= 0 ? '+' : '−') + Math.abs(R).toFixed(2) + 'R', R === null ? '' : j_cl(R))}
+      ${kpi('Multiplo R', R === null ? '—' : (R >= 0 ? '+' : '−') + j_num(Math.abs(R), 2) + 'R', R === null ? '' : j_cl(R))}
       ${kpi('Rischio', t.risk > 0 ? j_soldi(t.risk, 2) : '—')}
       ${kpi('Sul saldo', saldoPrima ? j_pct(t.pnl / saldoPrima * 100) : '—', saldoPrima ? j_cl(t.pnl) : '')}
       ${kpi('Saldo dopo', saldoDopo ? j_soldi(saldoDopo, 2) : '—')}
@@ -3711,7 +4084,7 @@ function j_renderGruppi(list){
   const righe = Object.entries(g).map(([k,l]) => [k, j_metrics(l)]).sort((a,b)=>b[1].net-a[1].net);
   if(!righe.length){ tb.innerHTML=`<tr><td colspan="6"><div class="empty">Aggiungi operazioni per confrontarne le performance.</div></td></tr>`; return; }
   tb.innerHTML=righe.map(([k,m])=>{
-    const pf=m.pf===Infinity?'∞':m.pf.toFixed(2);
+    const pf=m.pf===Infinity?'∞':j_num(m.pf,2);
     return `<tr>
       <td class="strat" style="color:var(--text)">${esc(k)}</td>
       <td style="color:var(--dim)">${m.n}</td>
@@ -3746,6 +4119,7 @@ function j_renderAll(){
   j_renderObiettivi();
   j_renderKPIs(list);
   j_renderSpunti(list);
+  p_render(list);
   j_renderCalendario();
   j_renderEquity(list);
   j_renderDist(list);
@@ -3895,10 +4269,10 @@ function j_spunti(list){
   const migliore = strat.filter(([,m]) => m.net > 0 && m.pf >= 1.3).sort((a,b) => b[1].net - a[1].net)[0];
   if(peggiore) out.push({tipo:'avviso', peso:Math.abs(peggiore[1].net)/10,
     titolo:`${peggiore[0]} ti fa perdere soldi`,
-    testo:`${peggiore[1].n} operazioni, profit factor ${peggiore[1].pf.toFixed(2)}, ${j_fmt(peggiore[1].net)} in totale. Rivedi le regole o mettila in pausa.`});
+    testo:`${peggiore[1].n} operazioni, profit factor ${j_num(peggiore[1].pf, 2)}, ${j_fmt(peggiore[1].net)} in totale. Rivedi le regole o mettila in pausa.`});
   if(migliore) out.push({tipo:'buono', peso:4,
     titolo:`${migliore[0]} è il tuo punto forte`,
-    testo:`${migliore[1].n} operazioni, winrate ${migliore[1].winrate.toFixed(0)}%, profit factor ${migliore[1].pf===Infinity?'∞':migliore[1].pf.toFixed(2)}: ${j_fmt(migliore[1].net)}.`});
+    testo:`${migliore[1].n} operazioni, winrate ${migliore[1].winrate.toFixed(0)}%, profit factor ${migliore[1].pf===Infinity?'∞':j_num(migliore[1].pf, 2)}: ${j_fmt(migliore[1].net)}.`});
 
   // 6. la fascia oraria che ti costa
   const perFascia = {};
@@ -4003,7 +4377,7 @@ function j_renderCalendario(){
     if(j_filtro.giorno === iso) cl += ' sel';
 
     const valore = d ? `<span class="v">${d.pnl >= 0 ? '+' : '−'}${Math.abs(Math.round(d.pnl))}</span>` : '';
-    const quanti = (d && d.n > 1) ? `<span class="q">${d.n}</span>` : '';
+    const quanti = d ? `<span class="q">${d.n} op.</span>` : '';
     const click  = d ? ` onclick="j_selGiorno('${iso}')" role="button" tabindex="0" title="Mostra solo il ${g}"` : '';
 
     celle.push(`<div class="${cl}"${click}><span class="n">${g}</span>${valore}${quanti}</div>`);
@@ -4136,7 +4510,7 @@ function j_resetForm(){
   document.getElementById('dataOcr').textContent = ''; j_dataTurno++;
   j_setUnita('pnl', j_unitaPreferita('pnl'), true); j_setUnita('risk', j_unitaPreferita('risk'), true);
   j_renderScelte();
-  j_dettagli = {}; j_scag = []; Object.assign(j_rap, { tot: '', k: 0, corre: false, correPip: '', esito: '', pipFine: '' }); j_renderCampiMetodo(); j_renderScag();
+  j_dettagli = {}; j_scag = []; Object.assign(j_rap, { tot: '', k: 0, corre: false, correPip: '', esito: '', pipFine: '' }); j_renderCampiMetodo(); j_renderScag(); p_regoleUI();
   document.getElementById('f-date').value = isoLocale();
   j_setDir('long');
   j_setEmo('lucido');
@@ -4663,6 +5037,7 @@ function j_dettagliTesto(t, conNomi){
   return Object.entries(d).filter(([k, v]) => v && !['shot_conf', 'stop'].includes(k)).map(([k, v]) => {
     if(k === 'scaglioni') return conNomi ? 'Scaglioni: ' + j_scagRiassunto(j_scagParse(v)) : '';   /* in tabella ha la sua riga */
     if(k === 'ingresso') return (conNomi ? 'Prezzo d\'ingresso: ' : 'Ingresso ') + v;
+    if(k === 'regole') return conNomi ? 'Regole rispettate: ' + v : (String(v).toLowerCase()[0] === 'n' ? 'Fuori regola' : '');
     const c = campi.find(x => x.id === k);
     return conNomi && c ? c.nome + ': ' + v : v;
   }).filter(Boolean).join(conNomi ? '; ' : ' · ');
@@ -4769,11 +5144,11 @@ function j_apriConti(){
     const sotto = `${ops.length} ${ops.length === 1 ? 'operazione' : 'operazioni'}${ops.length ? ' · ' + j_fmt(pnl) : ''}${suoi.length ? ' · qui arrivano i bot (MetaTrader ' + suoi.join(', ') + ')' : ''}`;
     return `<div class="jcl-riga${c.id === id ? ' on' : ''}">
       <button type="button" class="jcl-scegli" onclick="j_scegliConto('${c.id}')"><b>${esc(c.nome || 'Conto')}</b><span>${esc(sotto)}${c.id === id ? ' · in uso' : ''}</span></button>
-      <div class="jcl-az">${mtVisti.length && c.id !== '1' ? `<button type="button" class="btn" onclick="j_collegaMT('${c.id}')">${(c.mt || []).length ? 'Bot collegati' : 'Sposta qui i bot'}</button>` : ''}<button type="button" class="btn" onclick="j_rinominaConto('${c.id}')">Rinomina</button>${c.id !== '1' && !ops.length ? `<button type="button" class="btn" onclick="j_eliminaConto('${c.id}')">Elimina</button>` : ''}</div>
+      <div class="jcl-az">${mtVisti.length && c.id !== '1' ? `<button type="button" class="btn" onclick="j_collegaMT('${c.id}')">${(c.mt || []).length ? 'Software collegati' : 'Sposta qui i bot'}</button>` : ''}<button type="button" class="btn" onclick="j_rinominaConto('${c.id}')">Rinomina</button>${c.id !== '1' && !ops.length ? `<button type="button" class="btn" onclick="j_eliminaConto('${c.id}')">Elimina</button>` : ''}</div>
     </div>`;
   }).join('');
   const piede = document.getElementById('contiPiede');
-  const avvisoMT = conti.length > 1 && liberi.length ? `<div class="jcl-nota">Le operazioni dei bot (conto MetaTrader ${liberi.join(', ')}) arrivano nel «${esc(conti[0].nome)}». Se vuoi che arrivino in un altro conto, tocca «Sposta qui i bot» su quel conto.</div>` : '';
+  const avvisoMT = conti.length > 1 && liberi.length ? `<div class="jcl-nota">Le operazioni dei software (conto MetaTrader ${liberi.join(', ')}) arrivano nel «${esc(conti[0].nome)}». Se vuoi che arrivino in un altro conto, tocca «Sposta qui i bot» su quel conto.</div>` : '';
   if(premium && conti.length < J_MAX_CONTI) piede.innerHTML = avvisoMT + `<button type="button" class="btn pri wide" onclick="j_nuovoConto()">+ Aggiungi un conto</button><div class="jcl-nota">Puoi avere fino a ${J_MAX_CONTI} conti (${conti.length} su ${J_MAX_CONTI}).</div>`;
   else if(premium) piede.innerHTML = avvisoMT + `<div class="jcl-nota">Hai raggiunto il massimo di ${J_MAX_CONTI} conti.</div>`;
   else piede.innerHTML = `<div class="jcl-nota">Con il piano Premium puoi collegare fino a ${J_MAX_CONTI} conti allo stesso account, ognuno con le sue operazioni.</div><button type="button" class="btn wide" style="margin-top:10px" onclick="location.href='https://riskly.trade/#prezzi'">Vedi il piano Premium</button>`;
@@ -4864,9 +5239,9 @@ function j_renderConto(){
   }
   const att = j_saldoAttuale(), diff = att - iniz, pct = diff / iniz * 100;
   v.className = 'jconto-v';
-  v.textContent = j_soldi(att, 2).replace(/^([^\d]*)/, att < 0 ? '−$1' : '$1');
+  v.textContent = (att < 0 ? '−' : '') + j_soldi(att, 2);
   const cl = diff >= 0 ? 'up' : 'down';
-  sub.innerHTML = `Iniziale ${esc(j_soldi(iniz, 2))} · <span class="${cl}">${esc(j_fmt(diff))} (${diff >= 0 ? '+' : '−'}${Math.abs(pct).toFixed(2)}%)</span>`;
+  sub.innerHTML = `Iniziale ${esc(j_soldi(iniz, 2))} · <span class="${cl}">${esc(j_fmt(diff))} (${diff >= 0 ? '+' : '−'}${j_num(Math.abs(pct), 2)}%)</span>`;
   mod.textContent = 'Modifica';
   mod.classList.remove('pri');
 }
@@ -4977,8 +5352,10 @@ function j_renderObiettivi(){
     const testo = inPct
       ? `${(Math.max(fatto, 0) / base * 100).toFixed(2).replace('.', ',')}% su ${String(max / base * 100).replace('.', ',')}%`
       : `${esc(j_soldi(Math.max(fatto, 0), 0))} su ${esc(j_soldi(max, 0))}`;
-    return `<div class="jobi-r${perdita ? ' perdita' : ''}"><div class="jobi-r-t"><span>${nome}</span><em>${testo} · ${Math.round(pct)}%</em></div>
-      <div class="jobi-bar"><i style="width:${pct}%"></i></div></div>`;
+    const stato = perdita ? (pct >= 100 ? ['ko', 'Limite toccato'] : pct >= 75 ? ['att', 'Vicino al limite'] : ['ok', 'Entro il limite'])
+                          : (pct >= 100 ? ['ok', 'Raggiunto'] : ['corso', 'In corso']);
+    return `<div class="jobi-r${perdita ? ' perdita' : ''}"><div class="jobi-r-t"><span>${nome}</span><i class="pbadge ${stato[0]}">${stato[1]}</i></div>
+      <div class="jobi-bar"><i style="width:${pct}%"></i></div><div class="jobi-r-v"><em style="font-style:normal">${testo}</em><b>${Math.round(pct)}%</b></div></div>`;
   };
   const periodo = (titolo, pnl, gp, gl, chi, base) => {
     if(inPct){
@@ -5172,6 +5549,7 @@ function j_modifica(id){
   j_renderScelte();
   j_dettagli = Object.assign({}, t.dettagli || {}); if(j_dettagli.sessioni) j_dettagli._sessioniAMano = '1'; j_scag = j_scagParse(j_dettagli.scaglioni); j_rapDaScag(j_scag, j_dettagli); j_renderCampiMetodo(); j_renderScag(true);
   document.getElementById('f-nota').value = t.nota;
+  p_regoleUI();
   document.getElementById('f-ingresso').value = (t.dettagli || {}).ingresso || '';
   document.getElementById('f-date').dataset.mano = '1'; document.getElementById('f-ora').dataset.mano = '1';
   j_setDir(t.dir);
@@ -5720,7 +6098,7 @@ function j_generaDemo(){
       strategy: s.nome,
       emo,
       nota: el[Math.floor(Math.random()*el.length)],
-      dettagli: Object.assign(j_dettagliCasuali(), j_scagDemo(win)),
+      dettagli: Object.assign(j_dettagliCasuali(), j_scagDemo(win), { regole: (emo === 'rivalsa' || emo === 'impaziente' ? Math.random() < .35 : Math.random() < .9) ? 'Sì' : 'No' }),
       shot: '', shotUrl: ''
     });
   }
@@ -5729,6 +6107,7 @@ function j_generaDemo(){
 
 /* entra o esce dall'esempio: i dati veri restano intatti */
 function j_anteprima(){
+  if(OSPITE && !utente && j_demo){ apriAccesso('registrati'); return; }   /* l'ospite non ha dati suoi: gli propongo l'account */
   j_demo = j_demo ? null : j_generaDemo();
   j_filtro = { ...FILTRO_VUOTO };
   document.getElementById('fCerca').value = '';
@@ -5753,9 +6132,10 @@ function aggiornaBanner(){
   const t = b.querySelector('.jb-t'), p = b.querySelector('.jb-s'), btn = b.querySelector('.btn');
 
   if(j_demo){
-    t.textContent = 'Stai guardando dati di esempio';
-    p.textContent = 'Esplora metriche, calendario e spunti. Le tue operazioni non vengono toccate.';
-    btn.textContent = 'Torna ai tuoi dati';
+    const osp = OSPITE && !utente;
+    t.textContent = osp ? 'Questa è la versione dimostrativa' : 'Stai guardando dati di esempio';
+    p.textContent = osp ? 'Tutti i numeri sono di esempio. Crea un account per registrare le tue operazioni.' : 'Esplora metriche, calendario e spunti. Le tue operazioni non vengono toccate.';
+    btn.textContent = osp ? 'Crea un account' : 'Torna ai tuoi dati';
     btn.onclick = j_anteprima;
     b.open = true;
     return;
@@ -6072,18 +6452,237 @@ async function b_salvaImp(e){
 }
 
 
+/* ---------- Pannello in stile prop firm (13 novembre 2026) ----------
+   Riepilogo veloce, curva con i valori, statistiche complete, riepilogo dei giorni, revisione della settimana,
+   avviso "oggi basta" e la domanda "hai seguito le tue regole?". Niente modifiche al database:
+   la risposta sulle regole sta nei dettagli dell'operazione, la regola della settimana resta su questo dispositivo. */
+
+/* ha seguito le regole? true / false / null (non indicato). Nel metodo "Input e conferma" vale "Hai seguito il piano?" */
+const p_regola = t => { const d = t.dettagli || {}; const v = String(d.regole || d.piano || '').trim().toLowerCase(); return v ? (v[0] === 's' ? true : (v[0] === 'n' ? false : null)) : null; };
+const p_somma = l => Math.round(l.reduce((a, t) => a + (Number(t.pnl) || 0), 0) * 100) / 100;
+const p_giornoMese = iso => { const d = dataDa(iso); return d.getDate() + ' ' + MESI[d.getMonth()].slice(0, 3).toLowerCase(); };
+const p_op = n => n + (n === 1 ? ' operazione' : ' operazioni');
+const p_vp = (w, l) => `${w} vint${w === 1 ? 'a' : 'e'} · ${l} pers${l === 1 ? 'a' : 'e'}`;
+
+/* il modulo: la domanda sulle regole (non compare nel metodo che chiede già "Hai seguito il piano?") */
+function p_setRegole(v){
+  j_dettagli.regole = j_dettagli.regole === v ? '' : v;
+  p_regoleUI();
+}
+function p_regoleUI(){
+  const box = document.getElementById('pRegole'); if(!box) return;
+  const m = METODI[j_metodo()] || METODI.generale;
+  box.hidden = m.campi.some(c => c.id === 'piano');
+  box.querySelectorAll('button').forEach(b => b.classList.toggle('on', (j_dettagli.regole || '') === b.dataset.r));
+}
+
+/* limiti di perdita di oggi e della settimana, già convertiti in soldi */
+function p_limiti(){
+  const o = j_obiettivi(), oggi = isoLocale(), lun = j_inizioSettimana(), lista = j_lista();
+  const pnlG = p_somma(lista.filter(t => t.date === oggi)), pnlS = p_somma(lista.filter(t => t.date >= lun && t.date <= oggi));
+  const conv = (v, base) => !v ? 0 : (o.u === 'pct' ? (base > 0 ? v / 100 * base : 0) : v);
+  return { pnlG, pnlS, gl: conv(o.gl, j_saldoAl(oggi)), sl: conv(o.sl, j_saldoAl(lun)) };
+}
+function p_renderAllerta(){
+  const el = document.getElementById('pAllerta'); if(!el) return;
+  const l = p_limiti(); let h = '';
+  if(l.gl && -l.pnlG >= l.gl) h = `<b>Oggi basta.</b> Hai toccato la perdita massima del giorno: ${esc(j_fmt(l.pnlG))} su un limite di ${esc(j_soldi(l.gl))}. Chiudi la piattaforma e riparti domani.`;
+  else if(l.sl && -l.pnlS >= l.sl) h = `<b>Per questa settimana basta.</b> Hai toccato la perdita massima della settimana: ${esc(j_fmt(l.pnlS))} su un limite di ${esc(j_soldi(l.sl))}.`;
+  el.hidden = !h;
+  el.innerHTML = h ? `<span class="pall-i" aria-hidden="true">!</span><div>${h}</div>` : '';
+}
+
+/* oggi, settimana, mese e distanza dal punto più alto: valgono per tutto il conto, non dipendono dai filtri */
+function p_renderStrip(){
+  const el = document.getElementById('pStrip'); if(!el) return;
+  const lista = j_lista(), oggi = isoLocale(), lun = j_inizioSettimana(), mese = oggi.slice(0, 7);
+  const cella = (nome, l) => { const v = p_somma(l);
+    return `<div class="pcella"><span>${nome}</span><b class="${l.length ? j_cl(v) : ''}">${l.length ? esc(j_fmt(v)) : '—'}</b><small>${l.length ? p_op(l.length) : 'Nessuna operazione'}</small></div>`; };
+  let eq = 0, picco = 0;
+  j_ordina(lista).forEach(t => { eq += Number(t.pnl) || 0; if(eq > picco) picco = eq; });
+  const dd = Math.max(0, Math.round((picco - eq) * 100) / 100), iniz = j_saldoIniziale();
+  const ddPct = iniz && iniz + picco > 0 ? dd / (iniz + picco) * 100 : null;
+  const ddCella = !lista.length
+    ? `<div class="pcella"><span>Drawdown attuale</span><b>—</b><small>Nessuna operazione</small></div>`
+    : `<div class="pcella" title="Quanto sei sotto il punto più alto raggiunto dal conto."><span>Drawdown attuale</span><b class="${dd > 0 ? 'down' : ''}">${dd > 0 ? '−' + esc(j_soldi(dd, 2)) : esc(j_soldi(0, 2))}</b><small>${dd > 0 ? (ddPct !== null ? j_num(ddPct, 2) + '% sotto il punto più alto' : 'sotto il punto più alto') : 'Sei sul punto più alto'}</small></div>`;
+  el.innerHTML = cella('Oggi', lista.filter(t => t.date === oggi)) + cella('Questa settimana', lista.filter(t => t.date >= lun && t.date <= oggi)) +
+    cella('Questo mese', lista.filter(t => t.date.startsWith(mese))) + ddCella;
+}
+
+/* curva del capitale con la griglia dei valori e il dettaglio al passaggio del mouse */
+let p_eqDati = null;
+function p_passo(intervallo){
+  const grezzo = intervallo / 4, pot = Math.pow(10, Math.floor(Math.log10(grezzo || 1))), r = grezzo / pot;
+  return (r <= 1 ? 1 : r <= 2 ? 2 : r <= 2.5 ? 2.5 : r <= 5 ? 5 : 10) * pot;
+}
+function p_renderEq(list){
+  const svg = document.getElementById('pEq'), meta = document.getElementById('pEqMeta'); if(!svg) return;
+  const m = j_metrics(list);
+  if(!m){ svg.innerHTML = ''; meta.textContent = ''; p_eqDati = null; return; }
+  /* il disegno prende le misure vere del riquadro: testi sempre leggibili, su telefono e su computer */
+  const box = svg.parentElement.getBoundingClientRect();
+  const c = [0, ...m.curve], W = Math.max(300, Math.round(box.width) || 760), H = Math.max(220, Math.round(box.height) || 300), L = 62, R = 14, T = 14, B = 28;
+  let mn = Math.min(...c), mx = Math.max(...c); if(mx === mn){ mx += 1; mn -= 1; }
+  const passo = p_passo(mx - mn), y0 = Math.floor(mn / passo) * passo, y1 = Math.ceil(mx / passo) * passo;
+  const X = i => L + (i / (c.length - 1 || 1)) * (W - L - R), Y = v => T + (1 - (v - y0) / (y1 - y0)) * (H - T - B);
+  const pos = c.at(-1) >= 0, col = pos ? 'var(--p-su,#12805A)' : 'var(--p-giu,#C8372D)';
+  let griglia = '';
+  for(let v = y0; v <= y1 + passo / 2; v += passo){
+    const zero = Math.abs(v) < passo / 1000;
+    griglia += `<line x1="${L}" x2="${W - R}" y1="${Y(v).toFixed(1)}" y2="${Y(v).toFixed(1)}" style="stroke:var(--p-line,#DCE1E8)" stroke-width="1"${zero ? '' : ' stroke-dasharray="2 4"'}/>` +
+      `<text x="${L - 8}" y="${(Y(v) + 4).toFixed(1)}" text-anchor="end" font-size="11" style="fill:var(--p-dim2,#788494)">${esc(j_fmtBreve(v))}</text>`;
+  }
+  const pts = c.map((v, i) => `${X(i).toFixed(1)},${Y(v).toFixed(1)}`).join(' ');
+  const date = [m.sorted[0].date, m.sorted[Math.floor((m.sorted.length - 1) / 2)].date, m.sorted.at(-1).date];
+  const assi = m.sorted.length > 2
+    ? `<text x="${L}" y="${H - 6}" font-size="11" style="fill:var(--p-dim2,#788494)">${j_dataBreve(date[0])}</text><text x="${(L + W - R) / 2}" y="${H - 6}" text-anchor="middle" font-size="11" style="fill:var(--p-dim2,#788494)">${j_dataBreve(date[1])}</text><text x="${W - R}" y="${H - 6}" text-anchor="end" font-size="11" style="fill:var(--p-dim2,#788494)">${j_dataBreve(date[2])}</text>`
+    : `<text x="${L}" y="${H - 6}" font-size="11" style="fill:var(--p-dim2,#788494)">${j_dataBreve(date[0])}</text><text x="${W - R}" y="${H - 6}" text-anchor="end" font-size="11" style="fill:var(--p-dim2,#788494)">${j_dataBreve(date[2])}</text>`;
+  meta.textContent = `${p_op(m.n)} · ${j_fmt(m.net)}`;
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.innerHTML = `<defs><linearGradient id="pEqG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" style="stop-color:${col};stop-opacity:.22"/><stop offset="100%" style="stop-color:${col};stop-opacity:0"/></linearGradient></defs>
+    ${griglia}
+    <polygon points="${X(0).toFixed(1)},${Y(Math.max(y0, Math.min(0, y1))).toFixed(1)} ${pts} ${X(c.length - 1).toFixed(1)},${Y(Math.max(y0, Math.min(0, y1))).toFixed(1)}" fill="url(#pEqG)"/>
+    <polyline points="${pts}" fill="none" style="stroke:${col}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+    <line id="pEqV" y1="${T}" y2="${H - B}" x1="-10" x2="-10" style="stroke:var(--p-dim2,#788494)" stroke-width="1" opacity="0"/>
+    <circle id="pEqP" r="4.5" cx="${X(c.length - 1).toFixed(1)}" cy="${Y(c.at(-1)).toFixed(1)}" style="fill:${col};stroke:var(--p-card,#fff)" stroke-width="2"/>
+    <rect x="${L}" y="${T}" width="${W - L - R}" height="${H - T - B}" fill="transparent" id="pEqArea"/>`;
+  p_eqDati = { c, X, Y, W, H, L, R, ops: m.sorted };
+  const area = document.getElementById('pEqArea'), tip = document.getElementById('pEqTip'), v = document.getElementById('pEqV'), p = document.getElementById('pEqP');
+  const muovi = e => {
+    const d = p_eqDati; if(!d) return;
+    const r = svg.getBoundingClientRect(), cx = (e.touches ? e.touches[0].clientX : e.clientX) - r.left;
+    const x = cx / r.width * d.W, i = Math.max(0, Math.min(d.c.length - 1, Math.round((x - d.L) / (d.W - d.L - d.R) * (d.c.length - 1))));
+    v.setAttribute('x1', d.X(i)); v.setAttribute('x2', d.X(i)); v.setAttribute('opacity', '.6');
+    p.setAttribute('cx', d.X(i)); p.setAttribute('cy', d.Y(d.c[i]));
+    const t = i ? d.ops[i - 1] : null;
+    tip.innerHTML = t ? `<b>${esc(j_fmt(d.c[i]))}</b>${j_dataBreve(t.date)} · ${esc(t.symbol)} ${esc(j_fmt(t.pnl))}` : '<b>Inizio</b>prima della prima operazione';
+    tip.style.left = (d.X(i) / d.W * r.width) + 'px'; tip.style.top = (d.Y(d.c[i]) / d.H * r.height) + 'px'; tip.style.opacity = '1';
+  };
+  const via = () => { const d = p_eqDati; tip.style.opacity = '0'; v.setAttribute('opacity', '0'); if(d){ p.setAttribute('cx', d.X(d.c.length - 1)); p.setAttribute('cy', d.Y(d.c.at(-1))); } };
+  area.addEventListener('mousemove', muovi); area.addEventListener('mouseleave', via);
+  area.addEventListener('touchstart', muovi, { passive: true }); area.addEventListener('touchmove', muovi, { passive: true }); area.addEventListener('touchend', via);
+}
+
+/* tutte le statistiche in una tabella, come nei pannelli delle prop firm */
+function p_renderStat(list){
+  const el = document.getElementById('pStat'); if(!el) return;
+  const m = j_metrics(list);
+  if(!m){ el.innerHTML = ''; return; }
+  const riga = (nome, valore, cl, aiuto) => `<div class="pstat-r"${aiuto ? ` title="${esc(aiuto)}"` : ''}><span>${nome}</span><b class="${cl || ''}">${valore}</b></div>`;
+  const pari = m.n - m.w - m.l;
+  const lotti = list.reduce((a, t) => a + j_scagLotti(j_scagParse((t.dettagli || {}).scaglioni)), 0);
+  const conReg = list.filter(t => p_regola(t) !== null), fuori = conReg.filter(t => p_regola(t) === false), costo = p_somma(fuori);
+  let h = riga('Operazioni', `${m.n} <small>${p_vp(m.w, m.l)}${pari ? ' · ' + pari + ' pari' : ''}</small>`) +
+    riga('Percentuale di vincita', j_num(m.winrate, 1) + '%', m.winrate >= 50 ? 'up' : 'down', 'La percentuale di operazioni chiuse in guadagno.') +
+    riga('Profitto medio', m.w ? esc(j_fmt(m.avgW)) : '—', m.w ? 'up' : '', 'Quanto guadagni in media quando vinci.') +
+    riga('Perdita media', m.l ? '−' + esc(j_soldi(m.avgL, 2)) : '—', m.l ? 'down' : '', 'Quanto perdi in media quando perdi.') +
+    riga('Rapporto profitto / perdita', m.payoff === null ? '∞' : j_num(m.payoff, 2), '', 'Profitto medio diviso perdita media. Sopra 1 le vincite sono più grandi delle perdite.') +
+    riga('Profit factor', m.pf === Infinity ? '∞' : j_num(m.pf, 2), m.pf >= 1 ? 'up' : 'down', 'Quanto guadagni per ogni 1 che perdi. Sopra 1 sei in utile.') +
+    riga('Aspettativa per operazione', esc(j_fmt(m.exp)), j_cl(m.exp), 'Quanto guadagni o perdi in media a ogni operazione.');
+  if(m.avgR !== null) h += riga('R medio', (m.avgR >= 0 ? '+' : '−') + j_num(Math.abs(m.avgR), 2) + 'R', j_cl(m.avgR), 'Quante volte il rischio guadagni in media. Compare se indichi il rischio.');
+  h += riga('Operazione migliore', `${esc(j_fmt(m.best.pnl))} <small>${esc(m.best.symbol)} · ${j_dataBreve(m.best.date)}</small>`, j_cl(m.best.pnl)) +
+    riga('Operazione peggiore', `${esc(j_fmt(m.worst.pnl))} <small>${esc(m.worst.symbol)} · ${j_dataBreve(m.worst.date)}</small>`, j_cl(m.worst.pnl)) +
+    riga('Serie più lunga', p_vp(m.mw, m.ml), '', 'Il numero più lungo di vincite di fila e di perdite di fila.') +
+    riga('Giorni di trading', `${m.giorni} <small>${m.giorniPos} positivi</small>`) +
+    riga('Drawdown massimo', '−' + esc(j_soldi(m.maxDD, 2)), m.maxDD > 0 ? 'down' : '', 'La discesa più grande dal punto più alto raggiunto.');
+  if(lotti > 0) h += riga('Lotti scambiati', j_num(lotti, 2), '', 'La somma dei lotti delle operazioni in cui li hai indicati.');
+  if(conReg.length) h += riga('Regole rispettate', `${Math.round((conReg.length - fuori.length) / conReg.length * 100)}% <small>su ${conReg.length} indicate</small>`, '', 'Su quante operazioni hai risposto sì alla domanda sulle regole.') +
+    riga('Risultato fuori regola', fuori.length ? `${esc(j_fmt(costo))} <small>${p_op(fuori.length)}</small>` : '—', fuori.length ? j_cl(costo) : '', 'La somma dei risultati delle operazioni in cui non hai seguito le tue regole.');
+  el.innerHTML = h;
+}
+
+/* riepilogo giornaliero */
+let p_giorniTutti = false;
+function p_renderGiorni(list){
+  const el = document.getElementById('pGiorni'); if(!el) return;
+  if(!list.length){ el.innerHTML = '<div class="pvuoto">Nessuna operazione con questi filtri.</div>'; return; }
+  const g = {};
+  list.forEach(t => { const x = g[t.date] || (g[t.date] = { n: 0, w: 0, l: 0, pnl: 0 }); x.n++; if(t.pnl > 0) x.w++; else if(t.pnl < 0) x.l++; x.pnl += Number(t.pnl) || 0; });
+  const date = Object.keys(g).sort().reverse(), iniz = j_saldoIniziale(), tutte = j_lista();
+  const vis = p_giorniTutti ? date : date.slice(0, 7);
+  el.innerHTML = `<div class="ptab-s"><table class="ptab"><thead><tr><th>Giorno</th><th class="n">Op.</th><th class="n">Risultato</th>${iniz ? '<th class="n">Saldo</th>' : ''}</tr></thead><tbody>` +
+    vis.map(d => { const x = g[d];
+      const saldo = iniz ? iniz + tutte.filter(t => t.date <= d).reduce((a, t) => a + (Number(t.pnl) || 0), 0) : 0;
+      return `<tr><td>${j_dataBreve(d)}<small>${GIORNI[j_giornoSett({ date: d })]}</small></td><td class="n">${x.n}<small>${x.w}V · ${x.l}P</small></td><td class="n f ${j_cl(x.pnl)}">${esc(j_fmt(x.pnl))}</td>${iniz ? `<td class="n">${esc(j_soldi(saldo, 2))}</td>` : ''}</tr>`; }).join('') +
+    `</tbody></table></div>` + (date.length > 7 ? `<button type="button" class="ppiu" onclick="p_giorniTutti=!p_giorniTutti;p_renderGiorni(j_filtrati())">${p_giorniTutti ? 'Mostra solo gli ultimi 7 giorni' : `Mostra tutti i ${date.length} giorni`}</button>` : '');
+}
+
+/* revisione della settimana: tre numeri, l'errore che torna, la regola per la settimana dopo */
+let p_settIndietro = 0;
+function p_settChiave(lun){ return 'riskly-revisione-' + (j_demo ? 'esempio' : j_contoId()) + '-' + lun; }
+function p_settSalva(lun, testo){ if(j_demo) return; try{ if(testo.trim()) localStorage.setItem(p_settChiave(lun), testo.trim().slice(0, 300)); else localStorage.removeItem(p_settChiave(lun)); }catch{} }
+function p_settLeggi(lun){ if(j_demo) return ''; try{ return localStorage.getItem(p_settChiave(lun)) || ''; }catch{ return ''; } }
+function p_settSposta(n){ p_settIndietro = Math.max(0, p_settIndietro - n); p_renderSett(); }
+function p_renderSett(){
+  const el = document.getElementById('pSett'), nav = document.getElementById('pSettNav'); if(!el) return;
+  const base = new Date(); base.setDate(base.getDate() - 7 * p_settIndietro);
+  const lun = j_inizioSettimana(base), dl = dataDa(lun), dd = new Date(dl.getFullYear(), dl.getMonth(), dl.getDate() + 6), dom = isoLocale(dd);
+  const dp = new Date(dl.getFullYear(), dl.getMonth(), dl.getDate() - 7), lunPrima = isoLocale(dp), domPrima = isoLocale(new Date(dl.getFullYear(), dl.getMonth(), dl.getDate() - 1));
+  const tutte = j_lista(), sett = tutte.filter(t => t.date >= lun && t.date <= dom), prima = tutte.filter(t => t.date >= lunPrima && t.date <= domPrima);
+  nav.innerHTML = `<button type="button" onclick="p_settSposta(-1)" aria-label="Settimana precedente">‹</button><span class="jmeta">${p_giornoMese(lun)} – ${p_giornoMese(dom)}</span><button type="button" onclick="p_settSposta(1)" aria-label="Settimana successiva"${p_settIndietro ? '' : ' disabled'}>›</button>`;
+  if(!sett.length){ el.innerHTML = '<div class="pvuoto">Nessuna operazione in questa settimana.</div>'; return; }
+  const m = j_metrics(sett), conReg = sett.filter(t => p_regola(t) !== null), fuori = conReg.filter(t => p_regola(t) === false);
+  /* l'errore che torna: il gruppo che ha tolto più soldi in settimana (fuori regola, stato d'animo, strategia) */
+  const candidati = [];
+  if(fuori.length >= 2 && p_somma(fuori) < 0) candidati.push({ v: p_somma(fuori), t: `${p_op(fuori.length)} fuori dalle tue regole: ${j_fmt(p_somma(fuori))}.` });
+  const gruppi = (chiave, frase) => { const g = {}; sett.forEach(t => { const k = chiave(t); if(k) (g[k] = g[k] || []).push(t); });
+    Object.entries(g).forEach(([k, l]) => { const v = p_somma(l); if(l.length >= 2 && v < 0) candidati.push({ v, t: frase(k, l, v) }); }); };
+  gruppi(t => ['incerto', 'impaziente', 'rivalsa'].includes(t.emo) ? t.emo : '', (k, l, v) => `Quando eri «${j_emoInfo(k).nome.toLowerCase()}» hai aperto ${p_op(l.length)}: ${j_fmt(v)}.`);
+  gruppi(t => t.strategy || '', (k, l, v) => `Strategia «${k}»: ${p_op(l.length)}, ${j_fmt(v)}.`);
+  candidati.sort((a, b) => a.v - b.v);
+  const errore = candidati.length
+    ? `<div class="psett-err"><b>L'errore che torna</b>${esc(candidati[0].t)}</div>`
+    : `<div class="psett-err ok"><b>L'errore che torna</b>Nessun errore ripetuto questa settimana.</div>`;
+  const giorni = {}; sett.forEach(t => giorni[t.date] = (giorni[t.date] || 0) + (Number(t.pnl) || 0));
+  const gg = Object.entries(giorni).sort((a, b) => b[1] - a[1]);
+  const regolaPrima = p_settLeggi(lunPrima);
+  el.innerHTML = `<div class="psett-num">
+      <div><span>Risultato</span><b class="${j_cl(m.net)}">${esc(j_fmt(m.net))}</b></div>
+      <div><span>Operazioni</span><b>${m.n} <small style="font-weight:500;color:var(--p-dim2)">${m.w}V · ${m.l}P</small></b></div>
+      <div><span>Vincita</span><b>${j_num(m.winrate, 0)}%</b></div>
+      <div><span>Regole</span><b>${conReg.length ? Math.round((conReg.length - fuori.length) / conReg.length * 100) + '%' : '—'}</b></div>
+    </div>
+    ${errore}
+    <div class="psett-prima">Giorno migliore: <b class="${j_cl(gg[0][1])}">${j_dataBreve(gg[0][0])} ${esc(j_fmt(gg[0][1]))}</b>${gg.length > 1 ? ` · peggiore: <b class="${j_cl(gg.at(-1)[1])}">${j_dataBreve(gg.at(-1)[0])} ${esc(j_fmt(gg.at(-1)[1]))}</b>` : ''}${prima.length ? ` · settimana prima: <b class="${j_cl(p_somma(prima))}">${esc(j_fmt(p_somma(prima)))}</b>` : ''}</div>
+    ${regolaPrima ? `<div class="psett-prima">La regola che ti eri dato: <b>«${esc(regolaPrima)}»</b></div>` : ''}
+    <div class="psett-reg"><label for="pSettRegola">Una regola per la prossima settimana</label>
+      <textarea id="pSettRegola" maxlength="300" placeholder="Per esempio: dopo due perdite di fila chiudo la piattaforma." ${j_demo ? 'disabled' : ''} onchange="p_settSalva('${lun}', this.value)">${esc(p_settLeggi(lun))}</textarea>
+      <small>${j_demo ? 'Nei dati di esempio non si salva.' : 'Resta salvata su questo dispositivo.'}</small></div>`;
+}
+
+let p_eqAttesa;
+window.addEventListener('resize', () => { clearTimeout(p_eqAttesa); p_eqAttesa = setTimeout(() => { if(document.body.dataset.vista === 'panoramica' && typeof j_filtrati === 'function') p_renderEq(j_filtrati()); }, 180); });
+
+function p_render(list){
+  p_renderAllerta();
+  p_renderStrip();
+  const haDati = !!list.length;
+  ['pRiga1', 'pRiga2'].forEach(id => { const e = document.getElementById(id); if(e) e.hidden = !haDati && !j_lista().length; });
+  const box = document.getElementById("pSpuntiBox"), sp = document.getElementById("spunti");
+  if(box && sp) box.hidden = !sp.children.length;
+  p_renderStat(list);
+  p_renderEq(list);
+  p_renderGiorni(list);
+  p_renderSett();
+  p_regoleUI();
+}
+
 /* ---------- Schermata di benvenuto ---------- */
+/* ospite: chi apre /?esempio=1 vede il journal con dati di esempio, senza account */
+const OSPITE = (() => { try{ return new URLSearchParams(location.search).has('esempio'); }catch{ return false; } })();
 function aggiornaVista(){
   const benv = document.getElementById('benvenuto');
   const app  = document.getElementById('appJournal');
   if(!benv || !app) return;
 
-  const dentro = !!utente;
-  benv.style.display = dentro ? 'none' : 'flex';
+  const dentro = !!utente || OSPITE;
+  document.body.classList.toggle('ospite', OSPITE && !utente);
+  benv.style.display = dentro ? 'none' : 'grid';
   app.style.display  = dentro ? 'block' : 'none';
   document.body.classList.toggle('in-app', dentro);
 
   if(dentro) avviaJournal();
+  if(OSPITE && !utente && !j_demo) j_anteprima();
   if(dentro) setTimeout(j_forseChiediMetodo, 1200);
 }
 
@@ -6121,6 +6720,7 @@ document.addEventListener('visibilitychange', async () => {
   if(!wrap) return;
   const dove = el => {
     if(!el.matches) return 'panoramica';
+    if(el.dataset.pv) return el.dataset.pv === 'tutte' ? '' : el.dataset.pv;   /* 'tutte': si vede in ogni pagina tranne il modulo */
     if(el.querySelector('#calendario')) return 'calendario';
     if(el.classList.contains('jgrid')) return 'statistiche';
     if(el.id === 'scagCard') return 'statistiche';
@@ -6128,7 +6728,7 @@ document.addEventListener('visibilitychange', async () => {
     if(el.id === 'trades' || el.id === 'strat') return 'operazioni';
     return 'panoramica';
   };
-  [...wrap.children].forEach(el => el.dataset.vista = dove(el));
+  [...wrap.children].forEach(el => { const v = dove(el); if(v) el.dataset.vista = v; });
   const barra = document.createElement('div');
   barra.className = 'jbarra';
   barra.innerHTML = VISTE.map(v => `<button data-v="${v.id}" class="${v.id==='nuova'?'jb-piu':''}" aria-label="${v.nome||'Nuova operazione'}">
@@ -6136,15 +6736,21 @@ document.addEventListener('visibilitychange', async () => {
       ${v.nome?`<span>${v.nome}</span>`:''}</button>`).join('');
   document.getElementById('appJournal').appendChild(barra);
   /* stile dashboard (3 novembre 2026): saluto e voce "Menu" nella colonna, pillole in alto, titolo della vista */
-  barra.insertAdjacentHTML('afterbegin', '<div class="jb-ciao"><b id="jbCiao">Bentornato!</b><span>Il riepilogo del tuo trading</span></div><div class="jb-menu">Menu</div>');
+  barra.insertAdjacentHTML('afterbegin', '<div class="jb-ciao"><b id="jbCiao">Bentornato!</b><span>Il tuo journal</span></div><div class="jb-menu">Journal</div>');
+  /* il resto di Riskly a un tocco (13 novembre 2026) */
+  barra.insertAdjacentHTML('beforeend', '<div class="jb-eco"><span>Riskly</span><a href="https://strumenti.riskly.trade" target="_blank" rel="noopener">Strumenti</a><a href="https://news.riskly.trade" target="_blank" rel="noopener">News</a><a href="https://riskly.trade/#software" target="_blank" rel="noopener">Software</a></div>');
   const NOMI = { panoramica: 'Panoramica', calendario: 'Calendario', statistiche: 'Statistiche', operazioni: 'Operazioni', nuova: 'Nuova operazione' };
+  const SOTTO = { panoramica: 'Il conto, gli obiettivi e i numeri che contano', calendario: 'Il risultato di ogni giorno del mese', statistiche: 'Dove guadagni e dove perdi', operazioni: 'Tutte le operazioni e le prestazioni per gruppo', nuova: 'Bastano 20 secondi' };
   const tabs = document.createElement('div'); tabs.className = 'jvtabs';
   tabs.innerHTML = '<span class="jv-ind"></span>' + ['panoramica','calendario','statistiche','operazioni'].map(v => `<button type="button" data-v="${v}">${NOMI[v]}</button>`).join('');
   tabs.addEventListener('click', e => { const b = e.target.closest('button'); if(b) jVista(b.dataset.v); });
   const navW = document.querySelector('.app-nav .wrap'); if(navW){ const az = navW.querySelector('.nav-azioni'); if(az) navW.insertBefore(tabs, az); else navW.appendChild(tabs); }
   const titolo = document.createElement('div'); titolo.className = 'jtitolo';
-  titolo.innerHTML = '<div><h1 id="jTit">Panoramica</h1><small id="jSot">Journal › Panoramica</small></div>';
+  titolo.innerHTML = '<div><h1 id="jTit">Panoramica</h1><small id="jSot"></small></div>';
   wrap.insertBefore(titolo, wrap.firstChild);
+  const allerta = document.createElement('div'); allerta.className = 'pallerta'; allerta.id = 'pAllerta'; allerta.hidden = true; allerta.setAttribute('role', 'alert');
+  titolo.after(allerta);
+  if(typeof p_renderAllerta === 'function') p_renderAllerta();
   function jSposta(id){
     const ind = tabs.querySelector('.jv-ind'), b = tabs.querySelector(`button[data-v="${id}"]`);
     if(!ind) return;
@@ -6169,7 +6775,8 @@ document.addEventListener('visibilitychange', async () => {
     barra.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.v === id));
     tabs.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.v === id));
     jSposta(id); jAnima();
-    const t = document.getElementById('jTit'); if(t){ t.textContent = NOMI[id] || ''; document.getElementById('jSot').textContent = 'Journal › ' + (NOMI[id] || ''); }
+    if(id === 'panoramica' && typeof p_renderEq === 'function' && typeof j_filtrati === 'function') p_renderEq(j_filtrati());   /* la curva prende le misure quando la pagina è visibile */
+    const t = document.getElementById('jTit'); if(t){ t.textContent = NOMI[id] || ''; document.getElementById('jSot').textContent = SOTTO[id] || ''; }
     window.scrollTo(0,0);
   };
   barra.addEventListener('click', e => { const b = e.target.closest('button'); if(b) jVista(b.dataset.v); });
@@ -6181,7 +6788,7 @@ document.addEventListener('click', () => { const m = document.getElementById('ja
 <script>
 /* azioni contate sul journal (vedi nuovo/traccia.html sul ramo del sito) */
 (function(){
-  tracciaVisita('app');
+  tracciaVisita(/[?&]esempio/.test(location.search) ? 'app/demo' : 'app');
   tracciaFunzione('apriAccesso', function(t){ return (t || 'registrati') === 'registrati' ? 'registrazione-aperta' : 'accesso-aperto'; });
   tracciaFunzione('inviaAccesso', function(){ return accModo === 'registrati' ? 'registrazione-inviata' : 'accesso-inviato'; });
   try{ if(typeof sb !== 'undefined' && sb) sb.auth.onAuthStateChange(function(ev){ if(ev === 'SIGNED_IN') traccia('dentro-il-journal'); }); }catch(e){}
