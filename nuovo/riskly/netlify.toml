@@ -6,6 +6,12 @@
   force = true
   headers = {Origin = "https://www.tradingview.com"}
 
+# pagine prodotto dei software (generate da pagine_software.py)
+[[redirects]]
+  from = "/software/*"
+  to = "/software/:splat.html"
+  status = 200
+
 # pagina dei partner selezionati
 [[redirects]]
   from = "/partner"

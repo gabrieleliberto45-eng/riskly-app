@@ -2368,6 +2368,19 @@ html body #home .h2-vet h2{font-size:.9375rem!important;font-family:'Instrument 
 /* il menu resta in alto scorrendo (la classe .z lo rendeva relative), con la striscia dei mercati dentro */
 nav.z{position:sticky;top:0;z-index:60}
 
+/* scegli la tua esigenza (home) e link alle pagine prodotto */
+.esig{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.esig a{display:flex;flex-direction:column;gap:4px;background:#fff;border:1px solid var(--rule,#DCE1E8);border-radius:12px;padding:16px 18px;text-decoration:none!important;color:var(--ink,#0F1B2D)!important;transition:border-color .15s ease,transform .2s ease}
+.esig a:hover{border-color:#12263F;transform:translateY(-2px)}
+.esig b{font-size:17px;line-height:1.3}
+.esig span{font-size:14px;color:#566273;line-height:1.45}
+.esig em{margin-top:auto;padding-top:8px;font-style:normal;font-weight:700;font-size:13.5px;color:#12263F}
+.esig a.tutto{background:#12263F;border-color:#12263F}.esig a.tutto b,.esig a.tutto em{color:#fff}.esig a.tutto span{color:#C9D3E0}
+.esig a.gratis em{color:#12805A}
+@media(max-width:820px){.esig{grid-template-columns:1fr}}
+.scheda-link{display:block;text-align:center;margin-top:10px;font-size:14px;font-weight:600;color:#12263F!important;text-decoration:underline!important}
+.h2-carta h3 a{color:inherit!important;text-decoration:none!important}.h2-carta h3 a:hover{text-decoration:underline!important}
+
 /* ecosistema in 6 aree, home */
 .eco6{background:#0E1B2C;color:#E7ECF3;border-radius:16px;padding:clamp(22px,3.4vw,40px);margin:8px 0 22px;border:1px solid #1E2C40}
 .eco6-t{text-align:center;padding-bottom:22px;margin-bottom:22px;border-bottom:1px solid #22324A}
@@ -2489,6 +2502,19 @@ nav.z{position:sticky;top:0;z-index:60}
     </div>
   </div></section>
 
+  <!-- percorso d'acquisto: scegli la tua esigenza (14 novembre 2026) -->
+  <section class="h2-sez" id="esigenza"><div class="h2w">
+    <div class="h2-t"><h2>Di cosa hai bisogno?</h2><p>Scegli il problema che vuoi risolvere: ti portiamo al software giusto, con video, limiti e prezzo.</p></div>
+    <div class="esig">
+      <a href="/software/riskguard"><b>Fermarmi quando perdo troppo</b><span>Perdite di fila, limite giornaliero, revenge trading</span><em>RiskGuard · 99 €</em></a>
+      <a href="/software/trademanager"><b>Gestire stop, pareggio e trailing</b><span>Le posizioni che apro io, sempre con le stesse regole</span><em>TradeManager · 49 €</em></a>
+      <a href="/software/scalein"><b>Entrare e uscire a scaglioni</b><span>Più take profit in pip, rischio totale sotto controllo</span><em>ScaleIn · 79 €</em></a>
+      <a href="/software/risklycopy"><b>Copiare su altri miei conti</b><span>Stesso rischio su ogni conto, tra MT4 e MT5</span><em>RisklyCopy · 69 €</em></a>
+      <a href="/software/riskly-pro" class="tutto"><b>Tutto in un solo software</b><span>Rischio, gestione e scaglioni, con il lotto già calcolato</span><em>Riskly Pro · 199 €</em></a>
+      <a href="https://strumenti.riskly.trade/#posizione" class="gratis"><b>Solo calcolare il rischio</b><span>Lotto, drawdown e simulazioni, senza comprare nulla</span><em>Strumenti · gratis</em></a>
+    </div>
+  </div></section>
+
   <section class="h2-sez alt" id="eco-home"><div class="h2w">
     <div class="h2-t"><h2>Riskly è un sistema, non un catalogo.</h2><p>Cinque parti collegate per gestire il rischio prima, durante e dopo ogni operazione. Puoi usarne una sola: più ne usi, più il quadro è completo.</p></div>
     <!-- ecosistema in 6 aree (14 novembre 2026, proposta di Gabriele: Protect, Manage, Calculate, Analyze, Understand, Monitor) -->
@@ -2519,11 +2545,11 @@ nav.z{position:sticky;top:0;z-index:60}
   <section class="h2-sez alt"><div class="h2w">
     <div class="h2-t"><h2>I nostri software.</h2><p>Prezzi di lancio. Ognuno fa una cosa precisa, Riskly Pro le fa tutte.</p></div>
     <div class="h2-carte">
-      <div class="h2-carta"><small>Ti ferma dopo le perdite</small><h3>RiskGuard</h3><p>Dopo N perdite di fila, il numero lo scegli tu, blocca le nuove operazioni e chiude MetaTrader fino a mezzanotte.</p><div class="costo">99 €<em>una volta · poi 149 €</em></div><a class="h2-btn" href="#" onclick="go('bot');return false">Vedi RiskGuard →</a></div>
-      <div class="h2-carta"><small>Stop, break-even e trailing</small><h3>TradeManager</h3><p>Mette stop loss e take profit se mancano, sposta lo stop in pari e poi lo fa seguire il prezzo. Tutto in pip.</p><div class="costo">49 €<em>una volta · poi 79 €</em></div><a class="h2-btn" href="#" onclick="go('bot');return false">Vedi TradeManager →</a></div>
-      <div class="h2-carta"><small>Ingressi a scaglioni</small><h3>ScaleIn</h3><p>Replica la tua posizione in più scaglioni con take profit diversi. Si ferma se il rischio totale è troppo alto.</p><div class="costo">79 €<em>una volta · poi 129 €</em></div><a class="h2-btn" href="#" onclick="go('bot');return false">Vedi ScaleIn →</a></div>
-      <div class="h2-carta pro"><small>Il più completo</small><h3>Riskly Pro</h3><p>RiskGuard, TradeManager e ScaleIn in un solo software che conosce tutte le posizioni aperte. Il lotto è già calcolato sui pulsanti BUY e SELL.</p><div class="costo">199 €<em>una volta · poi 299 €</em></div><a class="h2-btn pri" href="#" onclick="go('bot');return false">Vedi Riskly Pro →</a></div>
-      <div class="h2-carta"><small>Copia su altri conti</small><h3>RisklyCopy</h3><p>Il lotto si ricalcola sul saldo di ogni conto: stesso rischio, non lo stesso lotto. Funziona tra MetaTrader 4 e 5.</p><div class="costo">69 €<em>una volta · poi 129 €</em></div><a class="h2-btn" href="#" onclick="go('bot');return false">Vedi RisklyCopy →</a></div>
+      <div class="h2-carta"><small>Ti ferma dopo le perdite</small><h3><a href="/software/riskguard">RiskGuard</a></h3><p>Dopo N perdite di fila, il numero lo scegli tu, blocca le nuove operazioni e chiude MetaTrader fino a mezzanotte.</p><div class="costo">99 €<em>una volta · poi 149 €</em></div><a class="h2-btn" href="/software/riskguard">Vedi RiskGuard →</a></div>
+      <div class="h2-carta"><small>Stop, break-even e trailing</small><h3><a href="/software/trademanager">TradeManager</a></h3><p>Mette stop loss e take profit se mancano, sposta lo stop in pari e poi lo fa seguire il prezzo. Tutto in pip.</p><div class="costo">49 €<em>una volta · poi 79 €</em></div><a class="h2-btn" href="/software/trademanager">Vedi TradeManager →</a></div>
+      <div class="h2-carta"><small>Ingressi a scaglioni</small><h3><a href="/software/scalein">ScaleIn</a></h3><p>Replica la tua posizione in più scaglioni con take profit diversi. Si ferma se il rischio totale è troppo alto.</p><div class="costo">79 €<em>una volta · poi 129 €</em></div><a class="h2-btn" href="/software/scalein">Vedi ScaleIn →</a></div>
+      <div class="h2-carta pro"><small>Il più completo</small><h3><a href="/software/riskly-pro">Riskly Pro</a></h3><p>RiskGuard, TradeManager e ScaleIn in un solo software che conosce tutte le posizioni aperte. Il lotto è già calcolato sui pulsanti BUY e SELL.</p><div class="costo">199 €<em>una volta · poi 299 €</em></div><a class="h2-btn pri" href="/software/riskly-pro">Vedi Riskly Pro →</a></div>
+      <div class="h2-carta"><small>Copia su altri conti</small><h3><a href="/software/risklycopy">RisklyCopy</a></h3><p>Il lotto si ricalcola sul saldo di ogni conto: stesso rischio, non lo stesso lotto. Funziona tra MetaTrader 4 e 5.</p><div class="costo">69 €<em>una volta · poi 129 €</em></div><a class="h2-btn" href="/software/risklycopy">Vedi RisklyCopy →</a></div>
     </div>
   </div></section>
 
@@ -2767,6 +2793,7 @@ nav.z{position:sticky;top:0;z-index:60}
           <div class="price-off">prezzo di lancio · poi €149</div>
           <div class="plabel">una tantum · 2 conti · aggiornamenti inclusi</div>
           <button class="btn pri wide" style="margin-top:8px" data-prodotto="RiskGuard" onclick="azioneProdotto('RiskGuard')">Disponibile dal 23 ottobre · blocca il posto</button>
+          <a class="scheda-link" href="/software/riskguard">Scheda completa, video e limiti →</a>
           <details class="programma cp-prog"><summary>Cosa fa · 8 funzioni</summary>
           <ul>
             <li>Pausa obbligatoria dopo una perdita</li>
@@ -2801,6 +2828,7 @@ nav.z{position:sticky;top:0;z-index:60}
           <div class="price-off">prezzo di lancio · poi €79</div>
           <div class="plabel">una tantum · 2 conti · aggiornamenti inclusi</div>
           <button class="btn pri wide" style="margin-top:8px" data-prodotto="TradeManager" onclick="azioneProdotto('TradeManager')">Disponibile dal 23 ottobre · blocca il posto</button>
+          <a class="scheda-link" href="/software/trademanager">Scheda completa, video e limiti →</a>
           <details class="programma cp-prog"><summary>Cosa fa · 5 funzioni</summary>
           <ul>
             <li>Stop loss e take profit automatici in pip, se mancano: mai una posizione senza stop</li>
@@ -2832,6 +2860,7 @@ nav.z{position:sticky;top:0;z-index:60}
           <div class="price-off">prezzo di lancio · poi €129</div>
           <div class="plabel">una tantum · 2 conti · aggiornamenti inclusi</div>
           <button class="btn pri wide" style="margin-top:8px" data-prodotto="ScaleIn" onclick="azioneProdotto('ScaleIn')">Disponibile dal 23 ottobre · blocca il posto</button>
+          <a class="scheda-link" href="/software/scalein">Scheda completa, video e limiti →</a>
           <details class="programma cp-prog"><summary>Cosa fa · 7 funzioni</summary>
           <ul>
             <li>Replica la posizione in N scaglioni</li>
@@ -2865,6 +2894,7 @@ nav.z{position:sticky;top:0;z-index:60}
           <div class="price-off">prezzo di lancio · poi €299</div>
           <div class="plabel">una tantum · 3 conti · aggiornamenti a vita</div>
           <button class="btn pri wide" style="margin-top:8px" data-prodotto="Riskly Pro" onclick="azioneProdotto('Riskly Pro')">Disponibile dal 23 ottobre · blocca il posto</button>
+          <a class="scheda-link" href="/software/riskly-pro">Scheda completa, video e limiti →</a>
           <details class="programma cp-prog"><summary>Cosa fa · 9 funzioni</summary>
           <ul>
             <li>Tutto di RiskGuard</li>
@@ -2900,6 +2930,7 @@ nav.z{position:sticky;top:0;z-index:60}
           <div class="price-off">prezzo di lancio · poi €129</div>
           <div class="plabel">una tantum · 1 conto principale + 2 copie · aggiornamenti inclusi</div>
           <button class="btn pri wide" style="margin-top:8px" data-prodotto="RisklyCopy" onclick="azioneProdotto('RisklyCopy')">Disponibile dal 23 ottobre · blocca il posto</button>
+          <a class="scheda-link" href="/software/risklycopy">Scheda completa, video e limiti →</a>
           <details class="programma cp-prog"><summary>Cosa fa · 6 funzioni</summary>
           <ul>
             <li>Copia apertura, chiusura, chiusure parziali, stop e take profit</li>
@@ -5578,6 +5609,18 @@ async function azioneProdotto(nome){
   }
   apriModulo('attesa', nome, /Corso|Pacchetto/.test(nome) ? PREZZO_LANCIO[nome] : 0);   /* corsi: testo "non ancora in vendita", non quello dei bot */
 }
+
+/* dalle pagine prodotto (/software/<nome>): ?compra=Nome apre subito lo stesso percorso d'acquisto (account, termini, Stripe) */
+(function(){
+  let nome = ''; try{ nome = new URLSearchParams(location.search).get('compra') || ''; }catch(e){}
+  if(!nome || !STRIPE[nome]) return;
+  quandoPronto(() => setTimeout(async () => {
+    try{ if(typeof sb !== 'undefined' && sb && !utente){ const { data:{ session } } = await sb.auth.getSession(); if(session) utente = session.user; } }catch(e){}
+    try{ history.replaceState(null, '', location.pathname + '#software'); }catch(e){}
+    try{ go('bot'); }catch(e){}
+    azioneProdotto(nome);
+  }, 500));
+})();
 
 /* pulsanti dei piani del journal: stesso percorso dei bot, con il ciclo scelto */
 async function azioneJournal(btn){
