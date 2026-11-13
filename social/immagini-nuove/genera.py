@@ -92,9 +92,9 @@ D={
  'bot-riskguard':page('Risk','Guard','Ti ferma prima di perdere il conto.',['Blocco dopo N perdite di fila','Limite di perdita giornaliero','Stop loss sempre presente'],'MENO ERRORI. PIÙ DISCIPLINA.',rg),
  'bot-trademanager':page('Trade','Manager','Gestisce le uscite al posto tuo.',['Stop e take profit in pip','Pareggio automatico','Trailing stop'],'LE USCITE SOTTO CONTROLLO.',tm),
  'bot-scalein':page('Scale','In','Apri una posizione, lui apre le altre.',['Take profit diversi per scaglione','Rischio totale sotto controllo','Stop automatico se manca'],'INGRESSI A SCAGLIONI.',si),
- 'bot-riskly-pro':page('Riskly','Pro','Tre bot in uno, un solo rischio.',['RiskGuard, TradeManager, ScaleIn','Rischio calcolato su tutte le posizioni','Lotto già calcolato sul rischio'],'IL PIÙ COMPLETO.',pro),
+ 'bot-riskly-pro':page('Riskly','Pro','Tre software in uno, un solo rischio.',['RiskGuard, TradeManager, ScaleIn','Rischio calcolato su tutte le posizioni','Lotto già calcolato sul rischio'],'IL PIÙ COMPLETO.',pro),
  'bot-risklycopy':page('Riskly','Copy','Stesso rischio su ogni conto.',['Copia da un conto principale','Lotto in proporzione al saldo','Tra MetaTrader 4 e 5'],'DAL TUO CONTO AI TUOI CONTI.',cp),
- 'journal':page('Riskly','Journal','Il diario che misura la tua disciplina.',['Operazioni anche dai bot','Statistiche per orario e strategia','Regole delle prop firm'],'IMPARA DAI TUOI NUMERI.',jr,'Dati dimostrativi, non reali'),
+ 'journal':page('Riskly','Journal','Il diario che misura la tua disciplina.',['Operazioni anche dai software','Statistiche per orario e strategia','Regole delle prop firm'],'IMPARA DAI TUOI NUMERI.',jr,'Dati dimostrativi, non reali'),
 }
 import os
 for k,v in D.items(): open(f'/tmp/claude-0/-home-user-riskly-app/ce60a453-0542-5639-9e1e-839dfbd0bd0f/scratchpad/img-{k}.html','w').write(v)
