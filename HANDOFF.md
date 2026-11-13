@@ -100,3 +100,10 @@ Gabriele: "Non bloccare mai gli articoli… non devono mai fermarsi, anche gli s
 - MAI mettere un partner senza accordo firmato e link vero di Gabriele. Niente broker (CONSOB/ESMA): solo prop firm e servizi.
 - Concorrente di riferimento: riskguardmanagement.com (Montorio Michele, Sossano VI, dal 2021). ATTENZIONE: il loro prodotto si chiama RiskGuard come il nostro software: proposto a Gabriele di rinominare il nostro.
 - Banner dei cookie: nuovo/cookie.js copiato in ogni sito (riskly, strumenti, news, journal) con <script src="/cookie.js" defer>. Consenso in localStorage riskly-consenso; "Contenuti esterni" = calendario TradingView (riskly-tv-ok).
+
+## 14 novembre 2026: software venduti su MQL5 (decisione di Gabriele: "tutti e due", poi "abbassa")
+- Profilo venditore: https://www.mql5.com/it/users/riskly/seller. 6 prodotti, MT5/MT4: RisklyPro 205282/205462 (99 $), RiskGuard 205467/205470 (69 $), RisklyCopy 205472/205475 (79 $), RisklyTrailing 205477/205479 (49 $), RisklyScalen=ScaleIn 205481/205483 (49 $), RisklyManager=TradeManager 205484/205486 (49 $).
+- Sul sito i prezzi dei software sono uguali a MQL5, in dollari. I pulsanti portano a MQL5. Stripe per i software è SPENTO finché Gabriele non crea 6 link Stripe con i nuovi prezzi (i vecchi hanno i prezzi di lancio): azioneProdotto() manda alla pagina /software/<nome>.
+- Pagine prodotto generate da nuovo/riskly/pagine_software.py (dizionari P, MQL5, MQL5_NOME). Modifica lì e rilancia, poi deploy.
+- Tolto lo sconto 30% Premium sui software (non applicabile su MQL5). Lo sconto 50% sul videocorso per chi compra un software resta: si dà a mano con la ricevuta MQL5.
+- Da fare su MQL5 (Gabriele): correggere RisklyScalen in RisklyScaleIn; scegliere un solo nome tra TradeManager e RisklyManager.
