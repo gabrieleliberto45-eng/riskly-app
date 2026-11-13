@@ -2365,6 +2365,8 @@ html body #home .h2-vet h2{font-size:.9375rem!important;font-family:'Instrument 
 .eco-bot span{font-size:.875rem;color:var(--ink-2)}
 .eco-voce.futura{background:repeating-linear-gradient(135deg,#fff 0 9px,#F4F6F8 9px 10px)}
 .eco-voce.futura .eco-n{background:#7C8AA0}
+/* il menu resta in alto scorrendo (la classe .z lo rendeva relative), con la striscia dei mercati dentro */
+nav.z{position:sticky;top:0;z-index:60}
 /* striscia dei mercati, sotto il menu, su tutte le pagine */
 #striscia{background:var(--navy,#12263F);color:#fff;overflow:hidden;font:400 .8125rem/1 'JetBrains Mono','Martian Mono',ui-monospace,monospace;border-top:1px solid rgba(255,255,255,.08)}
 #striscia .rotola{display:flex;width:max-content;animation:rotola 55s linear infinite}
