@@ -1558,7 +1558,7 @@ html[data-tema="scuro"] .evt.rosso{color:#0E1110!important}
 html[data-tema="scuro"] .evt.verde{color:#0E1110!important}
 html[data-tema="scuro"] .jbot-stato.offline{background:rgba(255,255,255,.07)!important}
 html[data-tema="scuro"] .jbot-passi code{background:rgba(255,255,255,.07)!important}
-html[data-tema="scuro"] .jaltro-menu{background:#161A18!important}
+html[data-tema="scuro"] .jaltro-menu{background:#111926!important;border-color:#202C3F!important}
 html[data-tema="scuro"] .jaltro-menu button:hover{background:rgba(255,255,255,.07)!important}
 html[data-tema="scuro"] .jbarra{border:1px solid #2E3532!important}
 html[data-tema="scuro"] .jbarra button{color:#A3ABA6!important}
@@ -1729,7 +1729,12 @@ html[data-tema="scuro"] body.in-app .jvtabs .jv-ind{background:#ECEEEA}
 <link rel="stylesheet" href="/serio.css?v=2">
 <style id="prop">
 /* ===== pannello "a schede" (lx), 14 novembre 2026 ===== */
-.lx{display:grid;gap:12px;margin:0 0 14px}
+.lx{display:grid;gap:12px;margin:0 0 14px;--lx-acc:#C98A12;--lx-acc-bg:rgba(201,138,18,.16)}
+html[data-tema="scuro"] .lx{--lx-acc:#F2B33D;--lx-acc-bg:rgba(242,179,61,.16)}
+.pbarra{position:relative;z-index:60}
+body[data-vista="panoramica"] #fPeriodo{display:none!important}
+.lx-saldo b{font-size:26px}.lx-saldo button{margin-top:6px;border:1px solid var(--p-line);background:none;color:var(--p-ink);font:600 12.5px/1 inherit;padding:7px 10px;border-radius:7px;cursor:pointer}
+.lx-saldo small b{display:inline;font-size:inherit;margin:0}
 .lx-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .lx-per{display:flex;gap:2px;background:var(--p-card);border:1px solid var(--p-line);border-radius:10px;padding:3px}
 .lx-per button{border:0;background:none;color:var(--p-dim);font:600 13px/1 inherit;padding:8px 12px;border-radius:7px;cursor:pointer}
@@ -1741,7 +1746,7 @@ html[data-tema="scuro"] body.in-app .jvtabs .jv-ind{background:#ECEEEA}
 .lx-k span{display:block;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--p-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .lx-k b{display:block;font-size:22px;font-weight:700;letter-spacing:-.02em;margin:6px 0 3px;white-space:nowrap}
 .lx-k small{display:block;font-size:11.5px;color:var(--p-dim2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.lx-k b.up{color:var(--p-su)}.lx-k b.down{color:var(--p-giu)}
+.lx-k b.up{color:var(--p-ink)}.lx-k b.down{color:var(--p-giu)}.lx-k small em{font-style:normal;font-weight:700;display:inline}.lx-k small .lx-su{color:var(--lx-acc)}.lx-k small .lx-giu{color:var(--p-giu)}.lx-saldo small{font-size:13px;white-space:normal}
 .lx-k svg{flex:0 0 44px;width:44px;height:44px}
 .lx-wl{flex:0 0 70px;display:grid;gap:5px}.lx-wl i{display:block;height:5px;border-radius:3px}
 .lx-r2{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:12px}
@@ -6969,10 +6974,11 @@ function p_renderTabDense(list){
 }
 
 /* ---------- pannello "a schede" (lx) ---------- */
+const LX_ACC = 'var(--lx-acc)';
 const LX_PER = [['1','Oggi'],['7','Settimana'],['mese','Mese'],['anno','Anno'],['tutto','Tutto']];
 function lx_anello(frac, col){
   const r = 18, c = 2 * Math.PI * r, f = Math.max(0, Math.min(1, frac || 0));
-  return `<svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="${r}" fill="none" style="stroke:var(--p-giu)" stroke-width="5"/>` +
+  return `<svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="${r}" fill="none" style="stroke:var(--p-line)" stroke-width="5"/>` +
     `<circle cx="22" cy="22" r="${r}" fill="none" style="stroke:${col}" stroke-width="5" stroke-dasharray="${(c * f).toFixed(2)} ${c.toFixed(2)}" transform="rotate(-90 22 22)" stroke-linecap="butt"/></svg>`;
 }
 function lx_dim(svg){ const b = svg.parentElement.getBoundingClientRect(); return [Math.max(280, Math.round(b.width) || 600), Math.max(160, Math.round(b.height) || 220)]; }
@@ -7008,7 +7014,7 @@ function lx_barreGiorni(svg, gg){
   const cw = (W - L - R) / Math.max(1, vals.length), bw = Math.max(2, Math.min(22, cw * .62)), X = i => L + cw * i + cw / 2;
   let o = o0;
   vals.forEach((v, i) => { if(!v) return; const y = Y(Math.max(v, 0)), h = Math.max(1, Math.abs(Y(v) - Y(0)));
-    o += `<rect x="${(X(i) - bw / 2).toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${h.toFixed(1)}" rx="2" style="fill:${v >= 0 ? P_SU : P_GIU}"><title>${esc(dates[i])}: ${esc(j_fmt(v))}</title></rect>`; });
+    o += `<rect x="${(X(i) - bw / 2).toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${h.toFixed(1)}" rx="2" style="fill:${v >= 0 ? LX_ACC : P_GIU}"><title>${esc(dates[i])}: ${esc(j_fmt(v))}</title></rect>`; });
   o += lx_etDate(dates, X, H, B, W);
   svg.setAttribute('viewBox', `0 0 ${W} ${H}`); svg.innerHTML = o;
 }
@@ -7033,11 +7039,18 @@ function lx_radar(svg, punti){
   let o = '';
   [.25, .5, .75, 1].forEach(f => o += `<polygon points="${punti.map((_, i) => P(i, f).map(v => v.toFixed(1)).join(',')).join(' ')}" fill="none" style="stroke:var(--p-line)"/>`);
   punti.forEach((_, i) => { const [x, y] = P(i, 1); o += `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" style="stroke:var(--p-line2)"/>`; });
-  o += `<polygon points="${punti.map((p, i) => P(i, Math.max(.03, p[1] / 100)).map(v => v.toFixed(1)).join(',')).join(' ')}" style="fill:var(--p-blu);fill-opacity:.18;stroke:var(--p-blu)" stroke-width="2" stroke-linejoin="round"/>`;
+  o += `<polygon points="${punti.map((p, i) => P(i, Math.max(.03, p[1] / 100)).map(v => v.toFixed(1)).join(',')).join(' ')}" style="fill:var(--lx-acc);fill-opacity:.18;stroke:var(--lx-acc)" stroke-width="2" stroke-linejoin="round"/>`;
   punti.forEach((p, i) => { const [x, y] = P(i, Math.max(.03, p[1] / 100)), [lx, ly] = P(i, 1.2);
-    o += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.5" style="fill:var(--p-blu)"><title>${esc(p[0])}: ${p[1]}/100 · ${esc(p[2])}</title></circle>`;
+    o += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.5" style="fill:var(--lx-acc)"><title>${esc(p[0])}: ${p[1]}/100 · ${esc(p[2])}</title></circle>`;
     o += `<text x="${lx.toFixed(1)}" y="${(ly + 4).toFixed(1)}" text-anchor="${Math.abs(lx - cx) < 8 ? 'middle' : lx > cx ? 'start' : 'end'}" font-size="11" style="fill:var(--p-dim)">${esc(p[0])} <tspan style="fill:var(--p-ink);font-weight:700">${p[1]}</tspan><title>${esc(p[2])}</title></text>`; });
   svg.setAttribute('viewBox', `0 0 ${W} ${H}`); svg.innerHTML = o;
+}
+/* prima scheda: saldo del conto sempre in vista + risultato del periodo */
+function lx_saldo(m, iniz){
+  const ris = `<em class="${m.net >= 0 ? 'lx-su' : 'lx-giu'}">${esc(j_fmt(m.net))}</em>` + (iniz ? ` (${m.net >= 0 ? '+' : '−'}${j_num(Math.abs(m.net / iniz * 100), 2)}%)` : '');
+  if(!iniz) return `<div class="lx-c lx-k lx-saldo"><div style="min-width:0"><span>Saldo del conto</span><b>—</b><small>Risultato del periodo ${ris}</small><button type="button" onclick="j_apriConto();document.getElementById('jconto').scrollIntoView({behavior:'smooth',block:'center'})">Imposta il saldo iniziale</button></div></div>`;
+  const saldo = iniz + j_lista().reduce((a, t) => a + (Number(t.pnl) || 0), 0);
+  return `<div class="lx-c lx-k lx-saldo"><div style="min-width:0"><span>Saldo del conto</span><b>${esc(j_soldi(saldo, 2))}</b><small>Risultato del periodo ${ris}</small></div></div>`;
 }
 function p_renderLux(list){
   const box = document.getElementById('lx'); if(!box) return;
@@ -7052,16 +7065,16 @@ function p_renderLux(list){
   const k = (nome, v, cl, sotto, destra) => `<div class="lx-c lx-k"><div style="min-width:0"><span>${nome}</span><b class="${cl || ''}">${v}</b><small>${sotto}</small></div>${destra || ''}</div>`;
   const tot = m.avgW + m.avgL;
   kpi.innerHTML =
-    k('Risultato netto', esc(j_fmt(m.net)), j_cl(m.net), (iniz ? (m.net >= 0 ? '+' : '−') + j_num(Math.abs(m.net / iniz * 100), 2) + '% sul saldo · ' : '') + m.n + ' operazioni') +
-    k('Vincita', j_num(m.winrate, 1) + '%', '', `${m.w} vinte · ${m.l} perse`, lx_anello(m.w / Math.max(1, m.w + m.l), P_SU)) +
-    k('Profit factor', p_pf(m.pf), m.pf >= 1 ? 'up' : 'down', 'profitti ÷ perdite', lx_anello(pf === Infinity ? 1 : pf / (pf + 1), P_SU)) +
-    k('Vinta / persa media', m.payoff === null ? '∞' : j_num(m.payoff, 2), '', `${esc(j_fmtBreve(m.avgW))} / ${esc(j_fmtBreve(m.avgL))}`,
-      `<div class="lx-wl" aria-hidden="true"><i style="background:${P_SU};width:${tot ? (m.avgW / Math.max(m.avgW, m.avgL) * 100).toFixed(0) : 0}%"></i><i style="background:${P_GIU};width:${tot ? (m.avgL / Math.max(m.avgW, m.avgL) * 100).toFixed(0) : 0}%"></i></div>`) +
-    k('Giorni in utile', j_num(dPos / gg.length * 100, 1) + '%', '', `${dPos} su ${gg.length} giorni`, lx_anello(dPos / gg.length, P_SU));
+    lx_saldo(m, iniz) +
+    k('Vincita', j_num(m.winrate, 1) + '%', '', `${m.w} vinte · ${m.l} perse`, lx_anello(m.w / Math.max(1, m.w + m.l), LX_ACC)) +
+    k('Profit factor', p_pf(m.pf), m.pf >= 1 ? 'up' : 'down', 'profitti ÷ perdite', lx_anello(pf === Infinity ? 1 : pf / (pf + 1), LX_ACC)) +
+    k('Vinta/persa', m.payoff === null ? '∞' : j_num(m.payoff, 2), '', `${esc(j_fmtBreve(m.avgW))} / ${esc(j_fmtBreve(m.avgL))}`,
+      `<div class="lx-wl" aria-hidden="true"><i style="background:${LX_ACC};width:${tot ? (m.avgW / Math.max(m.avgW, m.avgL) * 100).toFixed(0) : 0}%"></i><i style="background:${P_GIU};width:${tot ? (m.avgL / Math.max(m.avgW, m.avgL) * 100).toFixed(0) : 0}%"></i></div>`) +
+    k('Giorni in utile', j_num(dPos / gg.length * 100, 1) + '%', '', `${dPos} su ${gg.length} giorni`, lx_anello(dPos / gg.length, LX_ACC));
   let eq = 0, picco = 0; const eqV = [], ddV = [];
   gg.forEach(([, v]) => { eq += v; picco = Math.max(picco, eq); eqV.push(eq); ddV.push(eq - picco); });
   document.getElementById('lxPerfSotto').textContent = `${m.n} operazioni chiuse · risultato cumulato per giorno`;
-  lx_linea(document.getElementById('lxPerf'), gg.map(x => x[0]), eqV, eq >= 0 ? P_SU : P_GIU, 'su', (v, l) => l ? j_fmt(v) : j_fmtBreve(v));
+  lx_linea(document.getElementById('lxPerf'), gg.map(x => x[0]), eqV, LX_ACC, 'su', (v, l) => l ? j_fmt(v) : j_fmtBreve(v));
   lx_barreGiorni(document.getElementById('lxGiorni'), gg);
   lx_linea(document.getElementById('lxDD'), gg.map(x => x[0]), ddV, P_GIU, 'giu', (v, l) => l ? j_fmt(v) : j_fmtBreve(v));
   const punti = lx_punteggio(m, gg, iniz), media = Math.round(punti.reduce((a, p) => a + p[1], 0) / punti.length);
