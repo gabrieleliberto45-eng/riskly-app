@@ -1,0 +1,150 @@
+{
+ "id": "v16",
+ "serie": "La settimana dell'oro",
+ "titolo": "La settimana dell'oro: −4,9%, inflazione e tassi oltre il 5% (9–13 novembre 2026)",
+ "scene": [
+  {
+   "capitolo": "Introduzione",
+   "tipo": "cifra",
+   "titolo": "Oro, dal 9 al 13 novembre 2026",
+   "cifra": "−4,9%",
+   "etichetta": "la settimana peggiore da mesi: sotto i 3.900 $",
+   "nota": "Future COMEX: da 4.079,1 a 3.879,2 $. Fonte: Yahoo Finance (GC=F).",
+   "voce": "Meno quattro virgola nove per cento. È quanto ha perso il future sull'oro questa settimana, dal nove al tredici novembre. Il prezzo è sceso sotto i tremilanovecento dollari l'oncia, ai livelli più bassi da oltre un anno. Il motivo principale: un'inflazione americana sopra le attese e i rendimenti dei titoli di Stato saliti oltre il cinque per cento. Vediamo i numeri, cosa l'ha mosso e cosa esce la settimana prossima. Niente previsioni: solo fatti e rischio."
+  },
+  {
+   "capitolo": "Il grafico della settimana",
+   "tipo": "grafico",
+   "titolo": "Oro, future COMEX, dati orari",
+   "img": "oro/2026-11-09.png",
+   "nota": "Fonte: Yahoo Finance (GC=F). Giorni in ora italiana.",
+   "voce": "Ecco il grafico della settimana, con i dati orari del future sull'oro. Lunedì il prezzo sale e alle ventuno tocca il massimo della settimana, quattromilacentocinquantotto dollari. Martedì esce l'inflazione e l'oro chiude a quattromilaquarantasei, più di cento dollari sotto. Mercoledì scende ancora e chiude sotto i quattromila. Giovedì alle sedici tocca il minimo, tremilaottocentocinquantasette, e venerdì chiude a tremilaottocentosettantanove, quasi fermo rispetto al giorno prima."
+  },
+  {
+   "capitolo": "I numeri",
+   "tipo": "numeri",
+   "titolo": "I numeri della settimana",
+   "colonne": [
+    "Mercato",
+    "Variazione"
+   ],
+   "righe": [
+    [
+     "Oro (future COMEX)",
+     "4.079,1 → 3.879,2 $ · −4,9%"
+    ],
+    [
+     "Massimo · minimo",
+     "4.157,7 · 3.856,7 $"
+    ],
+    [
+     "Indice del dollaro",
+     "102,24 → 103,41 · +1,1%"
+    ],
+    [
+     "Treasury 10 anni",
+     "4,84% → 5,15% · +32 punti base"
+    ]
+   ],
+   "nota": "Fonte: Yahoo Finance, dati orari dal 9 al 13 novembre 2026.",
+   "voce": "I numeri. L'oro apre la settimana a quattromilasettantanove dollari e chiude a tremilaottocentosettantanove: duecento dollari in meno, meno quattro virgola nove per cento. Tra massimo e minimo ci sono trecento dollari. L'indice del dollaro sale dell'uno virgola uno per cento, vicino ai massimi da diciannove mesi. E il rendimento del Treasury a dieci anni sale di trentadue punti base, sopra il cinque virgola uno per cento. Questa volta i tre mercati si sono mossi nella direzione classica: tassi e dollaro su, oro giù."
+  },
+  {
+   "capitolo": "Cosa l'ha mosso",
+   "tipo": "punti",
+   "titolo": "Cosa ha mosso l'oro",
+   "punti": [
+    [
+     "Martedì: inflazione sopra le attese",
+     "CPI di ottobre +0,4% nel mese contro +0,3% atteso, core +0,3%"
+    ],
+    [
+     "Da martedì: rendimenti oltre il 5%",
+     "il decennale USA sale di 32 punti base in settimana"
+    ],
+    [
+     "Tutta la settimana: Fed più dura",
+     "Waller apre a un rialzo di 50 punti base a dicembre"
+    ],
+    [
+     "Venerdì: prezzi alla produzione",
+     "PPI +0,3% nel mese, sotto le attese, ma 6,5% in un anno"
+    ]
+   ],
+   "nota": "Fonti: BLS (10 e 13 novembre), Reuters, Yahoo Finance, FXStreet.",
+   "voce": "Cosa ha mosso l'oro. Primo: martedì l'inflazione americana di ottobre è uscita a più zero virgola quattro per cento nel mese, contro più zero virgola tre atteso. Il mercato reagisce alla sorpresa rispetto alle attese, non al confronto con il mese prima. Secondo: da lì i rendimenti dei titoli di Stato sono saliti, con il decennale oltre il cinque per cento. L'oro non paga interessi: quando i rendimenti salgono, tenerlo costa di più. Terzo: diversi membri della Fed hanno usato toni da rialzo. Il governatore Christopher Waller ha detto che a dicembre andrebbe considerato anche un rialzo di cinquanta punti base. Quarto: venerdì i prezzi alla produzione sono usciti un decimo sotto le attese nel mese, ma al sei virgola cinque per cento in un anno, il livello più alto dal duemilaventidue. Secondo FXStreet, venerdì il mercato dava circa l'ottantotto per cento di probabilità a un rialzo di venticinque punti base a dicembre."
+  },
+  {
+   "capitolo": "Tu cosa ne pensi?",
+   "tipo": "domanda",
+   "titolo": "Perché l'oro è sceso questa settimana?",
+   "opzioni": [
+    "La Fed ha già alzato i tassi",
+    "Rendimenti USA in forte salita",
+    "Un dollaro molto più debole",
+    "Prezzi alla produzione crollati"
+   ],
+   "giusta": 1,
+   "spiegazione": "La Fed non si è riunita, il dollaro è salito e il PPI è rimasto alto: a pesare sono stati i rendimenti, saliti oltre il 5% dopo l'inflazione sopra le attese.",
+   "voce": "Adesso tocca a te. Perché l'oro è sceso questa settimana? Prima risposta: la Fed ha già alzato i tassi. Seconda: rendimenti americani in forte salita. Terza: un dollaro molto più debole. Quarta: prezzi alla produzione crollati. Metti in pausa e scrivi nei commenti la tua lettera. La risposta è la seconda. La Fed non si è riunita, il dollaro è salito e i prezzi alla produzione sono rimasti alti. A pesare sono stati i rendimenti, saliti oltre il cinque per cento dopo l'inflazione sopra le attese."
+  },
+  {
+   "capitolo": "La settimana prossima",
+   "tipo": "numeri",
+   "titolo": "La settimana prossima",
+   "colonne": [
+    "Ora italiana",
+    "Cosa"
+   ],
+   "righe": [
+    [
+     "mar 17 · 14:30",
+     "<mark>USA: vendite al dettaglio</mark> di ottobre"
+    ],
+    [
+     "mer 18 · 14:30",
+     "USA: nuovi cantieri e permessi edilizi"
+    ],
+    [
+     "gio 19 · 14:30",
+     "USA: sussidi di disoccupazione e Philadelphia Fed"
+    ],
+    [
+     "ven 20 · 16:00",
+     "USA: fiducia Michigan (finale)"
+    ]
+   ],
+   "nota": "Vendite al dettaglio attese a 0,0% dopo +0,8%. Prossima Fed: 8–9 dicembre.",
+   "voce": "La settimana prossima. Il dato principale è martedì alle quattordici e trenta: le vendite al dettaglio americane di ottobre. Il consenso le aspetta ferme, a zero per cento, dopo il più zero virgola otto di settembre. Mercoledì alle quattordici e trenta i nuovi cantieri, giovedì alla stessa ora i sussidi di disoccupazione e l'indice della Fed di Philadelphia, venerdì alle sedici la fiducia dei consumatori del Michigan. Sono i dati che possono confermare o cambiare le attese su un rialzo della Fed a dicembre."
+  },
+  {
+   "capitolo": "Il rischio",
+   "tipo": "confronto",
+   "titolo": "Dopo una settimana da −200 $: due modi di stare sull'oro",
+   "no": {
+    "titolo": "Senza piano",
+    "righe": [
+     "Stesso lotto con un oro che si muove di 100 $ al giorno",
+     "Comprare perché «è sceso tanto»",
+     "Stop stretto alle 14:30 di martedì"
+    ]
+   },
+   "si": {
+    "titolo": "Con piano",
+    "righe": [
+     "Lotto ricalcolato su uno stop più largo",
+     "Entrare solo con un motivo scritto prima",
+     "Decidere prima del dato se restare dentro"
+    ]
+   },
+   "voce": "Il rischio. Questa settimana l'oro si è mosso di circa cento dollari in un giorno, più volte. Mettiamo vicini due modi di stare sull'oro. Senza piano: lo stesso lotto di sempre, anche se il prezzo si muove il doppio; comprare solo perché è sceso tanto; uno stop stretto proprio nel minuto delle vendite al dettaglio. Con piano: se lo stop in dollari è più largo, il lotto è più piccolo, così la perdita massima resta la stessa; si entra solo con un motivo scritto prima; e si decide prima delle quattordici e trenta se restare dentro."
+  },
+  {
+   "capitolo": "Per approfondire",
+   "tipo": "chiusura",
+   "grande": "I dati della settimana,<br><mark>gratis</mark>",
+   "piccolo": "Calendario in ora italiana su riskly.trade/dati · Corso Riskly · Analisi fondamentale: banche centrali, inflazione, petrolio, oro",
+   "voce": "I dati della settimana prossima, già in ora italiana, li trovi gratis su riskly punto trade barra dati. E se vuoi capire come Fed, inflazione e tassi muovono l'oro, c'è il corso Riskly Analisi fondamentale, con grafici sui dati veri: lo trovi su riskly punto trade barra corsi. Sono miei prodotti. Contenuto informativo ed educativo, non consulenza finanziaria: il trading con leva può farti perdere tutto il capitale."
+  }
+ ]
+}
