@@ -1190,6 +1190,44 @@ body{padding-top:0}
 
 /* ── BOT: stato dal telefono e collegamento ── */
 .jbot{margin-bottom:16px}
+.jck-apri{background:none;border:1px solid var(--line);color:var(--text);font:inherit;font-size:.74rem;padding:5px 11px;border-radius:20px;cursor:pointer;margin-left:auto;margin-right:8px}
+.jck-apri:hover,.jck-apri:focus-visible{border-color:var(--up);color:var(--up)}
+.jck-esito{border-radius:12px;padding:12px 14px;margin-bottom:16px;font-size:.84rem;border:1px solid var(--line)}
+.jck-esito b{display:block;font-size:1rem;margin-bottom:4px}
+.jck-esito ul{margin:4px 0 0;padding-left:18px}
+.jck-esito.pronto{border-color:rgba(30,127,69,.45);background:rgba(30,127,69,.08)} .jck-esito.pronto b{color:var(--up)}
+.jck-esito.attenzione{border-color:rgba(245,158,11,.5);background:rgba(245,158,11,.09)} .jck-esito.attenzione b{color:var(--gold)}
+.jck-esito.no{border-color:rgba(194,54,31,.5);background:rgba(194,54,31,.08)} .jck-esito.no b{color:var(--down)}
+.jck-riga{display:flex;justify-content:space-between;align-items:center;gap:10px 14px;flex-wrap:wrap;padding:7px 0;font-size:.86rem;border-bottom:1px solid var(--line)}
+.jck-riga input{width:110px;font:inherit;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:transparent;color:var(--text)}
+.jck-val{display:flex;gap:6px;align-items:center}
+.jck-unita,.jck-sino{display:inline-flex;border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.jck-unita button,.jck-sino button{background:none;border:0;font:inherit;font-size:.78rem;padding:5px 12px;color:var(--dim);cursor:pointer}
+.jck-unita button.on,.jck-sino button.on{background:var(--text);color:var(--bg,#FBFBF9)}
+.jck-giorno{list-style:none;margin:0 0 6px;padding:0;display:grid;gap:4px;font-size:.84rem}
+.jck-giorno li{display:flex;gap:8px;align-items:baseline}
+.jck-giorno li i{font-style:normal;width:16px;text-align:center}
+.jck-giorno li.ok i{color:var(--up)} .jck-giorno li.att i{color:var(--gold)} .jck-giorno li.no i{color:var(--down)}
+.jck-regole{margin-top:14px;font-size:.84rem} .jck-regole summary{cursor:pointer;color:var(--dim)}
+.jck-nota{font-size:.76rem;color:var(--dim2);margin:8px 0 0}
+.jmon{display:grid;gap:10px;margin-bottom:14px}
+.jmon-sintesi{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;font-size:.8rem;color:var(--dim)}
+.jmon-chip{display:inline-flex;gap:5px;align-items:center;padding:4px 10px;border-radius:20px;border:1px solid var(--line);
+  font-family:'JetBrains Mono','SF Mono',Menlo,monospace;font-size:.72rem;color:var(--text)}
+.jmon-chip i{width:7px;height:7px;border-radius:50%;background:var(--dim2)}
+.jmon-chip.ok i{background:var(--up)} .jmon-chip.allarme i{background:var(--down)} .jmon-chip.attenzione i{background:var(--gold)}
+.jmon-avvisi{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.jmon-avvisi li{display:flex;gap:10px;align-items:flex-start;font-size:.82rem;padding:8px 12px;border-radius:10px;border:1px solid var(--line)}
+.jmon-avvisi li b{font-weight:600}
+.jmon-avvisi li.allarme{border-color:rgba(194,54,31,.45);background:rgba(194,54,31,.07)}
+.jmon-avvisi li.attenzione{border-color:rgba(245,158,11,.45);background:rgba(245,158,11,.08)}
+.jmon-avvisi li.calmo{color:var(--dim)}
+.jmon-avvisi li span.liv{font-family:'JetBrains Mono','SF Mono',Menlo,monospace;font-size:.66rem;padding:2px 7px;border-radius:20px;white-space:nowrap;margin-top:1px}
+.jmon-avvisi li.allarme span.liv{background:rgba(194,54,31,.16);color:var(--down)}
+.jmon-avvisi li.attenzione span.liv{background:rgba(245,158,11,.16);color:var(--gold)}
+.jmon-tutti{justify-self:start;background:none;border:1px solid var(--line);color:var(--dim);font:inherit;font-size:.76rem;padding:6px 12px;border-radius:20px;cursor:pointer}
+.jmon-tutti[aria-pressed="true"]{color:var(--text);border-color:var(--text)}
+.jbot-vuoto{font-size:.82rem;color:var(--dim)}
 .jbot-griglia{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
 .jbot-card{background:rgba(21,24,27,0.077);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
 .jbot-card.ok{border-color:rgba(242,184,58,.35)}
@@ -2288,6 +2326,12 @@ html body.in-app .pd-g .jcard-head{margin-bottom:6px;flex-wrap:wrap;gap:6px 10px
       <!-- stato dei software di MetaTrader: si aggiorna da solo, anche dal telefono -->
       <div class="jcard jbot" id="jbot" hidden>
         <div class="jcard-head"><h3>I tuoi software</h3><span class="jmeta" id="jbotAgg"></span></div>
+        <!-- Monitor: tutti i conti collegati insieme, con gli avvisi -->
+        <div class="jmon" id="jmon" hidden>
+          <div class="jmon-sintesi" id="jmonSintesi"></div>
+          <ul class="jmon-avvisi" id="jmonAvvisi"></ul>
+          <button type="button" class="jmon-tutti" id="jmonTutti" onclick="b_tuttiCambia()" aria-pressed="false">Mostra i software di tutti i conti</button>
+        </div>
         <div class="jbot-griglia" id="jbotGriglia"></div>
       </div>
 
@@ -2436,7 +2480,7 @@ html body.in-app .pd-g .jcard-head{margin-bottom:6px;flex-wrap:wrap;gap:6px 10px
 
       <!-- nuovo trade / modifica -->
       <div class="jcard" id="add" style="margin-bottom:16px">
-        <div class="jcard-head"><h3 id="fTitolo">Nuova operazione</h3><button type="button" class="jmetodo-pill" id="fMetodoPill" onclick="j_apriMetodi()"></button></div>
+        <div class="jcard-head"><h3 id="fTitolo">Nuova operazione</h3><button type="button" class="jck-apri" onclick="ck_apri()">✓ Checklist prima di entrare</button><button type="button" class="jmetodo-pill" id="fMetodoPill" onclick="j_apriMetodi()"></button></div>
         <form onsubmit="j_addTrade(event)">
           <div class="jform">
             <div><label for="f-date">Data</label><input type="date" id="f-date" required onchange="this.dataset.mano='1';j_aggiornaSessioni(true)"></div>
@@ -2628,6 +2672,49 @@ html body.in-app .pd-g .jcard-head{margin-bottom:6px;flex-wrap:wrap;gap:6px 10px
   <div class="mod-box jop-box" role="dialog" aria-modal="true" aria-labelledby="opSim">
     <button class="mod-x" onclick="j_chiudiOp()" aria-label="Chiudi">✕</button>
     <div id="opCorpo"></div>
+  </div>
+</div>
+
+<!-- Checklist prima di entrare: controlla rischio, limiti del giorno e comportamento, poi compila l'operazione -->
+<div class="modale" id="modCheck" onclick="if(event.target===this) ck_chiudi()">
+  <div class="mod-box largo">
+    <button class="mod-x" onclick="ck_chiudi()" aria-label="Chiudi">✕</button>
+    <div class="mod-head">
+      <div class="mod-kicker">PRIMA DI ENTRARE</div>
+      <h3>Checklist</h3>
+      <p>Trenta secondi per controllare che l'operazione rispetti le tue regole. Il risultato si salva con l'operazione.</p>
+    </div>
+    <div class="jck-esito" id="ckEsito" role="status" aria-live="polite"></div>
+
+    <div class="jbot-sez">1 · IL RISCHIO</div>
+    <div class="jck-riga">
+      <label for="ckRischio">Rischio di questa operazione</label>
+      <div class="jck-val"><input type="number" id="ckRischio" min="0" step="any" inputmode="decimal" oninput="ck_valuta()" placeholder="es. 30">
+        <div class="jck-unita" id="ckUnita"><button type="button" data-u="val" onclick="ck_unita('val')"></button><button type="button" data-u="pct" onclick="ck_unita('pct')">%</button></div></div>
+    </div>
+    <div class="jck-riga"><span>Lo stop loss è già messo?</span><div class="jck-sino" data-k="stop"></div></div>
+
+    <div class="jbot-sez">2 · LA TUA GIORNATA</div>
+    <ul class="jck-giorno" id="ckGiorno"></ul>
+
+    <div class="jbot-sez">3 · TU</div>
+    <div class="jck-riga"><span>Stai seguendo il tuo piano di trading?</span><div class="jck-sino" data-k="piano"></div></div>
+    <div class="jck-riga"><span>Hai la conferma del tuo metodo?</span><div class="jck-sino" data-k="conferma"></div></div>
+    <div class="jck-riga"><span>Stai cercando di recuperare una perdita?</span><div class="jck-sino" data-k="recupero" data-no-buono="1"></div></div>
+    <div class="jck-riga"><span>Sei lucido e riposato?</span><div class="jck-sino" data-k="lucido"></div></div>
+
+    <details class="jck-regole">
+      <summary>Le tue regole</summary>
+      <div class="jck-riga"><label for="ckMaxRischio">Rischio massimo per operazione (% del saldo)</label><input type="number" id="ckMaxRischio" min="0" step="0.1" oninput="ck_salvaRegole()"></div>
+      <div class="jck-riga"><label for="ckMaxTrade">Operazioni massime al giorno</label><input type="number" id="ckMaxTrade" min="0" step="1" oninput="ck_salvaRegole()"></div>
+      <div class="jck-riga"><label for="ckMaxFila">Perdite di fila prima di fermarti</label><input type="number" id="ckMaxFila" min="0" step="1" oninput="ck_salvaRegole()"></div>
+      <p class="jck-nota">La perdita massima del giorno è quella dei tuoi obiettivi del conto. 0 = controllo spento.</p>
+    </details>
+
+    <div class="mod-azioni">
+      <button type="button" class="btn" onclick="ck_chiudi()">Annulla</button>
+      <button type="button" class="btn pri" onclick="ck_compila()">Compila l'operazione</button>
+    </div>
   </div>
 </div>
 
@@ -5164,6 +5251,7 @@ function j_dettagliTesto(t, conNomi){
   return Object.entries(d).filter(([k, v]) => v && !['shot_conf', 'stop'].includes(k)).map(([k, v]) => {
     if(k === 'scaglioni') return conNomi ? 'Scaglioni: ' + j_scagRiassunto(j_scagParse(v)) : '';   /* in tabella ha la sua riga */
     if(k === 'ingresso') return (conNomi ? 'Prezzo d\'ingresso: ' : 'Ingresso ') + v;
+    if(k === 'checklist') return 'Checklist: ' + v;
     if(k === 'regole') return conNomi ? 'Regole rispettate: ' + v : (String(v).toLowerCase()[0] === 'n' ? 'Fuori regola' : '');
     const c = campi.find(x => x.id === k);
     return conNomi && c ? c.nome + ': ' + v : v;
@@ -6295,10 +6383,140 @@ function avviaJournal(){
 }
 
 
+/* ═══════════════ CHECKLIST PRIMA DI ENTRARE ═══════════════ */
+/* Tre livelli: pronto, attenzione, non conforme. Ogni punto dice il motivo.
+   Le regole (rischio massimo, trade al giorno, perdite di fila) restano in questo browser;
+   la perdita massima del giorno è quella degli obiettivi del conto. */
+
+const CK_PREDEF = { maxRischio: 1, maxTrade: 3, maxFila: 2 };
+let ck_risposte = {}, ck_u = 'val', ck_ultimo = null;
+
+function ck_regole(){
+  let r = {};
+  try{ r = JSON.parse(localStorage.getItem('riskly-checklist') || '{}') || {}; }catch{}
+  return Object.assign({}, CK_PREDEF, r);
+}
+function ck_salvaRegole(){
+  const n = id => Math.max(Number(document.getElementById(id).value) || 0, 0);
+  const r = { maxRischio: n('ckMaxRischio'), maxTrade: Math.round(n('ckMaxTrade')), maxFila: Math.round(n('ckMaxFila')) };
+  try{ localStorage.setItem('riskly-checklist', JSON.stringify(r)); }catch{}
+  ck_valuta();
+}
+
+function ck_apri(){
+  ck_risposte = {};
+  const r = ck_regole();
+  document.getElementById('ckMaxRischio').value = r.maxRischio;
+  document.getElementById('ckMaxTrade').value = r.maxTrade;
+  document.getElementById('ckMaxFila').value = r.maxFila;
+  document.getElementById('ckRischio').value = '';
+  ck_unita(j_unitaPreferita('risk'));   /* la stessa unità che usi nel modulo */
+  document.querySelectorAll('#modCheck .jck-sino').forEach(box => {
+    box.innerHTML = ['Sì', 'No'].map(v => `<button type="button" onclick="ck_rispondi('${box.dataset.k}','${v}')">${v}</button>`).join('');
+  });
+  document.getElementById('modCheck').classList.add('on');
+  ck_valuta();
+  setTimeout(() => document.getElementById('ckRischio').focus(), 50);
+}
+function ck_chiudi(){ document.getElementById('modCheck').classList.remove('on'); }
+
+function ck_unita(u){
+  ck_u = u === 'pct' ? 'pct' : 'val';
+  const box = document.getElementById('ckUnita');
+  box.querySelector('[data-u="val"]').textContent = j_valuta;
+  box.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.u === ck_u));
+  ck_valuta();
+}
+function ck_rispondi(k, v){
+  ck_risposte[k] = ck_risposte[k] === v ? '' : v;
+  document.querySelectorAll(`#modCheck .jck-sino[data-k="${k}"] button`).forEach(b => b.classList.toggle('on', b.textContent === ck_risposte[k]));
+  ck_valuta();
+}
+
+/* la giornata di oggi dal journal: operazioni, risultato, perdite di fila */
+function ck_giornata(){
+  const oggi = isoLocale();
+  const ops = j_lista().filter(t => t.date === oggi).sort((a, b) => (a.ora || '').localeCompare(b.ora || ''));
+  const pnl = ops.reduce((a, t) => a + (Number(t.pnl) || 0), 0);
+  let fila = 0;
+  for(let i = ops.length - 1; i >= 0 && Number(ops[i].pnl) < 0; i--) fila++;
+  return { oggi, n: ops.length, pnl, fila, saldo: j_saldoAl(oggi) };
+}
+
+function ck_valuta(){
+  const r = ck_regole(), g = ck_giornata(), o = j_obiettivi();
+  const no = [], att = [], giorno = [];
+  const riga = (liv, testo) => giorno.push(`<li class="${liv}"><i>${liv === 'ok' ? '✓' : liv === 'att' ? '!' : '✕'}</i><span>${testo}</span></li>`);
+
+  /* rischio */
+  const v = Number(document.getElementById('ckRischio').value) || 0;
+  const pct = ck_u === 'pct' ? v : (g.saldo > 0 ? v / g.saldo * 100 : 0);
+  if(!v) att.push('Scrivi quanto rischi in questa operazione.');
+  else if(r.maxRischio > 0 && pct > r.maxRischio + 1e-9) no.push(`Rischi il ${pct.toFixed(2)}%, oltre il tuo massimo del ${r.maxRischio}%.`);
+  else if(ck_u === 'val' && !g.saldo && r.maxRischio > 0) att.push('Imposta il saldo iniziale del conto per controllare il rischio in %.');
+  if(ck_risposte.stop === 'No') no.push('Manca lo stop loss.');
+
+  /* giornata */
+  const limite = o.gl ? (o.u === 'pct' ? g.saldo * o.gl / 100 : o.gl) : 0;
+  const perso = Math.max(-g.pnl, 0);
+  if(limite > 0){
+    const dopo = perso + (ck_u === 'pct' ? g.saldo * v / 100 : v);
+    if(perso >= limite){ riga('no', `Hai già perso ${j_soldi(perso, 2)} oggi: limite del giorno ${j_soldi(limite, 2)} raggiunto.`); no.push('Limite di perdita del giorno raggiunto.'); }
+    else if(v && dopo > limite){ riga('att', `Se va in stop arrivi a ${j_soldi(dopo, 2)} di perdita oggi, oltre il limite di ${j_soldi(limite, 2)}.`); att.push('Uno stop ti porterebbe oltre il limite del giorno.'); }
+    else riga('ok', `Perdita di oggi ${j_soldi(perso, 2)} su un limite di ${j_soldi(limite, 2)}.`);
+  } else riga('att', 'Nessun limite di perdita del giorno: impostalo negli obiettivi del conto.');
+  if(r.maxTrade > 0){
+    if(g.n >= r.maxTrade){ riga('no', `${g.n} operazioni oggi: hai raggiunto il massimo di ${r.maxTrade}.`); no.push('Massimo di operazioni del giorno raggiunto.'); }
+    else riga(g.n === r.maxTrade - 1 ? 'att' : 'ok', `Operazione ${g.n + 1} di ${r.maxTrade} oggi.`);
+  }
+  if(r.maxFila > 0){
+    if(g.fila >= r.maxFila){ riga('no', `${g.fila} perdite di fila oggi: la tua regola dice di fermarti.`); no.push(`${g.fila} perdite di fila.`); }
+    else riga(g.fila ? 'att' : 'ok', g.fila ? `${g.fila} perdita di fila oggi.` : 'Nessuna perdita di fila oggi.');
+  }
+  document.getElementById('ckGiorno').innerHTML = giorno.join('');
+
+  /* comportamento */
+  if(ck_risposte.piano === 'No') no.push('Non stai seguendo il piano.');
+  if(ck_risposte.conferma === 'No') att.push('Manca la conferma del tuo metodo.');
+  if(ck_risposte.recupero === 'Sì') no.push('Stai cercando di recuperare una perdita.');
+  if(ck_risposte.lucido === 'No') att.push('Non sei lucido: valuta di fermarti.');
+  const mancano = ['stop', 'piano', 'conferma', 'recupero', 'lucido'].filter(k => !ck_risposte[k]).length;
+  if(mancano) att.push(mancano === 1 ? 'Manca una risposta.' : `Mancano ${mancano} risposte.`);
+
+  const liv = no.length ? 'no' : att.length ? 'attenzione' : 'pronto';
+  const titolo = { pronto: 'Pronto: rispetta le tue regole', attenzione: 'Attenzione', no: 'Non conforme: meglio non entrare' }[liv];
+  const motivi = no.concat(att);
+  const box = document.getElementById('ckEsito');
+  box.className = 'jck-esito ' + liv;
+  box.innerHTML = `<b>${titolo}</b>${motivi.length ? '<ul>' + motivi.map(m => `<li>${esc(m)}</li>`).join('') + '</ul>' : 'Tutti i controlli sono a posto.'}`;
+  ck_ultimo = { liv, v, pct, motivi };
+}
+
+/* porta rischio ed esito nel modulo della nuova operazione */
+function ck_compila(){
+  const e = ck_ultimo || { liv: 'attenzione', v: 0 };
+  if(j_modificaId) j_resetForm();
+  if(e.v){
+    j_setUnita('risk', ck_u);
+    document.getElementById('f-risk').value = e.v;
+  }
+  j_dettagli.checklist = { pronto: 'pronto', attenzione: 'attenzione', no: 'non conforme' }[e.liv] + (e.motivi.length ? ' (' + e.motivi.slice(0, 3).join(' ') + ')' : '');
+  if(ck_risposte.piano && METODI[j_metodo()].campi.some(c => c.id === 'piano')) j_dettagli.piano = ck_risposte.piano;
+  if(ck_risposte.conferma && METODI[j_metodo()].campi.some(c => c.id === 'rispettata')) j_dettagli.rispettata = ck_risposte.conferma;
+  if(ck_risposte.recupero === 'Sì') j_setEmo('rivalsa');
+  else if(ck_risposte.lucido === 'No') j_setEmo('incerto');
+  j_renderCampiMetodo();
+  ck_chiudi();
+  if(window.jVista) jVista('nuova');
+  document.getElementById('add').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  j_flash(e.liv === 'pronto' ? 'Checklist superata: completa l\'operazione quando la chiudi.' : 'Checklist salvata con l\'operazione, anche se non era tutto a posto.');
+}
+
+
 /* ═══════════════ BOT DI METATRADER ═══════════════ */
 
 const B_PREDEF = { importa:true, scaglioni_uniti:true, nota_auto:true, strategia:'', emozione:'lucido', simboli:'' };
-let b_chiave = '', b_stati = [], b_timer = null;
+let b_chiave = '', b_stati = [], b_timer = null, b_tutti = false;
 
 /* la tabella o la funzione non esistono: bot.sql non è ancora stato eseguito */
 function b_sqlMancante(err){
@@ -6386,12 +6604,99 @@ function b_giornata(s){
   return { risultato: cum, risultatoPct: pct(cum), dd, ddPct: pct(dd), n: ops.length };
 }
 
+/* ---------- Monitor: tutti i bot collegati insieme, con gli avvisi ---------- */
+
+function b_tuttiCambia(){
+  b_tutti = !b_tutti;
+  const b = document.getElementById('jmonTutti');
+  b.setAttribute('aria-pressed', String(b_tutti));
+  b.textContent = b_tutti ? 'Mostra solo i software di questo conto' : 'Mostra i software di tutti i conti';
+  b_renderStato();
+}
+
+/* nome del conto del journal a cui arriva un conto MetaTrader */
+function b_nomeConto(n){
+  const c = j_conti().find(x => x.id === j_contoDiMT(n));
+  return c ? c.nome : 'Conto principale';
+}
+
+/* gli avvisi di un bot: il peggiore per primo */
+function b_avvisi(s){
+  const d = s.dati || {}, out = [];
+  const nome = [esc(d.bot || s.bot), esc(d.simbolo || ''), `conto ${esc(s.conto)} (${esc(b_nomeConto(s.conto))})`].filter(Boolean).join(' · ');
+  const minuti = (Date.now() - new Date(s.aggiornato).getTime()) / 60000;
+  if(minuti > 3 && d.stato !== 'bloccato')
+    out.push({ liv:2, testo:`<b>${nome}</b>: non in linea da ${b_quandoFa(s.aggiornato).replace(' fa','')}. Controlla che MetaTrader sia aperto e il software sul grafico.` });
+  if(d.stato === 'bloccato')
+    out.push({ liv:2, testo:`<b>${nome}</b>: bloccato${d.motivo ? ' — ' + esc(d.motivo) : ''}.` });
+  const perdita = Math.max(Number(d.perdita_oggi) || 0, 0), limite = Number(d.limite_perdita) || 0;
+  if(limite > 0 && d.stato !== 'bloccato'){
+    const q = perdita / limite;
+    if(q >= .8) out.push({ liv:2, testo:`<b>${nome}</b>: perdita di oggi ${j_num(perdita, 2)}% su ${j_num(limite, 1)}%, quasi al limite.` });
+    else if(q >= .5) out.push({ liv:1, testo:`<b>${nome}</b>: perdita di oggi ${j_num(perdita, 2)}% su ${j_num(limite, 1)}%.` });
+  }
+  if(Number(d.senza_stop) > 0)
+    out.push({ liv:2, testo:`<b>${nome}</b>: ${Number(d.senza_stop) === 1 ? 'una posizione' : Number(d.senza_stop) + ' posizioni'} senza stop loss.` });
+  const mf = Number(d.max_perdite) || 0, pf = Number(d.perdite_fila) || 0;
+  if(mf > 0 && pf >= mf - 1 && pf > 0 && d.stato !== 'bloccato')
+    out.push({ liv:1, testo:`<b>${nome}</b>: ${pf} ${pf === 1 ? 'perdita' : 'perdite'} di fila su un massimo di ${mf}.` });
+  if(d.stato === 'pausa')
+    out.push({ liv:1, testo:`<b>${nome}</b>: in pausa${d.pausa_fine ? ' fino alle ' + esc(d.pausa_fine) : ''}.` });
+  return out;
+}
+
+function b_renderMonitor(){
+  const box = document.getElementById('jmon');
+  if(!box) return;
+  /* il Monitor serve quando i bot sono più di uno o stanno su conti diversi */
+  const conti = new Set(b_stati.map(s => String(s.conto)));
+  const avvisi = b_stati.flatMap(b_avvisi).sort((a, b) => b.liv - a.liv);
+  const tuttiQui = j_demo || b_stati.every(s => j_contoDiMT(s.conto) === j_contoId());
+  box.hidden = b_stati.length < 2 && !avvisi.length && tuttiQui;
+  if(box.hidden) return;
+
+  let online = 0, offline = 0, bloccati = 0;
+  const equity = {}, aperto = {};
+  for(const s of b_stati){
+    const d = s.dati || {};
+    const minuti = (Date.now() - new Date(s.aggiornato).getTime()) / 60000;
+    if(d.stato === 'bloccato') bloccati++;
+    else if(minuti > 3) offline++;
+    else online++;
+    const v = d.valuta || '';
+    /* l'equity si conta una volta per conto MetaTrader, anche se ci sono più bot */
+    if(!(String(s.conto) in equity)) equity[String(s.conto)] = { v, e: Number(d.equity) || 0 };
+    aperto[v] = (aperto[v] || 0) + (Number(d.pnl_aperto) || 0);
+  }
+  const perValuta = {};
+  Object.values(equity).forEach(x => perValuta[x.v] = (perValuta[x.v] || 0) + x.e);
+  const soldi = o => Object.entries(o).map(([v, n]) => j_num(n, 2) + (v ? ' ' + esc(v) : '')).join(' · ') || '0,00';
+
+  document.getElementById('jmonSintesi').innerHTML = `
+    <span class="jmon-chip ok"><i></i>${online} attivi</span>
+    ${offline ? `<span class="jmon-chip attenzione"><i></i>${offline} non in linea</span>` : ''}
+    ${bloccati ? `<span class="jmon-chip allarme"><i></i>${bloccati} bloccati</span>` : ''}
+    <span class="jmon-chip"><i></i>${b_stati.length} software · ${conti.size} ${conti.size === 1 ? 'conto' : 'conti'}</span>
+    <span>Equity ${soldi(perValuta)} · aperto ${soldi(aperto)}</span>`;
+
+  document.getElementById('jmonAvvisi').innerHTML = avvisi.length
+    ? avvisi.map(a => `<li class="${a.liv === 2 ? 'allarme' : 'attenzione'}"><span class="liv">${a.liv === 2 ? 'Attenzione' : 'Da guardare'}</span><span>${a.testo}</span></li>`).join('')
+    : '<li class="calmo">Nessun avviso: tutti i software sono in linea e nei limiti.</li>';
+  document.getElementById('jmonTutti').hidden = tuttiQui && !b_tutti;
+}
+
 function b_renderStato(){
   const box = document.getElementById('jbot');
   if(!box) return;
-  const stati = j_demo ? b_stati : b_stati.filter(s => j_contoDiMT(s.conto) === j_contoId());
-  if(!stati.length){ box.hidden = true; return; }
+  if(!b_stati.length){ box.hidden = true; return; }
   box.hidden = false;
+  b_renderMonitor();
+  const stati = (j_demo || b_tutti) ? b_stati : b_stati.filter(s => j_contoDiMT(s.conto) === j_contoId());
+  if(!stati.length){
+    document.getElementById('jbotAgg').textContent = 'si aggiorna da solo';
+    document.getElementById('jbotGriglia').innerHTML = `<p class="jbot-vuoto">In questo conto del journal non c'è nessun software. ${b_stati.length === 1 ? 'Un software è collegato' : b_stati.length + ' software sono collegati'} ad altri conti: premi «Mostra i software di tutti i conti».</p>`;
+    return;
+  }
 
   document.getElementById('jbotAgg').textContent = 'si aggiorna da solo';
 
