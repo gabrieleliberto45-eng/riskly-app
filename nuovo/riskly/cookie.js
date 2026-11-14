@@ -25,9 +25,9 @@
     + '#rck .rck-v{border-top:1px solid #EBEEF3;padding:10px 0;display:flex;gap:12px;align-items:flex-start;justify-content:space-between}'
     + '#rck .rck-v b{display:block;font-size:14px}#rck .rck-v small{display:block;color:#566273;font-size:12.5px;line-height:1.45}'
     + '#rck input{width:20px;height:20px;margin-top:2px;flex:0 0 20px;accent-color:#12263F}'
-    + 'html[data-tema="scuro"] #rck{background:#111926;color:#E7ECF3;border-color:#202C3F}html[data-tema="scuro"] #rck p,html[data-tema="scuro"] #rck .rck-v small{color:#9CA8B8}'
+    + 'html[data-tema="scuro"] #rck{background:#1B1B1F;color:#ECECEE;border-color:#2A2A30}html[data-tema="scuro"] #rck p,html[data-tema="scuro"] #rck .rck-v small{color:#A3A3AA}'
     + 'html[data-tema="scuro"] #rck a,html[data-tema="scuro"] #rck button{color:#E7ECF3;border-color:#E7ECF3}html[data-tema="scuro"] #rck button{background:transparent}'
-    + 'html[data-tema="scuro"] #rck button.pri{background:#E7ECF3;color:#0A0F18}html[data-tema="scuro"] #rck .rck-v{border-color:#202C3F}'
+    + 'html[data-tema="scuro"] #rck button.pri{background:#ECECEE;color:#121214}html[data-tema="scuro"] #rck .rck-v{border-color:#2A2A30}'
     + '@media(max-width:520px){#rck{left:10px;right:10px;bottom:10px;padding:16px 14px 14px}#rck button{flex:1 1 100%}#rck button.lnk{flex:1 1 100%}}';
   var box;
   function chiudi(){ if(box){ box.remove(); box = null; } }
