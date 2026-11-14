@@ -1728,6 +1728,33 @@ html[data-tema="scuro"] body.in-app .jvtabs .jv-ind{background:#ECEEEA}
 </style>
 <link rel="stylesheet" href="/serio.css?v=2">
 <style id="prop">
+/* ===== pannello "a schede" (lx), 14 novembre 2026 ===== */
+.lx{display:grid;gap:12px;margin:0 0 14px}
+.lx-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.lx-per{display:flex;gap:2px;background:var(--p-card);border:1px solid var(--p-line);border-radius:10px;padding:3px}
+.lx-per button{border:0;background:none;color:var(--p-dim);font:600 13px/1 inherit;padding:8px 12px;border-radius:7px;cursor:pointer}
+.lx-per button.on{background:var(--p-navy);color:var(--p-card)}
+.lx-sotto{font-size:12.5px;color:var(--p-dim2)}
+.lx-kpi{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.lx-c{background:var(--p-card);border:1px solid var(--p-line);border-radius:12px;padding:14px 16px;min-width:0}
+.lx-k{display:flex;align-items:center;gap:10px;justify-content:space-between}
+.lx-k span{display:block;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--p-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lx-k b{display:block;font-size:22px;font-weight:700;letter-spacing:-.02em;margin:6px 0 3px;white-space:nowrap}
+.lx-k small{display:block;font-size:11.5px;color:var(--p-dim2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lx-k b.up{color:var(--p-su)}.lx-k b.down{color:var(--p-giu)}
+.lx-k svg{flex:0 0 44px;width:44px;height:44px}
+.lx-wl{flex:0 0 70px;display:grid;gap:5px}.lx-wl i{display:block;height:5px;border-radius:3px}
+.lx-r2{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:12px}
+.lx-r3{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+.lx-h{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:8px}
+.lx-h b{display:block;font-size:15px;font-weight:700}.lx-h small{display:block;font-size:12px;color:var(--p-dim2);margin-top:2px}
+.lx-tot{font-size:20px;font-weight:700;border:1px solid var(--p-line);border-radius:9px;padding:4px 10px;white-space:nowrap}
+.lx-tot em{font-style:normal;font-size:12px;color:var(--p-dim2);font-weight:600}
+.lx-svg{height:230px}.lx-svg svg{width:100%;height:100%;display:block}
+.lx-radar{height:250px}
+#pdKpi{display:none!important}
+@media(max-width:1100px){.lx-kpi{grid-template-columns:repeat(3,minmax(0,1fr))}.lx-r2,.lx-r3{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:620px){.lx-kpi{grid-template-columns:repeat(2,minmax(0,1fr))}.lx-kpi>.lx-c:first-child{grid-column:1/-1}.lx-c{padding:12px 13px}.lx-k span{font-size:9.5px;letter-spacing:.05em}.lx-k b{font-size:19px}.lx-k svg{flex-basis:36px;width:36px;height:36px}.lx-svg{height:200px}.lx-per{overflow-x:auto;max-width:100%}.lx-per button{padding:8px 10px;white-space:nowrap}}
 /* ===== Stile "pannello" (Gabriele, 13 novembre 2026: "un design tipo i journal delle prop firm, che sono dettagliati")
    Schede squadrate e fitte, etichette piccole in maiuscolo, numeri allineati, obiettivi con lo stato, tabelle.
    Colori del sito: blu notte #12263F, verde e rosso solo per i risultati. Sostituisce l'aspetto del 3 novembre. ===== */
@@ -2224,6 +2251,20 @@ html body.in-app .pd-g .jcard-head{margin-bottom:6px;flex-wrap:wrap;gap:6px 10px
       </div>
       <div class="jchips" id="fChips"></div>
 
+      </div>
+
+      <!-- pannello "a schede" (14 novembre 2026, Gabriele: "una cosa del genere per il journal"): periodo, numeri con anelli, curva, punteggio, giorni, drawdown -->
+      <div class="lx" id="lx" data-pv="panoramica">
+        <div class="lx-top"><div class="lx-per" id="lxPer"></div><span class="lx-sotto" id="lxSotto"></span></div>
+        <div class="lx-kpi" id="lxKpi"></div>
+        <div class="lx-r2">
+          <div class="lx-c"><div class="lx-h"><div><b>Andamento</b><small id="lxPerfSotto"></small></div></div><div class="lx-svg"><svg id="lxPerf" role="img" aria-label="Andamento del risultato"></svg></div></div>
+          <div class="lx-c"><div class="lx-h"><div><b>Punteggio</b><small>6 aree del tuo storico · non è una previsione</small></div><span class="lx-tot" id="lxTot"></span></div><div class="lx-svg lx-radar"><svg id="lxRadar" role="img" aria-label="Punteggio in 6 aree"></svg></div></div>
+        </div>
+        <div class="lx-r3">
+          <div class="lx-c"><div class="lx-h"><div><b>Risultato per giorno</b><small>somma delle operazioni chiuse ogni giorno</small></div></div><div class="lx-svg"><svg id="lxGiorni" role="img" aria-label="Risultato per giorno"></svg></div></div>
+          <div class="lx-c"><div class="lx-h"><div><b>Drawdown</b><small>distanza dal punto più alto del conto</small></div></div><div class="lx-svg"><svg id="lxDD" role="img" aria-label="Drawdown"></svg></div></div>
+        </div>
       </div>
 
       <!-- pannello denso: numeri, filtri da cliccare, grafici e tabelle in una schermata (14 novembre 2026) -->
@@ -6927,8 +6968,110 @@ function p_renderTabDense(list){
     tab('Mese', ['Risult.', '%', 'R', 'N.'], mesi) + tab('Simbolo', ['Vinc.', 'PF', 'Rapp.', 'N.'], sim);
 }
 
+/* ---------- pannello "a schede" (lx) ---------- */
+const LX_PER = [['1','Oggi'],['7','Settimana'],['mese','Mese'],['anno','Anno'],['tutto','Tutto']];
+function lx_anello(frac, col){
+  const r = 18, c = 2 * Math.PI * r, f = Math.max(0, Math.min(1, frac || 0));
+  return `<svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="${r}" fill="none" style="stroke:var(--p-giu)" stroke-width="5"/>` +
+    `<circle cx="22" cy="22" r="${r}" fill="none" style="stroke:${col}" stroke-width="5" stroke-dasharray="${(c * f).toFixed(2)} ${c.toFixed(2)}" transform="rotate(-90 22 22)" stroke-linecap="butt"/></svg>`;
+}
+function lx_dim(svg){ const b = svg.parentElement.getBoundingClientRect(); return [Math.max(280, Math.round(b.width) || 600), Math.max(160, Math.round(b.height) || 220)]; }
+function lx_assi(W, H, L, R, T, B, y0, y1, passo, fmt){
+  const Y = v => T + (1 - (v - y0) / (y1 - y0)) * (H - T - B); let o = '';
+  for(let v = y0; v <= y1 + passo / 2; v += passo) o += `<line x1="${L}" x2="${W - R}" y1="${Y(v).toFixed(1)}" y2="${Y(v).toFixed(1)}" style="stroke:var(--p-line2)"/>` +
+    `<text x="${L - 6}" y="${(Y(v) + 3.5).toFixed(1)}" text-anchor="end" font-size="10.5" style="fill:var(--p-dim2)">${esc(fmt(v))}</text>`;
+  return [Y, o];
+}
+function lx_scala(vals){ let mx = Math.max(0, ...vals), mn = Math.min(0, ...vals); if(mx === mn) mx = mn + 1; const p = p_passo(mx - mn); return [Math.floor(mn / p) * p, Math.ceil(mx / p) * p, p]; }
+function lx_etDate(dates, X, H, B, W){ const n = dates.length, spazio = Math.max(2, Math.floor(((W || 600) - 70) / 64)), ogni = Math.max(1, Math.ceil(n / spazio)); let o = '';
+  dates.forEach((d, i) => { if(i % ogni) return; const ult = i > n - 1 - ogni; o += `<text x="${X(i).toFixed(1)}" y="${H - 6}" text-anchor="${i === 0 ? 'start' : ult ? 'end' : 'middle'}" font-size="10.5" style="fill:var(--p-dim2)">${Number(d.slice(8))} ${P_MESI3[Number(d.slice(5, 7)) - 1]}</text>`; }); return o; }
+function lx_giorni(list){ const g = {}; j_ordina(list).forEach(t => g[t.date] = (g[t.date] || 0) + (Number(t.pnl) || 0)); return Object.entries(g).sort((a, b) => a[0] < b[0] ? -1 : 1); }
+function lx_linea(svg, dates, vals, col, area, fmt){
+  const [W, H] = lx_dim(svg), L = 54, R = 10, T = 10, B = 24;
+  const [y0, y1, passo] = lx_scala(vals), [Y, o0] = lx_assi(W, H, L, R, T, B, y0, y1, passo, fmt);
+  const X = i => L + (vals.length < 2 ? (W - L - R) / 2 : i / (vals.length - 1) * (W - L - R));
+  const pts = vals.map((v, i) => `${X(i).toFixed(1)},${Y(v).toFixed(1)}`).join(' ');
+  const id = 'lxg' + svg.id;
+  let o = `<defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:${col};stop-opacity:.28"/><stop offset="1" style="stop-color:${col};stop-opacity:0"/></linearGradient></defs>` + o0;
+  if(vals.length){
+    const base = area === 'giu' ? Y(0) : Y(Math.max(y0, 0));
+    o += `<polygon points="${X(0).toFixed(1)},${base.toFixed(1)} ${pts} ${X(vals.length - 1).toFixed(1)},${base.toFixed(1)}" fill="url(#${id})"/>`;
+    o += `<polyline points="${pts}" fill="none" style="stroke:${col}" stroke-width="2.2" stroke-linejoin="round"/>`;
+    o += vals.map((v, i) => `<circle cx="${X(i).toFixed(1)}" cy="${Y(v).toFixed(1)}" r="7" fill="transparent"><title>${esc(dates[i])}: ${esc(fmt(v, true))}</title></circle>`).join('');
+  }
+  o += lx_etDate(dates, X, H, B, W);
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`); svg.innerHTML = o;
+}
+function lx_barreGiorni(svg, gg){
+  const [W, H] = lx_dim(svg), L = 54, R = 10, T = 10, B = 24, vals = gg.map(x => x[1]), dates = gg.map(x => x[0]);
+  const [y0, y1, passo] = lx_scala(vals), fmt = (v, l) => l ? j_fmt(v) : j_fmtBreve(v), [Y, o0] = lx_assi(W, H, L, R, T, B, y0, y1, passo, fmt);
+  const cw = (W - L - R) / Math.max(1, vals.length), bw = Math.max(2, Math.min(22, cw * .62)), X = i => L + cw * i + cw / 2;
+  let o = o0;
+  vals.forEach((v, i) => { if(!v) return; const y = Y(Math.max(v, 0)), h = Math.max(1, Math.abs(Y(v) - Y(0)));
+    o += `<rect x="${(X(i) - bw / 2).toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${h.toFixed(1)}" rx="2" style="fill:${v >= 0 ? P_SU : P_GIU}"><title>${esc(dates[i])}: ${esc(j_fmt(v))}</title></rect>`; });
+  o += lx_etDate(dates, X, H, B, W);
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`); svg.innerHTML = o;
+}
+/* punteggio: 6 aree da 0 a 100, calcolate solo sullo storico (spiegazione nel title di ogni punto) */
+function lx_punteggio(m, gg, iniz){
+  const c = v => Math.max(0, Math.min(100, Math.round(v)));
+  const dPos = gg.length ? gg.filter(x => x[1] > 0).length / gg.length * 100 : 0;
+  const pf = m.pf === Infinity ? 3 : m.pf, rec = m.maxDD > 0 ? m.net / m.maxDD : (m.net > 0 ? 3 : 0);
+  const lordo = m.avgW * m.w, ddPct = iniz > 0 ? m.maxDD / iniz * 100 : (lordo > 0 ? m.maxDD / lordo * 20 : 0);
+  return [
+    ['Vincita', c((m.winrate - 30) / 40 * 100), `${j_num(m.winrate, 1)}% vinte (30% = 0, 70% = 100)`],
+    ['Profit factor', c((pf - .5) / 2 * 100), `profit factor ${p_pf(m.pf)} (0,5 = 0, 2,5 = 100)`],
+    ['Costanza', c(dPos), `${j_num(dPos, 0)}% dei giorni in utile`],
+    ['Recupero', c(rec / 3 * 100), `risultato ÷ drawdown massimo = ${j_num(rec, 2)} (3 = 100)`],
+    ['Drawdown', c(100 - ddPct * 10), iniz > 0 ? `drawdown massimo ${j_num(ddPct, 1)}% del saldo iniziale (10% = 0)` : 'drawdown rispetto ai guadagni (imposta il saldo iniziale per un calcolo preciso)'],
+    ['Rapporto', c((m.payoff === null ? 2 : m.payoff) / 2 * 100), `vincita media ÷ perdita media = ${m.payoff === null ? '∞' : j_num(m.payoff, 2)} (2 = 100)`]
+  ];
+}
+function lx_radar(svg, punti){
+  const [W, H] = lx_dim(svg), cx = W / 2, cy = H / 2 + 4, r = Math.min(W, H) / 2 - 34, n = punti.length;
+  const P = (i, f) => [cx + Math.sin(i / n * 2 * Math.PI) * r * f, cy - Math.cos(i / n * 2 * Math.PI) * r * f];
+  let o = '';
+  [.25, .5, .75, 1].forEach(f => o += `<polygon points="${punti.map((_, i) => P(i, f).map(v => v.toFixed(1)).join(',')).join(' ')}" fill="none" style="stroke:var(--p-line)"/>`);
+  punti.forEach((_, i) => { const [x, y] = P(i, 1); o += `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" style="stroke:var(--p-line2)"/>`; });
+  o += `<polygon points="${punti.map((p, i) => P(i, Math.max(.03, p[1] / 100)).map(v => v.toFixed(1)).join(',')).join(' ')}" style="fill:var(--p-blu);fill-opacity:.18;stroke:var(--p-blu)" stroke-width="2" stroke-linejoin="round"/>`;
+  punti.forEach((p, i) => { const [x, y] = P(i, Math.max(.03, p[1] / 100)), [lx, ly] = P(i, 1.2);
+    o += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.5" style="fill:var(--p-blu)"><title>${esc(p[0])}: ${p[1]}/100 · ${esc(p[2])}</title></circle>`;
+    o += `<text x="${lx.toFixed(1)}" y="${(ly + 4).toFixed(1)}" text-anchor="${Math.abs(lx - cx) < 8 ? 'middle' : lx > cx ? 'start' : 'end'}" font-size="11" style="fill:var(--p-dim)">${esc(p[0])} <tspan style="fill:var(--p-ink);font-weight:700">${p[1]}</tspan><title>${esc(p[2])}</title></text>`; });
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`); svg.innerHTML = o;
+}
+function p_renderLux(list){
+  const box = document.getElementById('lx'); if(!box) return;
+  const per = (j_filtro && j_filtro.periodo) || 'tutto';
+  document.getElementById('lxPer').innerHTML = LX_PER.map(([v, n]) => `<button type="button" class="${per === v ? 'on' : ''}" onclick="j_setFiltro('periodo','${v}')">${n}</button>`).join('');
+  const m = j_metrics(list), iniz = j_saldoIniziale(), gg = lx_giorni(list);
+  const kpi = document.getElementById('lxKpi');
+  document.getElementById('lxSotto').textContent = m ? `${m.n} operazioni chiuse · ${gg.length} giorni di trading` : '';
+  if(!m){ kpi.innerHTML = '<div class="lx-c" style="grid-column:1/-1;color:var(--p-dim)">Nessuna operazione in questo periodo.</div>';
+    ['lxPerf', 'lxRadar', 'lxGiorni', 'lxDD'].forEach(id => document.getElementById(id).innerHTML = ''); document.getElementById('lxTot').textContent = ''; document.getElementById('lxPerfSotto').textContent = ''; return; }
+  const dPos = gg.filter(x => x[1] > 0).length, pf = m.pf === Infinity ? Infinity : m.pf;
+  const k = (nome, v, cl, sotto, destra) => `<div class="lx-c lx-k"><div style="min-width:0"><span>${nome}</span><b class="${cl || ''}">${v}</b><small>${sotto}</small></div>${destra || ''}</div>`;
+  const tot = m.avgW + m.avgL;
+  kpi.innerHTML =
+    k('Risultato netto', esc(j_fmt(m.net)), j_cl(m.net), (iniz ? (m.net >= 0 ? '+' : '−') + j_num(Math.abs(m.net / iniz * 100), 2) + '% sul saldo · ' : '') + m.n + ' operazioni') +
+    k('Vincita', j_num(m.winrate, 1) + '%', '', `${m.w} vinte · ${m.l} perse`, lx_anello(m.w / Math.max(1, m.w + m.l), P_SU)) +
+    k('Profit factor', p_pf(m.pf), m.pf >= 1 ? 'up' : 'down', 'profitti ÷ perdite', lx_anello(pf === Infinity ? 1 : pf / (pf + 1), P_SU)) +
+    k('Vinta / persa media', m.payoff === null ? '∞' : j_num(m.payoff, 2), '', `${esc(j_fmtBreve(m.avgW))} / ${esc(j_fmtBreve(m.avgL))}`,
+      `<div class="lx-wl" aria-hidden="true"><i style="background:${P_SU};width:${tot ? (m.avgW / Math.max(m.avgW, m.avgL) * 100).toFixed(0) : 0}%"></i><i style="background:${P_GIU};width:${tot ? (m.avgL / Math.max(m.avgW, m.avgL) * 100).toFixed(0) : 0}%"></i></div>`) +
+    k('Giorni in utile', j_num(dPos / gg.length * 100, 1) + '%', '', `${dPos} su ${gg.length} giorni`, lx_anello(dPos / gg.length, P_SU));
+  let eq = 0, picco = 0; const eqV = [], ddV = [];
+  gg.forEach(([, v]) => { eq += v; picco = Math.max(picco, eq); eqV.push(eq); ddV.push(eq - picco); });
+  document.getElementById('lxPerfSotto').textContent = `${m.n} operazioni chiuse · risultato cumulato per giorno`;
+  lx_linea(document.getElementById('lxPerf'), gg.map(x => x[0]), eqV, eq >= 0 ? P_SU : P_GIU, 'su', (v, l) => l ? j_fmt(v) : j_fmtBreve(v));
+  lx_barreGiorni(document.getElementById('lxGiorni'), gg);
+  lx_linea(document.getElementById('lxDD'), gg.map(x => x[0]), ddV, P_GIU, 'giu', (v, l) => l ? j_fmt(v) : j_fmtBreve(v));
+  const punti = lx_punteggio(m, gg, iniz), media = Math.round(punti.reduce((a, p) => a + p[1], 0) / punti.length);
+  document.getElementById('lxTot').innerHTML = `${media} <em>/100</em>`;
+  document.getElementById('lxTot').title = 'Media delle 6 aree, calcolata sulle operazioni di questo periodo';
+  lx_radar(document.getElementById('lxRadar'), punti);
+}
 function p_renderDash(list){
   if(!document.getElementById('pDash')) return;
+  p_renderLux(list);
   p_renderSlicer();
   p_renderKpiDensi(list);
   p_renderGrafMese(list);
@@ -6937,7 +7080,7 @@ function p_renderDash(list){
 }
 function p_vista(quale, v){ if(quale === 'mese') p_vMese = v; else p_vOra = v; const l = j_filtrati(); if(quale === 'mese') p_renderGrafMese(l); else p_renderGrafOra(l); }
 let p_dashAttesa;
-window.addEventListener('resize', () => { clearTimeout(p_dashAttesa); p_dashAttesa = setTimeout(() => { if(document.body.dataset.vista === 'panoramica' && typeof j_filtrati === 'function'){ const l = j_filtrati(); p_renderGrafMese(l); p_renderGrafOra(l); } }, 180); });
+window.addEventListener('resize', () => { clearTimeout(p_dashAttesa); p_dashAttesa = setTimeout(() => { if(document.body.dataset.vista === 'panoramica' && typeof j_filtrati === 'function'){ const l = j_filtrati(); p_renderGrafMese(l); p_renderGrafOra(l); p_renderLux(l); } }, 180); });
 
 /* ---------- Schermata di benvenuto ---------- */
 /* ospite: chi apre /?esempio=1 vede il journal con dati di esempio, senza account */
