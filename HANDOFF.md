@@ -113,3 +113,10 @@ Gabriele: "Non bloccare mai gli articoli… non devono mai fermarsi, anche gli s
 - Crediti: 150 AL MESE (si ricaricano il 9 di ogni mese), controlla con `vidiq_balance` (gratis). Bastano per circa 6 copertine al mese. Ordine: 1) miniatura del video del sabato "La settimana dell'oro"; 2) copertine dei reel migliori della settimana (attualità/pre-news). Quando restano meno di 22 crediti: copertina nostra (copertina.py) come prima.
 - Prompt copertina: stile blu notte e oro, cifra grande vera e verificata (es. "ORO −4,9%"), al massimo 2 scritte, niente persone, niente marchi altrui, niente "compra/vendi", niente previsioni. Reel: orientation "portrait"; YouTube: "landscape". Controlla SEMPRE che numeri e testo siano giusti prima di usarla.
 - Salva la copertina nel repository (es. social/youtube/vNN-miniatura-vidiq.png o social/reel/cover/rNN-vidiq.png) e passala a Metricool come videoThumbnailUrl. Su TikTok la copertina personalizzata vale solo con account Business; il primo fotogramma nitido (copertina.py) resta comunque.
+
+## Instagram: griglia "vetrina" (14 novembre 2026, Gabriele: "chiaro ma basta, non voglio avere 100 post, devono esserci pochi post che rappresentano l'azienda"; scelta: "zero caroselli")
+- La griglia Instagram ha SOLO i 9 post vetrina chiari v01–v09 (social/caroselli/caroselli.json, anteprima in social/caroselli/anteprima-vetrina.jpg), pubblicati il 14/11 dalle 14:00 alle 14:40 (v09 per primo, v01 "Cos'è Riskly" in alto a sinistra).
+- MAI più caroselli o post nella griglia di Instagram. I caroselli vanno solo su TikTok.
+- Reel su Instagram: sempre instagramData.showReelOnFeed = false (escono nella sezione Reel, non nella griglia).
+- I vecchi post li archivia Gabriele dall'app (l'API non può archiviare). Se un prodotto o un prezzo cambia, si rifà il post vetrina corrispondente (stesso stile chiaro) e Gabriele archivia il vecchio.
+- Il 14/11 sono stati tolti da Instagram i caroselli programmati (restano su TikTok) e messi in bozza quelli solo Instagram (15, 18, 20 novembre).
