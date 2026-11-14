@@ -115,7 +115,7 @@ Gabriele: "Non bloccare mai gli articoli… non devono mai fermarsi, anche gli s
 - Salva la copertina nel repository (es. social/youtube/vNN-miniatura-vidiq.png o social/reel/cover/rNN-vidiq.png) e passala a Metricool come videoThumbnailUrl. Su TikTok la copertina personalizzata vale solo con account Business; il primo fotogramma nitido (copertina.py) resta comunque.
 
 ## Instagram: griglia "vetrina" (14 novembre 2026, Gabriele: "chiaro ma basta, non voglio avere 100 post, devono esserci pochi post che rappresentano l'azienda"; scelta: "zero caroselli")
-- La griglia Instagram ha SOLO i 9 post vetrina chiari v01–v09 (social/caroselli/caroselli.json, anteprima in social/caroselli/anteprima-vetrina.jpg), pubblicati il 14/11 dalle 14:00 alle 14:40 (v09 per primo, v01 "Cos'è Riskly" in alto a sinistra).
+- La griglia Instagram ha SOLO i 9 post vetrina chiari v01–v09 (social/caroselli/caroselli.json, anteprima in social/caroselli/anteprima-vetrina.jpg), pubblicati il 14/11 dalle 11:12 alle 11:20 (v09 per primo, v01 "Cos'è Riskly" in alto a sinistra).
 - MAI più caroselli o post nella griglia di Instagram. I caroselli vanno solo su TikTok.
 - Reel su Instagram: sempre instagramData.showReelOnFeed = false (escono nella sezione Reel, non nella griglia).
 - I vecchi post li archivia Gabriele dall'app (l'API non può archiviare). Se un prodotto o un prezzo cambia, si rifà il post vetrina corrispondente (stesso stile chiaro) e Gabriele archivia il vecchio.
