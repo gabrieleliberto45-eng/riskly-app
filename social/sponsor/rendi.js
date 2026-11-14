@@ -11,7 +11,8 @@ const CHIARO = process.argv.includes('--chiaro'); if(CHIARO) ARG.splice(ARG.inde
 /* --fumetto: bianco e nero stile fumetto → sponsor-<versione>-fumetto.mp4 */
 const FUMETTO = process.argv.includes('--fumetto'); if(FUMETTO) ARG.splice(ARG.indexOf('--fumetto'), 1);
 const GIORNALE = process.argv.includes('--giornale'); if(GIORNALE) ARG.splice(ARG.indexOf('--giornale'), 1);
-const SUF = CHIARO ? '-chiaro' : FUMETTO ? '-fumetto' : GIORNALE ? '-giornale' : '';
+const ARANCIO = process.argv.includes('--arancio'); if(ARANCIO) ARG.splice(ARG.indexOf('--arancio'), 1);
+const SUF = CHIARO ? '-chiaro' : FUMETTO ? '-fumetto' : GIORNALE ? '-giornale' : ARANCIO ? '-arancio' : '';
 const FF = execSync(`python3 -c "import imageio_ffmpeg as i;print(i.get_ffmpeg_exe())"`).toString().trim();
 const durata = f => { const o = spawnSync(FF, ['-i', f]).stderr.toString().match(/Duration: (\d+):(\d+):([\d.]+)/); return +o[1]*3600 + +o[2]*60 + +o[3]; };
 function effetti(ev, tot, out){
@@ -32,8 +33,8 @@ function effetti(ev, tot, out){
   const parole = JSON.parse(fs.readFileSync(path.join(QUI, `parole-${VAR}.json`)));
   const voci = parole.map((_, i) => path.join(QUI, 'voce', `${VAR}-s${i + 1}.mp3`)), dur = voci.map(durata);
   const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 1080, height: 1920 } });
-  await p.goto('file://' + path.join(QUI, 'sponsor.html') + '?v=' + VAR + (CHIARO ? '&tema=chiaro' : FUMETTO ? '&tema=fumetto' : GIORNALE ? '&tema=giornale' : ''));
-  await p.evaluate(async () => { await Promise.all(['400 100px ISerif', 'italic 400 100px ISerif', '600 40px ISans', '500 30px IMono', '400 100px Bangers', '700 40px Comic'].map(f => document.fonts.load(f))); });
+  await p.goto('file://' + path.join(QUI, 'sponsor.html') + '?v=' + VAR + (CHIARO ? '&tema=chiaro' : FUMETTO ? '&tema=fumetto' : GIORNALE ? '&tema=giornale' : ARANCIO ? '&tema=arancio' : ''));
+  await p.evaluate(async () => { await Promise.all(['400 100px ISerif', 'italic 400 100px ISerif', '600 40px ISans', '500 30px IMono', '400 100px Bangers', '700 40px Comic', 'italic 900 100px Archivo', '700 40px Archivo'].map(f => document.fonts.load(f))); });
   const tot = await p.evaluate(([d, w]) => window.prepara(d, w), [dur, parole]); const ini = await p.evaluate(() => S.map(s => s.ini));
   console.log('durata', tot.toFixed(2), 'scene', ini.map(x => x.toFixed(2)).join(', '));
   if(ARG[0] === 'prova'){ for(const s of ARG.slice(1)){ await p.evaluate(t => window.disegna(t), +s); await p.screenshot({ path: path.join(os.tmpdir(), `sp-${VAR}${SUF}-${s}.png`) }); console.log(path.join(os.tmpdir(), `sp-${VAR}${SUF}-${s}.png`)); } return b.close(); }

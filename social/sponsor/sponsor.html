@@ -6,6 +6,7 @@
 @font-face{font-family:'ISans';src:url(../../nuovo/riskly/fonts/InstrumentSans-600-normal-latin.woff2) format('woff2');font-weight:600}
 @font-face{font-family:'Bangers';src:url(font/bangers.woff2) format('woff2')}
 @font-face{font-family:'Comic';src:url(font/comic-neue-700.woff2) format('woff2');font-weight:700}
+@font-face{font-family:'Archivo';src:url(../../nuovo/riskly/fonts/archivo.woff2) format('woff2');font-weight:100 900;font-stretch:62% 125%}
 @font-face{font-family:'IMono';src:url(../../nuovo/riskly/fonts/JetBrainsMono-500-normal-latin.woff2) format('woff2');font-weight:500}
 html,body{margin:0;background:#07101c}canvas{display:block;width:1080px;height:1920px}
 </style></head><body><canvas id="c" width="1080" height="1920"></canvas>
@@ -40,6 +41,25 @@ if(FUMETTO){
   const fo = Object.getOwnPropertyDescriptor(P, 'font'); Object.defineProperty(P, 'font', { get(){ return fo.get.call(this); }, set(v){ fo.set.call(this, String(v).replace(/(italic )?400 (\d+)px ISerif/, (m, it, px) => `400 ${Math.round(px * .9)}px Bangers`).replace(/(\d+) (\d+)px ISans/, (m, w, px) => `700 ${px}px Comic`).replace('500 22px IMono', '500 19px IMono')); } });
   const gco = Object.getOwnPropertyDescriptor(P, 'globalCompositeOperation'); Object.defineProperty(P, 'globalCompositeOperation', { get(){ return gco.get.call(this); }, set(v){ gco.set.call(this, v === 'lighter' ? 'multiply' : v); } });
   const acs = CanvasGradient.prototype.addColorStop; CanvasGradient.prototype.addColorStop = function(o, c){ return acs.call(this, o, mappa(c)); };
+}
+/* Tema arancio (14/11, Gabriele: "quest'ultima mi piace, usa questo genere per i reel"): ?tema=arancio.
+   Nero con riflessi caldi, luci arancioni, titoli in maiuscolo corsivo stretto e pesante (Archivo). */
+const ARANCIO = new URLSearchParams(location.search).get('tema') === 'arancio';
+if(ARANCIO){
+  document.documentElement.style.background = '#070707';
+  const HEX = { '#050b14':'#050505', '#0a1626':'#0B0A09', '#0e2036':'#170E06', '#07101c':'#070707', '#d4ae5a':'#FF8A1F', '#f1d58f':'#FFB866', '#6fa3d4':'#FF7A1A', '#12263f':'#1A1410' };
+  const RGB = { '111,163,212':'255,122,26', '241,213,143':'255,170,80', '212,174,90':'255,138,31', '27,58,92':'30,23,18', '10,22,38':'12,10,9', '18,38,63':'24,19,15', '5,11,20':'8,7,6', '159,196,230':'255,180,110', '180,220,255':'255,190,120', '255,236,190':'255,190,120', '255,225,160':'255,160,70', '255,230,170':'255,175,90' };
+  const mappa = c => { if(typeof c !== 'string') return c; const k = c.trim().toLowerCase(); if(HEX[k]) return HEX[k];
+    return c.replace(/rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(,\s*[\d.]+\s*)?\)/g, (m, r, g2, b, a) => { const key = r + ',' + g2 + ',' + b; return RGB[key] ? 'rgba(' + RGB[key] + (a || ',1') + ')' : m; }); };
+  const P = CanvasRenderingContext2D.prototype;
+  for(const prop of ['fillStyle', 'strokeStyle', 'shadowColor']){ const d = Object.getOwnPropertyDescriptor(P, prop); Object.defineProperty(P, prop, { get(){ return d.get.call(this); }, set(v){ d.set.call(this, mappa(v)); } }); }
+  const acs = CanvasGradient.prototype.addColorStop; CanvasGradient.prototype.addColorStop = function(o, c){ return acs.call(this, o, mappa(c)); };
+  const fo = Object.getOwnPropertyDescriptor(P, 'font');
+  Object.defineProperty(P, 'font', { get(){ return fo.get.call(this); }, set(v){ const t = String(v); this._titolo = /ISerif/.test(t);
+    fo.set.call(this, t.replace(/(italic )?400 (\d+)px ISerif/, (m, it, px) => `italic 900 ${Math.round(px * .84)}px Archivo`).replace(/(\d+) (\d+)px ISans/, (m, w, px) => `700 ${px}px Archivo`));
+    try{ this.fontStretch = this._titolo ? 'extra-condensed' : 'semi-condensed'; }catch(e){} } });
+  const ft = P.fillText; P.fillText = function(tx, x, y, mw){ return ft.call(this, this._titolo ? String(tx).toUpperCase() : tx, x, y, mw); };
+  const mt = P.measureText; P.measureText = function(tx){ return mt.call(this, this._titolo ? String(tx).toUpperCase() : tx); };
 }
 if(CHIARO){
   document.documentElement.style.background = '#F6F6F3';
