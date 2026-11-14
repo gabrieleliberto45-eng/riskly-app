@@ -2088,5 +2088,373 @@
     "link": "Il calendario in italiano, gratis: strumenti.riskly.trade"
    }
   ]
+ },
+ {
+  "id": "v01-riskly",
+  "titolo": "Cos'è Riskly",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "Riskly: il trading <mark>con il rischio sotto controllo.</mark>",
+    "sotto": "Cosa facciamo, in 4 slide →"
+   },
+   {
+    "tipo": "frasi",
+    "voci": [
+     [
+      "1",
+      "Proteggi.",
+      "Software che fanno rispettare i tuoi limiti di perdita."
+     ],
+     [
+      "2",
+      "Gestisci.",
+      "Stop, break-even e trailing sulle posizioni aperte."
+     ],
+     [
+      "3",
+      "Calcola.",
+      "Lotto e rischio prima di entrare, gratis."
+     ]
+    ]
+   },
+   {
+    "tipo": "frasi",
+    "voci": [
+     [
+      "4",
+      "Analizza.",
+      "Il journal che legge le tue operazioni."
+     ],
+     [
+      "5",
+      "Capisci.",
+      "Notizie e corsi sui dati che muovono i mercati."
+     ],
+     [
+      "6",
+      "Monitora.",
+      "In arrivo."
+     ]
+    ]
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Niente segnali. <mark>Solo strumenti e regole.</mark>",
+    "sotto": "Tutto su riskly.trade",
+    "link": "riskly.trade (link in bio)"
+   }
+  ]
+ },
+ {
+  "id": "v02-software",
+  "titolo": "I software",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "Sei software per <mark>gestire il rischio</mark> su MetaTrader.",
+    "sotto": "MT4 e MT5, su MQL5 →"
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "Prezzo una tantum su MQL5",
+    "righe": [
+     [
+      "RisklyPro",
+      "99 $"
+     ],
+     [
+      "RisklyCopy",
+      "79 $"
+     ],
+     [
+      "RiskGuard",
+      "69 $"
+     ],
+     [
+      "Trailing · ScaleIn · TradeManager",
+      "49 $"
+     ]
+    ],
+    "nota": "Acquisto sul market ufficiale MQL5."
+   },
+   {
+    "tipo": "testo",
+    "titolo": "Cosa non fanno",
+    "testo": "Non danno segnali e <b>non aprono operazioni da soli.</b> Applicano le regole che imposti tu.",
+    "nota": "Il trading con leva comporta un alto rischio di perdita."
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Quale ti serve? <mark>Scoprilo in 1 minuto.</mark>",
+    "sotto": "Le schede di ogni software",
+    "link": "riskly.trade/bot (link in bio)"
+   }
+  ]
+ },
+ {
+  "id": "v03-riskguard",
+  "titolo": "RiskGuard",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "RiskGuard: <mark>il limite che non salti.</mark>",
+    "sotto": "Come funziona →"
+   },
+   {
+    "tipo": "frasi",
+    "voci": [
+     [
+      "1",
+      "Limite di perdita giornaliero.",
+      "Raggiunto il limite, chiude le posizioni."
+     ],
+     [
+      "2",
+      "Blocco dopo perdite di fila.",
+      "Pausa obbligata, fino a mezzanotte."
+     ],
+     [
+      "3",
+      "Stop loss obbligatorio.",
+      "E lotto ridotto se rischi più del previsto."
+     ]
+    ]
+   },
+   {
+    "tipo": "testo",
+    "titolo": "Per le prop firm",
+    "testo": "Riduce l'operatività, <b>non la aumenta.</b> C'è una dichiarazione da mostrare alla tua prop firm.",
+    "nota": "Verifica sempre il regolamento della tua prop firm."
+   },
+   {
+    "tipo": "domanda",
+    "testo": "69 $ una tantum, <mark>MT4 e MT5.</mark>",
+    "sotto": "Su MQL5",
+    "link": "riskly.trade/software/riskguard"
+   }
+  ]
+ },
+ {
+  "id": "v04-journal",
+  "titolo": "Il journal",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "Il journal che ti dice <mark>dove perdi.</mark>",
+    "sotto": "Cosa vedi →"
+   },
+   {
+    "tipo": "frasi",
+    "voci": [
+     [
+      "1",
+      "Le operazioni arrivano da sole.",
+      "Da MetaTrader, senza copiarle a mano."
+     ],
+     [
+      "2",
+      "Winrate, drawdown, orari.",
+      "Per giorno, simbolo, strategia."
+     ],
+     [
+      "3",
+      "Le tue regole.",
+      "Le hai seguite? Lo vedi a fine settimana."
+     ]
+    ]
+   },
+   {
+    "tipo": "domanda",
+    "testo": "7 giorni di prova, <mark>senza carta.</mark>",
+    "sotto": "Provalo con i dati di esempio",
+    "link": "app.riskly.trade (link in bio)"
+   }
+  ]
+ },
+ {
+  "id": "v05-strumenti",
+  "titolo": "Strumenti gratis",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "Strumenti gratis, <mark>anche senza account.</mark>",
+    "sotto": "Cosa trovi →"
+   },
+   {
+    "tipo": "frasi",
+    "voci": [
+     [
+      "1",
+      "Calcolatore del lotto.",
+      "Quanto aprire per rischiare l'1%."
+     ],
+     [
+      "2",
+      "Simulatore di perdite di fila.",
+      "Quanto resta del conto dopo 10 stop."
+     ],
+     [
+      "3",
+      "Calendario economico in italiano.",
+      "Con gli orari italiani e gli avvisi."
+     ]
+    ]
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Calcola <mark>prima di entrare.</mark>",
+    "sotto": "Gratis",
+    "link": "strumenti.riskly.trade (link in bio)"
+   }
+  ]
+ },
+ {
+  "id": "v06-news",
+  "titolo": "Riskly News",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "Riskly News: <mark>i mercati spiegati</mark> in italiano.",
+    "sotto": "Ogni giorno →"
+   },
+   {
+    "tipo": "frasi",
+    "voci": [
+     [
+      "1",
+      "Il punto ogni mattina.",
+      "Oro, dollaro, tassi: cosa è successo."
+     ],
+     [
+      "2",
+      "I dati USA appena escono.",
+      "CPI, lavoro, Fed: il numero e cosa vuol dire."
+     ],
+     [
+      "3",
+      "Notifiche sul telefono.",
+      "Senza app da scaricare."
+     ]
+    ]
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Niente previsioni. <mark>Solo fatti.</mark>",
+    "sotto": "Gratis",
+    "link": "news.riskly.trade (link in bio)"
+   }
+  ]
+ },
+ {
+  "id": "v07-corsi",
+  "titolo": "I corsi",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "Capire <mark>cosa muove i mercati.</mark>",
+    "sotto": "Il corso Analisi fondamentale →"
+   },
+   {
+    "tipo": "frasi",
+    "voci": [
+     [
+      "1",
+      "Banche centrali e tassi.",
+      "Perché la Fed muove tutto."
+     ],
+     [
+      "2",
+      "Inflazione e lavoro.",
+      "Come leggere CPI e buste paga."
+     ],
+     [
+      "3",
+      "Petrolio e oro.",
+      "Con grafici sui dati veri."
+     ]
+    ]
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Impari le regole, <mark>non i segnali.</mark>",
+    "sotto": "Tutti i corsi",
+    "link": "riskly.trade/corsi (link in bio)"
+   }
+  ]
+ },
+ {
+  "id": "v08-regole",
+  "titolo": "Le regole Riskly",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "Le 3 regole <mark>di tutto Riskly.</mark>",
+    "sotto": "In 3 slide →"
+   },
+   {
+    "tipo": "frasi",
+    "voci": [
+     [
+      "1",
+      "Rischio deciso prima.",
+      "Ogni operazione ha uno stop e un lotto calcolato."
+     ],
+     [
+      "2",
+      "Un limite al giorno.",
+      "Superato il limite, si chiude."
+     ],
+     [
+      "3",
+      "Si scrive tutto.",
+      "Quello che non misuri non migliora."
+     ]
+    ]
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Quale fai <mark>più fatica a seguire?</mark>",
+    "sotto": "Scrivi 1, 2 o 3 nei commenti 👇",
+    "link": "riskly.trade/rovina (link in bio)"
+   }
+  ]
+ },
+ {
+  "id": "v09-inizia",
+  "titolo": "Inizia da qui",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "Nuovo qui? <mark>Inizia da qui.</mark>",
+    "sotto": "3 passi →"
+   },
+   {
+    "tipo": "frasi",
+    "voci": [
+     [
+      "1",
+      "Calcola il tuo rischio.",
+      "Gratis, in 1 minuto."
+     ],
+     [
+      "2",
+      "Leggi le notizie del giorno.",
+      "In italiano, con gli orari italiani."
+     ],
+     [
+      "3",
+      "Scegli il tuo strumento.",
+      "Software, journal o corsi."
+     ]
+    ]
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Tutti i link <mark>in un posto.</mark>",
+    "sotto": "Riskly",
+    "link": "riskly.trade/link (link in bio)"
+   }
+  ]
  }
 ]
