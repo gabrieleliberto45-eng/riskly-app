@@ -53,7 +53,16 @@
     if(q('rck-salva')) q('rck-salva').onclick = function(){ salva(q('rck-est').checked); };
   }
   window.rCookiePreferenze = function(){ mostra(true); };
+  /* Nelle app (journal app.riskly.trade e siti installati sul telefono) niente banner né link: solo nei siti nel browser. */
+  function inApp(){
+    try { if(location.hostname === 'app.riskly.trade') return true;
+      if(window.navigator.standalone) return true;
+      if(window.matchMedia && (matchMedia('(display-mode: standalone)').matches || matchMedia('(display-mode: fullscreen)').matches)) return true;
+    } catch(e) {}
+    return false;
+  }
   function avvia(){
+    if(inApp()) return;
     /* un link "Preferenze cookie" in fondo alla pagina, se il sito non ne ha già uno */
     if(!document.querySelector('[data-cookie-pref]')){
       var a = document.createElement('button'); a.type = 'button'; a.setAttribute('data-cookie-pref', '1'); a.textContent = 'Preferenze cookie';
