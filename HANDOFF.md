@@ -107,3 +107,9 @@ Gabriele: "Non bloccare mai gli articoli… non devono mai fermarsi, anche gli s
 - Pagine prodotto generate da nuovo/riskly/pagine_software.py (dizionari P, MQL5, MQL5_NOME). Modifica lì e rilancia, poi deploy.
 - Tolto lo sconto 30% Premium sui software (non applicabile su MQL5). Lo sconto 50% sul videocorso per chi compra un software resta: si dà a mano con la ricevuta MQL5.
 - Da fare su MQL5 (Gabriele): correggere RisklyScalen in RisklyScaleIn; scegliere un solo nome tra TradeManager e RisklyManager.
+
+## Copertine con vidIQ (14 novembre 2026, Gabriele: "ora sì che mi piace", "anche per le copertine dei reel utilizzalo")
+- vidIQ (MCP `mcp__vidIQ__*`) fa le copertine: `vidiq_generate_thumbnail` (22 crediti) poi `vidiq_job_poll`; `vidiq_score_title` (5 crediti) per scegliere il titolo YouTube tra 2 varianti.
+- Crediti: 150 AL MESE (si ricaricano il 9 di ogni mese), controlla con `vidiq_balance` (gratis). Bastano per circa 6 copertine al mese. Ordine: 1) miniatura del video del sabato "La settimana dell'oro"; 2) copertine dei reel migliori della settimana (attualità/pre-news). Quando restano meno di 22 crediti: copertina nostra (copertina.py) come prima.
+- Prompt copertina: stile blu notte e oro, cifra grande vera e verificata (es. "ORO −4,9%"), al massimo 2 scritte, niente persone, niente marchi altrui, niente "compra/vendi", niente previsioni. Reel: orientation "portrait"; YouTube: "landscape". Controlla SEMPRE che numeri e testo siano giusti prima di usarla.
+- Salva la copertina nel repository (es. social/youtube/vNN-miniatura-vidiq.png o social/reel/cover/rNN-vidiq.png) e passala a Metricool come videoThumbnailUrl. Su TikTok la copertina personalizzata vale solo con account Business; il primo fotogramma nitido (copertina.py) resta comunque.
