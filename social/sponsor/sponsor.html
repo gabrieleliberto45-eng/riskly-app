@@ -12,6 +12,22 @@ html,body{margin:0;background:#07101c}canvas{display:block;width:1080px;height:1
    Scene: 0 hook · 1 la perdita · 2 cosa è Riskly · 3 i quattro prodotti · 4 journal e calcolatori · 5 invito.
    I grafici e i numeri sono illustrazioni, non operazioni reali (c'è scritto nel video). */
 const V = new URLSearchParams(location.search).get('v') || 'prodotti';
+/* Tema chiaro (14/11, Gabriele: "per i reel insta scegli lo stesso colore" della griglia): ?tema=chiaro.
+   Rimappa i colori al momento del disegno, così tutte le scene restano uguali ma su fondo crema. */
+const CHIARO = new URLSearchParams(location.search).get('tema') === 'chiaro';
+if(CHIARO){
+  document.documentElement.style.background = '#F6F6F3';
+  const HEX = { '#050b14':'#FBFAF6', '#0a1626':'#F6F6F3', '#0e2036':'#EEEBE2', '#07101c':'#F6F6F3', '#f4f1ea':'#0F1B2D', '#d4ae5a':'#C98A12', '#f1d58f':'#B87A00', '#fff':'#C98A12', '#ffffff':'#C98A12', '#12263f':'#FFFFFF' };
+  const RGB = { '244,241,234':'15,27,45', '27,58,92':'255,255,255', '10,22,38':'250,249,245', '18,38,63':'255,255,255', '5,11,20':'255,255,255', '241,213,143':'201,138,18', '255,236,190':'201,138,18', '255,225,160':'201,138,18', '255,230,170':'201,138,18', '180,220,255':'111,163,212', '255,255,255':'201,138,18' };
+  const mappa = c => { if(typeof c !== 'string') return c; const k = c.trim().toLowerCase(); if(HEX[k]) return HEX[k];
+    return c.replace(/rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(,\s*[\d.]+\s*)?\)/g, (m, r, g2, b, a) => { const key = r + ',' + g2 + ',' + b;
+      if(key === '0,0,0') return 'rgba(15,27,45' + (a ? ',' + (parseFloat(a.replace(',', '')) * .18).toFixed(3) : '') + ')';
+      return RGB[key] ? 'rgba(' + RGB[key] + (a || ',1') + ')' : m; }); };
+  const P = CanvasRenderingContext2D.prototype;
+  for(const prop of ['fillStyle', 'strokeStyle', 'shadowColor']){ const d = Object.getOwnPropertyDescriptor(P, prop); Object.defineProperty(P, prop, { get(){ return d.get.call(this); }, set(v){ d.set.call(this, mappa(v)); } }); }
+  const gco = Object.getOwnPropertyDescriptor(P, 'globalCompositeOperation'); Object.defineProperty(P, 'globalCompositeOperation', { get(){ return gco.get.call(this); }, set(v){ gco.set.call(this, v === 'lighter' ? 'multiply' : v); } });
+  const acs = CanvasGradient.prototype.addColorStop; CanvasGradient.prototype.addColorStop = function(o, c){ return acs.call(this, o, mappa(c)); };
+}
 const W = 1080, H = 1920, cv = document.getElementById('c'), g = cv.getContext('2d');
 const NAVY = '#0A1626', NAVY2 = '#12263F', ORO = '#D4AE5A', ORO2 = '#F1D58F', ACC = '#6FA3D4', ROSSO = '#E5594F', VERDE = '#4FBF8F', BIANCO = '#F4F1EA';
 const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x)), lerp = (a, b, k) => a + (b - a) * k;

@@ -6,6 +6,8 @@ const { spawn, spawnSync, execSync } = require('child_process');
 const fs = require('fs'), path = require('path'), os = require('os');
 const VAR = ['prodotti','news','calc','journal','prenews'].includes(process.argv[2]) ? process.argv[2] : 'prodotti', ARG = process.argv.slice(['prodotti','news','calc','journal','prenews'].includes(process.argv[2]) ? 3 : 2);
 const QUI = __dirname, FPS = 30, SR = 44100;
+/* --chiaro: tema chiaro per Instagram (stessi colori della griglia) → sponsor-<versione>-chiaro.mp4 */
+const CHIARO = process.argv.includes('--chiaro'); if(CHIARO) ARG.splice(ARG.indexOf('--chiaro'), 1);
 const FF = execSync(`python3 -c "import imageio_ffmpeg as i;print(i.get_ffmpeg_exe())"`).toString().trim();
 const durata = f => { const o = spawnSync(FF, ['-i', f]).stderr.toString().match(/Duration: (\d+):(\d+):([\d.]+)/); return +o[1]*3600 + +o[2]*60 + +o[3]; };
 function effetti(ev, tot, out){
@@ -26,11 +28,11 @@ function effetti(ev, tot, out){
   const parole = JSON.parse(fs.readFileSync(path.join(QUI, `parole-${VAR}.json`)));
   const voci = parole.map((_, i) => path.join(QUI, 'voce', `${VAR}-s${i + 1}.mp3`)), dur = voci.map(durata);
   const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 1080, height: 1920 } });
-  await p.goto('file://' + path.join(QUI, 'sponsor.html') + '?v=' + VAR);
+  await p.goto('file://' + path.join(QUI, 'sponsor.html') + '?v=' + VAR + (CHIARO ? '&tema=chiaro' : ''));
   await p.evaluate(async () => { await Promise.all(['400 100px ISerif', 'italic 400 100px ISerif', '600 40px ISans', '500 30px IMono'].map(f => document.fonts.load(f))); });
   const tot = await p.evaluate(([d, w]) => window.prepara(d, w), [dur, parole]); const ini = await p.evaluate(() => S.map(s => s.ini));
   console.log('durata', tot.toFixed(2), 'scene', ini.map(x => x.toFixed(2)).join(', '));
-  if(ARG[0] === 'prova'){ for(const s of ARG.slice(1)){ await p.evaluate(t => window.disegna(t), +s); await p.screenshot({ path: path.join(os.tmpdir(), `sp-${VAR}-${s}.png`) }); console.log(`/tmp/sp-${VAR}-${s}.png`); } return b.close(); }
+  if(ARG[0] === 'prova'){ for(const s of ARG.slice(1)){ await p.evaluate(t => window.disegna(t), +s); await p.screenshot({ path: path.join(os.tmpdir(), `sp-${VAR}${CHIARO ? '-chiaro' : ''}-${s}.png`) }); console.log(path.join(os.tmpdir(), `sp-${VAR}${CHIARO ? '-chiaro' : ''}-${s}.png`)); } return b.close(); }
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'sp-')), fx = path.join(tmp, 'fx.wav');
   const ev = await p.evaluate(() => window.eventi());
   effetti(ev, tot, fx);
@@ -39,7 +41,7 @@ function effetti(ev, tot, out){
   const rit = ini.map((x, i) => `[${i + 1}:a]adelay=${Math.round(x*1000)}|${Math.round(x*1000)},aformat=channel_layouts=stereo[v${i}]`).join(';');
   const n = ini.length, filtro = `${rit};${ini.map((_, i) => `[v${i}]`).join('')}amix=inputs=${n}:normalize=0[voce];[${n+1}:a]volume=0.9,aformat=channel_layouts=stereo[fx];`
     + `[${n+2}:a]volume=0.14,afade=t=in:d=0.5,afade=t=out:st=${(tot-1.8).toFixed(2)}:d=1.8,aformat=channel_layouts=stereo[mus];[voce][fx][mus]amix=inputs=3:normalize=0,loudnorm=I=-14:TP=-1.5:LRA=9[a]`;
-  const mp4 = path.join(QUI, `sponsor-${VAR}.mp4`);
+  const mp4 = path.join(QUI, `sponsor-${VAR}${CHIARO ? '-chiaro' : ''}.mp4`);
   const ff = spawn(FF, ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(FPS), '-c:v', 'mjpeg', '-i', '-', ...vi, '-i', fx, '-stream_loop', '-1', '-i', musica,
     '-filter_complex', filtro, '-map', '0:v', '-map', '[a]', '-t', tot.toFixed(3), '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '19', '-preset', 'medium', '-c:a', 'aac', '-b:a', '192k', '-movflags', '+faststart', mp4], { stdio: ['pipe', 'inherit', 'inherit'] });
   const fine = new Promise((ok, ko) => ff.on('close', c => c === 0 ? ok() : ko(new Error('ffmpeg ' + c))));
