@@ -5,3 +5,9 @@
   status = 200
   force = true
   headers = {Origin = "https://www.tradingview.com"}
+
+# 15 novembre 2026: sezione autonoma "Calendario economico" (stessa pagina, aperta in modalità calendario)
+[[redirects]]
+  from = "/calendario"
+  to = "/index.html"
+  status = 200
