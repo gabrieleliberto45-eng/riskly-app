@@ -51,6 +51,16 @@ body.in-articolo .testa .indietro2{display:grid}
 .nastro .q .v.su{color:#6FD3A4}.nastro .q .v.giu{color:#FF8E82}
 html[data-tema="scuro"] .nastro{background:#0B1626!important}
 /* prossimo dato */
+.ncal{margin:14px 16px 0;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:6px 6px 4px}
+.ncal-t{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;padding:8px 10px 6px}.ncal-t b{font:700 15px 'Archivo';color:var(--ink)}.ncal-t span{font-size:12.5px;color:var(--ink3)}
+.ncal-t a{margin-left:auto;font:600 13.5px 'Archivo';color:var(--oro);text-decoration:none}
+.ncal-r{display:flex;align-items:center;gap:12px;padding:10px;border-top:1px solid var(--line);text-decoration:none;color:var(--ink);min-height:44px}
+.ncal-r:hover{background:rgba(127,127,127,.06)}
+.ncal-q{flex:0 0 58px;text-align:center;font:600 14px 'Martian Mono',ui-monospace,monospace;color:var(--ink)}.ncal-q small{display:block;font:600 11px 'Archivo';color:var(--oro);text-transform:capitalize}
+.ncal-r img{flex:0 0 20px;width:20px;height:14px;border-radius:2px;object-fit:cover;box-shadow:0 0 0 1px rgba(127,127,127,.3)}
+.ncal-n{flex:1;min-width:0}.ncal-n b{display:block;font:600 14.5px/1.3 'Archivo'}.ncal-n small{font-size:12.5px;color:var(--ink3)}.ncal-n em{font-style:normal;font-weight:700;color:var(--oro)}
+.ncal-v{font:600 12px 'Archivo';color:var(--ink3)}
+@media(min-width:980px){.ncal{margin-left:0;margin-right:0}}
 .oggi{margin:14px 16px 0;background:var(--panel);border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:14px;border:1px solid var(--line)}
 .oggi .ora{font:800 18px 'Martian Mono';color:var(--oro);min-width:60px}
 .oggi .t{font-size:14px;line-height:1.35;color:var(--ink2)}.oggi .t b{color:var(--ink)}
@@ -385,6 +395,7 @@ function vistaLista(){
     ${primo ? `<a class="evid" href="#/${esc(primo.id)}">${primo.copertina ? `<img src="${esc(primo.copertina)}" alt="">` : ''}
       <div class="txt">${chip(primo)}<h2>${esc(primo.titolo)}</h2><p>${esc(primo.sommario)}</p><div class="data" style="margin-top:8px">${esc(quando(primo))}</div></div></a>` : '<p class="vuoto">Nessun articolo in questa sezione per ora.</p>'}
     ${schede.length ? `<div class="schede">${schede.map(a => `<a class="scheda" href="#/${esc(a.id)}">${a.copertina ? `<img src="${esc(a.copertina)}" alt="" loading="lazy">` : '<span class="ph"></span>'}<div class="txt">${chip(a)}<h3>${esc(a.titolo)}</h3><span class="data">${esc(quando(a))}</span></div></a>`).join('')}</div>` : ''}
+    ${sezione === 'home' ? CAL_HTML : ''}
     ${sezione === 'home' ? bloccoAbbonati() : ''}
     ${sezione === 'home' ? '<div data-rapp data-nome="Riskly News" class="rapp-box"></div>' : ''}
     ${resto.length ? `<div class="lista">${resto.map(a => `<a class="riga" href="#/${esc(a.id)}">${a.copertina ? `<img src="${esc(a.copertina)}" alt="" loading="lazy">` : '<span class="ph"></span>'}
@@ -457,6 +468,32 @@ async function prezzi(){
   }catch(e){}
 }
 prezzi(); setInterval(prezzi, 60000);
+/* ---------- calendario economico nella home (15 novembre 2026, Gabriele: "anche su Riskly News aggiungi il calendario economico")
+   i prossimi dati ad alto impatto dal database Riskly (tabella cal_eventi, aggiornata ogni minuto); tutto il calendario su strumenti.riskly.trade/calendario */
+let CAL_HTML = '';
+const CAL_PAG = 'https://strumenti.riskly.trade/calendario';
+function calN(v, u){ if(v === null || v === undefined || v === '') return '—'; const n = Number(v); return (isNaN(n) ? String(v) : n.toLocaleString('it-IT', { maximumFractionDigits: 2 })) + (u === '%' ? '%' : u ? ' ' + u : ''); }
+async function calendarioNews(){
+  try{
+    const da = new Date(Date.now() - 3 * 3600e3).toISOString(), a = new Date(Date.now() + 7 * 86400e3).toISOString();
+    const r = await fetch(SB_URL + '/rest/v1/cal_eventi?select=id,date,country,currency,title,importance,actual,forecast,previous,unit&importance=eq.1&country=in.(us,eu,gb,jp,de)&date=gte.' + da + '&date=lt.' + a + '&order=date.asc&limit=60',
+      { headers: { apikey: SB_KEY, Authorization: 'Bearer ' + SB_KEY } });
+    const tutti = r.ok ? await r.json() : [];
+    const ora = Date.now(), usciti = tutti.filter(e => Date.parse(e.date) <= ora && e.actual !== null).slice(-1), prossimi = tutti.filter(e => Date.parse(e.date) > ora).slice(0, 5 - usciti.length);
+    const righe = usciti.concat(prossimi);
+    const prima = CAL_HTML;
+    const giorno = d => { const x = new Date(d), oggi = new Date(), dom = new Date(Date.now() + 86400e3);
+      return x.toDateString() === oggi.toDateString() ? 'Oggi' : x.toDateString() === dom.toDateString() ? 'Domani' : x.toLocaleDateString('it-IT', { weekday: 'short', day: 'numeric' }); };
+    CAL_HTML = righe.length ? `<section class="ncal" aria-label="Calendario economico"><div class="ncal-t"><b>Calendario economico</b><span>dati ad alto impatto</span><a href="${CAL_PAG}">Tutto il calendario →</a></div>
+      ${righe.map(e => { const uscito = e.actual !== null && e.actual !== undefined && e.actual !== '';
+        return `<a class="ncal-r" href="${CAL_PAG}"><span class="ncal-q"><small>${esc(giorno(e.date))}</small>${new Date(e.date).toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' })}</span>
+        <img src="/bandiere/${esc(String(e.country).toLowerCase())}.svg" alt="" width="20" height="14"><span class="ncal-n"><b>${esc(window.calNomeNuovo ? calNomeNuovo(e.title) : e.title)}</b>
+        <small>${uscito ? `<em>Uscito ${esc(calN(e.actual, e.unit))}</em> · previsto ${esc(calN(e.forecast, e.unit))}` : `previsto ${esc(calN(e.forecast, e.unit))} · precedente ${esc(calN(e.previous, e.unit))}`}</small></span><span class="ncal-v">${esc(e.currency || '')}</span></a>`; }).join('')}</section>` : '';
+    if(prima !== CAL_HTML && !location.hash.replace(/^#\/?/, '') && sezione === 'home') vistaLista();
+  }catch(e){}
+}
+if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', calendarioNews); else calendarioNews();
+setInterval(calendarioNews, 60000);
 /* ---------- assistente AI (Gabriele, 3 novembre 2026: "un'intelligenza artificiale che risponda alle domande
    sulla geopolitica, sull'oro, sul dollaro, sulle reazioni degli asset a notizie e dati") ----------
    Funzione news-ai (Supabase): solo abbonati, risposte in streaming con gli articoli di Riskly News, le quotazioni
@@ -598,7 +635,7 @@ function apriAltro(){
     ${v('<path d="M12 2 3 21h18z"/><path d="M12 9v5M12 17h.01"/>', 'Notizie straordinarie', "vaiSezione('straordinarie')")}
     ${v('<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>', 'La settimana', "vaiSezione('settimana')")}
     ${v('<path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>', 'Dollaro', "vaiSezione('dollaro')")}
-    ${l('<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 14h.01M12 14h.01M16 14h.01"/>', 'Calendario economico', 'https://strumenti.riskly.trade/#calendario')}
+    ${l('<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 14h.01M12 14h.01M16 14h.01"/>', 'Calendario economico', 'https://strumenti.riskly.trade/calendario')}
     ${l('<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 12h.01M12 12h.01M16 12h.01M8 16h.01M12 16h.01M16 16h.01"/>', 'Calcolatori di rischio', 'https://strumenti.riskly.trade/')}
     ${l('<path d="M4 19V5M4 19h16M7 15l4-5 3 3 5-6"/>', 'Journal di trading', 'https://app.riskly.trade/')}
     ${l('<path d="M12 3v18M3 12h18"/>', 'Software e corsi Riskly', 'https://riskly.trade/?da=news#bot')}
@@ -697,6 +734,7 @@ async function aggiornaUtente(sessione){
   sb.auth.onAuthStateChange((ev, s) => { if(ev === 'SIGNED_IN' || ev === 'SIGNED_OUT') aggiornaUtente(s); });
 })();
 </script>
+<script src="/cal-nomi.js" defer></script>
 <script src="/cookie.js" defer></script>
 <script src="/app-home.js" defer></script>
 </body>
