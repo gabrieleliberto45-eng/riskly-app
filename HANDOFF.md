@@ -1,5 +1,9 @@
 # Passaggio di consegne (8 novembre 2026)
 
+## REGOLA FISSA (15/11/2026, Gabriele: "non deve mai essere mandata in nessun caso con la mia personale")
+- Le email verso clienti, utenti o contatti partono SEMPRE e SOLO da Riskly: Resend, mittente "Riskly <noreply@mail.riskly.trade>", reply_to info@riskly.trade, firma "Il team Riskly".
+- MAI usare il Gmail personale di Gabriele (strumenti mcp__Gmail__send_message / create_draft) per scrivere a clienti, utenti o contatti esterni, in nessun caso. Se Resend non funziona: non mandare, dirlo a Gabriele.
+
 Sessione precedente: "Riskly · News, social e app (principale)" (session_01CZRW5kRhjiWo9ejMQNFKL6).
 Gabriele scrive in italiano: rispondi in italiano semplice, frasi brevi.
 
