@@ -645,6 +645,8 @@ async function accPulsante(){
   if(!ACC.utente){ accApri('accedi'); return; }
   if(confirm('Vuoi uscire dal tuo account?')){ await sb.auth.signOut(); }
 }
+/* email usa e getta (15/11, Gabriele): la funzione email_ammessa sul database controlla il dominio; se non risponde si lascia passare, il blocco vero è sul database */
+async function rEmailAmmessa(cl, email){ try{ const { data, error } = await cl.rpc('email_ammessa', { e: email }); return error ? true : data !== false; }catch(x){ return true; } }
 async function accInvia(e){
   e.preventDefault();
   const email = document.getElementById('accEmail').value.trim(), pass = document.getElementById('accPass').value, err = document.getElementById('accErr');
@@ -653,6 +655,7 @@ async function accInvia(e){
     if(ACC.modo === 'registrati'){
       const nome = document.getElementById('accNome').value.trim();
       const ee = etaControllo(); if(ee){ err.textContent = ee; return; }
+      if(!(await rEmailAmmessa(sb, email))) throw new Error('email_usa_e_getta');
       const { data, error } = await sb.auth.signUp({ email, password: pass, options: { emailRedirectTo: location.origin + '/', data: { nome, eta_14: true, termini: new Date().toISOString() } } });
       if(error) throw error;
       if(!data.session){ err.style.color = 'var(--verde)'; err.textContent = 'Ti abbiamo mandato un\'email: conferma l\'indirizzo e poi accedi.'; return; }
@@ -664,7 +667,7 @@ async function accInvia(e){
     if(ACC.dopo === 'abbonati') setTimeout(() => abbonati(), 600);
   }catch(x){
     const m = (x && x.message) || String(x);
-    err.style.color = ''; err.textContent = /Invalid login/i.test(m) ? 'Email o password non corrette.' : /already registered/i.test(m) ? 'Questa email ha già un account: accedi.' : 'Non è andata: ' + m;
+    err.style.color = ''; err.textContent = /email_usa_e_getta|database error saving new user/i.test(m) ? 'Le email temporanee (usa e getta) non sono accettate: usa la tua email personale.' : /Invalid login/i.test(m) ? 'Email o password non corrette.' : /already registered/i.test(m) ? 'Questa email ha già un account: accedi.' : 'Non è andata: ' + m;
   }
 }
 async function aggiornaUtente(sessione){

@@ -5258,6 +5258,8 @@ function aggiornaModoAccesso(){
   document.getElementById('acc-pass').setAttribute('autocomplete', (reg || nuova) ? 'new-password' : 'current-password');
 }
 
+/* email usa e getta (15/11, Gabriele): la funzione email_ammessa sul database controlla il dominio; se non risponde si lascia passare, il blocco vero è sul database */
+async function rEmailAmmessa(cl, email){ try{ const { data, error } = await cl.rpc('email_ammessa', { e: email }); return error ? true : data !== false; }catch(x){ return true; } }
 async function inviaAccesso(e){
   e.preventDefault();
   if(!sb){
@@ -5301,6 +5303,7 @@ async function inviaAccesso(e){
     }
 
     if(modoAccesso === 'registrati'){
+      if(!(await rEmailAmmessa(sb, email))) throw new Error('email_usa_e_getta');
       const { data, error } = await sb.auth.signUp({
         email, password: pass, options:{ emailRedirectTo: location.origin + '/', data:{ nome: nome || email.split('@')[0] } }
       });
@@ -5344,6 +5347,7 @@ async function rinviaConferma(email, b){
 }
 
 function messaggioErrore(m){
+  if(/email_usa_e_getta|database error saving new user/i.test(m || '')) return 'Le email temporanee (usa e getta) non sono accettate: usa la tua email personale.';
   const t = (m || '').toLowerCase();
   if(t.includes('invalid login'))                return 'Email o password non corretti.';
   if(t.includes('already registered') ||

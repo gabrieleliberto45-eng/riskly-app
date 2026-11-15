@@ -2972,6 +2972,7 @@ function accApri(m){ accModo(m || 'registrati'); document.getElementById('accVel
 function accChiudi(){ document.getElementById('accVelo').classList.remove('on'); }
 function accErrore(t, ok){ const e = document.getElementById('accErr'); e.innerHTML = t; e.classList.toggle('ok', !!ok); }
 function accTraduci(m){
+  if(/email_usa_e_getta|database error saving new user/i.test(m || '')) return 'Le email temporanee (usa e getta) non sono accettate: usa la tua email personale.';
   if(/invalid login/i.test(m)) return 'Email o password non corrette.';
   if(/already registered|already exists/i.test(m)) return 'Esiste già un account con questa email: premi "Accedi".';
   if(/password.*(6|short|least)/i.test(m)) return 'La password deve avere almeno 6 caratteri.';
@@ -2981,6 +2982,8 @@ function accTraduci(m){
   if(/session|jwt|expired/i.test(m)) return 'Il link è scaduto: chiedi un nuovo link con "Password dimenticata?".';
   return 'Qualcosa non ha funzionato. Riprova tra poco.';
 }
+/* email usa e getta (15/11, Gabriele): la funzione email_ammessa sul database controlla il dominio; se non risponde si lascia passare, il blocco vero è sul database */
+async function rEmailAmmessa(cl, email){ try{ const { data, error } = await cl.rpc('email_ammessa', { e: email }); return error ? true : data !== false; }catch(x){ return true; } }
 async function accInvia(e){
   e.preventDefault();
   if(!ACC.sb){ accErrore('Servizio non raggiungibile. Riprova.'); return; }
@@ -3004,6 +3007,7 @@ async function accInvia(e){
     }
     if(ACC.modo === 'registrati'){
       const ee = etaControllo(); if(ee){ accErrore(ee); return; }
+      if(!(await rEmailAmmessa(ACC.sb, email))) throw new Error('email_usa_e_getta');
       const { data, error } = await ACC.sb.auth.signUp({ email, password: pass, options: { emailRedirectTo: location.origin + '/', data: { nome, eta_14: true, termini: new Date().toISOString() } } });
       if(error) throw error;
       if(!data.session){
