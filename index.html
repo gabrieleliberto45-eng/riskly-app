@@ -3085,7 +3085,7 @@ function temaCambia(){
 }
 
 async function esci(){
-  if(sb) await sb.auth.signOut();
+  if(sb) await sb.auth.signOut({ scope: 'local' });
   utente = null; profilo = null;
   j_trades = []; j_demo = null;
   location.href = 'https://riskly.trade';
