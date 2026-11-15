@@ -3266,7 +3266,7 @@ function etaControllo(){
   if(!t || !t.checked) return 'Per continuare accetta i Termini e l\'Informativa privacy.';
   return '';
 }
-async function accEsci(){ if(ACC.sb) await ACC.sb.auth.signOut(); const m = document.getElementById('accMenu'); if(m) m.remove(); }
+async function accEsci(){ if(ACC.sb) await ACC.sb.auth.signOut({ scope: 'local' }); const m = document.getElementById('accMenu'); if(m) m.remove(); }
 document.addEventListener('keydown', e => { if(e.key === 'Escape') accChiudi(); });
 
 if(ACC.sb){

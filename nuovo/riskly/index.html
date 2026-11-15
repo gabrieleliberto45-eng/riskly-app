@@ -5513,7 +5513,7 @@ function messaggioErrore(m){
 }
 
 async function esciDaAccount(){
-  if(sb) await sb.auth.signOut();
+  if(sb) await sb.auth.signOut({ scope: 'local' });
   utente = null; profilo = null; acquisti = [];
   aggiornaNavAccount();
   go('home');

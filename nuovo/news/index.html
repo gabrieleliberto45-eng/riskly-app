@@ -682,7 +682,7 @@ function accApri(m, dopo){ ACC.dopo = dopo || null; accModo(m || 'accedi'); docu
 function accChiudi(){ document.getElementById('velo').classList.remove('on'); }
 async function accPulsante(){
   if(!ACC.utente){ accApri('accedi'); return; }
-  if(confirm('Vuoi uscire dal tuo account?')){ await sb.auth.signOut(); }
+  if(confirm('Vuoi uscire dal tuo account?')){ await sb.auth.signOut({ scope: 'local' }); }
 }
 /* email usa e getta (15/11, Gabriele): la funzione email_ammessa sul database controlla il dominio; se non risponde si lascia passare, il blocco vero è sul database */
 async function rEmailAmmessa(cl, email){ try{ const { data, error } = await cl.rpc('email_ammessa', { e: email }); return error ? true : data !== false; }catch(x){ return true; } }
