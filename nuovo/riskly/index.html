@@ -2229,6 +2229,71 @@ body.fuori-home #vaiHome{display:inline-flex}
 .trova-sug .btn{white-space:nowrap}
 .scheda-extra details{margin-top:8px}.page:not(.nh) .bot .scheda-extra .no li::before{content:'—'!important;border:0!important;transform:none!important;width:auto;height:auto;top:9px;color:var(--ink-3,#5E656D)}.scheda-extra ol{list-style:none;margin-left:0!important;counter-reset:pas}.scheda-extra ol li{counter-increment:pas}.page:not(.nh) .bot .scheda-extra ol li::before{content:counter(pas)'.'!important;border:0!important;transform:none!important;width:auto;height:auto;top:9px;font-weight:700}.scheda-extra ul,.scheda-extra ol{margin:8px 0 4px 18px;font-size:.92rem;line-height:1.5}.scheda-extra li{margin:3px 0}
 
+/* ══ prima schermata, prodotti per necessità, flusso dell'ecosistema (15 novembre 2026) ══ */
+.rx-hero{background:#0E1B2C;color:#E7ECF3;padding:2.5rem 0 3rem;position:relative;overflow:hidden}
+.rx-hero::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 70% at 85% 30%,rgba(242,184,58,.16),transparent 60%),linear-gradient(transparent 0 calc(100% - 1px),rgba(255,255,255,.04) 0) 0 0/100% 48px,linear-gradient(90deg,transparent 0 calc(100% - 1px),rgba(255,255,255,.04) 0) 0 0/48px 100%;pointer-events:none}
+@media(min-width:992px){.rx-hero{padding:4.5rem 0 5rem}}
+.rx-due{position:relative;display:grid;gap:2.25rem}
+@media(min-width:992px){.rx-due{grid-template-columns:1.05fr .95fr;gap:3.5rem;align-items:center}}
+.rx-due>*{min-width:0}
+.rx-k{font:600 12.5px/1.4 'Martian Mono',ui-monospace,monospace;letter-spacing:.06em;color:#F2B83A;margin:0 0 1.1rem}
+html body #home .rx-hero h1{color:#fff!important;font-size:clamp(2.6rem,7vw,4.6rem)!important;line-height:1!important;letter-spacing:-.02em;margin-bottom:1.2rem}
+html body #home .rx-hero h1 em{font-style:italic;color:#F2B83A}
+.rx-lead{font-size:clamp(1.05rem,2vw,1.2rem);line-height:1.55;color:#C9D3E0;max-width:34em;margin:0}
+.rx-hero .h2-btn.rx-pri{background:#F2B83A;border-color:#F2B83A;color:#1A1300}
+.rx-hero .h2-btn.rx-pri:hover{background:#FFC857;border-color:#FFC857}
+.rx-hero .h2-btn.rx-sec{color:#fff;border-color:rgba(255,255,255,.35)}
+.rx-hero .h2-btn.rx-sec:hover{background:rgba(255,255,255,.06);border-color:#fff}
+.rx-gar{list-style:none;margin:1.5rem 0 0;padding:0;display:flex;flex-wrap:wrap;gap:.5rem 1.25rem;font-size:.92rem;font-weight:600;color:#C9D3E0}
+.rx-gar li::before{content:"✓ ";color:#F2B83A}
+.rx-demo{background:#13243A;border:1px solid #24395A;border-radius:16px;padding:18px;box-shadow:0 30px 60px -30px rgba(0,0,0,.6);font-size:14px}
+.rx-d-testa{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}.rx-d-testa b{font-size:17px;color:#fff}.rx-d-testa span{font:600 11.5px/1 'Martian Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#F2B83A}
+.rx-d-campi{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px}
+.rx-d-campi label{display:grid;gap:5px;font-size:12.5px;color:#AEBBCB}
+.rx-d-campi output{color:#fff;font-weight:700}
+.rx-d-campi select{font:inherit;font-size:14px;color:#fff;background:#0E1B2C;border:1px solid #2A4163;border-radius:8px;padding:8px}
+.rx-d-campi input[type=range]{accent-color:#F2B83A;width:100%}
+.rx-lotto{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:14px 0 10px;padding:12px 14px;border-radius:10px;background:#0E1B2C;border:1px solid #2A4163}
+.rx-lotto span{font-size:12.5px;color:#AEBBCB}.rx-lotto b{font:700 28px/1 'Martian Mono',monospace;color:#F2B83A}.rx-lotto small{font-size:12.5px;color:#C9D3E0;flex-basis:100%}
+.rx-bot{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rx-bot button,.rx-esito button{font:700 15px/1 inherit;font-family:inherit;padding:13px;border-radius:9px;border:0;cursor:pointer;color:#fff;transition:transform .15s,opacity .15s}
+.rx-buy{background:#1E8E5A}.rx-sell{background:#C8372D}
+.rx-bot button:active,.rx-esito button:active{transform:scale(.97)}
+.rx-bot button:disabled{opacity:.35;cursor:not-allowed}
+.rx-news{display:flex;gap:8px;align-items:center;margin:10px 0 0;font-size:13px;color:#C9D3E0;cursor:pointer}.rx-news input{accent-color:#F2B83A;width:17px;height:17px}
+.rx-stato{min-height:20px;margin-top:10px;font-size:13.5px;line-height:1.45;color:#E7ECF3}
+.rx-stato.blocco{padding:10px 12px;border-radius:9px;background:rgba(200,55,45,.18);border:1px solid rgba(240,104,92,.5)}
+.rx-stato.aperta{padding:10px 12px;border-radius:9px;background:rgba(242,184,58,.12);border:1px solid rgba(242,184,58,.4)}
+.rx-esito{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}.rx-esito[hidden]{display:none}.rx-esito button{background:#24395A;font-size:13.5px}
+.rx-lim{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.rx-lim span{display:block;font-size:11.5px;color:#AEBBCB}.rx-lim b{display:block;font-size:13.5px;color:#fff;margin:2px 0 5px}
+.rx-lim i{display:block;height:6px;border-radius:3px;background:#24395A;overflow:hidden}.rx-lim em{display:block;height:100%;width:0;background:#F2B83A;transition:width .3s}
+.rx-lim em.pieno{background:#F0685C}
+.rx-nota{margin:12px 0 0;font-size:11.5px;line-height:1.45;color:#8FA0B5}.rx-nota button{font:inherit;color:#F2B83A;background:none;border:0;padding:0;text-decoration:underline;cursor:pointer}
+@media(max-width:480px){.rx-d-campi{grid-template-columns:1fr}}
+.nec{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+@media(max-width:1100px){.nec{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.nec{grid-template-columns:1fr}}
+.nec-c{background:#fff;border:1px solid var(--rule,#DCE1E8);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:8px}
+.nec-n{font:600 12px/1 'Martian Mono',monospace;color:var(--amber-deep,#B97C00);margin:0}
+html body #home .nec-c h3{font-size:1.3rem!important;margin:0!important}
+.nec-d{font-size:14px;color:#566273;margin:0 0 4px}
+.nec-c a{display:grid;grid-template-columns:1fr auto;gap:0 10px;align-items:baseline;padding:10px 12px;border-radius:10px;border:1px solid #E7EAEE;text-decoration:none!important;color:var(--ink,#0F1B2D)!important;transition:border-color .15s,background .15s}
+.nec-c a:hover{border-color:#12263F;background:#F7F8FA}
+.nec-c a b{font-size:15px}.nec-c a span{grid-column:1;font-size:13px;color:#566273}.nec-c a em{grid-column:2;grid-row:1/3;align-self:center;font-style:normal;font-weight:700;font-size:13.5px;white-space:nowrap;color:#12263F}
+.nec-c a em.gr{color:#12805A}
+.flusso{margin:6px 0 22px}
+.flusso-t{font:600 12.5px/1 'Martian Mono',monospace;letter-spacing:.05em;text-transform:uppercase;color:var(--amber-deep,#B97C00);margin:0 0 12px}
+.flusso ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;counter-reset:fl}
+@media(max-width:980px){.flusso ol{grid-template-columns:1fr 1fr}}@media(max-width:560px){.flusso ol{grid-template-columns:1fr}}
+.flusso li{position:relative;background:#fff;border:1px solid var(--rule,#DCE1E8);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:6px}
+.flusso li::after{content:"→";position:absolute;right:-12px;top:50%;transform:translateY(-50%);width:20px;height:20px;border-radius:50%;background:#F2B83A;color:#1A1300;font:700 12px/20px sans-serif;text-align:center;z-index:1}
+.flusso li:last-child::after{display:none}
+@media(max-width:980px){.flusso li::after{display:none}}
+.fl-q{font:600 11.5px/1 'Martian Mono',monospace;text-transform:uppercase;letter-spacing:.05em;color:#566273}
+.flusso li b{font-size:16px;line-height:1.3}.flusso li p{margin:0;font-size:13.5px;line-height:1.5;color:#4B525A}
+.flusso li em{margin-top:auto;padding-top:6px;font-style:normal;font-weight:700;font-size:13px;color:#12263F}
+.flusso-n{margin:12px 0 0;font-size:14.5px;color:#4B525A;max-width:52em}
 /* ══ NUOVA HOME (13 novembre 2026): colori e caratteri del sito (serio.css): blu, serif, blocchi separati ══ */
 #home,#ecosistema{--az:var(--navy,#12263F);--az-ink:#fff;--chiaro:#C9D6E6;--sbiadito:#AEBBCB;--bordo:#E1E5EA}
 #home .h2w,#ecosistema .h2w{max-width:76rem;margin:0 auto;padding:0 max(16px,env(safe-area-inset-left,0px))}
@@ -2478,41 +2543,59 @@ nav.z{position:sticky;top:0;z-index:60}
 <!-- ═══════════ HOME ═══════════ -->
 <div class="page on nh" id="home">
 
-  <section class="h2-hero"><div class="h2w h2-due">
-    <div>
-      <h1>Proteggi il conto dagli errori che fai tu.</h1>
-      <p class="h2-lead">Riskly vende software per MetaTrader 4 e 5 che fanno rispettare le tue regole: ti fermano dopo le perdite, mettono gli stop, gestiscono le uscite. Non aprono operazioni e non danno segnali.</p>
+  <!-- prima schermata (15 novembre 2026, Gabriele: "più distintiva e riconoscibile", "demo interattiva di Riskly Pro") -->
+  <section class="rx-hero"><div class="h2w rx-due">
+    <div class="rx-testo">
+      <p class="rx-k">RISKLY · GESTIONE DEL RISCHIO PER METATRADER 4 E 5</p>
+      <h1>Il limite che <em>non salti.</em></h1>
+      <p class="rx-lead">Software che fanno rispettare le tue regole: calcolano il lotto, ti fermano dopo le perdite, bloccano le aperture vicino alle notizie. Non aprono operazioni e non danno segnali.</p>
       <div class="h2-az">
-        <a class="h2-btn pri" href="#" onclick="go('bot');return false">Vedi i software, da 49 $ <span aria-hidden="true">→</span></a>
-        <a class="h2-btn" href="#ecosistema" onclick="go('ecosistema');return false">Scopri l'ecosistema Riskly</a>
+        <a class="h2-btn rx-pri" href="#rxDemo" onclick="document.getElementById('rxDemo').scrollIntoView({behavior:'smooth',block:'center'});return false">Prova Riskly Pro qui <span aria-hidden="true">→</span></a>
+        <a class="h2-btn rx-sec" href="#esigenza" onclick="document.getElementById('esigenza').scrollIntoView({behavior:'smooth'});return false">Trova quello che ti serve</a>
       </div>
-      <ul class="h2-gar">
-        <li>Paghi una volta, nessun abbonamento</li>
-        <li>Licenza a vita su MetaTrader 4 e 5</li>
-        <li>Ti aiutiamo a installarlo</li>
-      </ul>
+      <ul class="rx-gar"><li>Paghi una volta, su MQL5</li><li>MetaTrader 4 e 5</li><li>Ti aiutiamo a installarlo</li></ul>
     </div>
-    <div class="h2-vet" aria-label="Cosa trovi su Riskly">
-      <h2>Cosa trovi su Riskly</h2>
-      <a class="primo" href="#" onclick="go('bot');return false"><div><b>Software per MetaTrader</b><span>Sei software che applicano le tue regole</span></div><em>da 49 €<small>una volta</small></em></a>
-      <a href="#" onclick="vaiA('journal','pz-journal');return false"><div><b>Journal</b><span>Il diario che misura la tua disciplina</span></div><em>da 2,99 €<small>al mese · 7 giorni gratis</small></em></a>
-      <a href="https://news.riskly.trade"><div><b>Riskly News</b><span>Ogni mattina oro, dollaro e Fed</span></div><em>6,99 €<small>al mese</small></em></a>
-      <a href="#" onclick="go('corso');return false"><div><b>Videocorso</b><span>50 lezioni sulla gestione del rischio</span></div><em>199 €<small>una volta</small></em></a>
-      <a href="https://strumenti.riskly.trade/#posizione"><div><b>Strumenti e calendario</b><span>Calcolatori, prop firm, dati USA</span></div><em class="gr">Gratis</em></a>
+    <div class="rx-demo" id="rxDemo" aria-label="Demo interattiva di Riskly Pro">
+      <div class="rx-d-testa"><b>Riskly Pro</b><span>demo · simulazione</span></div>
+      <div class="rx-d-campi">
+        <label>Saldo del conto<select id="rxSaldo"><option value="5000">5.000 $</option><option value="10000" selected>10.000 $</option><option value="25000">25.000 $</option><option value="100000">100.000 $ (prop)</option></select></label>
+        <label>Strumento<select id="rxSim"><option value="EURUSD">EUR/USD</option><option value="XAUUSD">Oro (XAU/USD)</option></select></label>
+        <label>Rischio per operazione <output id="rxRo">1%</output><input type="range" id="rxR" min="0.25" max="3" step="0.25" value="1"></label>
+        <label><span id="rxStopNome">Stop in pip</span> <output id="rxSo">20</output><input type="range" id="rxStop" min="5" max="60" step="1" value="20"></label>
+      </div>
+      <div class="rx-lotto"><span>Lotto calcolato</span><b id="rxLotto">0,50</b><small id="rxLottoS">rischi 100 $ se va in stop</small></div>
+      <div class="rx-bot"><button type="button" class="rx-buy" id="rxBuy">BUY</button><button type="button" class="rx-sell" id="rxSell">SELL</button></div>
+      <label class="rx-news"><input type="checkbox" id="rxNews"> Esce un dato USA tra 10 minuti</label>
+      <div class="rx-stato" id="rxStato" role="status" aria-live="polite"></div>
+      <div class="rx-esito" id="rxEsito" hidden><button type="button" id="rxPerdi">Va in stop</button><button type="button" id="rxVinci">Prende il profitto (2×)</button></div>
+      <div class="rx-lim">
+        <div><span>Perdita di oggi</span><b id="rxPerso">0 $ su 300 $</b><i><em id="rxPersoBar"></em></i></div>
+        <div><span>Perdite di fila</span><b id="rxFila">0 su 3</b><i><em id="rxFilaBar"></em></i></div>
+      </div>
+      <p class="rx-nota">Simulazione nel browser: nessuna operazione reale. Limiti d'esempio: 3% al giorno, 3 perdite di fila. <button type="button" id="rxReset">Ricomincia</button></p>
     </div>
   </div></section>
 
-  <!-- percorso d'acquisto: scegli la tua esigenza (14 novembre 2026) -->
+  <!-- prodotti organizzati per necessità (15 novembre 2026) -->
   <section class="h2-sez" id="esigenza"><div class="h2w">
-    <div class="h2-t"><h2>Di cosa hai bisogno?</h2><p>Scegli il problema che vuoi risolvere: ti portiamo al software giusto, con video, limiti e prezzo.</p></div>
-    <div class="esig">
-      <a href="/software/riskguard"><b>Fermarmi quando perdo troppo</b><span>Perdite di fila, limite giornaliero, revenge trading</span><em>RiskGuard · 69 $</em></a>
-      <a href="/software/trademanager"><b>Gestire stop, pareggio e trailing</b><span>Le posizioni che apro io, sempre con le stesse regole</span><em>TradeManager · 49 $</em></a>
-      <a href="/software/scalein"><b>Entrare e uscire a scaglioni</b><span>Più take profit in pip, rischio totale sotto controllo</span><em>ScaleIn · 49 $</em></a>
-      <a href="/software/risklytrailing"><b>Lasciar correre i profitti</b><span>Una entrata, più posizioni con stop a gradini</span><em>RisklyTrailing · 49 $</em></a>
-      <a href="/software/risklycopy"><b>Copiare su altri miei conti</b><span>Stesso rischio su ogni conto, tra MT4 e MT5</span><em>RisklyCopy · 79 $</em></a>
-      <a href="/software/riskly-pro" class="tutto"><b>Tutto in un solo software</b><span>Rischio, gestione e scaglioni, con il lotto già calcolato</span><em>Riskly Pro · 99 $</em></a>
-      <a href="https://strumenti.riskly.trade/#posizione" class="gratis"><b>Solo calcolare il rischio</b><span>Lotto, drawdown e simulazioni, senza comprare nulla</span><em>Strumenti · gratis</em></a>
+    <div class="h2-t"><h2>Parti da quello che ti serve.</h2><p>Quattro bisogni, tutti i prodotti Riskly. Scegli il tuo e vai dritto alla scheda.</p></div>
+    <div class="nec">
+      <div class="nec-c"><p class="nec-n">01</p><h3>Non perdere troppo</h3><p class="nec-d">Limiti giornalieri, perdite di fila, revenge trading.</p>
+        <a href="/software/riskguard"><b>RiskGuard</b><span>ti ferma dopo le perdite</span><em>69 $</em></a>
+        <a href="/software/riskly-pro"><b>Riskly Pro</b><span>limiti, lotto e notizie in uno</span><em>99 $</em></a>
+        <a href="https://strumenti.riskly.trade/#posizione"><b>Calcolatore del lotto</b><span>quanto aprire per rischiare l'1%</span><em class="gr">gratis</em></a></div>
+      <div class="nec-c"><p class="nec-n">02</p><h3>Gestire le posizioni</h3><p class="nec-d">Stop, pareggio, trailing e uscite a scaglioni.</p>
+        <a href="/software/trademanager"><b>TradeManager</b><span>stop, pareggio e trailing</span><em>49 $</em></a>
+        <a href="/software/scalein"><b>ScaleIn</b><span>uscite a scaglioni</span><em>49 $</em></a>
+        <a href="/software/risklytrailing"><b>RisklyTrailing</b><span>lascia correre i profitti</span><em>49 $</em></a></div>
+      <div class="nec-c"><p class="nec-n">03</p><h3>Più conti e prop firm</h3><p class="nec-d">Stesso rischio ovunque, regole della challenge.</p>
+        <a href="/software/risklycopy"><b>RisklyCopy</b><span>copia con il lotto ricalcolato</span><em>79 $</em></a>
+        <a href="/software/riskguard"><b>RiskGuard</b><span>limite giornaliero della prop</span><em>69 $</em></a>
+        <a href="https://strumenti.riskly.trade/#prop"><b>Calcolatore prop firm</b><span>quante perdite ti restano</span><em class="gr">gratis</em></a></div>
+      <div class="nec-c"><p class="nec-n">04</p><h3>Capire e migliorare</h3><p class="nec-d">Dove sbagli, cosa muove il mercato, come studiare.</p>
+        <a href="#" onclick="vaiA('journal','pz-journal');return false"><b>Journal</b><span>dove perdi, orari, regole</span><em>da 2,99 €/mese</em></a>
+        <a href="https://news.riskly.trade"><b>Riskly News</b><span>oro, dollaro e Fed ogni giorno</span><em>6,99 €/mese</em></a>
+        <a href="#" onclick="go('corso');return false"><b>Videocorso</b><span>50 lezioni sul rischio</span><em>199 €</em></a></div>
     </div>
   </div></section>
 
@@ -2530,7 +2613,17 @@ nav.z{position:sticky;top:0;z-index:60}
         <a class="eco6-c" href="#" onclick="apriModulo('attesa','Monitor',0);return false"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M7 14l3-3 3 2 4-5"/><path d="M9 21h6"/></svg><b>Monitora</b><span>Stato dei software dal telefono · Monitor</span><span class="pre">In arrivo</span></a>
       </div>
     </div>
-    <p class="h2-ciclo"><span><b>Prima</b> decidi quanto rischiare</span><span><b>Durante</b> i software applicano le regole</span><span><b>Dopo</b> il journal misura se le hai rispettate</span></p>
+    <!-- il valore dell'insieme: una sola operazione attraversa tutto l'ecosistema (15 novembre 2026) -->
+    <div class="flusso">
+      <p class="flusso-t">Una sola operazione, tutto l'ecosistema</p>
+      <ol>
+        <li><span class="fl-q">Prima</span><b>Sai cosa esce e quanto rischiare</b><p>Riskly News e il calendario ti dicono l'ora del dato; il calcolatore ti dà il lotto.</p><em>News · Strumenti</em></li>
+        <li><span class="fl-q">All'ingresso</span><b>Il lotto è già giusto</b><p>Riskly Pro calcola il lotto sul pulsante e non apre con lo spread largo o vicino alla notizia.</p><em>Riskly Pro</em></li>
+        <li><span class="fl-q">Durante</span><b>Le regole lavorano al posto tuo</b><p>Stop, pareggio e trailing si muovono da soli; dopo troppe perdite RiskGuard ti ferma.</p><em>TradeManager · RisklyTrailing · RiskGuard</em></li>
+        <li><span class="fl-q">Dopo</span><b>L'operazione si scrive da sola</b><p>Arriva nel journal senza copiarla: a fine settimana vedi se hai rispettato il piano.</p><em>Journal</em></li>
+      </ol>
+      <p class="flusso-n">Ogni parte funziona anche da sola. Insieme coprono l'operazione dall'inizio alla fine, e i dati passano da una all'altra senza che tu faccia niente.</p>
+    </div>
     <div class="h2-az"><a class="h2-btn pri" href="#ecosistema" onclick="go('ecosistema');return false">Scopri l'ecosistema Riskly →</a></div>
   </div></section>
 
@@ -2538,13 +2631,13 @@ nav.z{position:sticky;top:0;z-index:60}
     <div class="h2-t"><h2>Comprare un software, in tre passi.</h2><p>Sai sempre cosa stai pagando e cosa succede dopo.</p></div>
     <ol class="h2-passi">
       <li><b>Scegli quello che ti serve</b><p>Dici cosa vuoi che faccia e ti indichiamo il software giusto. Ogni scheda spiega cosa fa e cosa non fa.</p><a href="#" onclick="go('bot');return false">Trova il tuo strumento →</a></li>
-      <li><b>Paghi una volta</b><p>Sulla pagina sicura di Stripe. Il prezzo è scritto prima del pulsante e non ci sono rinnovi.</p></li>
-      <li><b>Lo ricevi e lo installi</b><p>Entro 24 ore lavorative ti mandiamo il file per il tuo conto e la guida passo passo. Se serve, ti seguiamo noi.</p></li>
+      <li><b>Paghi una volta</b><p>Sul market ufficiale MQL5, con il prezzo scritto prima del pulsante. Nessun rinnovo.</p></li>
+      <li><b>Lo installi da MetaTrader</b><p>Il software compare subito nella sezione Market di MetaTrader; la guida passo passo è nella scheda. Se serve, ti seguiamo noi.</p></li>
     </ol>
   </div></section>
 
   <section class="h2-sez alt"><div class="h2w">
-    <div class="h2-t"><h2>I nostri software.</h2><p>Prezzi di lancio. Ognuno fa una cosa precisa, Riskly Pro le fa tutte.</p></div>
+    <div class="h2-t"><h2>I nostri software.</h2><p>Ognuno fa una cosa precisa, Riskly Pro le fa tutte. Prezzo una tantum su MQL5.</p></div>
     <div class="h2-carte">
       <div class="h2-carta"><small>Ti ferma dopo le perdite</small><h3><a href="/software/riskguard">RiskGuard</a></h3><p>Dopo N perdite di fila, il numero lo scegli tu, blocca le nuove operazioni e chiude MetaTrader fino a mezzanotte.</p><div class="costo">69 $<em>una volta · su MQL5</em></div><a class="h2-btn" href="/software/riskguard">Vedi RiskGuard →</a></div>
       <div class="h2-carta"><small>Stop, break-even e trailing</small><h3><a href="/software/trademanager">TradeManager</a></h3><p>Mette stop loss e take profit se mancano, sposta lo stop in pari e poi lo fa seguire il prezzo. Tutto in pip.</p><div class="costo">49 $<em>una volta · su MQL5</em></div><a class="h2-btn" href="/software/trademanager">Vedi TradeManager →</a></div>
@@ -7230,6 +7323,56 @@ document.addEventListener('play', e => { if(e.target.tagName !== 'VIDEO') return
     }).catch(function(){});
   }
   giro(); carica(); setInterval(carica, 60000); setInterval(function(){ if(prox) giro(); }, 1000);
+})();
+</script>
+<script>
+/* demo interattiva di Riskly Pro nella prima schermata (simulazione nel browser, nessuna operazione reale) */
+(function(){
+  const $ = id => document.getElementById(id); if(!$('rxDemo')) return;
+  const LIM_GIORNO = .03, LIM_FILA = 3;
+  let st = { saldo0: 10000, perso: 0, fila: 0, aperta: null };
+  const num = (v, d) => v.toLocaleString('it-IT', { minimumFractionDigits: d, maximumFractionDigits: d });
+  function calcola(){
+    const saldo = Number($('rxSaldo').value), oro = $('rxSim').value === 'XAUUSD', r = Number($('rxR').value), stop = Number($('rxStop').value);
+    $('rxRo').textContent = num(r, r % 1 ? 2 : 0).replace(/,?0+$/, '') + '%';
+    $('rxStopNome').textContent = oro ? 'Stop in dollari di prezzo' : 'Stop in pip';
+    $('rxSo').textContent = oro ? num(stop, 0) + ' $' : String(stop);
+    const valore = oro ? 100 : 10;   /* 1 lotto: oro 100 once = 100 $ per 1 $ di prezzo; EUR/USD 10 $ per pip */
+    const rischio = saldo * r / 100, lotto = Math.floor(rischio / (stop * valore) * 100) / 100;
+    $('rxLotto').textContent = num(lotto, 2);
+    $('rxLottoS').textContent = lotto > 0 ? 'se va in stop perdi ' + num(lotto * stop * valore, 0) + ' $ (' + num(lotto * stop * valore / saldo * 100, 2) + '% del conto)' : 'rischio troppo piccolo per il lotto minimo (0,01)';
+    return { saldo, oro, lotto, perdita: lotto * stop * valore };
+  }
+  function limiti(){
+    const saldo = Number($('rxSaldo').value), lim = saldo * LIM_GIORNO;
+    $('rxPerso').textContent = num(st.perso, 0) + ' $ su ' + num(lim, 0) + ' $';
+    $('rxFila').textContent = st.fila + ' su ' + LIM_FILA;
+    const q1 = Math.min(1, st.perso / lim), q2 = Math.min(1, st.fila / LIM_FILA);
+    $('rxPersoBar').style.width = q1 * 100 + '%'; $('rxPersoBar').classList.toggle('pieno', q1 >= 1);
+    $('rxFilaBar').style.width = q2 * 100 + '%'; $('rxFilaBar').classList.toggle('pieno', q2 >= 1);
+    return q1 >= 1 || q2 >= 1;
+  }
+  function stato(){
+    const c = calcola(), bloccato = limiti(), news = $('rxNews').checked, s = $('rxStato');
+    let txt = '', cls = '';
+    if(bloccato){ cls = 'blocco'; txt = '<b>Fermo per oggi.</b> ' + (st.fila >= LIM_FILA ? LIM_FILA + ' perdite di fila' : 'Limite di perdita del giorno raggiunto') + ': Riskly Pro chiude le posizioni e blocca le nuove aperture fino a mezzanotte.'; }
+    else if(st.aperta){ cls = 'aperta'; txt = 'Posizione ' + st.aperta.dir + ' aperta: ' + num(st.aperta.lotto, 2) + ' lotti, stop già messo. Rischio ' + num(st.aperta.perdita, 0) + ' $.'; }
+    else if(news){ cls = 'blocco'; txt = '<b>Aperture bloccate:</b> esce un dato USA ad alto impatto tra 10 minuti. Riprovi dopo l\'uscita.'; }
+    else if(c.lotto <= 0) txt = 'Con questo rischio e questo stop il lotto è sotto il minimo: alza il rischio o stringi lo stop.';
+    else txt = 'Tocca BUY o SELL: l\'ordine parte con il lotto calcolato e lo stop già messo.';
+    s.className = 'rx-stato' + (cls ? ' ' + cls : ''); s.innerHTML = txt;
+    const off = bloccato || news || !!st.aperta || c.lotto <= 0;
+    $('rxBuy').disabled = off; $('rxSell').disabled = off;
+    $('rxEsito').hidden = !st.aperta;
+    ['rxSaldo', 'rxSim', 'rxR', 'rxStop'].forEach(id => $(id).disabled = !!st.aperta);
+  }
+  function apri(dir){ const c = calcola(); st.aperta = { dir, lotto: c.lotto, perdita: c.perdita }; stato(); try{ if(typeof traccia === 'function') traccia('demo-pro-apri'); }catch(e){} }
+  function chiudi(vinta){ if(!st.aperta) return; if(vinta){ st.fila = 0; st.perso = Math.max(0, st.perso - st.aperta.perdita * 2); } else { st.fila++; st.perso += st.aperta.perdita; } st.aperta = null; stato(); }
+  $('rxBuy').onclick = () => apri('BUY'); $('rxSell').onclick = () => apri('SELL');
+  $('rxPerdi').onclick = () => chiudi(false); $('rxVinci').onclick = () => chiudi(true);
+  $('rxReset').onclick = () => { st = { saldo0: 0, perso: 0, fila: 0, aperta: null }; $('rxNews').checked = false; stato(); };
+  ['rxSaldo', 'rxSim', 'rxR', 'rxStop', 'rxNews'].forEach(id => $(id).addEventListener('input', () => { if(id === 'rxSim'){ const oro = $('rxSim').value === 'XAUUSD', sl = $('rxStop'); sl.min = oro ? 3 : 5; sl.max = oro ? 40 : 60; sl.value = oro ? 10 : 20; } stato(); }));
+  stato();
 })();
 </script>
 <script src="/cookie.js" defer></script>
