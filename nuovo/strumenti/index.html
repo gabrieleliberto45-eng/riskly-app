@@ -1772,6 +1772,7 @@ html[data-tema="scuro"]{--k-sch:#181C1A;--k-pan:#202522;--k-bordo:rgba(255,255,2
 .cal-prossimo .cal-ora{background:#F2B83A;color:#2B1E00!important}
 .cal-ev.passato{opacity:.72}
 .cal-paese{grid-area:paese;font:600 12px 'Archivo',sans-serif!important;color:var(--k-dim)!important;gap:6px}
+.cal-band{width:20px;height:14px;border-radius:2px;object-fit:cover;box-shadow:0 0 0 1px rgba(127,127,127,.35);flex:0 0 20px}
 .cal-tit{grid-area:tit;font:700 16px/1.3 'Archivo',sans-serif!important;color:var(--k-ink)!important}
 .cal-tit small{display:inline;margin-left:6px;font:500 12.5px 'Archivo',sans-serif;color:var(--k-dim)}
 .cal-tit .cal-i{background:transparent!important;border:1px solid var(--k-bordo);color:var(--k-dim)!important;font:600 11.5px 'Archivo',sans-serif!important;padding:2px 9px!important}
@@ -2617,7 +2618,7 @@ function calMostra(){
   const box = document.getElementById('calCornice'); if(!box) return;
   const soloPref = calGiorno === 'preferiti';
   calAvvisiBarra();
-  if(soloPref && !Object.keys(calPref).length && !Object.keys(calSerie).length){ box.innerHTML = '<div class="cal-stato">Nessun preferito.<br>Tocca la stella ☆ accanto a un dato (per esempio il CPI): lo segui, e ti avviso a ogni sua uscita.</div>'; return; }
+  if(soloPref && !Object.keys(calSerie).length){ box.innerHTML = '<div class="cal-stato">Nessun preferito.<br>Tocca la stella ☆ accanto a un dato (per esempio il CPI): lo segui, e ti avviso a ogni sua uscita.</div>'; return; }
   if(!soloPref && (!calStato.imp.length || !calStato.paesi.length)){ box.innerHTML = '<div class="cal-stato">Scegli almeno un livello di importanza e un paese nei filtri.</div>'; return; }
   const ev = soloPref ? calDati.filter(calSegue) : calDati.filter(e => calStato.imp.includes(String(e.importance)) && calStato.paesi.includes(String(e.country).toLowerCase()));
   if(!ev.length){ box.innerHTML = '<div class="cal-stato">Nessun evento con questi filtri' + (calGiorno === 'oggi' ? ' oggi' : calGiorno === 'domani' ? ' domani' : ' questa settimana') + '.</div>'; return; }
@@ -2631,7 +2632,7 @@ function calMostra(){
     const pr = calSegue(e);
     html += `<div class="cal-ev${d.getTime() < ora ? ' passato' : ''}${e === prossimo ? ' cal-prossimo' : ''}${pr ? ' pref' : ''}${aperto ? ' aperto' : ''}" data-id="${calEsc(e.id)}">
       <span class="cal-ora">${h}</span>
-      <span class="cal-paese">${CAL_BAND[p] || ''} ${calEsc(e.currency || e.country)} <span class="cal-imp i${e.importance}"><b></b><b></b><b></b></span></span>
+      <span class="cal-paese">${CAL_BAND[p] ? `<img class="cal-band" src="/bandiere/${p}.svg" alt="" width="20" height="14">` : ''} ${calEsc(e.currency || e.country)} <span class="cal-imp i${e.importance}"><b></b><b></b><b></b></span></span>
       <span class="cal-tit">${calEsc(calNomeNuovo(e.title))}${per ? `<small>${calEsc(per)}</small>` : ''}${calSpiega(e.title) || e.comment ? `<span class="cal-i">${aperto ? 'Chiudi ▴' : 'Cos\'è? ▾'}</span>` : ''}</span>
       <span class="cal-valori"><span><i data-c="Eff.">Effettivo</i>${calNum(e.actual, e.unit)}</span><span><i data-c="Prev.">Previsto</i>${calNum(e.forecast, e.unit)}</span><span><i data-c="Prec.">Precedente</i>${calNum(e.previous, e.unit)}</span></span>
       <button type="button" class="cal-stella" aria-pressed="${pr}" aria-label="${pr ? 'Togli dai preferiti' : 'Aggiungi ai preferiti'}">${pr ? '★' : '☆'}</button>
@@ -2646,9 +2647,11 @@ try { calPref = JSON.parse(localStorage.getItem('riskly-cal-pref')) || {}; calAv
 /* la stella segue TUTTE le uscite di quel dato (9 novembre, Gabriele: "se metto il CPI nei preferiti ogni CPI deve arrivarmi la notifica"):
    la chiave è l'indicatore + il paese, uguale per ogni mese. calPref resta solo per i preferiti vecchi, una singola uscita. */
 function calSerieChiave(e){ return String(e.ticker || e.indicator || e.title || '').replace(/\s+/g, '').toLowerCase() + '|' + String(e.country || '').toLowerCase(); }
-function calSegue(e){ return !!calSerie[calSerieChiave(e)] || !!calPref[e.id]; }
-function calNPref(){ return Object.keys(calSerie).length + Object.keys(calPref).length; }
-(function(){ const lim = Date.now() - 8 * 86400e3; for(const k in calPref) if(new Date(calPref[k].d).getTime() < lim) delete calPref[k];
+function calSegue(e){ return !!calSerie[calSerieChiave(e)]; }
+function calNPref(){ return Object.keys(calSerie).length; }
+/* 15 novembre (Gabriele: "i preferiti di prima dell'aggiornamento, quelli che duravano una volta, come li tolgo?"): i preferiti vecchi a singola uscita non si usano più, si cancellano. */
+if(Object.keys(calPref).length){ calPref = {}; try { localStorage.setItem('riskly-cal-pref', '{}'); } catch(e) {} }
+(function(){ const lim = Date.now() - 8 * 86400e3;
   for(const k in calAvvisati) if(calAvvisati[k] < lim) delete calAvvisati[k]; })();
 /* notifiche push vere: il server (Supabase) controlla i preferiti ogni minuto e avvisa anche ad app chiusa */
 const CAL_VAPID = 'BBOpQfTYpzmSXLrZtGfnu-x-tx4asq_lVhF0Kzb3ahftFAJ2Js6W-2qt7gTiMk7J8nuSahigHEW17B85bn7UWWw';
@@ -2906,7 +2909,8 @@ async function accScarica(){
       let v = server[k];
       if(k === 'riskly-cal-pref' || k === 'riskly-cal-serie' || k === 'riskly-campi'){
         let a = {}, b = {}; try { a = JSON.parse(locale[k] || '{}') || {}; b = JSON.parse(v || '{}') || {}; } catch(e) {}
-        const unito = JSON.stringify(k === 'riskly-cal-pref' ? Object.assign({}, a, b) : Object.assign({}, a, b));
+        const unito = k === 'riskly-cal-pref' ? '{}' : JSON.stringify(Object.assign({}, a, b));
+        if(k === 'riskly-cal-pref'){ if(v != null && v !== '{}') daCaricare = true; v = '{}'; if(v !== locale[k]){ localStorage.setItem(k, v); } return; }
         if(Object.keys(a).some(x => !(x in b))) daCaricare = true;
         v = (v == null && !locale[k]) ? null : unito;
       }
