@@ -127,3 +127,9 @@ Gabriele: "Non bloccare mai gli articoli… non devono mai fermarsi, anche gli s
 - Database: tabella public.domini_usa_e_getta (10.233 domini, lista disposable-email-domains), funzione public.email_ammessa(e) (anon e authenticated), trigger blocca_email_usa_e_getta BEFORE INSERT su auth.users che solleva 'email_usa_e_getta'. SQL in supabase/email_usa_e_getta.sql. Per sbloccare un dominio: delete from public.domini_usa_e_getta where dominio = '...'.
 - Siti (riskly.trade, strumenti, news, journal): rEmailAmmessa() prima di signUp + messaggio "Le email temporanee (usa e getta) non sono accettate". Provato dal vivo il 15/11: signup con @mailinator.com rifiutato, nessun account creato.
 - La conferma dell'email era già attiva (confirmation_sent_at su tutti gli account dal 23/9).
+
+## 15 novembre 2026: calendario economico sul database
+- Tabella `cal_eventi` (stessi campi di TradingView, paese in minuscolo) e `cal_stato` (fonte attiva, errori, ultimo aggiornamento). Lettura pubblica, scrittura solo dalla funzione. SQL: supabase/calendario-dati.sql.
+- Funzione `cal-aggiorna` (pg_cron ogni minuto, stessa intestazione x-cron di cal-avvisi): ogni minuto finestra vicina (−6 h → +36 h), ogni 30 minuti finestra larga (−10 g → +35 g) e pulizia oltre 60 giorni.
+- Fonte: TradingView (scelta di Gabriele: "lasciamo TradingView"; nessuna licenza, rischio di blocco). Dopo 30 minuti di errori passa da sola a biquote.io (gratis, uso commerciale permesso, dati MQL5, righe doppie tolte) e torna a TradingView appena risponde. Una sola fonte alla volta in tabella.
+- Strumenti legge da `cal_eventi` (calDalDatabase); la vecchia lettura /api/calendario resta come riserva. I bot useranno il calendario interno di MetaTrader 5.

@@ -2600,6 +2600,24 @@ function calPeriodo(){
 function calNum(v, u){ if(v === null || v === undefined || v === '') return '—'; const n = Number(v);
   const t = isNaN(n) ? String(v) : n.toLocaleString('it-IT', { maximumFractionDigits: 2 }); return t + (u === '%' ? '%' : u ? ' ' + u : ''); }
 function calEsc(t){ return String(t == null ? '' : t).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' })[c]); }
+/* 15 novembre: il calendario si legge dal database Riskly (tabella cal_eventi, aggiornata ogni minuto dalla funzione cal-aggiorna).
+   Stessi campi di prima; la vecchia lettura diretta resta solo come riserva. */
+const CAL_DB = 'https://swlztverwfgdgchgpudt.supabase.co/rest/v1/cal_eventi', CAL_DB_KEY = 'sb_publishable_j9bujIvCEz6x21yYoCODPw_lIZCJrIR';
+async function calDalDatabase(da, a){
+  const campi = 'id,date,country,currency,title,indicator,ticker,period,importance,actual,forecast,previous,unit,scale,comment,source,source_url';
+  const paesi = Object.keys(CAL_BAND).join(',');
+  let tutti = [];
+  for(let da0 = 0; da0 < 6000; da0 += 1000){
+    const r = await fetch(CAL_DB + '?select=' + campi + '&date=gte.' + da.toISOString() + '&date=lt.' + a.toISOString() + '&country=in.(' + paesi + ')&order=date.asc,id.asc&offset=' + da0 + '&limit=1000',
+      { headers: { apikey: CAL_DB_KEY, Authorization: 'Bearer ' + CAL_DB_KEY }, cache: 'no-store' });
+    if(!r.ok) throw new Error('db ' + r.status);
+    const pezzo = await r.json(); if(!Array.isArray(pezzo)) throw new Error('db');
+    tutti = tutti.concat(pezzo);
+    if(pezzo.length < 1000) break;
+  }
+  if(!tutti.length) throw new Error('vuoto');
+  return tutti.map(e => Object.assign(e, { country: String(e.country).toUpperCase(), date: new Date(e.date).toISOString() }));
+}
 async function calCarica(forza){
   const [da, a] = calPeriodo();
   const chiave = da.toISOString() + a.toISOString();
@@ -2607,11 +2625,16 @@ async function calCarica(forza){
   if(!forza && chiave === calCaricato){ calMostra(); return; }
   if(chiave !== calCaricato) box.innerHTML = '<div class="cal-stato">Carico il calendario…</div>';
   try{
-    const r = await fetch('/api/calendario?from=' + da.toISOString() + '&to=' + a.toISOString() + '&countries=' + Object.keys(CAL_BAND).map(x => x.toUpperCase()).join(','), { cache: 'no-store' });
-    const j = await r.json();
-    if(!r.ok || !Array.isArray(j.result)) throw new Error('risposta');
-    calDati = j.result.sort((x, y) => x.date.localeCompare(y.date)); calCaricato = chiave;
-  }catch(e){ if(chiave !== calCaricato){ box.innerHTML = '<div class="cal-stato">Non riesco a caricare il calendario. Riprova tra poco.</div>'; return; } }
+    calDati = (await calDalDatabase(da, a)).sort((x, y) => x.date.localeCompare(y.date)); calCaricato = chiave;
+  }catch(e){
+    // riserva: se il database non risponde leggo come prima dalla fonte
+    try{
+      const r = await fetch('/api/calendario?from=' + da.toISOString() + '&to=' + a.toISOString() + '&countries=' + Object.keys(CAL_BAND).map(x => x.toUpperCase()).join(','), { cache: 'no-store' });
+      const j = await r.json();
+      if(!r.ok || !Array.isArray(j.result)) throw new Error('risposta');
+      calDati = j.result.sort((x, y) => x.date.localeCompare(y.date)); calCaricato = chiave;
+    }catch(e2){ if(chiave !== calCaricato){ box.innerHTML = '<div class="cal-stato">Non riesco a caricare il calendario. Riprova tra poco.</div>'; return; } }
+  }
   calMostra();
 }
 function calMostra(){
