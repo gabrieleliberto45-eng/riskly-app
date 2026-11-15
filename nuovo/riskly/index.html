@@ -2230,47 +2230,44 @@ body.fuori-home #vaiHome{display:inline-flex}
 .scheda-extra details{margin-top:8px}.page:not(.nh) .bot .scheda-extra .no li::before{content:'—'!important;border:0!important;transform:none!important;width:auto;height:auto;top:9px;color:var(--ink-3,#5E656D)}.scheda-extra ol{list-style:none;margin-left:0!important;counter-reset:pas}.scheda-extra ol li{counter-increment:pas}.page:not(.nh) .bot .scheda-extra ol li::before{content:counter(pas)'.'!important;border:0!important;transform:none!important;width:auto;height:auto;top:9px;font-weight:700}.scheda-extra ul,.scheda-extra ol{margin:8px 0 4px 18px;font-size:.92rem;line-height:1.5}.scheda-extra li{margin:3px 0}
 
 /* ══ prima schermata, prodotti per necessità, flusso dell'ecosistema (15 novembre 2026) ══ */
-.rx-hero{background:#0E1B2C;color:#E7ECF3;padding:2.5rem 0 3rem;position:relative;overflow:hidden}
-.rx-hero::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 70% at 85% 30%,rgba(242,184,58,.16),transparent 60%),linear-gradient(transparent 0 calc(100% - 1px),rgba(255,255,255,.04) 0) 0 0/100% 48px,linear-gradient(90deg,transparent 0 calc(100% - 1px),rgba(255,255,255,.04) 0) 0 0/48px 100%;pointer-events:none}
-@media(min-width:992px){.rx-hero{padding:4.5rem 0 5rem}}
-.rx-due{position:relative;display:grid;gap:2.25rem}
-@media(min-width:992px){.rx-due{grid-template-columns:1.05fr .95fr;gap:3.5rem;align-items:center}}
+.rx-hero{background:linear-gradient(180deg,#FFFFFF 0%,#F4F6F9 100%);color:var(--ink,#15181B);padding:3rem 0 3.5rem;border-bottom:1px solid #E6E9EE}
+@media(min-width:992px){.rx-hero{padding:5.5rem 0 6rem}}
+.rx-due{display:grid;gap:2.5rem}
+@media(min-width:992px){.rx-due{grid-template-columns:1.05fr .95fr;gap:4rem;align-items:center}}
 .rx-due>*{min-width:0}
-.rx-k{font:600 12.5px/1.4 'Martian Mono',ui-monospace,monospace;letter-spacing:.06em;color:#F2B83A;margin:0 0 1.1rem}
-html body #home .rx-hero h1{color:#fff!important;font-size:clamp(2.6rem,7vw,4.6rem)!important;line-height:1!important;letter-spacing:-.02em;margin-bottom:1.2rem}
-html body #home .rx-hero h1 em{font-style:italic;color:#F2B83A}
-.rx-lead{font-size:clamp(1.05rem,2vw,1.2rem);line-height:1.55;color:#C9D3E0;max-width:34em;margin:0}
-.rx-hero .h2-btn.rx-pri{background:#F2B83A;border-color:#F2B83A;color:#1A1300}
-.rx-hero .h2-btn.rx-pri:hover{background:#FFC857;border-color:#FFC857}
-.rx-hero .h2-btn.rx-sec{color:#fff;border-color:rgba(255,255,255,.35)}
-.rx-hero .h2-btn.rx-sec:hover{background:rgba(255,255,255,.06);border-color:#fff}
-.rx-gar{list-style:none;margin:1.5rem 0 0;padding:0;display:flex;flex-wrap:wrap;gap:.5rem 1.25rem;font-size:.92rem;font-weight:600;color:#C9D3E0}
-.rx-gar li::before{content:"✓ ";color:#F2B83A}
-.rx-demo{background:#13243A;border:1px solid #24395A;border-radius:16px;padding:18px;box-shadow:0 30px 60px -30px rgba(0,0,0,.6);font-size:14px}
-.rx-d-testa{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}.rx-d-testa b{font-size:17px;color:#fff}.rx-d-testa span{font:600 11.5px/1 'Martian Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#F2B83A}
-.rx-d-campi{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px}
-.rx-d-campi label{display:grid;gap:5px;font-size:12.5px;color:#AEBBCB}
-.rx-d-campi output{color:#fff;font-weight:700}
-.rx-d-campi select{font:inherit;font-size:14px;color:#fff;background:#0E1B2C;border:1px solid #2A4163;border-radius:8px;padding:8px}
-.rx-d-campi input[type=range]{accent-color:#F2B83A;width:100%}
-.rx-lotto{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:14px 0 10px;padding:12px 14px;border-radius:10px;background:#0E1B2C;border:1px solid #2A4163}
-.rx-lotto span{font-size:12.5px;color:#AEBBCB}.rx-lotto b{font:700 28px/1 'Martian Mono',monospace;color:#F2B83A}.rx-lotto small{font-size:12.5px;color:#C9D3E0;flex-basis:100%}
+.rx-k{margin:0 0 1.25rem}.rx-k span{display:inline-block;font-size:13px;font-weight:600;color:#12263F;background:#E9EEF5;border-radius:999px;padding:6px 12px}
+html body #home .rx-hero h1{color:#0F1B2D!important;font-size:clamp(2.2rem,5.2vw,3.6rem)!important;line-height:1.08!important;letter-spacing:-.025em;font-weight:700!important;margin-bottom:1.25rem;max-width:15em}
+.rx-lead{font-size:clamp(1.05rem,1.8vw,1.2rem);line-height:1.6;color:#4B5565;max-width:33em;margin:0}
+.rx-hero .h2-btn.rx-pri{background:#12263F;border-color:#12263F;color:#fff}
+.rx-hero .h2-btn.rx-pri:hover{background:#1B3A5C;border-color:#1B3A5C}
+.rx-hero .h2-btn.rx-sec{background:#fff;color:#12263F;border-color:#D5DBE3}
+.rx-hero .h2-btn.rx-sec:hover{border-color:#12263F}
+.rx-num{display:flex;flex-wrap:wrap;gap:1.25rem 2.5rem;margin:2.25rem 0 0;padding:1.5rem 0 0;border-top:1px solid #E1E5EA}
+.rx-num div{min-width:7rem}.rx-num dt{font-size:1.6rem;font-weight:700;letter-spacing:-.02em;color:#0F1B2D}.rx-num dd{margin:2px 0 0;font-size:.875rem;color:#5E6773}
+.rx-demo{background:#fff;border:1px solid #E1E5EA;border-radius:18px;padding:20px;box-shadow:0 1px 2px rgba(15,27,45,.04),0 24px 48px -24px rgba(15,27,45,.22);font-size:14px;color:#0F1B2D}
+.rx-d-testa{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.rx-d-testa b{font-size:16px}.rx-d-testa span{font-size:12px;font-weight:600;color:#5E6773;background:#F1F3F6;border-radius:999px;padding:4px 10px}
+.rx-d-campi{display:grid;grid-template-columns:1fr 1fr;gap:12px 16px}
+.rx-d-campi label{display:grid;gap:6px;font-size:12.5px;color:#5E6773}
+.rx-d-campi output{color:#0F1B2D;font-weight:700;margin-left:4px}
+.rx-d-campi select{font:inherit;font-size:14px;color:#0F1B2D;background:#fff;border:1px solid #D5DBE3;border-radius:10px;padding:9px 10px}
+.rx-d-campi input[type=range]{accent-color:#12263F;width:100%}
+.rx-lotto{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:16px 0 12px;padding:14px 16px;border-radius:12px;background:#F4F6F9}
+.rx-lotto span{font-size:12.5px;color:#5E6773}.rx-lotto b{font-size:30px;font-weight:700;letter-spacing:-.02em;color:#0F1B2D;font-variant-numeric:tabular-nums}.rx-lotto small{font-size:12.5px;color:#4B5565;flex-basis:100%}
 .rx-bot{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.rx-bot button,.rx-esito button{font:700 15px/1 inherit;font-family:inherit;padding:13px;border-radius:9px;border:0;cursor:pointer;color:#fff;transition:transform .15s,opacity .15s}
-.rx-buy{background:#1E8E5A}.rx-sell{background:#C8372D}
-.rx-bot button:active,.rx-esito button:active{transform:scale(.97)}
-.rx-bot button:disabled{opacity:.35;cursor:not-allowed}
-.rx-news{display:flex;gap:8px;align-items:center;margin:10px 0 0;font-size:13px;color:#C9D3E0;cursor:pointer}.rx-news input{accent-color:#F2B83A;width:17px;height:17px}
-.rx-stato{min-height:20px;margin-top:10px;font-size:13.5px;line-height:1.45;color:#E7ECF3}
-.rx-stato.blocco{padding:10px 12px;border-radius:9px;background:rgba(200,55,45,.18);border:1px solid rgba(240,104,92,.5)}
-.rx-stato.aperta{padding:10px 12px;border-radius:9px;background:rgba(242,184,58,.12);border:1px solid rgba(242,184,58,.4)}
-.rx-esito{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}.rx-esito[hidden]{display:none}.rx-esito button{background:#24395A;font-size:13.5px}
-.rx-lim{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
-.rx-lim span{display:block;font-size:11.5px;color:#AEBBCB}.rx-lim b{display:block;font-size:13.5px;color:#fff;margin:2px 0 5px}
-.rx-lim i{display:block;height:6px;border-radius:3px;background:#24395A;overflow:hidden}.rx-lim em{display:block;height:100%;width:0;background:#F2B83A;transition:width .3s}
-.rx-lim em.pieno{background:#F0685C}
-.rx-nota{margin:12px 0 0;font-size:11.5px;line-height:1.45;color:#8FA0B5}.rx-nota button{font:inherit;color:#F2B83A;background:none;border:0;padding:0;text-decoration:underline;cursor:pointer}
-@media(max-width:480px){.rx-d-campi{grid-template-columns:1fr}}
+.rx-bot button,.rx-esito button{font:600 15px/1 inherit;font-family:inherit;padding:13px;border-radius:10px;border:0;cursor:pointer;color:#fff;transition:background .15s,opacity .15s}
+.rx-buy{background:#12805A}.rx-buy:hover{background:#0E6B4B}.rx-sell{background:#C8372D}.rx-sell:hover{background:#AE2E25}
+.rx-bot button:disabled{opacity:.3;cursor:not-allowed}
+.rx-news{display:flex;gap:8px;align-items:center;margin:12px 0 0;font-size:13px;color:#4B5565;cursor:pointer}.rx-news input{accent-color:#12263F;width:16px;height:16px}
+.rx-stato{min-height:20px;margin-top:10px;font-size:13.5px;line-height:1.5;color:#4B5565}
+.rx-stato.blocco{padding:10px 12px;border-radius:10px;background:#FDF1F0;color:#7A231C}
+.rx-stato.aperta{padding:10px 12px;border-radius:10px;background:#EEF3FA;color:#12263F}
+.rx-esito{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}.rx-esito[hidden]{display:none}.rx-esito button{background:#F1F3F6;color:#0F1B2D;font-size:13.5px}.rx-esito button:hover{background:#E6E9EE}
+.rx-lim{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px;padding-top:14px;border-top:1px solid #EEF0F3}
+.rx-lim span{display:block;font-size:12px;color:#5E6773}.rx-lim b{display:block;font-size:13.5px;color:#0F1B2D;margin:2px 0 6px;font-variant-numeric:tabular-nums}
+.rx-lim i{display:block;height:6px;border-radius:3px;background:#EEF0F3;overflow:hidden}.rx-lim em{display:block;height:100%;width:0;background:#12263F;transition:width .3s}
+.rx-lim em.pieno{background:#C8372D}
+.rx-nota{margin:12px 0 0;font-size:11.5px;line-height:1.5;color:#7A8491}.rx-nota button{font:inherit;color:#12263F;background:none;border:0;padding:0;text-decoration:underline;cursor:pointer}
+@media(max-width:480px){.rx-d-campi{grid-template-columns:1fr}.rx-num{gap:1rem 1.5rem}}
 .nec{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
 @media(max-width:1100px){.nec{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:640px){.nec{grid-template-columns:1fr}}
@@ -2546,17 +2543,17 @@ nav.z{position:sticky;top:0;z-index:60}
   <!-- prima schermata (15 novembre 2026, Gabriele: "più distintiva e riconoscibile", "demo interattiva di Riskly Pro") -->
   <section class="rx-hero"><div class="h2w rx-due">
     <div class="rx-testo">
-      <p class="rx-k">RISKLY · GESTIONE DEL RISCHIO PER METATRADER 4 E 5</p>
-      <h1>Il limite che <em>non salti.</em></h1>
-      <p class="rx-lead">Software che fanno rispettare le tue regole: calcolano il lotto, ti fermano dopo le perdite, bloccano le aperture vicino alle notizie. Non aprono operazioni e non danno segnali.</p>
+      <p class="rx-k"><span>Per MetaTrader 4 e 5</span></p>
+      <h1>Gestione del rischio per chi fa trading su MetaTrader.</h1>
+      <p class="rx-lead">Software che calcolano il lotto, mettono gli stop e ti fermano quando raggiungi i limiti che hai scelto. Non aprono operazioni e non danno segnali.</p>
       <div class="h2-az">
-        <a class="h2-btn rx-pri" href="#rxDemo" onclick="document.getElementById('rxDemo').scrollIntoView({behavior:'smooth',block:'center'});return false">Prova Riskly Pro qui <span aria-hidden="true">→</span></a>
-        <a class="h2-btn rx-sec" href="#esigenza" onclick="document.getElementById('esigenza').scrollIntoView({behavior:'smooth'});return false">Trova quello che ti serve</a>
+        <a class="h2-btn rx-pri" href="#rxDemo" onclick="document.getElementById('rxDemo').scrollIntoView({behavior:'smooth',block:'center'});return false">Prova il calcolo <span aria-hidden="true">→</span></a>
+        <a class="h2-btn rx-sec" href="#esigenza" onclick="document.getElementById('esigenza').scrollIntoView({behavior:'smooth'});return false">Vedi i prodotti</a>
       </div>
-      <ul class="rx-gar"><li>Paghi una volta, su MQL5</li><li>MetaTrader 4 e 5</li><li>Ti aiutiamo a installarlo</li></ul>
+      <dl class="rx-num"><div><dt>6</dt><dd>software per MT4 e MT5</dd></div><div><dt>da 49 $</dt><dd>una tantum, su MQL5</dd></div><div><dt>0 €</dt><dd>calcolatori e calendario</dd></div></dl>
     </div>
     <div class="rx-demo" id="rxDemo" aria-label="Demo interattiva di Riskly Pro">
-      <div class="rx-d-testa"><b>Riskly Pro</b><span>demo · simulazione</span></div>
+      <div class="rx-d-testa"><b>Riskly Pro</b><span>Simulazione</span></div>
       <div class="rx-d-campi">
         <label>Saldo del conto<select id="rxSaldo"><option value="5000">5.000 $</option><option value="10000" selected>10.000 $</option><option value="25000">25.000 $</option><option value="100000">100.000 $ (prop)</option></select></label>
         <label>Strumento<select id="rxSim"><option value="EURUSD">EUR/USD</option><option value="XAUUSD">Oro (XAU/USD)</option></select></label>
