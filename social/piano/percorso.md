@@ -58,3 +58,12 @@ Su Instagram: solo i reel (fuori dalla griglia), stessi giorni. I caroselli solo
 ## Registro
 | Settimana | Tappa | Uscito |
 |---|---|---|
+
+## Spunti da @miich.fx (analisi del 15 novembre 2026)
+Numeri reali (vidIQ, 12 reel più recenti): il più visto è il reel fissato con una storia personale ("In questi 3 anni mi sono detto…", 25,4 mila visualizzazioni); il resto tra 100 e 1.500 visualizzazioni. Lo stesso reel pubblicato 3 volte nello stesso giorno ha preso molto meno: niente doppioni.
+Cosa prendere:
+1. Gancio in seconda persona + fatto forte nei primi 2 secondi: "Hai azioni Nvidia? Il CEO si è appena dimesso." → per noi: "Hai oro in portafoglio? Il decennale USA è al 5%." / "Fai trading sull'oro? Martedì alle 14:30 esce questo dato."
+2. Struttura in 40 secondi: gancio (0–3 s) · il fatto con i numeri · il meccanismo spiegato con uno schema (frecce, blocchi) · "Cosa cambia per te" in 3 punti · un solo invito (link in bio).
+3. Grafica editoriale pulita, titoli grandi, effetti sonori a ogni comparsa: coerente con il nostro stile fumetto.
+4. Una storia personale vera ogni tanto (va girata da Gabriele): è il formato che lì ha funzionato di più.
+Regola per il percorso: il reel di lunedì ("Apertura") usa il gancio in seconda persona; quando esce una notizia forte collegata alla tappa, il reel di attualità usa la struttura del punto 2.
