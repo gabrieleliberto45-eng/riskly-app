@@ -2297,6 +2297,7 @@ html body.in-app .pd-g .jcard-head{margin-bottom:6px;flex-wrap:wrap;gap:6px 10px
       </div>
 
       <!-- pannello "a schede" (14 novembre 2026, Gabriele: "una cosa del genere per il journal"): periodo, numeri con anelli, curva, punteggio, giorni, drawdown -->
+      <div data-rapp data-nome="il journal Riskly" data-pv="panoramica"></div>
       <div class="lx" id="lx" data-pv="panoramica">
         <div class="lx-top"><div class="lx-per" id="lxPer"></div><span class="lx-sotto" id="lxSotto"></span></div>
         <div class="lx-kpi" id="lxKpi"></div>
@@ -7531,6 +7532,7 @@ document.addEventListener('click', () => { const m = document.getElementById('ja
   try{ if(typeof sb !== 'undefined' && sb) sb.auth.onAuthStateChange(function(ev){ if(ev === 'SIGNED_IN') traccia('dentro-il-journal'); }); }catch(e){}
 })();
 </script>
+<script src="/app-home.js" defer></script>
 </body>
 </html>
 
