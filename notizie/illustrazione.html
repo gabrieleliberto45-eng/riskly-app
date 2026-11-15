@@ -87,7 +87,7 @@ const SCENE = {
     `<g transform="translate(470 120) rotate(-4)"><rect width="680" height="560" rx="26" fill="#F4EFE4"/><rect width="680" height="120" rx="26" fill="#C9342F"/><rect y="90" width="680" height="30" fill="#C9342F"/>
       ${[0,1,2,3,4,5,6].map(i => `<circle cx="${80 + i * 87}" cy="30" r="12" fill="#2A2420"/>`).join('')}
       <text x="340" y="96" text-anchor="middle" font-family="Archivo" font-weight="800" font-size="56" fill="#fff">LA SETTIMANA</text>
-      ${['LUN','MAR','MER','GIO','VEN'].map((d, i) => `<text x="${80 + i * 130}" y="190" font-family="Martian Mono" font-weight="700" font-size="26" fill="#6B6157">${d}</text><rect x="${60 + i * 130}" y="215" width="110" height="300" rx="12" fill="${i === 4 ? '#F2B83A' : '#E6DFD1'}"/>`).join('')}
+      ${['LUN','MAR','MER','GIO','VEN'].map((d, i) => `<text x="${80 + i * 130}" y="190" font-family="Martian Mono" font-weight="700" font-size="26" fill="#6B6157">${d}</text><rect x="${60 + i * 130}" y="215" width="110" height="300" rx="12" fill="${i === (window.GIORNO ?? 4) ? '#F2B83A' : '#E6DFD1'}"/>`).join('')}
     </g>`,
   // Campidoglio (elezioni, Congresso)
   capitol: () => cielo('c', '#0E1630', '#2D3D6E', '#B47B5A') + stelle(50) +
@@ -121,7 +121,7 @@ const SCENE = {
     `<rect x="0" y="790" width="1600" height="110" fill="#10141E"/>`,
 };
 
-window.disegna = ({ scena, categoria, titolo, numero, colore, tag }) => {
+window.disegna = ({ scena, categoria, titolo, numero, colore, tag, giorno }) => { window.GIORNO = giorno ?? 4;
   window.TAG = tag || null;
   window.GIU = /^\s*[−-]/.test(numero || '');   // facoltativo: tre scritte per i cartellini della scena «inflazione» (altrimenti quelle decorative)
   seme = [...(titolo || 'x')].reduce((a, c) => (a * 31 + c.charCodeAt(0)) % 2147483647, 7) || 7;

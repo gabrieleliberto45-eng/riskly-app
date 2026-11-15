@@ -12,7 +12,8 @@ NUM = sys.argv[5] if len(sys.argv) > 5 else ''
 OUT = sys.argv[6] if len(sys.argv) > 6 else os.path.join(QUI, '..', 'nuovo', 'news', 'copertine', ID + '.jpg')
 COLORE = {'Straordinarie': '#C62F3B', 'Dato appena uscito': '#C62F3B', 'Fed': '#1D4FC4', 'Tassi e banche centrali': '#1D4FC4', 'Dollaro': '#0F8A4F'}.get(CAT, '')
 TAG = json.loads(os.environ['TAG']) if os.environ.get('TAG') else None   # es. TAG='["+0,3%","+0,4%","CPI"]' per i cartellini del carrello
-dati = dict(scena=SCENA, categoria=CAT, titolo=TIT, numero=NUM, colore=COLORE, tag=TAG)
+GIORNO = int(os.environ['GIORNO']) if os.environ.get('GIORNO') else 4   # calendario: giorno evidenziato, 0 = lunedì … 4 = venerdì
+dati = dict(scena=SCENA, categoria=CAT, titolo=TIT, numero=NUM, colore=COLORE, tag=TAG, giorno=GIORNO)
 js = f"""const {{ chromium }} = require('playwright');
 (async () => {{ const b = await chromium.launch(); const p = await b.newPage({{ viewport: {{ width: 1600, height: 900 }} }});
   await p.goto('file://{QUI}/illustrazione.html'); await p.evaluate(() => document.fonts.ready);
