@@ -185,7 +185,7 @@ body.in-ai .invito{display:none}
   #vista.v-lista .evid h2{font-size:32px}
   #vista.v-lista .lista{grid-column:2;grid-row:2 / span 6;margin-top:18px}
   #vista.v-lista .evid{grid-row:2}
-  #vista.v-lista .abbonati,#vista.v-lista .campana{grid-column:1}
+  #vista.v-lista .abbonati,#vista.v-lista .campana,#vista.v-lista .rapp-box{grid-column:1}
   #vista.v-lista .schede{grid-column:1;display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
   .scheda{display:block;background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;text-decoration:none;color:inherit}
   .scheda img,.scheda .ph{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#0B0D0C}
@@ -386,9 +386,11 @@ function vistaLista(){
       <div class="txt">${chip(primo)}<h2>${esc(primo.titolo)}</h2><p>${esc(primo.sommario)}</p><div class="data" style="margin-top:8px">${esc(quando(primo))}</div></div></a>` : '<p class="vuoto">Nessun articolo in questa sezione per ora.</p>'}
     ${schede.length ? `<div class="schede">${schede.map(a => `<a class="scheda" href="#/${esc(a.id)}">${a.copertina ? `<img src="${esc(a.copertina)}" alt="" loading="lazy">` : '<span class="ph"></span>'}<div class="txt">${chip(a)}<h3>${esc(a.titolo)}</h3><span class="data">${esc(quando(a))}</span></div></a>`).join('')}</div>` : ''}
     ${sezione === 'home' ? bloccoAbbonati() : ''}
+    ${sezione === 'home' ? '<div data-rapp data-nome="Riskly News" class="rapp-box"></div>' : ''}
     ${resto.length ? `<div class="lista">${resto.map(a => `<a class="riga" href="#/${esc(a.id)}">${a.copertina ? `<img src="${esc(a.copertina)}" alt="" loading="lazy">` : '<span class="ph"></span>'}
       <div class="txt">${chip(a)}<h3>${esc(a.titolo)}</h3><span class="data">${esc(quando(a))}</span></div></a>`).join('')}</div>` : ''}
     ${FINITI ? '' : '<div class="altri"><button type="button" class="btn" onclick="altri(this)">Mostra articoli precedenti</button></div>'}`;
+  if(window.rAppMonta) rAppMonta();
 }
 async function vistaArticolo(id){
   const v = document.getElementById('vista');
@@ -696,5 +698,6 @@ async function aggiornaUtente(sessione){
 })();
 </script>
 <script src="/cookie.js" defer></script>
+<script src="/app-home.js" defer></script>
 </body>
 </html>
