@@ -155,6 +155,20 @@ Gabriele: "Non bloccare mai gli articoli… non devono mai fermarsi, anche gli s
 - Riskly News su computer: articolo a tutta larghezza con colonna destra (calendario + ultimi articoli), classe #vista.v-articolo.
 - Account: "Esci" su tutti i siti usa signOut({ scope: 'local' }) (prima scollegava tutti i siti e dispositivi).
 
+## TRASLOCO DEI COMPITI PROGRAMMATI (16/11/2026, da fare nella sessione principale nuova)
+Una sessione può legare a sé i compiti solo creandoli lei. Nella sessione nuova, per OGNI id qui sotto: get_trigger(id) → create_trigger con lo STESSO name, la STESSA cron_expression o run_once_at e lo STESSO prompt copiato parola per parola (initiation human_request, senza persistent_session_id: così fira in questa sessione); poi update_trigger(id vecchio, enabled=false) (spegnere, NON cancellare).
+- trig_012rxjXzAKQwTK2ioAY1Luu6 · articolo del giorno (CRON_TZ=Europe/Rome 37 7 * * *)
+- trig_014V7M3YgjQMnfKaF6peQFc2 · Setup XAU delle 11 (CRON_TZ=Europe/Rome 49 10 * * 0-5)
+- trig_01FjJaP73CrMFvHgmktC9ZEc · Setup XAU aggiornamento delle 18 (CRON_TZ=Europe/Rome 49 17 * * 1-5)
+- trig_016teaKetUaGHtWcAw89ep33 · notizia straordinaria su richiesta (nessun orario: create_trigger senza cron né run_once_at)
+- trig_017R7vovVrevt6fbBmJw9TTa · Riskly social settimanale (CRON_TZ=Europe/Rome 50 10 * * 5)
+- trig_01VUvYbBN939a7pRZpi4Nhxb · YouTube La settimana dell'oro (CRON_TZ=Europe/Rome 47 8 * * 6)
+- trig_01ML9tmvZ2TUsGggN4gYXJDQ · vendite al dettaglio (run_once_at 2026-11-17T13:05:00Z) — solo se non è già passato
+- trig_01FVvmAwHhbc3Y7jMdKaW8s3 · verbali Fed (run_once_at 2026-11-18T18:35:00Z)
+- trig_01TRTonutrkFSKKE2iXinKV3 · prove scadute andrea e Valentina (run_once_at 2026-12-15T09:07:00Z)
+Poi nel controllo orario trig_018DfoT8aPFuH8k4fypsDbid (update_trigger, solo prompt): sostituisci trig_016teaKetUaGHtWcAw89ep33 con l'id del NUOVO compito "notizia straordinaria". Lascia invariato trig_01NQAvFXKfx4QJCYByfSRpZ9 (riserva).
+Alla fine: list_triggers per verificare che i nuovi siano enabled e legati a questa sessione, e messaggio a Gabriele di una riga.
+
 ## 16 novembre 2026 (sera): compiti spostati nella sessione nuova (session_01Rox5Y82H3wuFvLiNNm8L9A)
 - NUOVI (in questa sessione): aggiornamento Setup 18:00 trig_016aKYv4FJPHcarvMNqqXK2V · notizia straordinaria su richiesta trig_01XxTbrBMgDqoN8h3sihZRGD (il controllo orario trig_018DfoT8aPFuH8k4fypsDbid ora chiama questo) · vendite al dettaglio 17/11 trig_01L31GabBwWQdjDzgPRdMpvB · verbali Fed 18/11 trig_01VG7wvXaLcN8Mso2dQuh9r6 · prove scadute 15/12 trig_01SzBDu7nreHFSXGpbswdmNg · YouTube sabato trig_019J5Wdry7NJHTfb6qwsRBjP · social venerdì trig_018hEFGpXyEY2c8tgdRnZe7Q.
 - VECCHI GIÀ SPENTI: trig_016teaKetUaGHtWcAw89ep33, trig_01ML9tmvZ2TUsGggN4gYXJDQ, trig_01TRTonutrkFSKKE2iXinKV3, trig_01VUvYbBN939a7pRZpi4Nhxb.
