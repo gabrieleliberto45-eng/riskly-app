@@ -5,7 +5,8 @@
 import datetime as dt, json, os, urllib.request
 from zoneinfo import ZoneInfo
 SOGLIE = {  # simbolo: (nome, soglia giorno %, soglia ora %)  — decennale in punti base sul giorno
-    'CL=F': ('petrolio WTI', 4, 2.5), 'BZ=F': ('petrolio Brent', 4, 2.5), 'GC=F': ('oro', 1.5, 1), 'DX-Y.NYB': ('indice del dollaro', 0.6, None),
+# 16/11: tolto il Brent (BZ=F): al cambio di contratto Yahoo mostra salti finti (96,4 → 92,8 $ in 15 minuti con il WTI fermo). Il WTI basta per il petrolio.
+    'CL=F': ('petrolio WTI', 4, 2.5), 'GC=F': ('oro', 1.5, 1), 'DX-Y.NYB': ('indice del dollaro', 0.6, None),
     '^TNX': ('decennale USA', 8, None), 'ES=F': ('future S&P 500', 1.5, 1), 'NQ=F': ('future Nasdaq', 1.5, 1)}
 def serie(s):
     u = f'https://query1.finance.yahoo.com/v8/finance/chart/{s}?range=1d&interval=5m'
