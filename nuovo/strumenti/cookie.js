@@ -3,6 +3,9 @@
    L'unico contenuto esterno che può usare cookie propri è il calendario di TradingView: si carica solo con il consenso
    ("Contenuti esterni"). La scelta resta nel browser (riskly-consenso) e si cambia dal link "Preferenze cookie".
    Uso: <script src="/cookie.js" defer></script> prima di </body>. Per riaprire: rCookiePreferenze(). */
+(function(){ /* 16/11 Gabriele: "togli il powered by Netlify dappertutto": nasconde il riquadro che Netlify aggiunge a ogni pagina pubblicata */
+  try { var st = document.createElement('style'); st.textContent = '#nl-badge-frame,#nl-hud-frame,#nl-badge{display:none!important;visibility:hidden!important}'; (document.head || document.documentElement).appendChild(st); } catch(e) {}
+})();
 (function(){
   var CHIAVE = 'riskly-consenso', VERSIONE = 1;
   function leggi(){ try { var c = JSON.parse(localStorage.getItem(CHIAVE) || 'null'); return c && c.v === VERSIONE ? c : null; } catch(e) { return null; } }
