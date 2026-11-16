@@ -154,3 +154,8 @@ Gabriele: "Non bloccare mai gli articoli… non devono mai fermarsi, anche gli s
 - 16/11 pubblicati: 2026-11-16-oro-sotto-3860-warsh (7:37), 2026-11-16-setup-xau (11:00 + aggiornamento 18:00 con Empire State 7,8 vs 18), 2026-11-16-warsh-super-intelligenza-politica-monetaria (sessione separata).
 - Riskly News su computer: articolo a tutta larghezza con colonna destra (calendario + ultimi articoli), classe #vista.v-articolo.
 - Account: "Esci" su tutti i siti usa signOut({ scope: 'local' }) (prima scollegava tutti i siti e dispositivi).
+
+## 16 novembre 2026 (sera): compiti spostati nella sessione nuova (session_01Rox5Y82H3wuFvLiNNm8L9A)
+- NUOVI (in questa sessione): aggiornamento Setup 18:00 trig_016aKYv4FJPHcarvMNqqXK2V · notizia straordinaria su richiesta trig_01XxTbrBMgDqoN8h3sihZRGD (il controllo orario trig_018DfoT8aPFuH8k4fypsDbid ora chiama questo) · vendite al dettaglio 17/11 trig_01L31GabBwWQdjDzgPRdMpvB · verbali Fed 18/11 trig_01VG7wvXaLcN8Mso2dQuh9r6 · prove scadute 15/12 trig_01SzBDu7nreHFSXGpbswdmNg · YouTube sabato trig_019J5Wdry7NJHTfb6qwsRBjP · social venerdì trig_018hEFGpXyEY2c8tgdRnZe7Q.
+- VECCHI GIÀ SPENTI: trig_016teaKetUaGHtWcAw89ep33, trig_01ML9tmvZ2TUsGggN4gYXJDQ, trig_01TRTonutrkFSKKE2iXinKV3, trig_01VUvYbBN939a7pRZpi4Nhxb.
+- DA FARE (bloccato dal controllo permessi, serve l'ok di Gabriele): creare qui "articolo del giorno" (7:37) e "Setup XAU delle 11" (10:49); spegnere i vecchi trig_01FjJaP73CrMFvHgmktC9ZEc (18:00), trig_01FVvmAwHhbc3Y7jMdKaW8s3 (verbali), trig_017R7vovVrevt6fbBmJw9TTa (social); poi spegnere i vecchi trig_012rxjXzAKQwTK2ioAY1Luu6 (articolo del giorno) e trig_014V7M3YgjQMnfKaF6peQFc2 (Setup 11). Finché non è fatto, i vecchi articolo del giorno e Setup 11 restano accesi nella sessione vecchia.
