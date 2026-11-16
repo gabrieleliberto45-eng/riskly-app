@@ -22,6 +22,7 @@ html[data-tema="scuro"]{--bg:#121214;--panel:#1B1B1F;--ink:#ECEEEA;--ink2:#C6C6C
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Archivo',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 a{color:inherit}
+.lato{display:none}
 .app{max-width:760px;margin:0 auto;min-height:100vh;padding-bottom:calc(84px + env(safe-area-inset-bottom))}
 /* testata */
 .testa{position:sticky;top:0;z-index:30;background:var(--panel);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
@@ -203,6 +204,17 @@ body.in-ai .invito{display:none}
   .scheda h3{font-family:var(--serif);font-weight:500;font-size:19px;line-height:1.22;margin:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
   .riga img,.riga .ph{flex-basis:140px;height:92px}
   .pezzo{max-width:860px;margin:24px auto 0;border-radius:20px;border:1px solid var(--line);overflow:hidden}
+  #vista.v-articolo{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:0 24px;padding:0 24px 30px;align-items:start}
+  #vista.v-articolo .pezzo{max-width:none;margin:24px 0 0}
+  #vista.v-articolo .lato{position:sticky;top:130px;margin-top:24px;display:flex;flex-direction:column;gap:16px}
+  #vista.v-articolo .lato .ncal{margin:0}
+  .lato-ult{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:8px}
+  .lato-ult>b{display:block;font:700 15px 'Archivo';padding:8px 8px 6px;color:var(--ink)}
+  .lato-ult a{display:flex;gap:10px;align-items:flex-start;padding:8px;border-top:1px solid var(--line);text-decoration:none;color:var(--ink)}
+  .lato-ult a:hover{background:rgba(127,127,127,.06)}
+  .lato-ult img,.lato-ult .ph{flex:0 0 84px;width:84px;height:56px;border-radius:8px;object-fit:cover;background:#0B0D0C}
+  .lato-ult span{display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-width:0}
+  .lato-ult em{font-style:normal;font-family:var(--serif);font-size:15.5px;line-height:1.25;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
   .pezzo .cop{aspect-ratio:16/8;max-height:460px}
   .pezzo .corpo{padding:26px 56px 0}
   .pezzo p{font-size:18px}
@@ -406,6 +418,7 @@ function vistaLista(){
 async function vistaArticolo(id){
   const v = document.getElementById('vista');
   document.body.classList.add('in-articolo');
+  v.className = 'v-articolo';
   let a = ANTE.find(x => x.id === id);
   if(!a){   // link a un articolo vecchio non ancora caricato nella lista
     const { data } = await sb.from('notizie_anteprima').select('*').eq('id', id).maybeSingle();
@@ -440,6 +453,9 @@ async function vistaArticolo(id){
           : `<button class="btn pri" onclick="accApri('registrati', 'abbonati')">Crea un account</button><button class="btn" onclick="accApri('accedi')">Accedi</button>`}</div>
         <small class="pat">Abbonamento mensile: <b>6,99 € al mese</b>, si rinnova da solo ogni mese. Disdici quando vuoi scrivendo a info@riskly.trade: resta attivo fino alla fine del mese pagato.</small>${ACC.utente ? '<label class="term"><input type="checkbox" id="abTerm"> Accetto i <a href="https://riskly.trade/#termini" target="_blank" rel="noopener">Termini di servizio</a> e il rinnovo automatico mensile.</label>' : ''}</div>${campana()}</div></article>`;
   }
+  /* 16 novembre (Gabriele: "dal computer si vede a metà schermo"): sul computer accanto all'articolo una colonna con calendario e ultimi articoli */
+  const altri = ANTE.filter(x => x.id !== id).slice(0, 6);
+  v.insertAdjacentHTML('beforeend', `<aside class="lato">${CAL_HTML}${altri.length ? `<section class="lato-ult"><b>Ultimi articoli</b>${altri.map(x => `<a href="#/${esc(x.id)}">${x.copertina ? `<img src="${esc(x.copertina)}" alt="" loading="lazy">` : '<span class="ph"></span>'}<span>${chip(x)}<em>${esc(x.titolo)}</em></span></a>`).join('')}</section>` : ''}</aside>`);
   window.scrollTo(0, 0);
 }
 function vista(){
