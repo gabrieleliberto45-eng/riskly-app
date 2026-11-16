@@ -4,7 +4,7 @@
 const { chromium } = require('playwright');
 const { spawn, spawnSync, execSync } = require('child_process');
 const fs = require('fs'), path = require('path'), os = require('os');
-const VAR = ['prodotti','news','calc','journal','prenews'].includes(process.argv[2]) ? process.argv[2] : 'prodotti', ARG = process.argv.slice(['prodotti','news','calc','journal','prenews'].includes(process.argv[2]) ? 3 : 2);
+const VAR = ['prodotti','news','calc','journal','prenews','ea'].includes(process.argv[2]) ? process.argv[2] : 'prodotti', ARG = process.argv.slice(['prodotti','news','calc','journal','prenews','ea'].includes(process.argv[2]) ? 3 : 2);
 const QUI = __dirname, FPS = 30, SR = 44100;
 /* --chiaro: tema chiaro per Instagram (stessi colori della griglia) → sponsor-<versione>-chiaro.mp4 */
 const CHIARO = process.argv.includes('--chiaro'); if(CHIARO) ARG.splice(ARG.indexOf('--chiaro'), 1);

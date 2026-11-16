@@ -146,7 +146,8 @@ const HOOK = {
   news: ['Quando il mercato', 'si muove,', 'lo sai subito.', 'GUARDA COME'],
   calc: ['Quanto rischi', 'davvero?', 'Fallo calcolare.', 'BASTANO TRE NUMERI'],
   journal: ['Sai davvero', 'perché perdi?', 'I numeri lo dicono.', 'GUARDA IL TUO JOURNAL'],
-  prenews: ['Venerdì, 14:30:', 'esce il PPI.', 'Oro e dollaro: 3 scenari.', 'COME POTREBBERO REAGIRE'] }[V];
+  prenews: ['Venerdì, 14:30:', 'esce il PPI.', 'Oro e dollaro: 3 scenari.', 'COME POTREBBERO REAGIRE'],
+  ea: ['Il tuo EA', 'va sul reale?', 'Prima, 10 controlli.', 'SALVALO PER DOPO'] }[V];
 /* --- scena 0: gancio --- */
 function mercato(t, tl){
   /* linea di mercato (passeggiata casuale deterministica) che scorre dietro */
@@ -279,7 +280,7 @@ function journal(t, tl){
 }
 
 /* --- scena 5: invito --- */
-const INV = { prodotti: ['Visita', 'il nostro sito.', 'riskly.trade'], news: ['Visita', 'il nostro sito.', 'news.riskly.trade'], calc: ['Visita', 'il nostro sito.', 'strumenti.riskly.trade'], journal: ['7 giorni di prova', 'senza carta.', 'app.riskly.trade'], prenews: ['Visita', 'il nostro sito.', 'news.riskly.trade'] }[V];
+const INV = { prodotti: ['Visita', 'il nostro sito.', 'riskly.trade'], news: ['Visita', 'il nostro sito.', 'news.riskly.trade'], calc: ['Visita', 'il nostro sito.', 'strumenti.riskly.trade'], journal: ['7 giorni di prova', 'senza carta.', 'app.riskly.trade'], prenews: ['Visita', 'il nostro sito.', 'news.riskly.trade'], ea: ['Calcola il rischio', 'gratis.', 'strumenti.riskly.trade'] }[V];
 function invito(t, tl){
   const cx = W/2; raggi(cx, 760, t, eo(tl / 1)); bagliore(cx, 760, 600, 'rgba(212,174,90,A)', .22 * eo(tl / 1));
   for(let k = 0; k < 3; k++){ const q = ((tl * .6 + k / 3) % 1); g.save(); g.strokeStyle = `rgba(111,163,212,${(1 - q) * .5})`; g.lineWidth = 3; g.beginPath(); g.arc(cx, 760, 120 + q * 520, 0, 6.28); g.stroke(); g.restore(); }
@@ -420,7 +421,24 @@ function esempio(t, tl){
   const b = eo((tl - 3.4) / .5); if(b > 0){ g.globalAlpha = b; testo('in un minuto, alle 14:30 · Yahoo Finance', W/2, 1360, '500 26px IMono', 'rgba(244,241,234,.6)'); g.globalAlpha = 1; }
 }
 
-const ELENCO = { prodotti: [mercato, perdita, cosa, prodotti, journal, invito], news: [mercato, notifica, categorie, tempi, invito], calc: [mercato, posizione, recupero, cinque, invito], journal: [mercato, journal, statistiche, invito], prenews: [mercato, attese, tassi, scenari, esempio, invito] }[V];
+/* --- versione "ea": 10 controlli prima di usare un EA sul conto reale (16/11) --- */
+const EA_C = [['Spread e commissioni veri', 'nel backtest', 'uno'], ['Anni di dati', 'in mercati diversi', 'due'], ['Test fuori campione', 'dati non usati per ottimizzare', 'tre'], ['Drawdown massimo', 'lo reggi davvero?', 'quattro'], ['Rischio piccolo', 'es. 1% per operazione', 'cinque'],
+  ['Un mese in demo', 'in tempo reale', 'sei'], ['Stesse condizioni', 'broker, simbolo, orari', 'sette'], ['Stop loss sempre', 'niente martingala senza limite', 'otto'], ['Notizie, weekend, gap', 'sai cosa fa?', 'nove'], ['Stop giornaliero', 'e sai come spegnerlo', 'dieci']];
+function eaRighe(tl, da, si){
+  etichetta(da === 0 ? 'CONTROLLI 1 – 5' : 'CONTROLLI 6 – 10');
+  for(let k = 0; k < 5; k++){ const c = EA_C[da + k], t0 = Math.max(.2, trova(si, c[2]) - .15), q = ob((tl - t0) / .45); if(q <= 0) continue;
+    const y = 360 + k * 205; g.save(); g.globalAlpha = clamp(q * 2); g.translate((1 - q) * 500, 0);
+    scheda(90, y, 900, 175, ORO, 'rgba(212,174,90,.25)');
+    g.fillStyle = ORO; g.beginPath(); g.arc(175, y + 88, 52, 0, 6.28); g.fill(); testo(String(da + k + 1), 175, y + 112, '400 70px ISerif', NAVY);
+    testo(c[0], 255, y + 80, '600 44px ISans', BIANCO, 'left'); testo(c[1], 255, y + 130, '500 28px IMono', 'rgba(244,241,234,.7)', 'left');
+    const s = clamp((tl - t0 - .5) / .35); if(s > 0){ g.strokeStyle = VERDE; g.lineWidth = 9; g.lineCap = 'round'; g.beginPath();
+      const p = [[905, y + 88], [930, y + 113], [968, y + 60]]; g.moveTo(...p[0]); if(s < .4) g.lineTo(lerp(p[0][0], p[1][0], s / .4), lerp(p[0][1], p[1][1], s / .4)); else { g.lineTo(...p[1]); g.lineTo(lerp(p[1][0], p[2][0], (s - .4) / .6), lerp(p[1][1], p[2][1], (s - .4) / .6)); } g.stroke(); }
+    g.restore(); }
+}
+function eaUno(t, tl){ eaRighe(tl, 0, 1); }
+function eaDue(t, tl){ eaRighe(tl, 5, 2); }
+
+const ELENCO = { prodotti: [mercato, perdita, cosa, prodotti, journal, invito], news: [mercato, notifica, categorie, tempi, invito], calc: [mercato, posizione, recupero, cinque, invito], journal: [mercato, journal, statistiche, invito], prenews: [mercato, attese, tassi, scenari, esempio, invito], ea: [mercato, eaUno, eaDue, invito] }[V];
 window.eventi = () => { const e = [[S[0].ini, 'colpo']]; S.slice(1).forEach(x => e.push([x.ini - .05, 'whoosh']));
   const at = (n, k) => { const i = ELENCO.findIndex(f => f.name === n); return i < 0 ? null : S[i].ini + k; };
   if(V === 'prodotti'){ const p = at('perdita', 0), c = at('cosa', 0), pr = ELENCO.findIndex(f => f.name === 'prodotti'); e.push([c + .02, 'colpo'], [p + 2.05, 'glitch'], [p + 2.05, 'colpo'], [p + 1.05, 'riser'], [p + .2, 'batti'], [p + 1.05, 'batti'], [p + 1.9, 'batti']);
@@ -429,6 +447,7 @@ window.eventi = () => { const e = [[S[0].ini, 'colpo']]; S.slice(1).forEach(x =>
   if(V === 'calc'){ const p = at('posizione', 0); [.3, 1.1, 1.9].forEach(x => e.push([p + x, 'tic'])); e.push([p + 3.0, 'colpo']); const r = at('recupero', 0); [.3, 1.6, 2.4].forEach(x => e.push([r + x, 'tic'])); }
   if(V === 'prenews'){ const sc = at('scenari', 0); ['linea','alto','basso'].forEach(p => e.push([sc + trova(3, p) - .1, 'tic'])); const ta = at('tassi', 0); e.push([ta + .4, 'riser'], [ta + 2.6, 'colpo'], [ta + 3.0, 'tic'], [ta + 3.5, 'tic']); const a = at('attese', 0); e.push([a + 3.2, 'tic'], [a + 3.7, 'tic']); const x = at('esempio', 0); e.push([x + 1.0, 'tic'], [x + 2.0, 'colpo']); }
   if(V === 'journal'){ const j = at('journal', 0); for(let k = 0; k < 5; k++) e.push([j + .1 + k * .3, 'tic']); const st = at('statistiche', 0); e.push([st + 1.8, 'tic'], [st + 2.3, 'tic'], [st + 2.8, 'tic']); }
+  if(V === 'ea'){ [[1, 0], [2, 5]].forEach(([si, da]) => { for(let k = 0; k < 5; k++){ const t0 = S[si].ini + Math.max(.2, trova(si, EA_C[da + k][2]) - .15); e.push([t0, 'whoosh'], [t0 + .6, 'tic']); } }); }
   return e; };
 window.disegna = (t) => {
   const i = scena(t), tl = t - S[i].ini; g.globalAlpha = 1;
