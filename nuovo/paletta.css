@@ -50,3 +50,31 @@ html:not([data-tema="scuro"]) body .nh .frase blockquote span{color:#5A4413!impo
 html:not([data-tema="scuro"]) body .eco6-c svg{color:var(--scint)!important;stroke:var(--scint)!important}
 html:not([data-tema="scuro"]) body .h2-carta .costo{color:var(--scint-testo)!important}
 html:not([data-tema="scuro"]) body .h2-carta.pro .costo{color:var(--scint-chiaro)!important}
+
+/* ==== resto del sito: pagine software, strumenti, news (stessa regola 60-30-10) ==== */
+/* intestazioni in contrasto */
+html:not([data-tema="scuro"]) body > header,html:not([data-tema="scuro"]) body header.s-testa,html:not([data-tema="scuro"]) body header.testa,html:not([data-tema="scuro"]) body nav.barra,html:not([data-tema="scuro"]) body nav.s-link,html:not([data-tema="scuro"]) body nav.siti{background:var(--contr)!important;border-color:var(--contr)!important;backdrop-filter:none!important}
+html:not([data-tema="scuro"]) body > header a,html:not([data-tema="scuro"]) body > header span,html:not([data-tema="scuro"]) body > header b,html:not([data-tema="scuro"]) body header.s-testa a:not(.pri),html:not([data-tema="scuro"]) body header.s-testa button,html:not([data-tema="scuro"]) body header.testa a,html:not([data-tema="scuro"]) body header.testa button,html:not([data-tema="scuro"]) body nav.barra button,html:not([data-tema="scuro"]) body nav.siti a{color:#E6ECF4!important}
+html:not([data-tema="scuro"]) body > header svg,html:not([data-tema="scuro"]) body header.s-testa svg,html:not([data-tema="scuro"]) body header.testa svg,html:not([data-tema="scuro"]) body nav.barra svg{color:#E6ECF4!important}
+html:not([data-tema="scuro"]) body nav.barra button.on{color:#FFFFFF!important;box-shadow:inset 0 -3px 0 var(--scint)!important}
+html:not([data-tema="scuro"]) body header.s-testa .acc-btn,html:not([data-tema="scuro"]) body header.s-testa .s-tema,html:not([data-tema="scuro"]) body header.testa .acc{background:transparent!important;border:1px solid rgba(230,236,244,.45)!important;color:#E6ECF4!important}
+html:not([data-tema="scuro"]) body header.s-testa .acc-btn *,html:not([data-tema="scuro"]) body header.s-testa .s-tema *{color:#E6ECF4!important}
+/* aperture in contrasto: pannello pieno con testo chiaro */
+html:not([data-tema="scuro"]) body main.wrap > .hero,html:not([data-tema="scuro"]) body .sez-titolo.pagina{background:var(--contr)!important;border-radius:10px!important;padding:clamp(22px,4vw,44px)!important;margin-bottom:24px!important}
+html:not([data-tema="scuro"]) body main.wrap > .hero h1,html:not([data-tema="scuro"]) body .sez-titolo.pagina h2{color:#FFFFFF!important}
+html:not([data-tema="scuro"]) body main.wrap > .hero h1 em,html:not([data-tema="scuro"]) body .sez-titolo.pagina h2 em{color:var(--scint-chiaro)!important}
+html:not([data-tema="scuro"]) body main.wrap > .hero > div > p,html:not([data-tema="scuro"]) body main.wrap > .hero .sotto,html:not([data-tema="scuro"]) body main.wrap > .hero .nota,html:not([data-tema="scuro"]) body main.wrap > .hero .nota *,html:not([data-tema="scuro"]) body .sez-titolo.pagina .lead{color:#C9D3E0!important}
+html:not([data-tema="scuro"]) body main.wrap > .hero .kicker,html:not([data-tema="scuro"]) body .sez-titolo.pagina .sez-num{color:var(--scint-chiaro)!important}
+html:not([data-tema="scuro"]) body main.wrap > .hero .compra{border-color:transparent!important}
+html:not([data-tema="scuro"]) body .briciole,html:not([data-tema="scuro"]) body .briciole a{color:var(--ink-3)!important}
+/* tabelle e passi */
+html:not([data-tema="scuro"]) body .tab-s th,html:not([data-tema="scuro"]) body table thead th{background:var(--contr)!important;color:#E6ECF4!important}
+html:not([data-tema="scuro"]) body .passi li::before,html:not([data-tema="scuro"]) body .passi .n{background:var(--scint)!important;color:var(--contr)!important}
+html:not([data-tema="scuro"]) body .box li::marker{color:var(--scint-testo)}
+/* news: striscia, fascia di oggi, piè di pagina */
+html:not([data-tema="scuro"]) body .nastro{background:var(--contr-2)!important}
+html:not([data-tema="scuro"]) body .oggi{background:var(--contr)!important;color:#E6ECF4!important;border-color:var(--contr)!important}
+html:not([data-tema="scuro"]) body .oggi *{color:#E6ECF4!important}
+html:not([data-tema="scuro"]) body .oggi b,html:not([data-tema="scuro"]) body .oggi strong{color:var(--scint-chiaro)!important}
+html:not([data-tema="scuro"]) body footer.s-piede,html:not([data-tema="scuro"]) body .app > footer{background:var(--contr)!important;color:#C9D3E0!important}
+html:not([data-tema="scuro"]) body footer.s-piede *{color:#C9D3E0!important}

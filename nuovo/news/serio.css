@@ -44,6 +44,8 @@ html[data-tema="scuro"] body .mono,html[data-tema="scuro"] body .meta{font-famil
   html body #vista.v-lista{display:grid!important;grid-template-columns:minmax(0,1fr) clamp(380px,26vw,520px)!important;gap:0 clamp(20px,2.2vw,40px)!important;padding:0 clamp(20px,3vw,56px) 36px!important;align-items:start!important}
   html body #vista.v-lista>*{grid-column:1;grid-row:auto!important;margin-left:0!important;margin-right:0!important}
   html body #vista.v-lista .oggi,html body #vista.v-lista .sez,html body #vista.v-lista .altri,html body #vista.v-lista .vuoto{grid-column:1/-1!important}
+  /* 17/11: con l'elenco a destra (righe 1-8) la fascia "Oggi" a tutta larghezza finiva sotto l'elenco e lasciava vuota la colonna sinistra */
+  html body #vista.v-lista:has(> .lista) .oggi,html body #vista.v-lista:has(> .lista) .sez,html body #vista.v-lista:has(> .lista) .altri,html body #vista.v-lista:has(> .lista) .vuoto{grid-column:1!important}
   html body #vista.v-lista .lista{grid-column:2!important;grid-row:1 / span 8!important;margin-top:18px!important;position:sticky;top:130px;max-height:calc(100vh - 150px);overflow:auto}
   html body #vista.v-lista .evid{grid-column:1!important;margin-top:18px!important}
   html body #vista.v-lista .evid{display:grid!important;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);align-items:stretch}
