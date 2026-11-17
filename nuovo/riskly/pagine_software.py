@@ -183,6 +183,7 @@ def pagina(p):
 <link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link href="/fonts.css" rel="stylesheet">
 <style>{CSS}</style>
+<link rel="stylesheet" href="/paletta.css?v=1">
 </head>
 <body>
 <header><div class="wrap">

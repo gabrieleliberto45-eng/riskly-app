@@ -1,0 +1,83 @@
+/* Riskly · paletta 60-30-10 (17 novembre 2026, Gabriele: "60% base 30% contrasto 10% scintilla").
+   60% BASE      carta chiara  #F6F6F3 / #FFFFFF   (sfondo, schede)
+   30% CONTRASTO blu notte     #12263F / #0E1B2C   (barra, menu, fasce, piè di pagina, testi)
+   10% SCINTILLA oro           #D4AE5A (pieno) · #8A6420 (testo su chiaro) · #F1D58F (testo su blu)
+   Va caricato DOPO serio.css. Vale solo col tema chiaro, come serio.css. */
+:root{--base:#F6F6F3;--base-2:#FFFFFF;--contr:#12263F;--contr-2:#1B3A5C;--scint:#D4AE5A;--scint-testo:#8A6420;--scint-chiaro:#F1D58F}
+
+/* ---- 30% contrasto: menu, fasce e piè di pagina in blu notte ---- */
+html:not([data-tema="scuro"]) body nav,html:not([data-tema="scuro"]) body nav.z{background:var(--contr)!important;border-bottom:1px solid #0B1A2C!important}
+html:not([data-tema="scuro"]) body nav a,html:not([data-tema="scuro"]) body nav .tabs button,html:not([data-tema="scuro"]) body nav .nav-link,html:not([data-tema="scuro"]) body nav .logo,html:not([data-tema="scuro"]) body nav span{color:#E6ECF4!important}
+html:not([data-tema="scuro"]) body nav .tabs button.on{color:#FFFFFF!important;border-bottom-color:var(--scint)!important}
+html:not([data-tema="scuro"]) body nav svg{color:#E6ECF4!important}
+html:not([data-tema="scuro"]) body .lancio,html:not([data-tema="scuro"]) body .nh .lancio{background:var(--contr)!important;color:#E6ECF4!important;border-color:var(--contr)!important}
+html:not([data-tema="scuro"]) body .lancio *,html:not([data-tema="scuro"]) body .nh .lancio *{color:#E6ECF4!important}
+html:not([data-tema="scuro"]) body .lancio h2,html:not([data-tema="scuro"]) body .lancio h3,html:not([data-tema="scuro"]) body .nh .lancio .data{color:#FFFFFF!important}
+html:not([data-tema="scuro"]) body footer{background:var(--contr)!important;color:#C9D3E0!important;border-top:0!important}
+html:not([data-tema="scuro"]) body footer *{color:#C9D3E0!important;border-color:#2A4466!important}
+html:not([data-tema="scuro"]) body footer a:hover{color:var(--scint-chiaro)!important}
+html:not([data-tema="scuro"]) body footer h4,html:not([data-tema="scuro"]) body footer .col-t,html:not([data-tema="scuro"]) body footer [class*="tit"]{color:var(--scint-chiaro)!important}
+html:not([data-tema="scuro"]) body .siti-barra{background:var(--contr-2)!important;border-color:var(--contr-2)!important}
+html:not([data-tema="scuro"]) body .siti-barra a,html:not([data-tema="scuro"]) body .siti-barra a span,html:not([data-tema="scuro"]) body .siti-barra .sb-testo{color:#E6ECF4!important}
+html:not([data-tema="scuro"]) body .siti-barra a.sb-clienti{background:var(--scint)!important;color:var(--contr)!important}
+html:not([data-tema="scuro"]) body .siti-barra a.sb-clienti *{color:var(--contr)!important}
+
+/* ---- 10% scintilla: pulsanti principali, prezzi, etichette e accenti in oro ---- */
+html:not([data-tema="scuro"]) body .btn-ambra,html:not([data-tema="scuro"]) body .btn.pri,html:not([data-tema="scuro"]) body .btn-pieno,html:not([data-tema="scuro"]) body .btn.amb,html:not([data-tema="scuro"]) body .btn-pri,
+html:not([data-tema="scuro"]) body .lancio .btn,html:not([data-tema="scuro"]) body #chatBtn{background:var(--scint)!important;border-color:var(--scint)!important;color:var(--contr)!important}
+html:not([data-tema="scuro"]) body .btn-ambra *,html:not([data-tema="scuro"]) body .btn.pri *,html:not([data-tema="scuro"]) body .btn-pieno *,html:not([data-tema="scuro"]) body .btn.amb *,html:not([data-tema="scuro"]) body .btn-pri *,
+html:not([data-tema="scuro"]) body .lancio .btn *,html:not([data-tema="scuro"]) body #chatBtn *{color:var(--contr)!important}
+html:not([data-tema="scuro"]) body .btn-ambra:hover,html:not([data-tema="scuro"]) body .btn.pri:hover,html:not([data-tema="scuro"]) body .btn-pieno:hover,html:not([data-tema="scuro"]) body .btn.amb:hover,html:not([data-tema="scuro"]) body .btn-pri:hover{background:#C99F45!important;border-color:#C99F45!important}
+html:not([data-tema="scuro"]) body h1 em,html:not([data-tema="scuro"]) body h2 em,html:not([data-tema="scuro"]) body .nh h1 mark,html:not([data-tema="scuro"]) body .nh h2 mark{color:var(--scint-testo)!important}
+html:not([data-tema="scuro"]) body .nh .cifre b{color:var(--scint-chiaro)!important}
+html:not([data-tema="scuro"]) body .nh .frase blockquote{color:var(--scint-chiaro)!important}
+html:not([data-tema="scuro"]) body .nh .tile .tile-ic{background:#F5ECD6!important}
+html:not([data-tema="scuro"]) body .nh .tile .tile-ic svg{color:var(--scint-testo)!important;stroke:var(--scint-testo)!important}
+html:not([data-tema="scuro"]) body .nh .tile:hover{border-color:var(--scint)!important}
+html:not([data-tema="scuro"]) body .bot.hi{border-color:var(--scint)!important;box-shadow:0 0 0 1px var(--scint) inset!important}
+html:not([data-tema="scuro"]) body .fase .strumento{border-left-color:var(--scint)!important}
+html:not([data-tema="scuro"]) body .nh .hero-wow .eyebrow,html:not([data-tema="scuro"]) body .nh .hero-testa>span:first-child{border-bottom:2px solid var(--scint)!important}
+::selection{background:#F1E2B8}
+
+/* ---- pulsanti e fasce della home nuova (h2-*, eco6, frase) ---- */
+html:not([data-tema="scuro"]) body .h2-btn.pri,html:not([data-tema="scuro"]) body .h2-btn.rx-pri,html:not([data-tema="scuro"]) body button.pri,html:not([data-tema="scuro"]) body a.pri{background:var(--scint)!important;border-color:var(--scint)!important;color:var(--contr)!important}
+html:not([data-tema="scuro"]) body .h2-btn.pri *,html:not([data-tema="scuro"]) body .h2-btn.rx-pri *,html:not([data-tema="scuro"]) body button.pri *,html:not([data-tema="scuro"]) body a.pri *{color:var(--contr)!important}
+html:not([data-tema="scuro"]) body .h2-btn.pri:hover,html:not([data-tema="scuro"]) body .h2-btn.rx-pri:hover{background:#C99F45!important;border-color:#C99F45!important}
+/* la frase grande diventa la fascia "scintilla": oro pieno, testo blu notte */
+html:not([data-tema="scuro"]) body .nh .frase,html:not([data-tema="scuro"]) body .frase{background:var(--scint)!important;color:var(--contr)!important}
+html:not([data-tema="scuro"]) body .nh .frase *,html:not([data-tema="scuro"]) body .frase *,html:not([data-tema="scuro"]) body .nh .frase blockquote{color:var(--contr)!important}
+html:not([data-tema="scuro"]) body .nh .frase blockquote span{color:#5A4413!important}
+html:not([data-tema="scuro"]) body .eco6-c svg{color:var(--scint)!important;stroke:var(--scint)!important}
+html:not([data-tema="scuro"]) body .h2-carta .costo{color:var(--scint-testo)!important}
+html:not([data-tema="scuro"]) body .h2-carta.pro .costo{color:var(--scint-chiaro)!important}
+
+/* ==== resto del sito: pagine software, strumenti, news (stessa regola 60-30-10) ==== */
+/* intestazioni in contrasto */
+html:not([data-tema="scuro"]) body > header,html:not([data-tema="scuro"]) body header.s-testa,html:not([data-tema="scuro"]) body header.testa,html:not([data-tema="scuro"]) body nav.barra,html:not([data-tema="scuro"]) body nav.s-link,html:not([data-tema="scuro"]) body nav.siti{background:var(--contr)!important;border-color:var(--contr)!important;backdrop-filter:none!important}
+html:not([data-tema="scuro"]) body > header a,html:not([data-tema="scuro"]) body > header span,html:not([data-tema="scuro"]) body > header b,html:not([data-tema="scuro"]) body header.s-testa a:not(.pri),html:not([data-tema="scuro"]) body header.s-testa button,html:not([data-tema="scuro"]) body header.testa a,html:not([data-tema="scuro"]) body header.testa button,html:not([data-tema="scuro"]) body nav.barra button,html:not([data-tema="scuro"]) body nav.siti a{color:#E6ECF4!important}
+html:not([data-tema="scuro"]) body > header svg,html:not([data-tema="scuro"]) body header.s-testa svg,html:not([data-tema="scuro"]) body header.testa svg,html:not([data-tema="scuro"]) body nav.barra svg{color:#E6ECF4!important}
+html:not([data-tema="scuro"]) body nav.barra button.on{color:#FFFFFF!important;box-shadow:inset 0 -3px 0 var(--scint)!important}
+html:not([data-tema="scuro"]) body header.s-testa .acc-btn,html:not([data-tema="scuro"]) body header.s-testa .s-tema,html:not([data-tema="scuro"]) body header.testa .acc{background:transparent!important;border:1px solid rgba(230,236,244,.45)!important;color:#E6ECF4!important}
+html:not([data-tema="scuro"]) body header.s-testa .acc-btn *,html:not([data-tema="scuro"]) body header.s-testa .s-tema *{color:#E6ECF4!important}
+/* aperture in contrasto: pannello pieno con testo chiaro */
+html:not([data-tema="scuro"]) body main.wrap > .hero,html:not([data-tema="scuro"]) body .sez-titolo.pagina{background:var(--contr)!important;border-radius:10px!important;padding:clamp(22px,4vw,44px)!important;margin-bottom:24px!important}
+html:not([data-tema="scuro"]) body main.wrap > .hero h1,html:not([data-tema="scuro"]) body .sez-titolo.pagina h2{color:#FFFFFF!important}
+html:not([data-tema="scuro"]) body main.wrap > .hero h1 em,html:not([data-tema="scuro"]) body .sez-titolo.pagina h2 em{color:var(--scint-chiaro)!important}
+html:not([data-tema="scuro"]) body main.wrap > .hero > div > p,html:not([data-tema="scuro"]) body main.wrap > .hero .sotto,html:not([data-tema="scuro"]) body main.wrap > .hero .nota,html:not([data-tema="scuro"]) body main.wrap > .hero .nota *,html:not([data-tema="scuro"]) body .sez-titolo.pagina .lead{color:#C9D3E0!important}
+html:not([data-tema="scuro"]) body main.wrap > .hero .kicker,html:not([data-tema="scuro"]) body .sez-titolo.pagina .sez-num{color:var(--scint-chiaro)!important}
+html:not([data-tema="scuro"]) body main.wrap > .hero .compra{border-color:transparent!important}
+html:not([data-tema="scuro"]) body .briciole,html:not([data-tema="scuro"]) body .briciole a{color:var(--ink-3)!important}
+/* tabelle e passi */
+html:not([data-tema="scuro"]) body .tab-s th,html:not([data-tema="scuro"]) body table thead th{background:var(--contr)!important;color:#E6ECF4!important}
+html:not([data-tema="scuro"]) body .passi li::before,html:not([data-tema="scuro"]) body .passi .n{background:var(--scint)!important;color:var(--contr)!important}
+html:not([data-tema="scuro"]) body .box li::marker{color:var(--scint-testo)}
+/* news: striscia, fascia di oggi, piè di pagina */
+html:not([data-tema="scuro"]) body .nastro{background:var(--contr-2)!important}
+html:not([data-tema="scuro"]) body .oggi{background:var(--contr)!important;color:#E6ECF4!important;border-color:var(--contr)!important}
+html:not([data-tema="scuro"]) body .oggi *{color:#E6ECF4!important}
+html:not([data-tema="scuro"]) body .oggi b,html:not([data-tema="scuro"]) body .oggi strong{color:var(--scint-chiaro)!important}
+html:not([data-tema="scuro"]) body footer.s-piede,html:not([data-tema="scuro"]) body .app > footer{background:var(--contr)!important;color:#C9D3E0!important}
+html:not([data-tema="scuro"]) body footer.s-piede *{color:#C9D3E0!important}
+/* dentro il riquadro bianco d'acquisto le note restano scure (leggibili) */
+html:not([data-tema="scuro"]) body main.wrap > .hero .compra p,html:not([data-tema="scuro"]) body main.wrap > .hero .compra .nota,html:not([data-tema="scuro"]) body main.wrap > .hero .compra .nota *,html:not([data-tema="scuro"]) body main.wrap > .hero .compra li{color:#4A586C!important}
+html:not([data-tema="scuro"]) body main.wrap > .hero .compra b,html:not([data-tema="scuro"]) body main.wrap > .hero .compra strong{color:#0E1B2C!important}

@@ -78,3 +78,6 @@ html:not([data-tema="scuro"]) body .oggi *{color:#E6ECF4!important}
 html:not([data-tema="scuro"]) body .oggi b,html:not([data-tema="scuro"]) body .oggi strong{color:var(--scint-chiaro)!important}
 html:not([data-tema="scuro"]) body footer.s-piede,html:not([data-tema="scuro"]) body .app > footer{background:var(--contr)!important;color:#C9D3E0!important}
 html:not([data-tema="scuro"]) body footer.s-piede *{color:#C9D3E0!important}
+/* dentro il riquadro bianco d'acquisto le note restano scure (leggibili) */
+html:not([data-tema="scuro"]) body main.wrap > .hero .compra p,html:not([data-tema="scuro"]) body main.wrap > .hero .compra .nota,html:not([data-tema="scuro"]) body main.wrap > .hero .compra .nota *,html:not([data-tema="scuro"]) body main.wrap > .hero .compra li{color:#4A586C!important}
+html:not([data-tema="scuro"]) body main.wrap > .hero .compra b,html:not([data-tema="scuro"]) body main.wrap > .hero .compra strong{color:#0E1B2C!important}
