@@ -60,12 +60,12 @@ html:not([data-tema="scuro"]) body nav.barra button.on{color:#FFFFFF!important;b
 html:not([data-tema="scuro"]) body header.s-testa .acc-btn,html:not([data-tema="scuro"]) body header.s-testa .s-tema,html:not([data-tema="scuro"]) body header.testa .acc{background:transparent!important;border:1px solid rgba(230,236,244,.45)!important;color:#E6ECF4!important}
 html:not([data-tema="scuro"]) body header.s-testa .acc-btn *,html:not([data-tema="scuro"]) body header.s-testa .s-tema *{color:#E6ECF4!important}
 /* aperture in contrasto: pannello pieno con testo chiaro */
-html:not([data-tema="scuro"]) body main.wrap > .hero,html:not([data-tema="scuro"]) body .sez-titolo.pagina{background:var(--contr)!important;border-radius:10px!important;padding:clamp(22px,4vw,44px)!important;margin-bottom:24px!important}
-html:not([data-tema="scuro"]) body main.wrap > .hero h1,html:not([data-tema="scuro"]) body .sez-titolo.pagina h2{color:#FFFFFF!important}
-html:not([data-tema="scuro"]) body main.wrap > .hero h1 em,html:not([data-tema="scuro"]) body .sez-titolo.pagina h2 em{color:var(--scint-chiaro)!important}
-html:not([data-tema="scuro"]) body main.wrap > .hero > div > p,html:not([data-tema="scuro"]) body main.wrap > .hero .sotto,html:not([data-tema="scuro"]) body main.wrap > .hero .nota,html:not([data-tema="scuro"]) body main.wrap > .hero .nota *,html:not([data-tema="scuro"]) body .sez-titolo.pagina .lead{color:#C9D3E0!important}
-html:not([data-tema="scuro"]) body main.wrap > .hero .kicker,html:not([data-tema="scuro"]) body .sez-titolo.pagina .sez-num{color:var(--scint-chiaro)!important}
-html:not([data-tema="scuro"]) body main.wrap > .hero .compra{border-color:transparent!important}
+html:not([data-tema="scuro"]) body main.wrap > .hero:has(.compra),html:not([data-tema="scuro"]) body .sez-titolo.pagina{background:var(--contr)!important;border-radius:10px!important;padding:clamp(22px,4vw,44px)!important;margin-bottom:24px!important}
+html:not([data-tema="scuro"]) body main.wrap > .hero:has(.compra) h1,html:not([data-tema="scuro"]) body .sez-titolo.pagina h2{color:#FFFFFF!important}
+html:not([data-tema="scuro"]) body main.wrap > .hero:has(.compra) h1 em,html:not([data-tema="scuro"]) body .sez-titolo.pagina h2 em{color:var(--scint-chiaro)!important}
+html:not([data-tema="scuro"]) body main.wrap > .hero:has(.compra) > div > p,html:not([data-tema="scuro"]) body main.wrap > .hero:has(.compra) .sotto,html:not([data-tema="scuro"]) body main.wrap > .hero:has(.compra) .nota,html:not([data-tema="scuro"]) body main.wrap > .hero:has(.compra) .nota *,html:not([data-tema="scuro"]) body .sez-titolo.pagina .lead{color:#C9D3E0!important}
+html:not([data-tema="scuro"]) body main.wrap > .hero:has(.compra) .kicker,html:not([data-tema="scuro"]) body .sez-titolo.pagina .sez-num{color:var(--scint-chiaro)!important}
+html:not([data-tema="scuro"]) body main.wrap > .hero:has(.compra) .compra{border-color:transparent!important}
 html:not([data-tema="scuro"]) body .briciole,html:not([data-tema="scuro"]) body .briciole a{color:var(--ink-3)!important}
 /* tabelle e passi */
 html:not([data-tema="scuro"]) body .tab-s th,html:not([data-tema="scuro"]) body table thead th{background:var(--contr)!important;color:#E6ECF4!important}
@@ -79,5 +79,21 @@ html:not([data-tema="scuro"]) body .oggi b,html:not([data-tema="scuro"]) body .o
 html:not([data-tema="scuro"]) body footer.s-piede,html:not([data-tema="scuro"]) body .app > footer{background:var(--contr)!important;color:#C9D3E0!important}
 html:not([data-tema="scuro"]) body footer.s-piede *{color:#C9D3E0!important}
 /* dentro il riquadro bianco d'acquisto le note restano scure (leggibili) */
-html:not([data-tema="scuro"]) body main.wrap > .hero .compra p,html:not([data-tema="scuro"]) body main.wrap > .hero .compra .nota,html:not([data-tema="scuro"]) body main.wrap > .hero .compra .nota *,html:not([data-tema="scuro"]) body main.wrap > .hero .compra li{color:#4A586C!important}
-html:not([data-tema="scuro"]) body main.wrap > .hero .compra b,html:not([data-tema="scuro"]) body main.wrap > .hero .compra strong{color:#0E1B2C!important}
+html:not([data-tema="scuro"]) body main.wrap > .hero:has(.compra) .compra p,html:not([data-tema="scuro"]) body main.wrap > .hero:has(.compra) .compra .nota,html:not([data-tema="scuro"]) body main.wrap > .hero:has(.compra) .compra .nota *,html:not([data-tema="scuro"]) body main.wrap > .hero:has(.compra) .compra li{color:#4A586C!important}
+html:not([data-tema="scuro"]) body main.wrap > .hero:has(.compra) .compra b,html:not([data-tema="scuro"]) body main.wrap > .hero:has(.compra) .compra strong{color:#0E1B2C!important}
+
+/* ==== journal (app.riskly.trade): barra in alto e colonna laterale in contrasto ==== */
+html:not([data-tema="scuro"]) body nav.app-nav{background:var(--contr)!important;border-bottom:1px solid #0B1A2C!important}
+html:not([data-tema="scuro"]) body nav.app-nav .brand,html:not([data-tema="scuro"]) body nav.app-nav .brand *,html:not([data-tema="scuro"]) body nav.app-nav .nav-link,html:not([data-tema="scuro"]) body nav.app-nav .s-tema{color:#E6ECF4!important;opacity:1!important}
+html:not([data-tema="scuro"]) body nav.app-nav .s-tema{border-color:rgba(230,236,244,.45)!important;background:transparent!important}
+@media (min-width:900px){
+  html:not([data-tema="scuro"]) body.in-app .jbarra{background:var(--contr)!important;border-right:0!important}
+  html:not([data-tema="scuro"]) body.in-app .jbarra button,html:not([data-tema="scuro"]) body.in-app .jbarra a,html:not([data-tema="scuro"]) body.in-app .jbarra .jb-eco *{color:#C9D3E0!important}
+  html:not([data-tema="scuro"]) body.in-app .jbarra button:hover,html:not([data-tema="scuro"]) body.in-app .jbarra a:hover{background:rgba(230,236,244,.08)!important;color:#FFFFFF!important}
+  html:not([data-tema="scuro"]) body.in-app .jbarra button.on{background:rgba(212,174,90,.16)!important;color:var(--scint-chiaro)!important;box-shadow:inset 3px 0 0 var(--scint)!important}
+  html:not([data-tema="scuro"]) body.in-app .jbarra .jb-ciao,html:not([data-tema="scuro"]) body.in-app .jbarra .jb-ciao *{color:#FFFFFF!important}
+  html:not([data-tema="scuro"]) body.in-app .jbarra .jb-ciao small,html:not([data-tema="scuro"]) body.in-app .jbarra .jb-ciao span{color:#9FB0C6!important}
+}
+html:not([data-tema="scuro"]) body.in-app .jbarra .jb-piu{background:var(--scint)!important;color:var(--contr)!important}
+html:not([data-tema="scuro"]) body.in-app .jbarra .jb-piu *{color:var(--contr)!important}
+@media (min-width:900px){html:not([data-tema="scuro"]) body.in-app .jbarra button.on,html:not([data-tema="scuro"]) body.in-app .jbarra button.on *{color:var(--scint-chiaro)!important;stroke:currentColor}}
