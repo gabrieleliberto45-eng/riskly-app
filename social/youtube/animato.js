@@ -32,8 +32,8 @@ function effetti(ev, tot, out){
   await p.evaluate(async () => { await Promise.all(['400 100px ISerif', 'italic 400 100px ISerif', '600 40px ISans', '500 30px IMono', '400 100px Bangers', '700 40px Comic'].map(f => document.fonts.load(f))); });
   const { tot, ini } = await p.evaluate(([s, d, w, z]) => window.prepara(s, d, w, z), [spec, dur, parole, serie]);
   console.log('durata', tot.toFixed(1), 's · scene', ini.map(x => x.toFixed(1)).join(', '));
-  const cap = ini.map((x, i) => `${String(Math.floor(x / 60)).padStart(2, '0')}:${String(Math.floor(x % 60)).padStart(2, '0')} ${spec.scene[i].capitolo}`); cap[0] = '00:00 ' + spec.scene[0].capitolo;
-  fs.writeFileSync(path.join(QUI, `${ID}-capitoli.txt`), cap.join('\n') + '\n');
+  const cap = ini.map((x, i) => `${Math.floor(x / 60)}:${String(Math.floor(x % 60)).padStart(2, '0')} ${spec.scene[i].capitolo}`); cap[0] = '0:00 ' + spec.scene[0].capitolo;
+  if(ARG[0] !== 'prova') fs.writeFileSync(path.join(QUI, `${ID}-capitoli.txt`), cap.join('\n') + '\n');
   if(ARG[0] === 'prova'){ for(const s of ARG.slice(1)){ await p.evaluate(t => window.disegna(t), +s); const f = path.join(os.tmpdir(), `yt-${ID}-${s}.png`); await p.screenshot({ path: f }); console.log(f); } return b.close(); }
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'yt-')), fx = path.join(tmp, 'fx.wav'); effetti(await p.evaluate(() => window.eventi()), tot, fx);
   const musica = path.join(QUI, '..', 'generatore', 'musica', 'h.m4a'), n = ini.length;
