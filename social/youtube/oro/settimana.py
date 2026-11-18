@@ -33,6 +33,8 @@ dati = dict(settimana=lun.isoformat(), oro=riassunto(oro), dollaro=riassunto(usd
                     if any(x[0].date() <= lun + dt.timedelta(days=i) for x in oro)],
             fonte='Yahoo Finance: oro future COMEX (GC=F), indice del dollaro (DX-Y.NYB), rendimento Treasury 10 anni (^TNX); dati orari')
 dati['decennale']['var_pb'] = round(dati['decennale']['var'] * 100)      # punti base
+# serie oraria dell'oro per il grafico animato dei video (animato.html): [millisecondi UTC, chiusura]
+dati['serie_oro'] = [[int(x[0].timestamp() * 1000), round(x[4], 2)] for x in oro]
 json.dump(dati, open(f'{QUI}/{lun}.json', 'w'), indent=1, ensure_ascii=False)
 
 # grafico: oro orario, giorni separati, massimo e minimo evidenziati

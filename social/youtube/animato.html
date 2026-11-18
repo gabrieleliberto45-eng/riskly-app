@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><title>Riskly · video lungo animato</title>
+<style>
+@font-face{font-family:'ISerif';src:url(../../nuovo/riskly/fonts/InstrumentSerif-400-normal-latin.woff2) format('woff2');font-style:normal}
+@font-face{font-family:'ISerif';src:url(../../nuovo/riskly/fonts/InstrumentSerif-400-italic-latin.woff2) format('woff2');font-style:italic}
+@font-face{font-family:'ISans';src:url(../../nuovo/riskly/fonts/InstrumentSans-600-normal-latin.woff2) format('woff2');font-weight:600}
+@font-face{font-family:'Bangers';src:url(../sponsor/font/bangers.woff2) format('woff2')}
+@font-face{font-family:'Comic';src:url(../sponsor/font/comic-neue-700.woff2) format('woff2');font-weight:700}
+@font-face{font-family:'IMono';src:url(../../nuovo/riskly/fonts/JetBrainsMono-500-normal-latin.woff2) format('woff2');font-weight:500}
+html,body{margin:0;background:#07101c}canvas{display:block;width:1920px;height:1080px}
+</style></head><body><canvas id="c" width="1920" height="1080"></canvas>
+<script>
+/* Video lungo YouTube animato (1920×1080), stesso motore dei reel (social/sponsor/sponsor.html).
+   Gabriele, 18 novembre 2026: "i video lunghi su YouTube vorrei che fossero tutti animati, come i reel, altrimenti se sono soltanto scritte la gente si annoia".
+   Legge le scene di social/youtube/<id>.json (tipi: cifra, grafico, numeri, punti, domanda, confronto, chiusura) e le parole con i tempi (parole-<id>.json).
+   disegna(t) è deterministico: ogni fotogramma si può rendere. ?tema=fumetto per il bianco e nero dei reel. */
+const TEMA = new URLSearchParams(location.search).get('tema');
+const FUMETTO = TEMA === 'fumetto';
+if(FUMETTO){
+  document.documentElement.style.background = '#F7F5EE';
+  const LIV = [14, 96, 178, 247];
+  const grigio = (r, g2, b) => { const l = 255 - (.299 * r + .587 * g2 + .114 * b); return LIV.reduce((a, v) => Math.abs(v - l) < Math.abs(a - l) ? v : a, LIV[0]); };
+  const mappa = c => { if(typeof c !== 'string') return c; let k = c.trim();
+    if(/^#[0-9a-f]{3}$/i.test(k)) k = '#' + k.slice(1).split('').map(x => x + x).join('');
+    if(/^#[0-9a-f]{6}$/i.test(k)){ const v = grigio(parseInt(k.slice(1, 3), 16), parseInt(k.slice(3, 5), 16), parseInt(k.slice(5, 7), 16)); return `rgb(${v},${v},${v})`; }
+    return c.replace(/rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(,\s*[\d.]+\s*)?\)/g, (m, r, g2, b, a) => { const v = grigio(+r, +g2, +b); return `rgba(${v},${v},${v}${a || ',1'})`; }); };
+  const P = CanvasRenderingContext2D.prototype;
+  for(const prop of ['fillStyle', 'strokeStyle']){ const d = Object.getOwnPropertyDescriptor(P, prop); Object.defineProperty(P, prop, { get(){ return d.get.call(this); }, set(v){ d.set.call(this, mappa(v)); } }); }
+  const sb = Object.getOwnPropertyDescriptor(P, 'shadowBlur'); Object.defineProperty(P, 'shadowBlur', { get(){ return sb.get.call(this); }, set(v){ sb.set.call(this, 0); } });
+  const lw = Object.getOwnPropertyDescriptor(P, 'lineWidth'); Object.defineProperty(P, 'lineWidth', { get(){ return lw.get.call(this); }, set(v){ lw.set.call(this, Math.max(3, v * 1.5)); } });
+  const fo = Object.getOwnPropertyDescriptor(P, 'font'); Object.defineProperty(P, 'font', { get(){ return fo.get.call(this); }, set(v){ fo.set.call(this, String(v).replace(/(italic )?400 (\d+)px ISerif/, (m, it, px) => `400 ${Math.round(px * .9)}px Bangers`).replace(/(\d+) (\d+)px ISans/, (m, w, px) => `700 ${px}px Comic`)); } });
+  const gco = Object.getOwnPropertyDescriptor(P, 'globalCompositeOperation'); Object.defineProperty(P, 'globalCompositeOperation', { get(){ return gco.get.call(this); }, set(v){ gco.set.call(this, v === 'lighter' ? 'multiply' : v); } });
+  const acs = CanvasGradient.prototype.addColorStop; CanvasGradient.prototype.addColorStop = function(o, c){ return acs.call(this, o, mappa(c)); };
+}
+
+const W = 1920, H = 1080, cv = document.getElementById('c'), g = cv.getContext('2d');
+const NAVY = '#0A1626', ORO = '#D4AE5A', ORO2 = '#F1D58F', ACC = '#6FA3D4', ROSSO = '#E5594F', VERDE = '#4FBF8F', BIANCO = '#F4F1EA', GRIGIO = 'rgba(244,241,234,.66)';
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x)), lerp = (a, b, k) => a + (b - a) * k;
+const eo = x => 1 - Math.pow(1 - clamp(x), 3), eio = x => { x = clamp(x); return x < .5 ? 4*x*x*x : 1 - Math.pow(-2*x + 2, 3) / 2; };
+const ob = x => { x = clamp(x); const c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
+const seme = n => { let s = (n * 9301 + 49297) % 233280; return () => (s = (s * 9301 + 49297) % 233280) / 233280; };
+const fmt = (v, d = 1) => { const [a, b] = Math.abs(v).toFixed(d).split('.'); return (v < 0 ? '−' : '') + a.replace(/\B(?=(\d{3})+(?!\d))/g, '.') + (b ? ',' + b : ''); };
+const pulito = s => String(s || '').replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]+>/g, '');
+const haMark = s => /<mark>/i.test(String(s || ''));
+
+let SPEC = null, S = [], PAROLE = [], TOT = 0, SERIE = {};
+/* durate: voce + pausa (la prima scena almeno 5 s, le altre almeno 4) */
+window.prepara = (spec, durate, parole, serie) => {
+  SPEC = spec; PAROLE = parole; SERIE = serie || {}; let t = 0;
+  S = durate.map((d, i) => { const o = { ini: t, dur: Math.max(d + (i === durate.length - 1 ? 1.4 : .7), i === 0 ? 5 : 4) }; t += o.dur; return o; });
+  TOT = t; return { tot: t, ini: S.map(x => x.ini) };
+};
+const scena = t => { const i = S.findIndex(s => t >= s.ini && t < s.ini + s.dur); return i < 0 ? S.length - 1 : i; };
+/* tempo (nella scena) in cui il narratore arriva a una certa frazione del testo: serve a far comparire gli elementi mentre se ne parla */
+const aFrazione = (i, f) => { const P = PAROLE[i] || []; if(!P.length) return f * S[i].dur * .8; const k = Math.min(P.length - 1, Math.max(0, Math.round(f * (P.length - 1)))); return P[k][0]; };
+const tempiElementi = (i, n, da = .08, a = .82) => [...Array(n)].map((_, k) => Math.max(.6 + k * .25, aFrazione(i, da + (a - da) * (n === 1 ? 0 : k / (n - 1))) - .15));
+
+/* ---------- elementi comuni ---------- */
+function testo(s, x, y, font, col, al = 'center', ls = 0){ g.font = font; g.fillStyle = col; g.textAlign = al; g.textBaseline = 'alphabetic'; if('letterSpacing' in g) g.letterSpacing = ls + 'px'; g.fillText(s, x, y); if('letterSpacing' in g) g.letterSpacing = '0px'; }
+function righe(s, font, max){ g.font = font; if('letterSpacing' in g) g.letterSpacing = '0px'; const out = []; let cur = ''; for(const w of String(s).split(/\s+/)){ const p = cur ? cur + ' ' + w : w; if(g.measureText(p).width > max && cur){ out.push(cur); cur = w; } else cur = p; } if(cur) out.push(cur); return out; }
+function bagliore(x, y, r, col, a){ if(a <= 0) return; const gr = g.createRadialGradient(x, y, 0, x, y, r); gr.addColorStop(0, col.replace('A', a)); gr.addColorStop(1, col.replace('A', 0)); g.fillStyle = gr; g.fillRect(x - r, y - r, r * 2, r * 2); }
+function flare(x, y, w, a){ if(a <= 0) return; g.save(); g.globalCompositeOperation = 'lighter'; const gr = g.createLinearGradient(x - w, 0, x + w, 0); gr.addColorStop(0, 'rgba(111,163,212,0)'); gr.addColorStop(.5, `rgba(255,236,190,${a})`); gr.addColorStop(1, 'rgba(111,163,212,0)'); g.fillStyle = gr; g.fillRect(x - w, y - 3, w * 2, 6); bagliore(x, y, 160, 'rgba(255,225,160,A)', a * .5); g.restore(); }
+function raggi(cx, cy, t, a){ if(a <= 0) return; g.save(); g.globalCompositeOperation = 'lighter'; g.translate(cx, cy); g.rotate(t * .1);
+  for(let k = 0; k < 16; k++){ g.rotate(6.283 / 16); const gr = g.createLinearGradient(0, 0, 0, 1300); gr.addColorStop(0, `rgba(241,213,143,${a * .18})`); gr.addColorStop(1, 'rgba(241,213,143,0)'); g.fillStyle = gr; g.beginPath(); g.moveTo(-10, 0); g.lineTo(10, 0); g.lineTo(50, 1300); g.lineTo(-50, 1300); g.fill(); } g.restore(); }
+function onde(cx, cy, tl, r0 = 80, r1 = 700){ for(let k = 0; k < 3; k++){ const q = clamp((tl - k * .12) / .9); if(q <= 0 || q >= 1) continue; g.strokeStyle = `rgba(241,213,143,${(1 - q) * .6})`; g.lineWidth = 4 * (1 - q) + 1; g.beginPath(); g.arc(cx, cy, r0 + q * (r1 - r0), 0, 6.283); g.stroke(); } }
+const polvere = Array.from({ length: 120 }, (_, k) => { const r = seme(k + 5); return { x: r() * W, y: r() * H, z: .3 + r() * .9, v: 6 + r() * 20, f: r() * 6.28 }; });
+function sfondo(t, push){
+  const gr = g.createLinearGradient(0, 0, 0, H); gr.addColorStop(0, '#050B14'); gr.addColorStop(.55, NAVY); gr.addColorStop(1, '#0E2036'); g.fillStyle = gr; g.fillRect(0, 0, W, H);
+  g.save(); g.beginPath(); g.rect(0, H * .66, W, H * .34); g.clip(); const hz = H * .66, fuga = W / 2; g.strokeStyle = 'rgba(111,163,212,.13)'; g.lineWidth = 2;
+  for(let k = -20; k <= 20; k++){ g.beginPath(); g.moveTo(fuga + k * 20, hz); g.lineTo(fuga + k * 230, H); g.stroke(); }
+  const sc = (t * .3 + push * .2) % 1; for(let k = 0; k < 12; k++){ const z = (k + sc) / 12, y = hz + Math.pow(z, 2.2) * (H - hz); g.globalAlpha = .08 + z * .3; g.beginPath(); g.moveTo(0, y); g.lineTo(W, y); g.stroke(); }
+  g.restore(); g.globalAlpha = 1;
+  const hg = g.createLinearGradient(0, hz - 80, 0, hz + 40); hg.addColorStop(0, 'rgba(212,174,90,0)'); hg.addColorStop(.7, 'rgba(212,174,90,.12)'); hg.addColorStop(1, 'rgba(212,174,90,0)'); g.fillStyle = hg; g.fillRect(0, hz - 80, W, 120);
+  for(const p of polvere){ const y = ((p.y - t * p.v * p.z) % H + H) % H, x = p.x + Math.sin(t * .5 + p.f) * 20 * p.z; g.globalAlpha = .06 + p.z * .3 * (.6 + .4 * Math.sin(t * 2 + p.f)); g.fillStyle = p.z > .8 ? ORO2 : '#9FC4E6'; g.beginPath(); g.arc(x, y, 1 + p.z * 2, 0, 6.283); g.fill(); }
+  g.globalAlpha = 1;
+}
+function vignetta(){ const v = g.createRadialGradient(W/2, H/2, H * .35, W/2, H/2, W * .62); v.addColorStop(0, 'rgba(0,0,0,0)'); v.addColorStop(1, 'rgba(0,0,0,.55)'); g.fillStyle = v; g.fillRect(0, 0, W, H); }
+function scheda(x, y, w, h, bordo, glow, r = 18){ g.save(); g.shadowColor = glow || 'rgba(0,0,0,.5)'; g.shadowBlur = glow ? 30 : 18; const gr = g.createLinearGradient(x, y, x + w, y + h); gr.addColorStop(0, 'rgba(27,58,92,.92)'); gr.addColorStop(1, 'rgba(10,22,38,.92)'); g.fillStyle = gr; g.beginPath(); g.roundRect(x, y, w, h, r); g.fill(); g.shadowBlur = 0; g.strokeStyle = bordo || 'rgba(111,163,212,.35)'; g.lineWidth = 2; g.stroke(); g.restore(); }
+function titoloScena(s, tl, y = 196){ const a = eo(tl / .5); if(a <= 0) return; g.save(); g.globalAlpha = a; testo(pulito(s), W/2, y + (1 - a) * 24, '400 64px ISerif', BIANCO); g.restore(); }
+function nota(s, tl, t0 = 1.2){ const a = eo((tl - t0) / .6); if(!s || a <= 0) return; g.globalAlpha = a * .8; testo(pulito(s), W/2, 926, '500 22px IMono', GRIGIO); g.globalAlpha = 1; }
+/* intestazione: capitolo a sinistra, marchio a destra */
+function testata(i, tl){
+  const a = clamp(tl / .5); g.globalAlpha = a; const c = SPEC.scene[i].capitolo || '';
+  testo(String(i + 1).padStart(2, '0'), 80, 86, '500 26px IMono', ORO2, 'left', 2); testo(c.toUpperCase(), 130, 86, '500 24px IMono', GRIGIO, 'left', 4);
+  g.fillStyle = ORO; g.fillRect(80, 102, 40 + 80 * eo(tl / .8), 3);
+  testo('RISKLY', W - 80, 86, '600 28px ISans', BIANCO, 'right', 8); if(SPEC.serie) testo(SPEC.serie, W - 80, 118, '500 20px IMono', GRIGIO, 'right', 1);
+  g.globalAlpha = 1;
+}
+/* sottotitoli: gruppi da 6 parole, la parola detta in oro */
+function sottotitoli(i, tl){
+  const P = PAROLE[i]; if(!P || !P.length) return; let k = -1; P.forEach((w, j) => { if(w[0] - .05 <= tl) k = j; }); if(k < 0) return;
+  const gi = Math.floor(k / 6), gr = P.slice(gi * 6, gi * 6 + 6), fnt = '600 40px ISans'; g.font = fnt; if('letterSpacing' in g) g.letterSpacing = '0px';
+  const larg = gr.map(w => g.measureText(w[1]).width + 16), tot = larg.reduce((a, b) => a + b, 0) - 16; let x = W/2 - tot/2; const y = 1010;
+  g.fillStyle = 'rgba(5,11,20,.62)'; g.beginPath(); g.roundRect(W/2 - tot/2 - 30, y - 50, tot + 60, 72, 14); g.fill();
+  gr.forEach((w, j) => { testo(w[1], x, y, fnt, gi * 6 + j === k ? ORO2 : BIANCO, 'left'); x += larg[j]; });
+}
+function avviso(){ testo('Contenuto informativo ed educativo · Non è consulenza finanziaria · Il trading con leva comporta un alto rischio di perdita del capitale', W/2, 1066, '500 15px IMono', 'rgba(244,241,234,.45)'); }
+
+/* ---------- numeri che salgono ---------- */
+function numeroAnimato(str, q){
+  const m = String(str).match(/^([^\d−+-]*)([−+-]?)([\d.]*\d(?:,\d+)?)(.*)$/); if(!m) return str;
+  const [, pre, segno, num, post] = m; const v = parseFloat(num.replace(/\./g, '').replace(',', '.')); const dec = (num.split(',')[1] || '').length;
+  const x = v * eo(q); let s = x.toFixed(dec).replace('.', ','); s = s.replace(/\B(?=(\d{3})+(?!\d))(?=[^,]*(,|$))/g, '.'); return pre + segno + s + post;
+}
+
+/* ---------- scene ---------- */
+const SC = {};
+SC.cifra = (s, i, t, tl) => {
+  const D = S[i].dur, neg = /[−-]/.test(s.cifra), col = neg ? ROSSO : VERDE;
+  raggi(W/2, 380, t, eo(tl / 1.2) * .9); bagliore(W/2, 560, 620, neg ? 'rgba(229,89,79,A)' : 'rgba(79,191,143,A)', .22 * eo(tl / 1));
+  titoloScena(s.titolo, tl, 230);
+  const q = clamp((tl - .5) / 1.6), z = 1 + .35 * (1 - ob((tl - .4) / .9));
+  g.save(); g.translate(W/2, 560); g.scale(z, z); g.globalAlpha = clamp((tl - .4) / .3); g.shadowColor = col; g.shadowBlur = 50;
+  testo(numeroAnimato(s.cifra, q), 0, 70, '400 260px ISerif', col); g.restore();
+  if(tl > 2.1) onde(W/2, 520, tl - 2.1, 140, 900);
+  if(tl < 2.35 && tl > 2.05){ g.fillStyle = `rgba(255,245,220,${(1 - (tl - 2.05) / .3) * .5})`; g.fillRect(0, 0, W, H); }
+  const a = eo((tl - 2.4) / .6); if(a > 0){ g.globalAlpha = a; righe(pulito(s.etichetta), 'italic 400 54px ISerif', 1300).forEach((r, k) => testo(r, W/2, 760 + k * 62 + (1 - a) * 20, 'italic 400 54px ISerif', ORO2)); g.globalAlpha = 1; }
+  flare(lerp(-300, W + 300, eio((tl - 1.6) / 1.4)), 640, 520, Math.sin(clamp((tl - 1.6) / 1.4) * Math.PI) * .8);
+  nota(s.nota, tl, 3.2);
+};
+SC.grafico = (s, i, t, tl) => {
+  titoloScena(s.titolo, tl, 180);
+  const INFO = SERIE[s.img] || {}, dati = INFO.serie || []; if(dati.length < 2){ testo('grafico non disponibile', W/2, 540, '500 30px IMono', GRIGIO); return; }
+  const X0 = 170, X1 = 1700, Y0 = 250, Y1 = 830, D = S[i].dur;
+  const vs = dati.map(d => d[1]), lo = Math.min(...vs), hi = Math.max(...vs), pad = (hi - lo) * .12, mn = lo - pad, mx = hi + pad;
+  const px = k => X0 + (X1 - X0) * k / (dati.length - 1), py = v => Y1 - (Y1 - Y0) * (v - mn) / (mx - mn);
+  const ca = eo((tl - .2) / .6); g.globalAlpha = ca;
+  scheda(X0 - 60, Y0 - 40, X1 - X0 + 200, Y1 - Y0 + 120, 'rgba(111,163,212,.25)');
+  /* griglia e prezzi */
+  for(let k = 0; k <= 4; k++){ const v = mn + (mx - mn) * k / 4, y = py(v); g.strokeStyle = 'rgba(111,163,212,.14)'; g.lineWidth = 1; g.beginPath(); g.moveTo(X0, y); g.lineTo(X1, y); g.stroke();
+    testo(fmt(v, 0) + ' $', X1 + 20, y + 8, '500 20px IMono', GRIGIO, 'left'); }
+  /* giorni */
+  const GG = ['dom', 'lun', 'mar', 'mer', 'gio', 'ven', 'sab']; let ultimo = '';
+  dati.forEach((d, k) => { const dd = new Date(d[0] + 3600e3), gl = GG[dd.getUTCDay()] + ' ' + dd.getUTCDate(); if(gl !== ultimo && dd.getUTCDay() > 0 && dd.getUTCDay() < 6){ ultimo = gl; const x = px(k); g.strokeStyle = 'rgba(111,163,212,.18)'; g.beginPath(); g.moveTo(x, Y0); g.lineTo(x, Y1); g.stroke(); testo(gl, x + 8, Y1 + 40, '500 20px IMono', GRIGIO, 'left'); } });
+  g.globalAlpha = 1;
+  /* linea che si disegna mentre la voce racconta la settimana */
+  const fine = Math.max(4, Math.min(D * .8, aFrazione(i, .85))), q = clamp((tl - .9) / (fine - .9)), n = Math.max(2, Math.floor(q * (dati.length - 1)) + 1);
+  const ultimoV = dati[n - 1][1], neg = ultimoV < dati[0][1], col = neg ? ROSSO : VERDE;
+  g.save(); g.beginPath(); g.moveTo(px(0), Y1); for(let k = 0; k < n; k++) g.lineTo(px(k), py(dati[k][1])); g.lineTo(px(n - 1), Y1); g.closePath();
+  const fg = g.createLinearGradient(0, Y0, 0, Y1); fg.addColorStop(0, 'rgba(212,174,90,.28)'); fg.addColorStop(1, 'rgba(212,174,90,0)'); g.fillStyle = fg; g.fill();
+  g.beginPath(); for(let k = 0; k < n; k++){ const x = px(k), y = py(dati[k][1]); k ? g.lineTo(x, y) : g.moveTo(x, y); } g.strokeStyle = ORO2; g.lineWidth = 4; g.lineJoin = 'round'; g.shadowColor = ORO; g.shadowBlur = 16; g.stroke(); g.restore();
+  /* punto che corre con il prezzo */
+  const hx = px(n - 1), hy = py(ultimoV), pul = .6 + .4 * Math.sin(tl * 8); bagliore(hx, hy, 60, 'rgba(241,213,143,A)', .5 * pul); g.fillStyle = ORO2; g.beginPath(); g.arc(hx, hy, 9, 0, 6.283); g.fill();
+  if(q < 1){ const et = fmt(ultimoV) + ' $'; g.font = '500 24px IMono'; const w = g.measureText(et).width + 28; g.fillStyle = 'rgba(5,11,20,.85)'; g.beginPath(); g.roundRect(hx - w / 2, hy - 62, w, 40, 10); g.fill(); testo(et, hx, hy - 34, '500 24px IMono', ORO2); }
+  /* massimo e minimo quando la linea li ha superati */
+  const vicino = q => { if(!q) return -1; const tq = Date.parse(q); let b = 0; dati.forEach((d, k) => { if(Math.abs(d[0] - tq) < Math.abs(dati[b][0] - tq)) b = k; }); return b; };
+  const iMax = INFO.massimo ? vicino(INFO.quando_max) : vs.indexOf(hi), iMin = INFO.minimo ? vicino(INFO.quando_min) : vs.indexOf(lo);
+  [[iMax, INFO.massimo || hi, 'massimo', VERDE, -1], [iMin, INFO.minimo || lo, 'minimo', ROSSO, 1]].forEach(([k, v, nome, c, dir]) => { if(k >= n) return; const tk = .9 + (fine - .9) * k / (dati.length - 1), e = ob((tl - tk) / .5); if(e <= 0) return;
+    const x = px(k), y = py(dati[k][1]), ty = y + dir * 70; g.save(); g.globalAlpha = clamp(e); g.strokeStyle = c; g.lineWidth = 2; g.beginPath(); g.moveTo(x, y); g.lineTo(x, ty - dir * 24); g.stroke();
+    const et = nome + ' ' + fmt(v) + ' $'; g.font = '600 24px ISans'; const w = g.measureText(et).width + 30; g.translate(x, ty); g.scale(e, e);
+    g.fillStyle = 'rgba(5,11,20,.9)'; g.beginPath(); g.roundRect(-w / 2, -22, w, 44, 22); g.fill(); g.strokeStyle = c; g.stroke(); testo(et, 0, 9, '600 24px ISans', c); g.restore(); });
+  /* variazione della settimana alla fine */
+  const fa = ob((tl - fine - .2) / .6); if(fa > 0){ const v0 = dati[0][1], v1 = dati[dati.length - 1][1], pc = INFO.var_pct != null ? INFO.var_pct : (v1 / v0 - 1) * 100, s2 = (pc < 0 ? '−' : '+') + Math.abs(pc).toFixed(1).replace('.', ',') + '%';
+    g.save(); g.translate(v1 < v0 ? X1 - 200 : X1 - 200, v1 < v0 ? Y0 + 70 : Y1 - 70); g.scale(fa, fa); g.fillStyle = pc < 0 ? 'rgba(229,89,79,.18)' : 'rgba(79,191,143,.18)'; g.beginPath(); g.roundRect(-150, -52, 300, 92, 18); g.fill(); g.strokeStyle = pc < 0 ? ROSSO : VERDE; g.lineWidth = 2; g.stroke(); testo(s2, 0, 22, '400 72px ISerif', pc < 0 ? ROSSO : VERDE); g.restore(); }
+  nota(s.nota, tl, 2);
+};
+SC.numeri = (s, i, t, tl) => {
+  titoloScena(s.titolo, tl);
+  const R = s.righe || [], n = R.length, T = tempiElementi(i, n), h = Math.min(108, 560 / Math.max(n, 1)), y0 = 270, X = 260, Wd = W - 520;
+  if(s.colonne){ const a = eo((tl - .3) / .5); g.globalAlpha = a; testo(s.colonne[0].toUpperCase(), X + 30, y0 - 18, '500 22px IMono', GRIGIO, 'left', 4); testo(s.colonne[1].toUpperCase(), X + Wd - 30, y0 - 18, '500 22px IMono', GRIGIO, 'right', 4); g.globalAlpha = 1; }
+  R.forEach((r, k) => { const e = ob((tl - T[k]) / .55); if(e <= 0) return; const y = y0 + k * (h + 14), dx = (1 - e) * 600, mk = haMark(r[0]) || haMark(r[1]);
+    g.save(); g.globalAlpha = clamp(e * 1.6); g.translate(dx, 0);
+    scheda(X, y, Wd, h, mk ? ORO : 'rgba(111,163,212,.3)', mk ? 'rgba(212,174,90,.35)' : null, 16);
+    g.fillStyle = mk ? ORO : ACC; g.fillRect(X, y + 14, 5, h - 28);
+    testo(pulito(r[0]), X + 36, y + h / 2 + 13, '600 34px ISans', mk ? ORO2 : BIANCO, 'left');
+    const vq = clamp((tl - T[k] - .2) / .9); testo(numeroAnimato(pulito(r[1]).split(' ')[0], vq) + (pulito(r[1]).includes(' ') ? ' ' + pulito(r[1]).split(' ').slice(1).join(' ') : ''), X + Wd - 36, y + h / 2 + 12, '500 32px IMono', ORO2, 'right');
+    g.restore();
+    if(tl - T[k] > 0 && tl - T[k] < .3) flare(X + Wd / 2, y + h / 2, Wd / 2, (1 - (tl - T[k]) / .3) * .6); });
+  nota(s.nota, tl, 2);
+};
+SC.punti = (s, i, t, tl) => {
+  titoloScena(s.titolo, tl);
+  const P = s.punti || [], n = P.length, T = tempiElementi(i, n, .05, .78), h = Math.min(132, 600 / Math.max(n, 1)), y0 = 250, X = 220, Wd = W - 440;
+  P.forEach((p, k) => { const e = ob((tl - T[k]) / .6); if(e <= 0) return; const y = y0 + k * (h + 12), att = tl >= T[k] && (k === n - 1 || tl < T[k + 1]);
+    g.save(); g.globalAlpha = clamp(e * 1.5); g.translate(X + Wd / 2, y + h / 2); g.scale(.85 + .15 * e, .85 + .15 * e); g.translate(-(X + Wd / 2), -(y + h / 2));
+    scheda(X, y, Wd, h, att ? ORO : 'rgba(111,163,212,.3)', att ? 'rgba(212,174,90,.4)' : null);
+    g.fillStyle = att ? ORO : 'rgba(212,174,90,.25)'; g.beginPath(); g.arc(X + 70, y + h / 2, 36, 0, 6.283); g.fill(); testo(String(k + 1), X + 70, y + h / 2 + 16, '400 48px ISerif', att ? NAVY : ORO2);
+    const tit = pulito(Array.isArray(p) ? p[0] : p), det = Array.isArray(p) ? pulito(p[1]) : '';
+    testo(tit, X + 130, y + (det ? h / 2 - 6 : h / 2 + 12), '600 36px ISans', BIANCO, 'left'); if(det) testo(righe(det, '500 24px IMono', Wd - 170)[0], X + 130, y + h / 2 + 34, '500 24px IMono', GRIGIO, 'left');
+    g.restore(); });
+  nota(s.nota, tl, 2);
+};
+SC.domanda = (s, i, t, tl) => {
+  const D = S[i].dur, O = s.opzioni || [], T = tempiElementi(i, O.length, .2, .55), tR = Math.min(D - 2.5, Math.max(T[T.length - 1] + 2.5, aFrazione(i, .72)));
+  const a = eo(tl / .6); g.globalAlpha = a; testo('TU COSA NE PENSI?', W/2, 170, '500 26px IMono', ORO2, 'center', 8); g.globalAlpha = 1;
+  righe(pulito(s.titolo), '400 66px ISerif', 1400).forEach((r, k) => { g.globalAlpha = a; testo(r, W/2, 260 + k * 72, '400 66px ISerif', BIANCO); g.globalAlpha = 1; });
+  const cw = 760, ch = 130, gx = W/2 - cw - 20, gy = 400;
+  O.forEach((o, k) => { const e = ob((tl - T[k]) / .5); if(e <= 0) return; const x = gx + (k % 2) * (cw + 40), y = gy + Math.floor(k / 2) * (ch + 30), giusta = k === s.giusta, sv = clamp((tl - tR) / .5);
+    g.save(); g.globalAlpha = clamp(e) * (sv > 0 && !giusta ? 1 - .55 * sv : 1); g.translate(x + cw / 2, y + ch / 2); g.scale(e, e); g.translate(-(x + cw / 2), -(y + ch / 2));
+    scheda(x, y, cw, ch, sv > 0 && giusta ? VERDE : 'rgba(111,163,212,.35)', sv > 0 && giusta ? 'rgba(79,191,143,.5)' : null);
+    g.fillStyle = sv > 0 && giusta ? VERDE : 'rgba(212,174,90,.25)'; g.beginPath(); g.roundRect(x + 24, y + ch / 2 - 30, 60, 60, 12); g.fill(); testo('ABCD'[k], x + 54, y + ch / 2 + 14, '600 34px ISans', sv > 0 && giusta ? NAVY : ORO2);
+    righe(pulito(o), '600 32px ISans', cw - 150).slice(0, 2).forEach((r, j, arr) => testo(r, x + 108, y + ch / 2 + 12 - (arr.length - 1) * 19 + j * 38, '600 32px ISans', BIANCO, 'left'));
+    if(sv > 0 && giusta) testo('✓', x + cw - 50, y + ch / 2 + 18, '600 52px ISans', VERDE);
+    g.restore(); });
+  /* conto alla rovescia prima della risposta */
+  const tc = tR - 3; if(tl > tc && tl < tR){ const r = Math.ceil(tR - tl), f = (tR - tl) % 1; g.save(); g.globalAlpha = .9; g.strokeStyle = ORO; g.lineWidth = 8; g.beginPath(); g.arc(W/2, 820, 56, -Math.PI / 2, -Math.PI / 2 + 6.283 * f); g.stroke(); testo(String(r), W/2, 842, '400 70px ISerif', ORO2); g.restore(); }
+  if(tl >= tR && tl < tR + .25){ g.fillStyle = `rgba(79,191,143,${(1 - (tl - tR) / .25) * .25})`; g.fillRect(0, 0, W, H); }
+  const ea = eo((tl - tR - .6) / .6); if(ea > 0 && s.spiegazione){ g.globalAlpha = ea; righe(pulito(s.spiegazione), '500 28px ISans', 1500).slice(0, 2).forEach((r, k) => testo(r, W/2, 790 + k * 40, '600 28px ISans', ORO2)); g.globalAlpha = 1; }
+};
+SC.confronto = (s, i, t, tl) => {
+  titoloScena(s.titolo, tl, 190);
+  const L = s.no || { righe: [] }, R = s.si || { righe: [] }, n = Math.max(L.righe.length, R.righe.length), tutti = [];
+  for(let k = 0; k < n; k++){ if(L.righe[k]) tutti.push(['no', k]); if(R.righe[k]) tutti.push(['si', k]); }
+  const T = tempiElementi(i, tutti.length, .08, .85), pw = 760, X1 = W/2 - pw - 40, X2 = W/2 + 40, y0 = 250, ph = 610;
+  [[X1, L, ROSSO, '✕', 'no', 'rgba(229,89,79,'], [X2, R, VERDE, '✓', 'si', 'rgba(79,191,143,']].forEach(([x, P, c, ic, lato, rg], j) => {
+    const e = eo((tl - .3 - j * .2) / .6); if(e <= 0) return; g.save(); g.globalAlpha = e; g.translate((1 - e) * (j ? 200 : -200), 0);
+    g.fillStyle = rg + '.08)'; g.beginPath(); g.roundRect(x, y0, pw, ph, 22); g.fill(); g.strokeStyle = rg + '.55)'; g.lineWidth = 2; g.stroke();
+    testo(pulito(P.titolo || (j ? 'Con piano' : 'Senza piano')).toUpperCase(), x + pw / 2, y0 + 62, '600 34px ISans', c, 'center', 4);
+    P.righe.forEach((r, k) => { const id = tutti.findIndex(a => a[0] === lato && a[1] === k), q = ob((tl - T[id]) / .5); if(q <= 0) return; const y = y0 + 120 + k * 150;
+      g.save(); g.globalAlpha = clamp(q); g.translate(x + 50, y + 40); g.scale(q, q); g.fillStyle = c; g.beginPath(); g.arc(0, 0, 26, 0, 6.283); g.fill(); testo(ic, 0, 11, '600 30px ISans', NAVY); g.restore();
+      g.globalAlpha = clamp(q); righe(pulito(r), '600 30px ISans', pw - 140).slice(0, 2).forEach((rr, m) => testo(rr, x + 100, y + 50 + m * 38, '600 30px ISans', BIANCO, 'left')); g.globalAlpha = 1; });
+    g.restore(); });
+  const v = ob((tl - .8) / .5); if(v > 0){ g.save(); g.translate(W/2, y0 + ph / 2); g.scale(v * (1 + .05 * Math.sin(tl * 4)), v * (1 + .05 * Math.sin(tl * 4))); g.fillStyle = ORO; g.beginPath(); g.arc(0, 0, 44, 0, 6.283); g.fill(); testo('VS', 0, 12, '600 32px ISans', NAVY); g.restore(); }
+};
+SC.chiusura = (s, i, t, tl) => {
+  const cx = W/2; raggi(cx, 460, t, eo(tl / 1)); bagliore(cx, 460, 700, 'rgba(212,174,90,A)', .2 * eo(tl / 1));
+  for(let k = 0; k < 3; k++){ const q = ((tl * .5 + k / 3) % 1); g.strokeStyle = `rgba(111,163,212,${(1 - q) * .45})`; g.lineWidth = 3; g.beginPath(); g.arc(cx, 460, 120 + q * 620, 0, 6.283); g.stroke(); }
+  const parti = String(s.grande || '').split(/<br\s*\/?>/i), a = ob(tl / .8);
+  g.save(); g.globalAlpha = clamp(tl / .5); g.translate(cx, 420); g.scale(.85 + .15 * a, .85 + .15 * a);
+  parti.forEach((p, k) => testo(pulito(p), 0, -40 + k * 120, (haMark(p) ? 'italic ' : '') + '400 110px ISerif', haMark(p) ? ORO2 : BIANCO)); g.restore();
+  const url = (String(s.piccolo || '') + ' ' + String(s.voce || '')).match(/riskly\.trade\/?[a-z]*/i), u = url ? url[0].replace(/\/$/, '') : 'riskly.trade';
+  const b = eo((tl - 1.2) / .5); if(b > 0){ g.save(); g.globalAlpha = b; g.font = '600 46px ISans'; const bw = g.measureText(u).width + 110; g.fillStyle = ORO; g.beginPath(); g.roundRect(cx - bw / 2, 640 + (1 - b) * 30, bw, 100, 50); g.fill(); testo(u, cx, 706 + (1 - b) * 30, '600 46px ISans', NAVY); g.restore(); flare((tl * .7) % 1.6 * 1400 + 260, 690, 260, .4 * b); }
+  const c2 = eo((tl - 2) / .6); if(c2 > 0 && s.piccolo){ g.globalAlpha = c2; righe(pulito(s.piccolo), '500 26px IMono', 1500).slice(0, 2).forEach((r, k) => testo(r, cx, 820 + k * 38, '500 26px IMono', GRIGIO)); g.globalAlpha = 1; }
+};
+
+/* effetti sonori (li usa animato.js): colpo all'inizio, whoosh a ogni scena, tic a ogni elemento che entra */
+window.eventi = () => { const e = [[S[0].ini + .45, 'colpo']];
+  SPEC.scene.forEach((s, i) => { const b = S[i].ini; if(i) e.push([b - .05, 'whoosh']);
+    if(s.tipo === 'cifra') e.push([b + 2.1, 'colpo']);
+    if(s.tipo === 'numeri') tempiElementi(i, (s.righe || []).length).forEach(x => e.push([b + x, 'tic']));
+    if(s.tipo === 'punti') tempiElementi(i, (s.punti || []).length, .05, .78).forEach(x => e.push([b + x, 'tic']));
+    if(s.tipo === 'confronto'){ const n = (s.no?.righe?.length || 0) + (s.si?.righe?.length || 0); tempiElementi(i, n, .08, .85).forEach(x => e.push([b + x, 'tic'])); }
+    if(s.tipo === 'domanda'){ const O = s.opzioni || [], T = tempiElementi(i, O.length, .2, .55), tR = Math.min(S[i].dur - 2.5, Math.max(T[T.length - 1] + 2.5, aFrazione(i, .72))); T.forEach(x => e.push([b + x, 'tic'])); [3, 2, 1].forEach(k => e.push([b + tR - k, 'tic'])); e.push([b + tR, 'notifica']); }
+    if(s.tipo === 'chiusura') e.push([b + .1, 'riser']); });
+  return e; };
+
+window.disegna = (t) => {
+  const i = scena(t), tl = t - S[i].ini, s = SPEC.scene[i]; g.globalAlpha = 1;
+  const zoom = 1 + .015 * Math.sin(t * .2) + .02 * clamp(tl / S[i].dur);
+  g.save(); g.translate(W/2, H/2); g.scale(zoom, zoom); g.translate(-W/2, -H/2);
+  sfondo(t, i); (SC[s.tipo] || SC.punti)(s, i, t, tl); g.restore();
+  vignetta(); testata(i, tl); sottotitoli(i, tl); avviso();
+  g.fillStyle = ORO; g.fillRect(0, H - 6, W * clamp(t / TOT), 6);
+  if(i > 0){ const f = Math.max(0, 1 - tl / .25); if(f > 0){ g.fillStyle = `rgba(255,236,200,${f * .25})`; g.fillRect(0, 0, W, H); } }
+  const fin = clamp((t - (TOT - .8)) / .8), ini = 1 - clamp(t / .15); if(fin + ini > 0){ g.fillStyle = `rgba(5,11,20,${Math.max(fin, ini)})`; g.fillRect(0, 0, W, H); }
+  if(FUMETTO){ g.save(); g.lineWidth = 8; g.strokeStyle = '#F4F1EA'; g.strokeRect(8, 8, W - 16, H - 16); g.restore(); }
+};
+</script></body></html>
