@@ -41,7 +41,7 @@ function effetti(ev, tot, out){
     + `[${n+1}:a]volume=0.8,aformat=channel_layouts=stereo[fx];[${n+2}:a]volume=0.11,afade=t=in:d=1,afade=t=out:st=${(tot-3).toFixed(2)}:d=3,aformat=channel_layouts=stereo[mus];[voce][fx][mus]amix=inputs=3:normalize=0,loudnorm=I=-14:TP=-1.5:LRA=11[a]`;
   const mp4 = path.join(QUI, `${ID}-animato${FUMETTO ? '-fumetto' : ''}.mp4`);
   const ff = spawn(FF, ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(FPS), '-c:v', 'mjpeg', '-i', '-', ...voci.flatMap(v => ['-i', v]), '-i', fx, '-stream_loop', '-1', '-i', musica,
-    '-filter_complex', filtro, '-map', '0:v', '-map', '[a]', '-t', tot.toFixed(3), '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '21', '-preset', 'medium', '-c:a', 'aac', '-b:a', '160k', '-movflags', '+faststart', mp4], { stdio: ['pipe', 'inherit', 'inherit'] });
+    '-filter_complex', filtro, '-map', '0:v', '-map', '[a]', '-t', tot.toFixed(3), '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '21', '-preset', 'medium', '-c:a', 'aac', '-b:a', '160k', '-ar', '48000', '-movflags', '+faststart', mp4], { stdio: ['pipe', 'inherit', 'inherit'] });
   const fine = new Promise((ok, ko) => ff.on('close', c => c === 0 ? ok() : ko(new Error('ffmpeg ' + c))));
   const nf = Math.round(tot * FPS);
   for(let f = 0; f < nf; f++){ await p.evaluate(t => window.disegna(t), f / FPS); const buf = await p.screenshot({ type: 'jpeg', quality: 88 }); if(!ff.stdin.write(buf)) await new Promise(r => ff.stdin.once('drain', r)); if(f % 500 === 0) console.log(f + '/' + nf); }
