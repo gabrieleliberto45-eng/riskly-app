@@ -2456,5 +2456,252 @@
     "link": "riskly.trade/link (link in bio)"
    }
   ]
+ },
+ {
+  "id": "n07-settimana",
+  "stile": "notizie",
+  "titolo": "La settimana dei mercati · 23–29 novembre",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "Settimana corta, <mark>i dati tutti mercoledì.</mark>",
+    "sotto": "23–29 novembre · PCE e PIL · orari italiani"
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "1 · Gli appuntamenti",
+    "righe": [
+     [
+      "USA, fiducia dei consumatori",
+      "mar 24 · 16:00"
+     ],
+     [
+      "USA, PCE, PIL e sussidi",
+      "<mark>mer 25 · 14:30</mark>"
+     ],
+     [
+      "USA, vendite di case nuove",
+      "mer 25 · 16:00"
+     ],
+     [
+      "Ringraziamento, borse USA chiuse",
+      "gio 26"
+     ]
+    ],
+    "nota": "Venerdì 27 chiusura anticipata. Fonte: calendario economico."
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "2 · Da dove ripartiamo",
+    "righe": [
+     [
+      "Oro, settimana 16–20 novembre",
+      "circa −9%"
+     ],
+     [
+      "Oro, minimo del 20 novembre",
+      "3.515 $"
+     ],
+     [
+      "Decennale USA",
+      "4,95%"
+     ],
+     [
+      "Prossima Fed",
+      "8–9 dicembre"
+     ]
+    ],
+    "nota": "Oro: future COMEX. Dati del 20 novembre, ore 17:50."
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "3 · Cosa si aspetta mercoledì",
+    "righe": [
+     [
+      "PCE core, nel mese",
+      "+0,3%"
+     ],
+     [
+      "PCE core, in un anno",
+      "3,2%"
+     ],
+     [
+      "PIL 3° trimestre, 2ª stima",
+      "+3,4%"
+     ]
+    ],
+    "nota": "Attese del consenso. Possono cambiare fino all'uscita."
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Questa settimana nel percorso: <mark>tappa 1.</mark>",
+    "sotto": "Perché la maggior parte dei conti perde · alle 13:00 il primo reel",
+    "link": "Simula le perdite di fila, gratis: riskly.trade/rovina (link in bio)"
+   }
+  ]
+ },
+ {
+  "id": "p1-lezione",
+  "titolo": "Tappa 1 · La lezione",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "Perché <mark>la maggior parte dei conti</mark> perde?",
+    "sotto": "Percorso Riskly · Tappa 1 di 8 · la lezione"
+   },
+   {
+    "tipo": "testo",
+    "titolo": "La regola",
+    "testo": "<b>Ogni perdita toglie una percentuale di quello che ti resta.</b>",
+    "nota": "Dopo N perdite di fila: conto × (1 − rischio) ripetuto N volte."
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "5 perdite di fila, conto 10.000 €",
+    "righe": [
+     [
+      "Rischio 1% a operazione",
+      "9.510 €"
+     ],
+     [
+      "Rischio 2%",
+      "9.039 €"
+     ],
+     [
+      "Rischio 5%",
+      "7.738 €"
+     ],
+     [
+      "Rischio 10%",
+      "<mark>5.905 €</mark>"
+     ]
+    ],
+    "nota": "Esempio con numeri arrotondati all'euro."
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "Per tornare in pari serve",
+    "righe": [
+     [
+      "Dopo −10%",
+      "+11,1%"
+     ],
+     [
+      "Dopo −25%",
+      "+33,3%"
+     ],
+     [
+      "Dopo −41%",
+      "+69%"
+     ],
+     [
+      "Dopo −50%",
+      "<mark>+100%</mark>"
+     ]
+    ],
+    "nota": "Si recupera partendo da un conto più piccolo."
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Tu quanto rischi <mark>a operazione?</mark>",
+    "sotto": "Scrivilo nei commenti 👇 · Mercoledì: l'esempio",
+    "link": "Simula le perdite di fila, gratis: riskly.trade/rovina (link in bio)"
+   }
+  ]
+ },
+ {
+  "id": "p1-errori",
+  "titolo": "Tappa 1 · Gli errori",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "3 errori che <mark>bruciano il conto</mark> anche con l'analisi giusta.",
+    "sotto": "Percorso Riskly · Tappa 1 di 8 · gli errori"
+   },
+   {
+    "tipo": "frasi",
+    "voci": [
+     [
+      "1",
+      "Rischio diverso a ogni trade.",
+      "Un trade grande sbagliato cancella dieci piccoli giusti."
+     ],
+     [
+      "2",
+      "Raddoppiare dopo una perdita.",
+      "Dopo una perdita si rallenta, non si raddoppia."
+     ]
+    ]
+   },
+   {
+    "tipo": "frasi",
+    "voci": [
+     [
+      "3",
+      "Credere rare 5 perdite di fila.",
+      "Con il 55% di vincite, su 100 trade è la serie media."
+     ],
+     [
+      "→",
+      "Il rischio si decide prima.",
+      "La stessa percentuale, ogni volta."
+     ]
+    ]
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Quale di questi <mark>ti è successo?</mark>",
+    "sotto": "Scrivi il numero nei commenti 👇 · Domani: il quiz",
+    "link": "Simula le perdite di fila, gratis: riskly.trade/rovina (link in bio)"
+   }
+  ]
+ },
+ {
+  "id": "p1-quiz",
+  "titolo": "Tappa 1 · Il quiz",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "Quiz: <mark>quanto ti resta?</mark>",
+    "sotto": "Percorso Riskly · Tappa 1 di 8 · il quiz"
+   },
+   {
+    "tipo": "testo",
+    "titolo": "La domanda",
+    "testo": "<b>Conto da 10.000 €. Rischi il 5% a operazione e perdi 4 volte di fila.</b>",
+    "nota": "Quanto ti resta? Scegli A, B o C."
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "Le risposte",
+    "righe": [
+     [
+      "A",
+      "8.000 €"
+     ],
+     [
+      "B",
+      "8.145 €"
+     ],
+     [
+      "C",
+      "8.500 €"
+     ]
+    ],
+    "nota": "Scrivi la lettera nei commenti, poi scorri."
+   },
+   {
+    "tipo": "testo",
+    "titolo": "La soluzione: B",
+    "testo": "<b>10.000 × 0,95 × 0,95 × 0,95 × 0,95 = 8.145 €</b>",
+    "nota": "Ogni perdita è il 5% di quello che resta. Per tornare in pari serve +22,8%."
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Domenica <mark>il riepilogo.</mark> Poi la tappa 2.",
+    "sotto": "Tappa 2: quanto rischiare per operazione",
+    "link": "Simula le perdite di fila, gratis: riskly.trade/rovina (link in bio)"
+   }
+  ]
  }
 ]
