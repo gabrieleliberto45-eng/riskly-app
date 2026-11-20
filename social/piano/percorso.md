@@ -37,9 +37,8 @@ Livello 2 (dalla settimana 9): stesse 8 tappe, più avanzate (correlazioni, size
 | Giovedì 18:00 | Carosello TikTok "L'errore" | i 3 errori più comuni sul tema |
 | Giovedì/venerdì | Reel attualità (se esce un dato USA) | collega la notizia al tema della tappa quando possibile |
 | Venerdì 18:00 | Carosello TikTok "Quiz" | domanda con 3 risposte, la soluzione nei commenti o nell'ultima slide |
-| Sabato | YouTube "La settimana dell'oro" | fisso, chiude con il collegamento alla tappa |
 | Domenica 13:00 | Reel (fumetto) "Riepilogo" | le 3 cose da ricordare + lo strumento della tappa + "la prossima settimana: tappa N+1" |
-| Shorts YouTube | gli stessi reel della settimana | stesso ordine |
+| Short YouTube | gli stessi reel della settimana, alla stessa ora | niente video lunghi (Gabriele 20/11) |
 
 Su Instagram: solo i reel (fuori dalla griglia), stessi giorni. I caroselli solo su TikTok.
 
@@ -58,7 +57,7 @@ Su Instagram: solo i reel (fuori dalla griglia), stessi giorni. I caroselli solo
 ## Registro
 | Settimana | Tappa | Uscito |
 |---|---|---|
-| 23–29/11 | 1 · Perché la maggior parte dei conti perde (riskly.trade/rovina) | Programmato il 20/11 (commit 5917742): lun 09:00 n07 settimana dei mercati (TikTok) · lun 13:00 reel t1a apertura (IG+TikTok) · mar 18:00 p1-lezione (TikTok) · mer 13:00 reel t1b esempio, simulazione 55% (IG+TikTok) · gio 18:00 p1-errori (TikTok) · ven 18:00 p1-quiz (TikTok) · dom 13:00 reel t1c riepilogo (IG+TikTok). Primi reel in stile motion (--motion). |
+| 23–29/11 | 1 · Perché la maggior parte dei conti perde (riskly.trade/rovina) | Programmato il 20/11 (commit 5917742): lun 09:00 n07 settimana dei mercati (TikTok) · lun 13:00 reel t1a apertura (IG+TikTok) · mar 18:00 p1-lezione (TikTok) · mer 13:00 reel t1b esempio, simulazione 55% (IG+TikTok) · gio 18:00 p1-errori (TikTok) · ven 18:00 p1-quiz (TikTok) · dom 13:00 reel t1c riepilogo (IG+TikTok). Primi reel in stile motion (--motion). I 3 reel anche come Short YouTube alla stessa ora. |
 
 ## Spunti da @miich.fx (analisi del 15 novembre 2026)
 Numeri reali (vidIQ, 12 reel più recenti): il più visto è il reel fissato con una storia personale ("In questi 3 anni mi sono detto…", 25,4 mila visualizzazioni); il resto tra 100 e 1.500 visualizzazioni. Lo stesso reel pubblicato 3 volte nello stesso giorno ha preso molto meno: niente doppioni.
