@@ -172,7 +172,7 @@ function testata(t, vis){
   if(vis <= 0) return; g.globalAlpha = vis;
   testo('RISKLY', 80, 118, '600 34px ISans', BIANCO, 'left', 9); g.fillStyle = ORO; g.fillRect(80, 138, 54, 3);
   testo('riskly.trade', W - 80, 118, '500 30px IMono', 'rgba(244,241,234,.7)', 'right');
-  if(PERC){ testo('PERCORSO RISKLY · TAPPA ' + PERC + ' DI 8', W/2, 210, '500 30px IMono', ORO2, 'center', 4); } g.globalAlpha = 1;
+  if(PERC > 0){ testo('PERCORSO RISKLY · TAPPA ' + PERC + ' DI 8', W/2, 210, '500 30px IMono', ORO2, 'center', 4); } g.globalAlpha = 1;
 }
 function avviso(){ testo('Contenuto promozionale · Riskly è un mio prodotto · Non è consulenza finanziaria', W/2, 1796, '500 22px IMono', 'rgba(244,241,234,.55)');
   testo('Il trading con leva comporta un alto rischio di perdita del capitale', W/2, 1828, '500 22px IMono', 'rgba(244,241,234,.55)'); }
@@ -187,8 +187,9 @@ const HOOK = {
   gta: ['13 anni', 'per GTA 6.', 'Domani esce.', 'MA SUL CONTO REALE…'],
   t1a: ['Analisi giusta,', 'conto in rosso?', 'Non è sfortuna.', 'GUARDA I NUMERI'],
   t1b: ['Vinci 55 volte', 'su 100?', 'Perdi lo stesso.', 'GUARDA LA SIMULAZIONE'],
-  t1c: ['Tappa 1:', 'cosa ricordare.', 'Tre regole.', 'SALVALO PER DOPO'] }[V];
-const PERC = { t1a: 1, t1b: 1, t1c: 1 }[V];
+  t1c: ['Tappa 1:', 'cosa ricordare.', 'Tre regole.', 'SALVALO PER DOPO'],
+  oro21: ['Oro −9,5%', 'in 5 sedute.', 'Con le borse a picco.', 'PERCHÉ NON HA FATTO DA RIFUGIO?'] }[V];
+const PERC = { t1a: 1, t1b: 1, t1c: 1, oro21: -1 }[V];
 /* --- scena 0: gancio --- */
 function mercato(t, tl){
   /* linea di mercato (passeggiata casuale deterministica) che scorre dietro */
@@ -321,7 +322,7 @@ function journal(t, tl){
 }
 
 /* --- scena 5: invito --- */
-const INV = { prodotti: ['Visita', 'il nostro sito.', 'riskly.trade'], news: ['Visita', 'il nostro sito.', 'news.riskly.trade'], calc: ['Visita', 'il nostro sito.', 'strumenti.riskly.trade'], journal: ['7 giorni di prova', 'senza carta.', 'app.riskly.trade'], prenews: ['Visita', 'il nostro sito.', 'news.riskly.trade'], ea: ['Calcola il rischio', 'gratis.', 'strumenti.riskly.trade'], gta: ['Calcola il rischio', 'gratis.', 'strumenti.riskly.trade'], t1a: ['Simula le perdite', 'di fila, gratis.', 'riskly.trade/rovina'], t1b: ['Metti i tuoi numeri', 'nel simulatore.', 'riskly.trade/rovina'], t1c: ['Prova il simulatore', 'gratis.', 'riskly.trade/rovina'] }[V];
+const INV = { prodotti: ['Visita', 'il nostro sito.', 'riskly.trade'], news: ['Visita', 'il nostro sito.', 'news.riskly.trade'], calc: ['Visita', 'il nostro sito.', 'strumenti.riskly.trade'], journal: ['7 giorni di prova', 'senza carta.', 'app.riskly.trade'], prenews: ['Visita', 'il nostro sito.', 'news.riskly.trade'], ea: ['Calcola il rischio', 'gratis.', 'strumenti.riskly.trade'], gta: ['Calcola il rischio', 'gratis.', 'strumenti.riskly.trade'], t1a: ['Simula le perdite', 'di fila, gratis.', 'riskly.trade/rovina'], t1b: ['Metti i tuoi numeri', 'nel simulatore.', 'riskly.trade/rovina'], t1c: ['Prova il simulatore', 'gratis.', 'riskly.trade/rovina'], oro21: ['Simula le perdite', 'di fila, gratis.', 'riskly.trade/rovina'] }[V];
 function invito(t, tl){
   const cx = W/2; raggi(cx, 760, t, eo(tl / 1)); bagliore(cx, 760, 600, 'rgba(212,174,90,A)', .22 * eo(tl / 1));
   for(let k = 0; k < 3; k++){ const q = ((tl * .6 + k / 3) % 1); g.save(); g.strokeStyle = `rgba(111,163,212,${(1 - q) * .5})`; g.lineWidth = 3; g.beginPath(); g.arc(cx, 760, 120 + q * 520, 0, 6.28); g.stroke(); g.restore(); }
@@ -542,9 +543,19 @@ function serie(t, tl){
   const tm = Math.max(4.6, trova(si, 'media') - .2), a = eo((tl - tm) / .5); if(a > 0){ g.globalAlpha = a; testo('serie più lunga, in media: 5', W/2, 1365, 'italic 400 64px ISerif', ORO2); g.globalAlpha = 1; }
   const tt = Math.max(tm + 1.5, trova(si, 'una') - .2), b = eo((tl - tt) / .5); if(b > 0){ g.globalAlpha = b; testo('6 o più in 1 prova su 3 · 20.000 simulazioni', W/2, 1440, '500 30px IMono', 'rgba(244,241,234,.8)'); g.globalAlpha = 1; }
 }
-const PUNTI = [['Le perdite di fila', 'sono normali', 'perdite'], ['Conta quanto rischi', 'più dell\'entrata', 'conta'], ['Recuperare costa di più', '−50% chiede +100%', 'recuperare']];
+const CALI = [['Oro', 'settimana', 9.5, 'loro'], ['Argento', 'settimana', 16.3, 'largento'], ['S&P 500', 'settimana', 8.6, 'lsp'], ['Nasdaq', 'solo venerdì', 5.3, 'nasdaq']];
+function cali(t, tl){
+  const si = ELENCO.indexOf(cali); etichetta('16 – 20 NOVEMBRE · FUTURE E INDICI USA');
+  CALI.forEach(([nm, sub, p, k], j) => { const t0 = Math.max(.2 + j * .8, trova(si, k) - .2), q = eo((tl - t0) / .9); if(q <= 0) return; const y = 380 + j * 215;
+    g.save(); g.globalAlpha = clamp(q * 2); testo(nm, 90, y, '600 52px ISans', BIANCO, 'left'); testo(sub, 90, y + 44, '500 28px IMono', 'rgba(244,241,234,.65)', 'left');
+    const w = 46 * p * q; g.fillStyle = ROSSO; g.beginPath(); g.roundRect(90, y + 70, w, 56, 10); g.fill();
+    testo('−' + (p * q).toFixed(1).replace('.', ',') + '%', 90 + w + 24, y + 114, '500 46px IMono', ROSSO, 'left'); g.restore(); });
+  const a = eo((tl - Math.max(4, trova(si, 'minimo') - .2)) / .5); if(a > 0){ g.globalAlpha = a; testo('oro a 3.515 $: minimo da oltre un anno', W/2, 1395, 'italic 400 50px ISerif', ORO2); g.globalAlpha = 1; }
+}
+const PUNTI = V === 'oro21' ? [['Fed: rialzo quasi certo', '≈99% a dicembre (FedWatch)', 'fed'], ['Vendite forzate', 'oro venduto per coprire i margini', 'vendite'], ['Dollaro forte', 'vicino ai massimi da 19 mesi', 'dollaro']]
+  : [['Le perdite di fila', 'sono normali', 'perdite'], ['Conta quanto rischi', 'più dell\'entrata', 'conta'], ['Recuperare costa di più', '−50% chiede +100%', 'recuperare']];
 function punti(t, tl){
-  const si = ELENCO.indexOf(punti); etichetta('TAPPA 1 · DA RICORDARE');
+  const si = ELENCO.indexOf(punti); etichetta(V === 'oro21' ? 'PERCHÉ È SCESO' : 'TAPPA 1 · DA RICORDARE');
   PUNTI.forEach((c, k) => { const t0 = Math.max(.2 + k, trova(si, c[2]) - .15), q = ob((tl - t0) / .45); if(q <= 0) return;
     const y = 400 + k * 280; g.save(); g.globalAlpha = clamp(q * 2); g.translate((1 - q) * 500, 0);
     scheda(90, y, 900, 230, ORO, 'rgba(212,174,90,.25)');
@@ -553,7 +564,7 @@ function punti(t, tl){
     testo(c[0], 275, y + 105, '600 50px ISans', BIANCO, 'left'); testo(c[1], 275, y + 165, '500 32px IMono', ORO2, 'left'); g.restore(); });
 }
 
-const ELENCO = { prodotti: [mercato, perdita, cosa, prodotti, journal, invito], news: [mercato, notifica, categorie, tempi, invito], calc: [mercato, posizione, recupero, cinque, invito], journal: [mercato, journal, statistiche, invito], prenews: [mercato, attese, tassi, scenari, esempio, invito], ea: [mercato, eaUno, eaDue, invito], gta: [mercato, salvataggio, rovina, invito], t1a: [mercato, rovina, recupero, invito], t1b: [mercato, serie, rovina, invito], t1c: [mercato, punti, invito] }[V];
+const ELENCO = { prodotti: [mercato, perdita, cosa, prodotti, journal, invito], news: [mercato, notifica, categorie, tempi, invito], calc: [mercato, posizione, recupero, cinque, invito], journal: [mercato, journal, statistiche, invito], prenews: [mercato, attese, tassi, scenari, esempio, invito], ea: [mercato, eaUno, eaDue, invito], gta: [mercato, salvataggio, rovina, invito], t1a: [mercato, rovina, recupero, invito], t1b: [mercato, serie, rovina, invito], t1c: [mercato, punti, invito], oro21: [mercato, cali, punti, invito] }[V];
 window.eventi = () => { const e = [[S[0].ini, 'colpo']]; S.slice(1).forEach(x => e.push([x.ini - .05, 'whoosh']));
   const at = (n, k) => { const i = ELENCO.findIndex(f => f.name === n); return i < 0 ? null : S[i].ini + k; };
   if(V === 'prodotti'){ const p = at('perdita', 0), c = at('cosa', 0), pr = ELENCO.findIndex(f => f.name === 'prodotti'); e.push([c + .02, 'colpo'], [p + 2.05, 'glitch'], [p + 2.05, 'colpo'], [p + 1.05, 'riser'], [p + .2, 'batti'], [p + 1.05, 'batti'], [p + 1.9, 'batti']);
@@ -567,7 +578,8 @@ window.eventi = () => { const e = [[S[0].ini, 'colpo']]; S.slice(1).forEach(x =>
   if(V === 't1a' || V === 't1b'){ const r = at('rovina', 0), si = ELENCO.indexOf(rovina); for(let j = 0; j < 6; j++){ e.push([r + Math.max(.8, trova(si, 'cento') - .3) + j * .35, 'tic']); } }
   if(V === 't1a'){ const r = at('recupero', 0); [.3, 1.6].forEach(x => e.push([r + x, 'tic'])); }
   if(V === 't1b'){ const s0 = at('serie', 0); e.push([s0 + 3.4, 'colpo']); }
-  if(V === 't1c'){ const p = at('punti', 0), si = ELENCO.indexOf(punti); PUNTI.forEach((c, k) => e.push([p + Math.max(.2 + k, trova(si, c[2]) - .15), 'whoosh'], [p + Math.max(.2 + k, trova(si, c[2]) - .15) + .5, 'tic'])); }
+  if(V === 'oro21'){ const c = at('cali', 0), si = ELENCO.indexOf(cali); CALI.forEach((x, j) => e.push([c + Math.max(.2 + j * .8, trova(si, x[3]) - .2), 'whoosh'])); }
+  if(V === 't1c' || V === 'oro21'){ const p = at('punti', 0), si = ELENCO.indexOf(punti); PUNTI.forEach((c, k) => e.push([p + Math.max(.2 + k, trova(si, c[2]) - .15), 'whoosh'], [p + Math.max(.2 + k, trova(si, c[2]) - .15) + .5, 'tic'])); }
   return e; };
 window.disegna = (t) => {
   const i = scena(t), tl = t - S[i].ini; g.globalAlpha = 1;
