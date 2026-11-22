@@ -106,6 +106,7 @@ html[data-tema="scuro"] .nastro{background:#0B1626!important}
 .pat{display:block;margin:10px 0 6px;line-height:1.5}.term{display:flex;gap:8px;align-items:flex-start;font-size:13px;line-height:1.4;margin:8px 0}.term input{margin-top:3px}
 .pezzo h2.par{font:700 13px 'Archivo';letter-spacing:.08em;color:var(--oro);margin:26px 0 8px;padding-top:14px;border-top:1px solid var(--line)}
 .pezzo p{font-size:17px;line-height:1.7;margin:0 0 16px}
+.pezzo figure.graf{margin:8px 0 22px}.pezzo figure.graf img{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--line)}.pezzo figure.graf figcaption{font-size:13px;color:var(--ink3,#8A8F94);margin-top:6px}
 .tab{width:100%;border-collapse:collapse;margin:6px 0 22px;font-size:15px}
 .tab td{padding:10px 4px;border-bottom:1px solid var(--line)}
 .tab{table-layout:fixed}.tab td:first-child{width:38%;padding-right:10px}
@@ -441,7 +442,7 @@ async function vistaArticolo(id){
     v.innerHTML = `<article class="pezzo">${testa}
       ${a.categoria === 'setup' ? '<p class="nota-setup">Setup XAU descrive cosa ha fatto l\'oro e dove ha girato di recente: sono livelli osservati, non segnali. Non indicano dove comprare o vendere.</p>' : ''}
       ${(pieno.tabella || []).length ? `<table class="tab">${pieno.tabella.map(r => `<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td></tr>`).join('')}</table>` : ''}
-      ${(pieno.corpo || []).map(p => (p.length < 90 && p === p.toUpperCase() && /[A-ZÀ-Ü]{3}/.test(p)) ? `<h2 class="par">${esc(p)}</h2>` : `<p>${esc(p)}</p>`).join('')}
+      ${(pieno.corpo || []).map(p => { const gr = /^GRAFICO\|(https:\/\/swlztverwfgdgchgpudt\.supabase\.co\/storage\/v1\/object\/public\/copertine\/[\w.-]+\.(?:jpg|png))\|(.*)$/.exec(p); if(gr) return `<figure class="graf"><img src="${esc(gr[1])}" alt="${esc(gr[2])}" loading="lazy"><figcaption>${esc(gr[2])}</figcaption></figure>`; return (p.length < 90 && p === p.toUpperCase() && /[A-ZÀ-Ü]{3}/.test(p)) ? `<h2 class="par">${esc(p)}</h2>` : `<p>${esc(p)}</p>`; }).join('')}
       ${(pieno.da_guardare || []).length ? `<div class="box"><b>Da guardare</b><ul>${pieno.da_guardare.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>` : ''}
       ${(pieno.fonti || []).length ? `<p class="fonti">Fonti: ${pieno.fonti.map(f => `<a href="${esc(f.url)}" target="_blank" rel="noopener">${esc(f.nome)}</a>`).join(' · ')}</p>` : ''}
       <p class="avviso">Contenuto informativo ed educativo, non è consulenza finanziaria né una previsione. Il trading con leva comporta un alto rischio: puoi perdere tutto il capitale.</p>${campana()}</div></article>`;
