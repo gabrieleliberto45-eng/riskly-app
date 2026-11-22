@@ -101,7 +101,7 @@ if len(__import__('sys').argv) > 1:
         hx.barh(y + 1, v, height=2, color=BLU if dentro else GRIGIO, alpha=.85 if dentro else .45)
     hx.set_xticks([]); hx.tick_params(labelleft=False)
     hx.text(0, 1.01, 'volume per prezzo\n(ultima settimana)', transform=hx.transAxes, fontsize=12, color=GRIGIO, va='bottom')
-    MOSTRA_VUOTI = os.environ.get('VUOTI') == '1'
+    MOSTRA_VUOTI = os.environ.get('VUOTI') != '0'  # accesi da Gabriele il 22/11
     if MOSTRA_VUOTI:
         for da, a_ in W.get('vuoti', []):
             a.axhspan(da, a_, color=GRIGIO, alpha=.16, lw=0, zorder=0); hx.axhspan(da, a_, color=GRIGIO, alpha=.16, lw=0, zorder=0)
