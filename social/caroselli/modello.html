@@ -50,6 +50,7 @@
   .piede{position:absolute;left:84px;right:84px;bottom:46px;display:flex;justify-content:space-between;align-items:flex-end;font:500 24px 'Martian Mono';color:var(--grigio2)}
   .disc{font:500 24px/1.4 'Archivo';color:var(--grigio2);max-width:44ch}
   .freccia{font:700 28px 'Martian Mono';color:var(--inchiostro)}
+.foto{display:block;width:100%;height:500px;object-fit:cover;border-radius:28px;margin:0 0 34px;box-shadow:0 18px 40px rgba(0,0,0,.18)}
 </style></head>
 <body><div id="s" class="s"></div>
 <script>
@@ -71,7 +72,7 @@ function candele(cv, seme){
 window.mostra = (d, i, n) => {
   const s = document.getElementById('s');
   let c = '';
-  if(d.tipo === 'copertina') c = `<div class="grande">${d.testo}</div><div class="sotto">${d.sotto || ''}</div>`;
+  if(d.tipo === 'copertina') c = `${d.immagine ? `<img class="foto" src="${d.immagine}">` : ''}<div class="grande">${d.testo}</div><div class="sotto">${d.sotto || ''}</div>`;
   if(d.tipo === 'testo') c = `<div class="tit">${d.titolo}</div><div class="par">${d.testo}</div>${d.nota ? `<div class="nota">${d.nota}</div>` : ''}`;
   if(d.tipo === 'numeri') c = `<div class="tit">${d.titolo}</div><div class="righe">${d.righe.map(r => `<div class="riga"><span>${r[0]}</span><span>${r[1]}</span></div>`).join('')}</div>${d.nota ? `<div class="nota">${d.nota}</div>` : ''}`;
   if(d.tipo === 'frasi') c = d.voci.map(v => `<div class="frase"><span class="n">${v[0]}</span><span class="q">${v[1]}</span><span class="a">${v[2]}</span></div>`).join('');

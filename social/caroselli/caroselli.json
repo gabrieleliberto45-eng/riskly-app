@@ -2547,7 +2547,8 @@
    {
     "tipo": "copertina",
     "testo": "Perché <mark>la maggior parte dei conti</mark> perde?",
-    "sotto": "Percorso Riskly · Tappa 1 di 8 · la lezione"
+    "sotto": "Percorso Riskly · Tappa 1 di 8 · la lezione",
+    "immagine": "img/domino.jpg"
    },
    {
     "tipo": "testo",
