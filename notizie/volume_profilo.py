@@ -35,6 +35,24 @@ def profilo(cc, passo=1.0):
     return {'POC': p(poc), 'VAH': p(livelli[hi]), 'VAL': p(livelli[lo]), 'volume_totale': int(tot),
             'massimo': round(max(h for _, h, _, _ in cc), 1), 'minimo': round(min(l for _, _, l, _ in cc), 1), 'candele': len(cc)}
 
+def vuoti(cc, soglia=.15, largh_min=8, bordo=6):
+    """vuoti volumetrici (LVN): fasce di almeno largh_min $ dove il volume (media mobile su 5 $) è sotto soglia × picco.
+    Esclusi i bordi del range (agli estremi il volume è sempre basso)."""
+    vol = defaultdict(float)
+    for _, h, l, v in cc:
+        a, b = int(l // 1), int(h // 1)
+        for k in range(a, b + 1): vol[k] += v / (b - a + 1)
+    if not vol: return []
+    ks = sorted(vol); lo, hi = ks[0], ks[-1]
+    sm = {k: sum(vol.get(k + j, 0) for j in range(-2, 3)) / 5 for k in ks}
+    lim = soglia * max(sm.values()); out = []; cur = None
+    for k in ks + [hi + 1]:
+        if k <= hi and sm[k] < lim: cur = [k, k] if cur is None else [cur[0], k]
+        else:
+            if cur and cur[1] - cur[0] >= largh_min and cur[0] > lo + bordo and cur[1] < hi - bordo: out.append([float(cur[0]), float(cur[1] + 1)])
+            cur = None
+    return out
+
 cc = candele()
 oggi = dt.datetime.now(IT).date()
 giorni = sorted({t.date() for t, *_ in cc if t.date() < oggi and t.weekday() < 5})
@@ -48,6 +66,8 @@ if oggi.weekday() >= 5 or oggi == lun:  # nel weekend e il lunedì la "settimana
     lun2 = lun if oggi.weekday() >= 5 else lun_prec
     sett2 = [c for c in cc if lun2 <= c[0].date() < lun2 + dt.timedelta(days=5)]
     ris['settimana_precedente'] = dict(dal=str(lun2), al=str(lun2 + dt.timedelta(days=4)), **(profilo(sett2) or {}))
+_w = ris['settimana_precedente']; _d0, _d1 = dt.date.fromisoformat(_w['dal']), dt.date.fromisoformat(_w['al'])
+_w['vuoti'] = vuoti([c for c in cc if _d0 <= c[0].date() <= _d1])
 ris['nota'] = ('Fine novembre: il contratto principale passa da dicembre a febbraio; nei giorni del passaggio il contratto continuo di Yahoo '
                'può mescolare i due e falsare un po\' i livelli.') if dt.date(oggi.year, 11, 20) <= oggi <= dt.date(oggi.year, 11, 30) else ''
 if len(__import__('sys').argv) > 1:
@@ -81,6 +101,11 @@ if len(__import__('sys').argv) > 1:
         hx.barh(y + 1, v, height=2, color=BLU if dentro else GRIGIO, alpha=.85 if dentro else .45)
     hx.set_xticks([]); hx.tick_params(labelleft=False)
     hx.text(0, 1.01, 'volume per prezzo\n(ultima settimana)', transform=hx.transAxes, fontsize=12, color=GRIGIO, va='bottom')
+    MOSTRA_VUOTI = os.environ.get('VUOTI') == '1'
+    if MOSTRA_VUOTI:
+        for da, a_ in W.get('vuoti', []):
+            a.axhspan(da, a_, color=GRIGIO, alpha=.16, lw=0, zorder=0); hx.axhspan(da, a_, color=GRIGIO, alpha=.16, lw=0, zorder=0)
+            a.text(1, a_ - (a_ - da) * .08, f"vuoto volumetrico {da:,.0f}–{a_:,.0f} $".replace(',', '.'), va='top', fontsize=11, color='#6B7076', style='italic')
     n = len(bars); gs = [i for i in ticks if bars[i][0].date() == dt.date.fromisoformat(S['data'])]; x0g = gs[0] if gs else max(0, n - 46)
     gnome = G[dt.date.fromisoformat(S['data']).weekday()]
     for nome, val, col, ls, x0, lw in [('VAH settimana', W['VAH'], ROSSO, '--', 0, 2), ('POC settimana', W['POC'], ORO, '-', 0, 2.8), ('VAL settimana', W['VAL'], VERDE, '--', 0, 2),
@@ -95,7 +120,7 @@ if len(__import__('sys').argv) > 1:
         a.text(n + 3, y, f'{nome}  {it(val)}', va='center', fontsize=13, color=col if col != ORO else '#9A7A2E', fontweight='bold', clip_on=False)
     a.set_xlim(-2, n + 2); a.grid(axis='y', color=BLU, alpha=.07)
     f.text(.06, .91, 'Oro (future COMEX) · volume profile a intervallo fisso', fontsize=26, fontweight='bold', color=BLU)
-    f.text(.06, .865, f"ultima settimana ({dt.date.fromisoformat(W['dal']).strftime('%d/%m')}–{dt.date.fromisoformat(W['al']).strftime('%d/%m')}) e giorno precedente ({dt.date.fromisoformat(S['data']).strftime('%d/%m')}) · POC in oro, VAH in rosso, VAL in verde", fontsize=14, color=GRIGIO)
+    f.text(.06, .865, f"ultima settimana ({dt.date.fromisoformat(W['dal']).strftime('%d/%m')}–{dt.date.fromisoformat(W['al']).strftime('%d/%m')}) e giorno precedente ({dt.date.fromisoformat(S['data']).strftime('%d/%m')}) · POC in oro, VAH in rosso, VAL in verde" + (' · in grigio i vuoti volumetrici' if MOSTRA_VUOTI else ''), fontsize=14, color=GRIGIO)
     f.text(.06, .035, 'Riskly News · dati Yahoo Finance (GC=F), candele a 30 minuti · value area = 70% del volume · livelli osservati, non segnali', fontsize=12, color=GRIGIO)
     f.savefig(os.path.join(QUI, '..', 'nuovo', 'news', 'copertine', f'{ID}-vp.jpg'), facecolor=CARTA, pil_kwargs={'quality': 88}); plt.close(f)
     out = subprocess.run([sys.executable, os.path.join(QUI, 'carica_copertina.py'), f'{ID}-vp'], capture_output=True, text=True)
