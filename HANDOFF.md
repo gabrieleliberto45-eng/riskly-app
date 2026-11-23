@@ -6,6 +6,9 @@
 - Ogni articolo ha almeno 3 fonti diverse, scelte in quest'ordine: 1) fonti ufficiali: federalreserve.gov (comunicati, verbali, discorsi), BLS (CPI, lavoro), BEA (PCE, PIL), Census, Treasury, CME FedWatch; 2) agenzie e grandi testate: Reuters, Bloomberg, AP, CNBC, Wall Street Journal, Financial Times, MarketWatch, Kitco, Il Sole 24 Ore, ANSA, Milano Finanza; 3) siti di analisi (FXStreet, InvestingLive, Investing.com) solo come complemento.
 - Per i dati USA cita sempre il comunicato ufficiale; per le frasi dei membri Fed il testo su federalreserve.gov o l'agenzia che le riporta.
 
+## ERRORE DEL 23/11: CONTROLLO ORARIO SENZA fire_trigger
+- Alle 17:12 il controllo orario ha visto Nasdaq +6,9%, S&P +5,1%, oro +4,4%, petrolio −4% (ritorno di Huang in Nvidia) ma non ha fatto partire l'articolo straordinario: nella sua sessione fire_trigger è "differito" e non era caricato. Articolo scritto a mano alle 17:35 (2026-11-23-rimbalzo-nasdaq-nvidia-oro). Corretto il prompt del controllo: carica fire_trigger con ToolSearch, poi riserva con send_message a questa sessione; e STOP se una straordinaria di oggi spiega già il movimento.
+
 ## REGOLA FISSA (15/11/2026, Gabriele: "non deve mai essere mandata in nessun caso con la mia personale")
 - Le email verso clienti, utenti o contatti partono SEMPRE e SOLO da Riskly: Resend, mittente "Riskly <noreply@mail.riskly.trade>", reply_to info@riskly.trade, firma "Il team Riskly".
 - MAI usare il Gmail personale di Gabriele (strumenti mcp__Gmail__send_message / create_draft) per scrivere a clienti, utenti o contatti esterni, in nessun caso. Se Resend non funziona: non mandare, dirlo a Gabriele.
