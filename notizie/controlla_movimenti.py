@@ -36,4 +36,6 @@ if len(straord) >= 2: print(f'STOP: oggi sono già uscite {len(straord)} notizie
 dati = [a for a in art if a['categoria'] in ('dati', 'fed', 'tassi')]
 if not ora and dati:   # solo soglie sul giorno e c'è già un dato/Fed/tassi analizzato ieri o oggi: il movimento è quasi certamente quello
     print(f"STOP: sopra soglia solo sul giorno ({'; '.join(giorno)}), già spiegato da un articolo recente ({dati[0]['id']}); nessun movimento rapido nell'ultima ora"); raise SystemExit
+if straord and not ora:   # 24/11: il movimento del giorno è già raccontato dalla straordinaria di oggi; una seconda solo per un nuovo scatto nell'ultima ora
+    print(f"STOP: movimento già coperto dalla straordinaria di oggi ({straord[0]['id']}): {'; '.join(giorno)}"); raise SystemExit
 print('SERVE: ' + '; '.join(giorno + ora) + ' | articoli recenti: ' + elenco)
