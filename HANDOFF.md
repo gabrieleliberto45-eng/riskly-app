@@ -1,5 +1,11 @@
 # Passaggio di consegne (8 novembre 2026)
 
+## REGOLA FISSA: PREVISIONI DELLE BANCHE NEGLI ARTICOLI DEI DATI DELLE 14:30 (25/11/2026, Gabriele: "nell'articolo riguardante i dati che escono alle 14:30, in tutti, devi aggiungere le previsioni di ogni banca più influente")
+- Vale per TUTTI gli articoli sui dati USA in uscita alle 14:30 italiane (PCE, CPI, PPI, payrolls, PIL, vendite al dettaglio, ecc.), compresi quelli delle sessioni separate una tantum.
+- Parte "PREVISIONI DELLE BANCHE" subito dopo "COSA È USCITO": per ogni banca influente (Goldman Sachs, JPMorgan, Morgan Stanley, Bank of America, Citi, Wells Fargo, Deutsche Bank, UBS, Barclays, ING, Nomura, BNP Paribas, Commerzbank, più il consenso Bloomberg/Reuters/Dow Jones se si trova) la sua previsione per QUEL dato, con nome della banca e fonte (Reuters, Bloomberg, CNBC, MarketWatch, Kitco, FXStreet, note delle banche riportate da queste testate). Cercarle PRIMA dell'uscita; dopo l'uscita una riga su chi ci è andato vicino.
+- MAI inventare una cifra: se per una banca non c'è una previsione verificata, non va messa (meglio 4–6 banche vere che 13 inventate) e si dice che sono le sole pubbliche trovate. Sono previsioni del DATO attribuite alle banche, non nostre previsioni sul mercato.
+- Il compito "articolo del giorno" (sezione F) e ogni sessione per i dati leggono questo file: devono rispettare la regola.
+
 ## REGOLA FISSA SULLE FONTI DEGLI ARTICOLI (23/11/2026, Gabriele: "usa anche qualche altra fonte per gli articoli, non solo Investing.com")
 - Vale per TUTTI gli articoli di Riskly News (articolo del giorno, Setup XAU, straordinarie, dati istantanei).
 - Al massimo UNA fonte di Investing.com per articolo (e mai come unica fonte di un fatto).
