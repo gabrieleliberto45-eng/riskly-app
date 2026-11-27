@@ -2704,5 +2704,258 @@
     "link": "Simula le perdite di fila, gratis: riskly.trade/rovina (link in bio)"
    }
   ]
+ },
+ {
+  "id": "n08-settimana",
+  "stile": "notizie",
+  "titolo": "La settimana dei mercati · 30 novembre–6 dicembre",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "Settimana <mark>verso i payrolls.</mark>",
+    "sotto": "30 novembre–6 dicembre · ISM, JOLTS e lavoro USA · orari italiani"
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "1 · Gli appuntamenti",
+    "righe": [
+     [
+      "USA, ISM manifatturiero e JOLTS",
+      "mar 1 · 16:00"
+     ],
+     [
+      "USA, ADP occupati",
+      "mer 2 · 14:15"
+     ],
+     [
+      "USA, ISM servizi",
+      "gio 3 · 16:00"
+     ],
+     [
+      "USA, payrolls e disoccupazione",
+      "<mark>ven 4 · 14:30</mark>"
+     ],
+     [
+      "USA, fiducia Michigan",
+      "ven 4 · 16:00"
+     ]
+    ],
+    "nota": "Fonte: calendario economico."
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "2 · Da dove ripartiamo",
+    "righe": [
+     [
+      "Oro, minimo di mercoledì 25",
+      "3.425 $"
+     ],
+     [
+      "Oro, venerdì 27 alle 17:17",
+      "3.649 $"
+     ],
+     [
+      "Decennale USA",
+      "4,91%"
+     ],
+     [
+      "Prossima Fed",
+      "8–9 dicembre"
+     ]
+    ],
+    "nota": "Oro: future COMEX. Dati del 27 novembre."
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "3 · Cosa si aspetta venerdì",
+    "righe": [
+     [
+      "Payrolls, novembre",
+      "+90mila"
+     ],
+     [
+      "Tasso di disoccupazione",
+      "4,1%"
+     ],
+     [
+      "ISM manifatturiero (martedì)",
+      "55,1"
+     ]
+    ],
+    "nota": "Attese del consenso. Possono cambiare fino all'uscita."
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Questa settimana nel percorso: <mark>tappa 2.</mark>",
+    "sotto": "Quanto rischiare per operazione · alle 13:00 il primo reel",
+    "link": "Calcola il tuo lotto, gratis: riskly.trade/lotto (link in bio)"
+   }
+  ]
+ },
+ {
+  "id": "p2-lezione",
+  "titolo": "Tappa 2 · La lezione",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "Quanto puoi <mark>perdere su un solo trade?</mark>",
+    "sotto": "Percorso Riskly · Tappa 2 di 8 · la lezione",
+    "immagine": "img/bilancia.jpg"
+   },
+   {
+    "tipo": "testo",
+    "titolo": "La regola",
+    "testo": "<b>Prima decidi quanto perdere. Poi calcoli il lotto.</b>",
+    "nota": "Rischio in $ = conto × percentuale di rischio."
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "Conto da 10.000 $",
+    "righe": [
+     [
+      "Rischio 1%",
+      "100 $"
+     ],
+     [
+      "Rischio 2%",
+      "200 $"
+     ],
+     [
+      "Rischio 5%",
+      "500 $"
+     ],
+     [
+      "Rischio 10%",
+      "<mark>1.000 $</mark>"
+     ]
+    ],
+    "nota": "Quanto perdi se salta lo stop."
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "Il lotto, sull'oro",
+    "righe": [
+     [
+      "Rischio",
+      "100 $"
+     ],
+     [
+      "Distanza dello stop",
+      "10 $"
+     ],
+     [
+      "1 lotto = 100 once",
+      "100 $ per ogni 1 $"
+     ],
+     [
+      "Lotti = 100 ÷ (10 × 100)",
+      "<mark>0,10</mark>"
+     ]
+    ],
+    "nota": "Controlla la dimensione del contratto sul tuo broker."
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Tu quanto rischi <mark>a operazione?</mark>",
+    "sotto": "Scrivilo nei commenti 👇 · Mercoledì: l'esempio",
+    "link": "Calcola il tuo lotto, gratis: riskly.trade/lotto (link in bio)"
+   }
+  ]
+ },
+ {
+  "id": "p2-errori",
+  "titolo": "Tappa 2 · Gli errori",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "3 errori sul <mark>lotto.</mark>",
+    "sotto": "Percorso Riskly · Tappa 2 di 8 · gli errori"
+   },
+   {
+    "tipo": "testo",
+    "titolo": "1 · Il lotto a sentimento",
+    "testo": "<b>Scegli il lotto prima e metti lo stop dove capita.</b>",
+    "nota": "Così il rischio cambia a ogni operazione, senza che te ne accorga."
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "2 · Stesso lotto, stop diversi",
+    "righe": [
+     [
+      "Stop a 10 $, 0,10 lotti",
+      "100 $"
+     ],
+     [
+      "Stop a 20 $, 0,10 lotti",
+      "200 $"
+     ],
+     [
+      "Stop a 40 $, 0,10 lotti",
+      "<mark>400 $</mark>"
+     ]
+    ],
+    "nota": "Se il lotto non cambia, più largo è lo stop e più perdi."
+   },
+   {
+    "tipo": "testo",
+    "titolo": "3 · Alzare il rischio dopo una perdita",
+    "testo": "<b>Dopo −10% serve +11,1% per tornare in pari. Rischiare di più non accorcia la strada.</b>",
+    "nota": "Dalla tappa 1: recuperare costa più che perdere."
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Come si <mark>evitano?</mark>",
+    "sotto": "Fissa il rischio, poi calcola il lotto · Domani il quiz",
+    "link": "Calcola il tuo lotto, gratis: riskly.trade/lotto (link in bio)"
+   }
+  ]
+ },
+ {
+  "id": "p2-quiz",
+  "titolo": "Tappa 2 · Il quiz",
+  "slide": [
+   {
+    "tipo": "copertina",
+    "testo": "Quiz: <mark>quanti lotti?</mark>",
+    "sotto": "Percorso Riskly · Tappa 2 di 8 · il quiz"
+   },
+   {
+    "tipo": "testo",
+    "titolo": "La domanda",
+    "testo": "<b>Conto da 10.000 $, rischio 1% (100 $), stop a 20 $ sull'oro. Quanti lotti?</b>",
+    "nota": "1 lotto = 100 once. Scegli A, B o C."
+   },
+   {
+    "tipo": "numeri",
+    "titolo": "Le risposte",
+    "righe": [
+     [
+      "A",
+      "0,05 lotti"
+     ],
+     [
+      "B",
+      "0,50 lotti"
+     ],
+     [
+      "C",
+      "0,10 lotti"
+     ]
+    ],
+    "nota": "Scrivi la lettera nei commenti, poi scorri."
+   },
+   {
+    "tipo": "testo",
+    "titolo": "La soluzione: A",
+    "testo": "<b>100 ÷ (20 × 100) = 0,05 lotti</b>",
+    "nota": "Stop doppio, lotto dimezzato: il rischio resta 100 $."
+   },
+   {
+    "tipo": "domanda",
+    "testo": "Domenica <mark>il riepilogo.</mark> Poi la tappa 3.",
+    "sotto": "Tappa 3: lo stop e il rapporto rischio/rendimento",
+    "link": "Calcola il tuo lotto, gratis: riskly.trade/lotto (link in bio)"
+   }
+  ]
  }
 ]
