@@ -56,6 +56,8 @@ Il sito NON si deve rifare (deploy Netlify) per pubblicare un articolo: legge tu
 | 17:49 → ~18:00 | **Aggiornamento delle 18:00 del Setup XAU**: si aggiunge IN CODA allo stesso articolo (nessuna seconda notifica). Si fa solo se l'oro si è mosso ≥0,4% dalle 11:00 o ci sono notizie rilevanti | lun–ven | compito `trig_016aKYv4FJPHcarvMNqqXK2V`, in questa sessione |
 | ogni ora al minuto 12, dalle 9 alle 22 | **Controllo straordinarie**: se oro, dollaro, petrolio, decennale o future S&P/Nasdaq superano le soglie, scrive e pubblica un articolo «straordinarie» | lun–ven | compito `trig_01HdS7FYDWMCDxTMYPdS8gNt`, sessione separata, modello Sonnet |
 
+**27/11/2026, sera:** gli articoli sono passati a una chat dedicata. I 4 compiti «in questa sessione» (`trig_015vzb2URdCQk9ipHhLwrtyH`, `trig_017Ms7gu1XRiLaaf4UxAZvBw`, `trig_01DqC42a6zUgpefkSZnZDmgq`, `trig_016aKYv4FJPHcarvMNqqXK2V`) sono stati **spenti** nella vecchia chat e ricreati nella nuova, con gli stessi orari. Gli identificativi sopra sono quindi quelli vecchi: per i nuovi guardare `list_triggers`.
+
 Compiti spenti (non cancellati): `trig_018DfoT8aPFuH8k4fypsDbid` (vecchio controllo con Haiku), `trig_01HEdkvCEiG17hjg86Yt1P6A` (controllo dentro questa chat).
 
 Regola d'oro di Gabriele (13/11): **«Gli articoli non devono mai fermarsi.»** Se manca un articolo, lo si recupera subito; si scrive a Gabriele solo se qualcosa non funziona o serve una sua decisione (mai per mandargli gli articoli: «sprechi solo token», 8/11).
