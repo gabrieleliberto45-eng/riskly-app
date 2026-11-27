@@ -58,6 +58,7 @@ Su Instagram: solo i reel (fuori dalla griglia), stessi giorni. I caroselli solo
 | Settimana | Tappa | Uscito |
 |---|---|---|
 | 23–29/11 | 1 · Perché la maggior parte dei conti perde (riskly.trade/rovina) | Programmato il 20/11 (commit 5917742): lun 09:00 n07 settimana dei mercati (TikTok) · lun 13:00 reel t1a apertura (IG+TikTok) · mar 18:00 p1-lezione (TikTok) · mer 13:00 reel t1b esempio, simulazione 55% (IG+TikTok) · gio 18:00 p1-errori (TikTok) · ven 18:00 p1-quiz (TikTok) · dom 13:00 reel t1c riepilogo (IG+TikTok). Primi reel in stile motion (--motion). I 3 reel anche come Short YouTube alla stessa ora. |
+| 30/11–6/12 | 2 · Quanto rischiare per operazione (riskly.trade/lotto) | Programmato il 27/11 (commit ed12bfe): lun 09:00 n08 settimana dei mercati (TikTok) · lun 13:00 reel t2a apertura (IG+TikTok+Short) · mar 18:00 p2-lezione (TikTok) · mer 13:00 reel t2b esempio, stop a 10 $ e rischi 1/2/5% (IG+TikTok+Short) · gio 18:00 p2-errori (TikTok) · ven 4/12 18:00 p2-quiz (TikTok) · dom 6/12 13:00 reel t2c riepilogo (IG+TikTok+Short). Reel in stile motion con copertine Higgsfield. Le tabelle di tappa 1 ancora in uscita: quiz 27/11 e riepilogo 29/11. |
 
 ## Spunti da @miich.fx (analisi del 15 novembre 2026)
 Numeri reali (vidIQ, 12 reel più recenti): il più visto è il reel fissato con una storia personale ("In questi 3 anni mi sono detto…", 25,4 mila visualizzazioni); il resto tra 100 e 1.500 visualizzazioni. Lo stesso reel pubblicato 3 volte nello stesso giorno ha preso molto meno: niente doppioni.
